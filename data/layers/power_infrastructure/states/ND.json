@@ -8,7 +8,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.10435,
-    "lat": 48.67617
+    "lat": 48.67617,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130777",
@@ -19,7 +23,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.91296,
-    "lat": 48.40203
+    "lat": 48.40203,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130778",
@@ -30,7 +38,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.91145,
-    "lat": 48.40219
+    "lat": 48.40219,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130878",
@@ -41,7 +53,9 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.15992,
-    "lat": 47.34203
+    "lat": 47.34203,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-130879",
@@ -52,7 +66,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.7606,
-    "lat": 48.3265
+    "lat": 48.3265,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130880",
@@ -63,7 +81,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.85206,
-    "lat": 47.38734
+    "lat": 47.38734,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130881",
@@ -74,7 +96,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.82913,
-    "lat": 47.54553
+    "lat": 47.54553,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130964",
@@ -85,7 +111,9 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.86277,
-    "lat": 48.40829
+    "lat": 48.40829,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-131015",
@@ -96,7 +124,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.73228,
-    "lat": 48.1442
+    "lat": 48.1442,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-131016",
@@ -107,7 +139,9 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.28459,
-    "lat": 47.77654
+    "lat": 47.77654,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-131017",
@@ -118,7 +152,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.77362,
-    "lat": 48.14879
+    "lat": 48.14879,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-131018",
@@ -129,7 +167,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.94433,
-    "lat": 48.23272
+    "lat": 48.23272,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-131047",
@@ -140,7 +182,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.64833,
-    "lat": 47.83351
+    "lat": 47.83351,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-131048",
@@ -151,7 +197,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.60588,
-    "lat": 47.78314
+    "lat": 47.78314,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-131049",
@@ -162,7 +212,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.85964,
-    "lat": 48.40746
+    "lat": 48.40746,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-131051",
@@ -173,7 +227,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.30575,
-    "lat": 48.34018
+    "lat": 48.34018,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-131413",
@@ -184,7 +242,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.40725,
-    "lat": 48.41109
+    "lat": 48.41109,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-131414",
@@ -195,7 +257,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.07616,
-    "lat": 48.35132
+    "lat": 48.35132,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132177",
@@ -206,7 +272,9 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.89497,
-    "lat": 46.87479
+    "lat": 46.87479,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132680",
@@ -217,7 +285,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.21139,
-    "lat": 48.11741
+    "lat": 48.11741,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132775",
@@ -228,7 +300,11 @@
     "county_fips": "38069",
     "state": "ND",
     "lon": -99.95784,
-    "lat": 48.35173
+    "lat": 48.35173,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132777",
@@ -239,7 +315,11 @@
     "county_fips": "38069",
     "state": "ND",
     "lon": -99.96646,
-    "lat": 48.48629
+    "lat": 48.48629,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132778",
@@ -250,7 +330,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.33145,
-    "lat": 47.27702
+    "lat": 47.27702,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132848",
@@ -261,7 +345,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.31894,
-    "lat": 47.28291
+    "lat": 47.28291,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132849",
@@ -272,7 +360,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.33344,
-    "lat": 47.28657
+    "lat": 47.28657,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132850",
@@ -283,7 +375,9 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.88523,
-    "lat": 48.02146
+    "lat": 48.02146,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132923",
@@ -294,7 +388,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.79842,
-    "lat": 47.1146
+    "lat": 47.1146,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132924",
@@ -305,7 +403,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.70818,
-    "lat": 47.11412
+    "lat": 47.11412,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132925",
@@ -316,7 +418,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.80638,
-    "lat": 46.88429
+    "lat": 46.88429,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132927",
@@ -327,7 +433,11 @@
     "county_fips": "38051",
     "state": "ND",
     "lon": -99.06561,
-    "lat": 46.11179
+    "lat": 46.11179,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133143",
@@ -338,7 +448,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.42787,
-    "lat": 47.4987
+    "lat": 47.4987,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133147",
@@ -349,7 +463,11 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.19908,
-    "lat": 47.07185
+    "lat": 47.07185,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133152",
@@ -360,7 +478,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.09837,
-    "lat": 47.37271
+    "lat": 47.37271,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133386",
@@ -371,7 +493,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.82392,
-    "lat": 48.08648
+    "lat": 48.08648,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133388",
@@ -382,7 +508,11 @@
     "county_fips": "38003",
     "state": "ND",
     "lon": -97.83131,
-    "lat": 47.2128
+    "lat": 47.2128,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133389",
@@ -393,7 +523,11 @@
     "county_fips": "38003",
     "state": "ND",
     "lon": -97.89552,
-    "lat": 47.12494
+    "lat": 47.12494,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133416",
@@ -404,7 +538,11 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.19604,
-    "lat": 47.07184
+    "lat": 47.07184,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133418",
@@ -415,7 +553,11 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.1994,
-    "lat": 47.07013
+    "lat": 47.07013,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133419",
@@ -426,7 +568,9 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.88529,
-    "lat": 46.86559
+    "lat": 46.86559,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133420",
@@ -437,7 +581,11 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.21348,
-    "lat": 47.06758
+    "lat": 47.06758,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133421",
@@ -448,7 +596,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.68084,
-    "lat": 47.02854
+    "lat": 47.02854,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133735",
@@ -459,7 +611,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.16892,
-    "lat": 48.1976
+    "lat": 48.1976,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133736",
@@ -470,7 +626,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.06351,
-    "lat": 47.98345
+    "lat": 47.98345,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133737",
@@ -481,7 +641,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.10782,
-    "lat": 47.90687
+    "lat": 47.90687,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133738",
@@ -492,7 +656,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.06474,
-    "lat": 47.98159
+    "lat": 47.98159,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133741",
@@ -503,7 +671,11 @@
     "county_fips": "38021",
     "state": "ND",
     "lon": -98.97832,
-    "lat": 46.10502
+    "lat": 46.10502,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133743",
@@ -514,7 +686,11 @@
     "county_fips": "38021",
     "state": "ND",
     "lon": -98.09012,
-    "lat": 46.04439
+    "lat": 46.04439,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133769",
@@ -525,7 +701,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.87385,
-    "lat": 46.91745
+    "lat": 46.91745,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133770",
@@ -536,7 +714,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.8604,
-    "lat": 46.83184
+    "lat": 46.83184,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133831",
@@ -547,7 +727,11 @@
     "county_fips": "38067",
     "state": "ND",
     "lon": -97.17792,
-    "lat": 48.59227
+    "lat": 48.59227,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133833",
@@ -558,7 +742,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.70789,
-    "lat": 47.11281
+    "lat": 47.11281,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133834",
@@ -569,7 +757,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -101.54219,
-    "lat": 46.9797
+    "lat": 46.9797,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133835",
@@ -580,7 +772,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.81757,
-    "lat": 47.22366
+    "lat": 47.22366,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133932",
@@ -591,7 +787,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.20851,
-    "lat": 48.23762
+    "lat": 48.23762,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133933",
@@ -602,7 +802,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.36238,
-    "lat": 48.12526
+    "lat": 48.12526,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133934",
@@ -613,7 +817,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.12264,
-    "lat": 48.02303
+    "lat": 48.02303,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133935",
@@ -624,7 +832,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.2891,
-    "lat": 48.02261
+    "lat": 48.02261,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133936",
@@ -635,7 +847,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.12252,
-    "lat": 48.23983
+    "lat": 48.23983,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133938",
@@ -646,7 +862,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.64174,
-    "lat": 48.18106
+    "lat": 48.18106,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133940",
@@ -657,7 +877,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.92839,
-    "lat": 48.02984
+    "lat": 48.02984,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133941",
@@ -668,7 +892,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.31748,
-    "lat": 48.18221
+    "lat": 48.18221,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133946",
@@ -679,7 +907,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.20914,
-    "lat": 48.23995
+    "lat": 48.23995,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133947",
@@ -690,7 +922,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.18756,
-    "lat": 48.24001
+    "lat": 48.24001,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133948",
@@ -701,7 +937,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.18803,
-    "lat": 48.21132
+    "lat": 48.21132,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133949",
@@ -712,7 +952,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.20986,
-    "lat": 48.21129
+    "lat": 48.21129,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133950",
@@ -723,7 +967,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.2097,
-    "lat": 48.21845
+    "lat": 48.21845,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133951",
@@ -734,7 +982,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.36115,
-    "lat": 48.19646
+    "lat": 48.19646,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133952",
@@ -745,7 +997,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.38234,
-    "lat": 48.18258
+    "lat": 48.18258,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133957",
@@ -756,7 +1012,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.31705,
-    "lat": 48.19613
+    "lat": 48.19613,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133958",
@@ -767,7 +1027,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.26813,
-    "lat": 48.24051
+    "lat": 48.24051,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133959",
@@ -778,7 +1042,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.24659,
-    "lat": 48.20076
+    "lat": 48.20076,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133960",
@@ -789,7 +1057,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.18888,
-    "lat": 48.21793
+    "lat": 48.21793,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133961",
@@ -800,7 +1072,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.92813,
-    "lat": 48.05482
+    "lat": 48.05482,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133962",
@@ -811,7 +1087,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.5084,
-    "lat": 47.71807
+    "lat": 47.71807,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133963",
@@ -822,7 +1102,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.85125,
-    "lat": 47.71785
+    "lat": 47.71785,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133964",
@@ -833,7 +1117,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.40441,
-    "lat": 47.64716
+    "lat": 47.64716,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133965",
@@ -844,7 +1132,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.41952,
-    "lat": 47.64961
+    "lat": 47.64961,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133967",
@@ -855,7 +1147,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.67801,
-    "lat": 47.92051
+    "lat": 47.92051,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133969",
@@ -866,7 +1162,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.28255,
-    "lat": 47.81888
+    "lat": 47.81888,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133973",
@@ -877,7 +1177,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.40438,
-    "lat": 47.64618
+    "lat": 47.64618,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133974",
@@ -888,7 +1192,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.24858,
-    "lat": 47.71725
+    "lat": 47.71725,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133975",
@@ -899,7 +1207,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.24736,
-    "lat": 47.93455
+    "lat": 47.93455,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133982",
@@ -910,7 +1222,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.16866,
-    "lat": 48.19805
+    "lat": 48.19805,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-133996",
@@ -921,7 +1237,9 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.11327,
-    "lat": 47.90604
+    "lat": 47.90604,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133998",
@@ -932,7 +1250,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.05144,
-    "lat": 47.9383
+    "lat": 47.9383,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133999",
@@ -943,7 +1265,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.6276,
-    "lat": 47.90417
+    "lat": 47.90417,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134001",
@@ -954,7 +1280,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.04417,
-    "lat": 47.84631
+    "lat": 47.84631,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134012",
@@ -965,7 +1295,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.11274,
-    "lat": 47.90748
+    "lat": 47.90748,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134016",
@@ -976,7 +1310,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.60221,
-    "lat": 47.89641
+    "lat": 47.89641,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134021",
@@ -987,7 +1325,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.61173,
-    "lat": 47.91985
+    "lat": 47.91985,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134026",
@@ -998,7 +1340,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.26881,
-    "lat": 48.89504
+    "lat": 48.89504,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134027",
@@ -1009,7 +1355,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.62716,
-    "lat": 48.56964
+    "lat": 48.56964,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134028",
@@ -1020,7 +1370,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.94159,
-    "lat": 48.6156
+    "lat": 48.6156,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134029",
@@ -1031,7 +1385,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.31347,
-    "lat": 48.85163
+    "lat": 48.85163,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134031",
@@ -1042,7 +1400,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.48776,
-    "lat": 48.82148
+    "lat": 48.82148,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134032",
@@ -1053,7 +1415,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.29053,
-    "lat": 48.91119
+    "lat": 48.91119,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134033",
@@ -1064,7 +1430,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.26813,
-    "lat": 48.89424
+    "lat": 48.89424,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134035",
@@ -1075,7 +1445,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.94252,
-    "lat": 48.6138
+    "lat": 48.6138,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134036",
@@ -1086,7 +1460,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.81933,
-    "lat": 48.60444
+    "lat": 48.60444,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134037",
@@ -1097,7 +1475,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.29035,
-    "lat": 48.83659
+    "lat": 48.83659,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134038",
@@ -1108,7 +1490,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.81878,
-    "lat": 48.60548
+    "lat": 48.60548,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134039",
@@ -1119,7 +1505,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.88076,
-    "lat": 48.86688
+    "lat": 48.86688,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134040",
@@ -1130,7 +1520,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.62538,
-    "lat": 48.49
+    "lat": 48.49,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134043",
@@ -1141,7 +1535,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.66785,
-    "lat": 48.19841
+    "lat": 48.19841,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134045",
@@ -1152,7 +1550,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.63305,
-    "lat": 48.22605
+    "lat": 48.22605,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134046",
@@ -1163,7 +1565,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.57743,
-    "lat": 48.22612
+    "lat": 48.22612,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134047",
@@ -1174,7 +1580,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.56243,
-    "lat": 48.2402
+    "lat": 48.2402,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134049",
@@ -1185,7 +1595,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.67045,
-    "lat": 48.2688
+    "lat": 48.2688,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134055",
@@ -1196,7 +1610,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.82884,
-    "lat": 48.27121
+    "lat": 48.27121,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134058",
@@ -1207,7 +1625,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.95316,
-    "lat": 48.23297
+    "lat": 48.23297,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134059",
@@ -1218,7 +1640,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.68032,
-    "lat": 48.18208
+    "lat": 48.18208,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134060",
@@ -1229,7 +1655,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.64196,
-    "lat": 48.22652
+    "lat": 48.22652,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134074",
@@ -1240,7 +1670,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.95312,
-    "lat": 48.23061
+    "lat": 48.23061,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134077",
@@ -1251,7 +1685,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.84619,
-    "lat": 48.84573
+    "lat": 48.84573,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134080",
@@ -1262,7 +1700,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.36267,
-    "lat": 48.78968
+    "lat": 48.78968,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134082",
@@ -1273,7 +1715,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.3847,
-    "lat": 48.41252
+    "lat": 48.41252,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134083",
@@ -1284,7 +1730,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.31703,
-    "lat": 48.6298
+    "lat": 48.6298,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134086",
@@ -1295,7 +1745,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.71066,
-    "lat": 48.67379
+    "lat": 48.67379,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134087",
@@ -1306,7 +1760,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -98.08075,
-    "lat": 48.41328
+    "lat": 48.41328,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134091",
@@ -1317,7 +1775,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.71602,
-    "lat": 48.76114
+    "lat": 48.76114,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134096",
@@ -1328,7 +1790,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.33231,
-    "lat": 48.76093
+    "lat": 48.76093,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134101",
@@ -1339,7 +1805,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.50513,
-    "lat": 48.62748
+    "lat": 48.62748,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134102",
@@ -1350,7 +1820,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.35531,
-    "lat": 48.58766
+    "lat": 48.58766,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134103",
@@ -1361,7 +1835,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.36772,
-    "lat": 48.74733
+    "lat": 48.74733,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134109",
@@ -1372,7 +1850,11 @@
     "county_fips": "38095",
     "state": "ND",
     "lon": -99.45092,
-    "lat": 48.66007
+    "lat": 48.66007,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134112",
@@ -1383,7 +1865,11 @@
     "county_fips": "38095",
     "state": "ND",
     "lon": -99.45983,
-    "lat": 48.86002
+    "lat": 48.86002,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134114",
@@ -1394,7 +1880,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -99.94315,
-    "lat": 48.79175
+    "lat": 48.79175,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134115",
@@ -1405,7 +1895,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -99.92753,
-    "lat": 48.67449
+    "lat": 48.67449,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134116",
@@ -1416,7 +1910,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -99.72136,
-    "lat": 48.84946
+    "lat": 48.84946,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134121",
@@ -1427,7 +1925,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -99.80023,
-    "lat": 48.81916
+    "lat": 48.81916,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134122",
@@ -1438,7 +1940,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -99.56004,
-    "lat": 48.97216
+    "lat": 48.97216,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134123",
@@ -1449,7 +1955,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -99.56223,
-    "lat": 48.97233
+    "lat": 48.97233,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134125",
@@ -1460,7 +1970,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -99.72327,
-    "lat": 48.83456
+    "lat": 48.83456,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134131",
@@ -1471,7 +1985,11 @@
     "county_fips": "38069",
     "state": "ND",
     "lon": -99.87034,
-    "lat": 48.34753
+    "lat": 48.34753,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134141",
@@ -1482,7 +2000,9 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.84231,
-    "lat": 47.37091
+    "lat": 47.37091,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134142",
@@ -1493,7 +2013,9 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.42981,
-    "lat": 47.50105
+    "lat": 47.50105,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134143",
@@ -1504,7 +2026,9 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.1566,
-    "lat": 47.37419
+    "lat": 47.37419,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134163",
@@ -1515,7 +2039,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.23842,
-    "lat": 47.40023
+    "lat": 47.40023,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134171",
@@ -1526,7 +2054,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.84196,
-    "lat": 47.3644
+    "lat": 47.3644,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134174",
@@ -1537,7 +2069,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.50646,
-    "lat": 47.45824
+    "lat": 47.45824,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134176",
@@ -1548,7 +2084,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.19663,
-    "lat": 47.97764
+    "lat": 47.97764,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134177",
@@ -1559,7 +2099,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.85948,
-    "lat": 48.05743
+    "lat": 48.05743,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134178",
@@ -1570,7 +2114,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.34452,
-    "lat": 47.97663
+    "lat": 47.97663,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134179",
@@ -1581,7 +2129,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.48668,
-    "lat": 47.97639
+    "lat": 47.97639,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134180",
@@ -1592,7 +2144,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.45167,
-    "lat": 47.98201
+    "lat": 47.98201,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134181",
@@ -1603,7 +2159,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.65803,
-    "lat": 47.97978
+    "lat": 47.97978,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134187",
@@ -1614,7 +2174,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.45586,
-    "lat": 47.98366
+    "lat": 47.98366,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134188",
@@ -1625,7 +2189,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.898,
-    "lat": 47.90509
+    "lat": 47.90509,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134189",
@@ -1636,7 +2204,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.34511,
-    "lat": 47.97733
+    "lat": 47.97733,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134193",
@@ -1647,7 +2219,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.93957,
-    "lat": 47.90479
+    "lat": 47.90479,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134194",
@@ -1658,7 +2234,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.89931,
-    "lat": 47.99161
+    "lat": 47.99161,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134195",
@@ -1669,7 +2249,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.89242,
-    "lat": 48.07093
+    "lat": 48.07093,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134196",
@@ -1680,7 +2264,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.15165,
-    "lat": 47.9786
+    "lat": 47.9786,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134198",
@@ -1691,7 +2279,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.35742,
-    "lat": 48.03805
+    "lat": 48.03805,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134201",
@@ -1702,7 +2294,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.35256,
-    "lat": 48.06699
+    "lat": 48.06699,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134202",
@@ -1713,7 +2309,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.85299,
-    "lat": 47.74735
+    "lat": 47.74735,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134203",
@@ -1724,7 +2324,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.89755,
-    "lat": 47.80529
+    "lat": 47.80529,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134204",
@@ -1735,7 +2339,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.2841,
-    "lat": 47.7748
+    "lat": 47.7748,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134206",
@@ -1746,7 +2354,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.46473,
-    "lat": 47.78259
+    "lat": 47.78259,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134210",
@@ -1757,7 +2369,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.18353,
-    "lat": 47.84841
+    "lat": 47.84841,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134211",
@@ -1768,7 +2384,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.18279,
-    "lat": 47.85458
+    "lat": 47.85458,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134213",
@@ -1779,7 +2399,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.98607,
-    "lat": 47.80391
+    "lat": 47.80391,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134224",
@@ -1790,7 +2414,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.17611,
-    "lat": 47.85561
+    "lat": 47.85561,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134228",
@@ -1801,7 +2429,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.81452,
-    "lat": 47.67661
+    "lat": 47.67661,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134229",
@@ -1812,7 +2444,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.21811,
-    "lat": 47.78957
+    "lat": 47.78957,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134231",
@@ -1823,7 +2459,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.58107,
-    "lat": 47.79542
+    "lat": 47.79542,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134235",
@@ -1834,7 +2474,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.85497,
-    "lat": 47.80464
+    "lat": 47.80464,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134241",
@@ -1845,7 +2489,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.33555,
-    "lat": 48.20852
+    "lat": 48.20852,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134242",
@@ -1856,7 +2504,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.54957,
-    "lat": 48.20899
+    "lat": 48.20899,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134267",
@@ -1867,7 +2519,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.78911,
-    "lat": 48.19411
+    "lat": 48.19411,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134271",
@@ -1878,7 +2534,9 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.8656,
-    "lat": 48.10021
+    "lat": 48.10021,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134273",
@@ -1889,7 +2547,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.82607,
-    "lat": 48.08709
+    "lat": 48.08709,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134275",
@@ -1900,7 +2562,9 @@
     "county_fips": "38063",
     "state": "ND",
     "lon": -98.34819,
-    "lat": 48.0218
+    "lat": 48.0218,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134279",
@@ -1911,7 +2575,9 @@
     "county_fips": "38069",
     "state": "ND",
     "lon": -99.97426,
-    "lat": 48.10486
+    "lat": 48.10486,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134286",
@@ -1922,7 +2588,11 @@
     "county_fips": "38005",
     "state": "ND",
     "lon": -99.43688,
-    "lat": 48.25328
+    "lat": 48.25328,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134304",
@@ -1933,7 +2603,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -99.11462,
-    "lat": 48.21513
+    "lat": 48.21513,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134305",
@@ -1944,7 +2618,9 @@
     "county_fips": "38027",
     "state": "ND",
     "lon": -99.11369,
-    "lat": 47.64624
+    "lat": 47.64624,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134306",
@@ -1955,7 +2631,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -99.0917,
-    "lat": 48.2185
+    "lat": 48.2185,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134308",
@@ -1966,7 +2646,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.29305,
-    "lat": 48.94157
+    "lat": 48.94157,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134311",
@@ -1977,7 +2661,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -101.01694,
-    "lat": 48.71871
+    "lat": 48.71871,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134312",
@@ -1988,7 +2676,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -101.23384,
-    "lat": 48.76209
+    "lat": 48.76209,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134313",
@@ -1999,7 +2691,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.56138,
-    "lat": 48.77823
+    "lat": 48.77823,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134315",
@@ -2010,7 +2706,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -101.01855,
-    "lat": 48.82164
+    "lat": 48.82164,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134320",
@@ -2021,7 +2721,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -101.27731,
-    "lat": 48.84956
+    "lat": 48.84956,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134322",
@@ -2032,7 +2736,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.38004,
-    "lat": 48.95175
+    "lat": 48.95175,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134325",
@@ -2043,7 +2751,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.51738,
-    "lat": 48.76534
+    "lat": 48.76534,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134326",
@@ -2054,7 +2766,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.35965,
-    "lat": 48.93614
+    "lat": 48.93614,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134327",
@@ -2065,7 +2781,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.42423,
-    "lat": 48.82041
+    "lat": 48.82041,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134331",
@@ -2076,7 +2796,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.52603,
-    "lat": 48.77755
+    "lat": 48.77755,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134334",
@@ -2087,7 +2811,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.4238,
-    "lat": 48.81296
+    "lat": 48.81296,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134336",
@@ -2098,7 +2826,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -100.08471,
-    "lat": 48.80627
+    "lat": 48.80627,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134337",
@@ -2109,7 +2841,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -100.05986,
-    "lat": 48.80721
+    "lat": 48.80721,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134338",
@@ -2120,7 +2856,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -100.05327,
-    "lat": 48.94705
+    "lat": 48.94705,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134340",
@@ -2131,7 +2871,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.43865,
-    "lat": 48.81952
+    "lat": 48.81952,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134341",
@@ -2142,7 +2886,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.42567,
-    "lat": 48.80782
+    "lat": 48.80782,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134342",
@@ -2153,7 +2901,9 @@
     "county_fips": "38069",
     "state": "ND",
     "lon": -99.99686,
-    "lat": 48.35295
+    "lat": 48.35295,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134343",
@@ -2164,7 +2914,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.58112,
-    "lat": 48.29813
+    "lat": 48.29813,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134344",
@@ -2175,7 +2929,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.18656,
-    "lat": 48.36956
+    "lat": 48.36956,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134345",
@@ -2186,7 +2944,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.31831,
-    "lat": 48.29846
+    "lat": 48.29846,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134348",
@@ -2197,7 +2959,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.5824,
-    "lat": 48.3128
+    "lat": 48.3128,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134349",
@@ -2208,7 +2974,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.20678,
-    "lat": 48.37018
+    "lat": 48.37018,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134350",
@@ -2219,7 +2989,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.63617,
-    "lat": 48.37198
+    "lat": 48.37198,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134351",
@@ -2230,7 +3004,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.21136,
-    "lat": 48.48712
+    "lat": 48.48712,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134352",
@@ -2241,7 +3019,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.3255,
-    "lat": 48.41079
+    "lat": 48.41079,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134355",
@@ -2252,7 +3034,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.32009,
-    "lat": 48.43014
+    "lat": 48.43014,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134356",
@@ -2263,7 +3049,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.30293,
-    "lat": 48.37195
+    "lat": 48.37195,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134357",
@@ -2274,7 +3064,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.32264,
-    "lat": 48.372
+    "lat": 48.372,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134358",
@@ -2285,7 +3079,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.29979,
-    "lat": 48.40082
+    "lat": 48.40082,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134359",
@@ -2296,7 +3094,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.30176,
-    "lat": 48.40082
+    "lat": 48.40082,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134360",
@@ -2307,7 +3109,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.30052,
-    "lat": 48.42664
+    "lat": 48.42664,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134361",
@@ -2318,7 +3124,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.21189,
-    "lat": 48.42963
+    "lat": 48.42963,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134362",
@@ -2329,7 +3139,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.21197,
-    "lat": 48.37202
+    "lat": 48.37202,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134375",
@@ -2340,7 +3154,11 @@
     "county_fips": "38069",
     "state": "ND",
     "lon": -99.99799,
-    "lat": 48.35231
+    "lat": 48.35231,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134378",
@@ -2351,7 +3169,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.4951,
-    "lat": 48.31263
+    "lat": 48.31263,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134379",
@@ -2362,7 +3184,9 @@
     "county_fips": "38103",
     "state": "ND",
     "lon": -100.00707,
-    "lat": 47.79425
+    "lat": 47.79425,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134382",
@@ -2373,7 +3197,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.53852,
-    "lat": 47.94934
+    "lat": 47.94934,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134385",
@@ -2384,7 +3212,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.666,
-    "lat": 47.9902
+    "lat": 47.9902,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134390",
@@ -2395,7 +3227,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.88166,
-    "lat": 48.02669
+    "lat": 48.02669,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134402",
@@ -2406,7 +3242,9 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.92391,
-    "lat": 48.0844
+    "lat": 48.0844,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134403",
@@ -2417,7 +3255,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.88386,
-    "lat": 48.02391
+    "lat": 48.02391,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134404",
@@ -2428,7 +3270,11 @@
     "county_fips": "38049",
     "state": "ND",
     "lon": -100.88415,
-    "lat": 48.02761
+    "lat": 48.02761,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134408",
@@ -2439,7 +3285,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.54794,
-    "lat": 48.83703
+    "lat": 48.83703,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134409",
@@ -2450,7 +3300,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.32854,
-    "lat": 48.80999
+    "lat": 48.80999,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134410",
@@ -2461,7 +3315,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.06109,
-    "lat": 48.67597
+    "lat": 48.67597,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134411",
@@ -2472,7 +3330,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.10638,
-    "lat": 48.63178
+    "lat": 48.63178,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134413",
@@ -2483,7 +3345,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.10253,
-    "lat": 48.61262
+    "lat": 48.61262,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134415",
@@ -2494,7 +3360,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.35228,
-    "lat": 48.32791
+    "lat": 48.32791,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134416",
@@ -2505,7 +3375,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.48163,
-    "lat": 48.3112
+    "lat": 48.3112,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134417",
@@ -2516,7 +3390,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.38666,
-    "lat": 48.31993
+    "lat": 48.31993,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134418",
@@ -2527,7 +3405,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.22502,
-    "lat": 48.15319
+    "lat": 48.15319,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134420",
@@ -2538,7 +3420,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.04303,
-    "lat": 48.72331
+    "lat": 48.72331,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134421",
@@ -2549,7 +3435,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.08301,
-    "lat": 48.68385
+    "lat": 48.68385,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134422",
@@ -2560,7 +3450,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.12541,
-    "lat": 48.63266
+    "lat": 48.63266,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134425",
@@ -2571,7 +3465,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.26208,
-    "lat": 48.80738
+    "lat": 48.80738,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134426",
@@ -2582,7 +3480,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.09018,
-    "lat": 48.67965
+    "lat": 48.67965,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134428",
@@ -2593,7 +3495,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.56957,
-    "lat": 48.21106
+    "lat": 48.21106,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134429",
@@ -2604,7 +3510,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.21966,
-    "lat": 48.33066
+    "lat": 48.33066,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134430",
@@ -2615,7 +3525,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.32744,
-    "lat": 48.80994
+    "lat": 48.80994,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134432",
@@ -2626,7 +3540,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.3973,
-    "lat": 48.32792
+    "lat": 48.32792,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134433",
@@ -2637,7 +3555,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.21954,
-    "lat": 48.32786
+    "lat": 48.32786,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134434",
@@ -2648,7 +3570,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.54708,
-    "lat": 48.87919
+    "lat": 48.87919,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134435",
@@ -2659,7 +3585,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.5466,
-    "lat": 48.87502
+    "lat": 48.87502,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134436",
@@ -2670,7 +3600,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.24082,
-    "lat": 48.80754
+    "lat": 48.80754,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134437",
@@ -2681,7 +3615,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.08977,
-    "lat": 48.67744
+    "lat": 48.67744,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134438",
@@ -2692,7 +3630,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.56851,
-    "lat": 48.28074
+    "lat": 48.28074,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134439",
@@ -2703,7 +3645,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.35217,
-    "lat": 48.15431
+    "lat": 48.15431,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134440",
@@ -2714,7 +3660,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.26261,
-    "lat": 48.95266
+    "lat": 48.95266,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134441",
@@ -2725,7 +3675,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.07472,
-    "lat": 48.34297
+    "lat": 48.34297,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134443",
@@ -2736,7 +3690,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.90824,
-    "lat": 48.40275
+    "lat": 48.40275,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134445",
@@ -2747,7 +3705,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.91355,
-    "lat": 48.40111
+    "lat": 48.40111,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134446",
@@ -2758,7 +3720,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.86317,
-    "lat": 48.40069
+    "lat": 48.40069,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134447",
@@ -2769,7 +3735,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.79973,
-    "lat": 48.8446
+    "lat": 48.8446,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134448",
@@ -2780,7 +3750,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.78629,
-    "lat": 48.84674
+    "lat": 48.84674,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134449",
@@ -2791,7 +3765,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.91342,
-    "lat": 48.28568
+    "lat": 48.28568,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134450",
@@ -2802,7 +3780,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.9132,
-    "lat": 48.28483
+    "lat": 48.28483,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134451",
@@ -2813,7 +3795,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.9212,
-    "lat": 48.28505
+    "lat": 48.28505,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134452",
@@ -2824,7 +3810,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.71048,
-    "lat": 48.48937
+    "lat": 48.48937,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134453",
@@ -2835,7 +3825,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.952,
-    "lat": 48.50502
+    "lat": 48.50502,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134454",
@@ -2846,7 +3840,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -102.92835,
-    "lat": 48.68686
+    "lat": 48.68686,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134455",
@@ -2857,7 +3855,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.04489,
-    "lat": 48.34357
+    "lat": 48.34357,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134456",
@@ -2868,7 +3870,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.95163,
-    "lat": 48.38834
+    "lat": 48.38834,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134458",
@@ -2879,7 +3885,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.17547,
-    "lat": 48.3634
+    "lat": 48.3634,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134460",
@@ -2890,7 +3900,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.7804,
-    "lat": 48.90102
+    "lat": 48.90102,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134461",
@@ -2901,7 +3915,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.78732,
-    "lat": 48.86566
+    "lat": 48.86566,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134462",
@@ -2912,7 +3930,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.8083,
-    "lat": 48.88726
+    "lat": 48.88726,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134463",
@@ -2923,7 +3945,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.8959,
-    "lat": 48.86552
+    "lat": 48.86552,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134464",
@@ -2934,7 +3960,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.95293,
-    "lat": 48.35888
+    "lat": 48.35888,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134467",
@@ -2945,7 +3975,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.86409,
-    "lat": 48.48829
+    "lat": 48.48829,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134468",
@@ -2956,7 +3990,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -102.91555,
-    "lat": 48.35676
+    "lat": 48.35676,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134475",
@@ -2967,7 +4005,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.12384,
-    "lat": 48.5042
+    "lat": 48.5042,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134476",
@@ -2978,7 +4020,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.06618,
-    "lat": 48.16453
+    "lat": 48.16453,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134477",
@@ -2989,7 +4035,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.84202,
-    "lat": 48.6484
+    "lat": 48.6484,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134479",
@@ -3000,7 +4050,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.75532,
-    "lat": 47.35699
+    "lat": 47.35699,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134480",
@@ -3011,7 +4065,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.86388,
-    "lat": 47.4147
+    "lat": 47.4147,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134482",
@@ -3022,7 +4080,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.53955,
-    "lat": 47.61583
+    "lat": 47.61583,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134483",
@@ -3033,7 +4095,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.62475,
-    "lat": 47.63825
+    "lat": 47.63825,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134484",
@@ -3044,7 +4110,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.50289,
-    "lat": 47.42949
+    "lat": 47.42949,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134495",
@@ -3055,7 +4125,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -103.07439,
-    "lat": 47.35824
+    "lat": 47.35824,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134496",
@@ -3066,7 +4140,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.84322,
-    "lat": 47.47686
+    "lat": 47.47686,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134497",
@@ -3077,7 +4155,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.74148,
-    "lat": 47.35682
+    "lat": 47.35682,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134499",
@@ -3088,7 +4170,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.25043,
-    "lat": 47.41593
+    "lat": 47.41593,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134500",
@@ -3099,7 +4185,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.83285,
-    "lat": 47.54727
+    "lat": 47.54727,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134509",
@@ -3110,7 +4200,9 @@
     "county_fips": "38067",
     "state": "ND",
     "lon": -97.27678,
-    "lat": 48.58517
+    "lat": 48.58517,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134510",
@@ -3121,7 +4213,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.40357,
-    "lat": 48.43005
+    "lat": 48.43005,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134511",
@@ -3132,7 +4228,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.40679,
-    "lat": 48.39827
+    "lat": 48.39827,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134514",
@@ -3143,7 +4243,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.92607,
-    "lat": 48.5156
+    "lat": 48.5156,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134527",
@@ -3154,7 +4258,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.34243,
-    "lat": 48.41399
+    "lat": 48.41399,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134528",
@@ -3165,7 +4273,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.16952,
-    "lat": 48.53628
+    "lat": 48.53628,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134529",
@@ -3176,7 +4288,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.39021,
-    "lat": 48.42468
+    "lat": 48.42468,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134541",
@@ -3187,7 +4303,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.92789,
-    "lat": 48.41637
+    "lat": 48.41637,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134542",
@@ -3198,7 +4318,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.1888,
-    "lat": 48.35726
+    "lat": 48.35726,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134546",
@@ -3209,7 +4333,11 @@
     "county_fips": "38067",
     "state": "ND",
     "lon": -97.66499,
-    "lat": 48.74726
+    "lat": 48.74726,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134547",
@@ -3220,7 +4348,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.16828,
-    "lat": 48.3542
+    "lat": 48.3542,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134548",
@@ -3231,7 +4363,11 @@
     "county_fips": "38045",
     "state": "ND",
     "lon": -98.7001,
-    "lat": 46.35659
+    "lat": 46.35659,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134567",
@@ -3242,7 +4378,9 @@
     "county_fips": "38031",
     "state": "ND",
     "lon": -99.11111,
-    "lat": 47.458
+    "lat": 47.458,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134573",
@@ -3253,7 +4391,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.8196,
-    "lat": 47.50113
+    "lat": 47.50113,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134580",
@@ -3264,7 +4406,9 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.81829,
-    "lat": 47.50048
+    "lat": 47.50048,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134581",
@@ -3275,7 +4419,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.62112,
-    "lat": 47.74485
+    "lat": 47.74485,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134582",
@@ -3286,7 +4434,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.32514,
-    "lat": 47.42517
+    "lat": 47.42517,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134583",
@@ -3297,7 +4449,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.04725,
-    "lat": 47.59922
+    "lat": 47.59922,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134587",
@@ -3308,7 +4464,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.02446,
-    "lat": 47.68684
+    "lat": 47.68684,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134588",
@@ -3319,7 +4479,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.64509,
-    "lat": 47.44042
+    "lat": 47.44042,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134591",
@@ -3330,7 +4494,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.3049,
-    "lat": 47.5123
+    "lat": 47.5123,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134594",
@@ -3341,7 +4509,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.33111,
-    "lat": 47.51258
+    "lat": 47.51258,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134597",
@@ -3352,7 +4524,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.72992,
-    "lat": 47.4411
+    "lat": 47.4411,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134600",
@@ -3363,7 +4539,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.58068,
-    "lat": 47.7309
+    "lat": 47.7309,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134601",
@@ -3374,7 +4554,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.5641,
-    "lat": 47.735
+    "lat": 47.735,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134602",
@@ -3385,7 +4569,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.45282,
-    "lat": 47.64289
+    "lat": 47.64289,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134603",
@@ -3396,7 +4584,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.45261,
-    "lat": 47.64338
+    "lat": 47.64338,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134605",
@@ -3407,7 +4599,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.0695,
-    "lat": 47.52668
+    "lat": 47.52668,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134608",
@@ -3418,7 +4614,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -96.95355,
-    "lat": 47.45506
+    "lat": 47.45506,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134609",
@@ -3429,7 +4629,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.32733,
-    "lat": 47.50423
+    "lat": 47.50423,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134610",
@@ -3440,7 +4644,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.07031,
-    "lat": 47.67228
+    "lat": 47.67228,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134857",
@@ -3451,7 +4659,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.6695,
-    "lat": 46.08966
+    "lat": 46.08966,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134858",
@@ -3462,7 +4674,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.66471,
-    "lat": 46.08892
+    "lat": 46.08892,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134859",
@@ -3473,7 +4689,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.95315,
-    "lat": 46.22629
+    "lat": 46.22629,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134860",
@@ -3484,7 +4704,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.95035,
-    "lat": 46.13702
+    "lat": 46.13702,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134861",
@@ -3495,7 +4719,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.95011,
-    "lat": 46.13633
+    "lat": 46.13633,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134862",
@@ -3506,7 +4734,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.86711,
-    "lat": 46.1493
+    "lat": 46.1493,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134870",
@@ -3517,7 +4749,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.97886,
-    "lat": 46.23462
+    "lat": 46.23462,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134876",
@@ -3528,7 +4764,11 @@
     "county_fips": "38033",
     "state": "ND",
     "lon": -103.92423,
-    "lat": 46.90448
+    "lat": 46.90448,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134878",
@@ -3539,7 +4779,11 @@
     "county_fips": "38033",
     "state": "ND",
     "lon": -104.00799,
-    "lat": 46.91655
+    "lat": 46.91655,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134887",
@@ -3550,7 +4794,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.98153,
-    "lat": 46.22242
+    "lat": 46.22242,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134888",
@@ -3561,7 +4809,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.89914,
-    "lat": 46.17615
+    "lat": 46.17615,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134889",
@@ -3572,7 +4824,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.95436,
-    "lat": 46.22612
+    "lat": 46.22612,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134908",
@@ -3583,7 +4839,9 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.72897,
-    "lat": 46.81385
+    "lat": 46.81385,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134909",
@@ -3594,7 +4852,9 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.7294,
-    "lat": 46.81117
+    "lat": 46.81117,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134910",
@@ -3605,7 +4865,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.90196,
-    "lat": 46.74861
+    "lat": 46.74861,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134911",
@@ -3616,7 +4880,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.6904,
-    "lat": 46.7674
+    "lat": 46.7674,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134912",
@@ -3627,7 +4895,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.7789,
-    "lat": 46.78312
+    "lat": 46.78312,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134914",
@@ -3638,7 +4910,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.74124,
-    "lat": 46.75144
+    "lat": 46.75144,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134922",
@@ -3649,7 +4925,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.81511,
-    "lat": 46.82965
+    "lat": 46.82965,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134927",
@@ -3660,7 +4940,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.76213,
-    "lat": 46.83794
+    "lat": 46.83794,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134929",
@@ -3671,7 +4955,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.68921,
-    "lat": 46.8234
+    "lat": 46.8234,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134936",
@@ -3682,7 +4970,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.7955,
-    "lat": 46.75801
+    "lat": 46.75801,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134938",
@@ -3693,7 +4985,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.80606,
-    "lat": 46.83011
+    "lat": 46.83011,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134939",
@@ -3704,7 +5000,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.75079,
-    "lat": 46.83261
+    "lat": 46.83261,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134941",
@@ -3715,7 +5015,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.88136,
-    "lat": 46.82381
+    "lat": 46.82381,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134943",
@@ -3726,7 +5030,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.81449,
-    "lat": 46.83751
+    "lat": 46.83751,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134944",
@@ -3737,7 +5045,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.7885,
-    "lat": 46.83775
+    "lat": 46.83775,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134945",
@@ -3748,7 +5060,9 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.78626,
-    "lat": 46.80365
+    "lat": 46.80365,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134946",
@@ -3759,7 +5073,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.78215,
-    "lat": 46.79711
+    "lat": 46.79711,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134948",
@@ -3770,7 +5088,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.75893,
-    "lat": 46.83763
+    "lat": 46.83763,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134949",
@@ -3781,7 +5103,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.75308,
-    "lat": 46.79434
+    "lat": 46.79434,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134950",
@@ -3792,7 +5118,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.72696,
-    "lat": 46.81379
+    "lat": 46.81379,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134954",
@@ -3803,7 +5133,9 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.76491,
-    "lat": 46.85339
+    "lat": 46.85339,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134955",
@@ -3814,7 +5146,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.28808,
-    "lat": 46.90971
+    "lat": 46.90971,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134956",
@@ -3825,7 +5161,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.7288,
-    "lat": 46.85186
+    "lat": 46.85186,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134957",
@@ -3836,7 +5176,11 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.91145,
-    "lat": 46.85509
+    "lat": 46.85509,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134958",
@@ -3847,7 +5191,11 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.63795,
-    "lat": 46.8695
+    "lat": 46.8695,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134959",
@@ -3858,7 +5206,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.644,
-    "lat": 47.02597
+    "lat": 47.02597,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134960",
@@ -3869,7 +5221,11 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.63728,
-    "lat": 46.86402
+    "lat": 46.86402,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134961",
@@ -3880,7 +5236,11 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.7637,
-    "lat": 46.86441
+    "lat": 46.86441,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134962",
@@ -3891,7 +5251,11 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.75143,
-    "lat": 46.86439
+    "lat": 46.86439,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134963",
@@ -3902,7 +5266,11 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.75058,
-    "lat": 46.85014
+    "lat": 46.85014,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134964",
@@ -3913,7 +5281,11 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.91134,
-    "lat": 46.86312
+    "lat": 46.86312,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134965",
@@ -3924,7 +5296,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.66771,
-    "lat": 46.85254
+    "lat": 46.85254,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134966",
@@ -3935,7 +5311,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.51592,
-    "lat": 47.0258
+    "lat": 47.0258,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134967",
@@ -3946,7 +5326,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.72772,
-    "lat": 47.02595
+    "lat": 47.02595,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134968",
@@ -3957,7 +5341,9 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.19928,
-    "lat": 47.07619
+    "lat": 47.07619,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134972",
@@ -3968,7 +5354,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.73133,
-    "lat": 46.85314
+    "lat": 46.85314,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134973",
@@ -3979,7 +5369,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.81531,
-    "lat": 46.88016
+    "lat": 46.88016,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134974",
@@ -3990,7 +5384,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.96859,
-    "lat": 46.87091
+    "lat": 46.87091,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134976",
@@ -4001,7 +5399,11 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.3106,
-    "lat": 47.06734
+    "lat": 47.06734,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134978",
@@ -4012,7 +5414,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.96542,
-    "lat": 46.84986
+    "lat": 46.84986,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134980",
@@ -4023,7 +5429,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.80757,
-    "lat": 46.8813
+    "lat": 46.8813,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134983",
@@ -4034,7 +5444,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.81427,
-    "lat": 46.88126
+    "lat": 46.88126,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134984",
@@ -4045,7 +5459,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.73076,
-    "lat": 46.85271
+    "lat": 46.85271,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134985",
@@ -4056,7 +5474,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.73078,
-    "lat": 46.85336
+    "lat": 46.85336,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134986",
@@ -4067,7 +5489,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.81421,
-    "lat": 46.88544
+    "lat": 46.88544,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-134989",
@@ -4078,7 +5504,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -101.36584,
-    "lat": 46.84898
+    "lat": 46.84898,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134992",
@@ -4089,7 +5519,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -101.36007,
-    "lat": 46.86222
+    "lat": 46.86222,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-134994",
@@ -4100,7 +5534,9 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.92572,
-    "lat": 46.85492
+    "lat": 46.85492,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134996",
@@ -4111,7 +5547,9 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.88518,
-    "lat": 46.86653
+    "lat": 46.86653,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134998",
@@ -4122,7 +5560,9 @@
     "county_fips": "38081",
     "state": "ND",
     "lon": -97.6324,
-    "lat": 46.09595
+    "lat": 46.09595,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-134999",
@@ -4133,7 +5573,9 @@
     "county_fips": "38081",
     "state": "ND",
     "lon": -97.63456,
-    "lat": 46.0966
+    "lat": 46.0966,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135000",
@@ -4144,7 +5586,11 @@
     "county_fips": "38081",
     "state": "ND",
     "lon": -97.65222,
-    "lat": 46.26972
+    "lat": 46.26972,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135001",
@@ -4155,7 +5601,11 @@
     "county_fips": "38073",
     "state": "ND",
     "lon": -97.64162,
-    "lat": 46.35553
+    "lat": 46.35553,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135014",
@@ -4166,7 +5616,11 @@
     "county_fips": "38073",
     "state": "ND",
     "lon": -97.59573,
-    "lat": 46.61546
+    "lat": 46.61546,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135018",
@@ -4177,7 +5631,11 @@
     "county_fips": "38073",
     "state": "ND",
     "lon": -97.68004,
-    "lat": 46.43427
+    "lat": 46.43427,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135019",
@@ -4188,7 +5646,11 @@
     "county_fips": "38073",
     "state": "ND",
     "lon": -97.65712,
-    "lat": 46.61195
+    "lat": 46.61195,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135022",
@@ -4199,7 +5661,11 @@
     "county_fips": "38081",
     "state": "ND",
     "lon": -97.65428,
-    "lat": 46.23048
+    "lat": 46.23048,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135046",
@@ -4210,7 +5676,11 @@
     "county_fips": "38073",
     "state": "ND",
     "lon": -97.93389,
-    "lat": 46.58683
+    "lat": 46.58683,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135077",
@@ -4221,7 +5691,11 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.59596,
-    "lat": 46.05116
+    "lat": 46.05116,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135086",
@@ -4232,7 +5706,9 @@
     "county_fips": "38021",
     "state": "ND",
     "lon": -98.56744,
-    "lat": 46.00925
+    "lat": 46.00925,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135101",
@@ -4243,7 +5719,11 @@
     "county_fips": "38081",
     "state": "ND",
     "lon": -97.906,
-    "lat": 45.95352
+    "lat": 45.95352,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135102",
@@ -4254,7 +5734,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.52086,
-    "lat": 46.82256
+    "lat": 46.82256,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135103",
@@ -4265,7 +5749,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.29063,
-    "lat": 46.73586
+    "lat": 46.73586,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135104",
@@ -4276,7 +5764,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.66654,
-    "lat": 46.80864
+    "lat": 46.80864,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135105",
@@ -4287,7 +5779,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.67832,
-    "lat": 46.82361
+    "lat": 46.82361,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135106",
@@ -4298,7 +5794,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.66815,
-    "lat": 46.80874
+    "lat": 46.80874,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135107",
@@ -4309,7 +5809,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.30972,
-    "lat": 46.83584
+    "lat": 46.83584,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135108",
@@ -4320,7 +5824,11 @@
     "county_fips": "38043",
     "state": "ND",
     "lon": -99.55391,
-    "lat": 46.83531
+    "lat": 46.83531,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135109",
@@ -4331,7 +5839,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.94869,
-    "lat": 46.83456
+    "lat": 46.83456,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135110",
@@ -4342,7 +5852,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.87306,
-    "lat": 46.77418
+    "lat": 46.77418,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135111",
@@ -4353,7 +5865,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.92559,
-    "lat": 46.88226
+    "lat": 46.88226,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135113",
@@ -4364,7 +5878,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.88119,
-    "lat": 46.98201
+    "lat": 46.98201,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135114",
@@ -4375,7 +5893,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.84176,
-    "lat": 46.68839
+    "lat": 46.68839,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135131",
@@ -4386,7 +5908,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.88363,
-    "lat": 46.85753
+    "lat": 46.85753,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135132",
@@ -4397,7 +5921,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.88336,
-    "lat": 46.96362
+    "lat": 46.96362,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135136",
@@ -4408,7 +5936,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.26261,
-    "lat": 46.90029
+    "lat": 46.90029,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135139",
@@ -4419,7 +5951,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.05231,
-    "lat": 46.8746
+    "lat": 46.8746,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135141",
@@ -4430,7 +5966,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.94853,
-    "lat": 46.8366
+    "lat": 46.8366,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135142",
@@ -4441,7 +5981,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.90405,
-    "lat": 46.77463
+    "lat": 46.77463,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135143",
@@ -4452,7 +5994,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.88298,
-    "lat": 46.77476
+    "lat": 46.77476,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135144",
@@ -4463,7 +6007,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.88214,
-    "lat": 46.89748
+    "lat": 46.89748,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135145",
@@ -4474,7 +6020,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.85175,
-    "lat": 46.8484
+    "lat": 46.8484,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135146",
@@ -4485,7 +6035,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.84971,
-    "lat": 46.87532
+    "lat": 46.87532,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135147",
@@ -4496,7 +6050,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.51628,
-    "lat": 46.95929
+    "lat": 46.95929,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135158",
@@ -4507,7 +6063,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.55669,
-    "lat": 46.76745
+    "lat": 46.76745,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135159",
@@ -4518,7 +6078,11 @@
     "county_fips": "38003",
     "state": "ND",
     "lon": -98.0009,
-    "lat": 46.91379
+    "lat": 46.91379,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135160",
@@ -4529,7 +6093,9 @@
     "county_fips": "38003",
     "state": "ND",
     "lon": -97.97698,
-    "lat": 46.90762
+    "lat": 46.90762,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135172",
@@ -4540,7 +6106,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.83905,
-    "lat": 47.20466
+    "lat": 47.20466,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135173",
@@ -4551,7 +6121,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.91147,
-    "lat": 47.18614
+    "lat": 47.18614,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135195",
@@ -4562,7 +6136,11 @@
     "county_fips": "38037",
     "state": "ND",
     "lon": -101.86019,
-    "lat": 46.40336
+    "lat": 46.40336,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135196",
@@ -4573,7 +6151,9 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -102.75037,
-    "lat": 46.83861
+    "lat": 46.83861,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135200",
@@ -4584,7 +6164,11 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -102.81817,
-    "lat": 46.87456
+    "lat": 46.87456,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135202",
@@ -4595,7 +6179,11 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -102.81168,
-    "lat": 46.91852
+    "lat": 46.91852,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135205",
@@ -4606,7 +6194,11 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -102.77565,
-    "lat": 46.86391
+    "lat": 46.86391,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135219",
@@ -4617,7 +6209,11 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -102.74771,
-    "lat": 46.85791
+    "lat": 46.85791,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135226",
@@ -4628,7 +6224,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.36598,
-    "lat": 47.34187
+    "lat": 47.34187,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135228",
@@ -4639,7 +6239,9 @@
     "county_fips": "38041",
     "state": "ND",
     "lon": -102.83169,
-    "lat": 46.55654
+    "lat": 46.55654,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135231",
@@ -4650,7 +6252,11 @@
     "county_fips": "38001",
     "state": "ND",
     "lon": -102.68378,
-    "lat": 46.24962
+    "lat": 46.24962,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135232",
@@ -4661,7 +6267,11 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -102.68286,
-    "lat": 46.90565
+    "lat": 46.90565,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135238",
@@ -4672,7 +6282,11 @@
     "county_fips": "38037",
     "state": "ND",
     "lon": -101.83963,
-    "lat": 46.41561
+    "lat": 46.41561,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135241",
@@ -4683,7 +6297,11 @@
     "county_fips": "38037",
     "state": "ND",
     "lon": -101.8407,
-    "lat": 46.4228
+    "lat": 46.4228,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135242",
@@ -4694,7 +6312,11 @@
     "county_fips": "38037",
     "state": "ND",
     "lon": -101.85958,
-    "lat": 46.40332
+    "lat": 46.40332,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135243",
@@ -4705,7 +6327,9 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.68423,
-    "lat": 46.87589
+    "lat": 46.87589,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135244",
@@ -4716,7 +6340,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.50001,
-    "lat": 46.92721
+    "lat": 46.92721,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135247",
@@ -4727,7 +6355,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.69896,
-    "lat": 46.92118
+    "lat": 46.92118,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135248",
@@ -4738,7 +6370,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.6622,
-    "lat": 46.90596
+    "lat": 46.90596,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135251",
@@ -4749,7 +6385,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.70509,
-    "lat": 46.90844
+    "lat": 46.90844,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135252",
@@ -4760,7 +6400,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.62879,
-    "lat": 46.90807
+    "lat": 46.90807,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135260",
@@ -4771,7 +6415,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.69195,
-    "lat": 46.90892
+    "lat": 46.90892,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135267",
@@ -4782,7 +6430,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.62905,
-    "lat": 46.90674
+    "lat": 46.90674,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135271",
@@ -4793,7 +6445,9 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.80248,
-    "lat": 47.22899
+    "lat": 47.22899,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135272",
@@ -4804,7 +6458,9 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.31524,
-    "lat": 47.2825
+    "lat": 47.2825,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135273",
@@ -4815,7 +6471,9 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.0371,
-    "lat": 47.30496
+    "lat": 47.30496,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135280",
@@ -4826,7 +6484,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.76499,
-    "lat": 47.18406
+    "lat": 47.18406,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135281",
@@ -4837,7 +6499,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.63818,
-    "lat": 47.2153
+    "lat": 47.2153,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135287",
@@ -4848,7 +6514,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.82226,
-    "lat": 47.34639
+    "lat": 47.34639,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135290",
@@ -4859,7 +6529,11 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.7431,
-    "lat": 47.22717
+    "lat": 47.22717,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135291",
@@ -4870,7 +6544,11 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.72244,
-    "lat": 47.21976
+    "lat": 47.21976,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135296",
@@ -4881,7 +6559,11 @@
     "county_fips": "38065",
     "state": "ND",
     "lon": -101.70952,
-    "lat": 47.22715
+    "lat": 47.22715,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135302",
@@ -4892,7 +6574,12 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.08281,
-    "lat": 47.31054
+    "lat": 47.31054,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135304",
@@ -4903,7 +6590,9 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.76101,
-    "lat": 47.26966
+    "lat": 47.26966,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135305",
@@ -4914,7 +6603,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.50556,
-    "lat": 47.35051
+    "lat": 47.35051,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135313",
@@ -4925,7 +6618,9 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.88816,
-    "lat": 46.11717
+    "lat": 46.11717,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135314",
@@ -4936,7 +6631,9 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.60177,
-    "lat": 46.28875
+    "lat": 46.28875,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135328",
@@ -4947,7 +6644,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.94983,
-    "lat": 46.6308
+    "lat": 46.6308,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135335",
@@ -4958,7 +6659,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.84455,
-    "lat": 46.63052
+    "lat": 46.63052,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135347",
@@ -4969,7 +6674,11 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.61209,
-    "lat": 46.32557
+    "lat": 46.32557,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135349",
@@ -4980,7 +6689,11 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.86249,
-    "lat": 46.47163
+    "lat": 46.47163,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135350",
@@ -4991,7 +6704,11 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.61603,
-    "lat": 46.29648
+    "lat": 46.29648,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135351",
@@ -5002,7 +6719,11 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.64083,
-    "lat": 46.34224
+    "lat": 46.34224,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135353",
@@ -5013,7 +6734,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.984,
-    "lat": 47.13697
+    "lat": 47.13697,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135354",
@@ -5024,7 +6749,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.21895,
-    "lat": 47.15115
+    "lat": 47.15115,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135355",
@@ -5035,7 +6764,11 @@
     "county_fips": "38003",
     "state": "ND",
     "lon": -97.78961,
-    "lat": 47.09441
+    "lat": 47.09441,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135356",
@@ -5046,7 +6779,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.53713,
-    "lat": 47.23943
+    "lat": 47.23943,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135357",
@@ -5057,7 +6794,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.57099,
-    "lat": 47.15422
+    "lat": 47.15422,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135364",
@@ -5068,7 +6809,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.87941,
-    "lat": 47.13614
+    "lat": 47.13614,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135366",
@@ -5079,7 +6824,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -96.85644,
-    "lat": 47.35117
+    "lat": 47.35117,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135371",
@@ -5090,7 +6839,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.53593,
-    "lat": 47.15192
+    "lat": 47.15192,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135372",
@@ -5101,7 +6854,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.58918,
-    "lat": 47.15034
+    "lat": 47.15034,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135373",
@@ -5112,7 +6869,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.21892,
-    "lat": 47.14995
+    "lat": 47.14995,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135374",
@@ -5123,7 +6884,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.67911,
-    "lat": 47.26859
+    "lat": 47.26859,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135375",
@@ -5134,7 +6899,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.49471,
-    "lat": 47.03559
+    "lat": 47.03559,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135378",
@@ -5145,7 +6914,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.90671,
-    "lat": 47.2555
+    "lat": 47.2555,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135379",
@@ -5156,7 +6929,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.89476,
-    "lat": 47.32978
+    "lat": 47.32978,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135380",
@@ -5167,7 +6944,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.7065,
-    "lat": 47.32457
+    "lat": 47.32457,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135381",
@@ -5178,7 +6959,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.65388,
-    "lat": 47.23995
+    "lat": 47.23995,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135656",
@@ -5189,7 +6974,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.80535,
-    "lat": 46.80354
+    "lat": 46.80354,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135657",
@@ -5200,7 +6989,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.80647,
-    "lat": 46.80352
+    "lat": 46.80352,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135658",
@@ -5211,7 +7004,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.81926,
-    "lat": 46.80376
+    "lat": 46.80376,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135661",
@@ -5222,7 +7019,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.80814,
-    "lat": 46.88046
+    "lat": 46.88046,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135662",
@@ -5233,7 +7032,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.80515,
-    "lat": 46.80298
+    "lat": 46.80298,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135663",
@@ -5244,7 +7047,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.79995,
-    "lat": 46.69535
+    "lat": 46.69535,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135716",
@@ -5255,7 +7062,9 @@
     "county_fips": "38051",
     "state": "ND",
     "lon": -99.59635,
-    "lat": 46.26063
+    "lat": 46.26063,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135725",
@@ -5266,7 +7075,11 @@
     "county_fips": "38029",
     "state": "ND",
     "lon": -100.25224,
-    "lat": 46.28521
+    "lat": 46.28521,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135736",
@@ -5277,7 +7090,11 @@
     "county_fips": "38047",
     "state": "ND",
     "lon": -99.63017,
-    "lat": 46.3848
+    "lat": 46.3848,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135737",
@@ -5288,7 +7105,11 @@
     "county_fips": "38047",
     "state": "ND",
     "lon": -99.74754,
-    "lat": 46.50133
+    "lat": 46.50133,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135760",
@@ -5299,7 +7120,11 @@
     "county_fips": "38045",
     "state": "ND",
     "lon": -98.87192,
-    "lat": 46.35448
+    "lat": 46.35448,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135762",
@@ -5310,7 +7135,11 @@
     "county_fips": "38037",
     "state": "ND",
     "lon": -101.38163,
-    "lat": 46.6163
+    "lat": 46.6163,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135763",
@@ -5321,7 +7150,11 @@
     "county_fips": "38037",
     "state": "ND",
     "lon": -101.3806,
-    "lat": 46.6161
+    "lat": 46.6161,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-155610",
@@ -5332,7 +7165,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.07594,
-    "lat": 46.95074
+    "lat": 46.95074,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155625",
@@ -5343,7 +7178,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.70893,
-    "lat": 47.11377
+    "lat": 47.11377,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155626",
@@ -5354,7 +7193,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.72759,
-    "lat": 46.81384
+    "lat": 46.81384,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155627",
@@ -5365,7 +7208,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.78234,
-    "lat": 46.79444
+    "lat": 46.79444,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155628",
@@ -5376,7 +7223,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.88151,
-    "lat": 46.82348
+    "lat": 46.82348,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155629",
@@ -5387,7 +7238,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.83686,
-    "lat": 46.8071
+    "lat": 46.8071,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155630",
@@ -5398,7 +7253,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.81521,
-    "lat": 46.80948
+    "lat": 46.80948,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155888",
@@ -5409,7 +7268,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.82282,
-    "lat": 46.8077
+    "lat": 46.8077,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155889",
@@ -5420,7 +7283,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.82274,
-    "lat": 46.80704
+    "lat": 46.80704,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155890",
@@ -5431,7 +7298,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.81538,
-    "lat": 46.80846
+    "lat": 46.80846,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155891",
@@ -5442,7 +7313,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.7885,
-    "lat": 46.83804
+    "lat": 46.83804,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155892",
@@ -5453,7 +7328,11 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.789,
-    "lat": 48.19356
+    "lat": 48.19356,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155893",
@@ -5464,7 +7343,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.0447,
-    "lat": 47.84612
+    "lat": 47.84612,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156322",
@@ -5475,7 +7358,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.75205,
-    "lat": 46.82671
+    "lat": 46.82671,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156323",
@@ -5486,7 +7373,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.74013,
-    "lat": 46.88134
+    "lat": 46.88134,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156735",
@@ -5497,7 +7388,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.82415,
-    "lat": 48.76404
+    "lat": 48.76404,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156737",
@@ -5508,7 +7403,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.56427,
-    "lat": 48.77764
+    "lat": 48.77764,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156746",
@@ -5519,7 +7418,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.04425,
-    "lat": 47.84655
+    "lat": 47.84655,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156788",
@@ -5530,7 +7433,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.65379,
-    "lat": 47.90707
+    "lat": 47.90707,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156789",
@@ -5541,7 +7448,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.47074,
-    "lat": 47.86548
+    "lat": 47.86548,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156790",
@@ -5552,7 +7463,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.47504,
-    "lat": 47.86359
+    "lat": 47.86359,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156791",
@@ -5563,7 +7478,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.76557,
-    "lat": 47.41025
+    "lat": 47.41025,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157209",
@@ -5574,7 +7493,11 @@
     "county_fips": "38037",
     "state": "ND",
     "lon": -101.55029,
-    "lat": 46.5096
+    "lat": 46.5096,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157617",
@@ -5585,7 +7508,11 @@
     "county_fips": "38001",
     "state": "ND",
     "lon": -102.18488,
-    "lat": 46.10454
+    "lat": 46.10454,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157636",
@@ -5596,7 +7523,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.04227,
-    "lat": 48.72056
+    "lat": 48.72056,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157640",
@@ -5607,7 +7538,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.67241,
-    "lat": 48.8654
+    "lat": 48.8654,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157663",
@@ -5618,7 +7553,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.69922,
-    "lat": 46.93136
+    "lat": 46.93136,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157693",
@@ -5629,7 +7568,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.57635,
-    "lat": 48.95217
+    "lat": 48.95217,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157696",
@@ -5640,7 +7583,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.49968,
-    "lat": 46.92645
+    "lat": 46.92645,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157699",
@@ -5651,7 +7598,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.00134,
-    "lat": 47.26817
+    "lat": 47.26817,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157704",
@@ -5662,7 +7613,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.88211,
-    "lat": 47.90697
+    "lat": 47.90697,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157705",
@@ -5673,7 +7628,11 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -103.06959,
-    "lat": 46.84597
+    "lat": 46.84597,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157706",
@@ -5684,7 +7643,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.83686,
-    "lat": 46.80681
+    "lat": 46.80681,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-158082",
@@ -5695,7 +7658,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.87869,
-    "lat": 46.7984
+    "lat": 46.7984,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-158083",
@@ -5706,7 +7673,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.73996,
-    "lat": 46.88089
+    "lat": 46.88089,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-158084",
@@ -5717,7 +7688,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.2282,
-    "lat": 47.54509
+    "lat": 47.54509,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-158298",
@@ -5728,7 +7703,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.75243,
-    "lat": 46.82674
+    "lat": 46.82674,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-158431",
@@ -5739,7 +7718,11 @@
     "county_fips": "38047",
     "state": "ND",
     "lon": -99.76342,
-    "lat": 46.50119
+    "lat": 46.50119,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160627",
@@ -5750,7 +7733,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.4027,
-    "lat": 47.92426
+    "lat": 47.92426,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160629",
@@ -5761,7 +7748,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.26031,
-    "lat": 47.68712
+    "lat": 47.68712,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160664",
@@ -5772,7 +7763,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.91177,
-    "lat": 47.18693
+    "lat": 47.18693,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160669",
@@ -5783,7 +7778,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.84113,
-    "lat": 47.20896
+    "lat": 47.20896,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160679",
@@ -5794,7 +7793,11 @@
     "county_fips": "38005",
     "state": "ND",
     "lon": -99.81525,
-    "lat": 48.36062
+    "lat": 48.36062,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160681",
@@ -5805,7 +7808,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.85016,
-    "lat": 47.7176
+    "lat": 47.7176,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160682",
@@ -5816,7 +7823,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.86285,
-    "lat": 48.40028
+    "lat": 48.40028,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160684",
@@ -5827,7 +7838,11 @@
     "county_fips": "38061",
     "state": "ND",
     "lon": -102.35306,
-    "lat": 48.06733
+    "lat": 48.06733,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160685",
@@ -5838,7 +7853,11 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -102.10798,
-    "lat": 48.6318
+    "lat": 48.6318,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160686",
@@ -5849,7 +7868,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.29257,
-    "lat": 48.94156
+    "lat": 48.94156,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160687",
@@ -5860,7 +7883,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -100.0533,
-    "lat": 48.94729
+    "lat": 48.94729,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160688",
@@ -5871,7 +7898,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -100.08417,
-    "lat": 48.80656
+    "lat": 48.80656,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160689",
@@ -5882,7 +7913,11 @@
     "county_fips": "38079",
     "state": "ND",
     "lon": -99.80021,
-    "lat": 48.81864
+    "lat": 48.81864,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160691",
@@ -5893,7 +7928,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.59304,
-    "lat": 47.18723
+    "lat": 47.18723,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160692",
@@ -5904,7 +7943,11 @@
     "county_fips": "38093",
     "state": "ND",
     "lon": -98.6995,
-    "lat": 46.93137
+    "lat": 46.93137,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160697",
@@ -5915,7 +7958,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.09916,
-    "lat": 47.37323
+    "lat": 47.37323,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160698",
@@ -5926,7 +7973,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -101.36509,
-    "lat": 46.84903
+    "lat": 46.84903,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160699",
@@ -5937,7 +7988,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.87163,
-    "lat": 46.84567
+    "lat": 46.84567,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160700",
@@ -5948,7 +8003,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -100.8908,
-    "lat": 46.84358
+    "lat": 46.84358,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160706",
@@ -5959,7 +8018,11 @@
     "county_fips": "38041",
     "state": "ND",
     "lon": -102.18616,
-    "lat": 46.21004
+    "lat": 46.21004,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160711",
@@ -5970,7 +8033,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.5498,
-    "lat": 47.77212
+    "lat": 47.77212,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160712",
@@ -5981,7 +8048,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.58382,
-    "lat": 47.7832
+    "lat": 47.7832,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160713",
@@ -5992,7 +8063,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.64856,
-    "lat": 47.83325
+    "lat": 47.83325,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160714",
@@ -6003,7 +8078,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.18833,
-    "lat": 47.85744
+    "lat": 47.85744,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160715",
@@ -6014,7 +8093,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.17607,
-    "lat": 47.84798
+    "lat": 47.84798,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160716",
@@ -6025,7 +8108,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.15123,
-    "lat": 47.79018
+    "lat": 47.79018,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160717",
@@ -6036,7 +8123,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.93019,
-    "lat": 47.79944
+    "lat": 47.79944,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160718",
@@ -6047,7 +8138,9 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.77139,
-    "lat": 48.14907
+    "lat": 48.14907,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-160719",
@@ -6058,7 +8151,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.85796,
-    "lat": 48.05701
+    "lat": 48.05701,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160723",
@@ -6069,7 +8166,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.82932,
-    "lat": 47.54608
+    "lat": 47.54608,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160724",
@@ -6080,7 +8181,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.16349,
-    "lat": 47.34289
+    "lat": 47.34289,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160726",
@@ -6091,7 +8196,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.78421,
-    "lat": 47.44123
+    "lat": 47.44123,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160727",
@@ -6102,7 +8211,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.76338,
-    "lat": 47.41131
+    "lat": 47.41131,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160728",
@@ -6113,7 +8226,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.63196,
-    "lat": 47.43108
+    "lat": 47.43108,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160729",
@@ -6124,7 +8241,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.50236,
-    "lat": 47.42989
+    "lat": 47.42989,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160730",
@@ -6135,7 +8256,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.38113,
-    "lat": 47.43015
+    "lat": 47.43015,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160731",
@@ -6146,7 +8271,11 @@
     "county_fips": "38025",
     "state": "ND",
     "lon": -102.84379,
-    "lat": 47.4774
+    "lat": 47.4774,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160732",
@@ -6157,7 +8286,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.92141,
-    "lat": 47.79887
+    "lat": 47.79887,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160733",
@@ -6168,7 +8301,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -102.93196,
-    "lat": 47.78999
+    "lat": 47.78999,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160734",
@@ -6179,7 +8316,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.17337,
-    "lat": 48.02413
+    "lat": 48.02413,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160735",
@@ -6190,7 +8331,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.16793,
-    "lat": 48.08285
+    "lat": 48.08285,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160736",
@@ -6201,7 +8346,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.11468,
-    "lat": 48.02467
+    "lat": 48.02467,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160739",
@@ -6212,7 +8361,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.62393,
-    "lat": 48.48921
+    "lat": 48.48921,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160740",
@@ -6223,7 +8376,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.4938,
-    "lat": 48.58294
+    "lat": 48.58294,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160741",
@@ -6234,7 +8391,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.4728,
-    "lat": 48.5805
+    "lat": 48.5805,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160742",
@@ -6245,7 +8406,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.26814,
-    "lat": 48.89501
+    "lat": 48.89501,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160743",
@@ -6256,7 +8421,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.84256,
-    "lat": 48.64812
+    "lat": 48.64812,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160744",
@@ -6267,7 +8436,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.78563,
-    "lat": 48.84671
+    "lat": 48.84671,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160745",
@@ -6278,7 +8451,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.54667,
-    "lat": 48.83606
+    "lat": 48.83606,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160776",
@@ -6289,7 +8466,11 @@
     "county_fips": "38091",
     "state": "ND",
     "lon": -97.70688,
-    "lat": 47.32458
+    "lat": 47.32458,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160777",
@@ -6300,7 +8481,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -101.01679,
-    "lat": 48.82222
+    "lat": 48.82222,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160779",
@@ -6311,7 +8496,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -100.57698,
-    "lat": 48.82063
+    "lat": 48.82063,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160781",
@@ -6322,7 +8511,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.55644,
-    "lat": 46.76746
+    "lat": 46.76746,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160782",
@@ -6333,7 +8526,11 @@
     "county_fips": "38073",
     "state": "ND",
     "lon": -97.68033,
-    "lat": 46.43447
+    "lat": 46.43447,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160783",
@@ -6344,7 +8541,11 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.05261,
-    "lat": 46.87449
+    "lat": 46.87449,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160784",
@@ -6355,7 +8556,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -96.8582,
-    "lat": 47.29619
+    "lat": 47.29619,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160804",
@@ -6366,7 +8571,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.78832,
-    "lat": 48.86476
+    "lat": 48.86476,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160805",
@@ -6377,7 +8586,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.78731,
-    "lat": 48.86457
+    "lat": 48.86457,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160806",
@@ -6388,7 +8601,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.54492,
-    "lat": 48.87995
+    "lat": 48.87995,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160807",
@@ -6399,7 +8616,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.54451,
-    "lat": 48.8794
+    "lat": 48.8794,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160808",
@@ -6410,7 +8631,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.241,
-    "lat": 48.80719
+    "lat": 48.80719,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160810",
@@ -6421,7 +8646,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.66965,
-    "lat": 46.09031
+    "lat": 46.09031,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160811",
@@ -6432,7 +8661,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.8679,
-    "lat": 46.14937
+    "lat": 46.14937,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160812",
@@ -6443,7 +8676,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.95005,
-    "lat": 46.13691
+    "lat": 46.13691,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160824",
@@ -6454,7 +8691,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.56175,
-    "lat": 48.77804
+    "lat": 48.77804,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160825",
@@ -6465,7 +8706,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.67109,
-    "lat": 48.79257
+    "lat": 48.79257,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160826",
@@ -6476,7 +8721,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.67103,
-    "lat": 48.7707
+    "lat": 48.7707,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160827",
@@ -6487,7 +8736,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.5191,
-    "lat": 48.77756
+    "lat": 48.77756,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160828",
@@ -6498,7 +8751,11 @@
     "county_fips": "38009",
     "state": "ND",
     "lon": -101.23381,
-    "lat": 48.76284
+    "lat": 48.76284,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160829",
@@ -6509,7 +8766,11 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.56242,
-    "lat": 48.77714
+    "lat": 48.77714,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160853",
@@ -6520,7 +8781,11 @@
     "county_fips": "38047",
     "state": "ND",
     "lon": -99.62365,
-    "lat": 46.38487
+    "lat": 46.38487,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160854",
@@ -6531,7 +8796,11 @@
     "county_fips": "38047",
     "state": "ND",
     "lon": -99.74789,
-    "lat": 46.50106
+    "lat": 46.50106,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160855",
@@ -6542,7 +8811,11 @@
     "county_fips": "38047",
     "state": "ND",
     "lon": -99.76292,
-    "lat": 46.50119
+    "lat": 46.50119,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160856",
@@ -6553,7 +8826,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.77902,
-    "lat": 46.79444
+    "lat": 46.79444,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160858",
@@ -6564,7 +8841,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.79517,
-    "lat": 46.75823
+    "lat": 46.75823,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160859",
@@ -6575,7 +8856,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.75343,
-    "lat": 46.75144
+    "lat": 46.75144,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160860",
@@ -6586,7 +8871,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.75343,
-    "lat": 46.7507
+    "lat": 46.7507,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160861",
@@ -6597,7 +8886,11 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.28706,
-    "lat": 46.90987
+    "lat": 46.90987,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160870",
@@ -6608,7 +8901,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.62144,
-    "lat": 47.74489
+    "lat": 47.74489,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160871",
@@ -6619,7 +8916,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.58067,
-    "lat": 47.73049
+    "lat": 47.73049,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160872",
@@ -6630,7 +8931,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.55983,
-    "lat": 47.72614
+    "lat": 47.72614,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160873",
@@ -6641,7 +8946,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.4524,
-    "lat": 47.64298
+    "lat": 47.64298,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160874",
@@ -6652,7 +8961,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.4524,
-    "lat": 47.64342
+    "lat": 47.64342,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-160922",
@@ -6663,7 +8976,11 @@
     "county_fips": "38057",
     "state": "ND",
     "lon": -101.76534,
-    "lat": 46.98618
+    "lat": 46.98618,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-160955",
@@ -6674,7 +8991,11 @@
     "county_fips": "38019",
     "state": "ND",
     "lon": -98.71031,
-    "lat": 48.67381
+    "lat": 48.67381,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161691",
@@ -6685,7 +9006,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.0447,
-    "lat": 47.84629
+    "lat": 47.84629,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161692",
@@ -6696,7 +9021,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.04469,
-    "lat": 47.84659
+    "lat": 47.84659,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161693",
@@ -6707,7 +9036,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.04501,
-    "lat": 47.74449
+    "lat": 47.74449,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161694",
@@ -6718,7 +9051,11 @@
     "county_fips": "38035",
     "state": "ND",
     "lon": -97.045,
-    "lat": 47.68692
+    "lat": 47.68692,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161695",
@@ -6729,7 +9066,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.04765,
-    "lat": 47.59923
+    "lat": 47.59923,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161697",
@@ -6740,7 +9081,11 @@
     "county_fips": "38097",
     "state": "ND",
     "lon": -97.04975,
-    "lat": 47.45454
+    "lat": 47.45454,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161698",
@@ -6751,7 +9096,11 @@
     "county_fips": "38013",
     "state": "ND",
     "lon": -102.84241,
-    "lat": 48.57497
+    "lat": 48.57497,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-161704",
@@ -6762,7 +9111,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.68009,
-    "lat": 48.18283
+    "lat": 48.18283,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-162284",
@@ -6773,7 +9126,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.16906,
-    "lat": 48.53592
+    "lat": 48.53592,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-166913",
@@ -6784,7 +9141,11 @@
     "county_fips": "38055",
     "state": "ND",
     "lon": -101.41539,
-    "lat": 47.64617
+    "lat": 47.64617,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-166975",
@@ -6795,7 +9156,12 @@
     "county_fips": "38071",
     "state": "ND",
     "lon": -98.3374,
-    "lat": 48.20893
+    "lat": 48.20893,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-166978",
@@ -6806,7 +9172,12 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -98.08103,
-    "lat": 48.41339
+    "lat": 48.41339,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-166984",
@@ -6817,7 +9188,12 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.5369,
-    "lat": 47.23929
+    "lat": 47.23929,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-166985",
@@ -6828,7 +9204,12 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -97.49425,
-    "lat": 47.03558
+    "lat": 47.03558,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-166987",
@@ -6839,7 +9220,12 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.984,
-    "lat": 47.13714
+    "lat": 47.13714,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-166988",
@@ -6850,7 +9236,12 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.83554,
-    "lat": 47.13566
+    "lat": 47.13566,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-167009",
@@ -6861,7 +9252,12 @@
     "county_fips": "38101",
     "state": "ND",
     "lon": -101.24694,
-    "lat": 48.20077
+    "lat": 48.20077,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-167011",
@@ -6872,7 +9268,12 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.80412,
-    "lat": 46.80072
+    "lat": 46.80072,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-167012",
@@ -6883,7 +9284,12 @@
     "county_fips": "38015",
     "state": "ND",
     "lon": -100.787,
-    "lat": 46.79482
+    "lat": 46.79482,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-170872",
@@ -6894,7 +9300,9 @@
     "county_fips": "38017",
     "state": "ND",
     "lon": -96.88538,
-    "lat": 46.83003
+    "lat": 46.83003,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-170873",
@@ -6905,7 +9313,11 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.86251,
-    "lat": 46.47262
+    "lat": 46.47262,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-170874",
@@ -6916,7 +9328,11 @@
     "county_fips": "38077",
     "state": "ND",
     "lon": -96.8625,
-    "lat": 46.47209
+    "lat": 46.47209,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-172465",
@@ -6927,7 +9343,12 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.74118,
-    "lat": 48.40232
+    "lat": 48.40232,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-173180",
@@ -6938,7 +9359,12 @@
     "county_fips": "38075",
     "state": "ND",
     "lon": -101.82423,
-    "lat": 48.76389
+    "lat": 48.76389,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-173524",
@@ -6949,7 +9375,11 @@
     "county_fips": "38059",
     "state": "ND",
     "lon": -102.07443,
-    "lat": 46.83892
+    "lat": 46.83892,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-173526",
@@ -6960,7 +9390,11 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -103.07251,
-    "lat": 46.65747
+    "lat": 46.65747,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-173578",
@@ -6971,7 +9405,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.74116,
-    "lat": 48.40203
+    "lat": 48.40203,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-173599",
@@ -6982,7 +9420,11 @@
     "county_fips": "38099",
     "state": "ND",
     "lon": -97.16813,
-    "lat": 48.19788
+    "lat": 48.19788,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201334",
@@ -6993,7 +9435,11 @@
     "county_fips": "38087",
     "state": "ND",
     "lon": -104.04441,
-    "lat": 46.32224
+    "lat": 46.32224,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201993",
@@ -7004,7 +9450,11 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.0149,
-    "lat": 46.12046
+    "lat": 46.12046,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202276",
@@ -7015,7 +9465,9 @@
     "county_fips": "38089",
     "state": "ND",
     "lon": -103.07007,
-    "lat": 46.84177
+    "lat": 46.84177,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202582",
@@ -7026,7 +9478,9 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.32989,
-    "lat": 46.11975
+    "lat": 46.11975,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202583",
@@ -7037,7 +9491,9 @@
     "county_fips": "38011",
     "state": "ND",
     "lon": -103.66285,
-    "lat": 46.16625
+    "lat": 46.16625,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-203585",
@@ -7048,7 +9504,9 @@
     "county_fips": "38007",
     "state": "ND",
     "lon": -103.52424,
-    "lat": 46.85503
+    "lat": 46.85503,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204134",
@@ -7059,7 +9517,9 @@
     "county_fips": "38001",
     "state": "ND",
     "lon": -102.61983,
-    "lat": 46.03271
+    "lat": 46.03271,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204454",
@@ -7070,7 +9530,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -103.99373,
-    "lat": 47.59047
+    "lat": 47.59047,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204457",
@@ -7081,7 +9545,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.73221,
-    "lat": 48.14178
+    "lat": 48.14178,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205535",
@@ -7092,7 +9560,11 @@
     "county_fips": "38007",
     "state": "ND",
     "lon": -103.52397,
-    "lat": 46.85466
+    "lat": 46.85466,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208378",
@@ -7103,7 +9575,11 @@
     "county_fips": "38023",
     "state": "ND",
     "lon": -103.88188,
-    "lat": 48.85098
+    "lat": 48.85098,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208382",
@@ -7114,7 +9590,11 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.98373,
-    "lat": 48.61835
+    "lat": 48.61835,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208405",
@@ -7125,7 +9605,9 @@
     "county_fips": "38105",
     "state": "ND",
     "lon": -103.9552,
-    "lat": 48.23059
+    "lat": 48.23059,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-208408",
@@ -7136,7 +9618,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -104.0183,
-    "lat": 47.98865
+    "lat": 47.98865,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208418",
@@ -7147,7 +9633,11 @@
     "county_fips": "38053",
     "state": "ND",
     "lon": -104.04078,
-    "lat": 47.87787
+    "lat": 47.87787,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208480",
@@ -7158,7 +9648,11 @@
     "county_fips": "38087",
     "state": "ND",
     "lon": -103.93456,
-    "lat": 46.29091
+    "lat": 46.29091,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208481",
@@ -7169,7 +9663,11 @@
     "county_fips": "38087",
     "state": "ND",
     "lon": -103.93448,
-    "lat": 46.29065
+    "lat": 46.29065,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208492",
@@ -7180,6 +9678,10 @@
     "county_fips": "38033",
     "state": "ND",
     "lon": -104.0123,
-    "lat": 46.9048
+    "lat": 46.9048,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   }
 ]

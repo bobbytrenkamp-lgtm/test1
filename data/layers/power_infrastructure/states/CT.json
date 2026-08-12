@@ -8,7 +8,11 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.36869,
-    "lat": 41.95663
+    "lat": 41.95663,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133266",
@@ -19,7 +23,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.43217,
-    "lat": 41.20013
+    "lat": 41.20013,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133267",
@@ -30,7 +38,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.41345,
-    "lat": 41.29931
+    "lat": 41.29931,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133268",
@@ -41,7 +53,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.39003,
-    "lat": 41.36679
+    "lat": 41.36679,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133270",
@@ -52,7 +68,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.17058,
-    "lat": 41.1861
+    "lat": 41.1861,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133272",
@@ -63,7 +83,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.13253,
-    "lat": 41.46721
+    "lat": 41.46721,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133278",
@@ -74,7 +98,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.9024,
-    "lat": 41.28723
+    "lat": 41.28723,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133285",
@@ -85,7 +113,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.05245,
-    "lat": 41.53664
+    "lat": 41.53664,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133286",
@@ -96,7 +128,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.03347,
-    "lat": 41.48899
+    "lat": 41.48899,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133287",
@@ -107,7 +143,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.66892,
-    "lat": 41.82886
+    "lat": 41.82886,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135679",
@@ -118,7 +158,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.08632,
-    "lat": 41.73774
+    "lat": 41.73774,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135680",
@@ -129,7 +171,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.12087,
-    "lat": 41.77616
+    "lat": 41.77616,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135681",
@@ -140,7 +184,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.46451,
-    "lat": 41.92181
+    "lat": 41.92181,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135682",
@@ -151,7 +197,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.31762,
-    "lat": 42.02105
+    "lat": 42.02105,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135683",
@@ -162,7 +210,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.11633,
-    "lat": 41.79931
+    "lat": 41.79931,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135698",
@@ -173,7 +223,11 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.08659,
-    "lat": 41.79063
+    "lat": 41.79063,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135700",
@@ -184,7 +238,11 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.08668,
-    "lat": 41.79045
+    "lat": 41.79045,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135705",
@@ -195,7 +253,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.36837,
-    "lat": 41.95595
+    "lat": 41.95595,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135899",
@@ -206,7 +266,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.93869,
-    "lat": 41.28905
+    "lat": 41.28905,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135900",
@@ -217,7 +279,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.90865,
-    "lat": 41.30818
+    "lat": 41.30818,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135901",
@@ -228,7 +292,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.90436,
-    "lat": 41.28799
+    "lat": 41.28799,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135902",
@@ -239,7 +305,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.85378,
-    "lat": 41.28406
+    "lat": 41.28406,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135903",
@@ -250,7 +318,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.79373,
-    "lat": 41.29272
+    "lat": 41.29272,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135904",
@@ -261,7 +331,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.59601,
-    "lat": 41.31959
+    "lat": 41.31959,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135905",
@@ -272,7 +344,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.38996,
-    "lat": 41.31862
+    "lat": 41.31862,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135906",
@@ -283,7 +357,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.87752,
-    "lat": 41.3179
+    "lat": 41.3179,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135911",
@@ -294,7 +370,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.85414,
-    "lat": 41.28773
+    "lat": 41.28773,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135912",
@@ -305,7 +385,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.854,
-    "lat": 41.28768
+    "lat": 41.28768,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-135913",
@@ -316,7 +400,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.90884,
-    "lat": 41.30719
+    "lat": 41.30719,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135914",
@@ -327,7 +413,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.90529,
-    "lat": 41.28421
+    "lat": 41.28421,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135915",
@@ -338,7 +428,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.16716,
-    "lat": 41.31239
+    "lat": 41.31239,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135916",
@@ -349,7 +443,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.16793,
-    "lat": 41.31053
+    "lat": 41.31053,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-135924",
@@ -360,7 +458,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.93803,
-    "lat": 41.28847
+    "lat": 41.28847,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135925",
@@ -371,7 +471,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.69761,
-    "lat": 41.32073
+    "lat": 41.32073,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135926",
@@ -382,7 +484,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.16537,
-    "lat": 41.31481
+    "lat": 41.31481,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136304",
@@ -393,7 +497,9 @@
     "county_fips": "09015",
     "state": "CT",
     "lon": -71.89598,
-    "lat": 41.87476
+    "lat": 41.87476,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136333",
@@ -404,7 +510,9 @@
     "county_fips": "09015",
     "state": "CT",
     "lon": -71.89047,
-    "lat": 41.8839
+    "lat": 41.8839,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136334",
@@ -415,7 +523,9 @@
     "county_fips": "09015",
     "state": "CT",
     "lon": -71.89123,
-    "lat": 41.88133
+    "lat": 41.88133,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136393",
@@ -426,7 +536,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.31605,
-    "lat": 41.12151
+    "lat": 41.12151,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136394",
@@ -437,7 +549,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.48053,
-    "lat": 41.07554
+    "lat": 41.07554,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136395",
@@ -448,7 +562,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.44212,
-    "lat": 41.09383
+    "lat": 41.09383,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136396",
@@ -459,7 +575,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.42859,
-    "lat": 41.12729
+    "lat": 41.12729,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136397",
@@ -470,7 +588,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.42886,
-    "lat": 41.08069
+    "lat": 41.08069,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136398",
@@ -481,7 +601,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.36084,
-    "lat": 41.12112
+    "lat": 41.12112,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136406",
@@ -492,7 +614,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.30786,
-    "lat": 41.1243
+    "lat": 41.1243,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136407",
@@ -503,7 +629,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.30957,
-    "lat": 41.12377
+    "lat": 41.12377,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136408",
@@ -514,7 +644,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.31161,
-    "lat": 41.12341
+    "lat": 41.12341,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136409",
@@ -525,7 +659,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.30956,
-    "lat": 41.12405
+    "lat": 41.12405,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136410",
@@ -536,7 +674,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.36028,
-    "lat": 41.12114
+    "lat": 41.12114,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136412",
@@ -547,7 +689,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.44784,
-    "lat": 41.07828
+    "lat": 41.07828,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136413",
@@ -558,7 +704,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.44727,
-    "lat": 41.07747
+    "lat": 41.07747,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136414",
@@ -569,7 +719,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.48128,
-    "lat": 41.0749
+    "lat": 41.0749,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136415",
@@ -580,7 +734,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.47938,
-    "lat": 41.07579
+    "lat": 41.07579,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136434",
@@ -591,7 +749,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.81194,
-    "lat": 41.49884
+    "lat": 41.49884,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136435",
@@ -602,7 +762,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.72311,
-    "lat": 41.63183
+    "lat": 41.63183,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136436",
@@ -613,7 +775,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.66282,
-    "lat": 41.563
+    "lat": 41.563,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136437",
@@ -624,7 +788,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.14411,
-    "lat": 41.57179
+    "lat": 41.57179,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136438",
@@ -635,7 +801,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.11858,
-    "lat": 41.55894
+    "lat": 41.55894,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136439",
@@ -646,7 +814,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.10235,
-    "lat": 41.53601
+    "lat": 41.53601,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136440",
@@ -657,7 +827,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.0429,
-    "lat": 41.55462
+    "lat": 41.55462,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136441",
@@ -668,7 +840,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.57582,
-    "lat": 41.5636
+    "lat": 41.5636,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136442",
@@ -679,7 +853,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.5636,
-    "lat": 41.54045
+    "lat": 41.54045,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136443",
@@ -690,7 +866,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.55756,
-    "lat": 41.77021
+    "lat": 41.77021,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136444",
@@ -701,7 +879,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.94037,
-    "lat": 41.67119
+    "lat": 41.67119,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136445",
@@ -712,7 +892,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.90195,
-    "lat": 41.57354
+    "lat": 41.57354,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136446",
@@ -723,7 +905,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.89599,
-    "lat": 41.66331
+    "lat": 41.66331,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136447",
@@ -734,7 +918,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.86641,
-    "lat": 41.58844
+    "lat": 41.58844,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136448",
@@ -745,7 +931,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.80558,
-    "lat": 41.66178
+    "lat": 41.66178,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136449",
@@ -756,7 +944,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.79364,
-    "lat": 41.74184
+    "lat": 41.74184,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136450",
@@ -767,7 +957,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.75371,
-    "lat": 41.67015
+    "lat": 41.67015,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136451",
@@ -778,7 +970,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.75102,
-    "lat": 41.71781
+    "lat": 41.71781,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136452",
@@ -789,7 +983,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.65338,
-    "lat": 41.74976
+    "lat": 41.74976,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136453",
@@ -800,7 +996,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.64283,
-    "lat": 41.74749
+    "lat": 41.74749,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136454",
@@ -811,7 +1009,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.61639,
-    "lat": 41.76961
+    "lat": 41.76961,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136456",
@@ -822,7 +1022,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.04131,
-    "lat": 41.58416
+    "lat": 41.58416,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136457",
@@ -833,7 +1035,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.92409,
-    "lat": 41.37226
+    "lat": 41.37226,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136458",
@@ -844,7 +1048,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.67231,
-    "lat": 41.51142
+    "lat": 41.51142,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136459",
@@ -855,7 +1061,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.47741,
-    "lat": 41.46089
+    "lat": 41.46089,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136460",
@@ -866,7 +1074,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.18936,
-    "lat": 41.37646
+    "lat": 41.37646,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136461",
@@ -877,7 +1087,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.104,
-    "lat": 41.36802
+    "lat": 41.36802,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136462",
@@ -888,7 +1100,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.07952,
-    "lat": 41.43406
+    "lat": 41.43406,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136463",
@@ -899,7 +1113,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.04534,
-    "lat": 41.37397
+    "lat": 41.37397,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136464",
@@ -910,7 +1126,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.88696,
-    "lat": 41.36361
+    "lat": 41.36361,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136465",
@@ -921,7 +1139,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.84301,
-    "lat": 41.41458
+    "lat": 41.41458,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136466",
@@ -932,7 +1152,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.56971,
-    "lat": 41.51037
+    "lat": 41.51037,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136467",
@@ -943,7 +1165,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.4927,
-    "lat": 41.48828
+    "lat": 41.48828,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136468",
@@ -954,7 +1178,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.1161,
-    "lat": 41.42905
+    "lat": 41.42905,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136469",
@@ -965,7 +1191,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.10409,
-    "lat": 41.4286
+    "lat": 41.4286,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136470",
@@ -976,7 +1204,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.75507,
-    "lat": 41.48923
+    "lat": 41.48923,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136471",
@@ -987,7 +1217,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.7519,
-    "lat": 41.51012
+    "lat": 41.51012,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136472",
@@ -998,7 +1230,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.57806,
-    "lat": 41.55449
+    "lat": 41.55449,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136473",
@@ -1009,7 +1243,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.65425,
-    "lat": 41.75033
+    "lat": 41.75033,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136474",
@@ -1020,7 +1256,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.555,
-    "lat": 41.68101
+    "lat": 41.68101,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136475",
@@ -1031,7 +1269,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.23452,
-    "lat": 41.70218
+    "lat": 41.70218,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136477",
@@ -1042,7 +1282,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.82554,
-    "lat": 41.52667
+    "lat": 41.52667,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136480",
@@ -1053,7 +1297,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.92747,
-    "lat": 41.65678
+    "lat": 41.65678,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136483",
@@ -1064,7 +1312,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.75175,
-    "lat": 41.71756
+    "lat": 41.71756,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136484",
@@ -1075,7 +1327,11 @@
     "county_fips": "09013",
     "state": "CT",
     "lon": -72.28537,
-    "lat": 41.77439
+    "lat": 41.77439,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136485",
@@ -1086,7 +1342,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.12658,
-    "lat": 41.55017
+    "lat": 41.55017,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136486",
@@ -1097,7 +1357,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.11945,
-    "lat": 41.55899
+    "lat": 41.55899,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136487",
@@ -1108,7 +1372,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.11929,
-    "lat": 41.55919
+    "lat": 41.55919,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136488",
@@ -1119,7 +1387,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.04313,
-    "lat": 41.57405
+    "lat": 41.57405,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136489",
@@ -1130,7 +1402,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.12839,
-    "lat": 41.54334
+    "lat": 41.54334,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136490",
@@ -1141,7 +1417,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.11239,
-    "lat": 41.47098
+    "lat": 41.47098,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136491",
@@ -1152,7 +1430,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.11187,
-    "lat": 41.47133
+    "lat": 41.47133,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136492",
@@ -1163,7 +1445,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.11168,
-    "lat": 41.47093
+    "lat": 41.47093,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136493",
@@ -1174,7 +1460,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.0792,
-    "lat": 41.43458
+    "lat": 41.43458,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136494",
@@ -1185,7 +1475,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.0795,
-    "lat": 41.43449
+    "lat": 41.43449,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136495",
@@ -1196,7 +1490,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.05021,
-    "lat": 41.44094
+    "lat": 41.44094,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136496",
@@ -1207,7 +1505,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.05022,
-    "lat": 41.44089
+    "lat": 41.44089,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136497",
@@ -1218,7 +1520,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.04785,
-    "lat": 41.41625
+    "lat": 41.41625,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136498",
@@ -1229,7 +1535,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.70463,
-    "lat": 41.78295
+    "lat": 41.78295,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136499",
@@ -1240,7 +1550,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.56839,
-    "lat": 41.79847
+    "lat": 41.79847,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136500",
@@ -1251,7 +1565,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.65077,
-    "lat": 41.75462
+    "lat": 41.75462,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136501",
@@ -1262,7 +1580,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.65078,
-    "lat": 41.75476
+    "lat": 41.75476,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136503",
@@ -1273,7 +1595,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.14504,
-    "lat": 41.39342
+    "lat": 41.39342,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136504",
@@ -1284,7 +1610,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.14484,
-    "lat": 41.39348
+    "lat": 41.39348,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136505",
@@ -1295,7 +1625,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.7622,
-    "lat": 41.49182
+    "lat": 41.49182,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136506",
@@ -1306,7 +1638,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.11634,
-    "lat": 41.42824
+    "lat": 41.42824,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136507",
@@ -1317,7 +1653,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.11587,
-    "lat": 41.42824
+    "lat": 41.42824,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136508",
@@ -1328,7 +1668,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.10235,
-    "lat": 41.42795
+    "lat": 41.42795,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136509",
@@ -1339,7 +1683,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.83864,
-    "lat": 41.52853
+    "lat": 41.52853,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136510",
@@ -1350,7 +1698,11 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.21015,
-    "lat": 41.36176
+    "lat": 41.36176,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136511",
@@ -1361,7 +1713,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.83513,
-    "lat": 41.44739
+    "lat": 41.44739,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136512",
@@ -1372,7 +1728,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.83438,
-    "lat": 41.43984
+    "lat": 41.43984,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136513",
@@ -1383,7 +1743,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.83473,
-    "lat": 41.43935
+    "lat": 41.43935,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136514",
@@ -1394,7 +1758,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.66892,
-    "lat": 41.65276
+    "lat": 41.65276,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136515",
@@ -1405,7 +1771,9 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.59689,
-    "lat": 41.55416
+    "lat": 41.55416,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136533",
@@ -1416,7 +1784,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.43126,
-    "lat": 41.48262
+    "lat": 41.48262,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136534",
@@ -1427,7 +1797,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.02521,
-    "lat": 41.56613
+    "lat": 41.56613,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136535",
@@ -1438,7 +1810,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.44224,
-    "lat": 41.62042
+    "lat": 41.62042,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136536",
@@ -1449,7 +1823,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.43376,
-    "lat": 41.58254
+    "lat": 41.58254,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136537",
@@ -1460,7 +1836,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.08621,
-    "lat": 41.56368
+    "lat": 41.56368,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136538",
@@ -1471,7 +1849,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.06973,
-    "lat": 41.6754
+    "lat": 41.6754,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136539",
@@ -1482,7 +1862,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.06068,
-    "lat": 41.61251
+    "lat": 41.61251,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136540",
@@ -1493,7 +1875,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.05323,
-    "lat": 41.55489
+    "lat": 41.55489,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136541",
@@ -1504,7 +1888,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.98687,
-    "lat": 41.68204
+    "lat": 41.68204,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136542",
@@ -1515,7 +1901,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.38712,
-    "lat": 41.4343
+    "lat": 41.4343,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136543",
@@ -1526,7 +1914,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.29457,
-    "lat": 41.44875
+    "lat": 41.44875,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136544",
@@ -1537,7 +1927,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.2365,
-    "lat": 41.50324
+    "lat": 41.50324,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136545",
@@ -1548,7 +1940,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.0688,
-    "lat": 41.4438
+    "lat": 41.4438,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136546",
@@ -1559,7 +1953,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.05631,
-    "lat": 41.47473
+    "lat": 41.47473,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136547",
@@ -1570,7 +1966,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.03991,
-    "lat": 41.52421
+    "lat": 41.52421,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136548",
@@ -1581,7 +1979,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.49143,
-    "lat": 41.65909
+    "lat": 41.65909,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136552",
@@ -1592,7 +1992,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.06826,
-    "lat": 41.59142
+    "lat": 41.59142,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136553",
@@ -1603,7 +2005,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.09689,
-    "lat": 41.52256
+    "lat": 41.52256,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136554",
@@ -1614,7 +2020,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.13697,
-    "lat": 41.4562
+    "lat": 41.4562,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136555",
@@ -1625,7 +2035,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.40287,
-    "lat": 41.43239
+    "lat": 41.43239,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136556",
@@ -1636,7 +2050,9 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.24116,
-    "lat": 41.60114
+    "lat": 41.60114,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136557",
@@ -1647,7 +2063,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.97548,
-    "lat": 41.57263
+    "lat": 41.57263,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136558",
@@ -1658,7 +2076,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.13694,
-    "lat": 41.45652
+    "lat": 41.45652,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136559",
@@ -1669,7 +2091,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.40283,
-    "lat": 41.43259
+    "lat": 41.43259,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136560",
@@ -1680,7 +2106,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.38776,
-    "lat": 41.43482
+    "lat": 41.43482,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136561",
@@ -1691,7 +2121,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.38594,
-    "lat": 41.43462
+    "lat": 41.43462,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136562",
@@ -1702,7 +2136,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.01574,
-    "lat": 41.58619
+    "lat": 41.58619,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136563",
@@ -1713,7 +2151,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.01564,
-    "lat": 41.58623
+    "lat": 41.58623,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136564",
@@ -1724,7 +2166,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.4069,
-    "lat": 41.47906
+    "lat": 41.47906,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136565",
@@ -1735,7 +2181,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.40688,
-    "lat": 41.47899
+    "lat": 41.47899,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136574",
@@ -1746,7 +2196,9 @@
     "county_fips": "09015",
     "state": "CT",
     "lon": -71.9212,
-    "lat": 41.67097
+    "lat": 41.67097,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136575",
@@ -1757,7 +2209,9 @@
     "county_fips": "09015",
     "state": "CT",
     "lon": -71.91463,
-    "lat": 41.81668
+    "lat": 41.81668,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136576",
@@ -1768,7 +2222,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -71.95963,
-    "lat": 41.36637
+    "lat": 41.36637,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136579",
@@ -1779,7 +2235,11 @@
     "county_fips": "09015",
     "state": "CT",
     "lon": -71.91497,
-    "lat": 41.81732
+    "lat": 41.81732,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136581",
@@ -1790,7 +2250,11 @@
     "county_fips": "09015",
     "state": "CT",
     "lon": -71.94656,
-    "lat": 41.68587
+    "lat": 41.68587,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136582",
@@ -1801,7 +2265,11 @@
     "county_fips": "09015",
     "state": "CT",
     "lon": -71.94652,
-    "lat": 41.68567
+    "lat": 41.68567,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136587",
@@ -1812,7 +2280,9 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -71.84668,
-    "lat": 41.41275
+    "lat": 41.41275,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140029",
@@ -1823,7 +2293,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.59783,
-    "lat": 41.02903
+    "lat": 41.02903,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140030",
@@ -1834,7 +2306,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.56338,
-    "lat": 41.034
+    "lat": 41.034,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140031",
@@ -1845,7 +2319,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.55536,
-    "lat": 41.03757
+    "lat": 41.03757,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140032",
@@ -1856,7 +2332,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.53759,
-    "lat": 41.04788
+    "lat": 41.04788,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140033",
@@ -1867,7 +2345,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.52036,
-    "lat": 41.06211
+    "lat": 41.06211,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140044",
@@ -1878,7 +2358,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.55518,
-    "lat": 41.03679
+    "lat": 41.03679,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140045",
@@ -1889,7 +2373,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.55459,
-    "lat": 41.03714
+    "lat": 41.03714,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140046",
@@ -1900,7 +2388,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.56388,
-    "lat": 41.03398
+    "lat": 41.03398,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140730",
@@ -1911,7 +2403,9 @@
     "county_fips": "09013",
     "state": "CT",
     "lon": -72.46369,
-    "lat": 41.86655
+    "lat": 41.86655,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140731",
@@ -1922,7 +2416,9 @@
     "county_fips": "09013",
     "state": "CT",
     "lon": -72.34806,
-    "lat": 41.80405
+    "lat": 41.80405,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140732",
@@ -1933,7 +2429,9 @@
     "county_fips": "09013",
     "state": "CT",
     "lon": -72.26448,
-    "lat": 41.80893
+    "lat": 41.80893,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140761",
@@ -1944,7 +2442,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.92663,
-    "lat": 41.83857
+    "lat": 41.83857,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140762",
@@ -1955,7 +2455,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.52857,
-    "lat": 41.85446
+    "lat": 41.85446,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140763",
@@ -1966,7 +2468,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.75811,
-    "lat": 41.89124
+    "lat": 41.89124,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140765",
@@ -1977,7 +2481,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.62623,
-    "lat": 41.91896
+    "lat": 41.91896,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140766",
@@ -1988,7 +2494,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.61485,
-    "lat": 41.93632
+    "lat": 41.93632,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140767",
@@ -1999,7 +2507,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.60044,
-    "lat": 41.84022
+    "lat": 41.84022,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140768",
@@ -2010,7 +2520,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.51048,
-    "lat": 41.9787
+    "lat": 41.9787,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140769",
@@ -2021,7 +2533,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.79235,
-    "lat": 41.90873
+    "lat": 41.90873,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140770",
@@ -2032,7 +2546,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.7286,
-    "lat": 41.82872
+    "lat": 41.82872,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140773",
@@ -2043,7 +2559,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.61262,
-    "lat": 41.91826
+    "lat": 41.91826,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140774",
@@ -2054,7 +2574,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.70571,
-    "lat": 41.84466
+    "lat": 41.84466,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140775",
@@ -2065,7 +2589,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.56191,
-    "lat": 41.83015
+    "lat": 41.83015,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140776",
@@ -2076,7 +2604,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.56169,
-    "lat": 41.83015
+    "lat": 41.83015,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140794",
@@ -2087,7 +2619,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.52975,
-    "lat": 41.85392
+    "lat": 41.85392,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140795",
@@ -2098,7 +2634,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.52974,
-    "lat": 41.85383
+    "lat": 41.85383,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140816",
@@ -2109,7 +2649,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.08572,
-    "lat": 41.34744
+    "lat": 41.34744,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140817",
@@ -2120,7 +2662,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.98264,
-    "lat": 41.33813
+    "lat": 41.33813,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140818",
@@ -2131,7 +2675,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.42974,
-    "lat": 41.26825
+    "lat": 41.26825,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140819",
@@ -2142,7 +2688,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.09993,
-    "lat": 41.32554
+    "lat": 41.32554,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140820",
@@ -2153,7 +2701,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.48747,
-    "lat": 41.28316
+    "lat": 41.28316,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140821",
@@ -2164,7 +2714,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.4352,
-    "lat": 41.39362
+    "lat": 41.39362,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140822",
@@ -2175,7 +2727,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.40214,
-    "lat": 41.39168
+    "lat": 41.39168,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140823",
@@ -2186,7 +2740,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.37161,
-    "lat": 41.18939
+    "lat": 41.18939,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140824",
@@ -2197,7 +2753,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.28984,
-    "lat": 41.3912
+    "lat": 41.3912,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140825",
@@ -2208,7 +2766,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.25157,
-    "lat": 41.21368
+    "lat": 41.21368,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140826",
@@ -2219,7 +2779,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.2342,
-    "lat": 41.15642
+    "lat": 41.15642,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140827",
@@ -2230,7 +2792,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.22004,
-    "lat": 41.3833
+    "lat": 41.3833,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140828",
@@ -2241,7 +2805,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.18695,
-    "lat": 41.18242
+    "lat": 41.18242,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140829",
@@ -2252,7 +2818,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.18536,
-    "lat": 41.16996
+    "lat": 41.16996,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140830",
@@ -2263,7 +2831,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.18492,
-    "lat": 41.1724
+    "lat": 41.1724,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140831",
@@ -2274,7 +2844,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.17078,
-    "lat": 41.38218
+    "lat": 41.38218,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140832",
@@ -2285,7 +2857,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.14443,
-    "lat": 41.18524
+    "lat": 41.18524,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140834",
@@ -2296,7 +2870,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.11815,
-    "lat": 41.26733
+    "lat": 41.26733,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140835",
@@ -2307,7 +2883,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.10718,
-    "lat": 41.2089
+    "lat": 41.2089,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140836",
@@ -2318,7 +2896,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.10557,
-    "lat": 41.20689
+    "lat": 41.20689,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140837",
@@ -2329,7 +2909,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.08092,
-    "lat": 41.21233
+    "lat": 41.21233,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140838",
@@ -2340,7 +2922,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.01312,
-    "lat": 41.23732
+    "lat": 41.23732,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140839",
@@ -2351,7 +2935,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.41417,
-    "lat": 41.30114
+    "lat": 41.30114,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140840",
@@ -2362,7 +2950,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.21969,
-    "lat": 41.38295
+    "lat": 41.38295,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140841",
@@ -2373,7 +2965,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.4319,
-    "lat": 41.27079
+    "lat": 41.27079,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140842",
@@ -2384,7 +2980,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.16083,
-    "lat": 41.2329
+    "lat": 41.2329,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140843",
@@ -2395,7 +2995,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.1606,
-    "lat": 41.23283
+    "lat": 41.23283,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140844",
@@ -2406,7 +3010,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.21677,
-    "lat": 41.22438
+    "lat": 41.22438,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140845",
@@ -2417,7 +3023,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.21692,
-    "lat": 41.22446
+    "lat": 41.22446,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140846",
@@ -2428,7 +3038,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.95456,
-    "lat": 41.27596
+    "lat": 41.27596,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140847",
@@ -2439,7 +3051,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.97798,
-    "lat": 41.38152
+    "lat": 41.38152,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140848",
@@ -2450,7 +3066,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.11847,
-    "lat": 41.26752
+    "lat": 41.26752,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140849",
@@ -2461,7 +3081,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.11848,
-    "lat": 41.26738
+    "lat": 41.26738,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140850",
@@ -2472,7 +3096,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.12452,
-    "lat": 41.32068
+    "lat": 41.32068,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140851",
@@ -2483,7 +3111,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.12458,
-    "lat": 41.32059
+    "lat": 41.32059,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140852",
@@ -2494,7 +3126,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.39166,
-    "lat": 41.37727
+    "lat": 41.37727,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140853",
@@ -2505,7 +3141,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.38862,
-    "lat": 41.36804
+    "lat": 41.36804,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140854",
@@ -2516,7 +3156,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.39464,
-    "lat": 41.38423
+    "lat": 41.38423,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140855",
@@ -2527,7 +3171,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.20832,
-    "lat": 41.16306
+    "lat": 41.16306,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-140856",
@@ -2538,7 +3186,11 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.2081,
-    "lat": 41.16813
+    "lat": 41.16813,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140857",
@@ -2549,7 +3201,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.09933,
-    "lat": 41.22459
+    "lat": 41.22459,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-140858",
@@ -2560,7 +3216,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.41707,
-    "lat": 41.17672
+    "lat": 41.17672,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140859",
@@ -2571,7 +3229,9 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.16066,
-    "lat": 41.23245
+    "lat": 41.23245,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140860",
@@ -2582,7 +3242,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.09852,
-    "lat": 41.22775
+    "lat": 41.22775,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140861",
@@ -2593,7 +3255,9 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -72.97393,
-    "lat": 41.26707
+    "lat": 41.26707,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-158612",
@@ -2604,7 +3268,11 @@
     "county_fips": "09007",
     "state": "CT",
     "lon": -72.38605,
-    "lat": 41.29614
+    "lat": 41.29614,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-161262",
@@ -2615,7 +3283,11 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.11598,
-    "lat": 41.91582
+    "lat": 41.91582,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-166933",
@@ -2626,7 +3298,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.09717,
-    "lat": 41.52259
+    "lat": 41.52259,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-167077",
@@ -2637,7 +3313,12 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.56827,
-    "lat": 41.79842
+    "lat": 41.79842,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-167078",
@@ -2648,7 +3329,12 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.13029,
-    "lat": 41.43096
+    "lat": 41.43096,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-167079",
@@ -2659,7 +3345,12 @@
     "county_fips": "09011",
     "state": "CT",
     "lon": -72.1303,
-    "lat": 41.43088
+    "lat": 41.43088,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-172420",
@@ -2670,7 +3361,12 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.14385,
-    "lat": 41.1854
+    "lat": 41.1854,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-172510",
@@ -2681,7 +3377,12 @@
     "county_fips": "09001",
     "state": "CT",
     "lon": -73.42562,
-    "lat": 41.09102
+    "lat": 41.09102,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-173335",
@@ -2692,7 +3393,9 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.71243,
-    "lat": 41.75079
+    "lat": 41.75079,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-173620",
@@ -2703,7 +3406,11 @@
     "county_fips": "09003",
     "state": "CT",
     "lon": -72.6127,
-    "lat": 41.91829
+    "lat": 41.91829,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-173621",
@@ -2714,7 +3421,11 @@
     "county_fips": "09005",
     "state": "CT",
     "lon": -73.08614,
-    "lat": 41.79067
+    "lat": 41.79067,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-173622",
@@ -2725,7 +3436,11 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.13705,
-    "lat": 41.45629
+    "lat": 41.45629,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-173623",
@@ -2736,6 +3451,10 @@
     "county_fips": "09009",
     "state": "CT",
     "lon": -73.13688,
-    "lat": 41.45642
+    "lat": 41.45642,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   }
 ]

@@ -8,7 +8,11 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.5319,
-    "lat": 41.4887
+    "lat": 41.4887,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130059",
@@ -19,7 +23,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.51692,
-    "lat": 41.80257
+    "lat": 41.80257,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130071",
@@ -30,7 +38,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.4554,
-    "lat": 41.73585
+    "lat": 41.73585,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130090",
@@ -41,7 +53,11 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.18417,
-    "lat": 41.64375
+    "lat": 41.64375,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130092",
@@ -52,7 +68,11 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.17082,
-    "lat": 41.64319
+    "lat": 41.64319,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130389",
@@ -63,7 +83,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.5309,
-    "lat": 41.90127
+    "lat": 41.90127,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130525",
@@ -74,7 +98,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.38479,
-    "lat": 41.91315
+    "lat": 41.91315,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130526",
@@ -85,7 +113,11 @@
     "county_fips": "44001",
     "state": "RI",
     "lon": -71.26851,
-    "lat": 41.69458
+    "lat": 41.69458,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130678",
@@ -96,7 +128,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.42119,
-    "lat": 41.84161
+    "lat": 41.84161,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-130684",
@@ -107,7 +141,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.36671,
-    "lat": 41.84517
+    "lat": 41.84517,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130687",
@@ -118,7 +156,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.5231,
-    "lat": 41.80276
+    "lat": 41.80276,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-130752",
@@ -129,7 +171,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52182,
-    "lat": 41.75684
+    "lat": 41.75684,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136305",
@@ -140,7 +186,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.46136,
-    "lat": 41.93754
+    "lat": 41.93754,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136306",
@@ -151,7 +201,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.4613,
-    "lat": 41.93742
+    "lat": 41.93742,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136307",
@@ -162,7 +216,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.51855,
-    "lat": 41.97852
+    "lat": 41.97852,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136310",
@@ -173,7 +231,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.364,
-    "lat": 41.86539
+    "lat": 41.86539,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136311",
@@ -184,7 +246,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.53644,
-    "lat": 41.97103
+    "lat": 41.97103,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136312",
@@ -195,7 +261,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.53636,
-    "lat": 41.97088
+    "lat": 41.97088,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136313",
@@ -206,7 +276,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52354,
-    "lat": 41.86676
+    "lat": 41.86676,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136314",
@@ -217,7 +291,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52353,
-    "lat": 41.86701
+    "lat": 41.86701,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136315",
@@ -228,7 +306,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52739,
-    "lat": 41.88151
+    "lat": 41.88151,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136316",
@@ -239,7 +321,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52743,
-    "lat": 41.88126
+    "lat": 41.88126,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136317",
@@ -250,7 +336,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.53139,
-    "lat": 41.90108
+    "lat": 41.90108,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136318",
@@ -261,7 +351,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.53136,
-    "lat": 41.90138
+    "lat": 41.90138,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136322",
@@ -272,7 +366,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.6735,
-    "lat": 42.00995
+    "lat": 42.00995,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136323",
@@ -283,7 +379,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.66953,
-    "lat": 42.0095
+    "lat": 42.0095,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136324",
@@ -294,7 +392,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.6099,
-    "lat": 41.97427
+    "lat": 41.97427,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136325",
@@ -305,7 +405,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.53915,
-    "lat": 41.96947
+    "lat": 41.96947,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136326",
@@ -316,7 +418,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52249,
-    "lat": 41.97964
+    "lat": 41.97964,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136327",
@@ -327,7 +431,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.50778,
-    "lat": 42.00409
+    "lat": 42.00409,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136328",
@@ -338,7 +444,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.44579,
-    "lat": 41.98071
+    "lat": 41.98071,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136329",
@@ -349,7 +457,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52692,
-    "lat": 41.88144
+    "lat": 41.88144,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136330",
@@ -360,7 +470,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.5222,
-    "lat": 41.86684
+    "lat": 41.86684,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136331",
@@ -371,7 +483,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.46199,
-    "lat": 41.93713
+    "lat": 41.93713,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136332",
@@ -382,7 +496,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.3816,
-    "lat": 41.86731
+    "lat": 41.86731,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136577",
@@ -393,7 +509,11 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.57392,
-    "lat": 41.4665
+    "lat": 41.4665,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136584",
@@ -404,7 +524,9 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.70412,
-    "lat": 41.42746
+    "lat": 41.42746,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136585",
@@ -415,7 +537,9 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.63233,
-    "lat": 41.43847
+    "lat": 41.43847,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136586",
@@ -426,7 +550,9 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.57424,
-    "lat": 41.47266
+    "lat": 41.47266,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136642",
@@ -437,7 +563,11 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.18052,
-    "lat": 41.64443
+    "lat": 41.64443,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136643",
@@ -448,7 +578,11 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.18041,
-    "lat": 41.64417
+    "lat": 41.64417,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136648",
@@ -459,7 +593,11 @@
     "county_fips": "44001",
     "state": "RI",
     "lon": -71.28089,
-    "lat": 41.7348
+    "lat": 41.7348,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136649",
@@ -470,7 +608,9 @@
     "county_fips": "44001",
     "state": "RI",
     "lon": -71.28083,
-    "lat": 41.73361
+    "lat": 41.73361,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136650",
@@ -481,7 +621,9 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.25533,
-    "lat": 41.6018
+    "lat": 41.6018,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136651",
@@ -492,7 +634,9 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.17992,
-    "lat": 41.66834
+    "lat": 41.66834,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136652",
@@ -503,7 +647,9 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.31964,
-    "lat": 41.51101
+    "lat": 41.51101,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136653",
@@ -514,7 +660,9 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.31027,
-    "lat": 41.52865
+    "lat": 41.52865,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136654",
@@ -525,7 +673,9 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.27844,
-    "lat": 41.54638
+    "lat": 41.54638,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140908",
@@ -536,7 +686,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.388,
-    "lat": 41.8142
+    "lat": 41.8142,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140909",
@@ -547,7 +701,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.42133,
-    "lat": 41.84301
+    "lat": 41.84301,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140912",
@@ -558,7 +716,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.40456,
-    "lat": 41.81674
+    "lat": 41.81674,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140913",
@@ -569,7 +731,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.42124,
-    "lat": 41.84317
+    "lat": 41.84317,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140917",
@@ -580,7 +746,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.34884,
-    "lat": 41.80221
+    "lat": 41.80221,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140918",
@@ -591,7 +761,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.40582,
-    "lat": 41.81679
+    "lat": 41.81679,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140919",
@@ -602,7 +774,9 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.43912,
-    "lat": 41.75032
+    "lat": 41.75032,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140920",
@@ -613,7 +787,9 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.43523,
-    "lat": 41.59256
+    "lat": 41.59256,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140922",
@@ -624,7 +800,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.40565,
-    "lat": 41.81634
+    "lat": 41.81634,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140923",
@@ -635,7 +813,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.34849,
-    "lat": 41.80221
+    "lat": 41.80221,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140924",
@@ -646,7 +826,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.42084,
-    "lat": 41.84334
+    "lat": 41.84334,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140925",
@@ -657,7 +839,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.4063,
-    "lat": 41.81895
+    "lat": 41.81895,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140926",
@@ -668,7 +852,11 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.48153,
-    "lat": 41.55038
+    "lat": 41.55038,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140927",
@@ -679,7 +867,11 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.48155,
-    "lat": 41.55103
+    "lat": 41.55103,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140928",
@@ -690,7 +882,11 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.48806,
-    "lat": 41.61144
+    "lat": 41.61144,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140929",
@@ -701,7 +897,11 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.48855,
-    "lat": 41.61079
+    "lat": 41.61079,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140930",
@@ -712,7 +912,11 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44348,
-    "lat": 41.74277
+    "lat": 41.74277,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140931",
@@ -723,7 +927,11 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.47783,
-    "lat": 41.6092
+    "lat": 41.6092,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140932",
@@ -734,7 +942,11 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.47764,
-    "lat": 41.60909
+    "lat": 41.60909,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140933",
@@ -745,7 +957,11 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44043,
-    "lat": 41.75007
+    "lat": 41.75007,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140934",
@@ -756,7 +972,11 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44025,
-    "lat": 41.7499
+    "lat": 41.7499,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140936",
@@ -767,7 +987,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.5107,
-    "lat": 41.81363
+    "lat": 41.81363,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140937",
@@ -778,7 +1002,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.51096,
-    "lat": 41.81381
+    "lat": 41.81381,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140938",
@@ -789,7 +1017,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.51542,
-    "lat": 41.80236
+    "lat": 41.80236,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140939",
@@ -800,7 +1032,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.51546,
-    "lat": 41.80251
+    "lat": 41.80251,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140940",
@@ -811,7 +1047,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52079,
-    "lat": 41.75695
+    "lat": 41.75695,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140941",
@@ -822,7 +1062,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.52075,
-    "lat": 41.75709
+    "lat": 41.75709,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140942",
@@ -833,7 +1077,11 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44329,
-    "lat": 41.74276
+    "lat": 41.74276,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140943",
@@ -844,7 +1092,11 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44999,
-    "lat": 41.72987
+    "lat": 41.72987,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140944",
@@ -855,7 +1107,11 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44996,
-    "lat": 41.73009
+    "lat": 41.73009,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140945",
@@ -866,7 +1122,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.51932,
-    "lat": 41.82773
+    "lat": 41.82773,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140946",
@@ -877,7 +1135,9 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.47942,
-    "lat": 41.68328
+    "lat": 41.68328,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140947",
@@ -888,7 +1148,9 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.47737,
-    "lat": 41.60971
+    "lat": 41.60971,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140948",
@@ -899,7 +1161,9 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.47482,
-    "lat": 41.8144
+    "lat": 41.8144,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140949",
@@ -910,7 +1174,9 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.47288,
-    "lat": 41.69661
+    "lat": 41.69661,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140950",
@@ -921,7 +1187,9 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44977,
-    "lat": 41.72955
+    "lat": 41.72955,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140951",
@@ -932,7 +1200,9 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44309,
-    "lat": 41.73287
+    "lat": 41.73287,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140952",
@@ -943,7 +1213,9 @@
     "county_fips": "44003",
     "state": "RI",
     "lon": -71.44037,
-    "lat": 41.75423
+    "lat": 41.75423,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140953",
@@ -954,7 +1226,9 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.47214,
-    "lat": 41.54865
+    "lat": 41.54865,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-156254",
@@ -965,7 +1239,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.42122,
-    "lat": 41.84248
+    "lat": 41.84248,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156255",
@@ -976,7 +1254,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.42107,
-    "lat": 41.84245
+    "lat": 41.84245,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-162810",
@@ -987,7 +1269,11 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.51552,
-    "lat": 41.80136
+    "lat": 41.80136,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-170628",
@@ -998,7 +1284,11 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.29609,
-    "lat": 41.51781
+    "lat": 41.51781,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-170629",
@@ -1009,7 +1299,11 @@
     "county_fips": "44005",
     "state": "RI",
     "lon": -71.29809,
-    "lat": 41.52376
+    "lat": 41.52376,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-172605",
@@ -1020,7 +1314,12 @@
     "county_fips": "44007",
     "state": "RI",
     "lon": -71.57922,
-    "lat": 41.97698
+    "lat": 41.97698,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-173371",
@@ -1031,6 +1330,8 @@
     "county_fips": "44009",
     "state": "RI",
     "lon": -71.76973,
-    "lat": 41.4126
+    "lat": 41.4126,
+    "quality_tier": "high",
+    "quality_flags": []
   }
 ]

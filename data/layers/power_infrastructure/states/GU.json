@@ -8,7 +8,9 @@
     "county_fips": "66010",
     "state": "GU",
     "lon": 144.68632,
-    "lat": 13.46385
+    "lat": 13.46385,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-161489",
@@ -19,7 +21,9 @@
     "county_fips": "66010",
     "state": "GU",
     "lon": 144.8194,
-    "lat": 13.52292
+    "lat": 13.52292,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-161499",
@@ -30,6 +34,8 @@
     "county_fips": "66010",
     "state": "GU",
     "lon": 144.69029,
-    "lat": 13.46241
+    "lat": 13.46241,
+    "quality_tier": "high",
+    "quality_flags": []
   }
 ]

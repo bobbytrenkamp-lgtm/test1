@@ -23,6 +23,7 @@ import argparse
 import json
 import logging
 import os
+import re
 import sys
 import time
 from typing import Any
@@ -235,6 +236,50 @@ def _arcgis_paginate(url: str, where: str, out_fields: str, max_per_page: int = 
 
 # ── Substations ─────────────────────────────────────────────────────────────
 
+# The source's own generic-name placeholder, confirmed on real fetched data
+# (see dataset_registry.json's substations known_coverage_holes entry:
+# ~46.8% of records carry this exact "UnknownNNNNN" pattern as a real value
+# in the source data itself, not something this pipeline invented).
+_PLACEHOLDER_NAME_RE = re.compile(r"^Unknown\d+$")
+
+# Real, already-fetched per-record fields carry three independent quality
+# signals, confirmed on the live 53,826-record dataset (not guessed):
+#   - TYPE: 37,891 are the real 'SUBSTATION' facility type; 15,349 are 'TAP'
+#     (a transmission-line branch point, not a switching facility -- see
+#     dataset_registry.json's known_quality_issues), plus small RISER/
+#     DEAD END/NOT AVAILABLE counts. A TAP is not a substation regardless
+#     of how complete its other fields are.
+#   - STATUS: 51,786 'IN SERVICE', 2,031 'NOT AVAILABLE', 9 'UNDER CONST'.
+#   - NAME: ~46.8% are the generic placeholder above rather than a real
+#     assigned name.
+# This is a classification of RECORD COMPLETENESS/SPECIFICITY, not of
+# evidence provenance -- every field here already comes directly from the
+# source (nothing here is modeled or inferred), so this deliberately does
+# NOT reuse infrastructure_asset_schema.py's OBSERVED/MODELED/UNKNOWN
+# vocabulary, which answers a different question (where did this VALUE
+# come from) than the one this answers (how complete is THIS RECORD).
+def classify_substation_quality(record: dict) -> dict:
+    """Pure function: given a substation record's real type/status/name
+    fields, returns {'quality_tier': 'high'|'medium'|'low',
+    'quality_flags': [...]} explaining any gap found. Never invents a
+    value -- only reads fields the record already carries."""
+    flags = []
+    if record.get("type") != "SUBSTATION":
+        flags.append("non_substation_type")
+    if record.get("status") != "IN SERVICE":
+        flags.append("not_confirmed_in_service")
+    if _PLACEHOLDER_NAME_RE.match(str(record.get("name") or "").strip()):
+        flags.append("generic_name")
+
+    if not flags:
+        tier = "high"
+    elif len(flags) == 1:
+        tier = "medium"
+    else:
+        tier = "low"
+    return {"quality_tier": tier, "quality_flags": flags}
+
+
 def fetch_substations() -> list[dict]:
     """
     Fetch high-voltage electric substations (>= 69 kV) within the continental US.
@@ -274,7 +319,7 @@ def fetch_substations() -> list[dict]:
         if not lon or not lat:
             continue
         county_fips = str(a.get("COUNTYFIPS") or "").zfill(5)
-        out.append({
+        rec = {
             "id":          f"sub-{a.get('ID','')}",
             "name":        (a.get("NAME") or "Unknown Substation").title(),
             "type":        a.get("TYPE", "substation"),
@@ -284,7 +329,9 @@ def fetch_substations() -> list[dict]:
             "state":       a.get("STATE", ""),
             "lon":         round(float(lon), 5),
             "lat":         round(float(lat), 5),
-        })
+        }
+        rec.update(classify_substation_quality(rec))
+        out.append(rec)
     log.info("Substations: %d raw records fetched, %d records (>= 69 kV) kept",
               len(raw), len(out))
     log.info("Raw fetch touched %d distinct STATE values (before voltage filter): %s",
@@ -882,6 +929,35 @@ def update_layers(layers_path: str, updates: dict[str, Any]) -> None:
     log.info("Wrote %s", layers_path)
 
 
+def reclassify_existing_substations(layers_path: str) -> None:
+    """Re-applies classify_substation_quality() to the substations already
+    committed in sample_layers.json, without a live fetch. Safe and
+    idempotent because the classifier is a pure function of fields the
+    records already carry (type/status/name) -- no network required, and
+    every future live fetch_substations() run stamps the same field, so
+    this only exists to backfill records fetched before the classifier
+    existed rather than leaving them without a quality_tier."""
+    with open(layers_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    records = data.get("power_infrastructure") or []
+    if not records:
+        log.warning("No power_infrastructure records found in %s — nothing to reclassify.", layers_path)
+        return
+
+    from collections import Counter
+    tier_counts: Counter = Counter()
+    for rec in records:
+        rec.update(classify_substation_quality(rec))
+        tier_counts[rec["quality_tier"]] += 1
+
+    data["_last_updated"] = __import__("datetime").datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    with open(layers_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    log.info("Reclassified %d substation records. Tier distribution: %s",
+              len(records), dict(sorted(tier_counts.items())))
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -891,7 +967,17 @@ def main() -> None:
         default="substations,transmission,power,wastewater,fiber,water,iso_rto,water_systems",
         help="Comma-separated list of layers to fetch",
     )
+    parser.add_argument(
+        "--reclassify-substations", action="store_true",
+        help="Re-run classify_substation_quality() over the substations already in "
+             "sample_layers.json, without a live fetch, and exit.",
+    )
     args = parser.parse_args()
+
+    if args.reclassify_substations:
+        reclassify_existing_substations(LAYERS_PATH)
+        return
+
     enabled = {l.strip() for l in args.layers.split(",")}
 
     updates: dict[str, Any] = {}

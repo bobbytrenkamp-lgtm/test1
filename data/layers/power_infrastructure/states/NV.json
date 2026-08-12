@@ -8,7 +8,11 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -114.04122,
-    "lat": 41.33454
+    "lat": 41.33454,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202592",
@@ -19,7 +23,11 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -114.07576,
-    "lat": 40.73731
+    "lat": 40.73731,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207948",
@@ -30,7 +38,11 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -114.04715,
-    "lat": 40.74021
+    "lat": 40.74021,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-300059",
@@ -41,7 +53,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.98063,
-    "lat": 39.52365
+    "lat": 39.52365,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-300116",
@@ -52,7 +69,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.37423,
-    "lat": 35.67827
+    "lat": 35.67827,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-300143",
@@ -63,7 +85,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -115.94941,
-    "lat": 36.13245
+    "lat": 36.13245,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300205",
@@ -74,7 +98,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.76789,
-    "lat": 36.90275
+    "lat": 36.90275,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300332",
@@ -85,7 +111,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.83128,
-    "lat": 36.06445
+    "lat": 36.06445,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300396",
@@ -96,7 +124,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.11747,
-    "lat": 36.24366
+    "lat": 36.24366,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-300440",
@@ -107,7 +139,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.29539,
-    "lat": 36.29317
+    "lat": 36.29317,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-300448",
@@ -118,7 +155,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.03901,
-    "lat": 36.14024
+    "lat": 36.14024,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300516",
@@ -129,7 +168,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.0213,
-    "lat": 36.11023
+    "lat": 36.11023,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-300526",
@@ -140,7 +184,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.16588,
-    "lat": 36.17012
+    "lat": 36.17012,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300562",
@@ -151,7 +197,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.1195,
-    "lat": 36.08308
+    "lat": 36.08308,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300603",
@@ -162,7 +210,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.24012,
-    "lat": 36.11598
+    "lat": 36.11598,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-300631",
@@ -173,7 +226,9 @@
     "county_fips": "32510",
     "state": "NV",
     "lon": -119.75859,
-    "lat": 39.19186
+    "lat": 39.19186,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300653",
@@ -184,7 +239,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.11967,
-    "lat": 36.02713
+    "lat": 36.02713,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300737",
@@ -195,7 +252,9 @@
     "county_fips": "32015",
     "state": "NV",
     "lon": -116.94528,
-    "lat": 40.6481
+    "lat": 40.6481,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300740",
@@ -206,7 +265,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.90397,
-    "lat": 36.42562
+    "lat": 36.42562,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300911",
@@ -217,7 +278,9 @@
     "county_fips": "32510",
     "state": "NV",
     "lon": -119.69569,
-    "lat": 39.08685
+    "lat": 39.08685,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-300941",
@@ -228,7 +291,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.13424,
-    "lat": 36.15959
+    "lat": 36.15959,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301028",
@@ -239,7 +304,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.01132,
-    "lat": 35.81923
+    "lat": 35.81923,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301044",
@@ -250,7 +317,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.191,
-    "lat": 36.0378
+    "lat": 36.0378,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301073",
@@ -261,7 +333,9 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.39928,
-    "lat": 40.98217
+    "lat": 40.98217,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301091",
@@ -272,7 +346,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -117.33581,
-    "lat": 38.32393
+    "lat": 38.32393,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301161",
@@ -283,7 +359,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -117.24571,
-    "lat": 41.21524
+    "lat": 41.21524,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301169",
@@ -294,7 +372,12 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.37905,
-    "lat": 40.99656
+    "lat": 40.99656,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301216",
@@ -305,7 +388,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.796,
-    "lat": 35.97929
+    "lat": 35.97929,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301227",
@@ -316,7 +404,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.25189,
-    "lat": 36.19931
+    "lat": 36.19931,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301235",
@@ -327,7 +417,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.63617,
-    "lat": 35.12673
+    "lat": 35.12673,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301283",
@@ -338,7 +433,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.0425,
-    "lat": 36.0532
+    "lat": 36.0532,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301298",
@@ -349,7 +446,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.09636,
-    "lat": 36.27466
+    "lat": 36.27466,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301341",
@@ -360,7 +459,9 @@
     "county_fips": "32019",
     "state": "NV",
     "lon": -119.20864,
-    "lat": 39.62141
+    "lat": 39.62141,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301418",
@@ -371,7 +472,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.98928,
-    "lat": 36.04111
+    "lat": 36.04111,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301469",
@@ -382,7 +487,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.24171,
-    "lat": 36.23629
+    "lat": 36.23629,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301478",
@@ -393,7 +500,9 @@
     "county_fips": "32033",
     "state": "NV",
     "lon": -114.49998,
-    "lat": 39.09917
+    "lat": 39.09917,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301539",
@@ -404,7 +513,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.59952,
-    "lat": 35.1466
+    "lat": 35.1466,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301609",
@@ -415,7 +529,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.14434,
-    "lat": 36.20361
+    "lat": 36.20361,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301646",
@@ -426,7 +542,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.4001,
-    "lat": 36.53736
+    "lat": 36.53736,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301673",
@@ -437,7 +555,9 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -116.1164,
-    "lat": 40.72661
+    "lat": 40.72661,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301709",
@@ -448,7 +568,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.73772,
-    "lat": 39.57161
+    "lat": 39.57161,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301752",
@@ -459,7 +581,9 @@
     "county_fips": "32015",
     "state": "NV",
     "lon": -116.85917,
-    "lat": 39.50599
+    "lat": 39.50599,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301781",
@@ -470,7 +594,9 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.49525,
-    "lat": 40.81602
+    "lat": 40.81602,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301801",
@@ -481,7 +607,12 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.33298,
-    "lat": 40.93354
+    "lat": 40.93354,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301826",
@@ -492,7 +623,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.12752,
-    "lat": 36.1294
+    "lat": 36.1294,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-301844",
@@ -503,7 +638,9 @@
     "county_fips": "32015",
     "state": "NV",
     "lon": -117.0902,
-    "lat": 39.52696
+    "lat": 39.52696,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301873",
@@ -514,7 +651,9 @@
     "county_fips": "32027",
     "state": "NV",
     "lon": -117.47507,
-    "lat": 40.18184
+    "lat": 40.18184,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301878",
@@ -525,7 +664,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.17956,
-    "lat": 36.09394
+    "lat": 36.09394,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301887",
@@ -536,7 +680,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08626,
-    "lat": 36.09243
+    "lat": 36.09243,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-301893",
@@ -547,7 +695,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.95959,
-    "lat": 36.03858
+    "lat": 36.03858,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301904",
@@ -558,7 +708,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08418,
-    "lat": 35.9823
+    "lat": 35.9823,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301919",
@@ -569,7 +721,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.34924,
-    "lat": 35.64109
+    "lat": 35.64109,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-301928",
@@ -580,7 +736,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.27923,
-    "lat": 36.1866
+    "lat": 36.1866,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-301953",
@@ -591,7 +749,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08529,
-    "lat": 36.02307
+    "lat": 36.02307,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-302007",
@@ -602,7 +764,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.38149,
-    "lat": 36.38189
+    "lat": 36.38189,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-302018",
@@ -613,7 +777,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.84458,
-    "lat": 35.94874
+    "lat": 35.94874,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-302070",
@@ -624,7 +793,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.35662,
-    "lat": 35.61496
+    "lat": 35.61496,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-302114",
@@ -635,7 +806,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.94635,
-    "lat": 35.99738
+    "lat": 35.99738,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-302195",
@@ -646,7 +822,9 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.17075,
-    "lat": 40.78786
+    "lat": 40.78786,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-302220",
@@ -657,7 +835,12 @@
     "county_fips": "32005",
     "state": "NV",
     "lon": -119.6962,
-    "lat": 39.04256
+    "lat": 39.04256,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-302268",
@@ -668,7 +851,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.11353,
-    "lat": 36.20456
+    "lat": 36.20456,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-302291",
@@ -679,7 +864,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08377,
-    "lat": 36.2172
+    "lat": 36.2172,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-302396",
@@ -690,7 +879,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.42813,
-    "lat": 36.38683
+    "lat": 36.38683,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-302408",
@@ -701,7 +895,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.72362,
-    "lat": 39.51975
+    "lat": 39.51975,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-302487",
@@ -712,7 +911,11 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.84527,
-    "lat": 39.56045
+    "lat": 39.56045,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-302568",
@@ -723,7 +926,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.98875,
-    "lat": 36.04137
+    "lat": 36.04137,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-302584",
@@ -734,7 +941,11 @@
     "county_fips": "32001",
     "state": "NV",
     "lon": -118.59142,
-    "lat": 39.22669
+    "lat": 39.22669,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-302807",
@@ -745,7 +956,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.04627,
-    "lat": 36.24579
+    "lat": 36.24579,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-302827",
@@ -756,7 +972,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.16029,
-    "lat": 36.21446
+    "lat": 36.21446,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-302855",
@@ -767,7 +985,9 @@
     "county_fips": "32005",
     "state": "NV",
     "lon": -119.7591,
-    "lat": 39.05885
+    "lat": 39.05885,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-302863",
@@ -778,7 +998,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.75364,
-    "lat": 39.39573
+    "lat": 39.39573,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-302936",
@@ -789,7 +1011,12 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -115.88898,
-    "lat": 41.57299
+    "lat": 41.57299,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-302945",
@@ -800,7 +1027,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.97414,
-    "lat": 40.07483
+    "lat": 40.07483,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-302953",
@@ -811,7 +1040,12 @@
     "county_fips": "32029",
     "state": "NV",
     "lon": -119.52262,
-    "lat": 39.56413
+    "lat": 39.56413,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303001",
@@ -822,7 +1056,12 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -117.30976,
-    "lat": 38.3236
+    "lat": 38.3236,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303031",
@@ -833,7 +1072,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.013,
-    "lat": 35.80392
+    "lat": 35.80392,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303152",
@@ -844,7 +1085,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.7551,
-    "lat": 39.49438
+    "lat": 39.49438,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303232",
@@ -855,7 +1101,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.99436,
-    "lat": 35.79001
+    "lat": 35.79001,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303260",
@@ -866,7 +1114,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.81406,
-    "lat": 35.97586
+    "lat": 35.97586,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303266",
@@ -877,7 +1130,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.16842,
-    "lat": 36.05743
+    "lat": 36.05743,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303298",
@@ -888,7 +1146,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.75268,
-    "lat": 39.49793
+    "lat": 39.49793,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303326",
@@ -899,7 +1162,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.86574,
-    "lat": 39.54158
+    "lat": 39.54158,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303338",
@@ -910,7 +1175,12 @@
     "county_fips": "32019",
     "state": "NV",
     "lon": -119.20898,
-    "lat": 39.59692
+    "lat": 39.59692,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303399",
@@ -921,7 +1191,9 @@
     "county_fips": "32029",
     "state": "NV",
     "lon": -119.5187,
-    "lat": 39.56312
+    "lat": 39.56312,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303408",
@@ -932,7 +1204,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.63555,
-    "lat": 36.65721
+    "lat": 36.65721,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303428",
@@ -943,7 +1217,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.19041,
-    "lat": 36.25287
+    "lat": 36.25287,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303438",
@@ -954,7 +1230,9 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -115.97379,
-    "lat": 39.54494
+    "lat": 39.54494,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303451",
@@ -965,7 +1243,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.96909,
-    "lat": 36.0223
+    "lat": 36.0223,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303456",
@@ -976,7 +1256,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.21571,
-    "lat": 36.18497
+    "lat": 36.18497,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303460",
@@ -987,7 +1269,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.15084,
-    "lat": 36.16421
+    "lat": 36.16421,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303512",
@@ -998,7 +1282,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.18578,
-    "lat": 36.27561
+    "lat": 36.27561,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303583",
@@ -1009,7 +1295,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.19747,
-    "lat": 36.20333
+    "lat": 36.20333,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303760",
@@ -1020,7 +1310,9 @@
     "county_fips": "32009",
     "state": "NV",
     "lon": -117.63234,
-    "lat": 37.75433
+    "lat": 37.75433,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303785",
@@ -1031,7 +1323,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.74302,
-    "lat": 36.01836
+    "lat": 36.01836,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303816",
@@ -1042,7 +1336,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -118.14371,
-    "lat": 40.99463
+    "lat": 40.99463,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303877",
@@ -1053,7 +1349,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.76603,
-    "lat": 37.88586
+    "lat": 37.88586,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303882",
@@ -1064,7 +1362,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.03128,
-    "lat": 36.03559
+    "lat": 36.03559,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-303893",
@@ -1075,7 +1375,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.06131,
-    "lat": 36.2045
+    "lat": 36.2045,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-303918",
@@ -1086,7 +1391,9 @@
     "county_fips": "32510",
     "state": "NV",
     "lon": -119.69709,
-    "lat": 39.18889
+    "lat": 39.18889,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304004",
@@ -1097,7 +1404,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.04336,
-    "lat": 36.18569
+    "lat": 36.18569,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304043",
@@ -1108,7 +1420,12 @@
     "county_fips": "32029",
     "state": "NV",
     "lon": -119.54009,
-    "lat": 39.55684
+    "lat": 39.55684,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304138",
@@ -1119,7 +1436,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.83474,
-    "lat": 35.92781
+    "lat": 35.92781,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304178",
@@ -1130,7 +1449,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.84663,
-    "lat": 35.97806
+    "lat": 35.97806,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304194",
@@ -1141,7 +1465,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.12377,
-    "lat": 36.23199
+    "lat": 36.23199,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304208",
@@ -1152,7 +1481,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.96711,
-    "lat": 36.38798
+    "lat": 36.38798,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304231",
@@ -1163,7 +1494,9 @@
     "county_fips": "32510",
     "state": "NV",
     "lon": -119.75481,
-    "lat": 39.12792
+    "lat": 39.12792,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304261",
@@ -1174,7 +1507,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.33864,
-    "lat": 36.15604
+    "lat": 36.15604,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304274",
@@ -1185,7 +1523,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.21346,
-    "lat": 36.00878
+    "lat": 36.00878,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304379",
@@ -1196,7 +1536,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.31436,
-    "lat": 36.11015
+    "lat": 36.11015,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304423",
@@ -1207,7 +1549,9 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -116.42344,
-    "lat": 41.09467
+    "lat": 41.09467,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304471",
@@ -1218,7 +1562,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.80711,
-    "lat": 39.55414
+    "lat": 39.55414,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304476",
@@ -1229,7 +1575,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.31292,
-    "lat": 36.08647
+    "lat": 36.08647,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304488",
@@ -1240,7 +1591,12 @@
     "county_fips": "32029",
     "state": "NV",
     "lon": -119.51332,
-    "lat": 39.56001
+    "lat": 39.56001,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304524",
@@ -1251,7 +1607,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.93581,
-    "lat": 36.77323
+    "lat": 36.77323,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304529",
@@ -1262,7 +1623,9 @@
     "county_fips": "32019",
     "state": "NV",
     "lon": -119.1332,
-    "lat": 39.12817
+    "lat": 39.12817,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304539",
@@ -1273,7 +1636,9 @@
     "county_fips": "32027",
     "state": "NV",
     "lon": -118.26464,
-    "lat": 40.53481
+    "lat": 40.53481,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304552",
@@ -1284,7 +1649,11 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -117.8482,
-    "lat": 41.69324
+    "lat": 41.69324,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304649",
@@ -1295,7 +1664,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.82844,
-    "lat": 35.99467
+    "lat": 35.99467,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304657",
@@ -1306,7 +1680,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.98213,
-    "lat": 35.79713
+    "lat": 35.79713,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304691",
@@ -1317,7 +1693,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -117.23091,
-    "lat": 40.81964
+    "lat": 40.81964,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304728",
@@ -1328,7 +1706,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08616,
-    "lat": 36.08513
+    "lat": 36.08513,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304739",
@@ -1339,7 +1719,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -118.20653,
-    "lat": 41.74429
+    "lat": 41.74429,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304771",
@@ -1350,7 +1732,9 @@
     "county_fips": "32027",
     "state": "NV",
     "lon": -118.27421,
-    "lat": 40.3359
+    "lat": 40.3359,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304836",
@@ -1361,7 +1745,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.1431,
-    "lat": 36.11507
+    "lat": 36.11507,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304844",
@@ -1372,7 +1758,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.17111,
-    "lat": 36.03051
+    "lat": 36.03051,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304876",
@@ -1383,7 +1774,9 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -115.90402,
-    "lat": 41.40765
+    "lat": 41.40765,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-304888",
@@ -1394,7 +1787,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.91631,
-    "lat": 36.34749
+    "lat": 36.34749,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304954",
@@ -1405,7 +1803,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.00341,
-    "lat": 36.04012
+    "lat": 36.04012,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-304978",
@@ -1416,7 +1819,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.28262,
-    "lat": 36.08614
+    "lat": 36.08614,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305079",
@@ -1427,7 +1832,12 @@
     "county_fips": "32021",
     "state": "NV",
     "lon": -118.61092,
-    "lat": 38.55946
+    "lat": 38.55946,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305088",
@@ -1438,7 +1848,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.1291,
-    "lat": 36.00256
+    "lat": 36.00256,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305341",
@@ -1449,7 +1861,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.0823,
-    "lat": 36.09284
+    "lat": 36.09284,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-305513",
@@ -1460,7 +1876,9 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -115.85375,
-    "lat": 40.87815
+    "lat": 40.87815,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305535",
@@ -1471,7 +1889,11 @@
     "county_fips": "32021",
     "state": "NV",
     "lon": -118.15571,
-    "lat": 38.53573
+    "lat": 38.53573,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305540",
@@ -1482,7 +1904,9 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -114.97857,
-    "lat": 41.11214
+    "lat": 41.11214,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305563",
@@ -1493,7 +1917,11 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -117.10543,
-    "lat": 38.70709
+    "lat": 38.70709,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305568",
@@ -1504,7 +1932,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.99576,
-    "lat": 36.0411
+    "lat": 36.0411,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305586",
@@ -1515,7 +1948,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.17029,
-    "lat": 36.10453
+    "lat": 36.10453,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305590",
@@ -1526,7 +1964,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -117.7153,
-    "lat": 40.94525
+    "lat": 40.94525,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305615",
@@ -1537,7 +1977,9 @@
     "county_fips": "32021",
     "state": "NV",
     "lon": -118.01967,
-    "lat": 38.2835
+    "lat": 38.2835,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305647",
@@ -1548,7 +1990,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.13019,
-    "lat": 36.11617
+    "lat": 36.11617,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305682",
@@ -1559,7 +2006,9 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -115.7995,
-    "lat": 40.85338
+    "lat": 40.85338,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305714",
@@ -1570,7 +2019,12 @@
     "county_fips": "32021",
     "state": "NV",
     "lon": -118.6251,
-    "lat": 38.51788
+    "lat": 38.51788,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305735",
@@ -1581,7 +2035,12 @@
     "county_fips": "32005",
     "state": "NV",
     "lon": -119.9297,
-    "lat": 38.98031
+    "lat": 38.98031,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305812",
@@ -1592,7 +2051,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.14918,
-    "lat": 36.1407
+    "lat": 36.1407,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305818",
@@ -1603,7 +2064,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.33006,
-    "lat": 36.33447
+    "lat": 36.33447,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305823",
@@ -1614,7 +2077,9 @@
     "county_fips": "32015",
     "state": "NV",
     "lon": -117.17465,
-    "lat": 40.46069
+    "lat": 40.46069,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305827",
@@ -1625,7 +2090,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.24193,
-    "lat": 36.0838
+    "lat": 36.0838,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305851",
@@ -1636,7 +2106,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.24569,
-    "lat": 36.14303
+    "lat": 36.14303,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305854",
@@ -1647,7 +2122,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.36598,
-    "lat": 36.67015
+    "lat": 36.67015,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305859",
@@ -1658,7 +2135,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.16757,
-    "lat": 36.14296
+    "lat": 36.14296,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305870",
@@ -1669,7 +2148,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.1481,
-    "lat": 36.16845
+    "lat": 36.16845,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-305883",
@@ -1680,7 +2161,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.31745,
-    "lat": 36.19121
+    "lat": 36.19121,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305954",
@@ -1691,7 +2177,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.82486,
-    "lat": 35.70776
+    "lat": 35.70776,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-305965",
@@ -1702,7 +2193,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.18947,
-    "lat": 36.11502
+    "lat": 36.11502,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306045",
@@ -1713,7 +2206,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.1863,
-    "lat": 36.14289
+    "lat": 36.14289,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-306057",
@@ -1724,7 +2222,11 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -114.97761,
-    "lat": 41.1131
+    "lat": 41.1131,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-306064",
@@ -1735,7 +2237,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.06151,
-    "lat": 36.18219
+    "lat": 36.18219,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306082",
@@ -1746,7 +2250,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.99863,
-    "lat": 36.03789
+    "lat": 36.03789,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306107",
@@ -1757,7 +2263,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.8896,
-    "lat": 36.22095
+    "lat": 36.22095,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-306108",
@@ -1768,7 +2279,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.12809,
-    "lat": 36.14518
+    "lat": 36.14518,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306115",
@@ -1779,7 +2292,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.18497,
-    "lat": 36.10875
+    "lat": 36.10875,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306155",
@@ -1790,7 +2305,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.16283,
-    "lat": 36.11485
+    "lat": 36.11485,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306217",
@@ -1801,7 +2318,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.85732,
-    "lat": 39.47836
+    "lat": 39.47836,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306231",
@@ -1812,7 +2331,9 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.52984,
-    "lat": 40.74802
+    "lat": 40.74802,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306257",
@@ -1823,7 +2344,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.74364,
-    "lat": 36.01709
+    "lat": 36.01709,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-306286",
@@ -1834,7 +2360,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.11676,
-    "lat": 36.20262
+    "lat": 36.20262,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-306331",
@@ -1845,7 +2375,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.1153,
-    "lat": 36.17443
+    "lat": 36.17443,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306348",
@@ -1856,7 +2388,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.14048,
-    "lat": 36.22907
+    "lat": 36.22907,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306352",
@@ -1867,7 +2401,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.76641,
-    "lat": 39.37017
+    "lat": 39.37017,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-306438",
@@ -1878,7 +2417,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.76933,
-    "lat": 39.52267
+    "lat": 39.52267,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306442",
@@ -1889,7 +2430,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -118.03319,
-    "lat": 41.38239
+    "lat": 41.38239,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306446",
@@ -1900,7 +2443,9 @@
     "county_fips": "32009",
     "state": "NV",
     "lon": -117.45936,
-    "lat": 38.13121
+    "lat": 38.13121,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306453",
@@ -1911,7 +2456,9 @@
     "county_fips": "32001",
     "state": "NV",
     "lon": -118.57122,
-    "lat": 39.2948
+    "lat": 39.2948,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306494",
@@ -1922,7 +2469,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.11731,
-    "lat": 36.82099
+    "lat": 36.82099,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-306522",
@@ -1933,7 +2485,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.34449,
-    "lat": 36.18245
+    "lat": 36.18245,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306531",
@@ -1944,7 +2498,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.80657,
-    "lat": 39.55835
+    "lat": 39.55835,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306539",
@@ -1955,7 +2511,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.92161,
-    "lat": 36.38188
+    "lat": 36.38188,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306581",
@@ -1966,7 +2524,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.91946,
-    "lat": 36.02559
+    "lat": 36.02559,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306610",
@@ -1977,7 +2537,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.27627,
-    "lat": 36.11545
+    "lat": 36.11545,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306619",
@@ -1988,7 +2550,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.80648,
-    "lat": 39.52948
+    "lat": 39.52948,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306627",
@@ -1999,7 +2563,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.95649,
-    "lat": 36.07349
+    "lat": 36.07349,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-306662",
@@ -2010,7 +2579,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.71747,
-    "lat": 39.45563
+    "lat": 39.45563,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306703",
@@ -2021,7 +2592,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.01073,
-    "lat": 36.31735
+    "lat": 36.31735,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306719",
@@ -2032,7 +2605,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.96147,
-    "lat": 36.4116
+    "lat": 36.4116,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306745",
@@ -2043,7 +2618,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.18788,
-    "lat": 36.30712
+    "lat": 36.30712,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306758",
@@ -2054,7 +2631,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08397,
-    "lat": 36.14371
+    "lat": 36.14371,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306766",
@@ -2065,7 +2644,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.09093,
-    "lat": 36.00296
+    "lat": 36.00296,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-306767",
@@ -2076,7 +2660,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.92416,
-    "lat": 39.23949
+    "lat": 39.23949,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306777",
@@ -2087,7 +2673,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.1919,
-    "lat": 36.167
+    "lat": 36.167,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306784",
@@ -2098,7 +2686,9 @@
     "county_fips": "32033",
     "state": "NV",
     "lon": -114.97389,
-    "lat": 39.28017
+    "lat": 39.28017,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306850",
@@ -2109,7 +2699,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.48833,
-    "lat": 36.53946
+    "lat": 36.53946,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-306881",
@@ -2120,7 +2712,9 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.3353,
-    "lat": 40.96815
+    "lat": 40.96815,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-307098",
@@ -2131,7 +2725,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.9975,
-    "lat": 35.78979
+    "lat": 35.78979,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-307125",
@@ -2142,7 +2741,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.58161,
-    "lat": 35.15816
+    "lat": 35.15816,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-307130",
@@ -2153,7 +2757,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08225,
-    "lat": 36.29272
+    "lat": 36.29272,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-307189",
@@ -2164,7 +2773,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.90867,
-    "lat": 36.42904
+    "lat": 36.42904,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-307202",
@@ -2175,7 +2786,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -117.18117,
-    "lat": 41.21664
+    "lat": 41.21664,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-307225",
@@ -2186,7 +2799,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.08031,
-    "lat": 36.83197
+    "lat": 36.83197,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-307276",
@@ -2197,7 +2815,9 @@
     "county_fips": "32005",
     "state": "NV",
     "lon": -119.7102,
-    "lat": 38.96347
+    "lat": 38.96347,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-307311",
@@ -2208,7 +2828,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.46508,
-    "lat": 36.6078
+    "lat": 36.6078,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-307383",
@@ -2219,7 +2844,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.22402,
-    "lat": 36.27077
+    "lat": 36.27077,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-307588",
@@ -2230,7 +2857,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.7543,
-    "lat": 39.39134
+    "lat": 39.39134,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-307589",
@@ -2241,7 +2873,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.80725,
-    "lat": 36.00852
+    "lat": 36.00852,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-307798",
@@ -2252,7 +2889,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.25127,
-    "lat": 36.76237
+    "lat": 36.76237,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-307801",
@@ -2263,7 +2902,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.16733,
-    "lat": 36.10819
+    "lat": 36.10819,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-307893",
@@ -2274,7 +2917,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.94174,
-    "lat": 36.76741
+    "lat": 36.76741,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-307929",
@@ -2285,7 +2932,11 @@
     "county_fips": "32001",
     "state": "NV",
     "lon": -119.03984,
-    "lat": 39.77896
+    "lat": 39.77896,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-307961",
@@ -2296,7 +2947,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.11134,
-    "lat": 36.15863
+    "lat": 36.15863,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-307995",
@@ -2307,7 +2962,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.10773,
-    "lat": 36.15869
+    "lat": 36.15869,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-308078",
@@ -2318,7 +2977,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.9724,
-    "lat": 36.38867
+    "lat": 36.38867,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-308132",
@@ -2329,7 +2992,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.21991,
-    "lat": 36.14414
+    "lat": 36.14414,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-308322",
@@ -2340,7 +3007,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -115.90037,
-    "lat": 36.16132
+    "lat": 36.16132,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308331",
@@ -2351,7 +3020,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.75007,
-    "lat": 39.38833
+    "lat": 39.38833,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308340",
@@ -2362,7 +3036,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.28904,
-    "lat": 36.24041
+    "lat": 36.24041,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308352",
@@ -2373,7 +3049,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.2763,
-    "lat": 36.05614
+    "lat": 36.05614,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308388",
@@ -2384,7 +3065,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.24246,
-    "lat": 36.05161
+    "lat": 36.05161,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308395",
@@ -2395,7 +3081,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.63111,
-    "lat": 36.00875
+    "lat": 36.00875,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308478",
@@ -2406,7 +3094,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.9591,
-    "lat": 36.41593
+    "lat": 36.41593,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308483",
@@ -2417,7 +3109,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.8221,
-    "lat": 36.08057
+    "lat": 36.08057,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308490",
@@ -2428,7 +3125,9 @@
     "county_fips": "32027",
     "state": "NV",
     "lon": -118.08029,
-    "lat": 40.72319
+    "lat": 40.72319,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308502",
@@ -2439,7 +3138,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.18293,
-    "lat": 36.08206
+    "lat": 36.08206,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308503",
@@ -2450,7 +3153,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.57902,
-    "lat": 36.66391
+    "lat": 36.66391,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308614",
@@ -2461,7 +3169,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.04943,
-    "lat": 36.08641
+    "lat": 36.08641,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308620",
@@ -2472,7 +3182,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.83035,
-    "lat": 36.48251
+    "lat": 36.48251,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308639",
@@ -2483,7 +3195,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.17488,
-    "lat": 35.92693
+    "lat": 35.92693,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308714",
@@ -2494,7 +3208,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.9929,
-    "lat": 36.06958
+    "lat": 36.06958,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308717",
@@ -2505,7 +3224,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08149,
-    "lat": 36.06894
+    "lat": 36.06894,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308734",
@@ -2516,7 +3237,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.59532,
-    "lat": 35.14747
+    "lat": 35.14747,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308849",
@@ -2527,7 +3250,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.33465,
-    "lat": 35.78449
+    "lat": 35.78449,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308852",
@@ -2538,7 +3266,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.08376,
-    "lat": 36.82524
+    "lat": 36.82524,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308859",
@@ -2549,7 +3282,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.07671,
-    "lat": 36.82139
+    "lat": 36.82139,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308861",
@@ -2560,7 +3298,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.21356,
-    "lat": 36.11403
+    "lat": 36.11403,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-308871",
@@ -2571,7 +3311,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.23805,
-    "lat": 36.17429
+    "lat": 36.17429,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308875",
@@ -2582,7 +3327,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.04475,
-    "lat": 36.24528
+    "lat": 36.24528,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308943",
@@ -2593,7 +3343,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.21107,
-    "lat": 36.05642
+    "lat": 36.05642,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-308978",
@@ -2604,7 +3359,9 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -115.93992,
-    "lat": 41.22726
+    "lat": 41.22726,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309041",
@@ -2615,7 +3372,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.17118,
-    "lat": 36.00234
+    "lat": 36.00234,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309051",
@@ -2626,7 +3385,9 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -115.73728,
-    "lat": 40.84038
+    "lat": 40.84038,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309083",
@@ -2637,7 +3398,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.12115,
-    "lat": 36.05284
+    "lat": 36.05284,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-309098",
@@ -2648,7 +3413,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -117.84895,
-    "lat": 41.58501
+    "lat": 41.58501,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309133",
@@ -2659,7 +3426,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.0346,
-    "lat": 36.10856
+    "lat": 36.10856,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309142",
@@ -2670,7 +3442,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.89063,
-    "lat": 39.6375
+    "lat": 39.6375,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309189",
@@ -2681,7 +3455,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.09848,
-    "lat": 36.11664
+    "lat": 36.11664,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309238",
@@ -2692,7 +3471,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.13311,
-    "lat": 36.76451
+    "lat": 36.76451,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309261",
@@ -2703,7 +3487,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.60785,
-    "lat": 36.68123
+    "lat": 36.68123,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309277",
@@ -2714,7 +3500,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.68249,
-    "lat": 36.57977
+    "lat": 36.57977,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309343",
@@ -2725,7 +3513,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.27891,
-    "lat": 36.15822
+    "lat": 36.15822,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309389",
@@ -2736,7 +3526,9 @@
     "county_fips": "32033",
     "state": "NV",
     "lon": -114.80732,
-    "lat": 39.33655
+    "lat": 39.33655,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309454",
@@ -2747,7 +3539,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.20829,
-    "lat": 36.32258
+    "lat": 36.32258,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309491",
@@ -2758,7 +3552,11 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.43529,
-    "lat": 40.99063
+    "lat": 40.99063,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309512",
@@ -2769,7 +3567,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.74331,
-    "lat": 36.01601
+    "lat": 36.01601,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309539",
@@ -2780,7 +3583,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.93935,
-    "lat": 36.08465
+    "lat": 36.08465,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309578",
@@ -2791,7 +3599,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.21343,
-    "lat": 36.09064
+    "lat": 36.09064,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-309623",
@@ -2802,7 +3614,9 @@
     "county_fips": "32011",
     "state": "NV",
     "lon": -116.21937,
-    "lat": 40.79462
+    "lat": 40.79462,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309628",
@@ -2813,7 +3627,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.42976,
-    "lat": 36.4254
+    "lat": 36.4254,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309647",
@@ -2824,7 +3642,9 @@
     "county_fips": "32013",
     "state": "NV",
     "lon": -117.15236,
-    "lat": 40.87856
+    "lat": 40.87856,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309648",
@@ -2835,7 +3655,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.71428,
-    "lat": 39.68141
+    "lat": 39.68141,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309653",
@@ -2846,7 +3668,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.35649,
-    "lat": 35.61977
+    "lat": 35.61977,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309732",
@@ -2857,7 +3683,9 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.93403,
-    "lat": 39.50635
+    "lat": 39.50635,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309733",
@@ -2868,7 +3696,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.12172,
-    "lat": 36.23181
+    "lat": 36.23181,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309812",
@@ -2879,7 +3712,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -115.94736,
-    "lat": 36.58247
+    "lat": 36.58247,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-309829",
@@ -2890,7 +3725,12 @@
     "county_fips": "32007",
     "state": "NV",
     "lon": -116.38516,
-    "lat": 41.00366
+    "lat": 41.00366,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-309848",
@@ -2901,7 +3741,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.13107,
-    "lat": 36.26833
+    "lat": 36.26833,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-309961",
@@ -2912,7 +3756,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.5985,
-    "lat": 35.1483
+    "lat": 35.1483,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-310005",
@@ -2923,7 +3772,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.99806,
-    "lat": 36.04045
+    "lat": 36.04045,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-310009",
@@ -2934,7 +3788,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.7622,
-    "lat": 39.47615
+    "lat": 39.47615,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-310033",
@@ -2945,7 +3804,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.45821,
-    "lat": 36.48114
+    "lat": 36.48114,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-310035",
@@ -2956,7 +3820,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08536,
-    "lat": 36.24092
+    "lat": 36.24092,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310039",
@@ -2967,7 +3833,9 @@
     "county_fips": "32009",
     "state": "NV",
     "lon": -117.24268,
-    "lat": 38.06926
+    "lat": 38.06926,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310048",
@@ -2978,7 +3846,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.00854,
-    "lat": 35.79732
+    "lat": 35.79732,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310051",
@@ -2989,7 +3859,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.91838,
-    "lat": 36.02206
+    "lat": 36.02206,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310071",
@@ -3000,7 +3872,12 @@
     "county_fips": "32031",
     "state": "NV",
     "lon": -119.77297,
-    "lat": 39.56481
+    "lat": 39.56481,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-310117",
@@ -3011,7 +3888,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.9692,
-    "lat": 35.79213
+    "lat": 35.79213,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-310138",
@@ -3022,7 +3903,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.028,
-    "lat": 36.27733
+    "lat": 36.27733,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-310162",
@@ -3033,7 +3919,9 @@
     "county_fips": "32021",
     "state": "NV",
     "lon": -118.54604,
-    "lat": 38.62042
+    "lat": 38.62042,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310164",
@@ -3044,7 +3932,9 @@
     "county_fips": "32001",
     "state": "NV",
     "lon": -117.85569,
-    "lat": 39.96629
+    "lat": 39.96629,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310174",
@@ -3055,7 +3945,12 @@
     "county_fips": "32015",
     "state": "NV",
     "lon": -116.87213,
-    "lat": 40.2686
+    "lat": 40.2686,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-310177",
@@ -3066,7 +3961,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -115.96878,
-    "lat": 36.1971
+    "lat": 36.1971,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310221",
@@ -3077,7 +3974,9 @@
     "county_fips": "32009",
     "state": "NV",
     "lon": -117.3374,
-    "lat": 37.82403
+    "lat": 37.82403,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310234",
@@ -3088,7 +3987,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.45263,
-    "lat": 36.54842
+    "lat": 36.54842,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-310251",
@@ -3099,7 +4003,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.17993,
-    "lat": 36.1023
+    "lat": 36.1023,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310264",
@@ -3110,7 +4016,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.17966,
-    "lat": 36.11058
+    "lat": 36.11058,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310321",
@@ -3121,7 +4029,9 @@
     "county_fips": "32023",
     "state": "NV",
     "lon": -116.00446,
-    "lat": 36.64685
+    "lat": 36.64685,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310339",
@@ -3132,7 +4042,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08431,
-    "lat": 36.15921
+    "lat": 36.15921,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310343",
@@ -3143,7 +4055,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.08635,
-    "lat": 36.03302
+    "lat": 36.03302,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310348",
@@ -3154,7 +4068,9 @@
     "county_fips": "32019",
     "state": "NV",
     "lon": -119.56377,
-    "lat": 39.22944
+    "lat": 39.22944,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310392",
@@ -3165,7 +4081,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.04858,
-    "lat": 36.14357
+    "lat": 36.14357,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310471",
@@ -3176,7 +4094,9 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.97585,
-    "lat": 35.98668
+    "lat": 35.98668,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-310604",
@@ -3187,7 +4107,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.27877,
-    "lat": 36.14226
+    "lat": 36.14226,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-310643",
@@ -3198,7 +4122,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.42951,
-    "lat": 36.42548
+    "lat": 36.42548,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-310817",
@@ -3209,7 +4137,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.26025,
-    "lat": 36.21781
+    "lat": 36.21781,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-310890",
@@ -3220,7 +4152,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -115.19742,
-    "lat": 36.20273
+    "lat": 36.20273,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-310942",
@@ -3231,7 +4167,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.807,
-    "lat": 35.97085
+    "lat": 35.97085,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-310943",
@@ -3242,7 +4183,12 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.84548,
-    "lat": 35.96861
+    "lat": 35.96861,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-310957",
@@ -3253,6 +4199,11 @@
     "county_fips": "32003",
     "state": "NV",
     "lon": -114.98075,
-    "lat": 36.04693
+    "lat": 36.04693,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   }
 ]

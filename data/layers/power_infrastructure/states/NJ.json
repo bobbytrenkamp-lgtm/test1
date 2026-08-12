@@ -8,7 +8,11 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.53262,
-    "lat": 39.46341
+    "lat": 39.46341,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132233",
@@ -19,7 +23,11 @@
     "county_fips": "34009",
     "state": "NJ",
     "lon": -74.61421,
-    "lat": 39.25174
+    "lat": 39.25174,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132248",
@@ -30,7 +38,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.54905,
-    "lat": 40.06237
+    "lat": 40.06237,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132253",
@@ -41,7 +53,11 @@
     "county_fips": "34037",
     "state": "NJ",
     "lon": -74.57843,
-    "lat": 41.09979
+    "lat": 41.09979,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132256",
@@ -52,7 +68,11 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.14609,
-    "lat": 41.08662
+    "lat": 41.08662,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132267",
@@ -63,7 +83,11 @@
     "county_fips": "34035",
     "state": "NJ",
     "lon": -74.67338,
-    "lat": 40.59293
+    "lat": 40.59293,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132271",
@@ -74,7 +98,11 @@
     "county_fips": "34035",
     "state": "NJ",
     "lon": -74.6153,
-    "lat": 40.55898
+    "lat": 40.55898,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132282",
@@ -85,7 +113,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.34615,
-    "lat": 40.53139
+    "lat": 40.53139,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132286",
@@ -96,7 +126,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.24801,
-    "lat": 40.55687
+    "lat": 40.55687,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132294",
@@ -107,7 +139,9 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.40522,
-    "lat": 39.79315
+    "lat": 39.79315,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132302",
@@ -118,7 +152,11 @@
     "county_fips": "34037",
     "state": "NJ",
     "lon": -74.74035,
-    "lat": 41.05573
+    "lat": 41.05573,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132303",
@@ -129,7 +167,11 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.59696,
-    "lat": 40.9068
+    "lat": 40.9068,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132309",
@@ -140,7 +182,9 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.3652,
-    "lat": 40.913
+    "lat": 40.913,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132316",
@@ -151,7 +195,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.67507,
-    "lat": 40.14157
+    "lat": 40.14157,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132318",
@@ -162,7 +210,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.65845,
-    "lat": 40.15305
+    "lat": 40.15305,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132320",
@@ -173,7 +225,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.60275,
-    "lat": 40.34784
+    "lat": 40.34784,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132321",
@@ -184,7 +240,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.56867,
-    "lat": 40.336
+    "lat": 40.336,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132323",
@@ -195,7 +255,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.5319,
-    "lat": 40.36797
+    "lat": 40.36797,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132324",
@@ -206,7 +270,9 @@
     "county_fips": "34035",
     "state": "NJ",
     "lon": -74.53022,
-    "lat": 40.48557
+    "lat": 40.48557,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132335",
@@ -217,7 +283,11 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.07155,
-    "lat": 40.34493
+    "lat": 40.34493,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132336",
@@ -228,7 +298,11 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.07099,
-    "lat": 40.33909
+    "lat": 40.33909,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132343",
@@ -239,7 +313,11 @@
     "county_fips": "34041",
     "state": "NJ",
     "lon": -75.16573,
-    "lat": 40.70676
+    "lat": 40.70676,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132357",
@@ -250,7 +328,11 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.05518,
-    "lat": 40.7634
+    "lat": 40.7634,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132362",
@@ -261,7 +343,11 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.03591,
-    "lat": 40.78878
+    "lat": 40.78878,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132374",
@@ -272,7 +358,11 @@
     "county_fips": "34019",
     "state": "NJ",
     "lon": -74.84564,
-    "lat": 40.51555
+    "lat": 40.51555,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132377",
@@ -283,7 +373,11 @@
     "county_fips": "34035",
     "state": "NJ",
     "lon": -74.56449,
-    "lat": 40.56022
+    "lat": 40.56022,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132389",
@@ -294,7 +388,11 @@
     "county_fips": "34031",
     "state": "NJ",
     "lon": -74.22273,
-    "lat": 40.95556
+    "lat": 40.95556,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132392",
@@ -305,7 +403,11 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.51028,
-    "lat": 40.85265
+    "lat": 40.85265,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132393",
@@ -316,7 +418,11 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.38008,
-    "lat": 40.8195
+    "lat": 40.8195,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132405",
@@ -327,7 +433,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.01649,
-    "lat": 40.83407
+    "lat": 40.83407,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132410",
@@ -338,7 +446,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.12844,
-    "lat": 40.94952
+    "lat": 40.94952,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132600",
@@ -349,7 +459,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.12239,
-    "lat": 40.7372
+    "lat": 40.7372,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132601",
@@ -360,7 +472,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.75498,
-    "lat": 40.28099
+    "lat": 40.28099,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132604",
@@ -371,7 +485,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.21129,
-    "lat": 40.62405
+    "lat": 40.62405,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132605",
@@ -382,7 +498,11 @@
     "county_fips": "34041",
     "state": "NJ",
     "lon": -75.03366,
-    "lat": 40.99943
+    "lat": 40.99943,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132606",
@@ -393,7 +513,11 @@
     "county_fips": "34041",
     "state": "NJ",
     "lon": -75.03221,
-    "lat": 41.00095
+    "lat": 41.00095,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132608",
@@ -404,7 +528,11 @@
     "county_fips": "34037",
     "state": "NJ",
     "lon": -74.50043,
-    "lat": 41.19424
+    "lat": 41.19424,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132611",
@@ -415,7 +543,11 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.21055,
-    "lat": 40.62148
+    "lat": 40.62148,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132612",
@@ -426,7 +558,11 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.20801,
-    "lat": 40.62107
+    "lat": 40.62107,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132613",
@@ -437,7 +573,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.73274,
-    "lat": 40.18014
+    "lat": 40.18014,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132614",
@@ -448,7 +586,11 @@
     "county_fips": "34011",
     "state": "NJ",
     "lon": -74.96639,
-    "lat": 39.37611
+    "lat": 39.37611,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132616",
@@ -459,7 +601,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.28548,
-    "lat": 40.65637
+    "lat": 40.65637,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132617",
@@ -470,7 +614,11 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.32438,
-    "lat": 40.62675
+    "lat": 40.62675,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132618",
@@ -481,7 +629,9 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.24728,
-    "lat": 39.58601
+    "lat": 39.58601,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132619",
@@ -492,7 +642,11 @@
     "county_fips": "34037",
     "state": "NJ",
     "lon": -74.63531,
-    "lat": 40.99152
+    "lat": 40.99152,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132620",
@@ -503,7 +657,9 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.31794,
-    "lat": 39.63655
+    "lat": 39.63655,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132621",
@@ -514,7 +670,9 @@
     "county_fips": "34009",
     "state": "NJ",
     "lon": -74.63603,
-    "lat": 39.28993
+    "lat": 39.28993,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132622",
@@ -525,7 +683,9 @@
     "county_fips": "34009",
     "state": "NJ",
     "lon": -74.74097,
-    "lat": 39.19512
+    "lat": 39.19512,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132623",
@@ -536,7 +696,9 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.48471,
-    "lat": 39.69421
+    "lat": 39.69421,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132624",
@@ -547,7 +709,11 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.26753,
-    "lat": 40.15485
+    "lat": 40.15485,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132625",
@@ -558,7 +724,11 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.38258,
-    "lat": 40.25509
+    "lat": 40.25509,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132626",
@@ -569,7 +739,11 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.73155,
-    "lat": 40.18037
+    "lat": 40.18037,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132627",
@@ -580,7 +754,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.7018,
-    "lat": 40.20899
+    "lat": 40.20899,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132691",
@@ -591,7 +767,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.87656,
-    "lat": 40.07613
+    "lat": 40.07613,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132942",
@@ -602,7 +782,11 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.32876,
-    "lat": 40.82237
+    "lat": 40.82237,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132943",
@@ -613,7 +797,11 @@
     "county_fips": "34041",
     "state": "NJ",
     "lon": -74.87183,
-    "lat": 40.84058
+    "lat": 40.84058,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132944",
@@ -624,7 +812,11 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.42583,
-    "lat": 40.83364
+    "lat": 40.83364,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132948",
@@ -635,7 +827,11 @@
     "county_fips": "34019",
     "state": "NJ",
     "lon": -75.16471,
-    "lat": 40.56638
+    "lat": 40.56638,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132950",
@@ -646,7 +842,9 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.06992,
-    "lat": 40.74644
+    "lat": 40.74644,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132952",
@@ -657,7 +855,11 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.02436,
-    "lat": 40.8403
+    "lat": 40.8403,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132953",
@@ -668,7 +870,11 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.02174,
-    "lat": 40.8384
+    "lat": 40.8384,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132954",
@@ -679,7 +885,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.28147,
-    "lat": 40.49003
+    "lat": 40.49003,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132955",
@@ -690,7 +900,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.32607,
-    "lat": 40.46069
+    "lat": 40.46069,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132956",
@@ -701,7 +915,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.34371,
-    "lat": 40.43912
+    "lat": 40.43912,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132971",
@@ -712,7 +930,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.02752,
-    "lat": 40.93004
+    "lat": 40.93004,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132972",
@@ -723,7 +943,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.07061,
-    "lat": 40.89921
+    "lat": 40.89921,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132973",
@@ -734,7 +956,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -73.99161,
-    "lat": 40.86801
+    "lat": 40.86801,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132975",
@@ -745,7 +969,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.87698,
-    "lat": 40.07777
+    "lat": 40.07777,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133139",
@@ -756,7 +984,11 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.21448,
-    "lat": 40.63039
+    "lat": 40.63039,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133140",
@@ -767,7 +999,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.20595,
-    "lat": 40.6446
+    "lat": 40.6446,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133141",
@@ -778,7 +1012,11 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.23397,
-    "lat": 40.64166
+    "lat": 40.64166,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133188",
@@ -789,7 +1027,11 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.16741,
-    "lat": 40.06287
+    "lat": 40.06287,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133189",
@@ -800,7 +1042,11 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.37787,
-    "lat": 39.95213
+    "lat": 39.95213,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133190",
@@ -811,7 +1057,11 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.27993,
-    "lat": 40.0361
+    "lat": 40.0361,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133191",
@@ -822,7 +1072,11 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.26131,
-    "lat": 39.69026
+    "lat": 39.69026,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133199",
@@ -833,7 +1087,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.31651,
-    "lat": 40.44098
+    "lat": 40.44098,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133200",
@@ -844,7 +1102,9 @@
     "county_fips": "34011",
     "state": "NJ",
     "lon": -75.01827,
-    "lat": 39.42595
+    "lat": 39.42595,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136006",
@@ -855,7 +1115,9 @@
     "county_fips": "34031",
     "state": "NJ",
     "lon": -74.15829,
-    "lat": 40.86129
+    "lat": 40.86129,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136018",
@@ -866,7 +1128,9 @@
     "county_fips": "34031",
     "state": "NJ",
     "lon": -74.15068,
-    "lat": 40.96633
+    "lat": 40.96633,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136019",
@@ -877,7 +1141,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.12543,
-    "lat": 41.01688
+    "lat": 41.01688,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140862",
@@ -888,7 +1154,9 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.10552,
-    "lat": 40.69422
+    "lat": 40.69422,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140866",
@@ -899,7 +1167,11 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.35621,
-    "lat": 40.60802
+    "lat": 40.60802,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140867",
@@ -910,7 +1182,11 @@
     "county_fips": "34041",
     "state": "NJ",
     "lon": -75.1594,
-    "lat": 40.70708
+    "lat": 40.70708,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140871",
@@ -921,7 +1197,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.34926,
-    "lat": 40.58682
+    "lat": 40.58682,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140872",
@@ -932,7 +1210,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.32361,
-    "lat": 40.54857
+    "lat": 40.54857,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140873",
@@ -943,7 +1223,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.29482,
-    "lat": 40.56398
+    "lat": 40.56398,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140875",
@@ -954,7 +1236,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.23794,
-    "lat": 40.59098
+    "lat": 40.59098,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140895",
@@ -965,7 +1249,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.35333,
-    "lat": 40.47418
+    "lat": 40.47418,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140896",
@@ -976,7 +1262,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.57022,
-    "lat": 40.33478
+    "lat": 40.33478,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140897",
@@ -987,7 +1277,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.34587,
-    "lat": 40.44898
+    "lat": 40.44898,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140898",
@@ -998,7 +1292,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.34585,
-    "lat": 40.44878
+    "lat": 40.44878,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-140903",
@@ -1009,7 +1307,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.35358,
-    "lat": 40.47922
+    "lat": 40.47922,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140904",
@@ -1020,7 +1320,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.34708,
-    "lat": 40.44925
+    "lat": 40.44925,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140906",
@@ -1031,7 +1333,9 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.24291,
-    "lat": 40.39762
+    "lat": 40.39762,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140907",
@@ -1042,7 +1346,9 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.21546,
-    "lat": 40.4192
+    "lat": 40.4192,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140954",
@@ -1053,7 +1359,9 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.11707,
-    "lat": 40.76071
+    "lat": 40.76071,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140955",
@@ -1064,7 +1372,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.17775,
-    "lat": 40.73306
+    "lat": 40.73306,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140956",
@@ -1075,7 +1385,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.22286,
-    "lat": 40.69681
+    "lat": 40.69681,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140958",
@@ -1086,7 +1398,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.17461,
-    "lat": 40.72658
+    "lat": 40.72658,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140972",
@@ -1097,7 +1411,9 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.09857,
-    "lat": 40.73798
+    "lat": 40.73798,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140973",
@@ -1108,7 +1424,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.25828,
-    "lat": 40.79196
+    "lat": 40.79196,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140974",
@@ -1119,7 +1437,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.25715,
-    "lat": 40.78994
+    "lat": 40.78994,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140975",
@@ -1130,7 +1450,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.12058,
-    "lat": 40.73843
+    "lat": 40.73843,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140976",
@@ -1141,7 +1463,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.11705,
-    "lat": 40.79192
+    "lat": 40.79192,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140978",
@@ -1152,7 +1476,9 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.07331,
-    "lat": 40.7493
+    "lat": 40.7493,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140980",
@@ -1163,7 +1489,9 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.04219,
-    "lat": 40.77889
+    "lat": 40.77889,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140981",
@@ -1174,7 +1502,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.33077,
-    "lat": 40.82005
+    "lat": 40.82005,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140982",
@@ -1185,7 +1515,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.29108,
-    "lat": 40.80325
+    "lat": 40.80325,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140983",
@@ -1196,7 +1528,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.29055,
-    "lat": 40.85418
+    "lat": 40.85418,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140984",
@@ -1207,7 +1541,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.22147,
-    "lat": 40.86837
+    "lat": 40.86837,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140985",
@@ -1218,7 +1554,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.21759,
-    "lat": 40.86724
+    "lat": 40.86724,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140986",
@@ -1229,7 +1567,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.17834,
-    "lat": 40.81178
+    "lat": 40.81178,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140987",
@@ -1240,7 +1580,9 @@
     "county_fips": "34031",
     "state": "NJ",
     "lon": -74.16476,
-    "lat": 40.85577
+    "lat": 40.85577,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140988",
@@ -1251,7 +1593,9 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.14209,
-    "lat": 40.80279
+    "lat": 40.80279,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140989",
@@ -1262,7 +1606,9 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.02561,
-    "lat": 40.8042
+    "lat": 40.8042,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-140990",
@@ -1273,7 +1619,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.01257,
-    "lat": 40.83206
+    "lat": 40.83206,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141098",
@@ -1284,7 +1632,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.86777,
-    "lat": 40.03722
+    "lat": 40.03722,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141099",
@@ -1295,7 +1647,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.8674,
-    "lat": 40.03701
+    "lat": 40.03701,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141100",
@@ -1306,7 +1662,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.87842,
-    "lat": 40.02919
+    "lat": 40.02919,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141104",
@@ -1317,7 +1677,9 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.22001,
-    "lat": 39.95248
+    "lat": 39.95248,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141105",
@@ -1328,7 +1690,9 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.18583,
-    "lat": 40.03
+    "lat": 40.03,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141106",
@@ -1339,7 +1703,9 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.16722,
-    "lat": 40.06101
+    "lat": 40.06101,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141124",
@@ -1350,7 +1716,11 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.22104,
-    "lat": 39.83992
+    "lat": 39.83992,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141125",
@@ -1361,7 +1731,9 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.20918,
-    "lat": 39.81372
+    "lat": 39.81372,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141136",
@@ -1372,7 +1744,11 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.73425,
-    "lat": 40.18924
+    "lat": 40.18924,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141137",
@@ -1383,7 +1759,11 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.66144,
-    "lat": 40.15164
+    "lat": 40.15164,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141141",
@@ -1394,7 +1774,11 @@
     "county_fips": "34029",
     "state": "NJ",
     "lon": -74.31378,
-    "lat": 40.11025
+    "lat": 40.11025,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141146",
@@ -1405,7 +1789,9 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.11847,
-    "lat": 40.25416
+    "lat": 40.25416,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141147",
@@ -1416,7 +1802,9 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.04589,
-    "lat": 40.22099
+    "lat": 40.22099,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141148",
@@ -1427,7 +1815,9 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.36058,
-    "lat": 40.20136
+    "lat": 40.20136,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141149",
@@ -1438,7 +1828,9 @@
     "county_fips": "34025",
     "state": "NJ",
     "lon": -74.19187,
-    "lat": 40.11378
+    "lat": 40.11378,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141263",
@@ -1449,7 +1841,11 @@
     "county_fips": "34037",
     "state": "NJ",
     "lon": -74.57702,
-    "lat": 41.10024
+    "lat": 41.10024,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141264",
@@ -1460,7 +1856,11 @@
     "county_fips": "34037",
     "state": "NJ",
     "lon": -74.57708,
-    "lat": 41.10009
+    "lat": 41.10009,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-143610",
@@ -1471,7 +1871,9 @@
     "county_fips": "34035",
     "state": "NJ",
     "lon": -74.74218,
-    "lat": 40.54435
+    "lat": 40.54435,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143613",
@@ -1482,7 +1884,9 @@
     "county_fips": "34019",
     "state": "NJ",
     "lon": -74.92037,
-    "lat": 40.68102
+    "lat": 40.68102,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143614",
@@ -1493,7 +1897,9 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.46263,
-    "lat": 40.67809
+    "lat": 40.67809,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143615",
@@ -1504,7 +1910,9 @@
     "county_fips": "34035",
     "state": "NJ",
     "lon": -74.61638,
-    "lat": 40.51224
+    "lat": 40.51224,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143616",
@@ -1515,7 +1923,9 @@
     "county_fips": "34035",
     "state": "NJ",
     "lon": -74.48618,
-    "lat": 40.59716
+    "lat": 40.59716,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143617",
@@ -1526,7 +1936,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.46217,
-    "lat": 40.56081
+    "lat": 40.56081,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143618",
@@ -1537,7 +1949,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.45228,
-    "lat": 40.55276
+    "lat": 40.55276,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143619",
@@ -1548,7 +1962,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.42529,
-    "lat": 40.53356
+    "lat": 40.53356,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143620",
@@ -1559,7 +1975,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.39129,
-    "lat": 40.49698
+    "lat": 40.49698,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143621",
@@ -1570,7 +1988,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.39008,
-    "lat": 40.63602
+    "lat": 40.63602,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143622",
@@ -1581,7 +2001,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.39567,
-    "lat": 40.49145
+    "lat": 40.49145,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143623",
@@ -1592,7 +2014,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.37883,
-    "lat": 40.73302
+    "lat": 40.73302,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143624",
@@ -1603,7 +2027,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.38847,
-    "lat": 40.72481
+    "lat": 40.72481,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143625",
@@ -1614,7 +2040,9 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.69925,
-    "lat": 40.7942
+    "lat": 40.7942,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143626",
@@ -1625,7 +2053,9 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.37826,
-    "lat": 40.81942
+    "lat": 40.81942,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143934",
@@ -1636,7 +2066,9 @@
     "county_fips": "34009",
     "state": "NJ",
     "lon": -74.73965,
-    "lat": 39.19162
+    "lat": 39.19162,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143935",
@@ -1647,7 +2079,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.70069,
-    "lat": 40.22591
+    "lat": 40.22591,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143936",
@@ -1658,7 +2092,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.69228,
-    "lat": 40.28202
+    "lat": 40.28202,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143938",
@@ -1669,7 +2105,11 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.65679,
-    "lat": 40.16868
+    "lat": 40.16868,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-143939",
@@ -1680,7 +2120,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.56503,
-    "lat": 40.24888
+    "lat": 40.24888,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143940",
@@ -1691,7 +2133,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.48529,
-    "lat": 40.40553
+    "lat": 40.40553,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143941",
@@ -1702,7 +2146,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.48014,
-    "lat": 40.45829
+    "lat": 40.45829,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143943",
@@ -1713,7 +2159,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.51851,
-    "lat": 40.24045
+    "lat": 40.24045,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143944",
@@ -1724,7 +2172,9 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.46143,
-    "lat": 40.44615
+    "lat": 40.44615,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143961",
@@ -1735,7 +2185,9 @@
     "county_fips": "34007",
     "state": "NJ",
     "lon": -75.09818,
-    "lat": 39.88924
+    "lat": 39.88924,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143962",
@@ -1746,7 +2198,9 @@
     "county_fips": "34007",
     "state": "NJ",
     "lon": -75.04466,
-    "lat": 39.96581
+    "lat": 39.96581,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143963",
@@ -1757,7 +2211,9 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.96903,
-    "lat": 39.99755
+    "lat": 39.99755,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143965",
@@ -1768,7 +2224,9 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.88035,
-    "lat": 40.02803
+    "lat": 40.02803,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143966",
@@ -1779,7 +2237,9 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.88038,
-    "lat": 39.94753
+    "lat": 39.94753,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143967",
@@ -1790,7 +2250,9 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.87408,
-    "lat": 40.07523
+    "lat": 40.07523,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143969",
@@ -1801,7 +2263,9 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.81039,
-    "lat": 39.95054
+    "lat": 39.95054,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143970",
@@ -1812,7 +2276,9 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.78314,
-    "lat": 40.0792
+    "lat": 40.0792,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143971",
@@ -1823,7 +2289,9 @@
     "county_fips": "34005",
     "state": "NJ",
     "lon": -74.93198,
-    "lat": 39.9011
+    "lat": 39.9011,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143972",
@@ -1834,7 +2302,9 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.02478,
-    "lat": 39.67653
+    "lat": 39.67653,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143973",
@@ -1845,7 +2315,9 @@
     "county_fips": "34007",
     "state": "NJ",
     "lon": -74.97302,
-    "lat": 39.73404
+    "lat": 39.73404,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143974",
@@ -1856,7 +2328,9 @@
     "county_fips": "34007",
     "state": "NJ",
     "lon": -74.96276,
-    "lat": 39.741
+    "lat": 39.741,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143975",
@@ -1867,7 +2341,9 @@
     "county_fips": "34007",
     "state": "NJ",
     "lon": -74.95295,
-    "lat": 39.81034
+    "lat": 39.81034,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143976",
@@ -1878,7 +2354,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.92958,
-    "lat": 40.33724
+    "lat": 40.33724,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-143977",
@@ -1889,7 +2367,9 @@
     "county_fips": "34021",
     "state": "NJ",
     "lon": -74.75654,
-    "lat": 40.2824
+    "lat": 40.2824,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144070",
@@ -1900,7 +2380,9 @@
     "county_fips": "34011",
     "state": "NJ",
     "lon": -75.05804,
-    "lat": 39.44979
+    "lat": 39.44979,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144071",
@@ -1911,7 +2393,9 @@
     "county_fips": "34011",
     "state": "NJ",
     "lon": -75.05112,
-    "lat": 39.53391
+    "lat": 39.53391,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144073",
@@ -1922,7 +2406,9 @@
     "county_fips": "34001",
     "state": "NJ",
     "lon": -74.62052,
-    "lat": 39.42834
+    "lat": 39.42834,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144074",
@@ -1933,7 +2419,9 @@
     "county_fips": "34001",
     "state": "NJ",
     "lon": -74.61659,
-    "lat": 39.39716
+    "lat": 39.39716,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144075",
@@ -1944,7 +2432,9 @@
     "county_fips": "34001",
     "state": "NJ",
     "lon": -74.52932,
-    "lat": 39.41693
+    "lat": 39.41693,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144076",
@@ -1955,7 +2445,9 @@
     "county_fips": "34001",
     "state": "NJ",
     "lon": -74.64862,
-    "lat": 39.32325
+    "lat": 39.32325,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144379",
@@ -1966,7 +2458,9 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.24921,
-    "lat": 39.81186
+    "lat": 39.81186,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144380",
@@ -1977,7 +2471,9 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.50153,
-    "lat": 39.6747
+    "lat": 39.6747,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144381",
@@ -1988,7 +2484,9 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.4243,
-    "lat": 39.76763
+    "lat": 39.76763,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144382",
@@ -1999,7 +2497,9 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.22557,
-    "lat": 39.57195
+    "lat": 39.57195,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144387",
@@ -2010,7 +2510,9 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.18921,
-    "lat": 39.8371
+    "lat": 39.8371,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144388",
@@ -2021,7 +2523,9 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.13719,
-    "lat": 39.8697
+    "lat": 39.8697,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144389",
@@ -2032,7 +2536,9 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.13694,
-    "lat": 39.85901
+    "lat": 39.85901,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144390",
@@ -2043,7 +2549,9 @@
     "county_fips": "34007",
     "state": "NJ",
     "lon": -75.07986,
-    "lat": 39.86125
+    "lat": 39.86125,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-144391",
@@ -2054,7 +2562,9 @@
     "county_fips": "34019",
     "state": "NJ",
     "lon": -75.16213,
-    "lat": 40.56873
+    "lat": 40.56873,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146544",
@@ -2065,7 +2575,9 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.53392,
-    "lat": 39.46745
+    "lat": 39.46745,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146545",
@@ -2076,7 +2588,9 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.50731,
-    "lat": 39.68289
+    "lat": 39.68289,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155793",
@@ -2087,7 +2601,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.2663,
-    "lat": 40.71244
+    "lat": 40.71244,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-156249",
@@ -2098,7 +2614,9 @@
     "county_fips": "34039",
     "state": "NJ",
     "lon": -74.17423,
-    "lat": 40.6692
+    "lat": 40.6692,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-156250",
@@ -2109,7 +2627,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.10111,
-    "lat": 40.88905
+    "lat": 40.88905,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-156251",
@@ -2120,7 +2640,9 @@
     "county_fips": "34003",
     "state": "NJ",
     "lon": -74.04622,
-    "lat": 41.00789
+    "lat": 41.00789,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-156252",
@@ -2131,7 +2653,9 @@
     "county_fips": "34031",
     "state": "NJ",
     "lon": -74.24508,
-    "lat": 40.90678
+    "lat": 40.90678,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-160644",
@@ -2142,7 +2666,9 @@
     "county_fips": "34011",
     "state": "NJ",
     "lon": -74.94837,
-    "lat": 39.37806
+    "lat": 39.37806,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-160650",
@@ -2153,7 +2679,9 @@
     "county_fips": "34007",
     "state": "NJ",
     "lon": -75.00034,
-    "lat": 39.79573
+    "lat": 39.79573,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-161363",
@@ -2164,7 +2692,11 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.46829,
-    "lat": 39.57661
+    "lat": 39.57661,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-162554",
@@ -2175,7 +2707,11 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.17497,
-    "lat": 40.74798
+    "lat": 40.74798,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-162555",
@@ -2186,7 +2722,11 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.17518,
-    "lat": 40.74703
+    "lat": 40.74703,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-163666",
@@ -2197,7 +2737,11 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.09763,
-    "lat": 39.66288
+    "lat": 39.66288,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-163667",
@@ -2208,7 +2752,11 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.05976,
-    "lat": 39.77768
+    "lat": 39.77768,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-163668",
@@ -2219,7 +2767,11 @@
     "county_fips": "34027",
     "state": "NJ",
     "lon": -74.46859,
-    "lat": 40.8009
+    "lat": 40.8009,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-167289",
@@ -2230,7 +2782,12 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.25557,
-    "lat": 40.56866
+    "lat": 40.56866,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-171649",
@@ -2241,7 +2798,11 @@
     "county_fips": "34033",
     "state": "NJ",
     "lon": -75.29563,
-    "lat": 39.66265
+    "lat": 39.66265,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-171650",
@@ -2252,7 +2813,11 @@
     "county_fips": "34015",
     "state": "NJ",
     "lon": -75.27812,
-    "lat": 39.73671
+    "lat": 39.73671,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-172517",
@@ -2263,7 +2828,12 @@
     "county_fips": "34013",
     "state": "NJ",
     "lon": -74.12258,
-    "lat": 40.73791
+    "lat": 40.73791,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-172520",
@@ -2274,7 +2844,12 @@
     "county_fips": "34017",
     "state": "NJ",
     "lon": -74.10317,
-    "lat": 40.73765
+    "lat": 40.73765,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   },
   {
     "id": "sub-172521",
@@ -2285,6 +2860,11 @@
     "county_fips": "34023",
     "state": "NJ",
     "lon": -74.46568,
-    "lat": 40.47936
+    "lat": 40.47936,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   }
 ]

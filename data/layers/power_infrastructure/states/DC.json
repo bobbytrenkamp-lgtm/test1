@@ -8,7 +8,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -76.95802,
-    "lat": 38.89738
+    "lat": 38.89738,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133894",
@@ -19,7 +21,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -76.95562,
-    "lat": 38.89986
+    "lat": 38.89986,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133895",
@@ -30,7 +34,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -76.95249,
-    "lat": 38.89879
+    "lat": 38.89879,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-139340",
@@ -41,7 +47,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.01074,
-    "lat": 38.96152
+    "lat": 38.96152,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146185",
@@ -52,7 +60,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.02558,
-    "lat": 38.81679
+    "lat": 38.81679,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146188",
@@ -63,7 +73,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -76.98268,
-    "lat": 38.84552
+    "lat": 38.84552,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146191",
@@ -74,7 +86,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.00206,
-    "lat": 38.91041
+    "lat": 38.91041,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146192",
@@ -85,7 +99,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.04845,
-    "lat": 38.90701
+    "lat": 38.90701,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146193",
@@ -96,7 +112,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.02646,
-    "lat": 38.92703
+    "lat": 38.92703,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146194",
@@ -107,7 +125,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.02553,
-    "lat": 38.90391
+    "lat": 38.90391,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-146197",
@@ -118,7 +138,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -76.99104,
-    "lat": 38.92891
+    "lat": 38.92891,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-147602",
@@ -129,7 +151,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.08444,
-    "lat": 38.95736
+    "lat": 38.95736,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-147604",
@@ -140,7 +164,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.07899,
-    "lat": 38.94261
+    "lat": 38.94261,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-161394",
@@ -151,7 +177,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.0114,
-    "lat": 38.867
+    "lat": 38.867,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-161409",
@@ -162,7 +190,9 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -76.99854,
-    "lat": 38.8763
+    "lat": 38.8763,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-161411",
@@ -173,7 +203,11 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -77.01861,
-    "lat": 38.81774
+    "lat": 38.81774,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-162145",
@@ -184,6 +218,10 @@
     "county_fips": "11001",
     "state": "DC",
     "lon": -76.98262,
-    "lat": 38.91841
+    "lat": 38.91841,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   }
 ]

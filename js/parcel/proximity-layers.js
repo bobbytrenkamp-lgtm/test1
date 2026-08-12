@@ -81,34 +81,60 @@
    * nothing wires them together" gap the data catalog audit surfaced; there
    * is no new data source here, only a new consumer of one that already runs.
    *
-   * SUBSTATION COVERAGE CAVEAT — READ BEFORE CHANGING THIS.
-   * The configured HIFLD substations endpoint is not the original national
-   * layer; it is a third-party mirror the original service's retirement
-   * forced a switch to, and it returns roughly 25 US substations after the
-   * >=69kV filter — not the tens of thousands the real HIFLD dataset has
-   * (see fetch_infrastructure.py's header comment and
+   * SUBSTATION COVERAGE, UPDATED 2026-08-12 — READ BEFORE CHANGING THIS.
+   * As of 2026-08-09 this is a real national dataset (53,826 records
+   * across all 50 states + DC + PR), not the ~25-record subset an earlier
+   * dead mirror forced this comment to warn about — see
+   * fetch_infrastructure.py's header comment and
    * data/catalog/dataset_registry.json's "substations" entry for the full
-   * history). That is real, correctly-fetched data, not fabricated — but
-   * "no substation within 10 miles" from this layer is not strong evidence
-   * of anything, because most of the country simply has no record loaded.
-   * The label says so explicitly rather than reading like a confident
-   * distance measurement with normal national coverage. */
+   * history.
+   *
+   * It is NOT exclusively real substations, though: of the 53,826 kept
+   * records, 37,891 carry TYPE='SUBSTATION' and 15,349 carry TYPE='TAP'
+   * (a transmission-line branch point, not a switching facility) plus
+   * small RISER/DEAD END/NOT AVAILABLE counts. dataset_registry.json's own
+   * documented policy is that fetch_infrastructure.py does NOT filter TYPE
+   * itself ("silently dropping it would itself be an undocumented
+   * coverage decision") and that "consumers wanting strictly substations,
+   * not taps, must filter on type themselves." This proximity layer is
+   * exactly such a consumer — a data-center site's "nearest substation"
+   * distance should not be satisfied by a mid-line tap point that cannot
+   * receive an interconnection — so the filter below keeps only
+   * TYPE='SUBSTATION'. js/map.js's map rendering deliberately does NOT
+   * apply this filter (it shows the full real dataset, tap points
+   * included, for general grid-infrastructure awareness); this is a
+   * scoring-specific decision, not a claim that TAP records are invalid.
+   *
+   * Per-record completeness is also uneven within the 37,891 real
+   * substations: fetch_infrastructure.py's classify_substation_quality()
+   * stamps each with quality_tier ('high'/'medium'/'low') based on real
+   * status/name completeness (STATUS != 'IN SERVICE', or a generic
+   * 'UnknownNNNNN' placeholder NAME, count against the tier). That tier is
+   * passed through in each feature's properties for a caller to weight or
+   * display, but is NOT used to further filter here — an unconfirmed
+   * status or placeholder name doesn't change where the facility
+   * physically is, only how well-documented it is. */
   P.registerLayer({
     id: 'substations',
     category: 'power',
     label: 'Electric substations',
-    measures: 'Straight-line distance to mapped substation locations, from a nationally ' +
-              'INCOMPLETE dataset (~25 US records after the voltage filter, not the full ' +
-              'HIFLD layer). Absence of a nearby result is not evidence there is no substation ' +
-              'nearby. Says nothing about available capacity.',
+    measures: 'Straight-line distance to mapped substation locations (real facilities only — ' +
+              'HIFLD "TAP" branch points are excluded, they cannot receive an interconnection). ' +
+              'Absence of a nearby result is not evidence there is no substation nearby. Says ' +
+              'nothing about available capacity.',
     source: 'HIFLD Electric Substations via a third-party mirror (see fetch_infrastructure.py)',
     provider: async () => {
       const layers = await loadInfrastructureLayers();
-      return (layers.power_infrastructure || []).map(s => ({
-        type: 'Feature',
-        geometry: { type: 'Point', coordinates: [s.lon, s.lat] },
-        properties: { name: s.name, voltageKv: s.voltage_kv, assetType: s.type, county_fips: s.county_fips },
-      }));
+      return (layers.power_infrastructure || [])
+        .filter(s => s.type === 'SUBSTATION')
+        .map(s => ({
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [s.lon, s.lat] },
+          properties: {
+            name: s.name, voltageKv: s.voltage_kv, assetType: s.type, county_fips: s.county_fips,
+            qualityTier: s.quality_tier, qualityFlags: s.quality_flags,
+          },
+        }));
     },
   });
 

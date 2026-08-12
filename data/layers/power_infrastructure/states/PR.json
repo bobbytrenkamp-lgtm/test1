@@ -8,7 +8,9 @@
     "county_fips": "72123",
     "state": "PR",
     "lon": -66.23115,
-    "lat": 17.95325
+    "lat": 17.95325,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141333",
@@ -19,7 +21,9 @@
     "county_fips": "72069",
     "state": "PR",
     "lon": -65.82489,
-    "lat": 18.10639
+    "lat": 18.10639,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141334",
@@ -30,7 +34,11 @@
     "county_fips": "72151",
     "state": "PR",
     "lon": -65.85157,
-    "lat": 18.04842
+    "lat": 18.04842,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141346",
@@ -41,7 +49,9 @@
     "county_fips": "72151",
     "state": "PR",
     "lon": -65.85079,
-    "lat": 18.0429
+    "lat": 18.0429,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141353",
@@ -52,7 +62,9 @@
     "county_fips": "72045",
     "state": "PR",
     "lon": -66.20949,
-    "lat": 18.19817
+    "lat": 18.19817,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141354",
@@ -63,7 +75,9 @@
     "county_fips": "72057",
     "state": "PR",
     "lon": -66.13954,
-    "lat": 17.96167
+    "lat": 17.96167,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141355",
@@ -74,7 +88,9 @@
     "county_fips": "72095",
     "state": "PR",
     "lon": -65.90433,
-    "lat": 18.01149
+    "lat": 18.01149,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141356",
@@ -85,7 +101,9 @@
     "county_fips": "72069",
     "state": "PR",
     "lon": -65.82688,
-    "lat": 18.13709
+    "lat": 18.13709,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141357",
@@ -96,7 +114,9 @@
     "county_fips": "72123",
     "state": "PR",
     "lon": -66.23074,
-    "lat": 17.95194
+    "lat": 17.95194,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141364",
@@ -107,7 +127,9 @@
     "county_fips": "72057",
     "state": "PR",
     "lon": -66.14941,
-    "lat": 17.94739
+    "lat": 17.94739,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141385",
@@ -118,7 +140,9 @@
     "county_fips": "72041",
     "state": "PR",
     "lon": -66.10617,
-    "lat": 18.17114
+    "lat": 18.17114,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141387",
@@ -129,7 +153,9 @@
     "county_fips": "72035",
     "state": "PR",
     "lon": -66.1709,
-    "lat": 18.12074
+    "lat": 18.12074,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141408",
@@ -140,7 +166,11 @@
     "county_fips": "72047",
     "state": "PR",
     "lon": -66.30532,
-    "lat": 18.33838
+    "lat": 18.33838,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141409",
@@ -151,7 +181,11 @@
     "county_fips": "72051",
     "state": "PR",
     "lon": -66.26549,
-    "lat": 18.4175
+    "lat": 18.4175,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141410",
@@ -162,7 +196,9 @@
     "county_fips": "72135",
     "state": "PR",
     "lon": -66.23087,
-    "lat": 18.34687
+    "lat": 18.34687,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141411",
@@ -173,7 +209,11 @@
     "county_fips": "72021",
     "state": "PR",
     "lon": -66.18567,
-    "lat": 18.34958
+    "lat": 18.34958,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141412",
@@ -184,7 +224,9 @@
     "county_fips": "72137",
     "state": "PR",
     "lon": -66.14878,
-    "lat": 18.45451
+    "lat": 18.45451,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141415",
@@ -195,7 +237,11 @@
     "county_fips": "72073",
     "state": "PR",
     "lon": -66.60412,
-    "lat": 18.21789
+    "lat": 18.21789,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141416",
@@ -206,7 +252,11 @@
     "county_fips": "72013",
     "state": "PR",
     "lon": -66.59079,
-    "lat": 18.4249
+    "lat": 18.4249,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141417",
@@ -217,7 +267,9 @@
     "county_fips": "72091",
     "state": "PR",
     "lon": -66.45563,
-    "lat": 18.43319
+    "lat": 18.43319,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141418",
@@ -228,7 +280,9 @@
     "county_fips": "72021",
     "state": "PR",
     "lon": -66.14074,
-    "lat": 18.39875
+    "lat": 18.39875,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141439",
@@ -239,7 +293,9 @@
     "county_fips": "72061",
     "state": "PR",
     "lon": -66.1111,
-    "lat": 18.36482
+    "lat": 18.36482,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141444",
@@ -250,7 +306,9 @@
     "county_fips": "72017",
     "state": "PR",
     "lon": -66.56795,
-    "lat": 18.43027
+    "lat": 18.43027,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141445",
@@ -261,7 +319,11 @@
     "county_fips": "72017",
     "state": "PR",
     "lon": -66.56986,
-    "lat": 18.42981
+    "lat": 18.42981,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141446",
@@ -272,7 +334,9 @@
     "county_fips": "72007",
     "state": "PR",
     "lon": -66.10608,
-    "lat": 18.24706
+    "lat": 18.24706,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141447",
@@ -283,7 +347,11 @@
     "county_fips": "72017",
     "state": "PR",
     "lon": -66.57068,
-    "lat": 18.42833
+    "lat": 18.42833,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141448",
@@ -294,7 +362,11 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.10458,
-    "lat": 18.42699
+    "lat": 18.42699,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141449",
@@ -305,7 +377,11 @@
     "county_fips": "72141",
     "state": "PR",
     "lon": -66.64336,
-    "lat": 18.2963
+    "lat": 18.2963,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141450",
@@ -316,7 +392,9 @@
     "county_fips": "72039",
     "state": "PR",
     "lon": -66.47384,
-    "lat": 18.32747
+    "lat": 18.32747,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141451",
@@ -327,7 +405,9 @@
     "county_fips": "72101",
     "state": "PR",
     "lon": -66.40686,
-    "lat": 18.32277
+    "lat": 18.32277,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141452",
@@ -338,7 +418,9 @@
     "county_fips": "72047",
     "state": "PR",
     "lon": -66.35968,
-    "lat": 18.32925
+    "lat": 18.32925,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141453",
@@ -349,7 +431,9 @@
     "county_fips": "72137",
     "state": "PR",
     "lon": -66.22619,
-    "lat": 18.41344
+    "lat": 18.41344,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141454",
@@ -360,7 +444,9 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.09441,
-    "lat": 18.38991
+    "lat": 18.38991,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141455",
@@ -371,7 +457,9 @@
     "county_fips": "72061",
     "state": "PR",
     "lon": -66.11195,
-    "lat": 18.3698
+    "lat": 18.3698,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141457",
@@ -382,7 +470,9 @@
     "county_fips": "72021",
     "state": "PR",
     "lon": -66.12591,
-    "lat": 18.3817
+    "lat": 18.3817,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141464",
@@ -393,7 +483,9 @@
     "county_fips": "72145",
     "state": "PR",
     "lon": -66.3916,
-    "lat": 18.4457
+    "lat": 18.4457,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141468",
@@ -404,7 +496,11 @@
     "county_fips": "72091",
     "state": "PR",
     "lon": -66.4681,
-    "lat": 18.4564
+    "lat": 18.4564,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141470",
@@ -415,7 +511,9 @@
     "county_fips": "72013",
     "state": "PR",
     "lon": -66.66613,
-    "lat": 18.33584
+    "lat": 18.33584,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141471",
@@ -426,7 +524,11 @@
     "county_fips": "72017",
     "state": "PR",
     "lon": -66.57013,
-    "lat": 18.42838
+    "lat": 18.42838,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141476",
@@ -437,7 +539,11 @@
     "county_fips": "72013",
     "state": "PR",
     "lon": -66.69695,
-    "lat": 18.46911
+    "lat": 18.46911,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141477",
@@ -448,7 +554,11 @@
     "county_fips": "72013",
     "state": "PR",
     "lon": -66.70057,
-    "lat": 18.45419
+    "lat": 18.45419,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141478",
@@ -459,7 +569,9 @@
     "county_fips": "72097",
     "state": "PR",
     "lon": -67.16004,
-    "lat": 18.21943
+    "lat": 18.21943,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141482",
@@ -470,7 +582,9 @@
     "county_fips": "72013",
     "state": "PR",
     "lon": -66.7204,
-    "lat": 18.33438
+    "lat": 18.33438,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141485",
@@ -481,7 +595,9 @@
     "county_fips": "72071",
     "state": "PR",
     "lon": -67.0357,
-    "lat": 18.46654
+    "lat": 18.46654,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141486",
@@ -492,7 +608,9 @@
     "county_fips": "72097",
     "state": "PR",
     "lon": -67.14716,
-    "lat": 18.23732
+    "lat": 18.23732,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141488",
@@ -503,7 +621,9 @@
     "county_fips": "72097",
     "state": "PR",
     "lon": -67.15136,
-    "lat": 18.2328
+    "lat": 18.2328,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141489",
@@ -514,7 +634,9 @@
     "county_fips": "72065",
     "state": "PR",
     "lon": -66.78665,
-    "lat": 18.43525
+    "lat": 18.43525,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141490",
@@ -525,7 +647,11 @@
     "county_fips": "72011",
     "state": "PR",
     "lon": -67.15262,
-    "lat": 18.29844
+    "lat": 18.29844,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141491",
@@ -536,7 +662,11 @@
     "county_fips": "72071",
     "state": "PR",
     "lon": -67.03646,
-    "lat": 18.45273
+    "lat": 18.45273,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141501",
@@ -547,7 +677,11 @@
     "county_fips": "72131",
     "state": "PR",
     "lon": -66.98898,
-    "lat": 18.34066
+    "lat": 18.34066,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141502",
@@ -558,7 +692,11 @@
     "county_fips": "72013",
     "state": "PR",
     "lon": -66.7195,
-    "lat": 18.3333
+    "lat": 18.3333,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141507",
@@ -569,7 +707,9 @@
     "county_fips": "72005",
     "state": "PR",
     "lon": -67.15387,
-    "lat": 18.40426
+    "lat": 18.40426,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141512",
@@ -580,7 +720,9 @@
     "county_fips": "72005",
     "state": "PR",
     "lon": -67.14765,
-    "lat": 18.44425
+    "lat": 18.44425,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141558",
@@ -591,7 +733,9 @@
     "county_fips": "72133",
     "state": "PR",
     "lon": -66.36963,
-    "lat": 18.02198
+    "lat": 18.02198,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141559",
@@ -602,7 +746,9 @@
     "county_fips": "72149",
     "state": "PR",
     "lon": -66.48774,
-    "lat": 18.13192
+    "lat": 18.13192,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141571",
@@ -613,7 +759,9 @@
     "county_fips": "72113",
     "state": "PR",
     "lon": -66.55133,
-    "lat": 18.05984
+    "lat": 18.05984,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141592",
@@ -624,7 +772,9 @@
     "county_fips": "72113",
     "state": "PR",
     "lon": -66.63913,
-    "lat": 18.0128
+    "lat": 18.0128,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141593",
@@ -635,7 +785,9 @@
     "county_fips": "72113",
     "state": "PR",
     "lon": -66.61224,
-    "lat": 18.00086
+    "lat": 18.00086,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141594",
@@ -646,7 +798,11 @@
     "county_fips": "72113",
     "state": "PR",
     "lon": -66.64275,
-    "lat": 17.99183
+    "lat": 17.99183,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141595",
@@ -657,7 +813,11 @@
     "county_fips": "72111",
     "state": "PR",
     "lon": -66.74238,
-    "lat": 17.99914
+    "lat": 17.99914,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141643",
@@ -668,7 +828,11 @@
     "county_fips": "72059",
     "state": "PR",
     "lon": -66.75493,
-    "lat": 18.003
+    "lat": 18.003,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141658",
@@ -679,7 +843,9 @@
     "county_fips": "72125",
     "state": "PR",
     "lon": -67.0092,
-    "lat": 18.07507
+    "lat": 18.07507,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141659",
@@ -690,7 +856,9 @@
     "county_fips": "72023",
     "state": "PR",
     "lon": -67.13605,
-    "lat": 18.12869
+    "lat": 18.12869,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141662",
@@ -701,7 +869,11 @@
     "county_fips": "72059",
     "state": "PR",
     "lon": -66.75347,
-    "lat": 18.00174
+    "lat": 18.00174,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141670",
@@ -712,7 +884,11 @@
     "county_fips": "72111",
     "state": "PR",
     "lon": -66.75683,
-    "lat": 17.97854
+    "lat": 17.97854,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141671",
@@ -723,7 +899,9 @@
     "county_fips": "72055",
     "state": "PR",
     "lon": -66.89744,
-    "lat": 17.96592
+    "lat": 17.96592,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141677",
@@ -734,7 +912,11 @@
     "county_fips": "72059",
     "state": "PR",
     "lon": -66.76823,
-    "lat": 18.014
+    "lat": 18.014,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141688",
@@ -745,7 +927,11 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.07806,
-    "lat": 18.44623
+    "lat": 18.44623,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141691",
@@ -756,7 +942,11 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.07301,
-    "lat": 18.37292
+    "lat": 18.37292,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141695",
@@ -767,7 +957,11 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.06798,
-    "lat": 18.42701
+    "lat": 18.42701,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141701",
@@ -778,7 +972,11 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.05649,
-    "lat": 18.34392
+    "lat": 18.34392,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141703",
@@ -789,7 +987,9 @@
     "county_fips": "72025",
     "state": "PR",
     "lon": -66.03685,
-    "lat": 18.23933
+    "lat": 18.23933,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141705",
@@ -800,7 +1000,11 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.01125,
-    "lat": 18.41027
+    "lat": 18.41027,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141706",
@@ -811,7 +1015,11 @@
     "county_fips": "72031",
     "state": "PR",
     "lon": -65.99254,
-    "lat": 18.3968
+    "lat": 18.3968,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141707",
@@ -822,7 +1030,11 @@
     "county_fips": "72139",
     "state": "PR",
     "lon": -65.99095,
-    "lat": 18.34365
+    "lat": 18.34365,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141708",
@@ -833,7 +1045,11 @@
     "county_fips": "72139",
     "state": "PR",
     "lon": -65.9877,
-    "lat": 18.32209
+    "lat": 18.32209,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141709",
@@ -844,7 +1060,11 @@
     "county_fips": "72031",
     "state": "PR",
     "lon": -65.98101,
-    "lat": 18.39525
+    "lat": 18.39525,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141710",
@@ -855,7 +1075,11 @@
     "county_fips": "72031",
     "state": "PR",
     "lon": -65.98074,
-    "lat": 18.39437
+    "lat": 18.39437,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-141718",
@@ -866,7 +1090,9 @@
     "county_fips": "72061",
     "state": "PR",
     "lon": -66.08514,
-    "lat": 18.31351
+    "lat": 18.31351,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141721",
@@ -877,7 +1103,9 @@
     "county_fips": "72037",
     "state": "PR",
     "lon": -65.6673,
-    "lat": 18.23231
+    "lat": 18.23231,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141749",
@@ -888,7 +1116,9 @@
     "county_fips": "72077",
     "state": "PR",
     "lon": -65.91552,
-    "lat": 18.227
+    "lat": 18.227,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141750",
@@ -899,7 +1129,9 @@
     "county_fips": "72053",
     "state": "PR",
     "lon": -65.646,
-    "lat": 18.32972
+    "lat": 18.32972,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141751",
@@ -910,7 +1142,9 @@
     "county_fips": "72119",
     "state": "PR",
     "lon": -65.77091,
-    "lat": 18.36398
+    "lat": 18.36398,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141752",
@@ -921,7 +1155,9 @@
     "county_fips": "72029",
     "state": "PR",
     "lon": -65.90962,
-    "lat": 18.37475
+    "lat": 18.37475,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141759",
@@ -932,7 +1168,9 @@
     "county_fips": "72025",
     "state": "PR",
     "lon": -66.07292,
-    "lat": 18.24959
+    "lat": 18.24959,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141766",
@@ -943,7 +1181,9 @@
     "county_fips": "72139",
     "state": "PR",
     "lon": -66.01258,
-    "lat": 18.34356
+    "lat": 18.34356,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141781",
@@ -954,7 +1194,9 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.06021,
-    "lat": 18.43481
+    "lat": 18.43481,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-141784",
@@ -965,7 +1207,11 @@
     "county_fips": "72139",
     "state": "PR",
     "lon": -66.01247,
-    "lat": 18.34389
+    "lat": 18.34389,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141786",
@@ -976,7 +1222,11 @@
     "county_fips": "72127",
     "state": "PR",
     "lon": -66.05635,
-    "lat": 18.34397
+    "lat": 18.34397,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-141788",
@@ -987,7 +1237,9 @@
     "county_fips": "72103",
     "state": "PR",
     "lon": -65.78512,
-    "lat": 18.24329
+    "lat": 18.24329,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-161417",
@@ -998,6 +1250,10 @@
     "county_fips": "72151",
     "state": "PR",
     "lon": -65.85078,
-    "lat": 18.04357
+    "lat": 18.04357,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   }
 ]

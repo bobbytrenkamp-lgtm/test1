@@ -8,7 +8,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -72.28654,
-    "lat": 43.63259
+    "lat": 43.63259,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132700",
@@ -19,7 +23,11 @@
     "county_fips": "33001",
     "state": "NH",
     "lon": -71.48982,
-    "lat": 43.5549
+    "lat": 43.5549,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132701",
@@ -30,7 +38,11 @@
     "county_fips": "33001",
     "state": "NH",
     "lon": -71.4683,
-    "lat": 43.53642
+    "lat": 43.53642,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132702",
@@ -41,7 +53,11 @@
     "county_fips": "33001",
     "state": "NH",
     "lon": -71.45205,
-    "lat": 43.52516
+    "lat": 43.52516,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132704",
@@ -52,7 +68,11 @@
     "county_fips": "33003",
     "state": "NH",
     "lon": -71.20671,
-    "lat": 43.84807
+    "lat": 43.84807,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132705",
@@ -63,7 +83,11 @@
     "county_fips": "33003",
     "state": "NH",
     "lon": -71.1525,
-    "lat": 44.09267
+    "lat": 44.09267,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132708",
@@ -74,7 +98,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.77868,
-    "lat": 43.0929
+    "lat": 43.0929,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132710",
@@ -85,7 +113,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.502,
-    "lat": 43.0031
+    "lat": 43.0031,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132713",
@@ -96,7 +128,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.47316,
-    "lat": 43.00321
+    "lat": 43.00321,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132716",
@@ -107,7 +143,11 @@
     "county_fips": "33013",
     "state": "NH",
     "lon": -71.44419,
-    "lat": 43.05659
+    "lat": 43.05659,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132717",
@@ -118,7 +158,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.43137,
-    "lat": 42.95303
+    "lat": 42.95303,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132726",
@@ -129,7 +173,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.8869,
-    "lat": 43.00881
+    "lat": 43.00881,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132729",
@@ -140,7 +188,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.81505,
-    "lat": 43.04266
+    "lat": 43.04266,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132730",
@@ -151,7 +203,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.81319,
-    "lat": 43.0423
+    "lat": 43.0423,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132731",
@@ -162,7 +216,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.78729,
-    "lat": 43.09487
+    "lat": 43.09487,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132733",
@@ -173,7 +231,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.48772,
-    "lat": 42.87146
+    "lat": 42.87146,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132736",
@@ -184,7 +246,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.46155,
-    "lat": 42.90573
+    "lat": 42.90573,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132738",
@@ -195,7 +261,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.45244,
-    "lat": 42.7324
+    "lat": 42.7324,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132742",
@@ -206,7 +276,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.42396,
-    "lat": 42.90471
+    "lat": 42.90471,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132744",
@@ -217,7 +291,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.37781,
-    "lat": 42.79077
+    "lat": 42.79077,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132750",
@@ -228,7 +306,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.85387,
-    "lat": 42.90077
+    "lat": 42.90077,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132751",
@@ -239,7 +321,11 @@
     "county_fips": "33017",
     "state": "NH",
     "lon": -70.9978,
-    "lat": 43.30794
+    "lat": 43.30794,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132753",
@@ -250,7 +336,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -72.27418,
-    "lat": 43.68398
+    "lat": 43.68398,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132754",
@@ -261,7 +351,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.49428,
-    "lat": 44.59419
+    "lat": 44.59419,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132759",
@@ -272,7 +366,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.6084,
-    "lat": 44.37931
+    "lat": 44.37931,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132760",
@@ -283,7 +381,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.80596,
-    "lat": 43.10533
+    "lat": 43.10533,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132761",
@@ -294,7 +396,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.56901,
-    "lat": 43.01596
+    "lat": 43.01596,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-132780",
@@ -305,7 +409,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -72.00304,
-    "lat": 44.32097
+    "lat": 44.32097,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133379",
@@ -316,7 +424,9 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.87497,
-    "lat": 44.33591
+    "lat": 44.33591,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133395",
@@ -327,7 +437,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.92601,
-    "lat": 43.11209
+    "lat": 43.11209,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133726",
@@ -338,7 +452,9 @@
     "county_fips": "33013",
     "state": "NH",
     "lon": -71.47007,
-    "lat": 43.14061
+    "lat": 43.14061,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133731",
@@ -349,7 +465,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.48342,
-    "lat": 42.83054
+    "lat": 42.83054,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135578",
@@ -360,7 +478,9 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.48298,
-    "lat": 42.79792
+    "lat": 42.79792,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-135582",
@@ -371,7 +491,11 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.50682,
-    "lat": 42.79601
+    "lat": 42.79601,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136051",
@@ -382,7 +506,11 @@
     "county_fips": "33019",
     "state": "NH",
     "lon": -72.38309,
-    "lat": 43.39574
+    "lat": 43.39574,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136661",
@@ -393,7 +521,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.78672,
-    "lat": 43.09388
+    "lat": 43.09388,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136672",
@@ -404,7 +536,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.79227,
-    "lat": 43.0981
+    "lat": 43.0981,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136678",
@@ -415,7 +549,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.78602,
-    "lat": 43.09735
+    "lat": 43.09735,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136700",
@@ -426,7 +562,9 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.88467,
-    "lat": 44.32901
+    "lat": 44.32901,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136701",
@@ -437,7 +575,11 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.14651,
-    "lat": 42.80121
+    "lat": 42.80121,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136709",
@@ -448,7 +590,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.88087,
-    "lat": 44.33397
+    "lat": 44.33397,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136710",
@@ -459,7 +605,11 @@
     "county_fips": "33019",
     "state": "NH",
     "lon": -72.09901,
-    "lat": 43.3917
+    "lat": 43.3917,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136713",
@@ -470,7 +620,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.88446,
-    "lat": 44.33229
+    "lat": 44.33229,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136714",
@@ -481,7 +635,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.88408,
-    "lat": 44.33243
+    "lat": 44.33243,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136715",
@@ -492,7 +650,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.99929,
-    "lat": 44.32323
+    "lat": 44.32323,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136717",
@@ -503,7 +665,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -72.29851,
-    "lat": 43.6667
+    "lat": 43.6667,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136723",
@@ -514,7 +680,9 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.9933,
-    "lat": 44.31942
+    "lat": 44.31942,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136724",
@@ -525,7 +693,9 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.14836,
-    "lat": 42.80023
+    "lat": 42.80023,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136725",
@@ -536,7 +706,9 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.38454,
-    "lat": 42.79306
+    "lat": 42.79306,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136726",
@@ -547,7 +719,9 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.31767,
-    "lat": 42.87342
+    "lat": 42.87342,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136727",
@@ -558,7 +732,9 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.28604,
-    "lat": 42.92968
+    "lat": 42.92968,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136728",
@@ -569,7 +745,9 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.16728,
-    "lat": 42.83004
+    "lat": 42.83004,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136918",
@@ -580,7 +758,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.79843,
-    "lat": 43.09704
+    "lat": 43.09704,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136921",
@@ -591,7 +773,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.08381,
-    "lat": 42.98369
+    "lat": 42.98369,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136925",
@@ -602,7 +786,11 @@
     "county_fips": "33017",
     "state": "NH",
     "lon": -70.99844,
-    "lat": 43.3088
+    "lat": 43.3088,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136926",
@@ -613,7 +801,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.81247,
-    "lat": 43.04226
+    "lat": 43.04226,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136927",
@@ -624,7 +816,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.81227,
-    "lat": 43.04243
+    "lat": 43.04243,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136928",
@@ -635,7 +831,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.08821,
-    "lat": 42.89599
+    "lat": 42.89599,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136930",
@@ -646,7 +846,11 @@
     "county_fips": "33017",
     "state": "NH",
     "lon": -70.9949,
-    "lat": 43.38595
+    "lat": 43.38595,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136934",
@@ -657,7 +861,9 @@
     "county_fips": "33017",
     "state": "NH",
     "lon": -70.93137,
-    "lat": 43.16017
+    "lat": 43.16017,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136935",
@@ -668,7 +874,9 @@
     "county_fips": "33017",
     "state": "NH",
     "lon": -70.86348,
-    "lat": 43.19821
+    "lat": 43.19821,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136940",
@@ -679,7 +887,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -70.86883,
-    "lat": 42.94984
+    "lat": 42.94984,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137022",
@@ -690,7 +900,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.22617,
-    "lat": 44.6178
+    "lat": 44.6178,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137023",
@@ -701,7 +915,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.33905,
-    "lat": 42.90151
+    "lat": 42.90151,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137027",
@@ -712,7 +930,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.20357,
-    "lat": 42.74262
+    "lat": 42.74262,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137028",
@@ -723,7 +945,11 @@
     "county_fips": "33003",
     "state": "NH",
     "lon": -71.08758,
-    "lat": 44.00763
+    "lat": 44.00763,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137030",
@@ -734,7 +960,11 @@
     "county_fips": "33003",
     "state": "NH",
     "lon": -71.21201,
-    "lat": 43.84686
+    "lat": 43.84686,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137031",
@@ -745,7 +975,11 @@
     "county_fips": "33003",
     "state": "NH",
     "lon": -71.21251,
-    "lat": 43.84755
+    "lat": 43.84755,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137032",
@@ -756,7 +990,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.25378,
-    "lat": 44.62668
+    "lat": 44.62668,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137033",
@@ -767,7 +1005,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.25343,
-    "lat": 44.62668
+    "lat": 44.62668,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137034",
@@ -778,7 +1020,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.2545,
-    "lat": 44.62783
+    "lat": 44.62783,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137035",
@@ -789,7 +1035,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.29227,
-    "lat": 44.70383
+    "lat": 44.70383,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137036",
@@ -800,7 +1050,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.23879,
-    "lat": 44.61062
+    "lat": 44.61062,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137037",
@@ -811,7 +1065,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.238,
-    "lat": 44.61082
+    "lat": 44.61082,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137038",
@@ -822,7 +1080,11 @@
     "county_fips": "33007",
     "state": "NH",
     "lon": -71.17947,
-    "lat": 44.46309
+    "lat": 44.46309,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137039",
@@ -833,7 +1095,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.14594,
-    "lat": 42.95457
+    "lat": 42.95457,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137042",
@@ -844,7 +1110,11 @@
     "county_fips": "33003",
     "state": "NH",
     "lon": -71.19718,
-    "lat": 43.83594
+    "lat": 43.83594,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137046",
@@ -855,7 +1125,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.30986,
-    "lat": 42.73664
+    "lat": 42.73664,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137047",
@@ -866,7 +1138,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.23715,
-    "lat": 42.93642
+    "lat": 42.93642,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137048",
@@ -877,7 +1151,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.42933,
-    "lat": 42.77674
+    "lat": 42.77674,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137050",
@@ -888,7 +1164,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.1848,
-    "lat": 43.14171
+    "lat": 43.14171,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137051",
@@ -899,7 +1177,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.43198,
-    "lat": 42.89137
+    "lat": 42.89137,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137052",
@@ -910,7 +1190,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.4289,
-    "lat": 42.77471
+    "lat": 42.77471,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137053",
@@ -921,7 +1203,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.38348,
-    "lat": 42.87856
+    "lat": 42.87856,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137054",
@@ -932,7 +1216,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.34211,
-    "lat": 42.90486
+    "lat": 42.90486,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137055",
@@ -943,7 +1229,9 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.34038,
-    "lat": 42.90277
+    "lat": 42.90277,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137060",
@@ -954,7 +1242,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.37684,
-    "lat": 42.79156
+    "lat": 42.79156,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137061",
@@ -965,7 +1255,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.44038,
-    "lat": 42.87313
+    "lat": 42.87313,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137062",
@@ -976,7 +1270,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.44018,
-    "lat": 42.87291
+    "lat": 42.87291,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137063",
@@ -987,7 +1285,11 @@
     "county_fips": "33013",
     "state": "NH",
     "lon": -71.57983,
-    "lat": 43.06441
+    "lat": 43.06441,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137065",
@@ -998,7 +1300,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.4583,
-    "lat": 42.93392
+    "lat": 42.93392,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137070",
@@ -1009,7 +1315,11 @@
     "county_fips": "33013",
     "state": "NH",
     "lon": -71.5074,
-    "lat": 43.16275
+    "lat": 43.16275,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137075",
@@ -1020,7 +1330,11 @@
     "county_fips": "33001",
     "state": "NH",
     "lon": -71.4504,
-    "lat": 43.5307
+    "lat": 43.5307,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137076",
@@ -1031,7 +1345,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.66005,
-    "lat": 43.03251
+    "lat": 43.03251,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137077",
@@ -1042,7 +1360,11 @@
     "county_fips": "33013",
     "state": "NH",
     "lon": -71.54355,
-    "lat": 43.27666
+    "lat": 43.27666,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137078",
@@ -1053,7 +1375,11 @@
     "county_fips": "33013",
     "state": "NH",
     "lon": -71.67387,
-    "lat": 43.4558
+    "lat": 43.4558,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137080",
@@ -1064,7 +1390,11 @@
     "county_fips": "33001",
     "state": "NH",
     "lon": -71.70946,
-    "lat": 43.59674
+    "lat": 43.59674,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137082",
@@ -1075,7 +1405,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.64555,
-    "lat": 43.68839
+    "lat": 43.68839,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137083",
@@ -1086,7 +1420,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.6372,
-    "lat": 43.69143
+    "lat": 43.69143,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137084",
@@ -1097,7 +1435,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.6403,
-    "lat": 43.82816
+    "lat": 43.82816,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137085",
@@ -1108,7 +1450,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.67699,
-    "lat": 44.01159
+    "lat": 44.01159,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-137086",
@@ -1119,7 +1465,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.78184,
-    "lat": 44.25262
+    "lat": 44.25262,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137091",
@@ -1130,7 +1480,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.47582,
-    "lat": 42.86054
+    "lat": 42.86054,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137092",
@@ -1141,7 +1495,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.44707,
-    "lat": 42.78098
+    "lat": 42.78098,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137093",
@@ -1152,7 +1510,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.46796,
-    "lat": 42.83196
+    "lat": 42.83196,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137094",
@@ -1163,7 +1525,11 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.46794,
-    "lat": 42.83186
+    "lat": 42.83186,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-137097",
@@ -1174,7 +1540,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.46304,
-    "lat": 42.94455
+    "lat": 42.94455,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137099",
@@ -1185,7 +1553,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.45437,
-    "lat": 42.76497
+    "lat": 42.76497,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-137100",
@@ -1196,7 +1566,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.43919,
-    "lat": 42.87396
+    "lat": 42.87396,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-139750",
@@ -1207,7 +1579,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.6441,
-    "lat": 42.82023
+    "lat": 42.82023,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-139753",
@@ -1218,7 +1592,9 @@
     "county_fips": "33011",
     "state": "NH",
     "lon": -71.5927,
-    "lat": 42.80904
+    "lat": 42.80904,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-156256",
@@ -1229,7 +1605,11 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.15,
-    "lat": 42.8033
+    "lat": 42.8033,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-170878",
@@ -1240,7 +1620,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.1449,
-    "lat": 42.95466
+    "lat": 42.95466,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-170879",
@@ -1251,7 +1635,11 @@
     "county_fips": "33015",
     "state": "NH",
     "lon": -71.23632,
-    "lat": 42.93591
+    "lat": 42.93591,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-170886",
@@ -1262,7 +1650,11 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.55066,
-    "lat": 42.86613
+    "lat": 42.86613,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-170887",
@@ -1273,7 +1665,11 @@
     "county_fips": "33005",
     "state": "NH",
     "lon": -72.5446,
-    "lat": 42.84038
+    "lat": 42.84038,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-172515",
@@ -1284,6 +1680,11 @@
     "county_fips": "33009",
     "state": "NH",
     "lon": -71.65887,
-    "lat": 43.78185
+    "lat": 43.78185,
+    "quality_tier": "low",
+    "quality_flags": [
+      "not_confirmed_in_service",
+      "generic_name"
+    ]
   }
 ]
