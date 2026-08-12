@@ -80,6 +80,29 @@ RAW_HEADER = (
 )
 
 
+def _str_cell(v: Any) -> Optional[str]:
+    """Safely coerces a raw openpyxl cell value to a stripped string, or
+    None for an empty/NaN cell. Confirmed necessary on the real 2026-08-11
+    live fetch (GitHub Actions run 31555581932): openpyxl returns a bare
+    Python type PER CELL (str, int, float, datetime, or None), not per
+    column -- a column that is usually free text (e.g. poi_name) can still
+    surface a float for one row (a numeric-looking value, or NaN for a
+    blank-but-typed cell), which a bare .strip() call cannot handle and
+    which crashed this parser in production before this fix. NEVER used
+    for the dedicated-numeric fields (mw_*, fips_code), which already have
+    their own real-number handling in _sum_mw()/parse_row()."""
+    if v is None:
+        return None
+    if isinstance(v, float):
+        if v != v:  # NaN is the only float that is not equal to itself
+            return None
+        # A whole-number float from a numeric-looking text cell should not
+        # gain a fabricated ".0" -- e.g. a POI name that is just digits.
+        v = int(v) if v.is_integer() else v
+    s = str(v).strip()
+    return s or None
+
+
 def _iso_date(v: Any) -> Optional[str]:
     if isinstance(v, (datetime, date)):
         return v.strftime("%Y-%m-%d")
@@ -125,9 +148,9 @@ def parse_row(row: tuple) -> Optional[dict]:
     centroid = county_centroid(fips) if fips else None
 
     name = (
-        (r.get("project_name") or "").strip()
-        or (r.get("poi_name") or "").strip()
-        or f"Interconnection queue entry {r.get('q_id') or 'unassigned'}"
+        _str_cell(r.get("project_name"))
+        or _str_cell(r.get("poi_name"))
+        or f"Interconnection queue entry {_str_cell(r.get('q_id')) or 'unassigned'}"
     )
 
     asset: dict = {
@@ -156,16 +179,21 @@ def parse_row(row: tuple) -> Optional[dict]:
     capacity_mw = _sum_mw(r.get("mw_1"), r.get("mw_2"), r.get("mw_3"))
     if capacity_mw is not None:
         asset["capacity_mw"] = capacity_mw
-    if r.get("type_clean"):
-        asset["technology"] = r["type_clean"]
-    if r.get("utility"):
-        asset["utility"] = r["utility"]
-    if r.get("poi_name"):
-        asset["point_of_interconnection"] = r["poi_name"]
-    if r.get("q_id"):
-        asset["queue_id"] = r["q_id"]
-    if r.get("developer"):
-        asset["developer"] = r["developer"]
+    type_clean = _str_cell(r.get("type_clean"))
+    if type_clean:
+        asset["technology"] = type_clean
+    utility = _str_cell(r.get("utility"))
+    if utility:
+        asset["utility"] = utility
+    poi_name = _str_cell(r.get("poi_name"))
+    if poi_name:
+        asset["point_of_interconnection"] = poi_name
+    q_id = _str_cell(r.get("q_id"))
+    if q_id:
+        asset["queue_id"] = q_id
+    developer = _str_cell(r.get("developer"))
+    if developer:
+        asset["developer"] = developer
     if _iso_date(r.get("q_date")):
         asset["queue_date"] = _iso_date(r.get("q_date"))
     if _iso_date(r.get("prop_date")):
@@ -174,12 +202,16 @@ def parse_row(row: tuple) -> Optional[dict]:
         asset["withdrawn_date"] = _iso_date(r.get("wd_date"))
     if _iso_date(r.get("ia_date")):
         asset["interconnection_agreement_date"] = _iso_date(r.get("ia_date"))
-    if r.get("service"):
-        asset["service_type"] = r["service"]
-    if r.get("region"):
-        asset["balancing_authority_region"] = r["region"]
-    if r.get("county") and r.get("state"):
-        asset["county_state"] = f"{r['county']}, {r['state']}"
+    service = _str_cell(r.get("service"))
+    if service:
+        asset["service_type"] = service
+    region = _str_cell(r.get("region"))
+    if region:
+        asset["balancing_authority_region"] = region
+    county = _str_cell(r.get("county"))
+    state = _str_cell(r.get("state"))
+    if county and state:
+        asset["county_state"] = f"{county}, {state}"
     if fips:
         asset["county_fips"] = fips
 

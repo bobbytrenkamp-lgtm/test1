@@ -20,6 +20,7 @@ sys.path.insert(0, str(ROOT))
 from data.infrastructure_asset_schema import validate_asset  # noqa: E402
 from data.national_data_ingestion.interconnection_queue import (  # noqa: E402
     RAW_HEADER,
+    _str_cell,
     _sum_mw,
     parse_row,
     parse_workbook,
@@ -65,6 +66,73 @@ def test_a_real_withdrawn_row_parses_with_county_level_modeled_geometry():
 def test_project_name_falls_back_to_poi_name_when_blank():
     asset = parse_row(REAL_WITHDRAWN_ROW)
     assert asset["name"] == "Twin Arrows 69kV Substation"
+
+
+# ── _str_cell: the real 2026-08-11 production crash ─────────────────────────
+#
+# The first live GitHub Actions dispatch of this parser against the real
+# workbook (run 31555581932) crashed with
+# "AttributeError: 'float' object has no attribute 'strip'" on poi_name --
+# openpyxl returns a bare float (not a string) for a numeric-looking or
+# NaN cell in what is normally a text column, and `.strip()` on that raw
+# value throws. These tests pin the fix: parse_row() must never crash on a
+# non-string cell in any free-text column, and NaN must never leak into
+# the output as a literal (non-JSON-safe) float.
+
+def test_str_cell_handles_nan_float_as_empty():
+    assert _str_cell(float("nan")) is None
+
+
+def test_str_cell_handles_whole_number_float_without_fake_decimal():
+    assert _str_cell(123.0) == "123"
+
+
+def test_str_cell_handles_none_as_empty():
+    assert _str_cell(None) is None
+
+
+def test_str_cell_passes_through_a_real_string():
+    assert _str_cell("  Zeniff 69kV Substation  ") == "Zeniff 69kV Substation"
+
+
+def test_poi_name_as_nan_float_does_not_crash_and_falls_back_to_q_id():
+    # Reproduces the exact real-world shape that crashed production: a
+    # blank project_name AND a NaN (not string) poi_name.
+    row = list(REAL_WITHDRAWN_ROW)
+    row[RAW_HEADER.index("project_name")] = None
+    row[RAW_HEADER.index("poi_name")] = float("nan")
+    asset = parse_row(tuple(row))
+    assert asset is not None
+    assert asset["name"] == "Interconnection queue entry not assigned"
+    assert "point_of_interconnection" not in asset
+
+
+def test_poi_name_as_numeric_looking_float_is_used_without_crashing():
+    row = list(REAL_WITHDRAWN_ROW)
+    row[RAW_HEADER.index("project_name")] = None
+    row[RAW_HEADER.index("poi_name")] = 12345.0
+    asset = parse_row(tuple(row))
+    assert asset["name"] == "12345"
+    assert asset["point_of_interconnection"] == "12345"
+
+
+def test_other_free_text_columns_as_nan_float_are_omitted_not_crashed():
+    row = list(REAL_WITHDRAWN_ROW)
+    row[RAW_HEADER.index("type_clean")] = float("nan")
+    row[RAW_HEADER.index("utility")] = float("nan")
+    row[RAW_HEADER.index("developer")] = float("nan")
+    row[RAW_HEADER.index("service")] = float("nan")
+    row[RAW_HEADER.index("region")] = float("nan")
+    row[RAW_HEADER.index("county")] = float("nan")
+    asset = parse_row(tuple(row))
+    assert asset is not None
+    assert "technology" not in asset
+    assert "utility" not in asset
+    assert "developer" not in asset
+    assert "service_type" not in asset
+    assert "balancing_authority_region" not in asset
+    # county is NaN so county_state must be omitted even though state is real
+    assert "county_state" not in asset
 
 
 def test_a_real_operational_row_parses_correctly():
