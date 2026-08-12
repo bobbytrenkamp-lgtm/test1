@@ -64,6 +64,9 @@ run "data health dashboard: generator + honesty tests" python3 -m pytest tests/t
 # The generated data catalog must match current repository state -- same
 # staleness discipline as the parcel coverage metrics.
 run "data catalog: committed artifacts are current" python3 data/generate_data_catalog.py --check
+run "grid readiness v1: generator + omission-vs-real-zero tests" python3 -m pytest tests/test_grid_readiness.py -q
+run "grid readiness v1: committed artifacts are current" python3 data/generate_grid_readiness.py --check
+run "grid readiness v1: client fetch-and-cache wrapper" node tests/test_grid_readiness_client.mjs
 run "sample_layers split: generator tests" python3 -m pytest tests/test_split_sample_layers.py -q
 run "sample_layers split: committed artifacts are current" python3 data/split_sample_layers.py --check
 run "power layer geo-partitioning: generator tests" python3 -m pytest tests/test_split_layer_by_state.py -q

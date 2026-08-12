@@ -11,7 +11,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | | |
 |---|---|
 | Datasets catalogued | 29 |
-| Datasets with actual data (has_data) | 18 |
+| Datasets with actual data (has_data) | 19 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 6 |
 | Datasets on an automated refresh workflow | 17 |
@@ -36,7 +36,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | ECONOMIC DATA | 2 | 2 | 14 | 0 | 0 |
 | FIBER | 3 | 0 | 0 | 1 | 1 |
 | FLOOD | 1 | 0 | 0 | 1 | 0 |
-| INTERCONNECTION QUEUES | 1 | 0 | 0 | 0 | 1 |
+| INTERCONNECTION QUEUES | 1 | 1 | 36,425 | 0 | 1 |
 | ISO/RTO | 1 | 0 | 0 | 0 | 1 |
 | NEWS | 1 | 1 | 600 | 1 | 1 |
 | PARCELS | 3 | 3 | 86,037 | 1 | 3 |
@@ -192,9 +192,9 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 ### INTERCONNECTION QUEUES
 
-**Generator interconnection queue positions** (interconnection_queues) — ⛔ no data
+**Generator interconnection queue positions** (interconnection_queues) — ✅ has data
 
-- Records: n/a
+- Records: 36425
 - Source: Lawrence Berkeley National Laboratory (LBNL) "Queued Up" -- compiled from 7 ISO/RTOs and 50+ non-ISO balancing areas, ~98% of US generating capacity
 - Source URL: https://emp.lbl.gov/queues
 - Geographic scope (declared): National
@@ -204,7 +204,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - CI-tested: True
 - Automated update workflow(s): update_interconnection_queue.yml
 - Actual refresh cadence (computed from the workflow's own cron schedule): monthly
-- **Known coverage holes:** The 'ferc_queue' facility source in facility_sources.json still separately feeds the DATA CENTER pipeline (detecting large-load interconnection requests) -- distinct from this dataset. LBNL publishes county + state text only, never per-project coordinates, so every record's location is a county-level bbox centroid (evidence_tier=MODELED), not the true project site. Records whose county cannot be resolved to a real FIPS centroid are excluded and counted in the output's meta.excluded_no_resolvable_county_location, never silently dropped. The source is behind Cloudflare's managed challenge, so ingestion requires a real headless-browser download (see data/national_data_ingestion/interconnection_queue_download.mjs) rather than a plain HTTP fetch.
+- **Known coverage holes:** RESOLVED 2026-08-12 (was declared but never actually fetched): verified via a real GitHub Actions dispatch (run 31556489776) -- 38,201 real rows in the source workbook, 36,425 usable records kept (1,776 excluded for having no resolvable county location, 0 excluded for missing queue status). Real queue_status distribution: withdrawn 22,863, active 8,423, operational 4,464, suspended 666, unknown 9. 2,633 distinct counties represented. The first live dispatch attempt (run 31555581932) crashed on a real production bug -- openpyxl returns a bare float (not a string) for a numeric-looking or NaN cell in what is normally a text column (poi_name and others), which a naive .strip() call cannot handle; fixed in interconnection_queue.py's _str_cell() helper before this successful run. The 'ferc_queue' facility source in facility_sources.json still separately feeds the DATA CENTER pipeline (detecting large-load interconnection requests) -- distinct from this dataset. LBNL publishes county + state text only, never per-project coordinates, so every record's location is a county-level bbox centroid (evidence_tier=MODELED), not the true project site. Records whose county cannot be resolved to a real FIPS centroid are excluded and counted in the output's meta.excluded_no_resolvable_county_location, never silently dropped. The source is behind Cloudflare's managed challenge, so ingestion requires a real headless-browser download (see data/national_data_ingestion/interconnection_queue_download.mjs) rather than a plain HTTP fetch.
 - **Known quality issues:** queue_status uses the source's own vocabulary (e.g. active/withdrawn/operational), intentionally distinct from InfrastructureAsset's generic existing/planned/retired status field -- withdrawn (never built) and retired (built, then decommissioned) are different facts.
 
 ### ISO/RTO
