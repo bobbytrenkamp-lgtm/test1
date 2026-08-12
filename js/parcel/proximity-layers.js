@@ -331,6 +331,83 @@
     },
   });
 
+  /* ── Texas Fiberlight fiber network (TxDOT, live query) ──────────────────
+   *
+   * Verified live 2026-08-12 via a real GitHub Actions dispatch (three
+   * rounds: service discovery, description/count detail, then a query-shape
+   * check against a real Houston bbox that returned 40 real LineString
+   * features with populated properties). TxDOT's own hosted ArcGIS org
+   * publishes this FeatureServer layer with the description "Selected
+   * Fiberlight Network clip received on 3/15/22" -- a real, dated,
+   * carrier-attributed dataset, not a guess: 8,106 total segments spanning
+   * 9 real Texas markets (AUS, DFW, ELP, HOU, PAN, SAN, STX, WAC, WTX),
+   * each carrying real CABLE_NAME/USED_FOR/INVENTORY_/PLACEMENTT/
+   * FIBERCOUNT attributes -- e.g. "Ring 1 Segment 3", BACKBONE, Complete,
+   * Underground, 432 fibers.
+   *
+   * THREE CAVEATS THAT MATTER MORE THAN THE DATA ITSELF:
+   * 1. TEXAS ONLY. A zero-result answer anywhere outside Texas means "not
+   *    covered by this regional dataset", not "no fiber exists there" --
+   *    same honesty framing as the CA middle-mile corridor above.
+   * 2. ONE CARRIER'S NETWORK, NOT ALL TEXAS FIBER. This is Fiberlight's own
+   *    infrastructure as shared with TxDOT for right-of-way coordination --
+   *    it says nothing about other carriers' fiber (AT&T, Lumen, Zayo,
+   *    etc.) that may also serve the same area. Absence here is not
+   *    evidence of no fiber access.
+   * 3. A DATED SNAPSHOT, NOT LIVE STATE. The service's own description
+   *    says this is a "clip received on 3/15/22" -- segments built, retired,
+   *    or re-routed since then will not be reflected. USED_FOR values also
+   *    include non-backbone types (CUSTOMER LATERAL, PIGTAIL, STUB, RISER,
+   *    "third party lit only", etc.) alongside BACKBONE -- the presence of
+   *    a segment does not by itself mean a site can tap into backbone
+   *    capacity there. */
+  const TX_FIBERLIGHT_URL =
+    'https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/Fiberlight_Network/FeatureServer/0/query';
+
+  P.registerLayer({
+    id: 'tx-fiberlight-network',
+    category: 'telecom',
+    label: 'Texas Fiberlight fiber network (TxDOT-published, TX only)',
+    measures: 'Straight-line distance to the nearest Fiberlight fiber cable segment. ' +
+              'TEXAS COVERAGE ONLY -- outside Texas this always returns no result, which ' +
+              'means "outside this regional dataset\'s coverage", not "no fiber exists". ' +
+              'This is ONE CARRIER\'S network (Fiberlight), not all Texas fiber -- absence ' +
+              'of a nearby result is not evidence no carrier serves the area. The data is a ' +
+              'dated snapshot ("clip received on 3/15/22" per the source service), not live ' +
+              'state, and includes non-backbone segment types (laterals, stubs, pigtails) ' +
+              'alongside backbone -- confirm capacity with the carrier before relying on it.',
+    source: 'Fiberlight fiber network, published via TxDOT\'s ArcGIS hosted feature service',
+    provider: async ({ parcelGeometry }) => {
+      const geo = window.PARCEL_GEO;
+      const box = geo && geo.bounds(parcelGeometry);
+      if (!box) return [];
+      const [minLon, minLat, maxLon, maxLat] = box;
+      const centerLat = (minLat + maxLat) / 2;
+      const { latBuffer, lonBuffer } = milesToDegreeBuffer(P.MAX_SEARCH_MILES, centerLat);
+      const params = new URLSearchParams({
+        where: '1=1',
+        geometry: [minLon - lonBuffer, minLat - latBuffer, maxLon + lonBuffer, maxLat + latBuffer].join(','),
+        geometryType: 'esriGeometryEnvelope',
+        inSR: '4326',
+        spatialRel: 'esriSpatialRelIntersects',
+        outFields: 'CABLE_NAME,USED_FOR,INVENTORY_,PLACEMENTT,FIBERCOUNT,State,Market',
+        outSR: '4326',
+        f: 'geojson',
+        resultRecordCount: '500',
+      });
+      const res = await fetch(`${TX_FIBERLIGHT_URL}?${params.toString()}`);
+      if (!res.ok) throw new Error(`Fiberlight network query HTTP ${res.status}`);
+      const data = await res.json();
+      if (data && data.error) {
+        throw new Error(`Fiberlight network query error: ${data.error.message || JSON.stringify(data.error)}`);
+      }
+      return (data.features || []).map(f => ({
+        ...f,
+        properties: { ...f.properties, name: f.properties && f.properties.CABLE_NAME },
+      }));
+    },
+  });
+
   // Exported for tests.
   window.PARCEL_PROXIMITY_LAYERS = {
     loadFacilities, loadInfrastructureLayers,

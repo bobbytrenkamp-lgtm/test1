@@ -38,6 +38,7 @@
     "roads",
     "substations",
     "transmission_lines",
+    "tx_fiberlight_network",
     "utility_territories",
     "wastewater",
     "water_stress",
@@ -63,7 +64,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-11T08:06:16.464426+00:00",
+      "last_checked": "2026-08-12T08:10:54.749521+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -77,12 +78,14 @@
         "ny-nyc-mocej",
         "ny-senate",
         "oh-legislature",
-        "ri-smithfield-council"
+        "ri-smithfield-council",
+        "wi-legislature"
       ],
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
       "transiently_unreachable": [
-        "wi-legislature"
+        "tx-gov-incentives",
+        "tx-legislature"
       ]
     },
     "static_parcel_ingestion": {
@@ -97,7 +100,7 @@
       "SOURCE_DOWN": 1,
       "VALIDATION_FAILURE": 2
     },
-    "datasets_without_tracking_count": 29,
+    "datasets_without_tracking_count": 30,
     "pipelines_tracked": 4
   }
 }

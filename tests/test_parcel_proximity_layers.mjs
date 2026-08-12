@@ -93,6 +93,12 @@ async function loadLayersModule() {
   ok('ca-middle-mile-corridor is not marked unavailable', !midMileLayer.unavailable);
   ok('ca-middle-mile-corridor states its regional scope', midMileLayer.measures.includes('REGIONAL COVERAGE ONLY'));
   ok('ca-middle-mile-corridor states it is not lit fiber', midMileLayer.measures.includes('not confirmed'));
+  ok('tx-fiberlight-network is a real registered layer, not pending', ids.includes('tx-fiberlight-network'));
+  const txFiberLayer = P.getLayer('tx-fiberlight-network');
+  ok('tx-fiberlight-network has a provider function', typeof txFiberLayer.provider === 'function');
+  ok('tx-fiberlight-network is not marked unavailable', !txFiberLayer.unavailable);
+  ok('tx-fiberlight-network states its regional (TX-only) scope', txFiberLayer.measures.includes('TEXAS COVERAGE ONLY'));
+  ok('tx-fiberlight-network states it is one carrier, not all TX fiber', txFiberLayer.measures.includes("ONE CARRIER'S network"));
 }
 
 // ── Interstates: live query construction and RTTYP filtering ──────────────
@@ -154,6 +160,36 @@ async function loadLayersModule() {
   ok('query requests geojson output', capturedUrl && capturedUrl.includes('f=geojson'));
   ok('the corridor feature is found', r.nearest !== null);
   t('the feature name resolves from ROUTE', r.nearest.name, 'SR-91');
+}
+
+// ── TX Fiberlight network: live query construction ─────────────────────────
+{
+  let capturedUrl = null;
+  global.fetch = async (url) => {
+    capturedUrl = String(url);
+    return {
+      ok: true, status: 200,
+      json: async () => ({
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          properties: { CABLE_NAME: 'Ring 1 Segment 3', USED_FOR: 'BACKBONE', INVENTORY_: 'Complete', PLACEMENTT: 'Underground', FIBERCOUNT: 432, State: 'TX', Market: 'HOU' },
+          geometry: { type: 'LineString', coordinates: [[-95.45, 29.68], [-95.30, 29.80]] },
+        }],
+      }),
+    };
+  };
+  await loadLayersModule();
+
+  const square = { type: 'Polygon', coordinates: [[[-95.44, 29.70], [-95.40, 29.70], [-95.40, 29.74], [-95.44, 29.74], [-95.44, 29.70]]] };
+  const res = await P.analyze(square, { layers: ['tx-fiberlight-network'] });
+  const r = res.results[0];
+
+  ok('query hits the real TxDOT Fiberlight_Network FeatureServer layer 0 endpoint',
+    capturedUrl && capturedUrl.startsWith('https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/Fiberlight_Network/FeatureServer/0/query'));
+  ok('query requests geojson output', capturedUrl && capturedUrl.includes('f=geojson'));
+  ok('the fiber segment feature is found', r.nearest !== null);
+  t('the feature name resolves from CABLE_NAME', r.nearest.name, 'Ring 1 Segment 3');
 }
 
 // ── Substation data flows through and the coverage caveat is present ──────
