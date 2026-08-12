@@ -93,6 +93,24 @@ window.PARCEL_REGISTRY = (function () {
      * SHAPE_Length. This is a boundary-only layer — no owner/address/zoning/
      * assessed-value fields exist in it at all; those fields below are kept
      * as harmless best-guesses (they just won't populate) rather than removed.
+     *
+     * 2026-08-12 CAMA/enrichment investigation (live, GitHub Actions dispatch;
+     * see Prince William and Fairfax below for the same round on their
+     * services): browsed logis.loudoun.gov's full ArcGIS REST services
+     * directory (11 folders) and probed every layer/table under
+     * COL/LandRecords, COL/LandRecordData, and COL/LMIS_ParcelsPlatfile that
+     * carries a PA_MCPI-shaped join field. Several DID verify a 100% join
+     * match (COL/LandRecords layers 4/5/9, COL/LandRecordData layer 4) — but
+     * every one of them is plat/subdivision boundary data the base layer
+     * already publishes (PA_SUBD_NAME, PA_PLAT_NUM/LOT, PA_LEGAL_ACRE/SQFT),
+     * not CAMA/assessment data. None added a single new canonical field. The
+     * county's Address Points services (COL/LandRecords "Address Points" /
+     * "Master Address List", COL/LandRecordData "Address Points ResCom" /
+     * "Address Points Stacked") came closest to something new but only
+     * matched 64% (16 of 25 sampled parcels) on PA_MCPI — below the 80%
+     * threshold this pipeline requires, so not used. No queryable
+     * owner/zoning/assessed-value/sale table with a working attribute join
+     * key was found. The gap stays open, honestly, rather than being forced.
      * ─────────────────────────────────────────────────────────────────── */
     '51107': {
       id:          'va-loudoun-county',
@@ -162,9 +180,21 @@ window.PARCEL_REGISTRY = (function () {
      * guessed for the `pin` mapping below, plus ST_NO/ST_NAME/ST_TYPE address
      * components, GPIN_SHORT, TAXMAPNUMBER, and city/zip/deed book/deed page/
      * record-date attributes (exact field names for those last few not
-     * confirmed). A separate "Parcel CAMA Public" layer under
-     * gisweb.pwcva.gov/arcgis/rest/services/GTS/Cadastral/MapServer likely
-     * carries assessment data this connector doesn't currently join against.
+     * confirmed).
+     *
+     * 2026-08-12 enrichment (live-verified, GitHub Actions dispatch): the
+     * "Parcel CAMA Public" layer named above IS real and IS joinable — its
+     * base MapServer (gisweb.pwcva.gov/arcgis/rest/services/GTS/Cadastral/
+     * MapServer) has 6 layers; layer 5 "Parcel CAMA Public" and layer 0
+     * "Premise Address" both matched 25 of 25 sampled GPIN values exactly
+     * (100%, no normalization needed). Layer 5 adds a real UseDescription
+     * column this base entry lacks (land_use_desc). Layer 0's "Address"
+     * field was sample-checked (not guessed from the name): real values are
+     * genuine single combined strings ("16020 QUARTERS LN", "3434 MOUNTAIN
+     * RD", …), so it is safe to map directly. Neither layer carries
+     * zoning/assessed-value/sale data — that gap remains open. See
+     * js/parcel/enrichment.js / docs/PARCEL_MULTI_SOURCE_ARCHITECTURE.md for
+     * how the `enrichment` block below is executed.
      * ─────────────────────────────────────────────────────────────────── */
     '51153': {
       id:          'va-prince-william-county',
@@ -201,17 +231,56 @@ window.PARCEL_REGISTRY = (function () {
         county_fips:         '__computed__',
       },
 
-      /* Absent from this service. `address` is listed because the layer holds
-         only street COMPONENTS (ST_NO / ST_NAME / ST_TYPE) with no assembled
-         address field, and CAMADATA.ADDRESS2/ADDRESS3 are owner mailing
-         lines, not the site address — mapping either one would put the wrong
-         value under an "Address" label. Assembling components is a connector
-         change, not a registry one. */
+      /* `address` and `land_use_desc` were absent from THIS service but are
+         now filled by the enrichment sources below (both live-verified
+         2026-08-12, 100% GPIN join match) — removed from this list since
+         they are genuinely provided, just via a joined secondary source
+         rather than this base layer. The rest remain real gaps: neither
+         joined table carries zoning/assessed-value/sale data either. */
       notProvidedBySource: [
-        'address', 'zoning_code', 'land_use_desc', 'assessed_value',
+        'zoning_code', 'assessed_value',
         'land_value', 'improvement_value', 'tax_year', 'last_sale_date',
         'last_sale_price',
       ],
+
+      /* Secondary sources joined on GPIN (the same identifier as the `pin`
+         canonical field above), both on the county's own GTS/Cadastral
+         MapServer. See js/parcel/enrichment.js for how this executes and
+         docs/PARCEL_MULTI_SOURCE_ARCHITECTURE.md section 3.2 for the
+         contract. Live-verified 2026-08-12: 25/25 sampled GPIN values
+         matched exactly on both layers, no normalization required. */
+      enrichment: {
+        sources: [
+          {
+            id:         'pwc-parcel-cama-public',
+            label:      'Prince William Parcel CAMA Public',
+            type:       'arcgis-table',
+            url:        'https://gisweb.pwcva.gov/arcgis/rest/services/GTS/Cadastral/MapServer/5',
+            baseField:  'pin',
+            joinField:  'GPIN',
+            fieldMap: {
+              land_use_desc: 'UseDescription',
+            },
+            confidence: 'official-joined',
+            priority:   10,
+            cacheTtlMs: 1800000,
+          },
+          {
+            id:         'pwc-premise-address',
+            label:      'Prince William Premise Address',
+            type:       'arcgis-table',
+            url:        'https://gisweb.pwcva.gov/arcgis/rest/services/GTS/Cadastral/MapServer/0',
+            baseField:  'pin',
+            joinField:  'GPIN',
+            fieldMap: {
+              address: 'Address',
+            },
+            confidence: 'official-joined',
+            priority:   20,
+            cacheTtlMs: 1800000,
+          },
+        ],
+      },
 
       outFields: null,
 
@@ -220,7 +289,7 @@ window.PARCEL_REGISTRY = (function () {
         url:     'https://www.pwcgov.org/government/dept/it/Pages/GIS.aspx',
         portal:  'https://gis.pwcgov.org/',
         license: 'Public government data. Verify terms before commercial redistribution.',
-        note:    'Manassas/Gainesville corridor — second-largest VA data center market. Parcels joined to CAMA data: carries owner and land-use code, but no zoning or assessed values.',
+        note:    'Manassas/Gainesville corridor — second-largest VA data center market. Parcels joined to CAMA data: carries owner and land-use code, but no zoning or assessed values. Address and land-use description enriched via a live-verified GPIN join to the county\'s Parcel CAMA Public / Premise Address tables (2026-08-12).',
       },
     },
 
@@ -239,10 +308,30 @@ window.PARCEL_REGISTRY = (function () {
      *   https://www.fairfaxcounty.gov/mercator/rest/services/OpenData/OpenData_A9/FeatureServer/0
      * Confirmed via search: fields OBJECTID and PIN (both already correctly
      * guessed below), plus PARCEL_TYPE, SRC_CONTROL, PARCEL_KEY. Boundary-only
-     * like Loudoun — no owner/address/zoning/value fields in this layer; those
-     * live in the separate Tax Administration services on the ioennV6PpG5Xodq0
-     * org (OpenData_A5 = Sales, OpenData_A6 = Assessed Values) that this
-     * connector doesn't join against.
+     * like Loudoun — no owner/address/zoning/value fields in this layer.
+     *
+     * 2026-08-12 CAMA/enrichment investigation (live, GitHub Actions
+     * dispatch): the "OpenData_A5 = Sales, OpenData_A6 = Assessed Values"
+     * guess above turned out WRONG on live data — those two layer numbers on
+     * the ioennV6PpG5Xodq0 org are actually "Common Areas (associated w/
+     * condo parcels)" and "Questionable Split Parcels", unrelated tables.
+     * Enumerated the org's real ~280 services by name instead and found
+     * three genuine candidates:
+     *   - XB_All_Sales_T_ExportFeatureFeb9 (layer 18) — a real Sales/CAMA
+     *     extract with PRICE/SALEDT/SALETYPE/BOOK/PAGE/YRBLT/LUC_DESC/
+     *     GRADE_DESC/CDU_DESC fields and a PARCEL_KEY join column (same name
+     *     as this entry's own parcel_id/pin source field) — but the join
+     *     only matched 4% of 25 sampled parcels (1 of 25). A real table,
+     *     genuinely not joinable on the id this session could verify.
+     *   - Zoning (layer 0) — carries the exact ZONECODE field this entry
+     *     needs, but the layer is spatial-only (no PARCEL_KEY/PIN-shaped
+     *     attribute at all) — would need a geometric join, which this
+     *     attribute-join engine (js/parcel/enrichment.js) does not support.
+     *   - Zoning_Property_File / Zoning_Property_File_WM — real tables with
+     *     a Taxmap_ID column, but 0% match against this entry's PARCEL_KEY
+     *     sample on all 3 normalization variants.
+     * None cleared the 80% verified-match threshold this pipeline requires,
+     * so none are wired in. The gap stays open rather than forced.
      * ─────────────────────────────────────────────────────────────────── */
     '51059': {
       id:          'va-fairfax-county',
