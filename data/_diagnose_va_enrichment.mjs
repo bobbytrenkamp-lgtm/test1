@@ -96,8 +96,24 @@ async function evalManualCandidate(fips, baseJoinSourceField, candidateUrl, labe
 
 async function browseLoudounServices() {
   console.log(`\n\n########## Loudoun: browsing ArcGIS REST services directory for a CAMA candidate ##########`);
-  await fetchJson('https://logis.loudoun.gov/gis/rest/services?f=json', 'root services directory');
-  await fetchJson('https://logis.loudoun.gov/gis/rest/services/COL?f=json', 'COL folder');
+  const root = await fetchJson('https://logis.loudoun.gov/gis/rest/services?f=json', 'root services directory');
+  if (root) console.log(`  root: folders=${JSON.stringify(root.folders)} services=${JSON.stringify(root.services)}`);
+  const col = await fetchJson('https://logis.loudoun.gov/gis/rest/services/COL?f=json', 'COL folder');
+  if (col) console.log(`  COL: folders=${JSON.stringify(col.folders)} services=${JSON.stringify((col.services || []).map(s => s.name))}`);
+}
+
+async function probeFairfaxZoning() {
+  console.log(`\n\n########## Fairfax: Zoning-named services (missed by the sale/assess/tax/cama regex last round) ##########`);
+  for (const name of ['Zoning', 'Zoning_Property_File', 'Zoning_Property_File_WM']) {
+    const root = `https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/${name}/FeatureServer`;
+    const info = await fetchJson(`${root}?f=json`, `Fairfax ${name} -- service info`);
+    if (!info) continue;
+    const layers = info.layers || [];
+    console.log(`  ${name} layers: ${layers.map(l => `${l.id}:${l.name}`).join(', ')}`);
+    for (const l of layers) {
+      await evalManualCandidate('51059', 'PARCEL_KEY', `${root}/${l.id}`, `${name} layer ${l.id} (${l.name})`);
+    }
+  }
 }
 
 async function browseFairfaxOrgServices() {
@@ -116,38 +132,33 @@ async function browseFairfaxOrgServices() {
   return [];
 }
 
+async function sampleField(url, field, count = 3) {
+  const data = await fetchJson(
+    `${url}/query?where=1%3D1&outFields=${encodeURIComponent(field)}&returnGeometry=false&resultRecordCount=${count}&f=json`,
+    `sample ${field} values from ${url}`);
+  if (data && Array.isArray(data.features)) {
+    console.log(`  sample ${field} values: ${JSON.stringify(data.features.map(f => f.attributes[field]))}`);
+  }
+}
+
 async function main() {
-  await passOne('51107'); // Loudoun
-  await passOne('51153'); // Prince William
-  await passOne('51059'); // Fairfax
+  // Round 3: fill the two gaps left by round 2 --
+  //  (a) Loudoun's services/folders JSON body was fetched but never printed
+  //  (b) Fairfax's real "Zoning" service exists in the org's service list
+  //      but the sale/assess/tax/cama name filter didn't include "zoning"
+  await probeFairfaxZoning();
 
-  const fairfaxServices = await browseFairfaxOrgServices();
-  const salesOrAssessedLike = fairfaxServices.filter(s =>
-    /sale|assess|value|tax|cama|real.?estate/i.test(s.name));
-  console.log(`  name-filtered candidates: ${salesOrAssessedLike.map(s => s.name).join(', ') || '(none)'}`);
-  for (const s of salesOrAssessedLike.slice(0, 6)) {
-    const root = `https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/${s.name}/${s.type}`;
-    const info = await fetchJson(`${root}?f=json`, `Fairfax candidate service ${s.name}`);
-    const layers = (info && (info.layers || (info.type ? [{ id: 0, name: info.name }] : []))) || [];
-    for (const l of (Array.isArray(layers) ? layers : [])) {
-      await evalManualCandidate('51059', 'PARCEL_KEY',
-        `${root}/${l.id != null ? l.id : 0}`,
-        `${s.name} layer ${l.id != null ? l.id : 0} (${l.name || ''})`);
-    }
-  }
-
-  // Prince William's named "Parcel CAMA Public" service root (registry.js:165-167)
-  const pwcCamaSvc = await fetchJson(
-    'https://gisweb.pwcva.gov/arcgis/rest/services/GTS/Cadastral/MapServer?f=json',
-    '51153 GTS/Cadastral MapServer -- layer listing');
-  if (pwcCamaSvc && Array.isArray(pwcCamaSvc.layers)) {
-    console.log(`  layers: ${pwcCamaSvc.layers.map(l => `${l.id}:${l.name}`).join(', ')}`);
-    for (const l of pwcCamaSvc.layers) {
-      await evalManualCandidate('51153', 'GISPROD.VECTOR.Parcels.GPIN',
-        `https://gisweb.pwcva.gov/arcgis/rest/services/GTS/Cadastral/MapServer/${l.id}`,
-        `GTS/Cadastral layer ${l.id} (${l.name})`);
-    }
-  }
+  // PWC Premise Address (layer 0) verified 100% on GPIN but proposed zero
+  // canonical fields, because 'address' is deliberately excluded from
+  // discover_enrichment.mjs's ENRICHMENT_TARGET_FIELDS (Tier-2 heuristics
+  // are disabled for combined-address fields; only a human-verified exact
+  // synonym may resolve it). It DOES carry a plain "Address" field --
+  // sample real values to see whether it is a genuine single combined
+  // string (safe to hand-map) or something else (do not guess from the
+  // field name alone).
+  await sampleField(
+    'https://gisweb.pwcva.gov/arcgis/rest/services/GTS/Cadastral/MapServer/0',
+    'Address', 5);
 
   await browseLoudounServices();
 }
