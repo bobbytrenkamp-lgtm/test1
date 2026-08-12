@@ -8,7 +8,9 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.83642,
-    "lat": 43.53768
+    "lat": 43.53768,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-201257",
@@ -19,7 +21,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.17655,
-    "lat": 43.41721
+    "lat": 43.41721,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201258",
@@ -30,7 +36,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.37987,
-    "lat": 42.84453
+    "lat": 42.84453,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201260",
@@ -41,7 +51,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.71605,
-    "lat": 42.54919
+    "lat": 42.54919,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201261",
@@ -52,7 +66,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.76067,
-    "lat": 42.28999
+    "lat": 42.28999,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201262",
@@ -63,7 +81,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.16835,
-    "lat": 44.50694
+    "lat": 44.50694,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201263",
@@ -74,7 +96,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.17075,
-    "lat": 44.50805
+    "lat": 44.50805,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201267",
@@ -85,7 +111,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.1298,
-    "lat": 44.51276
+    "lat": 44.51276,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201269",
@@ -96,7 +126,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -106.0468,
-    "lat": 41.67104
+    "lat": 41.67104,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201284",
@@ -107,7 +141,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.30846,
-    "lat": 42.84939
+    "lat": 42.84939,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201285",
@@ -118,7 +156,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.31036,
-    "lat": 42.85077
+    "lat": 42.85077,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201324",
@@ -129,7 +171,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.8938,
-    "lat": 42.90523
+    "lat": 42.90523,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201359",
@@ -140,7 +186,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.37175,
-    "lat": 44.28579
+    "lat": 44.28579,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201360",
@@ -151,7 +201,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38544,
-    "lat": 44.29111
+    "lat": 44.29111,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201361",
@@ -162,7 +216,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.77902,
-    "lat": 42.83737
+    "lat": 42.83737,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201362",
@@ -173,7 +231,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.60071,
-    "lat": 41.75864
+    "lat": 41.75864,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201366",
@@ -184,7 +246,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.79034,
-    "lat": 41.73492
+    "lat": 41.73492,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-201373",
@@ -195,7 +259,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.83578,
-    "lat": 43.02171
+    "lat": 43.02171,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201374",
@@ -206,7 +274,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.16177,
-    "lat": 42.04227
+    "lat": 42.04227,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201460",
@@ -217,7 +289,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38773,
-    "lat": 44.28749
+    "lat": 44.28749,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201461",
@@ -228,7 +304,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38111,
-    "lat": 44.28532
+    "lat": 44.28532,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201471",
@@ -239,7 +319,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.88845,
-    "lat": 42.11042
+    "lat": 42.11042,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201472",
@@ -250,7 +334,9 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.88724,
-    "lat": 42.10753
+    "lat": 42.10753,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-201473",
@@ -261,7 +347,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.97841,
-    "lat": 44.69374
+    "lat": 44.69374,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201474",
@@ -272,7 +362,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.77992,
-    "lat": 43.77255
+    "lat": 43.77255,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201475",
@@ -283,7 +377,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.89135,
-    "lat": 44.16772
+    "lat": 44.16772,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201476",
@@ -294,7 +392,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.46473,
-    "lat": 44.39206
+    "lat": 44.39206,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201477",
@@ -305,7 +407,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.78642,
-    "lat": 43.21897
+    "lat": 43.21897,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201478",
@@ -316,7 +422,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.9545,
-    "lat": 42.46749
+    "lat": 42.46749,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201479",
@@ -327,7 +437,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.88134,
-    "lat": 42.1742
+    "lat": 42.1742,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201480",
@@ -338,7 +452,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.09075,
-    "lat": 41.8812
+    "lat": 41.8812,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201481",
@@ -349,7 +467,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.41095,
-    "lat": 43.97189
+    "lat": 43.97189,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201482",
@@ -360,7 +482,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -107.11109,
-    "lat": 41.7909
+    "lat": 41.7909,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201483",
@@ -371,7 +497,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -107.1112,
-    "lat": 41.793
+    "lat": 41.793,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201485",
@@ -382,7 +512,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.99546,
-    "lat": 41.14004
+    "lat": 41.14004,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201486",
@@ -393,7 +527,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -106.00776,
-    "lat": 43.01321
+    "lat": 43.01321,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201487",
@@ -404,7 +542,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.77775,
-    "lat": 42.94652
+    "lat": 42.94652,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201830",
@@ -415,7 +557,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.39427,
-    "lat": 44.56227
+    "lat": 44.56227,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201859",
@@ -426,7 +572,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -111.01185,
-    "lat": 42.98224
+    "lat": 42.98224,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201879",
@@ -437,7 +587,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.96637,
-    "lat": 43.02307
+    "lat": 43.02307,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201880",
@@ -448,7 +602,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.49464,
-    "lat": 42.88581
+    "lat": 42.88581,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201881",
@@ -459,7 +617,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.33553,
-    "lat": 42.96217
+    "lat": 42.96217,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201882",
@@ -470,7 +632,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.60507,
-    "lat": 43.27841
+    "lat": 43.27841,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201883",
@@ -481,7 +647,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.60418,
-    "lat": 43.28053
+    "lat": 43.28053,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201884",
@@ -492,7 +662,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.4118,
-    "lat": 43.25569
+    "lat": 43.25569,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201885",
@@ -503,7 +677,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.62866,
-    "lat": 43.29064
+    "lat": 43.29064,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201886",
@@ -514,7 +692,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.18742,
-    "lat": 43.08694
+    "lat": 43.08694,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-201887",
@@ -525,7 +707,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.62447,
-    "lat": 43.29352
+    "lat": 43.29352,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202152",
@@ -536,7 +722,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.83202,
-    "lat": 41.31193
+    "lat": 41.31193,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202153",
@@ -547,7 +737,9 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.39459,
-    "lat": 41.96005
+    "lat": 41.96005,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202158",
@@ -558,7 +750,9 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.64903,
-    "lat": 41.14525
+    "lat": 41.14525,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202168",
@@ -569,7 +763,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.76068,
-    "lat": 41.62957
+    "lat": 41.62957,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202169",
@@ -580,7 +776,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -107.93066,
-    "lat": 42.20489
+    "lat": 42.20489,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202170",
@@ -591,7 +789,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.20778,
-    "lat": 41.59899
+    "lat": 41.59899,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202286",
@@ -602,7 +804,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.77714,
-    "lat": 43.47194
+    "lat": 43.47194,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202320",
@@ -613,7 +819,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.24311,
-    "lat": 41.63072
+    "lat": 41.63072,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202321",
@@ -624,7 +832,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.49058,
-    "lat": 41.53385
+    "lat": 41.53385,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202324",
@@ -635,7 +847,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -107.54936,
-    "lat": 42.23875
+    "lat": 42.23875,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202326",
@@ -646,7 +860,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.76613,
-    "lat": 41.11809
+    "lat": 41.11809,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202328",
@@ -657,7 +875,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.79812,
-    "lat": 41.18866
+    "lat": 41.18866,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202329",
@@ -668,7 +890,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.88531,
-    "lat": 41.13604
+    "lat": 41.13604,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202330",
@@ -679,7 +905,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.9117,
-    "lat": 41.12885
+    "lat": 41.12885,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202331",
@@ -690,7 +920,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.91717,
-    "lat": 41.09617
+    "lat": 41.09617,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202333",
@@ -701,7 +935,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.75286,
-    "lat": 41.55008
+    "lat": 41.55008,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202334",
@@ -712,7 +948,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.52042,
-    "lat": 41.59055
+    "lat": 41.59055,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202336",
@@ -723,7 +963,9 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.71384,
-    "lat": 41.16838
+    "lat": 41.16838,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202345",
@@ -734,7 +976,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.2728,
-    "lat": 41.53682
+    "lat": 41.53682,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202350",
@@ -745,7 +989,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.31807,
-    "lat": 43.96651
+    "lat": 43.96651,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202351",
@@ -756,7 +1004,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.36033,
-    "lat": 43.7414
+    "lat": 43.7414,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202352",
@@ -767,7 +1019,9 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.36555,
-    "lat": 43.56238
+    "lat": 43.56238,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202353",
@@ -778,7 +1032,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.35677,
-    "lat": 43.53409
+    "lat": 43.53409,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202367",
@@ -789,7 +1047,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.49987,
-    "lat": 41.64839
+    "lat": 41.64839,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202368",
@@ -800,7 +1062,11 @@
     "county_fips": "56043",
     "state": "WY",
     "lon": -107.97742,
-    "lat": 44.02495
+    "lat": 44.02495,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202375",
@@ -811,7 +1077,9 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.77946,
-    "lat": 42.86165
+    "lat": 42.86165,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202376",
@@ -822,7 +1090,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.83466,
-    "lat": 42.2614
+    "lat": 42.2614,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202377",
@@ -833,7 +1105,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.42017,
-    "lat": 42.65693
+    "lat": 42.65693,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202378",
@@ -844,7 +1120,9 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.91851,
-    "lat": 42.62431
+    "lat": 42.62431,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202379",
@@ -855,7 +1133,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.35968,
-    "lat": 42.87219
+    "lat": 42.87219,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202380",
@@ -866,7 +1148,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -107.87526,
-    "lat": 42.20602
+    "lat": 42.20602,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202381",
@@ -877,7 +1161,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.41028,
-    "lat": 42.85738
+    "lat": 42.85738,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202382",
@@ -888,7 +1176,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.82365,
-    "lat": 42.49661
+    "lat": 42.49661,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202396",
@@ -899,7 +1191,9 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.32884,
-    "lat": 41.82367
+    "lat": 41.82367,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202397",
@@ -910,7 +1204,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -110.03303,
-    "lat": 41.69461
+    "lat": 41.69461,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202398",
@@ -921,7 +1217,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.70436,
-    "lat": 41.66673
+    "lat": 41.66673,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202399",
@@ -932,7 +1230,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.90403,
-    "lat": 41.68401
+    "lat": 41.68401,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202400",
@@ -943,7 +1245,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.34082,
-    "lat": 41.77881
+    "lat": 41.77881,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202401",
@@ -954,7 +1260,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.71334,
-    "lat": 41.66706
+    "lat": 41.66706,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202402",
@@ -965,7 +1275,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.32839,
-    "lat": 41.79375
+    "lat": 41.79375,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202414",
@@ -976,7 +1290,9 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.98652,
-    "lat": 41.29966
+    "lat": 41.29966,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202437",
@@ -987,7 +1303,9 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.61579,
-    "lat": 43.06959
+    "lat": 43.06959,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202438",
@@ -998,7 +1316,9 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.33001,
-    "lat": 43.46222
+    "lat": 43.46222,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202439",
@@ -1009,7 +1329,9 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.40429,
-    "lat": 43.84783
+    "lat": 43.84783,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202443",
@@ -1020,7 +1342,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.61995,
-    "lat": 43.31077
+    "lat": 43.31077,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202444",
@@ -1031,7 +1357,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.22602,
-    "lat": 43.12542
+    "lat": 43.12542,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202445",
@@ -1042,7 +1372,9 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.41117,
-    "lat": 43.01828
+    "lat": 43.01828,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202448",
@@ -1053,7 +1385,9 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.94922,
-    "lat": 42.88224
+    "lat": 42.88224,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202449",
@@ -1064,7 +1398,9 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.32265,
-    "lat": 43.38978
+    "lat": 43.38978,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202450",
@@ -1075,7 +1411,9 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.33187,
-    "lat": 43.45003
+    "lat": 43.45003,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202451",
@@ -1086,7 +1424,9 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.55859,
-    "lat": 43.70358
+    "lat": 43.70358,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202452",
@@ -1097,7 +1437,9 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.65322,
-    "lat": 44.35461
+    "lat": 44.35461,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202453",
@@ -1108,7 +1450,9 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.89659,
-    "lat": 44.3199
+    "lat": 44.3199,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202454",
@@ -1119,7 +1463,9 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.68854,
-    "lat": 42.85374
+    "lat": 42.85374,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202455",
@@ -1130,7 +1476,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.75999,
-    "lat": 42.53203
+    "lat": 42.53203,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202456",
@@ -1141,7 +1491,9 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.94183,
-    "lat": 44.82786
+    "lat": 44.82786,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202458",
@@ -1152,7 +1504,9 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.19757,
-    "lat": 43.72744
+    "lat": 43.72744,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202460",
@@ -1163,7 +1517,9 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.48641,
-    "lat": 43.91625
+    "lat": 43.91625,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202461",
@@ -1174,7 +1530,9 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.46535,
-    "lat": 43.79336
+    "lat": 43.79336,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202465",
@@ -1185,7 +1543,9 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.91906,
-    "lat": 44.40934
+    "lat": 44.40934,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202466",
@@ -1196,7 +1556,9 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.5842,
-    "lat": 44.79692
+    "lat": 44.79692,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202467",
@@ -1207,7 +1569,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.52426,
-    "lat": 41.61606
+    "lat": 41.61606,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202468",
@@ -1218,7 +1582,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.52335,
-    "lat": 41.57534
+    "lat": 41.57534,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202469",
@@ -1229,7 +1597,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.40585,
-    "lat": 41.61669
+    "lat": 41.61669,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202470",
@@ -1240,7 +1610,9 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -107.82464,
-    "lat": 41.65005
+    "lat": 41.65005,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202471",
@@ -1251,7 +1623,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -107.74067,
-    "lat": 41.66594
+    "lat": 41.66594,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202473",
@@ -1262,7 +1636,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -107.51077,
-    "lat": 42.2289
+    "lat": 42.2289,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202478",
@@ -1273,7 +1651,9 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.67319,
-    "lat": 44.95783
+    "lat": 44.95783,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202479",
@@ -1284,7 +1664,9 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.19077,
-    "lat": 41.65269
+    "lat": 41.65269,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202480",
@@ -1295,7 +1677,9 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.55189,
-    "lat": 41.85723
+    "lat": 41.85723,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202481",
@@ -1306,7 +1690,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.20308,
-    "lat": 41.60661
+    "lat": 41.60661,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202482",
@@ -1317,7 +1705,9 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.22986,
-    "lat": 42.34889
+    "lat": 42.34889,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202483",
@@ -1328,7 +1718,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.22989,
-    "lat": 42.17993
+    "lat": 42.17993,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202490",
@@ -1339,7 +1733,9 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.84628,
-    "lat": 42.23155
+    "lat": 42.23155,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202491",
@@ -1350,7 +1746,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.849,
-    "lat": 42.23285
+    "lat": 42.23285,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202495",
@@ -1361,7 +1761,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.41566,
-    "lat": 43.98765
+    "lat": 43.98765,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202496",
@@ -1372,7 +1776,9 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.20412,
-    "lat": 44.3073
+    "lat": 44.3073,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202497",
@@ -1383,7 +1789,9 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.96573,
-    "lat": 44.27572
+    "lat": 44.27572,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202498",
@@ -1394,7 +1802,9 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.86114,
-    "lat": 44.97189
+    "lat": 44.97189,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202500",
@@ -1405,7 +1815,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -107.00255,
-    "lat": 44.73469
+    "lat": 44.73469,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202524",
@@ -1416,7 +1830,9 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.3471,
-    "lat": 41.06438
+    "lat": 41.06438,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202525",
@@ -1427,7 +1843,9 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.48158,
-    "lat": 42.75126
+    "lat": 42.75126,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-202526",
@@ -1438,7 +1856,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.34834,
-    "lat": 41.43838
+    "lat": 41.43838,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202531",
@@ -1449,7 +1871,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -110.04557,
-    "lat": 41.87728
+    "lat": 41.87728,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202532",
@@ -1460,7 +1886,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.98187,
-    "lat": 41.56546
+    "lat": 41.56546,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202534",
@@ -1471,7 +1901,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.06486,
-    "lat": 42.027
+    "lat": 42.027,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202535",
@@ -1482,7 +1916,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.09445,
-    "lat": 41.88345
+    "lat": 41.88345,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202536",
@@ -1493,7 +1931,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.95671,
-    "lat": 41.541
+    "lat": 41.541,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202537",
@@ -1504,7 +1946,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.68515,
-    "lat": 41.00287
+    "lat": 41.00287,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202539",
@@ -1515,7 +1961,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.29407,
-    "lat": 41.33125
+    "lat": 41.33125,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202628",
@@ -1526,7 +1976,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.77095,
-    "lat": 43.25157
+    "lat": 43.25157,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202629",
@@ -1537,7 +1991,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -111.024,
-    "lat": 43.16053
+    "lat": 43.16053,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202676",
@@ -1548,7 +2006,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.55963,
-    "lat": 41.33409
+    "lat": 41.33409,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202729",
@@ -1559,7 +2021,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.60924,
-    "lat": 41.75959
+    "lat": 41.75959,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202730",
@@ -1570,7 +2036,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.0938,
-    "lat": 41.14248
+    "lat": 41.14248,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202747",
@@ -1581,7 +2051,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.91218,
-    "lat": 41.57046
+    "lat": 41.57046,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202748",
@@ -1592,7 +2066,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.88022,
-    "lat": 41.45446
+    "lat": 41.45446,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-202897",
@@ -1603,7 +2081,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.00536,
-    "lat": 44.4024
+    "lat": 44.4024,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203003",
@@ -1614,7 +2096,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.33809,
-    "lat": 44.79214
+    "lat": 44.79214,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203004",
@@ -1625,7 +2111,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.07097,
-    "lat": 44.47307
+    "lat": 44.47307,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203005",
@@ -1636,7 +2126,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.10235,
-    "lat": 44.41605
+    "lat": 44.41605,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203006",
@@ -1647,7 +2141,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.11203,
-    "lat": 44.44431
+    "lat": 44.44431,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203007",
@@ -1658,7 +2156,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.08247,
-    "lat": 44.27588
+    "lat": 44.27588,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203008",
@@ -1669,7 +2171,11 @@
     "county_fips": "56043",
     "state": "WY",
     "lon": -107.96171,
-    "lat": 44.02209
+    "lat": 44.02209,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203013",
@@ -1680,7 +2186,11 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.74434,
-    "lat": 44.07291
+    "lat": 44.07291,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203015",
@@ -1691,7 +2201,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.85984,
-    "lat": 44.15309
+    "lat": 44.15309,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203017",
@@ -1702,7 +2216,11 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.78523,
-    "lat": 44.06417
+    "lat": 44.06417,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203075",
@@ -1713,7 +2231,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.04527,
-    "lat": 44.3857
+    "lat": 44.3857,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203076",
@@ -1724,7 +2246,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.03567,
-    "lat": 44.37154
+    "lat": 44.37154,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203113",
@@ -1735,7 +2261,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.64657,
-    "lat": 44.78478
+    "lat": 44.78478,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203114",
@@ -1746,7 +2276,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.06874,
-    "lat": 44.54289
+    "lat": 44.54289,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203115",
@@ -1757,7 +2291,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.89134,
-    "lat": 44.72482
+    "lat": 44.72482,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203118",
@@ -1768,7 +2306,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.74605,
-    "lat": 44.75987
+    "lat": 44.75987,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203121",
@@ -1779,7 +2321,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -110.705,
-    "lat": 44.97868
+    "lat": 44.97868,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203122",
@@ -1790,7 +2336,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.54511,
-    "lat": 43.25792
+    "lat": 43.25792,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203123",
@@ -1801,7 +2351,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.47904,
-    "lat": 43.00529
+    "lat": 43.00529,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203126",
@@ -1812,7 +2366,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.14724,
-    "lat": 43.3875
+    "lat": 43.3875,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203136",
@@ -1823,7 +2381,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.82907,
-    "lat": 42.09889
+    "lat": 42.09889,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203647",
@@ -1834,7 +2396,9 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.76255,
-    "lat": 42.5249
+    "lat": 42.5249,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-203649",
@@ -1845,7 +2409,9 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.22913,
-    "lat": 43.65017
+    "lat": 43.65017,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-203655",
@@ -1856,7 +2422,9 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.22617,
-    "lat": 43.64906
+    "lat": 43.64906,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-203659",
@@ -1867,7 +2435,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.47821,
-    "lat": 41.53333
+    "lat": 41.53333,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203660",
@@ -1878,7 +2450,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.22429,
-    "lat": 42.24902
+    "lat": 42.24902,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203662",
@@ -1889,7 +2465,11 @@
     "county_fips": "56035",
     "state": "WY",
     "lon": -110.12189,
-    "lat": 42.48318
+    "lat": 42.48318,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203663",
@@ -1900,7 +2480,11 @@
     "county_fips": "56035",
     "state": "WY",
     "lon": -110.11428,
-    "lat": 42.48851
+    "lat": 42.48851,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203665",
@@ -1911,7 +2495,9 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.39498,
-    "lat": 41.96119
+    "lat": 41.96119,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-203666",
@@ -1922,7 +2508,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.42004,
-    "lat": 42.65698
+    "lat": 42.65698,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-203670",
@@ -1933,7 +2523,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.43564,
-    "lat": 44.19268
+    "lat": 44.19268,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203671",
@@ -1944,7 +2538,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.65792,
-    "lat": 44.10833
+    "lat": 44.10833,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-203672",
@@ -1955,7 +2553,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.6369,
-    "lat": 44.09423
+    "lat": 44.09423,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-203673",
@@ -1966,7 +2568,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.62828,
-    "lat": 44.10049
+    "lat": 44.10049,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204105",
@@ -1977,7 +2583,11 @@
     "county_fips": "56035",
     "state": "WY",
     "lon": -109.70425,
-    "lat": 42.4207
+    "lat": 42.4207,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204106",
@@ -1988,7 +2598,11 @@
     "county_fips": "56035",
     "state": "WY",
     "lon": -110.11216,
-    "lat": 42.53586
+    "lat": 42.53586,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204107",
@@ -1999,7 +2613,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.22118,
-    "lat": 41.89901
+    "lat": 41.89901,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204108",
@@ -2010,7 +2628,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.22122,
-    "lat": 41.8976
+    "lat": 41.8976,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204109",
@@ -2021,7 +2643,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.7657,
-    "lat": 41.48429
+    "lat": 41.48429,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204110",
@@ -2032,7 +2658,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.23772,
-    "lat": 42.88117
+    "lat": 42.88117,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204111",
@@ -2043,7 +2673,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.6141,
-    "lat": 42.75135
+    "lat": 42.75135,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204112",
@@ -2054,7 +2688,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.77662,
-    "lat": 42.81695
+    "lat": 42.81695,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204113",
@@ -2065,7 +2703,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.77634,
-    "lat": 42.81678
+    "lat": 42.81678,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204114",
@@ -2076,7 +2718,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.79751,
-    "lat": 41.47499
+    "lat": 41.47499,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204115",
@@ -2087,7 +2733,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -107.87385,
-    "lat": 42.20608
+    "lat": 42.20608,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204116",
@@ -2098,7 +2748,9 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.41109,
-    "lat": 43.97045
+    "lat": 43.97045,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204117",
@@ -2109,7 +2761,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.37939,
-    "lat": 44.28486
+    "lat": 44.28486,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204118",
@@ -2120,7 +2776,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38874,
-    "lat": 44.28718
+    "lat": 44.28718,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204120",
@@ -2131,7 +2791,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38255,
-    "lat": 44.2857
+    "lat": 44.2857,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204122",
@@ -2142,7 +2806,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.37436,
-    "lat": 44.32991
+    "lat": 44.32991,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204126",
@@ -2153,7 +2821,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.96534,
-    "lat": 44.27902
+    "lat": 44.27902,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204201",
@@ -2164,7 +2836,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.93767,
-    "lat": 44.7774
+    "lat": 44.7774,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204207",
@@ -2175,7 +2851,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.74035,
-    "lat": 44.78973
+    "lat": 44.78973,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204208",
@@ -2186,7 +2866,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.74466,
-    "lat": 44.79002
+    "lat": 44.79002,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204209",
@@ -2197,7 +2881,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.06052,
-    "lat": 44.51243
+    "lat": 44.51243,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204210",
@@ -2208,7 +2896,11 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.26769,
-    "lat": 43.69333
+    "lat": 43.69333,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204211",
@@ -2219,7 +2911,11 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -107.8565,
-    "lat": 43.61029
+    "lat": 43.61029,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204212",
@@ -2230,7 +2926,11 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.24202,
-    "lat": 43.70449
+    "lat": 43.70449,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204213",
@@ -2241,7 +2941,11 @@
     "county_fips": "56043",
     "state": "WY",
     "lon": -108.1026,
-    "lat": 44.06542
+    "lat": 44.06542,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204215",
@@ -2252,7 +2956,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.36842,
-    "lat": 43.0267
+    "lat": 43.0267,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204216",
@@ -2263,7 +2971,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.33562,
-    "lat": 42.96298
+    "lat": 42.96298,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204217",
@@ -2274,7 +2986,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.71714,
-    "lat": 42.54845
+    "lat": 42.54845,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204218",
@@ -2285,7 +3001,9 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.79577,
-    "lat": 42.47654
+    "lat": 42.47654,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204219",
@@ -2296,7 +3014,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.22194,
-    "lat": 41.89837
+    "lat": 41.89837,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204220",
@@ -2307,7 +3029,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.22096,
-    "lat": 41.89786
+    "lat": 41.89786,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204221",
@@ -2318,7 +3044,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.58915,
-    "lat": 41.33535
+    "lat": 41.33535,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204222",
@@ -2329,7 +3059,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.58889,
-    "lat": 41.33602
+    "lat": 41.33602,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204223",
@@ -2340,7 +3074,9 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.90831,
-    "lat": 42.15619
+    "lat": 42.15619,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204224",
@@ -2351,7 +3087,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.24428,
-    "lat": 41.83818
+    "lat": 41.83818,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204225",
@@ -2362,7 +3102,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.53792,
-    "lat": 41.33127
+    "lat": 41.33127,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204226",
@@ -2373,7 +3117,9 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.81109,
-    "lat": 41.1123
+    "lat": 41.1123,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204227",
@@ -2384,7 +3130,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.8143,
-    "lat": 41.11188
+    "lat": 41.11188,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204228",
@@ -2395,7 +3145,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.81375,
-    "lat": 41.11234
+    "lat": 41.11234,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204229",
@@ -2406,7 +3160,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.47928,
-    "lat": 43.00424
+    "lat": 43.00424,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204231",
@@ -2417,7 +3175,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.30992,
-    "lat": 41.38923
+    "lat": 41.38923,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204232",
@@ -2428,7 +3190,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.69182,
-    "lat": 41.32158
+    "lat": 41.32158,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204233",
@@ -2439,7 +3205,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.13135,
-    "lat": 41.63311
+    "lat": 41.63311,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204234",
@@ -2450,7 +3220,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.13138,
-    "lat": 41.63276
+    "lat": 41.63276,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204235",
@@ -2461,7 +3235,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.69413,
-    "lat": 41.16683
+    "lat": 41.16683,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204236",
@@ -2472,7 +3250,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.75636,
-    "lat": 41.56045
+    "lat": 41.56045,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204237",
@@ -2483,7 +3265,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.74884,
-    "lat": 41.68138
+    "lat": 41.68138,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204238",
@@ -2494,7 +3280,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.75937,
-    "lat": 41.75497
+    "lat": 41.75497,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204239",
@@ -2505,7 +3295,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.89612,
-    "lat": 42.10456
+    "lat": 42.10456,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204240",
@@ -2516,7 +3310,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.82982,
-    "lat": 42.0455
+    "lat": 42.0455,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204241",
@@ -2527,7 +3325,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.85117,
-    "lat": 42.18756
+    "lat": 42.18756,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204242",
@@ -2538,7 +3340,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.96794,
-    "lat": 42.19154
+    "lat": 42.19154,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204243",
@@ -2549,7 +3355,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.83374,
-    "lat": 42.26137
+    "lat": 42.26137,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204244",
@@ -2560,7 +3370,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.71498,
-    "lat": 42.21684
+    "lat": 42.21684,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204245",
@@ -2571,7 +3385,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.96259,
-    "lat": 42.39829
+    "lat": 42.39829,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204246",
@@ -2582,7 +3400,11 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.4811,
-    "lat": 42.75024
+    "lat": 42.75024,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204247",
@@ -2593,7 +3415,11 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.35947,
-    "lat": 42.73933
+    "lat": 42.73933,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204248",
@@ -2604,7 +3430,11 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.35894,
-    "lat": 42.72843
+    "lat": 42.72843,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204250",
@@ -2615,7 +3445,11 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.36185,
-    "lat": 42.98687
+    "lat": 42.98687,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204252",
@@ -2626,7 +3460,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.71589,
-    "lat": 42.26462
+    "lat": 42.26462,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204253",
@@ -2637,7 +3475,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.71601,
-    "lat": 42.26594
+    "lat": 42.26594,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204254",
@@ -2648,7 +3490,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.69292,
-    "lat": 42.22954
+    "lat": 42.22954,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204255",
@@ -2659,7 +3505,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.69373,
-    "lat": 42.22697
+    "lat": 42.22697,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204256",
@@ -2670,7 +3520,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.68746,
-    "lat": 42.2275
+    "lat": 42.2275,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204257",
@@ -2681,7 +3535,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26521,
-    "lat": 41.89911
+    "lat": 41.89911,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204258",
@@ -2692,7 +3550,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26522,
-    "lat": 41.89615
+    "lat": 41.89615,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204259",
@@ -2703,7 +3565,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.19446,
-    "lat": 42.06555
+    "lat": 42.06555,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204260",
@@ -2714,7 +3580,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.18835,
-    "lat": 42.06324
+    "lat": 42.06324,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204261",
@@ -2725,7 +3595,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.45345,
-    "lat": 42.05791
+    "lat": 42.05791,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204262",
@@ -2736,7 +3610,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.37374,
-    "lat": 42.11146
+    "lat": 42.11146,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204263",
@@ -2747,7 +3625,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.517,
-    "lat": 42.21751
+    "lat": 42.21751,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204264",
@@ -2758,7 +3640,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.51702,
-    "lat": 42.21871
+    "lat": 42.21871,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204265",
@@ -2769,7 +3655,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.50809,
-    "lat": 42.20877
+    "lat": 42.20877,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204266",
@@ -2780,7 +3670,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.50872,
-    "lat": 42.2081
+    "lat": 42.2081,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204268",
@@ -2791,7 +3685,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.36188,
-    "lat": 42.13218
+    "lat": 42.13218,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204270",
@@ -2802,7 +3700,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.34756,
-    "lat": 42.13239
+    "lat": 42.13239,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204271",
@@ -2813,7 +3715,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26809,
-    "lat": 42.09783
+    "lat": 42.09783,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204272",
@@ -2824,7 +3730,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26694,
-    "lat": 42.09849
+    "lat": 42.09849,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204273",
@@ -2835,7 +3745,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.34793,
-    "lat": 42.1364
+    "lat": 42.1364,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204275",
@@ -2846,7 +3760,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.17818,
-    "lat": 42.07278
+    "lat": 42.07278,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204276",
@@ -2857,7 +3775,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.22062,
-    "lat": 41.89714
+    "lat": 41.89714,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204277",
@@ -2868,7 +3790,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.21812,
-    "lat": 41.8978
+    "lat": 41.8978,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204278",
@@ -2879,7 +3805,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.60347,
-    "lat": 43.28348
+    "lat": 43.28348,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204279",
@@ -2890,7 +3820,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.62702,
-    "lat": 43.29211
+    "lat": 43.29211,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204280",
@@ -2901,7 +3835,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.60971,
-    "lat": 43.29015
+    "lat": 43.29015,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204281",
@@ -2912,7 +3850,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.96624,
-    "lat": 43.024
+    "lat": 43.024,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204282",
@@ -2923,7 +3865,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.29299,
-    "lat": 43.48056
+    "lat": 43.48056,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204283",
@@ -2934,7 +3880,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.29297,
-    "lat": 43.48097
+    "lat": 43.48097,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204284",
@@ -2945,7 +3895,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.26852,
-    "lat": 43.60312
+    "lat": 43.60312,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204285",
@@ -2956,7 +3910,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.96054,
-    "lat": 43.76302
+    "lat": 43.76302,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204287",
@@ -2967,7 +3925,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.05413,
-    "lat": 43.83703
+    "lat": 43.83703,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204288",
@@ -2978,7 +3940,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.9606,
-    "lat": 43.74493
+    "lat": 43.74493,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204289",
@@ -2989,7 +3955,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.6068,
-    "lat": 44.18674
+    "lat": 44.18674,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204290",
@@ -3000,7 +3970,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.61142,
-    "lat": 44.18896
+    "lat": 44.18896,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204291",
@@ -3011,7 +3985,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.43572,
-    "lat": 44.19294
+    "lat": 44.19294,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204292",
@@ -3022,7 +4000,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.39519,
-    "lat": 44.19385
+    "lat": 44.19385,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204293",
@@ -3033,7 +4015,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38877,
-    "lat": 44.17
+    "lat": 44.17,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204294",
@@ -3044,7 +4030,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.33462,
-    "lat": 44.12734
+    "lat": 44.12734,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204295",
@@ -3055,7 +4045,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.86084,
-    "lat": 44.44676
+    "lat": 44.44676,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204296",
@@ -3066,7 +4060,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.83501,
-    "lat": 44.43174
+    "lat": 44.43174,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204297",
@@ -3077,7 +4075,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.65294,
-    "lat": 44.62014
+    "lat": 44.62014,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204298",
@@ -3088,7 +4090,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.79831,
-    "lat": 44.66755
+    "lat": 44.66755,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204299",
@@ -3099,7 +4105,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.79841,
-    "lat": 44.66737
+    "lat": 44.66737,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204300",
@@ -3110,7 +4120,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.62068,
-    "lat": 44.66027
+    "lat": 44.66027,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204301",
@@ -3121,7 +4135,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.63401,
-    "lat": 44.12253
+    "lat": 44.12253,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204302",
@@ -3132,7 +4150,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.22708,
-    "lat": 44.50223
+    "lat": 44.50223,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204303",
@@ -3143,7 +4165,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.39993,
-    "lat": 44.36669
+    "lat": 44.36669,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204304",
@@ -3154,7 +4180,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.39991,
-    "lat": 44.3654
+    "lat": 44.3654,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204305",
@@ -3165,7 +4195,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.44001,
-    "lat": 44.39567
+    "lat": 44.39567,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204306",
@@ -3176,7 +4210,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.45183,
-    "lat": 44.40085
+    "lat": 44.40085,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204307",
@@ -3187,7 +4225,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.45253,
-    "lat": 44.37854
+    "lat": 44.37854,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204308",
@@ -3198,7 +4240,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.5064,
-    "lat": 44.39203
+    "lat": 44.39203,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204309",
@@ -3209,7 +4255,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.45356,
-    "lat": 44.4162
+    "lat": 44.4162,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204310",
@@ -3220,7 +4270,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.46283,
-    "lat": 44.41238
+    "lat": 44.41238,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204311",
@@ -3231,7 +4285,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.47025,
-    "lat": 44.40677
+    "lat": 44.40677,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204312",
@@ -3242,7 +4300,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.46929,
-    "lat": 44.40652
+    "lat": 44.40652,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204313",
@@ -3253,7 +4315,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.49574,
-    "lat": 44.40388
+    "lat": 44.40388,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204314",
@@ -3264,7 +4330,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.52826,
-    "lat": 44.43877
+    "lat": 44.43877,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204315",
@@ -3275,7 +4345,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.53153,
-    "lat": 44.44016
+    "lat": 44.44016,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204316",
@@ -3286,7 +4360,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.53052,
-    "lat": 44.44337
+    "lat": 44.44337,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204317",
@@ -3297,7 +4375,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.61747,
-    "lat": 44.40167
+    "lat": 44.40167,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204318",
@@ -3308,7 +4390,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.61574,
-    "lat": 44.40289
+    "lat": 44.40289,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204319",
@@ -3319,7 +4405,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.61777,
-    "lat": 44.40227
+    "lat": 44.40227,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204320",
@@ -3330,7 +4420,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.94435,
-    "lat": 44.73956
+    "lat": 44.73956,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204321",
@@ -3341,7 +4435,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.85709,
-    "lat": 44.15525
+    "lat": 44.15525,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204322",
@@ -3352,7 +4450,9 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.06537,
-    "lat": 44.1487
+    "lat": 44.1487,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204323",
@@ -3363,7 +4463,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.34008,
-    "lat": 42.96238
+    "lat": 42.96238,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204324",
@@ -3374,7 +4478,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.57572,
-    "lat": 42.83882
+    "lat": 42.83882,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204327",
@@ -3385,7 +4493,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.57378,
-    "lat": 42.83993
+    "lat": 42.83993,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204328",
@@ -3396,7 +4508,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.51686,
-    "lat": 42.79942
+    "lat": 42.79942,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204329",
@@ -3407,7 +4523,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.50395,
-    "lat": 42.80249
+    "lat": 42.80249,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204330",
@@ -3418,7 +4538,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.09459,
-    "lat": 41.88103
+    "lat": 41.88103,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204331",
@@ -3429,7 +4553,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.98104,
-    "lat": 41.56542
+    "lat": 41.56542,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204332",
@@ -3440,7 +4568,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.38551,
-    "lat": 41.33297
+    "lat": 41.33297,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204333",
@@ -3451,7 +4583,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.40239,
-    "lat": 42.66679
+    "lat": 42.66679,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204334",
@@ -3462,7 +4598,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.40186,
-    "lat": 42.66691
+    "lat": 42.66691,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204335",
@@ -3473,7 +4613,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.38627,
-    "lat": 42.75233
+    "lat": 42.75233,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204336",
@@ -3484,7 +4628,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.36184,
-    "lat": 43.5473
+    "lat": 43.5473,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204337",
@@ -3495,7 +4643,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.35481,
-    "lat": 43.54047
+    "lat": 43.54047,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204338",
@@ -3506,7 +4658,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.30964,
-    "lat": 43.51761
+    "lat": 43.51761,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204343",
@@ -3517,7 +4673,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38766,
-    "lat": 43.8472
+    "lat": 43.8472,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204344",
@@ -3528,7 +4688,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.36051,
-    "lat": 43.74105
+    "lat": 43.74105,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204345",
@@ -3539,7 +4703,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.35134,
-    "lat": 43.72292
+    "lat": 43.72292,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204346",
@@ -3550,7 +4718,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.35896,
-    "lat": 43.62904
+    "lat": 43.62904,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204347",
@@ -3561,7 +4733,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.35247,
-    "lat": 43.72286
+    "lat": 43.72286,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204348",
@@ -3572,7 +4748,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.35243,
-    "lat": 43.72278
+    "lat": 43.72278,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204349",
@@ -3583,7 +4763,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.30423,
-    "lat": 43.62919
+    "lat": 43.62919,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204350",
@@ -3594,7 +4778,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.30316,
-    "lat": 43.62917
+    "lat": 43.62917,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204351",
@@ -3605,7 +4793,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.35727,
-    "lat": 43.73058
+    "lat": 43.73058,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204352",
@@ -3616,7 +4808,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.97753,
-    "lat": 44.69371
+    "lat": 44.69371,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204353",
@@ -3627,7 +4823,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.97753,
-    "lat": 44.69353
+    "lat": 44.69353,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204354",
@@ -3638,7 +4838,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.63065,
-    "lat": 44.6875
+    "lat": 44.6875,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204355",
@@ -3649,7 +4853,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.62921,
-    "lat": 44.68764
+    "lat": 44.68764,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204356",
@@ -3660,7 +4868,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.63232,
-    "lat": 44.78217
+    "lat": 44.78217,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204357",
@@ -3671,7 +4883,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.56383,
-    "lat": 44.43652
+    "lat": 44.43652,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204358",
@@ -3682,7 +4898,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.33997,
-    "lat": 43.69712
+    "lat": 43.69712,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204359",
@@ -3693,7 +4913,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.34504,
-    "lat": 43.96367
+    "lat": 43.96367,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204360",
@@ -3704,7 +4928,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.32685,
-    "lat": 44.03436
+    "lat": 44.03436,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204361",
@@ -3715,7 +4943,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.33742,
-    "lat": 44.03113
+    "lat": 44.03113,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204362",
@@ -3726,7 +4958,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.32223,
-    "lat": 44.05988
+    "lat": 44.05988,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204363",
@@ -3737,7 +4973,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.37481,
-    "lat": 44.10043
+    "lat": 44.10043,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204364",
@@ -3748,7 +4988,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.33614,
-    "lat": 44.12303
+    "lat": 44.12303,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204365",
@@ -3759,7 +5003,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.72051,
-    "lat": 41.31656
+    "lat": 41.31656,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204366",
@@ -3770,7 +5018,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.65488,
-    "lat": 41.45536
+    "lat": 41.45536,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204367",
@@ -3781,7 +5033,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.60348,
-    "lat": 41.76067
+    "lat": 41.76067,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204368",
@@ -3792,7 +5048,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.90891,
-    "lat": 41.47159
+    "lat": 41.47159,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204369",
@@ -3803,7 +5063,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.86372,
-    "lat": 41.31195
+    "lat": 41.31195,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204370",
@@ -3814,7 +5078,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.85628,
-    "lat": 41.3167
+    "lat": 41.3167,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204371",
@@ -3825,7 +5093,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.97318,
-    "lat": 41.27169
+    "lat": 41.27169,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204372",
@@ -3836,7 +5108,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.98628,
-    "lat": 41.27144
+    "lat": 41.27144,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204373",
@@ -3847,7 +5123,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.94776,
-    "lat": 42.10706
+    "lat": 42.10706,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204376",
@@ -3858,7 +5138,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.96012,
-    "lat": 43.76406
+    "lat": 43.76406,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204377",
@@ -3869,7 +5153,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.4628,
-    "lat": 44.40936
+    "lat": 44.40936,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204378",
@@ -3880,7 +5168,9 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.82266,
-    "lat": 43.5906
+    "lat": 43.5906,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204379",
@@ -3891,7 +5181,9 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.84826,
-    "lat": 43.50589
+    "lat": 43.50589,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204380",
@@ -3902,7 +5194,9 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.77371,
-    "lat": 43.42163
+    "lat": 43.42163,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204381",
@@ -3913,7 +5207,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.72878,
-    "lat": 43.32064
+    "lat": 43.32064,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204382",
@@ -3924,7 +5222,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.77853,
-    "lat": 43.27382
+    "lat": 43.27382,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204383",
@@ -3935,7 +5237,9 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.7544,
-    "lat": 43.47566
+    "lat": 43.47566,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-204384",
@@ -3946,7 +5250,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38054,
-    "lat": 44.29248
+    "lat": 44.29248,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204385",
@@ -3957,7 +5265,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38098,
-    "lat": 44.29247
+    "lat": 44.29247,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204386",
@@ -3968,7 +5280,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.22335,
-    "lat": 43.12672
+    "lat": 43.12672,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204387",
@@ -3979,7 +5295,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.22452,
-    "lat": 43.12642
+    "lat": 43.12642,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204388",
@@ -3990,7 +5310,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.31748,
-    "lat": 43.96687
+    "lat": 43.96687,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204389",
@@ -4001,7 +5325,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.28117,
-    "lat": 43.96957
+    "lat": 43.96957,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204390",
@@ -4012,7 +5340,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.2825,
-    "lat": 43.96955
+    "lat": 43.96955,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204391",
@@ -4023,7 +5355,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.28219,
-    "lat": 43.96691
+    "lat": 43.96691,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204392",
@@ -4034,7 +5370,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.30508,
-    "lat": 43.95412
+    "lat": 43.95412,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204395",
@@ -4045,7 +5385,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.33262,
-    "lat": 43.73674
+    "lat": 43.73674,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204396",
@@ -4056,7 +5400,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -109.6911,
-    "lat": 41.71478
+    "lat": 41.71478,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204397",
@@ -4067,7 +5415,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.00481,
-    "lat": 44.39961
+    "lat": 44.39961,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204398",
@@ -4078,7 +5430,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.0855,
-    "lat": 44.39282
+    "lat": 44.39282,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204399",
@@ -4089,7 +5445,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.08266,
-    "lat": 44.23212
+    "lat": 44.23212,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204400",
@@ -4100,7 +5460,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.06465,
-    "lat": 44.14878
+    "lat": 44.14878,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204401",
@@ -4111,7 +5475,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.91729,
-    "lat": 44.40949
+    "lat": 44.40949,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204402",
@@ -4122,7 +5490,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.90049,
-    "lat": 41.39659
+    "lat": 41.39659,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204403",
@@ -4133,7 +5505,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.90155,
-    "lat": 41.39627
+    "lat": 41.39627,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204404",
@@ -4144,7 +5520,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.24704,
-    "lat": 42.85825
+    "lat": 42.85825,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204405",
@@ -4155,7 +5535,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.80107,
-    "lat": 41.4622
+    "lat": 41.4622,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204406",
@@ -4166,7 +5550,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.21741,
-    "lat": 43.84659
+    "lat": 43.84659,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204407",
@@ -4177,7 +5565,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.21565,
-    "lat": 43.84773
+    "lat": 43.84773,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204412",
@@ -4188,7 +5580,11 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.82147,
-    "lat": 43.04942
+    "lat": 43.04942,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204413",
@@ -4199,7 +5595,11 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.82119,
-    "lat": 43.04957
+    "lat": 43.04957,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204416",
@@ -4210,7 +5610,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.40165,
-    "lat": 44.32743
+    "lat": 44.32743,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204417",
@@ -4221,7 +5625,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.39639,
-    "lat": 44.32665
+    "lat": 44.32665,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204418",
@@ -4232,7 +5640,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.40164,
-    "lat": 44.32555
+    "lat": 44.32555,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204424",
@@ -4243,7 +5655,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.99962,
-    "lat": 42.03121
+    "lat": 42.03121,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204426",
@@ -4254,7 +5670,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.75008,
-    "lat": 41.68167
+    "lat": 41.68167,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204427",
@@ -4265,7 +5685,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.55699,
-    "lat": 41.29409
+    "lat": 41.29409,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204428",
@@ -4276,7 +5700,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.55708,
-    "lat": 41.29444
+    "lat": 41.29444,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204429",
@@ -4287,7 +5715,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.60991,
-    "lat": 41.27033
+    "lat": 41.27033,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204430",
@@ -4298,7 +5730,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.19041,
-    "lat": 44.07268
+    "lat": 44.07268,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204431",
@@ -4309,7 +5745,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.37511,
-    "lat": 44.0995
+    "lat": 44.0995,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204432",
@@ -4320,7 +5760,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.81081,
-    "lat": 41.45714
+    "lat": 41.45714,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204433",
@@ -4331,7 +5775,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.81209,
-    "lat": 41.45575
+    "lat": 41.45575,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204578",
@@ -4342,7 +5790,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.42928,
-    "lat": 44.28412
+    "lat": 44.28412,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204589",
@@ -4353,7 +5805,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.05397,
-    "lat": 44.53511
+    "lat": 44.53511,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204590",
@@ -4364,7 +5820,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.45966,
-    "lat": 44.29838
+    "lat": 44.29838,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204591",
@@ -4375,7 +5835,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.48631,
-    "lat": 44.29859
+    "lat": 44.29859,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204592",
@@ -4386,7 +5850,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.48627,
-    "lat": 44.29843
+    "lat": 44.29843,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204593",
@@ -4397,7 +5865,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51524,
-    "lat": 44.29868
+    "lat": 44.29868,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204594",
@@ -4408,7 +5880,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51543,
-    "lat": 44.29869
+    "lat": 44.29869,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204595",
@@ -4419,7 +5895,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51531,
-    "lat": 44.29893
+    "lat": 44.29893,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204607",
@@ -4430,7 +5910,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.49083,
-    "lat": 41.32084
+    "lat": 41.32084,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204608",
@@ -4441,7 +5925,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.52211,
-    "lat": 41.29502
+    "lat": 41.29502,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-204610",
@@ -4452,7 +5940,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.29207,
-    "lat": 41.33393
+    "lat": 41.33393,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204644",
@@ -4463,7 +5955,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.05388,
-    "lat": 44.4852
+    "lat": 44.4852,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204645",
@@ -4474,7 +5970,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.38902,
-    "lat": 43.85429
+    "lat": 43.85429,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204646",
@@ -4485,7 +5985,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.99517,
-    "lat": 41.14054
+    "lat": 41.14054,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-204810",
@@ -4496,7 +6000,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.99245,
-    "lat": 43.026
+    "lat": 43.026,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205112",
@@ -4507,7 +6015,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.9725,
-    "lat": 42.68563
+    "lat": 42.68563,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205114",
@@ -4518,7 +6030,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.37115,
-    "lat": 43.855
+    "lat": 43.855,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205115",
@@ -4529,7 +6045,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.29177,
-    "lat": 43.70736
+    "lat": 43.70736,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205116",
@@ -4540,7 +6060,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.23614,
-    "lat": 43.70173
+    "lat": 43.70173,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205117",
@@ -4551,7 +6075,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.29218,
-    "lat": 43.70235
+    "lat": 43.70235,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205118",
@@ -4562,7 +6090,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.22342,
-    "lat": 43.71847
+    "lat": 43.71847,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205119",
@@ -4573,7 +6105,11 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.48071,
-    "lat": 42.76688
+    "lat": 42.76688,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205120",
@@ -4584,7 +6120,11 @@
     "county_fips": "56027",
     "state": "WY",
     "lon": -104.45263,
-    "lat": 42.7668
+    "lat": 42.7668,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205186",
@@ -4595,7 +6135,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.80923,
-    "lat": 41.04278
+    "lat": 41.04278,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205612",
@@ -4606,7 +6150,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -109.08178,
-    "lat": 44.23229
+    "lat": 44.23229,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205613",
@@ -4617,7 +6165,11 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.74346,
-    "lat": 44.07318
+    "lat": 44.07318,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205614",
@@ -4628,7 +6180,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.62415,
-    "lat": 43.2941
+    "lat": 43.2941,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205615",
@@ -4639,7 +6195,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.60714,
-    "lat": 43.28263
+    "lat": 43.28263,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205616",
@@ -4650,7 +6210,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.18793,
-    "lat": 43.08581
+    "lat": 43.08581,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205617",
@@ -4661,7 +6225,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -107.15964,
-    "lat": 43.07859
+    "lat": 43.07859,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205619",
@@ -4672,7 +6240,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51904,
-    "lat": 44.28558
+    "lat": 44.28558,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205620",
@@ -4683,7 +6255,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51886,
-    "lat": 44.28573
+    "lat": 44.28573,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205621",
@@ -4694,7 +6270,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.50993,
-    "lat": 44.27684
+    "lat": 44.27684,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205622",
@@ -4705,7 +6285,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.50902,
-    "lat": 44.27676
+    "lat": 44.27676,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205623",
@@ -4716,7 +6300,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.54722,
-    "lat": 44.25432
+    "lat": 44.25432,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205624",
@@ -4727,7 +6315,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.54627,
-    "lat": 44.25436
+    "lat": 44.25436,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205625",
@@ -4738,7 +6330,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.47865,
-    "lat": 44.24345
+    "lat": 44.24345,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205626",
@@ -4749,7 +6345,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.47885,
-    "lat": 44.24354
+    "lat": 44.24354,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205627",
@@ -4760,7 +6360,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.45981,
-    "lat": 44.28996
+    "lat": 44.28996,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205628",
@@ -4771,7 +6375,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.46362,
-    "lat": 44.28402
+    "lat": 44.28402,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205629",
@@ -4782,7 +6390,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.40029,
-    "lat": 44.1724
+    "lat": 44.1724,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205630",
@@ -4793,7 +6405,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.41601,
-    "lat": 43.98756
+    "lat": 43.98756,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205631",
@@ -4804,7 +6420,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.20712,
-    "lat": 43.85447
+    "lat": 43.85447,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205632",
@@ -4815,7 +6435,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.151,
-    "lat": 43.82673
+    "lat": 43.82673,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205633",
@@ -4826,7 +6450,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.15187,
-    "lat": 43.82615
+    "lat": 43.82615,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205634",
@@ -4837,7 +6465,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.19395,
-    "lat": 43.8745
+    "lat": 43.8745,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205635",
@@ -4848,7 +6480,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.21562,
-    "lat": 43.84747
+    "lat": 43.84747,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205636",
@@ -4859,7 +6495,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.30351,
-    "lat": 43.63726
+    "lat": 43.63726,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205637",
@@ -4870,7 +6510,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.27339,
-    "lat": 43.62863
+    "lat": 43.62863,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205638",
@@ -4881,7 +6525,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.27336,
-    "lat": 43.62919
+    "lat": 43.62919,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205639",
@@ -4892,7 +6540,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.25954,
-    "lat": 43.62452
+    "lat": 43.62452,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205640",
@@ -4903,7 +6555,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.3433,
-    "lat": 43.5498
+    "lat": 43.5498,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205641",
@@ -4914,7 +6570,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.30021,
-    "lat": 43.55203
+    "lat": 43.55203,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205642",
@@ -4925,7 +6585,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.34331,
-    "lat": 43.55967
+    "lat": 43.55967,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205643",
@@ -4936,7 +6600,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.30887,
-    "lat": 43.56287
+    "lat": 43.56287,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205644",
@@ -4947,7 +6615,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.28321,
-    "lat": 43.53453
+    "lat": 43.53453,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205645",
@@ -4958,7 +6630,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.26324,
-    "lat": 43.54069
+    "lat": 43.54069,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205646",
@@ -4969,7 +6645,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.94391,
-    "lat": 42.06663
+    "lat": 42.06663,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205647",
@@ -4980,7 +6660,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.95202,
-    "lat": 42.06653
+    "lat": 42.06653,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205648",
@@ -4991,7 +6675,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -105.00151,
-    "lat": 42.04541
+    "lat": 42.04541,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205649",
@@ -5002,7 +6690,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.94369,
-    "lat": 42.04501
+    "lat": 42.04501,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205650",
@@ -5013,7 +6705,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.95473,
-    "lat": 42.04553
+    "lat": 42.04553,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205651",
@@ -5024,7 +6720,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.20331,
-    "lat": 42.32912
+    "lat": 42.32912,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205652",
@@ -5035,7 +6735,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.49446,
-    "lat": 42.88581
+    "lat": 42.88581,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205653",
@@ -5046,7 +6750,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -107.51102,
-    "lat": 42.22857
+    "lat": 42.22857,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205654",
@@ -5057,7 +6765,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.95319,
-    "lat": 42.89552
+    "lat": 42.89552,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205655",
@@ -5068,7 +6780,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.95309,
-    "lat": 42.7374
+    "lat": 42.7374,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-205656",
@@ -5079,7 +6795,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.92256,
-    "lat": 42.72957
+    "lat": 42.72957,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-205659",
@@ -5090,7 +6810,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -110.89609,
-    "lat": 41.45616
+    "lat": 41.45616,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206241",
@@ -5101,7 +6825,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.89906,
-    "lat": 44.18672
+    "lat": 44.18672,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206242",
@@ -5112,7 +6840,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.90163,
-    "lat": 41.85688
+    "lat": 41.85688,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206540",
@@ -5123,7 +6855,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.86396,
-    "lat": 44.72625
+    "lat": 44.72625,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206577",
@@ -5134,7 +6870,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.30883,
-    "lat": 42.84914
+    "lat": 42.84914,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-206578",
@@ -5145,7 +6885,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.45407,
-    "lat": 42.97931
+    "lat": 42.97931,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206579",
@@ -5156,7 +6900,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.17915,
-    "lat": 42.75628
+    "lat": 42.75628,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206586",
@@ -5167,7 +6915,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.72283,
-    "lat": 41.12265
+    "lat": 41.12265,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206587",
@@ -5178,7 +6930,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.69321,
-    "lat": 41.14763
+    "lat": 41.14763,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206759",
@@ -5189,7 +6945,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.92156,
-    "lat": 44.66476
+    "lat": 44.66476,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-206760",
@@ -5200,7 +6960,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.92198,
-    "lat": 44.66477
+    "lat": 44.66477,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206761",
@@ -5211,7 +6975,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -105.05612,
-    "lat": 44.78174
+    "lat": 44.78174,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206762",
@@ -5222,7 +6990,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.69343,
-    "lat": 42.22695
+    "lat": 42.22695,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-206763",
@@ -5233,7 +7005,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.69206,
-    "lat": 42.22608
+    "lat": 42.22608,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206764",
@@ -5244,7 +7020,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.72582,
-    "lat": 42.83098
+    "lat": 42.83098,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206767",
@@ -5255,7 +7035,9 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -107.51759,
-    "lat": 42.79307
+    "lat": 42.79307,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-206817",
@@ -5266,7 +7048,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -111.04057,
-    "lat": 41.06205
+    "lat": 41.06205,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-206818",
@@ -5277,7 +7063,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -111.03166,
-    "lat": 41.06318
+    "lat": 41.06318,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206819",
@@ -5288,7 +7078,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -111.03627,
-    "lat": 41.06192
+    "lat": 41.06192,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206820",
@@ -5299,7 +7093,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -111.03621,
-    "lat": 41.06351
+    "lat": 41.06351,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-206821",
@@ -5310,7 +7108,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -111.04063,
-    "lat": 41.06576
+    "lat": 41.06576,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-206822",
@@ -5321,7 +7123,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -111.0384,
-    "lat": 41.06653
+    "lat": 41.06653,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207209",
@@ -5332,7 +7138,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -110.74632,
-    "lat": 44.89466
+    "lat": 44.89466,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207210",
@@ -5343,7 +7153,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -110.67151,
-    "lat": 44.72083
+    "lat": 44.72083,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207211",
@@ -5354,7 +7168,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -110.51268,
-    "lat": 44.71808
+    "lat": 44.71808,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207212",
@@ -5365,7 +7183,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.83572,
-    "lat": 44.45398
+    "lat": 44.45398,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207213",
@@ -5376,7 +7198,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.56908,
-    "lat": 44.4089
+    "lat": 44.4089,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207214",
@@ -5387,7 +7213,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.84718,
-    "lat": 44.61873
+    "lat": 44.61873,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207230",
@@ -5398,7 +7228,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.50677,
-    "lat": 43.84582
+    "lat": 43.84582,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207232",
@@ -5409,7 +7243,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.62273,
-    "lat": 43.6263
+    "lat": 43.6263,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207233",
@@ -5420,7 +7258,11 @@
     "county_fips": "56039",
     "state": "WY",
     "lon": -110.75433,
-    "lat": 43.47514
+    "lat": 43.47514,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207242",
@@ -5431,7 +7273,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -111.04543,
-    "lat": 41.77838
+    "lat": 41.77838,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207243",
@@ -5442,7 +7288,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.79136,
-    "lat": 41.82243
+    "lat": 41.82243,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207244",
@@ -5453,7 +7303,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.79205,
-    "lat": 41.82152
+    "lat": 41.82152,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207245",
@@ -5464,7 +7318,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.60038,
-    "lat": 41.76768
+    "lat": 41.76768,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207246",
@@ -5475,7 +7333,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.60164,
-    "lat": 41.76817
+    "lat": 41.76817,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207247",
@@ -5486,7 +7348,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.60318,
-    "lat": 41.76068
+    "lat": 41.76068,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207248",
@@ -5497,7 +7363,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.59985,
-    "lat": 41.75956
+    "lat": 41.75956,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207249",
@@ -5508,7 +7378,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.59997,
-    "lat": 41.76842
+    "lat": 41.76842,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207250",
@@ -5519,7 +7393,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.55722,
-    "lat": 41.78946
+    "lat": 41.78946,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207253",
@@ -5530,7 +7408,11 @@
     "county_fips": "56023",
     "state": "WY",
     "lon": -110.19629,
-    "lat": 42.24265
+    "lat": 42.24265,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207254",
@@ -5541,7 +7423,11 @@
     "county_fips": "56035",
     "state": "WY",
     "lon": -110.11517,
-    "lat": 42.4838
+    "lat": 42.4838,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207255",
@@ -5552,7 +7438,11 @@
     "county_fips": "56035",
     "state": "WY",
     "lon": -109.93524,
-    "lat": 42.63798
+    "lat": 42.63798,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207256",
@@ -5563,7 +7453,11 @@
     "county_fips": "56035",
     "state": "WY",
     "lon": -109.83709,
-    "lat": 42.68113
+    "lat": 42.68113,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207398",
@@ -5574,7 +7468,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -109.62835,
-    "lat": 43.53643
+    "lat": 43.53643,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207399",
@@ -5585,7 +7483,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -109.28088,
-    "lat": 43.36948
+    "lat": 43.36948,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207400",
@@ -5596,7 +7498,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -109.28064,
-    "lat": 43.36921
+    "lat": 43.36921,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207401",
@@ -5607,7 +7513,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -109.28088,
-    "lat": 43.36902
+    "lat": 43.36902,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207402",
@@ -5618,7 +7528,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -109.281,
-    "lat": 43.3694
+    "lat": 43.3694,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207403",
@@ -5629,7 +7543,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.8812,
-    "lat": 43.24307
+    "lat": 43.24307,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207404",
@@ -5640,7 +7558,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.87705,
-    "lat": 43.24232
+    "lat": 43.24232,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207405",
@@ -5651,7 +7573,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.86379,
-    "lat": 43.21741
+    "lat": 43.21741,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207406",
@@ -5662,7 +7588,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.74661,
-    "lat": 43.19198
+    "lat": 43.19198,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207407",
@@ -5673,7 +7603,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.75581,
-    "lat": 42.99809
+    "lat": 42.99809,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207408",
@@ -5684,7 +7618,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.75704,
-    "lat": 42.99778
+    "lat": 42.99778,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207409",
@@ -5695,7 +7633,9 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.74537,
-    "lat": 42.85467
+    "lat": 42.85467,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-207410",
@@ -5706,7 +7646,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.51868,
-    "lat": 43.12785
+    "lat": 43.12785,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207411",
@@ -5717,7 +7661,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.51867,
-    "lat": 43.127
+    "lat": 43.127,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207412",
@@ -5728,7 +7676,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.49891,
-    "lat": 43.08447
+    "lat": 43.08447,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207413",
@@ -5739,7 +7691,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.87702,
-    "lat": 43.24274
+    "lat": 43.24274,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207414",
@@ -5750,7 +7706,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.38135,
-    "lat": 43.09857
+    "lat": 43.09857,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207415",
@@ -5761,7 +7721,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.45955,
-    "lat": 43.00439
+    "lat": 43.00439,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207416",
@@ -5772,7 +7736,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.45955,
-    "lat": 43.00409
+    "lat": 43.00409,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207417",
@@ -5783,7 +7751,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.45499,
-    "lat": 42.97885
+    "lat": 42.97885,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207418",
@@ -5794,7 +7766,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.31068,
-    "lat": 42.85055
+    "lat": 42.85055,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207591",
@@ -5805,7 +7781,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.99791,
-    "lat": 42.47054
+    "lat": 42.47054,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207592",
@@ -5816,7 +7796,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.93747,
-    "lat": 44.7619
+    "lat": 44.7619,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207593",
@@ -5827,7 +7811,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.93746,
-    "lat": 44.77738
+    "lat": 44.77738,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207594",
@@ -5838,7 +7826,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.93751,
-    "lat": 44.7992
+    "lat": 44.7992,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207595",
@@ -5849,7 +7841,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.95348,
-    "lat": 44.81243
+    "lat": 44.81243,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207596",
@@ -5860,7 +7856,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.94191,
-    "lat": 44.82414
+    "lat": 44.82414,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207597",
@@ -5871,7 +7871,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.94288,
-    "lat": 44.82439
+    "lat": 44.82439,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207598",
@@ -5882,7 +7886,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -106.95343,
-    "lat": 44.81727
+    "lat": 44.81727,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207599",
@@ -5893,7 +7901,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -107.03339,
-    "lat": 44.77374
+    "lat": 44.77374,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207600",
@@ -5904,7 +7916,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -107.03348,
-    "lat": 44.77303
+    "lat": 44.77303,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207601",
@@ -5915,7 +7931,11 @@
     "county_fips": "56033",
     "state": "WY",
     "lon": -107.25913,
-    "lat": 44.87502
+    "lat": 44.87502,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207602",
@@ -5926,7 +7946,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.39793,
-    "lat": 44.38495
+    "lat": 44.38495,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207603",
@@ -5937,7 +7961,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.51719,
-    "lat": 43.95383
+    "lat": 43.95383,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207609",
@@ -5948,7 +7976,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.25446,
-    "lat": 44.14261
+    "lat": 44.14261,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207610",
@@ -5959,7 +7991,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.6138,
-    "lat": 42.79453
+    "lat": 42.79453,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-207611",
@@ -5970,7 +8006,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.48157,
-    "lat": 42.84093
+    "lat": 42.84093,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-207612",
@@ -5981,7 +8021,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.49572,
-    "lat": 42.78085
+    "lat": 42.78085,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208496",
@@ -5992,7 +8036,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.12937,
-    "lat": 44.857
+    "lat": 44.857,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208497",
@@ -6003,7 +8051,11 @@
     "county_fips": "56011",
     "state": "WY",
     "lon": -104.14594,
-    "lat": 44.86425
+    "lat": 44.86425,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208670",
@@ -6014,7 +8066,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.84414,
-    "lat": 44.98029
+    "lat": 44.98029,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208674",
@@ -6025,7 +8081,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.62894,
-    "lat": 44.99088
+    "lat": 44.99088,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208675",
@@ -6036,7 +8096,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.62551,
-    "lat": 44.99474
+    "lat": 44.99474,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208676",
@@ -6047,7 +8111,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.82886,
-    "lat": 44.95477
+    "lat": 44.95477,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208689",
@@ -6058,7 +8126,11 @@
     "county_fips": "56043",
     "state": "WY",
     "lon": -107.45596,
-    "lat": 44.03271
+    "lat": 44.03271,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208690",
@@ -6069,7 +8141,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.71774,
-    "lat": 44.21348
+    "lat": 44.21348,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208691",
@@ -6080,7 +8156,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.71639,
-    "lat": 44.21304
+    "lat": 44.21304,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208692",
@@ -6091,7 +8171,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.7279,
-    "lat": 44.21688
+    "lat": 44.21688,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208693",
@@ -6102,7 +8186,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.74443,
-    "lat": 44.18645
+    "lat": 44.18645,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208694",
@@ -6113,7 +8201,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.92502,
-    "lat": 44.27524
+    "lat": 44.27524,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208695",
@@ -6124,7 +8216,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.91108,
-    "lat": 44.2602
+    "lat": 44.2602,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208696",
@@ -6135,7 +8231,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.96461,
-    "lat": 44.28007
+    "lat": 44.28007,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208697",
@@ -6146,7 +8246,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.9744,
-    "lat": 44.26547
+    "lat": 44.26547,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208698",
@@ -6157,7 +8261,11 @@
     "county_fips": "56043",
     "state": "WY",
     "lon": -107.96277,
-    "lat": 44.09839
+    "lat": 44.09839,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208699",
@@ -6168,7 +8276,11 @@
     "county_fips": "56043",
     "state": "WY",
     "lon": -107.96195,
-    "lat": 44.09836
+    "lat": 44.09836,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208713",
@@ -6179,7 +8291,11 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.17593,
-    "lat": 43.79561
+    "lat": 43.79561,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208714",
@@ -6190,7 +8306,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -107.76561,
-    "lat": 44.53457
+    "lat": 44.53457,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208715",
@@ -6201,7 +8321,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.07578,
-    "lat": 44.45789
+    "lat": 44.45789,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208716",
@@ -6212,7 +8336,11 @@
     "county_fips": "56017",
     "state": "WY",
     "lon": -108.21997,
-    "lat": 43.80115
+    "lat": 43.80115,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208717",
@@ -6223,7 +8351,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.07133,
-    "lat": 44.47344
+    "lat": 44.47344,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208718",
@@ -6234,7 +8366,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.07097,
-    "lat": 44.47345
+    "lat": 44.47345,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208719",
@@ -6245,7 +8381,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.07082,
-    "lat": 44.47346
+    "lat": 44.47346,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208720",
@@ -6256,7 +8396,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.05594,
-    "lat": 44.487
+    "lat": 44.487,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208721",
@@ -6267,7 +8411,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.37953,
-    "lat": 44.48212
+    "lat": 44.48212,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208722",
@@ -6278,7 +8426,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.07324,
-    "lat": 44.38759
+    "lat": 44.38759,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208723",
@@ -6289,7 +8441,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.07394,
-    "lat": 44.37084
+    "lat": 44.37084,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208724",
@@ -6300,7 +8456,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.05051,
-    "lat": 44.36783
+    "lat": 44.36783,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208725",
@@ -6311,7 +8471,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.03043,
-    "lat": 44.28406
+    "lat": 44.28406,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208726",
@@ -6322,7 +8486,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.84441,
-    "lat": 44.90072
+    "lat": 44.90072,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208727",
@@ -6333,7 +8501,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.68374,
-    "lat": 44.95859
+    "lat": 44.95859,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208728",
@@ -6344,7 +8516,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.68367,
-    "lat": 44.95843
+    "lat": 44.95843,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208729",
@@ -6355,7 +8531,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.60555,
-    "lat": 44.95716
+    "lat": 44.95716,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208730",
@@ -6366,7 +8546,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.60173,
-    "lat": 44.9585
+    "lat": 44.9585,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208731",
@@ -6377,7 +8561,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.41379,
-    "lat": 44.83693
+    "lat": 44.83693,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208732",
@@ -6388,7 +8576,11 @@
     "county_fips": "56029",
     "state": "WY",
     "lon": -108.67394,
-    "lat": 44.95861
+    "lat": 44.95861,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208733",
@@ -6399,7 +8591,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.22802,
-    "lat": 44.85703
+    "lat": 44.85703,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208734",
@@ -6410,7 +8606,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.37278,
-    "lat": 44.81128
+    "lat": 44.81128,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208735",
@@ -6421,7 +8621,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.38962,
-    "lat": 44.83649
+    "lat": 44.83649,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208736",
@@ -6432,7 +8636,11 @@
     "county_fips": "56003",
     "state": "WY",
     "lon": -108.51245,
-    "lat": 44.79715
+    "lat": 44.79715,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208737",
@@ -6443,7 +8651,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.41588,
-    "lat": 43.79233
+    "lat": 43.79233,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208738",
@@ -6454,7 +8666,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.51679,
-    "lat": 43.95388
+    "lat": 43.95388,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-208972",
@@ -6465,7 +8681,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -111.03803,
-    "lat": 41.40572
+    "lat": 41.40572,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-208973",
@@ -6476,7 +8696,11 @@
     "county_fips": "56041",
     "state": "WY",
     "lon": -111.03827,
-    "lat": 41.40573
+    "lat": 41.40573,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209311",
@@ -6487,7 +8711,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.14682,
-    "lat": 44.28148
+    "lat": 44.28148,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209312",
@@ -6498,7 +8726,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.08015,
-    "lat": 44.34141
+    "lat": 44.34141,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209313",
@@ -6509,7 +8741,11 @@
     "county_fips": "56019",
     "state": "WY",
     "lon": -106.08181,
-    "lat": 44.34421
+    "lat": 44.34421,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209314",
@@ -6520,7 +8756,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.94423,
-    "lat": 44.33913
+    "lat": 44.33913,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209315",
@@ -6531,7 +8771,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.95131,
-    "lat": 44.36687
+    "lat": 44.36687,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209316",
@@ -6542,7 +8786,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.55715,
-    "lat": 44.4618
+    "lat": 44.4618,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209317",
@@ -6553,7 +8801,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51618,
-    "lat": 44.49043
+    "lat": 44.49043,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209318",
@@ -6564,7 +8816,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51622,
-    "lat": 44.49224
+    "lat": 44.49224,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209319",
@@ -6575,7 +8831,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51758,
-    "lat": 44.49221
+    "lat": 44.49221,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209320",
@@ -6586,7 +8846,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51417,
-    "lat": 44.4747
+    "lat": 44.4747,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209321",
@@ -6597,7 +8861,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.51717,
-    "lat": 44.47855
+    "lat": 44.47855,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209322",
@@ -6608,7 +8876,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.52999,
-    "lat": 44.44329
+    "lat": 44.44329,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209323",
@@ -6619,7 +8891,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.532,
-    "lat": 44.46161
+    "lat": 44.46161,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209324",
@@ -6630,7 +8906,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.53182,
-    "lat": 44.46202
+    "lat": 44.46202,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209326",
@@ -6641,7 +8921,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.70219,
-    "lat": 43.94241
+    "lat": 43.94241,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209327",
@@ -6652,7 +8936,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.63068,
-    "lat": 43.95446
+    "lat": 43.95446,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209328",
@@ -6663,7 +8951,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.63066,
-    "lat": 43.95485
+    "lat": 43.95485,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209329",
@@ -6674,7 +8966,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.38845,
-    "lat": 43.99356
+    "lat": 43.99356,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209330",
@@ -6685,7 +8981,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.41579,
-    "lat": 43.98781
+    "lat": 43.98781,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209331",
@@ -6696,7 +8996,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.41166,
-    "lat": 43.96279
+    "lat": 43.96279,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209332",
@@ -6707,7 +9011,11 @@
     "county_fips": "56045",
     "state": "WY",
     "lon": -104.42329,
-    "lat": 43.97095
+    "lat": 43.97095,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209333",
@@ -6718,7 +9026,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.36402,
-    "lat": 43.56356
+    "lat": 43.56356,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209334",
@@ -6729,7 +9041,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.36349,
-    "lat": 43.56216
+    "lat": 43.56216,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209335",
@@ -6740,7 +9056,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.36295,
-    "lat": 43.56289
+    "lat": 43.56289,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209336",
@@ -6751,7 +9071,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.33848,
-    "lat": 43.60628
+    "lat": 43.60628,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209337",
@@ -6762,7 +9086,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.29913,
-    "lat": 43.60636
+    "lat": 43.60636,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209338",
@@ -6773,7 +9101,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.29627,
-    "lat": 43.60637
+    "lat": 43.60637,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209339",
@@ -6784,7 +9116,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.34169,
-    "lat": 43.58517
+    "lat": 43.58517,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209340",
@@ -6795,7 +9131,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.29908,
-    "lat": 43.5944
+    "lat": 43.5944,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209341",
@@ -6806,7 +9146,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.24836,
-    "lat": 43.59492
+    "lat": 43.59492,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209342",
@@ -6817,7 +9161,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.24833,
-    "lat": 43.58453
+    "lat": 43.58453,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209343",
@@ -6828,7 +9176,11 @@
     "county_fips": "56005",
     "state": "WY",
     "lon": -105.2278,
-    "lat": 43.59908
+    "lat": 43.59908,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209344",
@@ -6839,7 +9191,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.36687,
-    "lat": 42.5958
+    "lat": 42.5958,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209345",
@@ -6850,7 +9206,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.96643,
-    "lat": 42.0546
+    "lat": 42.0546,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209346",
@@ -6861,7 +9221,11 @@
     "county_fips": "56031",
     "state": "WY",
     "lon": -104.95099,
-    "lat": 42.06678
+    "lat": 42.06678,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209347",
@@ -6872,7 +9236,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.7835,
-    "lat": 41.21847
+    "lat": 41.21847,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209348",
@@ -6883,7 +9251,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.74511,
-    "lat": 41.35114
+    "lat": 41.35114,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209349",
@@ -6894,7 +9266,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.74521,
-    "lat": 41.3504
+    "lat": 41.3504,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209350",
@@ -6905,7 +9281,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -106.0731,
-    "lat": 41.27207
+    "lat": 41.27207,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209351",
@@ -6916,7 +9296,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.88822,
-    "lat": 41.39649
+    "lat": 41.39649,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209352",
@@ -6927,7 +9311,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.88822,
-    "lat": 41.39623
+    "lat": 41.39623,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209353",
@@ -6938,7 +9326,11 @@
     "county_fips": "56001",
     "state": "WY",
     "lon": -105.6534,
-    "lat": 41.33507
+    "lat": 41.33507,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209354",
@@ -6949,7 +9341,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.17286,
-    "lat": 42.05413
+    "lat": 42.05413,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209355",
@@ -6960,7 +9356,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.17634,
-    "lat": 42.05856
+    "lat": 42.05856,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209356",
@@ -6971,7 +9371,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.19188,
-    "lat": 42.07302
+    "lat": 42.07302,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209357",
@@ -6982,7 +9386,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.19116,
-    "lat": 42.07222
+    "lat": 42.07222,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209358",
@@ -6993,7 +9401,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.19155,
-    "lat": 42.07237
+    "lat": 42.07237,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209359",
@@ -7004,7 +9416,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.19156,
-    "lat": 42.0726
+    "lat": 42.0726,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209360",
@@ -7015,7 +9431,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.18859,
-    "lat": 42.06382
+    "lat": 42.06382,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209361",
@@ -7026,7 +9446,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.18865,
-    "lat": 42.06362
+    "lat": 42.06362,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209362",
@@ -7037,7 +9461,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.18895,
-    "lat": 42.06334
+    "lat": 42.06334,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209363",
@@ -7048,7 +9476,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.1899,
-    "lat": 42.04613
+    "lat": 42.04613,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209364",
@@ -7059,7 +9491,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.18894,
-    "lat": 42.04557
+    "lat": 42.04557,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209365",
@@ -7070,7 +9506,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.19221,
-    "lat": 42.04146
+    "lat": 42.04146,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209366",
@@ -7081,7 +9521,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.17895,
-    "lat": 42.07292
+    "lat": 42.07292,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209367",
@@ -7092,7 +9536,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.12032,
-    "lat": 42.07377
+    "lat": 42.07377,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209368",
@@ -7103,7 +9551,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.35216,
-    "lat": 41.82923
+    "lat": 41.82923,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209369",
@@ -7114,7 +9566,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26578,
-    "lat": 41.82756
+    "lat": 41.82756,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209370",
@@ -7125,7 +9581,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26595,
-    "lat": 41.89206
+    "lat": 41.89206,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209371",
@@ -7136,7 +9596,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26625,
-    "lat": 41.892
+    "lat": 41.892,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209372",
@@ -7147,7 +9611,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26626,
-    "lat": 41.89941
+    "lat": 41.89941,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209373",
@@ -7158,7 +9626,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26652,
-    "lat": 41.91521
+    "lat": 41.91521,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209374",
@@ -7169,7 +9641,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26612,
-    "lat": 41.91522
+    "lat": 41.91522,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209375",
@@ -7180,7 +9656,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26651,
-    "lat": 42.00226
+    "lat": 42.00226,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209376",
@@ -7191,7 +9671,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.2661,
-    "lat": 42.00209
+    "lat": 42.00209,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209377",
@@ -7202,7 +9686,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26743,
-    "lat": 41.78336
+    "lat": 41.78336,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209378",
@@ -7213,7 +9701,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.26608,
-    "lat": 41.78286
+    "lat": 41.78286,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209379",
@@ -7224,7 +9716,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.23814,
-    "lat": 41.655
+    "lat": 41.655,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209380",
@@ -7235,7 +9731,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.3437,
-    "lat": 41.65169
+    "lat": 41.65169,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209381",
@@ -7246,7 +9746,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.16925,
-    "lat": 41.64492
+    "lat": 41.64492,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209382",
@@ -7257,7 +9761,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.16958,
-    "lat": 41.6395
+    "lat": 41.6395,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209383",
@@ -7268,7 +9776,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.13085,
-    "lat": 41.64461
+    "lat": 41.64461,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209386",
@@ -7279,7 +9791,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.13092,
-    "lat": 41.63271
+    "lat": 41.63271,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209387",
@@ -7290,7 +9806,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.13095,
-    "lat": 41.62868
+    "lat": 41.62868,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209388",
@@ -7301,7 +9821,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.13203,
-    "lat": 41.62939
+    "lat": 41.62939,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209389",
@@ -7312,7 +9836,11 @@
     "county_fips": "56015",
     "state": "WY",
     "lon": -104.12922,
-    "lat": 41.56909
+    "lat": 41.56909,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209392",
@@ -7323,7 +9851,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.09104,
-    "lat": 41.38946
+    "lat": 41.38946,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209393",
@@ -7334,7 +9866,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.09104,
-    "lat": 41.38995
+    "lat": 41.38995,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209394",
@@ -7345,7 +9881,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.31124,
-    "lat": 41.31746
+    "lat": 41.31746,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209395",
@@ -7356,7 +9896,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.29166,
-    "lat": 41.19544
+    "lat": 41.19544,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209396",
@@ -7367,7 +9911,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.59591,
-    "lat": 41.20291
+    "lat": 41.20291,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209397",
@@ -7378,7 +9926,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.29179,
-    "lat": 41.17288
+    "lat": 41.17288,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209398",
@@ -7389,7 +9941,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.29139,
-    "lat": 41.17286
+    "lat": 41.17286,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209399",
@@ -7400,7 +9956,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.29323,
-    "lat": 41.08577
+    "lat": 41.08577,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209400",
@@ -7411,7 +9971,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.29517,
-    "lat": 41.02419
+    "lat": 41.02419,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209401",
@@ -7422,7 +9986,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.29484,
-    "lat": 41.02408
+    "lat": 41.02408,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209403",
@@ -7433,7 +10001,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.13696,
-    "lat": 41.08526
+    "lat": 41.08526,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209404",
@@ -7444,7 +10016,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.09769,
-    "lat": 41.08527
+    "lat": 41.08527,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209406",
@@ -7455,7 +10031,11 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.07077,
-    "lat": 41.18164
+    "lat": 41.18164,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209453",
@@ -7466,7 +10046,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.21631,
-    "lat": 42.3537
+    "lat": 42.3537,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209454",
@@ -7477,7 +10061,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.22016,
-    "lat": 42.35502
+    "lat": 42.35502,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209455",
@@ -7488,7 +10076,11 @@
     "county_fips": "56007",
     "state": "WY",
     "lon": -106.17547,
-    "lat": 42.36572
+    "lat": 42.36572,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209456",
@@ -7499,7 +10091,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.4053,
-    "lat": 42.86906
+    "lat": 42.86906,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209457",
@@ -7510,7 +10106,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.41013,
-    "lat": 42.86581
+    "lat": 42.86581,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209458",
@@ -7521,7 +10121,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.40798,
-    "lat": 42.8645
+    "lat": 42.8645,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209459",
@@ -7532,7 +10136,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.41011,
-    "lat": 42.86366
+    "lat": 42.86366,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209460",
@@ -7543,7 +10151,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.41146,
-    "lat": 42.86355
+    "lat": 42.86355,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209461",
@@ -7554,7 +10166,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.41077,
-    "lat": 42.857
+    "lat": 42.857,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209462",
@@ -7565,7 +10181,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.41625,
-    "lat": 42.82714
+    "lat": 42.82714,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209463",
@@ -7576,7 +10196,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.31745,
-    "lat": 42.82147
+    "lat": 42.82147,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209464",
@@ -7587,7 +10211,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.24293,
-    "lat": 42.82825
+    "lat": 42.82825,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209465",
@@ -7598,7 +10226,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.2396,
-    "lat": 42.85554
+    "lat": 42.85554,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209466",
@@ -7609,7 +10241,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.23907,
-    "lat": 42.85705
+    "lat": 42.85705,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209467",
@@ -7620,7 +10256,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.96979,
-    "lat": 42.84599
+    "lat": 42.84599,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209468",
@@ -7631,7 +10271,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.96982,
-    "lat": 42.84642
+    "lat": 42.84642,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209469",
@@ -7642,7 +10286,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.88899,
-    "lat": 42.8355
+    "lat": 42.8355,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209470",
@@ -7653,7 +10301,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.88859,
-    "lat": 42.8357
+    "lat": 42.8357,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209471",
@@ -7664,7 +10316,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.77009,
-    "lat": 42.8314
+    "lat": 42.8314,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209472",
@@ -7675,7 +10331,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.29818,
-    "lat": 42.85861
+    "lat": 42.85861,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209474",
@@ -7686,7 +10346,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.32568,
-    "lat": 42.85466
+    "lat": 42.85466,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209475",
@@ -7697,7 +10361,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.35659,
-    "lat": 42.85247
+    "lat": 42.85247,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209476",
@@ -7708,7 +10376,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.36037,
-    "lat": 42.85291
+    "lat": 42.85291,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209477",
@@ -7719,7 +10391,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.35863,
-    "lat": 42.83787
+    "lat": 42.83787,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209478",
@@ -7730,7 +10406,11 @@
     "county_fips": "56025",
     "state": "WY",
     "lon": -106.37499,
-    "lat": 42.84766
+    "lat": 42.84766,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209479",
@@ -7741,7 +10421,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.90311,
-    "lat": 43.0909
+    "lat": 43.0909,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209480",
@@ -7752,7 +10436,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.83908,
-    "lat": 43.02996
+    "lat": 43.02996,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209481",
@@ -7763,7 +10451,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.77333,
-    "lat": 42.84772
+    "lat": 42.84772,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209482",
@@ -7774,7 +10466,11 @@
     "county_fips": "56009",
     "state": "WY",
     "lon": -105.772,
-    "lat": 42.84721
+    "lat": 42.84721,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209493",
@@ -7785,7 +10481,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.97647,
-    "lat": 41.77039
+    "lat": 41.77039,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209494",
@@ -7796,7 +10496,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.79073,
-    "lat": 41.81298
+    "lat": 41.81298,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209495",
@@ -7807,7 +10511,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.78266,
-    "lat": 41.79282
+    "lat": 41.79282,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209496",
@@ -7818,7 +10526,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -108.77443,
-    "lat": 41.73564
+    "lat": 41.73564,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209497",
@@ -7829,7 +10541,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -107.57323,
-    "lat": 42.24531
+    "lat": 42.24531,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209498",
@@ -7840,7 +10556,11 @@
     "county_fips": "56037",
     "state": "WY",
     "lon": -107.56384,
-    "lat": 42.24569
+    "lat": 42.24569,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209512",
@@ -7851,7 +10571,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.70301,
-    "lat": 43.21314
+    "lat": 43.21314,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-209513",
@@ -7862,7 +10586,11 @@
     "county_fips": "56013",
     "state": "WY",
     "lon": -108.76994,
-    "lat": 43.21378
+    "lat": 43.21378,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-209770",
@@ -7873,6 +10601,10 @@
     "county_fips": "56021",
     "state": "WY",
     "lon": -104.71347,
-    "lat": 41.15938
+    "lat": 41.15938,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   }
 ]

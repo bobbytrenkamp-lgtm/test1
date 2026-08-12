@@ -409,3 +409,92 @@ def test_iso_rto_rings_are_downsampled_and_rounded():
     ring = result[0]["rings"][0]
     assert len(ring) < len(long_ring)  # downsampled, not the full vertex count
     assert all(len(str(p[0]).split(".")[-1]) <= 4 for p in ring)  # rounded to 4dp
+
+
+# ── Substation quality classification ──────────────────────────────────────
+#
+# classify_substation_quality() is a pure function of fields the record
+# already carries (type/status/name) -- confirmed against the real
+# 53,826-record dataset: 37,891 TYPE='SUBSTATION' vs 15,349 TYPE='TAP' (a
+# transmission-line branch point, not a switching facility) plus small
+# RISER/DEAD END/NOT AVAILABLE counts; 51,786 STATUS='IN SERVICE'; ~46.8%
+# of NAME values are the generic 'UnknownNNNNN' placeholder the source
+# itself uses. See data/catalog/dataset_registry.json's substations entry
+# for the full history these numbers come from.
+
+def _sub_record(**overrides):
+    rec = {
+        "id": "sub-1", "name": "Ashburn Substation", "type": "SUBSTATION",
+        "status": "IN SERVICE", "voltage_kv": 230, "county_fips": "51107",
+        "state": "VA", "lon": -77.49, "lat": 39.04,
+    }
+    rec.update(overrides)
+    return rec
+
+
+def test_substation_all_three_signals_present_is_high_tier():
+    result = fi.classify_substation_quality(_sub_record())
+    assert result == {"quality_tier": "high", "quality_flags": []}
+
+
+def test_substation_tap_type_flagged_non_substation():
+    result = fi.classify_substation_quality(_sub_record(type="TAP"))
+    assert result["quality_flags"] == ["non_substation_type"]
+    assert result["quality_tier"] == "medium"  # exactly one flag
+
+
+def test_substation_not_in_service_flagged():
+    result = fi.classify_substation_quality(_sub_record(status="NOT AVAILABLE"))
+    assert result["quality_flags"] == ["not_confirmed_in_service"]
+    assert result["quality_tier"] == "medium"
+
+
+def test_substation_placeholder_name_flagged():
+    result = fi.classify_substation_quality(_sub_record(name="Unknown107655"))
+    assert result["quality_flags"] == ["generic_name"]
+    assert result["quality_tier"] == "medium"
+
+
+def test_substation_a_real_but_differently_formatted_name_is_not_flagged():
+    # The placeholder pattern is exactly 'Unknown' + digits, nothing looser --
+    # a real substation that happens to be named e.g. "Unknown Creek Substation"
+    # must not be caught by this.
+    result = fi.classify_substation_quality(_sub_record(name="Unknown Creek Substation"))
+    assert "generic_name" not in result["quality_flags"]
+
+
+def test_substation_two_flags_is_low_tier():
+    result = fi.classify_substation_quality(_sub_record(type="TAP", status="NOT AVAILABLE"))
+    assert sorted(result["quality_flags"]) == ["non_substation_type", "not_confirmed_in_service"]
+    assert result["quality_tier"] == "low"
+
+
+def test_substation_all_three_flags_is_low_tier():
+    result = fi.classify_substation_quality(
+        _sub_record(type="RISER", status="UNDER CONST", name="Unknown42"))
+    assert len(result["quality_flags"]) == 3
+    assert result["quality_tier"] == "low"
+
+
+def _substation_feature(id_, lon, lat, **overrides):
+    attrs = {
+        "ID": id_, "NAME": f"Substation {id_}", "TYPE": "SUBSTATION",
+        "STATUS": "IN SERVICE", "MAX_VOLT": 230, "MIN_VOLT": 115,
+        "COUNTY": "Loudoun", "STATE": "VA", "COUNTYFIPS": "51107",
+    }
+    attrs.update(overrides)
+    return {"attributes": attrs, "geometry": {"x": lon, "y": lat}}
+
+
+def test_fetch_substations_stamps_quality_tier_on_every_record():
+    raw = [
+        _substation_feature("1", -77.49, 39.04),
+        _substation_feature("2", -77.50, 39.05, TYPE="TAP", NAME="Unknown99"),
+    ]
+    with patch.object(fi, "_arcgis_paginate", return_value=raw):
+        result = fi.fetch_substations()
+    tiers = {r["id"]: r["quality_tier"] for r in result}
+    assert tiers == {"sub-1": "high", "sub-2": "low"}
+    # quality_flags travels with the record too, not just the bare tier.
+    low = next(r for r in result if r["id"] == "sub-2")
+    assert set(low["quality_flags"]) == {"non_substation_type", "generic_name"}

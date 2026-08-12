@@ -8,7 +8,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.57448,
-    "lat": 47.23439
+    "lat": 47.23439,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132986",
@@ -19,7 +23,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.37505,
-    "lat": 47.27852
+    "lat": 47.27852,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-132988",
@@ -30,7 +38,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.43667,
-    "lat": 46.63602
+    "lat": 46.63602,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133001",
@@ -41,7 +53,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.87106,
-    "lat": 44.95904
+    "lat": 44.95904,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133015",
@@ -52,7 +68,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.89887,
-    "lat": 44.78671
+    "lat": 44.78671,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133016",
@@ -63,7 +83,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.88773,
-    "lat": 44.78889
+    "lat": 44.78889,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133017",
@@ -74,7 +98,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.88671,
-    "lat": 44.79681
+    "lat": 44.79681,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133030",
@@ -85,7 +113,11 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.68511,
-    "lat": 44.5683
+    "lat": 44.5683,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133039",
@@ -96,7 +128,11 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.58332,
-    "lat": 44.57446
+    "lat": 44.57446,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133040",
@@ -107,7 +143,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.47641,
-    "lat": 44.83592
+    "lat": 44.83592,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133054",
@@ -118,7 +158,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.70583,
-    "lat": 44.82293
+    "lat": 44.82293,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133055",
@@ -129,7 +173,11 @@
     "county_fips": "23009",
     "state": "ME",
     "lon": -68.37453,
-    "lat": 44.43888
+    "lat": 44.43888,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133061",
@@ -140,7 +188,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.69575,
-    "lat": 43.57679
+    "lat": 43.57679,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133064",
@@ -151,7 +201,11 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.55838,
-    "lat": 43.36557
+    "lat": 43.36557,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133066",
@@ -162,7 +216,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.50328,
-    "lat": 43.52914
+    "lat": 43.52914,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133089",
@@ -173,7 +229,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.74275,
-    "lat": 43.28822
+    "lat": 43.28822,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133090",
@@ -184,7 +242,11 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.73465,
-    "lat": 43.42911
+    "lat": 43.42911,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133095",
@@ -195,7 +257,11 @@
     "county_fips": "23007",
     "state": "ME",
     "lon": -70.12748,
-    "lat": 44.65501
+    "lat": 44.65501,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133096",
@@ -206,7 +272,11 @@
     "county_fips": "23007",
     "state": "ME",
     "lon": -70.54158,
-    "lat": 45.35536
+    "lat": 45.35536,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133102",
@@ -217,7 +287,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.59656,
-    "lat": 43.66594
+    "lat": 43.66594,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-133112",
@@ -228,7 +300,11 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.54463,
-    "lat": 44.53728
+    "lat": 44.53728,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133115",
@@ -239,7 +315,11 @@
     "county_fips": "23007",
     "state": "ME",
     "lon": -70.35366,
-    "lat": 45.10163
+    "lat": 45.10163,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133126",
@@ -250,7 +330,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.00261,
-    "lat": 46.84833
+    "lat": 46.84833,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133132",
@@ -261,7 +345,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.95239,
-    "lat": 46.70898
+    "lat": 46.70898,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133133",
@@ -272,7 +360,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.95269,
-    "lat": 46.70968
+    "lat": 46.70968,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133136",
@@ -283,7 +375,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.86512,
-    "lat": 45.45928
+    "lat": 45.45928,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133137",
@@ -294,7 +390,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.62794,
-    "lat": 45.25382
+    "lat": 45.25382,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133138",
@@ -305,7 +405,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.89423,
-    "lat": 46.93342
+    "lat": 46.93342,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133400",
@@ -316,7 +420,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.73914,
-    "lat": 44.80489
+    "lat": 44.80489,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133401",
@@ -327,7 +435,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.65922,
-    "lat": 44.94472
+    "lat": 44.94472,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133402",
@@ -338,7 +450,11 @@
     "county_fips": "23009",
     "state": "ME",
     "lon": -68.80612,
-    "lat": 44.5748
+    "lat": 44.5748,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133403",
@@ -349,7 +465,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.82477,
-    "lat": 44.73908
+    "lat": 44.73908,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133406",
@@ -360,7 +480,11 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.15667,
-    "lat": 43.75163
+    "lat": 43.75163,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133409",
@@ -371,7 +495,11 @@
     "county_fips": "23015",
     "state": "ME",
     "lon": -69.69683,
-    "lat": 43.95151
+    "lat": 43.95151,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133729",
@@ -382,7 +510,11 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.54285,
-    "lat": 44.5507
+    "lat": 44.5507,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-133734",
@@ -393,7 +525,11 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.99275,
-    "lat": 44.18887
+    "lat": 44.18887,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136588",
@@ -404,7 +540,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.37456,
-    "lat": 47.27855
+    "lat": 47.27855,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136590",
@@ -415,7 +555,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.39173,
-    "lat": 46.6314
+    "lat": 46.6314,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136591",
@@ -426,7 +570,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.15388,
-    "lat": 46.7782
+    "lat": 46.7782,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136592",
@@ -437,7 +585,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.15391,
-    "lat": 46.77852
+    "lat": 46.77852,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136596",
@@ -448,7 +600,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.00873,
-    "lat": 46.69927
+    "lat": 46.69927,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136597",
@@ -459,7 +615,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.83075,
-    "lat": 46.92895
+    "lat": 46.92895,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136598",
@@ -470,7 +630,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.04293,
-    "lat": 46.69914
+    "lat": 46.69914,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136599",
@@ -481,7 +645,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.85846,
-    "lat": 46.76068
+    "lat": 46.76068,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136600",
@@ -492,7 +660,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.84746,
-    "lat": 46.77275
+    "lat": 46.77275,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136601",
@@ -503,7 +675,9 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.57828,
-    "lat": 45.618
+    "lat": 45.618,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136657",
@@ -514,7 +688,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.61784,
-    "lat": 43.39694
+    "lat": 43.39694,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136662",
@@ -525,7 +701,11 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.59643,
-    "lat": 44.62777
+    "lat": 44.62777,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136665",
@@ -536,7 +716,11 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.53704,
-    "lat": 43.48308
+    "lat": 43.48308,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136666",
@@ -547,7 +731,11 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.60783,
-    "lat": 43.41949
+    "lat": 43.41949,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136667",
@@ -558,7 +746,11 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.88847,
-    "lat": 44.12194
+    "lat": 44.12194,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136669",
@@ -569,7 +761,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.60685,
-    "lat": 43.41865
+    "lat": 43.41865,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136670",
@@ -580,7 +774,9 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.62934,
-    "lat": 44.38943
+    "lat": 44.38943,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136671",
@@ -591,7 +787,9 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.523,
-    "lat": 44.53165
+    "lat": 44.53165,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136673",
@@ -602,7 +800,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.63372,
-    "lat": 44.1518
+    "lat": 44.1518,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136674",
@@ -613,7 +813,9 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.52816,
-    "lat": 44.20734
+    "lat": 44.20734,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136675",
@@ -624,7 +826,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.55337,
-    "lat": 43.66332
+    "lat": 43.66332,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136676",
@@ -635,7 +839,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.49471,
-    "lat": 43.94416
+    "lat": 43.94416,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136677",
@@ -646,7 +852,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.49288,
-    "lat": 43.46787
+    "lat": 43.46787,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136679",
@@ -657,7 +865,9 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.75386,
-    "lat": 44.74026
+    "lat": 44.74026,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136680",
@@ -668,7 +878,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.67729,
-    "lat": 44.83559
+    "lat": 44.83559,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136689",
@@ -679,7 +893,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.60171,
-    "lat": 45.24574
+    "lat": 45.24574,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136690",
@@ -690,7 +908,11 @@
     "county_fips": "23009",
     "state": "ME",
     "lon": -68.46166,
-    "lat": 44.75289
+    "lat": 44.75289,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136691",
@@ -701,7 +923,9 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.52585,
-    "lat": 45.39741
+    "lat": 45.39741,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136693",
@@ -712,7 +936,9 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.70864,
-    "lat": 44.82249
+    "lat": 44.82249,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136694",
@@ -723,7 +949,9 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.52914,
-    "lat": 45.39723
+    "lat": 45.39723,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136695",
@@ -734,7 +962,9 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.52956,
-    "lat": 45.39484
+    "lat": 45.39484,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136696",
@@ -745,7 +975,9 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.70547,
-    "lat": 44.82418
+    "lat": 44.82418,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136697",
@@ -756,7 +988,9 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.3622,
-    "lat": 44.79289
+    "lat": 44.79289,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136698",
@@ -767,7 +1001,9 @@
     "county_fips": "23021",
     "state": "ME",
     "lon": -69.38916,
-    "lat": 45.16029
+    "lat": 45.16029,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136729",
@@ -778,7 +1014,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.43237,
-    "lat": 43.64422
+    "lat": 43.64422,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136730",
@@ -789,7 +1027,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.20369,
-    "lat": 43.93165
+    "lat": 43.93165,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136731",
@@ -800,7 +1040,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.20362,
-    "lat": 43.7814
+    "lat": 43.7814,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136732",
@@ -811,7 +1053,9 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.18604,
-    "lat": 44.14111
+    "lat": 44.14111,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136733",
@@ -822,7 +1066,11 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.20088,
-    "lat": 43.78554
+    "lat": 43.78554,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136734",
@@ -833,7 +1081,11 @@
     "county_fips": "23023",
     "state": "ME",
     "lon": -69.97674,
-    "lat": 43.95933
+    "lat": 43.95933,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136737",
@@ -844,7 +1096,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.91379,
-    "lat": 44.78104
+    "lat": 44.78104,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136738",
@@ -855,7 +1111,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.9085,
-    "lat": 44.78567
+    "lat": 44.78567,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136739",
@@ -866,7 +1126,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.88521,
-    "lat": 44.95827
+    "lat": 44.95827,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136740",
@@ -877,7 +1141,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.8855,
-    "lat": 44.95862
+    "lat": 44.95862,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136741",
@@ -888,7 +1156,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.88586,
-    "lat": 44.95721
+    "lat": 44.95721,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136742",
@@ -899,7 +1171,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.88579,
-    "lat": 44.95907
+    "lat": 44.95907,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136743",
@@ -910,7 +1186,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.8855,
-    "lat": 44.95837
+    "lat": 44.95837,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136744",
@@ -921,7 +1201,11 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.33674,
-    "lat": 44.49649
+    "lat": 44.49649,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136745",
@@ -932,7 +1216,11 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.2912,
-    "lat": 44.19552
+    "lat": 44.19552,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136746",
@@ -943,7 +1231,11 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.18644,
-    "lat": 44.06923
+    "lat": 44.06923,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136747",
@@ -954,7 +1246,9 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.21183,
-    "lat": 44.08677
+    "lat": 44.08677,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136748",
@@ -965,7 +1259,11 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.35676,
-    "lat": 43.73193
+    "lat": 43.73193,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136749",
@@ -976,7 +1274,11 @@
     "county_fips": "23007",
     "state": "ME",
     "lon": -70.35839,
-    "lat": 45.10472
+    "lat": 45.10472,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136751",
@@ -987,7 +1289,11 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.44981,
-    "lat": 43.52288
+    "lat": 43.52288,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136752",
@@ -998,7 +1304,11 @@
     "county_fips": "23007",
     "state": "ME",
     "lon": -70.24197,
-    "lat": 44.50578
+    "lat": 44.50578,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136753",
@@ -1009,7 +1319,11 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.1616,
-    "lat": 44.43181
+    "lat": 44.43181,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136754",
@@ -1020,7 +1334,11 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.15398,
-    "lat": 44.4312
+    "lat": 44.4312,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136758",
@@ -1031,7 +1349,9 @@
     "county_fips": "23023",
     "state": "ME",
     "lon": -69.83484,
-    "lat": 43.9032
+    "lat": 43.9032,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136759",
@@ -1042,7 +1362,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.19916,
-    "lat": 43.78677
+    "lat": 43.78677,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136760",
@@ -1053,7 +1375,9 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.20857,
-    "lat": 44.15126
+    "lat": 44.15126,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136761",
@@ -1064,7 +1388,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.39971,
-    "lat": 43.68426
+    "lat": 43.68426,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136762",
@@ -1075,7 +1401,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.37612,
-    "lat": 43.65682
+    "lat": 43.65682,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136763",
@@ -1086,7 +1414,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.36027,
-    "lat": 43.65163
+    "lat": 43.65163,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136764",
@@ -1097,7 +1427,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.33879,
-    "lat": 43.71022
+    "lat": 43.71022,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136765",
@@ -1108,7 +1440,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.29254,
-    "lat": 43.65441
+    "lat": 43.65441,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136766",
@@ -1119,7 +1453,9 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.26696,
-    "lat": 44.06812
+    "lat": 44.06812,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136767",
@@ -1130,7 +1466,9 @@
     "county_fips": "23005",
     "state": "ME",
     "lon": -70.15538,
-    "lat": 43.75119
+    "lat": 43.75119,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136768",
@@ -1141,7 +1479,9 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.15508,
-    "lat": 44.05949
+    "lat": 44.05949,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136769",
@@ -1152,7 +1492,9 @@
     "county_fips": "23023",
     "state": "ME",
     "lon": -69.97083,
-    "lat": 43.94005
+    "lat": 43.94005,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136770",
@@ -1163,7 +1505,9 @@
     "county_fips": "23007",
     "state": "ME",
     "lon": -70.24814,
-    "lat": 44.50753
+    "lat": 44.50753,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136771",
@@ -1174,7 +1518,9 @@
     "county_fips": "23001",
     "state": "ME",
     "lon": -70.1716,
-    "lat": 44.47834
+    "lat": 44.47834,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136772",
@@ -1185,7 +1531,9 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.90293,
-    "lat": 45.07099
+    "lat": 45.07099,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136774",
@@ -1196,7 +1544,9 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.509,
-    "lat": 44.57405
+    "lat": 44.57405,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136775",
@@ -1207,7 +1557,9 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.55657,
-    "lat": 44.29699
+    "lat": 44.29699,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136776",
@@ -1218,7 +1570,11 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.57002,
-    "lat": 44.60563
+    "lat": 44.60563,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136777",
@@ -1229,7 +1585,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.76418,
-    "lat": 44.66567
+    "lat": 44.66567,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136781",
@@ -1240,7 +1600,11 @@
     "county_fips": "23029",
     "state": "ME",
     "lon": -67.77881,
-    "lat": 44.67274
+    "lat": 44.67274,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136782",
@@ -1251,7 +1615,11 @@
     "county_fips": "23029",
     "state": "ME",
     "lon": -67.79789,
-    "lat": 44.62218
+    "lat": 44.62218,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136783",
@@ -1262,7 +1630,11 @@
     "county_fips": "23029",
     "state": "ME",
     "lon": -67.95702,
-    "lat": 44.70046
+    "lat": 44.70046,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136784",
@@ -1273,7 +1645,11 @@
     "county_fips": "23009",
     "state": "ME",
     "lon": -68.43369,
-    "lat": 44.58039
+    "lat": 44.58039,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-136785",
@@ -1284,7 +1660,11 @@
     "county_fips": "23013",
     "state": "ME",
     "lon": -69.18893,
-    "lat": 44.2024
+    "lat": 44.2024,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136786",
@@ -1295,7 +1675,11 @@
     "county_fips": "23027",
     "state": "ME",
     "lon": -69.03853,
-    "lat": 44.4537
+    "lat": 44.4537,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136787",
@@ -1306,7 +1690,11 @@
     "county_fips": "23013",
     "state": "ME",
     "lon": -69.13686,
-    "lat": 44.11001
+    "lat": 44.11001,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-136790",
@@ -1317,7 +1705,9 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.85413,
-    "lat": 44.3314
+    "lat": 44.3314,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136791",
@@ -1328,7 +1718,9 @@
     "county_fips": "23029",
     "state": "ME",
     "lon": -67.54623,
-    "lat": 44.6755
+    "lat": 44.6755,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136792",
@@ -1339,7 +1731,9 @@
     "county_fips": "23009",
     "state": "ME",
     "lon": -68.45871,
-    "lat": 44.57014
+    "lat": 44.57014,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136793",
@@ -1350,7 +1744,9 @@
     "county_fips": "23009",
     "state": "ME",
     "lon": -68.45401,
-    "lat": 44.57713
+    "lat": 44.57713,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136794",
@@ -1361,7 +1757,9 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.80363,
-    "lat": 44.2544
+    "lat": 44.2544,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136795",
@@ -1372,7 +1770,9 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.79758,
-    "lat": 44.36358
+    "lat": 44.36358,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136796",
@@ -1383,7 +1783,9 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.77503,
-    "lat": 44.25286
+    "lat": 44.25286,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136797",
@@ -1394,7 +1796,9 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.74622,
-    "lat": 44.32942
+    "lat": 44.32942,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136798",
@@ -1405,7 +1809,9 @@
     "county_fips": "23011",
     "state": "ME",
     "lon": -69.60323,
-    "lat": 44.56956
+    "lat": 44.56956,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136799",
@@ -1416,7 +1822,9 @@
     "county_fips": "23013",
     "state": "ME",
     "lon": -69.20428,
-    "lat": 44.13649
+    "lat": 44.13649,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136800",
@@ -1427,7 +1835,9 @@
     "county_fips": "23013",
     "state": "ME",
     "lon": -69.12127,
-    "lat": 44.1755
+    "lat": 44.1755,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136801",
@@ -1438,7 +1848,9 @@
     "county_fips": "23027",
     "state": "ME",
     "lon": -69.11413,
-    "lat": 44.30712
+    "lat": 44.30712,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136802",
@@ -1449,7 +1861,9 @@
     "county_fips": "23027",
     "state": "ME",
     "lon": -69.03911,
-    "lat": 44.45698
+    "lat": 44.45698,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136804",
@@ -1460,7 +1874,9 @@
     "county_fips": "23015",
     "state": "ME",
     "lon": -69.69544,
-    "lat": 43.95359
+    "lat": 43.95359,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136805",
@@ -1471,7 +1887,9 @@
     "county_fips": "23015",
     "state": "ME",
     "lon": -69.6713,
-    "lat": 43.99117
+    "lat": 43.99117,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136806",
@@ -1482,7 +1900,9 @@
     "county_fips": "23015",
     "state": "ME",
     "lon": -69.55802,
-    "lat": 44.08272
+    "lat": 44.08272,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136807",
@@ -1493,7 +1913,9 @@
     "county_fips": "23013",
     "state": "ME",
     "lon": -69.15783,
-    "lat": 44.08333
+    "lat": 44.08333,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136808",
@@ -1504,7 +1926,9 @@
     "county_fips": "23013",
     "state": "ME",
     "lon": -69.12263,
-    "lat": 44.10221
+    "lat": 44.10221,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136914",
@@ -1515,7 +1939,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.81773,
-    "lat": 43.16764
+    "lat": 43.16764,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-136936",
@@ -1526,7 +1952,9 @@
     "county_fips": "23031",
     "state": "ME",
     "lon": -70.82087,
-    "lat": 43.16825
+    "lat": 43.16825,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155834",
@@ -1537,7 +1965,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.9084,
-    "lat": 46.57354
+    "lat": 46.57354,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156300",
@@ -1548,7 +1980,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.85174,
-    "lat": 46.28623
+    "lat": 46.28623,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156301",
@@ -1559,7 +1995,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.85288,
-    "lat": 46.41988
+    "lat": 46.41988,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156303",
@@ -1570,7 +2010,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.90807,
-    "lat": 46.57335
+    "lat": 46.57335,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156304",
@@ -1581,7 +2025,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.9209,
-    "lat": 46.64418
+    "lat": 46.64418,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156305",
@@ -1592,7 +2040,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.00881,
-    "lat": 46.69957
+    "lat": 46.69957,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156306",
@@ -1603,7 +2055,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.02002,
-    "lat": 46.69955
+    "lat": 46.69955,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156307",
@@ -1614,7 +2070,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.16179,
-    "lat": 46.68183
+    "lat": 46.68183,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156308",
@@ -1625,7 +2085,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.89504,
-    "lat": 46.91395
+    "lat": 46.91395,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156309",
@@ -1636,7 +2100,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.98951,
-    "lat": 46.87459
+    "lat": 46.87459,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156310",
@@ -1647,7 +2115,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.32703,
-    "lat": 47.13421
+    "lat": 47.13421,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156966",
@@ -1658,7 +2130,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.90953,
-    "lat": 46.57364
+    "lat": 46.57364,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156967",
@@ -1669,7 +2145,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.85202,
-    "lat": 46.14158
+    "lat": 46.14158,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156968",
@@ -1680,7 +2160,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.00992,
-    "lat": 46.68156
+    "lat": 46.68156,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156969",
@@ -1691,7 +2175,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.16119,
-    "lat": 46.68434
+    "lat": 46.68434,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156970",
@@ -1702,7 +2190,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.57829,
-    "lat": 47.23855
+    "lat": 47.23855,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157844",
@@ -1713,7 +2205,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.88446,
-    "lat": 46.52996
+    "lat": 46.52996,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157845",
@@ -1724,7 +2220,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.84137,
-    "lat": 46.28613
+    "lat": 46.28613,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157846",
@@ -1735,7 +2235,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.84691,
-    "lat": 46.41928
+    "lat": 46.41928,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157847",
@@ -1746,7 +2250,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.03534,
-    "lat": 46.67752
+    "lat": 46.67752,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-158128",
@@ -1757,7 +2265,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.92041,
-    "lat": 46.64328
+    "lat": 46.64328,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-158129",
@@ -1768,7 +2280,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.32687,
-    "lat": 47.1346
+    "lat": 47.1346,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-159790",
@@ -1779,7 +2295,11 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.54114,
-    "lat": 44.54805
+    "lat": 44.54805,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-159791",
@@ -1790,7 +2310,11 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.54138,
-    "lat": 44.54778
+    "lat": 44.54778,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-159792",
@@ -1801,7 +2325,11 @@
     "county_fips": "23017",
     "state": "ME",
     "lon": -70.52516,
-    "lat": 44.53127
+    "lat": 44.53127,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161323",
@@ -1812,7 +2340,11 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.85611,
-    "lat": 45.16687
+    "lat": 45.16687,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-161324",
@@ -1823,7 +2355,11 @@
     "county_fips": "23009",
     "state": "ME",
     "lon": -68.10871,
-    "lat": 44.54411
+    "lat": 44.54411,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-161326",
@@ -1834,7 +2370,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.16067,
-    "lat": 46.09812
+    "lat": 46.09812,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-161327",
@@ -1845,7 +2385,9 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.278,
-    "lat": 46.01671
+    "lat": 46.01671,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-161328",
@@ -1856,7 +2398,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -68.27777,
-    "lat": 46.01646
+    "lat": 46.01646,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-161332",
@@ -1867,7 +2413,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.44994,
-    "lat": 45.98771
+    "lat": 45.98771,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-161342",
@@ -1878,7 +2428,11 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.90242,
-    "lat": 46.66043
+    "lat": 46.66043,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-162183",
@@ -1889,7 +2443,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.51919,
-    "lat": 44.78194
+    "lat": 44.78194,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-162184",
@@ -1900,7 +2458,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.5199,
-    "lat": 44.78243
+    "lat": 44.78243,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-167202",
@@ -1911,7 +2473,12 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.81971,
-    "lat": 45.16301
+    "lat": 45.16301,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-167203",
@@ -1922,7 +2489,12 @@
     "county_fips": "23025",
     "state": "ME",
     "lon": -69.81965,
-    "lat": 45.163
+    "lat": 45.163,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-167205",
@@ -1933,7 +2505,12 @@
     "county_fips": "23003",
     "state": "ME",
     "lon": -67.9161,
-    "lat": 46.66073
+    "lat": 46.66073,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   },
   {
     "id": "sub-171047",
@@ -1944,7 +2521,11 @@
     "county_fips": "23029",
     "state": "ME",
     "lon": -67.7924,
-    "lat": 44.62831
+    "lat": 44.62831,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-173343",
@@ -1955,6 +2536,11 @@
     "county_fips": "23019",
     "state": "ME",
     "lon": -68.45158,
-    "lat": 45.96381
+    "lat": 45.96381,
+    "quality_tier": "low",
+    "quality_flags": [
+      "non_substation_type",
+      "not_confirmed_in_service"
+    ]
   }
 ]

@@ -8,7 +8,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -156.03308,
-    "lat": 19.71607
+    "lat": 19.71607,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155643",
@@ -19,7 +23,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.09704,
-    "lat": 21.30214
+    "lat": 21.30214,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155644",
@@ -30,7 +36,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.10359,
-    "lat": 21.30493
+    "lat": 21.30493,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155645",
@@ -41,7 +49,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.04574,
-    "lat": 21.37196
+    "lat": 21.37196,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155646",
@@ -52,7 +62,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.09681,
-    "lat": 21.32758
+    "lat": 21.32758,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155648",
@@ -63,7 +75,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.12769,
-    "lat": 21.35549
+    "lat": 21.35549,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155649",
@@ -74,7 +88,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.12817,
-    "lat": 21.35669
+    "lat": 21.35669,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155650",
@@ -85,7 +101,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.88264,
-    "lat": 21.37954
+    "lat": 21.37954,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155651",
@@ -96,7 +114,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.0245,
-    "lat": 21.49253
+    "lat": 21.49253,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155653",
@@ -107,7 +127,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.96044,
-    "lat": 21.38929
+    "lat": 21.38929,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155654",
@@ -118,7 +140,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.92725,
-    "lat": 21.3575
+    "lat": 21.3575,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155655",
@@ -129,7 +153,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.86729,
-    "lat": 21.31789
+    "lat": 21.31789,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155656",
@@ -140,7 +166,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.79395,
-    "lat": 21.38386
+    "lat": 21.38386,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155657",
@@ -151,7 +179,9 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.78674,
-    "lat": 21.31291
+    "lat": 21.31291,
+    "quality_tier": "high",
+    "quality_flags": []
   },
   {
     "id": "sub-155659",
@@ -162,7 +192,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.47299,
-    "lat": 20.88391
+    "lat": 20.88391,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155660",
@@ -173,7 +207,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.47265,
-    "lat": 20.88389
+    "lat": 20.88389,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155661",
@@ -184,7 +222,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.5513,
-    "lat": 20.81377
+    "lat": 20.81377,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-155662",
@@ -195,7 +237,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.4938,
-    "lat": 20.80151
+    "lat": 20.80151,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-155663",
@@ -206,7 +252,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.45406,
-    "lat": 20.8689
+    "lat": 20.8689,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-155664",
@@ -217,7 +267,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.44858,
-    "lat": 20.74103
+    "lat": 20.74103,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-155666",
@@ -228,7 +282,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.49702,
-    "lat": 20.87943
+    "lat": 20.87943,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-155667",
@@ -239,7 +297,11 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.81764,
-    "lat": 21.40348
+    "lat": 21.40348,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155668",
@@ -250,7 +312,11 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.81685,
-    "lat": 21.40393
+    "lat": 21.40393,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155669",
@@ -261,7 +327,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.45276,
-    "lat": 20.88486
+    "lat": 20.88486,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-155909",
@@ -272,7 +342,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -156.00926,
-    "lat": 19.6626
+    "lat": 19.6626,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155910",
@@ -283,7 +357,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.77456,
-    "lat": 20.022
+    "lat": 20.022,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155914",
@@ -294,7 +372,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.91385,
-    "lat": 19.49151
+    "lat": 19.49151,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-155915",
@@ -305,7 +387,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.96875,
-    "lat": 19.61575
+    "lat": 19.61575,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-156795",
@@ -316,7 +402,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.47104,
-    "lat": 20.09554
+    "lat": 20.09554,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156796",
@@ -327,7 +417,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.10389,
-    "lat": 19.84018
+    "lat": 19.84018,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156797",
@@ -338,7 +432,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.08853,
-    "lat": 19.84277
+    "lat": 19.84277,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156798",
@@ -349,7 +447,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.09099,
-    "lat": 19.72676
+    "lat": 19.72676,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156799",
@@ -360,7 +462,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.60504,
-    "lat": 20.04165
+    "lat": 20.04165,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156800",
@@ -371,7 +477,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.66027,
-    "lat": 20.02198
+    "lat": 20.02198,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156801",
@@ -382,7 +492,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.84591,
-    "lat": 20.07111
+    "lat": 20.07111,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156802",
@@ -393,7 +507,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -156.0089,
-    "lat": 19.66321
+    "lat": 19.66321,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156804",
@@ -404,7 +522,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.30703,
-    "lat": 20.75528
+    "lat": 20.75528,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156805",
@@ -415,7 +537,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.98315,
-    "lat": 19.80107
+    "lat": 19.80107,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156806",
@@ -426,7 +552,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.87657,
-    "lat": 19.90879
+    "lat": 19.90879,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156807",
@@ -437,7 +567,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.78392,
-    "lat": 19.92067
+    "lat": 19.92067,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156808",
@@ -448,7 +582,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.81896,
-    "lat": 19.9742
+    "lat": 19.9742,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156814",
@@ -459,7 +597,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.91398,
-    "lat": 19.49126
+    "lat": 19.49126,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156815",
@@ -470,7 +612,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.9436,
-    "lat": 19.56888
+    "lat": 19.56888,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156816",
@@ -481,7 +627,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.96942,
-    "lat": 19.61633
+    "lat": 19.61633,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-156817",
@@ -492,7 +642,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -156.00026,
-    "lat": 19.64611
+    "lat": 19.64611,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157708",
@@ -503,7 +657,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.06201,
-    "lat": 19.70499
+    "lat": 19.70499,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157709",
@@ -514,7 +672,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.03066,
-    "lat": 19.63199
+    "lat": 19.63199,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157710",
@@ -525,7 +687,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -154.89097,
-    "lat": 19.47783
+    "lat": 19.47783,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157711",
@@ -536,7 +702,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.13631,
-    "lat": 19.68419
+    "lat": 19.68419,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157712",
@@ -547,7 +717,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.69579,
-    "lat": 20.02511
+    "lat": 20.02511,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157713",
@@ -558,7 +732,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.72895,
-    "lat": 20.02443
+    "lat": 20.02443,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157714",
@@ -569,7 +747,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.815,
-    "lat": 20.02522
+    "lat": 20.02522,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157715",
@@ -580,7 +762,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -156.02939,
-    "lat": 19.73242
+    "lat": 19.73242,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157716",
@@ -591,7 +777,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -156.02731,
-    "lat": 19.7318
+    "lat": 19.7318,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157717",
@@ -602,7 +792,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -156.03254,
-    "lat": 19.71592
+    "lat": 19.71592,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157718",
@@ -613,7 +807,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.98817,
-    "lat": 19.64946
+    "lat": 19.64946,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157719",
@@ -624,7 +822,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.33053,
-    "lat": 20.82488
+    "lat": 20.82488,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157720",
@@ -635,7 +837,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.43,
-    "lat": 20.68371
+    "lat": 20.68371,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157721",
@@ -646,7 +852,11 @@
     "county_fips": "15009",
     "state": "HI",
     "lon": -156.34511,
-    "lat": 20.78005
+    "lat": 20.78005,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157722",
@@ -657,7 +867,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.79695,
-    "lat": 20.00284
+    "lat": 20.00284,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157727",
@@ -668,7 +882,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.68772,
-    "lat": 18.97928
+    "lat": 18.97928,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157728",
@@ -679,7 +897,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.67524,
-    "lat": 19.05693
+    "lat": 19.05693,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157729",
@@ -690,7 +912,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.88143,
-    "lat": 19.40459
+    "lat": 19.40459,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-157730",
@@ -701,7 +927,11 @@
     "county_fips": "15001",
     "state": "HI",
     "lon": -155.95488,
-    "lat": 19.58224
+    "lat": 19.58224,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-173458",
@@ -712,7 +942,11 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.02041,
-    "lat": 21.42783
+    "lat": 21.42783,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   },
   {
     "id": "sub-173459",
@@ -723,7 +957,11 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -158.02061,
-    "lat": 21.42716
+    "lat": 21.42716,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "non_substation_type"
+    ]
   },
   {
     "id": "sub-173461",
@@ -734,6 +972,10 @@
     "county_fips": "15003",
     "state": "HI",
     "lon": -157.97576,
-    "lat": 21.4594
+    "lat": 21.4594,
+    "quality_tier": "medium",
+    "quality_flags": [
+      "generic_name"
+    ]
   }
 ]

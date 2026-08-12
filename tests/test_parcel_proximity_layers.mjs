@@ -2,13 +2,17 @@
 
    This closes an "engine exists, data exists, but nothing connects them" gap:
    data/sample_layers.json already carries real, weekly-refreshed HIFLD
-   transmission (1,892 records) and substation (~25 records) data, rendered
-   on the map, but the parcel proximity engine had never been pointed at it.
+   transmission (1,892 records) and substation (53,826 records nationwide)
+   data, rendered on the map, but the parcel proximity engine had never been
+   pointed at it.
 
-   The substation coverage caveat is the thing most worth protecting here —
-   that dataset is real but covers only ~25 US substations nationwide, and the
-   tests check that the layer's own label says so rather than reading like a
-   normal-coverage distance measurement.
+   The substation TYPE filter is the thing most worth protecting here: HIFLD's
+   substations layer also carries TAP/RISER/DEAD END records (a transmission
+   branch point, not a switching facility a site could interconnect to) mixed
+   in with real TYPE='SUBSTATION' records, and dataset_registry.json's own
+   documented policy is that a consumer wanting strictly substations must
+   filter TYPE itself. The tests check that this layer's provider does that
+   filtering, so a nearby TAP never satisfies "nearest substation."
 
    Run:  node tests/test_parcel_proximity_layers.mjs
 */
@@ -37,8 +41,12 @@ function ok(name, cond) {
 
 const sampleLayers = {
   power_infrastructure: [
-    { id: 'sub-1', name: 'Ashburn Sub', type: 'SUBSTATION', voltage_kv: 230, county_fips: '51107', state: 'VA', lon: -77.49, lat: 39.04 },
-    { id: 'sub-2', name: 'Sterling Sub', type: 'SUBSTATION', voltage_kv: 115, county_fips: '51107', state: 'VA', lon: -77.40, lat: 39.00 },
+    { id: 'sub-1', name: 'Ashburn Sub', type: 'SUBSTATION', status: 'IN SERVICE', quality_tier: 'high', quality_flags: [], voltage_kv: 230, county_fips: '51107', state: 'VA', lon: -77.485, lat: 39.045 },
+    { id: 'sub-2', name: 'Sterling Sub', type: 'SUBSTATION', status: 'IN SERVICE', quality_tier: 'high', quality_flags: [], voltage_kv: 115, county_fips: '51107', state: 'VA', lon: -77.40, lat: 39.00 },
+    // A TAP point placed dead-center in the test square (closer than either
+    // real substation above) -- if the provider fails to filter TYPE, this
+    // would wrongly win as the "nearest substation."
+    { id: 'tap-1', name: 'Tap Point', type: 'TAP', status: 'IN SERVICE', quality_tier: 'medium', quality_flags: ['non_substation_type'], voltage_kv: 230, county_fips: '51107', state: 'VA', lon: -77.49, lat: 39.04 },
   ],
   transmission_lines: [
     { id: 'tl-1', name: '230kV Line A', voltage_kv: 230, owner: 'Dominion', path: [[-77.55, 39.00], [-77.45, 39.05]] },
@@ -154,7 +162,7 @@ async function loadLayersModule() {
   await loadLayersModule();
 
   const layer = P.getLayer('substations');
-  ok('the coverage caveat names the incomplete count', layer.measures.includes('~25 US records'));
+  ok('the label explains the TYPE filter', layer.measures.includes('TAP'));
   ok('and states that absence is not evidence of absence',
     layer.measures.includes('Absence of a nearby result is not evidence'));
   ok('the source names the real dataset lineage', layer.source.includes('HIFLD'));
@@ -163,9 +171,12 @@ async function loadLayersModule() {
   const res = await P.analyze(square, { layers: ['substations'] });
   const sub = res.results[0];
 
-  t('the nearer substation is found', sub.nearest.name, 'Ashburn Sub');
+  // The TAP fixture record sits closer to this square than either real
+  // substation -- if the provider's TYPE filter were missing or broken,
+  // it would win here instead.
+  t('the nearer REAL substation is found (the closer TAP is excluded)', sub.nearest.name, 'Ashburn Sub');
   ok('with a real distance', sub.nearest.distanceMiles >= 0);
-  t('both substation records were loaded', sub.featureCount, 2);
+  t('only the two TYPE=SUBSTATION records were loaded, the TAP was filtered out', sub.featureCount, 2);
 }
 
 // ── Transmission data flows through, and a line with no path is skipped ───

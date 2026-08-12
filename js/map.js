@@ -1295,6 +1295,20 @@ function _clusterMarkerStyle(count) {
   return { radius: r, color: "#0b0d14", weight: 1, fillColor: "#059669", fillOpacity: 0.85, renderer: _getPowerRenderer() };
 }
 
+// quality_tier ('high'/'medium'/'low', stamped by
+// data/fetch_infrastructure.py's classify_substation_quality() from real
+// type/status/name completeness -- see js/parcel/proximity-layers.js's
+// substation-layer comment for what each tier means) is rendered as
+// opacity rather than a second color, so the map stays readable at a
+// glance (green = substation) while still surfacing that a dim marker is
+// less-documented, not a different kind of thing. Records fetched before
+// the classifier existed fall back to full opacity rather than looking
+// artificially thin.
+const POWER_TIER_OPACITY = { high: 1, medium: 0.75, low: 0.45 };
+function _powerMarkerOpacity(tier) {
+  return Object.prototype.hasOwnProperty.call(POWER_TIER_OPACITY, tier) ? POWER_TIER_OPACITY[tier] : 1;
+}
+
 function _renderPowerLayerAtCurrentZoom() {
   const group = leafletLayerGroups.power;
   if (!group || !_powerRawData) return;
@@ -1303,8 +1317,12 @@ function _renderPowerLayerAtCurrentZoom() {
   const { clusters, singles } = window.MAP_POINT_CLUSTERING.clusterPoints(_powerRawData, { zoom });
 
   singles.forEach(d => {
-    L.circleMarker([d.lat, d.lon], { radius: 5, color: "#0b0d14", weight: 0.8, fillColor: "#34d399", fillOpacity: 1, renderer: _getPowerRenderer() })
-      .bindTooltip(d.name)
+    const opacity = _powerMarkerOpacity(d.quality_tier);
+    const tooltip = d.quality_tier && d.quality_tier !== "high"
+      ? `${d.name} (${d.quality_tier} confidence)`
+      : d.name;
+    L.circleMarker([d.lat, d.lon], { radius: 5, color: "#0b0d14", weight: 0.8, fillColor: "#34d399", fillOpacity: opacity, opacity, renderer: _getPowerRenderer() })
+      .bindTooltip(tooltip)
       .on("click", () => setDetailFacility(d, "power"))
       .addTo(group);
   });
