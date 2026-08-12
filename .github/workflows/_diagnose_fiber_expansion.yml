@@ -21,3 +21,6 @@ jobs:
 
       - name: Round 2 -- description/licensing/count detail on real candidates
         run: python3 data/_diagnose_fiber_expansion_r2.py
+
+      - name: Round 3 -- verify f=geojson bbox query shape before wiring
+        run: python3 data/_diagnose_fiber_expansion_r3.py
