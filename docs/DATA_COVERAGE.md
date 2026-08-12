@@ -10,7 +10,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 | | |
 |---|---|
-| Datasets catalogued | 29 |
+| Datasets catalogued | 30 |
 | Datasets with actual data (has_data) | 19 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 6 |
@@ -24,7 +24,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | hourly | 1 |
 | monthly | 2 |
 | none | 1 |
-| not_automated | 12 |
+| not_automated | 13 |
 | weekly | 12 |
 
 ## By category
@@ -34,7 +34,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | ASSESSMENT | 1 | 0 | 0 | 0 | 0 |
 | DATA CENTERS | 2 | 2 | 4,465 | 1 | 1 |
 | ECONOMIC DATA | 2 | 2 | 14 | 0 | 0 |
-| FIBER | 3 | 0 | 0 | 1 | 1 |
+| FIBER | 4 | 0 | 0 | 1 | 1 |
 | FLOOD | 1 | 0 | 0 | 1 | 0 |
 | INTERCONNECTION QUEUES | 1 | 1 | 36,425 | 0 | 1 |
 | ISO/RTO | 1 | 0 | 0 | 0 | 1 |
@@ -158,6 +158,21 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 - Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
 - **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED (verified 2026-08-09 via a real GitHub Actions dispatch against maps.scag.ca.gov -- confirmed MapServer layer 2 ('CPUCAnchorBuilds') returns real polyline features with ROUTE/ROUTE_ID/ALIGNMENT/STATUS/MILES_GIS/BB4ALL_ID fields). This is the first regional (not nationwide) fiber-adjacent dataset in the repository, wired into js/parcel/proximity-layers.js as 'ca-middle-mile-corridor'. It does NOT replace the nationwide 'fiber' registerUnavailable() -- that stays unavailable because no free nationwide as-built fiber dataset exists; this is a narrower, honestly-scoped regional addition, not a broader claim. A same-tier Maryland candidate (OMBN, the state's own as-built inter-county fiber network, https://geodata.md.gov/appdata/rest/services/OMBN/MD_OneMarylandBroadbandNetwork/MapServer/0) was dispatched twice on a real GitHub Actions runner and returned HTTP 503 both times -- not wired in, left as an open candidate for re-probing later rather than guessed working.
 - **Known quality issues:** This is a PLANNED/SELECTED middle-mile corridor alignment (CPUC's own shapefile of where it intends to build, tied to the state's Federal Funding Account broadband initiative), not confirmed as-built, in-service lit fiber -- a materially weaker claim than 'fiber exists here', and the layer's own measures text says so explicitly. STATUS/YEAR field values were not individually decoded (no live sample-value inspection was performed, only field names/types via ogrinfo -so); a reader should treat STATUS as informational, not authoritative, without further confirmation from CPUC or the carrier.
+
+**Texas Fiberlight fiber network (TxDOT-published, TX only)** (tx_fiberlight_network) — ⛔ no data
+
+- Records: 0
+- Source: Fiberlight (commercial dark-fiber carrier), published via TxDOT's ArcGIS hosted feature service
+- Source URL: https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/Fiberlight_Network/FeatureServer/0/query
+- Geographic scope (declared): REGIONAL ONLY -- Texas. The service's own distinct-Market probe (2026-08-12) returned 9 real markets: AUS, DFW, ELP, HOU, PAN, SAN, STX, WAC, WTX. No coverage anywhere else in the country.
+- Update frequency (declared): live (queried per-parcel bounding box at analysis time, no local cache); the underlying TxDOT service's own description says the data itself is a dated snapshot, not continuously refreshed (see known_quality_issues).
+- Authoritative: False
+- UI-consumed: False
+- CI-tested: False
+- Automated update workflow(s): _none_
+- Actual refresh cadence (computed from the workflow's own cron schedule): _not applicable — no automated workflow_
+- **Known coverage holes:** ENGINE EXISTS, LIVE, WIRED (verified 2026-08-12 via three real GitHub Actions dispatches: round 1 discovered the service by scanning TxDOT's full hosted-org service directory for fiber/conduit/broadband keyword matches; round 2 confirmed its serviceDescription ('Selected Fiberlight Network clip received on 3/15/22'), a real record count of 8,106, and the 9 real distinct Market values; round 3 confirmed the exact f=geojson bbox query shape the production provider uses returns real LineString features (40 in a real Houston bbox) with populated CABLE_NAME/USED_FOR/INVENTORY_/PLACEMENTT/FIBERCOUNT attributes. Wired into js/parcel/proximity-layers.js as 'tx-fiberlight-network'. It does NOT replace the nationwide 'fiber' registerUnavailable() -- that stays unavailable because no free nationwide as-built fiber dataset exists; this is a second, narrower, honestly-scoped regional addition (Texas), alongside the existing California middle-mile corridor. Two other TxDOT-org candidates found in the same round-1 scan were evaluated and rejected: TxDOT_Statewide_Connectivity_Corridors (real live layer, 559 records, but its actual description confirms it is a highway-funding-eligibility corridor network -- Texas Trunk System/NHS/freight routes for Category 4 funding -- not a fiber or telecom dataset despite the word 'Connectivity' in its name) and Memphis, TN's municipal fiber lines inventory (FeatureServer returned an auth/access error, not real data). Arizona ADOT's published fiber-and-conduit-along-I-17/I-19/I-40W assets (a real, described physical asset per ADOT's own broadband-office page) were investigated but no queryable REST service exposing them was found -- ADOT's own GIS services directory and its 'Utilities' folder (round 2's targeted follow-up check) contain only generic GeometryServer/GPServer utility tools, and the broader AZGEO statewide GIS directory scan also produced no fiber/conduit keyword match. Left as an open, unresolved candidate (documented here, not guessed) rather than fabricated or silently dropped, matching the existing Maryland OMBN precedent above.
+- **Known quality issues:** This is ONE CARRIER'S network (Fiberlight), not an exhaustive map of Texas fiber -- other carriers (AT&T, Lumen, Zayo, etc.) may also serve the same area with no representation here, so absence of a nearby result is not evidence of no fiber access. The data is explicitly a dated snapshot per the source service's own description ('clip received on 3/15/22'), not continuously refreshed -- segments built, retired, or re-routed since then will not be reflected. USED_FOR carries 11 real distinct values (BACKBONE, CUSTOMER LATERAL, JUMP, LATERAL, Lateral, PIGTAIL, RISER, STUB, TIECABLE, Virtual, 'third party lit only'), so the presence of a segment does not by itself mean backbone capacity is available there -- USED_FOR is passed through in feature properties but not filtered, consistent with this project's general policy of disclosing rather than silently filtering ambiguous sub-categories (mirroring the substations TYPE-disclosure precedent, except that layer DOES filter server-side on TYPE='SUBSTATION' for scoring purposes -- this layer does not filter USED_FOR, since 'nearest fiber segment' is a weaker, purely-locational claim, not an interconnection-readiness claim).
 
 **FCC broadband fiber availability by county** (fcc_broadband_fiber_pct) — ⛔ no data
 
