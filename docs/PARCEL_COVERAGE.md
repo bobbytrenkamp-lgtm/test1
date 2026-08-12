@@ -31,7 +31,7 @@ counties have it?
 |---|---|---|
 | area | 46 (78%) | 74.2% |
 | identity | 59 (100%) | 100% |
-| address | 37 (62.7%) | 58.2% |
+| address | 38 (64.4%) | 58.7% |
 | ownership | 36 (61%) | 64.6% |
 | assessment | 40 (67.8%) | 69.1% |
 | sales | 25 (42.4%) | 38.8% |
@@ -50,7 +50,7 @@ counties have it?
 | basic | 6 | Geometry and identity plus limited attributes. |
 | boundary-only | 8 | Essentially polygons and an identifier. |
 
-Quality score: mean **47.4** / 105 (best 91.7, worst 10).
+Quality score: mean **47.7** / 105 (best 91.7, worst 10).
 
 The score is a plain weighted sum with every weight visible in
 `data/parcel_pipeline/coverage_rules.mjs`, and each component is reported
@@ -149,6 +149,6 @@ Facility-bearing jurisdictions not yet in production, ranked by facility count.
 | 46099 | Minnehaha County | 14 | standard | 34.2 |
 | 24033 | Prince George's County, Maryland | 12 | rich | 80.4 |
 | 34013 | Essex County, New Jersey | 12 | rich | 64.6 |
-| 51153 | Prince William County, Virginia | 9 | standard | 26.7 |
+| 51153 | Prince William County, Virginia | 9 | standard | 44.2 |
 | 49049 | Utah County | 5 | rich | 45 |
 | 24027 | Howard County, Maryland | 4 | rich | 80.4 |

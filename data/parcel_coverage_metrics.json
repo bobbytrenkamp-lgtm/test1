@@ -54,9 +54,9 @@
       "facilityWeightedPct": 100
     },
     "address": {
-      "jurisdictions": 37,
-      "jurisdictionPct": 62.7,
-      "facilityWeightedPct": 58.2
+      "jurisdictions": 38,
+      "jurisdictionPct": 64.4,
+      "facilityWeightedPct": 58.7
     },
     "ownership": {
       "jurisdictions": 36,
@@ -105,7 +105,7 @@
     "unsupported": 0
   },
   "qualityScore": {
-    "mean": 47.4,
+    "mean": 47.7,
     "max": 105,
     "best": 91.7,
     "worst": 10
@@ -4658,7 +4658,7 @@
       "categories": {
         "area": true,
         "identity": true,
-        "address": false,
+        "address": true,
         "ownership": true,
         "assessment": false,
         "sales": false,
@@ -4667,7 +4667,7 @@
         "legal": true,
         "land_use": true
       },
-      "qualityScore": 26.7,
+      "qualityScore": 44.2,
       "qualityComponents": {
         "identity": {
           "weight": 10,
@@ -4681,8 +4681,8 @@
         },
         "address": {
           "weight": 10,
-          "ratio": 0,
-          "earned": 0
+          "ratio": 1,
+          "earned": 10
         },
         "ownership": {
           "weight": 10,
@@ -4711,8 +4711,8 @@
         },
         "land_use": {
           "weight": 5,
-          "ratio": 0.5,
-          "earned": 2.5
+          "ratio": 1,
+          "earned": 5
         },
         "legal": {
           "weight": 5,
@@ -4721,12 +4721,23 @@
         },
         "provenance": {
           "weight": 5,
-          "ratio": 0,
-          "earned": 0
+          "ratio": 1,
+          "earned": 5
         }
       },
-      "enrichmentSources": [],
-      "declaredGaps": 9
+      "enrichmentSources": [
+        {
+          "id": "pwc-parcel-cama-public",
+          "type": "arcgis-table",
+          "confidence": "official-joined"
+        },
+        {
+          "id": "pwc-premise-address",
+          "type": "arcgis-table",
+          "confidence": "official-joined"
+        }
+      ],
+      "declaredGaps": 7
     },
     {
       "fips": "49049",
