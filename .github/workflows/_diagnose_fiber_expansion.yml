@@ -18,3 +18,6 @@ jobs:
 
       - name: Probe candidate regional fiber/conduit GIS sources
         run: python3 data/_diagnose_fiber_expansion.py
+
+      - name: Round 2 -- description/licensing/count detail on real candidates
+        run: python3 data/_diagnose_fiber_expansion_r2.py
