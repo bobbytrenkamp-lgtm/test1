@@ -72,6 +72,7 @@ run "sample_layers split: committed artifacts are current" python3 data/split_sa
 run "power layer geo-partitioning: generator tests" python3 -m pytest tests/test_split_layer_by_state.py -q
 run "power layer geo-partitioning: committed artifacts are current" python3 data/split_layer_by_state.py --check
 run "power layer viewport-aware loading (bbox intersection, cache, concurrency)" node tests/test_map_power_viewport.mjs
+run "zoning normalization: punctuation-insensitive district code matching" python3 -m pytest tests/test_zoning_normalize.py -q
 run "parcel source catalog validator" python3 data/validate_parcel_catalog.py
 run "parcel catalog + priority queue tests" python3 -m pytest tests/test_parcel_catalog.py tests/test_parcel_priority_queue.py -q
 run "parcel registry integrity check" node data/parcel_pipeline/check_registry_integrity.mjs
