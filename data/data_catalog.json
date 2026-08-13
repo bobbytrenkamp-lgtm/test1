@@ -63,8 +63,8 @@
     {
       "category": "ISO/RTO",
       "dataset_count": 1,
-      "datasets_with_data": 0,
-      "total_records": 0,
+      "datasets_with_data": 1,
+      "total_records": 94,
       "ui_consumed_count": 0,
       "automated_count": 1
     },
@@ -558,7 +558,7 @@
       "license": "Public HIFLD-lineage data.",
       "known_coverage_holes": "RESOLVED 2026-08-11. EIA's own US Energy Atlas RTO_Regions FeatureServer (services7.arcgis.com/FGr1D95XCGALKXqM) was confirmed dead-end via 6 rounds of live GitHub Actions dispatch: it returns 'Token Required' (ArcGIS error 499) for every access path, including a publicly-discoverable AGOL search result whose own 'url' field points at the same token-gated service -- being discoverable in search does not mean the underlying service is open. The real replacement is HIFLD's 'Electric Planning Areas' layer, found on the SAME no-token HDR Inc. mirror this project already uses for substations/transmission/power plants, confirmed live with a real query (count=94, real field schema: ID/NAME/ABBRV/COUNTRY/NAICS_DESC/SOURCE/YEAR/PEAK_LOAD/PEAK_RANGE/WEBSITE). This is a superset of the 7-region layer originally sought -- every electric planning authority nationwide, not just the 7 largest RTOs/ISOs -- which is more directly useful for site selection (knowing the specific planning authority governing a candidate site's interconnection, not just which of 7 super-regions it falls in).",
       "known_quality_issues": "PEAK_LOAD/PEAK_RANGE are each authority's own historical system-wide peak (MW), not a per-site available-capacity figure -- being inside a planning authority's boundary says nothing about whether the grid there currently has spare interconnection capacity (see the interconnection queue dataset for that question). Boundaries are the authority's own reported service territory, not always legally precise -- some can overlap or leave small gaps.",
-      "record_count": null,
+      "record_count": 94,
       "ui_consumed": false,
       "ci_tested": false,
       "automated_update_workflows": [
@@ -589,7 +589,7 @@
           }
         }
       },
-      "has_data": false
+      "has_data": true
     },
     {
       "id": "interconnection_queues",
@@ -1166,7 +1166,7 @@
   ],
   "totals": {
     "dataset_count": 30,
-    "datasets_with_data": 19,
+    "datasets_with_data": 20,
     "datasets_ui_consumed": 11,
     "datasets_ci_tested": 6,
     "datasets_automated": 17,

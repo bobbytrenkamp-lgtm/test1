@@ -844,6 +844,51 @@ def test_bls_is_fresh_direct():
        False, "120 days old against a 90-day gate -> not fresh")
 
 
+def test_carry_forward_enrichment_copies_missing_fields():
+    # Real regression: build_census_geography() rebuilds county records from
+    # scratch on every ACS refresh (7-day gate), with no knowledge of the
+    # avg_weekly_wage/building_permits/natural_hazard_risk keys BLS/Permits/
+    # NRI bolt on separately, on much longer gates (90/30/180 days). Without
+    # carrying them forward, a fresh ACS payload silently drops that data
+    # for as long as those modules stay "fresh" and skip re-fetching.
+    old_records = {
+        "51107": {"name": "Loudoun County", "avg_weekly_wage": {"value": 1500},
+                   "building_permits": {"value": 42}},
+        "51059": {"name": "Fairfax County", "natural_hazard_risk": {"value": 12.3}},
+    }
+    new_records = {
+        "51107": {"name": "Loudoun County"},  # freshly rebuilt, no enrichment yet
+        "51059": {"name": "Fairfax County"},
+        "24031": {"name": "Montgomery County"},  # no prior data at all -- must stay untouched
+    }
+    carried = econ._carry_forward_enrichment(
+        new_records, old_records, ["avg_weekly_wage", "building_permits", "natural_hazard_risk"])
+    eq(carried, 3, "3 fields carried forward (2 for Loudoun, 1 for Fairfax)")
+    eq(new_records["51107"]["avg_weekly_wage"], {"value": 1500}, "Loudoun avg_weekly_wage carried")
+    eq(new_records["51107"]["building_permits"], {"value": 42}, "Loudoun building_permits carried")
+    eq(new_records["51059"]["natural_hazard_risk"], {"value": 12.3}, "Fairfax natural_hazard_risk carried")
+    check("avg_weekly_wage" not in new_records["24031"], "a county absent from old_records stays untouched")
+
+
+def test_carry_forward_enrichment_never_overwrites_fresh_data():
+    # If a module DID re-run this cycle and already wrote fresh data into
+    # new_records before the carry-forward call, the (now-stale) old value
+    # must never clobber it.
+    old_records = {"51107": {"avg_weekly_wage": {"value": 1500, "year": 2023}}}
+    new_records = {"51107": {"avg_weekly_wage": {"value": 1600, "year": 2024}}}
+    carried = econ._carry_forward_enrichment(new_records, old_records, ["avg_weekly_wage"])
+    eq(carried, 0, "nothing carried when the field is already present")
+    eq(new_records["51107"]["avg_weekly_wage"], {"value": 1600, "year": 2024},
+       "the freshly-written value is preserved, not overwritten by the stale one")
+
+
+def test_carry_forward_enrichment_handles_empty_old_records():
+    eq(econ._carry_forward_enrichment({"51107": {}}, {}, ["avg_weekly_wage"]), 0,
+       "empty old_records -> nothing to carry, no crash")
+    eq(econ._carry_forward_enrichment({"51107": {}}, None, ["avg_weekly_wage"]), 0,
+       "None old_records -> nothing to carry, no crash")
+
+
 def test_validate_outputs_flags_bad_avg_weekly_wage():
     with tempfile.TemporaryDirectory() as td:
         county_path = Path(td) / "census_county.json"
