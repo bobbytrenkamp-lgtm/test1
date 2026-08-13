@@ -1,13 +1,9 @@
-// DISPOSABLE DIAGNOSTIC — deleted once findings are captured.
-// Loudoun County's zoning data currently ships with geometry_available:false
-// (data/zoning/normalized/va-loudoun-county.json) — district standards exist
-// but no polygon geometry, so the zoning subsystem cannot resolve a parcel's
-// zoning_code and stays disconnected from the parcel/feasibility panel.
-// A web search surfaced two real-looking leads on Loudoun's own GIS
-// infrastructure (same host family as the already-verified parcel layer):
-//   - https://logis.loudoun.gov/gis/rest/services/COL/Zoning/MapServer
-//   - https://geohub-loudoungis.opendata.arcgis.com/datasets/LoudounGIS::loudoun-zoning/about
-// This confirms both live and captures real schema/field names.
+// DISPOSABLE DIAGNOSTIC — round 2. Round 1 confirmed COL/Zoning/MapServer has
+// 6 layers: 0=Leesburg Zoning, 1=1972 Zoning Ordinance, 2=Zoning: Labels,
+// 3=Zoning, 4=Rezoning-ZMAP: Labels, 5=Rezoning-ZMAP. Round 1 queried layer 0
+// by mistake (LB_-prefixed fields confirm it's Leesburg-town-specific, not
+// countywide). Layer 3 "Zoning" is the real target. Also checking layer 1
+// (1972 ordinance — likely superseded/historical) for contrast.
 async function getJson(url, label, { printBody = false, limit = 3000 } = {}) {
   const start = Date.now();
   try {
@@ -28,33 +24,32 @@ async function getJson(url, label, { printBody = false, limit = 3000 } = {}) {
   }
 }
 
-// 1. MapServer service directory — list its layers.
-const mapserver = await getJson(
-  "https://logis.loudoun.gov/gis/rest/services/COL/Zoning/MapServer?f=json",
-  "COL/Zoning MapServer service info"
-);
-if (mapserver && mapserver.layers) {
-  console.log("\nlayers:", mapserver.layers.map((l) => `${l.id}:${l.name}`).join(", "));
+const BASE = "https://logis.loudoun.gov/gis/rest/services/COL/Zoning/MapServer";
+
+// Layer 3 — the real "Zoning" layer.
+const layer3 = await getJson(`${BASE}/3?f=json`, "layer 3 (Zoning) metadata");
+if (layer3 && layer3.fields) {
+  console.log("\nfield names:", layer3.fields.map((f) => `${f.name}(${f.type})`).join(", "));
+  console.log("geometryType:", layer3.geometryType);
+  console.log("extent spatialReference wkid:", layer3.extent && layer3.extent.spatialReference && layer3.extent.spatialReference.wkid);
 }
+const count3 = await getJson(`${BASE}/3/query?where=1%3D1&returnCountOnly=true&f=json`, "layer 3 count", { printBody: true });
 
-// 2. Layer 0 (guess) schema + count.
-const layerUrl = "https://logis.loudoun.gov/gis/rest/services/COL/Zoning/MapServer/0";
-const layer0 = await getJson(`${layerUrl}?f=json`, "layer 0 metadata");
-if (layer0 && layer0.fields) {
-  console.log("\nfield names:", layer0.fields.map((f) => `${f.name}(${f.type})`).join(", "));
-  console.log("geometryType:", layer0.geometryType);
+await getJson(`${BASE}/3/query?where=1%3D1&outFields=*&resultRecordCount=3&f=geojson`,
+  "layer 3 sample (3 records, geojson)", { printBody: true, limit: 3000 });
+
+// Layer 1 for contrast (likely historical/superseded).
+const layer1 = await getJson(`${BASE}/1?f=json`, "layer 1 (1972 Zoning Ordinance) metadata");
+if (layer1 && layer1.fields) {
+  console.log("\nfield names:", layer1.fields.map((f) => f.name).join(", "));
 }
-const count0 = await getJson(`${layerUrl}/query?where=1%3D1&returnCountOnly=true&f=json`, "layer 0 count");
+const count1 = await getJson(`${BASE}/1/query?where=1%3D1&returnCountOnly=true&f=json`, "layer 1 count", { printBody: true });
 
-// 3. Sample record.
-await getJson(`${layerUrl}/query?where=1%3D1&outFields=*&resultRecordCount=2&f=geojson`,
-  "layer 0 sample (2 records, geojson)", { printBody: true, limit: 2500 });
-
-// 4. ArcGIS Online item search for the GeoHub dataset (real item id + owner).
-const search = await getJson(
-  "https://www.arcgis.com/sharing/rest/search?q=" + encodeURIComponent("loudoun zoning owner:LoudounGIS") + "&f=json&num=10",
-  "ArcGIS Online search: loudoun zoning owner:LoudounGIS"
-);
-if (search && search.results) {
-  for (const r of search.results) console.log(`- id=${r.id} title="${r.title}" type=${r.type} owner=${r.owner} url=${r.url || "(none)"}`);
+// Also fetch the service description text if present (top-level MapServer info
+// often states which layer is "official"/current).
+const svcInfo = await getJson(`${BASE}?f=json`, "service info (description/serviceDescription)", { printBody: false });
+if (svcInfo) {
+  console.log("\ndescription:", (svcInfo.description || "").slice(0, 800));
+  console.log("serviceDescription:", (svcInfo.serviceDescription || "").slice(0, 500));
+  console.log("copyrightText:", svcInfo.copyrightText);
 }
