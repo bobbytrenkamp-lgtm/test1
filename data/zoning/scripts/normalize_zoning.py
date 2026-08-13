@@ -8,6 +8,7 @@ Usage:
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -41,11 +42,33 @@ DC_STATUS_ORDER = [
 ]
 
 
-def map_district_code(raw_code: str, jurisdiction_id: str) -> str:
-    """Normalize raw GIS district code to match districts.json keys."""
-    cfg = JURISDICTION_CONFIGS.get(jurisdiction_id, {})
-    # Try direct lookup first
-    return raw_code.strip().upper()
+def _punctuation_stripped(code: str) -> str:
+    """'PD-IP' and 'PDIP' are the same district code with/without a hyphen --
+    confirmed for Loudoun County, VA on 2026-08-13: the live GIS service's
+    raw ZO_ZONE values (e.g. 'PDIP', 'JLMA3') omit hyphens that
+    districts.json's hand-transcribed keys (e.g. 'PD-IP', 'JLMA-3') include.
+    This is pure punctuation normalization, not a semantic guess -- it never
+    changes which letters/digits a code contains, so it cannot conflate two
+    genuinely different districts."""
+    return re.sub(r'[^A-Z0-9]', '', code.upper())
+
+
+def map_district_code(raw_code: str, jurisdiction_id: str, known_codes: set[str] | None = None) -> str:
+    """Normalize raw GIS district code to match districts.json keys.
+
+    Tries an exact match first; falls back to a punctuation-insensitive
+    match against the known district codes for this jurisdiction (see
+    _punctuation_stripped). A code with no punctuation-insensitive match
+    either is returned as-is -- unmatched codes stay unmatched rather than
+    being coerced to the "closest" known code, which would be a guess."""
+    exact = raw_code.strip().upper()
+    if not known_codes or exact in known_codes:
+        return exact
+    stripped = _punctuation_stripped(exact)
+    for known in known_codes:
+        if _punctuation_stripped(known) == stripped:
+            return known
+    return exact
 
 
 def get_dc_classification(uses: list[dict], district_code: str) -> dict:
@@ -97,10 +120,12 @@ def normalize_geometry_for_jurisdiction(jurisdiction_id: str, dry_run: bool = Fa
     normalized_features = []
     unknown_codes = set()
 
+    known_codes = set(districts.keys())
+
     for feature in raw_geojson.get("features", []):
         props = feature.get("properties") or {}
         raw_code = props.get(code_field) or props.get("ZONING") or props.get("zoning") or ""
-        normalized_code = map_district_code(raw_code, jurisdiction_id)
+        normalized_code = map_district_code(raw_code, jurisdiction_id, known_codes)
 
         district = districts.get(normalized_code, {})
         dc_class = get_dc_classification(uses, normalized_code)
