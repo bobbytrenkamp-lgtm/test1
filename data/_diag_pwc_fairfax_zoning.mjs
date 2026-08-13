@@ -1,12 +1,13 @@
-// DISPOSABLE DIAGNOSTIC — round 3.
-// Round 2 found PWC's Planning/Zoning/MapServer has 14 layers including
-// real targets: 5="Zoning Districts", 7="Overlay District Data Center
-// Opportunity Zone" -- but the script's find() picked the wrong layer
-// (13="Zoning Appeals Variances", also matched /zoning/i and came first in
-// array order). This round explicitly targets layers 5 and 7. Also
-// probing Fairfax's GIS/OPA/LDS folders since DPZ only had a comp-plan
-// layer, not zoning.
-async function getJson(url, label, { printBody = false, limit = 2500 } = {}) {
+// DISPOSABLE DIAGNOSTIC — round 4.
+// Rounds 1-3 confirmed the real PWC zoning geometry service (Planning/
+// Zoning/MapServer layer 5 "Zoning Districts", field ZoningDistrict, 2,227
+// features) and that Fairfax has no discoverable zoning geometry service.
+// Before wiring PWC live, validate_zoning.py's data-quality gate requires
+// at least one real districts.json entry (it correctly blocks export with
+// zero entries) -- this round fetches the REAL distinct ZoningDistrict
+// values (returnGeometry=false keeps this a small, fast query) so a real,
+// non-fabricated starter districts.json can be built.
+async function getJson(url, label, { printBody = false, limit = 6000 } = {}) {
   try {
     const res = await fetch(url, { headers: { "User-Agent": "us-datacenter-tracker-diagnostic/1.0" } });
     const text = await res.text();
@@ -24,31 +25,19 @@ async function getJson(url, label, { printBody = false, limit = 2500 } = {}) {
   }
 }
 
-console.log("========== PRINCE WILLIAM COUNTY VA — layer 5 (Zoning Districts) ==========");
-const l5 = await getJson("https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/5?f=json",
-  "layer 5 metadata", { printBody: false });
-if (l5 && l5.fields) {
-  console.log("\nfield names:", l5.fields.map((f) => `${f.name}(${f.type})`).join(", "));
-  console.log("geometryType:", l5.geometryType);
+const distinct = await getJson(
+  "https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/5/query?" +
+  "where=1%3D1&outFields=ZoningDistrict&returnGeometry=false&returnDistinctValues=true&orderByFields=ZoningDistrict&f=json",
+  "PWC layer 5 distinct ZoningDistrict values", { printBody: true, limit: 8000 }
+);
+if (distinct && distinct.features) {
+  console.log("\ndistinct count:", distinct.features.length);
 }
-await getJson("https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/5/query?where=1%3D1&returnCountOnly=true&f=json",
-  "layer 5 count", { printBody: true });
-await getJson("https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/5/query?where=1%3D1&outFields=*&resultRecordCount=3&f=geojson",
-  "layer 5 sample (3 records)", { printBody: true, limit: 3000 });
 
-console.log("\n\n========== PRINCE WILLIAM COUNTY VA — layer 7 (Data Center Opportunity Zone overlay) ==========");
-const l7 = await getJson("https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/7?f=json",
-  "layer 7 metadata", { printBody: false });
-if (l7 && l7.fields) {
-  console.log("\nfield names:", l7.fields.map((f) => `${f.name}(${f.type})`).join(", "));
-}
-await getJson("https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/7/query?where=1%3D1&returnCountOnly=true&f=json",
-  "layer 7 count", { printBody: true });
-await getJson("https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/7/query?where=1%3D1&outFields=*&resultRecordCount=3&f=geojson",
-  "layer 7 sample (3 records)", { printBody: true, limit: 3000 });
-
-console.log("\n\n========== FAIRFAX COUNTY VA — GIS / OPA / LDS folders ==========");
-for (const folder of ["GIS", "OPA", "LDS"]) {
-  await getJson(`https://www.fairfaxcounty.gov/mercator/rest/services/${folder}?f=json`,
-    `Fairfax folder: ${folder}`, { printBody: true, limit: 3000 });
-}
+// Also a few real sample records with non-geometry fields only, to see
+// ZoningCaseName/PROFFERS content shape for the most common codes.
+await getJson(
+  "https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/5/query?" +
+  "where=1%3D1&outFields=ZoningDistrict,ZoningCaseNumber,ZoningCaseName&returnGeometry=false&resultRecordCount=10&f=json",
+  "PWC layer 5 sample non-geometry fields (10 records)", { printBody: true, limit: 4000 }
+);
