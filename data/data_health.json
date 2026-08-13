@@ -64,7 +64,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-12T08:10:54.749521+00:00",
+      "last_checked": "2026-08-13T08:13:33.123886+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -78,8 +78,7 @@
         "ny-nyc-mocej",
         "ny-senate",
         "oh-legislature",
-        "ri-smithfield-council",
-        "wi-legislature"
+        "ri-smithfield-council"
       ],
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
