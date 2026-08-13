@@ -371,25 +371,26 @@ every county) remains the platform's population figure. See
 
 ### Federal Emergency Management Agency — National Risk Index (NRI) (optional module)
 - **Publisher**: Federal Emergency Management Agency (FEMA)
-- **Endpoint**: `https://hazards.fema.gov/nri/Content/StaticDocuments/DataDownload/NRI_Table_Counties/NRI_Table_Counties.csv`
-  — a free, public-domain, no-key-required static file covering all
-  ~3,144 US counties across 18 natural hazard types (flood, hurricane,
-  wildfire, earthquake, winter weather, and more), published as a single
-  composite risk score and a plain-language rating.
-- **Confidence caveat, stated plainly**: unlike every other source in this
-  document, this URL and its column names (`STCOFIPS`, `RISK_SCORE`,
-  `RISK_RATNG`) were NOT independently fetched and byte-verified before this
-  module shipped. The session that wrote it had its outbound network access
-  blocked by policy (confirmed as a policy denial, not a transient failure).
-  The URL itself was confirmed against a real, independently-indexed FEMA
-  static file at the same path (a sibling Census-tract shapefile), and the
-  column names come from FEMA's own published documentation and multiple
-  independent secondary sources republishing the same dataset — reasonable
-  grounds to ship, not a guess, but genuinely less certain than this
-  pipeline's other sources. If `nri_available` stays `false` after a
-  `--force-nri` run, the warning text names exactly which candidate column
-  names it tried against the file's real header, which is the first place
-  to look.
+- **Endpoint**: `https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Counties/FeatureServer/0/query`
+  — FEMA's own Esri-hosted ArcGIS FeatureServer, free and no key required,
+  covering all ~3,144 US counties across 18 natural hazard types (flood,
+  hurricane, wildfire, earthquake, winter weather, and more), queried in
+  ~2,000-row pages and merged into one composite risk score plus a
+  plain-language rating per county.
+- **Why this endpoint and not FEMA's static CSV download**
+  (`hazards.fema.gov/nri/Content/StaticDocuments/DataDownload/NRI_Table_Counties/NRI_Table_Counties.csv`):
+  the CSV is confirmed soft-blocked from GitHub Actions runners as of
+  2026-08-13 — it returns HTTP 200 but an HTML interstitial page instead of
+  CSV data, so a naive fetch would silently get zero usable rows. A
+  disposable diagnostic workflow dispatch that same day (GitHub Actions run
+  31671943640) confirmed the ArcGIS FeatureServer, on `services.arcgis.com`
+  infrastructure rather than `fema.gov`, returns real data instead: a live
+  record for Autauga County AL with `STCOFIPS "01001"`, `RISK_SCORE 57.57`,
+  `RISK_RATNG "Relatively Low"`, `NRI_VER "December 2025"` — confirming both
+  the endpoint and the exact attribute names this module reads.
+- If `nri_available` stays `false` after a `--force-nri` run, the warning
+  text names exactly which candidate attribute names it tried against the
+  service's real response, which is the first place to look.
 - **Output**: merged into each county's own record as `natural_hazard_risk`
   — `{score, rating, as_of}`, filtered to counties matching one of a short
   list of candidate column names (`_NRI_FIPS_FIELD_CANDIDATES`,

@@ -39,7 +39,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | INTERCONNECTION QUEUES | 1 | 1 | 36,425 | 0 | 1 |
 | ISO/RTO | 1 | 1 | 94 | 0 | 1 |
 | NEWS | 1 | 1 | 600 | 1 | 1 |
-| PARCELS | 3 | 3 | 86,037 | 1 | 3 |
+| PARCELS | 3 | 3 | 89,672 | 1 | 3 |
 | POLICY/REGULATION | 2 | 2 | 1,579 | 1 | 2 |
 | POWER PLANTS | 1 | 1 | 1,290 | 0 | 1 |
 | PROTECTED LAND | 1 | 0 | 0 | 0 | 0 |
@@ -271,7 +271,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **National multi-jurisdiction site search index (large parcels only)** (national_site_search_index) — ✅ has data
 
-- Records: 85811
+- Records: 89446
 - Source: The same 58 county/city GIS departments as parcels_registry, walked in one batch
 - Geographic scope (declared): The same 58 wired jurisdictions as parcels_registry -- not every US county, and explicitly labeled as such in the index's own meta.caveat field.
 - Update frequency (declared): weekly, scheduled (build_site_search_index.yml)
