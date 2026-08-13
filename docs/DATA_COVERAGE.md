@@ -11,7 +11,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | | |
 |---|---|
 | Datasets catalogued | 30 |
-| Datasets with actual data (has_data) | 19 |
+| Datasets with actual data (has_data) | 20 |
 | Datasets wired into the production UI | 11 |
 | Datasets with dedicated CI coverage | 6 |
 | Datasets on an automated refresh workflow | 17 |
@@ -37,7 +37,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | FIBER | 4 | 0 | 0 | 1 | 1 |
 | FLOOD | 1 | 0 | 0 | 1 | 0 |
 | INTERCONNECTION QUEUES | 1 | 1 | 36,425 | 0 | 1 |
-| ISO/RTO | 1 | 0 | 0 | 0 | 1 |
+| ISO/RTO | 1 | 1 | 94 | 0 | 1 |
 | NEWS | 1 | 1 | 600 | 1 | 1 |
 | PARCELS | 3 | 3 | 86,037 | 1 | 3 |
 | POLICY/REGULATION | 2 | 2 | 1,579 | 1 | 2 |
@@ -224,9 +224,9 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 ### ISO/RTO
 
-**Electric planning-authority regions (ISO/RTO + utility balancing areas)** (iso_rto) — ⛔ no data
+**Electric planning-authority regions (ISO/RTO + utility balancing areas)** (iso_rto) — ✅ has data
 
-- Records: n/a
+- Records: 94
 - Source: HIFLD Electric Planning Areas (FERC 714 / EIA-860 / EIA-861 / Census TIGER-sourced), via a verified no-token HDR Inc. mirror of the pre-shutdown HIFLD Open dataset
 - Source URL: https://services5.arcgis.com/HDRa0B57OVrv2E1q/arcgis/rest/services/Electric_Planning_Areas/FeatureServer/0
 - Geographic scope (declared): National (94 planning authorities: the 7 major RTOs/ISOs plus every individual utility/municipal/co-op balancing authority)

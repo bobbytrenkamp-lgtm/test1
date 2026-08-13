@@ -1451,6 +1451,42 @@ def write_metadata(fred_payload, county_payload, state_payload, cbp_payload,
     return meta
 
 
+def _carry_forward_enrichment(new_records, old_records, fields):
+    """Copies each of `fields` (if present) from old_records[fips] into
+    new_records[fips], for every FIPS in both.
+
+    Real bug this fixes: build_census_geography() builds a brand-new records
+    dict from scratch on every ACS refresh (every 7 days), with no knowledge
+    of the avg_weekly_wage / building_permits / natural_hazard_risk /
+    electricity_price keys the BLS/Permits/NRI/EIA modules bolt on
+    separately, on their own much longer cadences (30/30/90/180 days). Since
+    those modules skip re-fetching while "fresh" -- checking only their own
+    last-successful-update timestamp, with no way to know the payload they'd
+    be attaching to was just replaced -- every ACS refresh silently erased
+    whatever they had merged in, for as long as their own gate kept them
+    from re-running. Confirmed in production: 0 of 3,222 committed counties
+    carried avg_weekly_wage/building_permits/natural_hazard_risk despite
+    bls_last_successful_update and permits_last_successful_update both
+    showing a real prior success. Calling this right after a fresh ACS
+    payload is built, before it is written or assigned, means a skipped
+    (still-fresh) enrichment module's most recent real data survives the
+    rebuild instead of vanishing until its gate happens to line up with an
+    ACS-refresh-free window.
+    """
+    if not old_records:
+        return 0
+    carried = 0
+    for fips, new_rec in new_records.items():
+        old_rec = old_records.get(fips)
+        if not old_rec:
+            continue
+        for field in fields:
+            if field in old_rec and field not in new_rec:
+                new_rec[field] = old_rec[field]
+                carried += 1
+    return carried
+
+
 def _census_is_fresh(prior_meta, max_age_days):
     ts = ((prior_meta or {}).get("census", {}) or {}).get("last_successful_update")
     if not ts:
@@ -1949,12 +1985,28 @@ def main():
                         cp, crecs = build_census_geography(
                             "county", vintage, census_cfg, selected, census_key, state_names)
 
+                        if cp:
+                            carried = _carry_forward_enrichment(
+                                cp.get("counties", {}), (existing_county or {}).get("counties", {}),
+                                ["avg_weekly_wage", "building_permits", "natural_hazard_risk"])
+                            if carried:
+                                print(f"  carried forward {carried} enrichment field(s) from the "
+                                      f"prior county file (BLS/Permits/NRI are still within their "
+                                      f"own freshness window and did not re-run this cycle)")
                         if cp and _safe_write(COUNTY_OUT, cp, min_records=2000):
                             county_payload = cp
                             census_ran = True
                             any_source_ok = True
                         sp, srecs = build_census_geography(
                             "state", vintage, census_cfg, selected, census_key, state_names)
+                        if sp:
+                            carried = _carry_forward_enrichment(
+                                sp.get("states", {}), (existing_state or {}).get("states", {}),
+                                ["electricity_price"])
+                            if carried:
+                                print(f"  carried forward {carried} enrichment field(s) from the "
+                                      f"prior state file (EIA is still within its own freshness "
+                                      f"window and did not re-run this cycle)")
                         if sp and _safe_write(STATE_OUT, sp, min_records=40):
                             state_payload = sp
                             any_source_ok = True
