@@ -1,6 +1,6 @@
 {
   "jurisdiction_id": "va-loudoun-county",
-  "exported_at": "2026-08-12T06:09:55.147256Z",
+  "exported_at": "2026-08-13T20:14:38.562874Z",
   "disclaimer": "Zoning information is provided for preliminary research only. District boundaries, overlays, parcel conditions, interpretations, variances, and recent amendments may affect a property. Confirm all requirements with the controlling jurisdiction before relying on this information.",
   "jurisdiction": {
     "jurisdiction_id": "va-loudoun-county",
@@ -1417,7 +1417,7 @@
       "reviewer_notes": "Floodplain constraints are universal across Virginia jurisdictions. Data centers should not be sited in floodplains regardless of zoning. Confidence is moderate because FEMA floodplain regulations are federally mandated."
     }
   },
-  "geometry_available": false,
+  "geometry_available": true,
   "validation_summary": {
     "status": "pilot_complete_low_confidence",
     "warnings": [
