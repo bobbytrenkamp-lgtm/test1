@@ -1,9 +1,9 @@
 {
  "_schema": "economy_metadata_v1",
  "acs_vintage": 2024,
- "bls_available": false,
- "bls_county_count": 0,
- "bls_last_successful_update": "2026-07-29T02:51:13+00:00",
+ "bls_available": true,
+ "bls_county_count": 3221,
+ "bls_last_successful_update": "2026-08-13T01:51:09+00:00",
  "cbp_available": true,
  "cbp_year": 2023,
  "census": {
@@ -75,18 +75,18 @@
  "eia_state_count": 0,
  "fred_series_count": 23,
  "fred_skipped": [],
- "generated_at": "2026-08-12T07:56:53+00:00",
- "last_run_at": "2026-08-12T07:56:53+00:00",
- "latest_observation_date": "2026-08-11",
+ "generated_at": "2026-08-13T01:51:09+00:00",
+ "last_run_at": "2026-08-13T01:51:09+00:00",
+ "latest_observation_date": "2026-08-12",
  "nri_available": false,
  "nri_county_count": 0,
  "nri_last_successful_update": null,
  "oldest_history_year": 2019,
- "permits_available": false,
- "permits_county_count": 0,
- "permits_last_successful_update": "2026-07-29T02:51:13+00:00",
+ "permits_available": true,
+ "permits_county_count": 3015,
+ "permits_last_successful_update": "2026-08-13T01:51:09+00:00",
  "pipeline_version": "1.0.0",
- "source_updated_at": "2026-08-11 16:03:21-05",
+ "source_updated_at": "2026-08-12 16:02:24-05",
  "sources": [
   {
    "id": "fred",
@@ -111,6 +111,22 @@
    "publisher": "U.S. Census Bureau",
    "update_frequency": "Annual.",
    "url": "https://www.census.gov/programs-surveys/cbp.html"
+  },
+  {
+   "id": "permits",
+   "name": "Building Permits Survey (BPS)",
+   "note": "County-level new-private-housing-units-authorized-by-permit, merged into each county record as building_permits. Not every county has ever reported to BPS, so coverage is expected to be partial rather than universal.",
+   "publisher": "U.S. Census Bureau, hosted on FRED per county",
+   "update_frequency": "Annual; refreshed independently of the rest of this pipeline (see permits_last_successful_update) because of its per-county request volume.",
+   "url": "https://www.census.gov/construction/bps/"
+  },
+  {
+   "id": "bls_qcew",
+   "name": "Quarterly Census of Employment and Wages (QCEW)",
+   "note": "County-level average weekly wage across all industries and ownership sectors, merged into each county record as avg_weekly_wage. No API key required. A direct labor-cost figure for the local workforce, distinct from ACS's household-income metrics.",
+   "publisher": "U.S. Bureau of Labor Statistics",
+   "update_frequency": "Annual file, published with a 5-6 month lag; refreshed independently of the rest of this pipeline (see bls_last_successful_update).",
+   "url": "https://www.bls.gov/cew/"
   }
  ],
  "stale": true,
