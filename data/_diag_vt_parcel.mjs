@@ -1,61 +1,23 @@
-// DISPOSABLE DIAGNOSTIC — round 4. Round 3 confirmed the real layer
-// (services1.arcgis.com/BkFxaEFNwHqX3tAw/.../FeatureServer/0, 343,876
-// records, wkid 32145) and that the Hub download API needs spatialRefId.
-// This round supplies spatialRefId and inspects response headers WITHOUT
-// downloading the full (likely huge) body, to check whether it's a direct
-// stream or an async job, and what its real Content-Length/type are.
+// DISPOSABLE DIAGNOSTIC — round 5 (final). Round 4 confirmed the real
+// working download URL, size (~213MB), and CRS. This round only checks the
+// DCAT entry's license/accessLevel/rights fields, which round 3's 3000-char
+// print truncated before reaching them, so the sources.json license_notes
+// field is a verified fact, not a guess.
 const ITEM_ID = "09cf47e1cf82465e99164762a04f3ce6";
 
-async function peek(url, label, { maxBytes = 4096 } = {}) {
-  const start = Date.now();
-  try {
-    const controller = new AbortController();
-    const res = await fetch(url, {
-      headers: { "User-Agent": "us-datacenter-tracker-diagnostic/1.0" },
-      signal: controller.signal,
-    });
-    console.log(`\n--- ${label} ---`);
-    console.log("url:", url);
-    console.log("status:", res.status, "elapsed_to_headers_ms:", Date.now() - start);
-    console.log("content-type:", res.headers.get("content-type"));
-    console.log("content-length:", res.headers.get("content-length"));
-    console.log("content-disposition:", res.headers.get("content-disposition"));
-    console.log("redirected:", res.redirected, "final url:", res.url);
-
-    // Read only the first maxBytes of the body, then abort — enough to
-    // confirm real file content (not an HTML error page) without pulling
-    // a potentially huge full statewide export into this diagnostic run.
-    if (res.body) {
-      const reader = res.body.getReader();
-      let received = 0;
-      const chunks = [];
-      while (received < maxBytes) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        received += value.length;
-      }
-      controller.abort();
-      const buf = Buffer.concat(chunks.map((c) => Buffer.from(c)));
-      console.log("bytes_peeked:", buf.length);
-      console.log("snippet:", buf.toString("utf8", 0, Math.min(500, buf.length)));
-    }
-    return res;
-  } catch (e) {
-    console.log(`\n--- ${label} ---`);
-    console.log("url:", url, "FETCH/ABORT ERROR:", e.message);
-    return null;
-  }
+const res = await fetch("https://geodata.vermont.gov/api/feed/dcat-us/1.1.json", {
+  headers: { "User-Agent": "us-datacenter-tracker-diagnostic/1.0" },
+});
+const dcat = await res.json();
+const match = dcat.dataset.find((d) => (d.identifier || "").includes(ITEM_ID));
+if (match) {
+  console.log("license:", match.license);
+  console.log("accessLevel:", match.accessLevel);
+  console.log("rights:", match.rights);
+  console.log("issued:", match.issued);
+  console.log("modified:", match.modified);
+  console.log("publisher:", JSON.stringify(match.publisher));
+  console.log("contactPoint:", JSON.stringify(match.contactPoint));
+} else {
+  console.log("no match found");
 }
-
-// WGS84 lon/lat (EPSG:4326) — spatialRefId is the numeric EPSG code per
-// ArcGIS Hub's own download API convention.
-await peek(
-  `https://opendata.arcgis.com/api/v3/datasets/${ITEM_ID}_0/downloads/data?format=geojson&spatialRefId=4326&redirect=false`,
-  "Hub download API (geojson, spatialRefId=4326, redirect=false) — inspect metadata only"
-);
-
-await peek(
-  `https://opendata.arcgis.com/api/v3/datasets/${ITEM_ID}_0/downloads/data?format=geojson&spatialRefId=4326`,
-  "Hub download API (geojson, spatialRefId=4326, default redirect) — peek first bytes only"
-);
