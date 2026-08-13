@@ -19,6 +19,7 @@ import json
 import re
 import sys
 import tempfile
+import urllib.parse
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
@@ -921,36 +922,53 @@ def test_validate_outputs_flags_bad_avg_weekly_wage():
 
 
 # ────────────────────────── FEMA National Risk Index ────────────────────────
-# The exact CSV header was not independently fetched and confirmed before
-# this module shipped (this session's outbound network access was blocked --
-# see DATA_SOURCES.md and AI_CHANGELOG.md). These tests exercise the
-# defensive machinery (candidate-column matching, sanity floor, FIPS
-# zero-padding) against a fixture shaped like FEMA's documented column
-# names; they cannot themselves prove those names are correct against the
-# live file the way a real workflow run will.
+# collect_fema_nri() pages through FEMA's ArcGIS FeatureServer (not the static
+# CSV — that's confirmed soft-blocked, see NRI_ARCGIS_QUERY_URL's comment in
+# the module). The field names below (STCOFIPS/RISK_SCORE/RISK_RATNG) are
+# independently live-confirmed against the real service response by a
+# disposable diagnostic dispatch on 2026-08-13 (GitHub Actions run
+# 31671943640), not guessed.
 
-def _fake_nri_rows(n=2700, fips_field="STCOFIPS", score_field="RISK_SCORE",
-                    rating_field="RISK_RATNG"):
+def _fake_nri_features(n=2700, fips_field="STCOFIPS", score_field="RISK_SCORE",
+                        rating_field="RISK_RATNG"):
     """FIPS start with '9', same convention test_collect_bls_wages' own
     padding rows use — no real state FIPS prefix reaches 90-99, so these
     can never collide with a realistic FIPS a test asserts on explicitly."""
-    rows = []
+    feats = []
     for i in range(n):
-        rows.append({
+        feats.append({"attributes": {
             fips_field: f"9{i:04d}",
-            score_field: str(round(10 + (i % 90), 2)),
+            score_field: round(10 + (i % 90), 2),
             rating_field: "Relatively Moderate",
-        })
-    return rows
+        }})
+    return feats
+
+
+def _make_fake_nri_get_json(features, page_size=2000, error=None, fail_at_offset=None):
+    """Simulates NRI_ARCGIS_QUERY_URL's paginated response shape: reads
+    resultOffset/resultRecordCount off the real query string (the same way
+    the real ArcGIS service does) so collect_fema_nri()'s own pagination loop
+    is exercised for real, not stubbed out."""
+    def fake(url, **kw):
+        qs = urllib.parse.parse_qs(urllib.parse.urlparse(url).query)
+        offset = int(qs.get("resultOffset", ["0"])[0])
+        count = int(qs.get("resultRecordCount", [str(page_size)])[0])
+        if fail_at_offset is not None and offset == fail_at_offset:
+            return {"__error__": "simulated mid-pagination failure"}
+        if error is not None and offset == 0:
+            return {"error": error}
+        page = features[offset:offset + count]
+        return {"features": page, "exceededTransferLimit": offset + count < len(features)}
+    return fake
 
 
 def test_collect_fema_nri_parses_known_columns():
-    real_get_csv = econ._get_csv_rows
-    econ._get_csv_rows = lambda url, **kw: (_fake_nri_rows(), None)
+    real_get_json = econ._get_json
+    econ._get_json = _make_fake_nri_get_json(_fake_nri_features())
     try:
         out = econ.collect_fema_nri()
     finally:
-        econ._get_csv_rows = real_get_csv
+        econ._get_json = real_get_json
     check(len(out) >= 2500, f"expected most of ~3,144 counties matched, got {len(out)}")
     rec = out["90042"]
     eq(rec["rating"], "Relatively Moderate", "rating column parsed")
@@ -958,64 +976,106 @@ def test_collect_fema_nri_parses_known_columns():
     check(bool(rec["as_of"]), "as_of stamped with a date")
 
 
-def test_collect_fema_nri_zero_pads_short_fips():
-    """A source CSV without leading zeros (e.g. FIPS '1001' for Autauga
-    County, AL) must still key the output the same 5-digit way every other
-    county record in this pipeline does."""
-    real_get_csv = econ._get_csv_rows
-
-    def fake(url, **kw):
-        # 88888 is outside _fake_nri_rows' own 00000-02699 padding range, so
-        # this row cannot collide with (and be silently overwritten by) one
-        # of the padding rows sharing the same FIPS.
-        return [{"STCOFIPS": "1001", "RISK_SCORE": "42.0", "RISK_RATNG": "Relatively Low"}] + \
-               _fake_nri_rows(2700), None
-
-    econ._get_csv_rows = fake
+def test_collect_fema_nri_pages_past_a_single_page():
+    """2,700 fake counties at a 2,000-row page size must span 2 pages —
+    proves the resultOffset loop actually advances rather than only ever
+    reading page 1."""
+    real_get_json = econ._get_json
+    econ._get_json = _make_fake_nri_get_json(_fake_nri_features(n=2700), page_size=2000)
     try:
         out = econ.collect_fema_nri()
     finally:
-        econ._get_csv_rows = real_get_csv
+        econ._get_json = real_get_json
+    eq(len(out), 2700, f"expected all 2,700 fake counties across 2 pages, got {len(out)}")
+    check("90000" in out and "92699" in out,
+          "both the first page's and second page's records must be present")
+
+
+def test_collect_fema_nri_zero_pads_short_fips():
+    """A source record without leading zeros (e.g. FIPS '1001' for Autauga
+    County, AL) must still key the output the same 5-digit way every other
+    county record in this pipeline does."""
+    feats = [{"attributes": {"STCOFIPS": "1001", "RISK_SCORE": 42.0,
+                              "RISK_RATNG": "Relatively Low"}}] + _fake_nri_features(2700)
+    real_get_json = econ._get_json
+    econ._get_json = _make_fake_nri_get_json(feats)
+    try:
+        out = econ.collect_fema_nri()
+    finally:
+        econ._get_json = real_get_json
     check("01001" in out, f"short FIPS '1001' must be zero-padded to '01001'; keys sample: {list(out)[:5]}")
     eq(out["01001"]["score"], 42.0, "score for the zero-padded record")
 
 
-def test_collect_fema_nri_rejects_unknown_columns():
-    """None of the candidate column names present -> skip cleanly rather
-    than guessing which arbitrary column is the FIPS/score/rating."""
+def test_collect_fema_nri_rejects_unknown_field_names():
+    """None of the candidate attribute names present on any feature -> skip
+    cleanly rather than guessing which arbitrary attribute is the FIPS."""
     econ.warnings.clear()
-    real_get_csv = econ._get_csv_rows
-    econ._get_csv_rows = lambda url, **kw: (
-        [{"SOME_OTHER_ID": "00001", "SOME_OTHER_VALUE": "1"}], None)
+    feats = [{"attributes": {"SOME_OTHER_ID": "00001", "SOME_OTHER_VALUE": 1}}]
+    real_get_json = econ._get_json
+    econ._get_json = _make_fake_nri_get_json(feats)
     try:
         out = econ.collect_fema_nri()
     finally:
-        econ._get_csv_rows = real_get_csv
-    eq(out, {}, "no known column names matched -> module skipped")
-    check(any("none of the known column names" in w for w in econ.warnings),
+        econ._get_json = real_get_json
+    eq(out, {}, "no known attribute names matched -> module skipped")
+    check(any("only 0 of ~3,144" in w for w in econ.warnings),
           f"warning should explain why it gave up, not just fail silently; got: {econ.warnings}")
 
 
 def test_collect_fema_nri_rejects_suspiciously_small_result():
-    real_get_csv = econ._get_csv_rows
-    econ._get_csv_rows = lambda url, **kw: (_fake_nri_rows(n=50), None)
+    real_get_json = econ._get_json
+    econ._get_json = _make_fake_nri_get_json(_fake_nri_features(n=50))
     try:
         out = econ.collect_fema_nri()
     finally:
-        econ._get_csv_rows = real_get_csv
+        econ._get_json = real_get_json
     eq(out, {}, "50 of ~3,144 counties is far below the sanity floor -> rejected")
 
 
 def test_collect_fema_nri_handles_fetch_failure():
     econ.warnings.clear()
-    real_get_csv = econ._get_csv_rows
-    econ._get_csv_rows = lambda url, **kw: (None, "HTTP 404")
+    real_get_json = econ._get_json
+    econ._get_json = lambda url, **kw: {"__error__": "HTTP 404"}
     try:
         out = econ.collect_fema_nri()
     finally:
-        econ._get_csv_rows = real_get_csv
+        econ._get_json = real_get_json
     eq(out, {}, "fetch failure -> empty result, never a crash")
     check(any("fetch failed" in w for w in econ.warnings), f"got: {econ.warnings}")
+
+
+def test_collect_fema_nri_handles_arcgis_in_body_error():
+    """ArcGIS returns HTTP 200 with an {"error": ...} body for a bad request
+    rather than an HTTP error status — must be detected, not treated as a
+    successful empty page."""
+    econ.warnings.clear()
+    real_get_json = econ._get_json
+    econ._get_json = _make_fake_nri_get_json([], error={"code": 400, "message": "Invalid field"})
+    try:
+        out = econ.collect_fema_nri()
+    finally:
+        econ._get_json = real_get_json
+    eq(out, {}, "in-body ArcGIS error on the first page -> empty result")
+    check(any("in-body error" in w for w in econ.warnings), f"got: {econ.warnings}")
+
+
+def test_collect_fema_nri_keeps_partial_result_on_mid_pagination_failure():
+    """If pages 1-2 succeed (4,000 counties, comfortably past the ~2,500
+    sanity floor) but page 3 fails, the counties already collected should
+    still be returned rather than the whole run being discarded — matches
+    the carry-forward philosophy of never throwing away good partial data
+    over one bad request late in a run."""
+    econ.warnings.clear()
+    real_get_json = econ._get_json
+    econ._get_json = _make_fake_nri_get_json(_fake_nri_features(n=6000), page_size=2000,
+                                              fail_at_offset=4000)
+    try:
+        out = econ.collect_fema_nri()
+    finally:
+        econ._get_json = real_get_json
+    eq(len(out), 4000, f"expected exactly pages 1-2's 4,000 counties, got {len(out)}")
+    check(any("pagination failed" in w for w in econ.warnings), f"got: {econ.warnings}")
 
 
 def test_nri_is_fresh_direct():

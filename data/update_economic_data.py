@@ -118,15 +118,24 @@ BLS_QCEW_AREA_URL   = "https://data.bls.gov/cew/data/api/{year}/a/area/{area_fip
 # FEMA National Risk Index, county-level table. Free, public domain, no API
 # key or registration of any kind (confirmed via FEMA's own OpenFEMA
 # documentation, which states the whole platform requires no key/subscription).
-# URL confirmed against a real, independently-indexed FEMA static file
-# (NRI_Shapefile_CensusTracts.zip at this same path) rather than guessed --
-# but the exact table filename and column names were NOT independently
-# fetched and verified byte-for-byte before this pipeline shipped (this
-# session's outbound network access was blocked). See collect_fema_nri()'s
-# own docstring and DATA_SOURCES.md for the honest confidence level and what
-# the first live run needs to confirm.
+#
+# The static CSV download (hazards.fema.gov) is confirmed soft-blocked from
+# GitHub Actions runners as of 2026-08-13: it returns HTTP 200 but an HTML
+# interstitial page instead of the CSV body, so _get_csv_rows() would silently
+# get zero usable rows rather than a clean error. Kept here only as a
+# documented dead end, not called.
+#
+# The live source is instead FEMA's own Esri-hosted ArcGIS FeatureServer,
+# which is on services.arcgis.com infrastructure (not fema.gov) and is
+# confirmed reachable and returning real data: a disposable diagnostic
+# workflow dispatch on 2026-08-13 (run 31671943640) queried it live and got
+# back a real record for Autauga County AL (STCOFIPS "01001", RISK_SCORE
+# 57.57, RISK_RATNG "Relatively Low", NRI_VER "December 2025"). See
+# collect_fema_nri() below.
 FEMA_NRI_COUNTIES_URL = ("https://hazards.fema.gov/nri/Content/StaticDocuments/"
                           "DataDownload/NRI_Table_Counties/NRI_Table_Counties.csv")
+NRI_ARCGIS_QUERY_URL = ("https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/"
+                         "services/National_Risk_Index_Counties/FeatureServer/0/query")
 
 UA = "USDataCenterPolicyTracker-EconPipeline/1.0 (+https://bobbytrenkamp-lgtm.github.io/test1/)"
 
@@ -1672,14 +1681,12 @@ def _nri_is_fresh(prior_meta, max_age_days):
 
 # ────────────── FEMA National Risk Index (optional, county-level) ──────────
 
-# Candidate column names for the fields this module needs. NRI's real CSV
-# header was not independently fetched and confirmed before this shipped
-# (see FEMA_NRI_COUNTIES_URL's comment) -- these are the standard,
-# widely-cited NRI field names from FEMA's own published documentation and
-# multiple independent secondary sources (federal/state open-data portals
-# republishing the same dataset), not a single guess. A short candidate list
-# is the same defensive pattern _BLS_WAGE_FIELD_CANDIDATES already uses for
-# a comparable "documented but not independently byte-verified" situation.
+# Candidate attribute names for the fields this module needs. STCOFIPS /
+# RISK_SCORE / RISK_RATNG are independently live-confirmed against the real
+# ArcGIS FeatureServer response (2026-08-13 diagnostic dispatch, run
+# 31671943640 — see NRI_ARCGIS_QUERY_URL's comment); the extra candidates are
+# kept as a defensive fallback (same pattern as _BLS_WAGE_FIELD_CANDIDATES)
+# in case FEMA ever renames a field.
 _NRI_FIPS_FIELD_CANDIDATES  = ("STCOFIPS", "COUNTYFIPS", "FIPS")
 _NRI_SCORE_FIELD_CANDIDATES = ("RISK_SCORE", "RISK_VALUE")
 _NRI_RATING_FIELD_CANDIDATES = ("RISK_RATNG", "RISK_RATING")
@@ -1700,59 +1707,86 @@ def collect_fema_nri():
     Score the way that score's own docstring already explains for
     regulatory restriction level.
 
-    One bulk request for the whole country (like EIA's electricity price),
-    not one per county (like BLS/permits) -- FEMA publishes NRI as a single
-    table covering every county, so there is no equivalent to QCEW's
-    per-area-slice access pattern to work around.
+    Fetched by paging through FEMA's ArcGIS FeatureServer (NRI_ARCGIS_QUERY_URL)
+    rather than the static CSV — see that constant's comment for why. Each
+    page asks for only the 3 fields this module needs (outFields), not the
+    ~150-column full NRI table, to keep each request small.
 
     Returns { fips: {"score", "rating", "as_of"} } or {} on any failure.
     """
-    rows, err = _get_csv_rows(FEMA_NRI_COUNTIES_URL, timeout=90)
-    if err:
-        warn(f"FEMA National Risk Index fetch failed ({err}) — module skipped")
-        return {}
-    if not rows:
-        warn("FEMA National Risk Index: empty response — module skipped")
-        return {}
-
-    header = set(rows[0].keys())
-    fips_field   = next((f for f in _NRI_FIPS_FIELD_CANDIDATES if f in header), None)
-    score_field  = next((f for f in _NRI_SCORE_FIELD_CANDIDATES if f in header), None)
-    rating_field = next((f for f in _NRI_RATING_FIELD_CANDIDATES if f in header), None)
-    if not fips_field or not (score_field or rating_field):
-        warn(f"FEMA National Risk Index: none of the known column names "
-             f"({_NRI_FIPS_FIELD_CANDIDATES}, {_NRI_SCORE_FIELD_CANDIDATES}, "
-             f"{_NRI_RATING_FIELD_CANDIDATES}) matched this file's actual header "
-             f"({sorted(header)[:20]}...) — module skipped rather than guessing "
-             f"which column is which")
-        return {}
-
     today = date.today().isoformat()
     out = {}
-    for row in rows:
-        fips_raw = (row.get(fips_field) or "").strip()
-        if not fips_raw or not fips_raw.isdigit():
-            continue
-        fips = fips_raw.zfill(5)
-        score = parse_number(row.get(score_field)) if score_field else None
-        rating = (row.get(rating_field) or "").strip() if rating_field else None
-        if score is None and not rating:
-            continue
-        entry = {"as_of": today}
-        if score is not None:
-            entry["score"] = score
-        if rating:
-            entry["rating"] = rating
-        out[fips] = entry
+    page_size = 2000
+    offset = 0
+    max_pages = 10  # ~3,144 counties at page_size=2000 needs 2 pages; a wide safety margin
 
-    # ~3,144 US counties exist; a large miss rate means the FIPS column was
-    # misidentified (picking a state or tract FIPS field by the same name
-    # would produce far fewer, or far more, unique 5-digit matches) rather
-    # than genuine sparse coverage -- NRI is documented as near-universal.
+    for _ in range(max_pages):
+        qs = urllib.parse.urlencode({
+            "where": "1=1",
+            "outFields": "STCOFIPS,RISK_SCORE,RISK_RATNG",
+            "resultOffset": offset,
+            "resultRecordCount": page_size,
+            "f": "json",
+        })
+        payload = _get_json(f"{NRI_ARCGIS_QUERY_URL}?{qs}", timeout=60)
+        if _is_err(payload):
+            if offset == 0:
+                warn(f"FEMA National Risk Index fetch failed "
+                     f"({payload.get('__error__')}) — module skipped")
+                return {}
+            warn(f"FEMA National Risk Index: pagination failed at offset {offset} "
+                 f"({payload.get('__error__')}) — keeping the {len(out)} counties "
+                 f"already collected rather than discarding a partial result")
+            break
+        if isinstance(payload, dict) and payload.get("error"):
+            # ArcGIS returns HTTP 200 with an in-body error object for bad
+            # requests (e.g. a field name that no longer exists) rather than
+            # an HTTP error status — same failure shape check_parcel_services.mjs
+            # and the site-index fallback (b83835f) both already had to handle.
+            # Stop paging here; the final ~2,500-county floor check below
+            # decides whether what was collected so far is still usable.
+            warn(f"FEMA National Risk Index: ArcGIS returned an in-body error "
+                 f"at offset {offset} ({payload['error']})")
+            break
+
+        features = payload.get("features") or []
+        if not features:
+            break
+
+        for feat in features:
+            attrs = feat.get("attributes") or {}
+            fips_field  = next((f for f in _NRI_FIPS_FIELD_CANDIDATES if f in attrs), None)
+            score_field = next((f for f in _NRI_SCORE_FIELD_CANDIDATES if f in attrs), None)
+            rating_field = next((f for f in _NRI_RATING_FIELD_CANDIDATES if f in attrs), None)
+            if not fips_field:
+                continue
+            fips_raw = str(attrs.get(fips_field) or "").strip()
+            if not fips_raw or not fips_raw.isdigit():
+                continue
+            fips = fips_raw.zfill(5)
+            score = parse_number(attrs.get(score_field)) if score_field else None
+            rating = (str(attrs.get(rating_field)).strip()
+                      if rating_field and attrs.get(rating_field) else None)
+            if score is None and not rating:
+                continue
+            entry = {"as_of": today}
+            if score is not None:
+                entry["score"] = score
+            if rating:
+                entry["rating"] = rating
+            out[fips] = entry
+
+        offset += len(features)
+        if len(features) < page_size and not payload.get("exceededTransferLimit"):
+            break
+
+    # ~3,144 US counties exist; a large miss rate means something drifted
+    # (a renamed field, a service outage mid-pagination) rather than genuine
+    # sparse coverage -- NRI is documented as near-universal.
     if len(out) < 2500:
         warn(f"FEMA National Risk Index: only {len(out)} of ~3,144 counties matched "
-             f"using fields {fips_field}/{score_field}/{rating_field} — module "
-             f"skipped rather than publishing a suspiciously small or malformed result")
+             f"— module skipped rather than publishing a suspiciously small "
+             f"or malformed result")
         return {}
 
     return out
