@@ -88,14 +88,19 @@
       ]
     },
     "static_parcel_ingestion": {
-      "health": "NOT_YET_TRACKED",
+      "health": "OK",
       "pipeline": "static_parcel_ingestion",
-      "why": "zero sources registered in sources.json -- pipeline is built and tested but has nothing to run yet (see docs/INFRASTRUCTURE_ASSET_SCHEMA.md-style honesty note in static_ingestion/models.py)"
+      "sources": [
+        {
+          "health": "NOT_YET_TRACKED",
+          "source_id": "vt-vcgi-statewide-parcels"
+        }
+      ]
     }
   },
   "summary": {
     "counts_by_health": {
-      "NOT_YET_TRACKED": 1,
+      "OK": 1,
       "SOURCE_DOWN": 1,
       "VALIDATION_FAILURE": 2
     },
