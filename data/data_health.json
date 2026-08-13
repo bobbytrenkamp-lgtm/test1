@@ -88,11 +88,11 @@
       ]
     },
     "static_parcel_ingestion": {
-      "health": "OK",
+      "health": "SCHEMA_CHANGED",
       "pipeline": "static_parcel_ingestion",
       "sources": [
         {
-          "health": "NOT_YET_TRACKED",
+          "health": "SCHEMA_CHANGED",
           "source_id": "vt-vcgi-statewide-parcels"
         }
       ]
@@ -100,7 +100,7 @@
   },
   "summary": {
     "counts_by_health": {
-      "OK": 1,
+      "SCHEMA_CHANGED": 1,
       "SOURCE_DOWN": 1,
       "VALIDATION_FAILURE": 2
     },
