@@ -399,14 +399,21 @@ def test_download_matching_checksum_reports_not_modified_even_without_304(tmp_pa
 
 # ── models.py: registry validation ─────────────────────────────────────────
 
-def test_committed_registry_is_currently_empty_and_valid():
-    # Documents the deliberate starting state: zero entries, because no
-    # source URL could be live-verified from this environment. Not a bug --
-    # see the module docstring on models.py for why an entry requires a
-    # human (or an agent with real network access) to have actually checked it.
-    sources = load_registry()
-    assert sources == []
+def test_committed_registry_has_only_live_verified_entries():
+    # The registry started empty (zero entries, because no source URL could
+    # be live-verified from this development sandbox -- see models.py's
+    # module docstring for why an entry requires a human or an agent with
+    # real network access to have actually checked it). Every entry now
+    # committed here must be well-formed per that same discipline: this test
+    # re-validates each one structurally rather than asserting emptiness,
+    # so it stays meaningful as real sources are added over time instead of
+    # needing to be deleted the moment the first one lands.
     assert REGISTRY_PATH.exists()
+    sources = load_registry()  # raises on any structurally invalid entry
+    for s in sources:
+        assert s.id and s.jurisdiction and s.download_url and s.parcel_id_field
+        assert s.parcel_id_field in s.expected_fields
+        assert s.last_verified, f"{s.id} has no last_verified date"
 
 
 def test_validate_source_dict_catches_missing_required_fields():

@@ -11,14 +11,13 @@ name: Static Parcel Dataset Ingestion
 # (tests/test_static_ingestion.py) skip cleanly without it -- this is the
 # one place in the whole pipeline that actually needs it to be there.
 #
-# sources.json currently ships with ZERO entries: no static-download source
-# URL could be verified from this project's development sandbox (see
+# sources.json shipped with ZERO entries until 2026-08-13: no static-download
+# source URL could be verified from this project's development sandbox (see
 # models.py's module docstring for why an entry requires that verification
-# before it's added). Until a human or an agent with real network access
-# adds one, this workflow's ingestion step has nothing to do and exits
-# immediately -- the workflow exists and is tested now specifically so that
-# adding the FIRST verified source is a data change to sources.json, not
-# also a pipeline-engineering task.
+# before it's added). The first entry (Vermont's statewide parcel dataset)
+# was added via a real GitHub Actions dispatch with live network access, the
+# same pattern any future addition should follow -- adding a source is a
+# data change to sources.json, not a pipeline-engineering task.
 
 on:
   schedule:
