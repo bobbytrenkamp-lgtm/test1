@@ -59,19 +59,46 @@ JURISDICTION_CONFIGS = {
         "data_center_relevance": "high",
         "sources": {
             "zoning_geometry": {
-                "type":   "arcgis_open_data",
-                "portal": "https://pwcgis.maps.arcgis.com/",
-                "search_terms": ["zoning districts", "zoning"],
-                "export_format": "geojson",
-                "expected_min_features": 100,
+                # Live-verified 2026-08-13 via three rounds of disposable
+                # diagnostic GitHub Actions dispatch, same methodology as
+                # Loudoun. The ArcGIS Hub portal-search config below (the
+                # previous entry) never resolved a real service. The real
+                # source lives directly on PWC's own ArcGIS Server, in the
+                # Planning/Zoning MapServer (14 layers total). Layer 5
+                # ("Zoning Districts") is the real countywide layer: real
+                # fields ZoningDistrict (code)/ZoningCaseNumber/GISAcreage/
+                # ZoningCaseName/PROFFERS, geometryType esriGeometryPolygon,
+                # 2,227 features. (Also found but not yet wired in: layer 7
+                # "Overlay District Data Center Opportunity Zone" -- a real,
+                # single designated rezoning case with fields CaseName/
+                # CaseNumber/OrdinanceNumber/ZoningOrdinanceLink -- worth a
+                # follow-up as an overlay layer once the base district
+                # geometry is proven in production.)
+                #
+                # Unlike Loudoun's Zoning layer, this layer carries no
+                # separate district-name field -- ZoningDistrict is both the
+                # code and the only classification attribute, so
+                # district_name_field intentionally has no real value here
+                # (see below).
+                "type":     "arcgis_featureserver",
+                "url":      "https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer",
+                "layer_id": 5,
+                "expected_min_features": 2000,
             },
             "ordinance": {
                 "type": "url",
                 "url":  "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
             },
         },
-        "district_code_field": "ZONING",
-        "district_name_field": "ZONING_DESCRIPTION",
+        # Confirmed real GIS attribute name (round 3 diagnostic, 2026-08-13)
+        # -- replaces the previous unverified guess ("ZONING", which does
+        # not exist on this service). No real district-name field exists on
+        # this layer (see notes above); left pointing at a nonexistent
+        # field name on purpose so normalize_zoning.py's props.get(name_field, "")
+        # fallback resolves to "" rather than silently picking up an
+        # unrelated attribute.
+        "district_code_field": "ZoningDistrict",
+        "district_name_field": "__no_name_field_on_this_layer__",
     },
     "md-montgomery-county": {
         "display_name":   "Montgomery County, MD",
