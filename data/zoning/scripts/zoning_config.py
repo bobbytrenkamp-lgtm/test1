@@ -101,20 +101,44 @@ JURISDICTION_CONFIGS = {
         "data_center_relevance": "critical",
         "sources": {
             "zoning_geometry": {
-                "type":   "arcgis_open_data",
-                "portal": "https://data-loudoungis.opendata.arcgis.com/",
-                "search_terms": ["current zoning", "zoning districts", "zoning"],
-                "fallback_mapserver": "https://logis.loudoun.gov/arcgis/rest/services/",
-                "export_format": "geojson",
-                "expected_min_features": 100,
+                # Live-verified 2026-08-13 via two rounds of disposable diagnostic
+                # GitHub Actions dispatch (see AI_CHANGELOG.md). The ArcGIS Hub
+                # portal search (previous "arcgis_open_data" config below) never
+                # resolved -- the real service lives directly on Loudoun's own
+                # ArcGIS Server (same host family as the already-verified parcel
+                # service), not through opendata.arcgis.com. COL/Zoning/MapServer
+                # has 6 layers; layer 0 ("Leesburg Zoning", LB_-prefixed fields)
+                # is town-specific and was queried by mistake in round 1. Layer 3
+                # ("Zoning") is the real countywide layer: serviceDescription
+                # "Loudoun County, Virginia zoning", copyrightText "Loudoun
+                # County, Virginia" (official publisher), 1,271 polygon features,
+                # geometryType esriGeometryPolygon. Layer 1 ("1972 Zoning
+                # Ordinance") has only 87 features and is confirmed historical/
+                # superseded -- not used. f=geojson output is auto-reprojected
+                # to WGS84 by the ArcGIS server regardless of the layer's native
+                # spatialReference (wkid 2924 / VA State Plane North).
+                "type":     "arcgis_featureserver",
+                "url":      "https://logis.loudoun.gov/gis/rest/services/COL/Zoning/MapServer",
+                "layer_id": 3,
+                "expected_min_features": 1000,
             },
             "ordinance": {
                 "type": "municode",
                 "url":  "https://library.municode.com/va/loudoun_county/codes/codified_ordinances",
             },
         },
-        "district_code_field": "ZONING",  # expected GIS attribute name (may vary)
-        "district_name_field": "ZONING_DESC",
+        # Confirmed real GIS attribute names from the live service (round 2
+        # diagnostic, 2026-08-13) -- replaces the previous unverified guesses
+        # ("ZONING" / "ZONING_DESC", which do not exist on this service).
+        # ZO_ZONE carries current-ordinance codes (e.g. "IP") that reflect
+        # Loudoun's 2023 Zoning Ordinance rewrite (confirmed live: sample
+        # record has ZO_ORDINANCE="2023", ZO_ZONE_ORD="IP 2023") and do not
+        # match the older codes (PD-IP, I1, I2, ...) hand-transcribed into
+        # districts.json from general public knowledge on 2026-07-17. See
+        # districts.json's own notes for how that mismatch is handled --
+        # DC-eligibility is never guessed across the old/new code boundary.
+        "district_code_field": "ZO_ZONE",
+        "district_name_field": "ZD_ZONE_NAME",
     },
 }
 
