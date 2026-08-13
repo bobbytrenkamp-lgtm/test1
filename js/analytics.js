@@ -716,6 +716,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Grid Readiness Overview</div>
+      <div id="analytics-grid-readiness-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading grid readiness data…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Development Scenario Builder</div>
       <div id="analytics-scenario-section"></div>
     </div>
@@ -750,6 +760,7 @@ function renderAnalyticsPage() {
   _fillPipelineStats();
   _fillPowerStats();
   _fillFiberStats();
+  _fillGridReadinessStats();
   _renderScenarioBuilder();
   _renderCountyRankings();
   _renderInvestmentHotspots();
@@ -1812,105 +1823,168 @@ function _renderScenarioBuilder() {
   });
 }
 
+/* Regional fiber datasets wired into the parcel proximity engine
+   (js/parcel/proximity-layers.js). Both are LIVE query sources — no local
+   copy is stored — so this section queries each one's real feature count
+   at page-load time via returnCountOnly, the same public ArcGIS REST
+   endpoints the parcel engine itself queries. A failed count query
+   degrades to "count unavailable right now", never a fabricated number. */
+const FIBER_REGIONS = [
+  {
+    id: "ca-middle-mile",
+    name: "California middle-mile broadband corridor",
+    scope: "SCAG region only — Los Angeles, Orange, Riverside, San Bernardino, Ventura, Imperial counties",
+    publisher: "California Public Utilities Commission, republished by SCAG",
+    caveat: "This is a PLANNED/SELECTED corridor alignment, not confirmed as-built lit fiber.",
+    countUrl: "https://maps.scag.ca.gov/scaggis/rest/services/Broadband/Broadband/MapServer/2/query?where=1%3D1&returnCountOnly=true&f=json",
+  },
+  {
+    id: "tx-fiberlight",
+    name: "Texas Fiberlight fiber network",
+    scope: "Texas only — 9 real markets (Austin, Dallas-Fort Worth, El Paso, Houston, Panhandle, San Antonio, South Texas, Waco, West Texas)",
+    publisher: "Fiberlight (commercial carrier), published via TxDOT's ArcGIS hosted feature service",
+    caveat: "ONE CARRIER'S network, not all Texas fiber, and a dated snapshot (“clip received on 3/15/22” per the source), not continuously refreshed.",
+    countUrl: "https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/Fiberlight_Network/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=json",
+  },
+];
+
 async function _fillFiberStats() {
   const container = document.getElementById("analytics-fiber-section");
   if (!container) return;
 
-  let sl = (typeof sampleLayers !== "undefined" ? sampleLayers : null);
-  if (!sl || !sl.fiber_network) {
+  const counts = await Promise.all(FIBER_REGIONS.map(async r => {
     try {
-      const resp = await fetch("data/sample_layers.json");
-      sl = await resp.json();
-    } catch (_) {}
-  }
-  const fiberRoutes = sl ? (sl.fiber_network || []) : [];
-
-  if (!fiberRoutes.length) {
-    container.innerHTML = `<div class="callout warning" style="margin:0">Fiber data unavailable.</div>`;
-    return;
-  }
-
-  // Haversine distance in km between two [lon, lat] points
-  function haversineKm([lon1, lat1], [lon2, lat2]) {
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  }
-
-  // Calculate total length of each route in km
-  const routeStats = fiberRoutes.map(r => {
-    let km = 0;
-    const pts = r.path || [];
-    for (let i = 1; i < pts.length; i++) km += haversineKm(pts[i-1], pts[i]);
-    return { ...r, km: Math.round(km), pts };
-  });
-
-  const totalKm = routeStats.reduce((s, r) => s + r.km, 0);
-
-  // Find nearby facilities for each route (within ~100 km of any point)
-  const facilities = window.PIPELINE ? window.PIPELINE.getData() : null;
-
-  function routeMinDistKm(route, lat, lon) {
-    let minD = Infinity;
-    for (const [rlon, rlat] of route.pts) {
-      const d = haversineKm([rlon, rlat], [lon, lat]);
-      if (d < minD) minD = d;
+      const res = await fetch(r.countUrl);
+      if (!res.ok) return null;
+      const data = await res.json();
+      return typeof data.count === "number" ? data.count : null;
+    } catch (_) {
+      return null;
     }
-    return minD;
-  }
+  }));
 
-  const routeCards = routeStats.map(r => {
-    let nearbyCount = 0;
-    let nearbyMw = 0;
-    if (facilities) {
-      facilities.forEach(f => {
-        if (!f.latitude || !f.longitude) return;
-        const d = routeMinDistKm(r, f.latitude, f.longitude);
-        if (d <= 100) {
-          nearbyCount++;
-          nearbyMw += f.capacity_mw_known || 0;
-        }
-      });
-    }
-    const kmLabel = r.km >= 1000 ? (r.km/1000).toFixed(1) + "k km" : r.km + " km";
-    const mwLabel = nearbyMw >= 1000 ? (nearbyMw/1000).toFixed(1) + " GW" : Math.round(nearbyMw) + " MW";
+  const regionCards = FIBER_REGIONS.map((r, i) => {
+    const count = counts[i];
+    const countLabel = count === null
+      ? '<span class="fiber-count-unavailable">count unavailable right now</span>'
+      : `<strong>${count.toLocaleString()}</strong> real segments (live count)`;
     return `<div class="fiber-route-card">
       <div class="fiber-route-header">
         <div class="fiber-route-icon">${analyticsIcon('fiber')}</div>
-        <div class="fiber-route-name">${escHtml(r.name || r.id)}</div>
-        <div class="fiber-sample-badge">SAMPLE</div>
+        <div class="fiber-route-name">${escHtml(r.name)}</div>
+        <div class="fiber-sample-badge">REGIONAL</div>
       </div>
-      <div class="fiber-route-stats">
-        <div class="fiber-stat"><div class="fiber-stat-val">${escHtml(kmLabel)}</div><div class="fiber-stat-lbl">Route Length</div></div>
-        <div class="fiber-stat"><div class="fiber-stat-val">${nearbyCount.toLocaleString()}</div><div class="fiber-stat-lbl">Nearby Facilities</div></div>
-        <div class="fiber-stat"><div class="fiber-stat-val">${escHtml(mwLabel)}</div><div class="fiber-stat-lbl">Nearby Known MW</div></div>
-        <div class="fiber-stat"><div class="fiber-stat-val">${r.pts.length}</div><div class="fiber-stat-lbl">Path Points</div></div>
+      <div style="font-size:12px;color:var(--text-muted);margin:6px 0 8px">
+        ${countLabel} &middot; ${escHtml(r.publisher)}
       </div>
+      <div style="font-size:12px;margin-bottom:4px"><strong>Coverage:</strong> ${escHtml(r.scope)}</div>
+      <div style="font-size:11.5px;color:var(--text-muted)">${escHtml(r.caveat)}</div>
     </div>`;
   }).join("");
 
   container.innerHTML = `
     <div class="callout info" style="margin-bottom:16px;font-size:12px">
-      Fiber network routes are sample data only — exact alignments are unverified. Nearby facility counts
-      use a 100 km proximity radius from any point on the route.
+      No free nationwide as-built fiber dataset exists, so the nationwide fiber layer stays
+      honestly unavailable everywhere on this platform. These are two narrower, real, regional
+      additions instead of a fabricated national claim — each queried live from its own public
+      government-hosted service, not stored or cached locally.
+    </div>
+    <div class="fiber-routes-grid">${regionCards}</div>`;
+}
+
+/* Grid Readiness v1 (data/generate_grid_readiness.py) is the platform's
+   most complete real "is this county commercially ready" screening
+   signal so far — a disclosed, omission-aware weighted score over real
+   substation and interconnection-queue data (see docs/GRID_READINESS.md
+   for full methodology). This section surfaces it nationally rather than
+   only on individual jurisdiction pages. County names come from
+   data/economy/census_county.json (3,222 counties) since grid_readiness.json
+   itself is keyed by FIPS only, to keep the same real-source discipline as
+   every other cross-reference on this page. */
+async function _fillGridReadinessStats() {
+  const container = document.getElementById("analytics-grid-readiness-section");
+  if (!container) return;
+
+  let readiness, namesDoc;
+  try {
+    [readiness, namesDoc] = await Promise.all([
+      fetch("data/grid_readiness.json").then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }),
+      fetch("data/economy/census_county.json").then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }).catch(() => null),
+    ]);
+  } catch (_) {
+    container.innerHTML = `<div class="callout warning" style="margin:0">Grid readiness data unavailable.</div>`;
+    return;
+  }
+
+  const names = (namesDoc && namesDoc.counties) || {};
+  const counties = readiness.counties || {};
+  const fipsList = Object.keys(counties);
+  const scored = fipsList.map(fips => ({ fips, ...counties[fips] })).filter(c => typeof c.overall === "number");
+
+  const meanOverall = scored.length
+    ? Math.round(scored.reduce((s, c) => s + c.overall, 0) / scored.length * 10) / 10
+    : 0;
+  const queueAvailable = !!(readiness.meta && readiness.meta.interconnection_queue_data_available);
+  const highConfidence = scored.filter(c => c.confidence === "high").length;
+
+  const top15 = scored.slice().sort((a, b) => b.overall - a.overall).slice(0, 15);
+  const maxOverall = top15.length ? top15[0].overall : 100;
+
+  const rankRows = top15.map((c, i) => {
+    const rec = names[c.fips] || {};
+    const label = rec.name ? `${rec.name}${rec.state ? ", " + rec.state : ""}` : `FIPS ${c.fips}`;
+    const pct = maxOverall ? Math.round(c.overall / maxOverall * 100) : 0;
+    return `<div class="ranked-item">
+      <div class="rank-num">${i + 1}</div>
+      <div class="rank-name">${escHtml(label)}</div>
+      <div class="rank-bar-wrap" style="flex:1">
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${pct}%;background:#22c55e;--bar-delay:${i * 30}ms" title="${escHtml(String(c.confidence || ""))} confidence"></div>
+        </div>
+      </div>
+      <div class="rank-count">${Math.round(c.overall)}/100</div>
+    </div>`;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="callout info" style="margin-bottom:16px;font-size:12px">
+      Grid Readiness v1 is a county-level screening score over real mapped substation infrastructure
+      and interconnection-queue activity — see
+      <a href="docs/GRID_READINESS.md" target="_blank" rel="noopener noreferrer">the methodology doc</a>
+      for exactly how each component is computed and what is deliberately not yet included
+      (transmission-line and ISO/RTO proximity). It is not a statement about available capacity or
+      utility willingness to serve.
     </div>
     <div class="analytics-kpi-grid" style="margin-bottom:20px">
       <div class="analytics-kpi-card">
-        <div class="analytics-kpi-card-icon" style="background:rgba(96,165,250,0.12);color:#60a5fa">${analyticsIcon('fiber')}</div>
-        <div class="analytics-kpi-label">Sample Routes</div>
-        <div class="analytics-kpi-value">${fiberRoutes.length}</div>
-        <div class="analytics-kpi-meta">mapped fiber corridors</div>
+        <div class="analytics-kpi-card-icon" style="background:rgba(34,197,94,0.12);color:#22c55e">${analyticsIcon('county')}</div>
+        <div class="analytics-kpi-label">Counties Scored</div>
+        <div class="analytics-kpi-value">${scored.length.toLocaleString()}</div>
+        <div class="analytics-kpi-meta">appearing in at least one real dataset</div>
       </div>
       <div class="analytics-kpi-card">
         <div class="analytics-kpi-card-icon" style="background:rgba(96,165,250,0.12);color:#60a5fa">${analyticsIcon('zap')}</div>
-        <div class="analytics-kpi-label">Total Route Length</div>
-        <div class="analytics-kpi-value">${totalKm >= 1000 ? (totalKm/1000).toFixed(1) + "k" : totalKm} km</div>
-        <div class="analytics-kpi-meta">approximate sample coverage</div>
+        <div class="analytics-kpi-label">Mean Overall Score</div>
+        <div class="analytics-kpi-value">${meanOverall}</div>
+        <div class="analytics-kpi-meta">out of 100, across all scored counties</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(245,158,11,0.12);color:#f59e0b">${analyticsIcon('pro')}</div>
+        <div class="analytics-kpi-label">High Confidence</div>
+        <div class="analytics-kpi-value">${highConfidence.toLocaleString()}</div>
+        <div class="analytics-kpi-meta">counties with both components available</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:${queueAvailable ? 'rgba(34,197,94,0.12)' : 'rgba(239,68,68,0.12)'};color:${queueAvailable ? '#22c55e' : '#ef4444'}">${analyticsIcon('pipeline')}</div>
+        <div class="analytics-kpi-label">Interconnection Data</div>
+        <div class="analytics-kpi-value">${queueAvailable ? "Available" : "Omitted"}</div>
+        <div class="analytics-kpi-meta">${queueAvailable ? "this run's interconnection component was scored" : "component omitted, weight renormalized"}</div>
       </div>
     </div>
-    <div class="fiber-routes-grid">${routeCards}</div>`;
+    <div class="page-section-subtitle" style="font-size:12.5px;color:var(--text-muted);margin-bottom:8px">
+      Top 15 counties by overall Grid Readiness score
+    </div>
+    <div class="ranked-list">${rankRows}</div>`;
 }
 
 /* ─────────────────────────────────────────────────────────────── */
