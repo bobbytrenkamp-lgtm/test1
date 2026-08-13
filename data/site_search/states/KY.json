@@ -1,6 +1,6 @@
 {
   "state": "KY",
-  "source_generated_at": "2026-08-10T07:42:16.329Z",
+  "source_generated_at": "2026-08-13T00:48:14.397Z",
   "record_count": 2000,
   "parcels": [
     {
@@ -29283,7 +29283,7 @@
         "type": "Point",
         "coordinates": [
           -85.6259,
-          38.338049999999996
+          38.3381
         ]
       },
       "properties": {
@@ -29832,23 +29832,6 @@
       },
       "properties": {
         "parcel_id": "161002140000",
-        "pin": null,
-        "county_fips": "21111",
-        "state": "KY",
-        "_source": "national-site-index"
-      }
-    },
-    {
-      "id": "21111:020600040000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -85.62469999999999,
-          38.3373
-        ]
-      },
-      "properties": {
-        "parcel_id": "020600040000",
         "pin": null,
         "county_fips": "21111",
         "state": "KY",
@@ -30422,7 +30405,7 @@
         "type": "Point",
         "coordinates": [
           -85.62635,
-          38.3371
+          38.337
         ]
       },
       "properties": {
@@ -30455,8 +30438,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -85.625,
-          38.3369
+          -85.6251,
+          38.33675
         ]
       },
       "properties": {
@@ -33997,6 +33980,23 @@
       },
       "properties": {
         "parcel_id": "020600030087",
+        "pin": null,
+        "county_fips": "21111",
+        "state": "KY",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "21111:262700130000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -85.6164,
+          38.33375
+        ]
+      },
+      "properties": {
+        "parcel_id": "262700130000",
         "pin": null,
         "county_fips": "21111",
         "state": "KY",

@@ -1,6 +1,6 @@
 {
   "state": "OH",
-  "source_generated_at": "2026-08-10T07:42:16.329Z",
+  "source_generated_at": "2026-08-13T00:48:14.397Z",
   "record_count": 5000,
   "parcels": [
     {
@@ -13704,7 +13704,7 @@
         "area_sqft": 370744,
         "zoning_code": "GI",
         "land_use_code": "3400",
-        "owner": "AETNA ROAD LLC",
+        "owner": "JM ACQUISITION LLC ",
         "assessed_value": 707290,
         "county_fips": "39035",
         "state": "OH",
@@ -34872,29 +34872,6 @@
       }
     },
     {
-      "id": "39035:39214010",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -81.86574999999999,
-          41.314
-        ]
-      },
-      "properties": {
-        "parcel_id": "39214010",
-        "pin": "39214010",
-        "area_acres": 21.252,
-        "area_sqft": 969731,
-        "zoning_code": "GI",
-        "land_use_code": "5799",
-        "owner": "OH STRONGSVILLE ROYALTON RD LLC",
-        "assessed_value": 2685900,
-        "county_fips": "39035",
-        "state": "OH",
-        "_source": "national-site-index"
-      }
-    },
-    {
       "id": "39035:39215056",
       "geometry": {
         "type": "Point",
@@ -45998,6 +45975,29 @@
         "land_use_code": "5000",
         "owner": "RODRIGUEZ, VICTORIO C.",
         "assessed_value": 21140,
+        "county_fips": "39035",
+        "state": "OH",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "39035:45335018",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.70060000000001,
+          41.354150000000004
+        ]
+      },
+      "properties": {
+        "parcel_id": "45335018",
+        "pin": "45335018",
+        "area_acres": 9.5779,
+        "area_sqft": 437040,
+        "zoning_code": "SF-AA",
+        "land_use_code": "5100",
+        "owner": "RODRIQUEZ, VICTORIO C.",
+        "assessed_value": 113410,
         "county_fips": "39035",
         "state": "OH",
         "_source": "national-site-index"

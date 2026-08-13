@@ -1,6 +1,6 @@
 {
   "state": "TN",
-  "source_generated_at": "2026-08-10T07:42:16.329Z",
+  "source_generated_at": "2026-08-13T00:48:14.397Z",
   "record_count": 2000,
   "parcels": [
     {
@@ -43168,28 +43168,6 @@
       }
     },
     {
-      "id": "47037:13115002500",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -86.80664999999999,
-          36.084
-        ]
-      },
-      "properties": {
-        "parcel_id": "13115002500",
-        "pin": "13115002500",
-        "area_acres": 13,
-        "zoning_code": "8ZZ,RS40",
-        "land_use_code": "091",
-        "owner": "WARDENS & VESTRYMEN ST.BARTHOLOMEWS,INC.",
-        "assessed_value": 0,
-        "county_fips": "47037",
-        "state": "TN",
-        "_source": "national-site-index"
-      }
-    },
-    {
       "id": "47037:13113000900",
       "geometry": {
         "type": "Point",
@@ -43206,28 +43184,6 @@
         "land_use_code": "011",
         "owner": "JARMAN, FRANKLIN M. & JULIA L.",
         "assessed_value": 609750,
-        "county_fips": "47037",
-        "state": "TN",
-        "_source": "national-site-index"
-      }
-    },
-    {
-      "id": "47037:13400013900",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -86.68735,
-          36.08375
-        ]
-      },
-      "properties": {
-        "parcel_id": "13400013900",
-        "pin": "13400013900",
-        "area_acres": 5.1,
-        "zoning_code": "IWD",
-        "land_use_code": "075",
-        "owner": "HAWKINS, CHARLES W., TR.",
-        "assessed_value": 1663560,
         "county_fips": "47037",
         "state": "TN",
         "_source": "national-site-index"
@@ -43294,50 +43250,6 @@
         "land_use_code": "098",
         "owner": "SEVEN HILLS CLUB",
         "assessed_value": 1004010,
-        "county_fips": "47037",
-        "state": "TN",
-        "_source": "national-site-index"
-      }
-    },
-    {
-      "id": "47037:13400017800",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -86.67949999999999,
-          36.082899999999995
-        ]
-      },
-      "properties": {
-        "parcel_id": "13400017800",
-        "pin": "13400017800",
-        "area_acres": 8.75,
-        "zoning_code": "IR",
-        "land_use_code": "076",
-        "owner": "LEE MASONRY PRODUCTS, INC.",
-        "assessed_value": 846880,
-        "county_fips": "47037",
-        "state": "TN",
-        "_source": "national-site-index"
-      }
-    },
-    {
-      "id": "47037:13500003600",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -86.66399999999999,
-          36.08345
-        ]
-      },
-      "properties": {
-        "parcel_id": "13500003600",
-        "pin": "13500003600",
-        "area_acres": 7.82,
-        "zoning_code": "AR2A",
-        "land_use_code": "085",
-        "owner": "CATHEY, THOMAS E. & CAROL ANN",
-        "assessed_value": 82125,
         "county_fips": "47037",
         "state": "TN",
         "_source": "national-site-index"
@@ -43998,6 +43910,94 @@
         "land_use_code": "010",
         "owner": "BROOKS, CAROL A. & MICHAEL J. ET AL",
         "assessed_value": 92750,
+        "county_fips": "47037",
+        "state": "TN",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "47037:14405001200",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.86410000000001,
+          36.07435
+        ]
+      },
+      "properties": {
+        "parcel_id": "14405001200",
+        "pin": "14405001200",
+        "area_acres": 5.72,
+        "zoning_code": "5ZZ",
+        "land_use_code": "011",
+        "owner": "GAMBILL, BENJAMIN S. III & MARY CARLISLE",
+        "assessed_value": 1872850,
+        "county_fips": "47037",
+        "state": "TN",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "47037:143060A90000CO",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8957,
+          36.0731
+        ]
+      },
+      "properties": {
+        "parcel_id": "143060A90000CO",
+        "pin": "143060A90000CO",
+        "area_acres": 6.23,
+        "zoning_code": "R15",
+        "land_use_code": "010",
+        "owner": "HARPETH TRACE HOMEOWNERS ASSOCIATION",
+        "assessed_value": 0,
+        "county_fips": "47037",
+        "state": "TN",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "47037:15000024800",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.59635,
+          36.0756
+        ]
+      },
+      "properties": {
+        "parcel_id": "15000024800",
+        "pin": "15000024800",
+        "area_acres": 7.81,
+        "zoning_code": "AR2A",
+        "land_use_code": "010",
+        "owner": "MRM DREAM HOME LLC",
+        "assessed_value": 48400,
+        "county_fips": "47037",
+        "state": "TN",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "47037:14406000900",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.86,
+          36.073499999999996
+        ]
+      },
+      "properties": {
+        "parcel_id": "14406000900",
+        "pin": "14406000900",
+        "area_acres": 6.38,
+        "zoning_code": "3ZZ",
+        "land_use_code": "011",
+        "owner": "LERI, THOMAS & YEENEE",
+        "assessed_value": 1347675,
         "county_fips": "47037",
         "state": "TN",
         "_source": "national-site-index"

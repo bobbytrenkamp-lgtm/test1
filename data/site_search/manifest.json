@@ -1,12 +1,12 @@
 {
-  "version": "2026-08-10T07:42:16.329Z",
-  "source_generated_at": "2026-08-10T07:42:16.329Z",
+  "version": "2026-08-13T00:48:14.397Z",
+  "source_generated_at": "2026-08-13T00:48:14.397Z",
   "threshold_acres": 5,
-  "total_parcels": 85811,
-  "total_states": 31,
-  "jurisdictions_attempted": 58,
-  "jurisdictions_ok": 54,
-  "jurisdictions_failed": 4,
+  "total_parcels": 89446,
+  "total_states": 32,
+  "jurisdictions_attempted": 59,
+  "jurisdictions_ok": 59,
+  "jurisdictions_failed": 0,
   "caveat": "This index covers only this project's wired jurisdictions (see js/parcel/registry.js), not every US county, and was built by a scheduled batch job, not a live query. jurisdictions_unfiltered_sample entries are a capped SAMPLE of parcels (not filtered by size) because that jurisdiction publishes no acreage/sqft field this pipeline could filter on server-side -- see jurisdiction_summaries for which. Proximity and environmental-constraint criteria cannot be evaluated from this index; open a specific matched parcel for live per-parcel analysis.",
   "known_limitations": {
     "unattributed_parcels": 0,
@@ -16,8 +16,12 @@
     {
       "fips": "10003",
       "name": "New Castle County, Delaware",
-      "status": "failed",
-      "error": "Failed to execute query."
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": false,
+      "fallbackApplied": true
     },
     {
       "fips": "11001",
@@ -26,7 +30,8 @@
       "recordCount": 174,
       "sizeFiltered": true,
       "filterField": "CALCULATEDAREA",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "12031",
@@ -35,7 +40,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "12057",
@@ -44,7 +50,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "PAR_ACREAGE",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "12086",
@@ -53,7 +60,8 @@
       "recordCount": 1000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "13089",
@@ -62,7 +70,8 @@
       "recordCount": 1463,
       "sizeFiltered": true,
       "filterField": "StatedArea",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "13121",
@@ -71,7 +80,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "LandAcres",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "15003",
@@ -80,7 +90,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "gisacres",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "16001",
@@ -89,7 +100,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "17043",
@@ -98,13 +110,18 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "ACREAGE",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "18097",
       "name": "Marion County, Indiana",
-      "status": "failed",
-      "error": "Unable to complete operation."
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": false,
+      "fallbackApplied": true
     },
     {
       "fips": "19153",
@@ -113,7 +130,8 @@
       "recordCount": 2000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "21111",
@@ -122,7 +140,8 @@
       "recordCount": 2000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "24027",
@@ -131,13 +150,18 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "ACRES",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "24031",
       "name": "Montgomery County, Maryland",
-      "status": "failed",
-      "error": "HTTP 500"
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "ACRES",
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "24033",
@@ -146,7 +170,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "ACRES",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "24510",
@@ -155,7 +180,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "ACRES",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "25017",
@@ -164,7 +190,8 @@
       "recordCount": 2000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "25025",
@@ -173,7 +200,8 @@
       "recordCount": 2000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "26163",
@@ -182,7 +210,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "PPAcres",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "27053",
@@ -191,7 +220,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "ACRES_POLY",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "31055",
@@ -200,13 +230,18 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "32003",
       "name": "Clark County, Nevada",
-      "status": "failed",
-      "error": "Failed to execute query."
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": false,
+      "filterField": null,
+      "truncated": false,
+      "fallbackApplied": true
     },
     {
       "fips": "32031",
@@ -215,7 +250,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "ACREAGE",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "34013",
@@ -224,7 +260,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "CALC_ACRE",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "34017",
@@ -233,7 +270,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "CALC_ACRE",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "34023",
@@ -242,7 +280,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "Acreage",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "36061",
@@ -251,7 +290,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "LotArea",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "37119",
@@ -260,7 +300,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "gisacres",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "37183",
@@ -269,7 +310,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "DEED_ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "39035",
@@ -278,7 +320,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "parcel_acreage",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "39049",
@@ -287,7 +330,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "39061",
@@ -296,16 +340,18 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "ACREDEED",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "41051",
       "name": "Multnomah County, Oregon",
       "status": "ok",
-      "recordCount": 2000,
+      "recordCount": 635,
       "sizeFiltered": true,
       "filterField": "SIZEACRES",
-      "truncated": true
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "41067",
@@ -314,7 +360,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "A_T_ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "42003",
@@ -323,7 +370,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "CALCACREAG",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "42101",
@@ -332,7 +380,18 @@
       "recordCount": 1000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
+    },
+    {
+      "fips": "46099",
+      "name": "Minnehaha County",
+      "status": "ok",
+      "recordCount": 1000,
+      "sizeFiltered": true,
+      "filterField": "ACREAGE",
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "47037",
@@ -341,7 +400,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "Acres",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "48029",
@@ -350,7 +410,8 @@
       "recordCount": 2000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "48085",
@@ -359,7 +420,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "landSizeAcres",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "48113",
@@ -368,7 +430,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "AREA_FEET",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "48201",
@@ -377,7 +440,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "acreage_1",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "48439",
@@ -386,7 +450,8 @@
       "recordCount": 28,
       "sizeFiltered": true,
       "filterField": "LAND_ACRES",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "48453",
@@ -395,7 +460,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "tcad_acres",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "49035",
@@ -404,7 +470,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "PARCEL_ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "49049",
@@ -413,7 +480,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "PARCEL_ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "51059",
@@ -422,7 +490,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "Shape__Area",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "51107",
@@ -431,7 +500,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "PA_LEGAL_ACRE",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "51153",
@@ -440,7 +510,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "GISPROD.VECTOR.Parcels.DEED_ACREAGE",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "51683",
@@ -449,7 +520,8 @@
       "recordCount": 146,
       "sizeFiltered": true,
       "filterField": "TOTAL_ACRES",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "53033",
@@ -458,7 +530,8 @@
       "recordCount": 1000,
       "sizeFiltered": true,
       "filterField": "KCA_ACRES",
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "56021",
@@ -467,7 +540,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "netacres",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "04013",
@@ -476,7 +550,8 @@
       "recordCount": 1000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "06037",
@@ -485,7 +560,8 @@
       "recordCount": 1000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": false
+      "truncated": false,
+      "fallbackApplied": false
     },
     {
       "fips": "06067",
@@ -494,7 +570,8 @@
       "recordCount": 2000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "06001",
@@ -503,7 +580,8 @@
       "recordCount": 2000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "06075",
@@ -512,7 +590,8 @@
       "recordCount": 2000,
       "sizeFiltered": false,
       "filterField": null,
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     },
     {
       "fips": "01073",
@@ -521,7 +600,8 @@
       "recordCount": 2000,
       "sizeFiltered": true,
       "filterField": "GIS_ACRES",
-      "truncated": true
+      "truncated": true,
+      "fallbackApplied": false
     }
   ],
   "states": {
@@ -529,7 +609,7 @@
       "file": "states/AL.json",
       "record_count": 2000,
       "byte_size": 1431533,
-      "checksum": "sha256:88408fcd24ef4e34",
+      "checksum": "sha256:50bcb8c07293e27a",
       "jurisdiction_count": 1,
       "supported_fips": [
         "01073"
@@ -546,8 +626,8 @@
     "AZ": {
       "file": "states/AZ.json",
       "record_count": 1000,
-      "byte_size": 537662,
-      "checksum": "sha256:c491d4ce96262efb",
+      "byte_size": 537655,
+      "checksum": "sha256:13ecb320900144ef",
       "jurisdiction_count": 1,
       "supported_fips": [
         "04013"
@@ -562,8 +642,8 @@
     "CA": {
       "file": "states/CA.json",
       "record_count": 7000,
-      "byte_size": 2800644,
-      "checksum": "sha256:49d792905c5afedd",
+      "byte_size": 2800655,
+      "checksum": "sha256:111e01ce40855015",
       "jurisdiction_count": 4,
       "supported_fips": [
         "06001",
@@ -589,7 +669,7 @@
       "file": "states/DC.json",
       "record_count": 174,
       "byte_size": 69104,
-      "checksum": "sha256:d5003128b032f577",
+      "checksum": "sha256:1e4ec81314d99517",
       "jurisdiction_count": 1,
       "supported_fips": [
         "11001"
@@ -603,23 +683,25 @@
     },
     "DE": {
       "file": "states/DE.json",
-      "record_count": 0,
-      "byte_size": 111,
-      "checksum": "sha256:c97876d123504ff5",
-      "jurisdiction_count": 0,
-      "supported_fips": [],
-      "size_filtered_fips": [],
-      "unfiltered_sample_fips": [],
-      "truncated_fips": [],
-      "failed_fips": [
+      "record_count": 1000,
+      "byte_size": 1621439,
+      "checksum": "sha256:6fd7c7e2e83be978",
+      "jurisdiction_count": 1,
+      "supported_fips": [
         "10003"
-      ]
+      ],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [
+        "10003"
+      ],
+      "truncated_fips": [],
+      "failed_fips": []
     },
     "FL": {
       "file": "states/FL.json",
       "record_count": 5000,
       "byte_size": 2647604,
-      "checksum": "sha256:b630f1ed1b0b09db",
+      "checksum": "sha256:6243e9be343d5945",
       "jurisdiction_count": 3,
       "supported_fips": [
         "12031",
@@ -642,8 +724,8 @@
     "GA": {
       "file": "states/GA.json",
       "record_count": 3463,
-      "byte_size": 1732328,
-      "checksum": "sha256:cfa96e14aedfabfa",
+      "byte_size": 1732400,
+      "checksum": "sha256:9aad73471290e3b9",
       "jurisdiction_count": 2,
       "supported_fips": [
         "13089",
@@ -663,7 +745,7 @@
       "file": "states/HI.json",
       "record_count": 1000,
       "byte_size": 427789,
-      "checksum": "sha256:c23f7497a33ffc4a",
+      "checksum": "sha256:b09a5ecd052becc4",
       "jurisdiction_count": 1,
       "supported_fips": [
         "15003"
@@ -679,7 +761,7 @@
       "file": "states/IA.json",
       "record_count": 2000,
       "byte_size": 754233,
-      "checksum": "sha256:14332bd7a458693b",
+      "checksum": "sha256:a73424b6e167d7a7",
       "jurisdiction_count": 1,
       "supported_fips": [
         "19153"
@@ -697,7 +779,7 @@
       "file": "states/ID.json",
       "record_count": 2000,
       "byte_size": 927711,
-      "checksum": "sha256:cd498b3c5c93f1a8",
+      "checksum": "sha256:9f45b3229f26828e",
       "jurisdiction_count": 1,
       "supported_fips": [
         "16001"
@@ -715,7 +797,7 @@
       "file": "states/IL.json",
       "record_count": 1000,
       "byte_size": 503357,
-      "checksum": "sha256:3bb38f87dd45f092",
+      "checksum": "sha256:7189c4e6bb2eeb71",
       "jurisdiction_count": 1,
       "supported_fips": [
         "17043"
@@ -729,23 +811,25 @@
     },
     "IN": {
       "file": "states/IN.json",
-      "record_count": 0,
-      "byte_size": 111,
-      "checksum": "sha256:5bdcc1cdbd6ad0db",
-      "jurisdiction_count": 0,
-      "supported_fips": [],
-      "size_filtered_fips": [],
-      "unfiltered_sample_fips": [],
-      "truncated_fips": [],
-      "failed_fips": [
+      "record_count": 1000,
+      "byte_size": 1928232,
+      "checksum": "sha256:5488438afe89374d",
+      "jurisdiction_count": 1,
+      "supported_fips": [
         "18097"
-      ]
+      ],
+      "size_filtered_fips": [],
+      "unfiltered_sample_fips": [
+        "18097"
+      ],
+      "truncated_fips": [],
+      "failed_fips": []
     },
     "KY": {
       "file": "states/KY.json",
       "record_count": 2000,
-      "byte_size": 728248,
-      "checksum": "sha256:4f90e88c8a2cad97",
+      "byte_size": 728229,
+      "checksum": "sha256:6312d9a51f1ce530",
       "jurisdiction_count": 1,
       "supported_fips": [
         "21111"
@@ -763,7 +847,7 @@
       "file": "states/MA.json",
       "record_count": 4000,
       "byte_size": 1611996,
-      "checksum": "sha256:d0c6a32c5261930c",
+      "checksum": "sha256:3251b1d34742e3c2",
       "jurisdiction_count": 2,
       "supported_fips": [
         "25017",
@@ -782,31 +866,31 @@
     },
     "MD": {
       "file": "states/MD.json",
-      "record_count": 3000,
-      "byte_size": 1464878,
-      "checksum": "sha256:69a317a60c7b4b62",
-      "jurisdiction_count": 3,
+      "record_count": 4000,
+      "byte_size": 1953132,
+      "checksum": "sha256:d44da4a788bf12a3",
+      "jurisdiction_count": 4,
       "supported_fips": [
         "24027",
+        "24031",
         "24033",
         "24510"
       ],
       "size_filtered_fips": [
         "24027",
+        "24031",
         "24033",
         "24510"
       ],
       "unfiltered_sample_fips": [],
       "truncated_fips": [],
-      "failed_fips": [
-        "24031"
-      ]
+      "failed_fips": []
     },
     "MI": {
       "file": "states/MI.json",
       "record_count": 2000,
       "byte_size": 1022345,
-      "checksum": "sha256:5d8f855bedaceea9",
+      "checksum": "sha256:60a40056ca6f25dd",
       "jurisdiction_count": 1,
       "supported_fips": [
         "26163"
@@ -824,7 +908,7 @@
       "file": "states/MN.json",
       "record_count": 2000,
       "byte_size": 1084854,
-      "checksum": "sha256:b7cb929abab021b7",
+      "checksum": "sha256:91fd9422cd268ccd",
       "jurisdiction_count": 1,
       "supported_fips": [
         "27053"
@@ -841,8 +925,8 @@
     "NC": {
       "file": "states/NC.json",
       "record_count": 4000,
-      "byte_size": 1890614,
-      "checksum": "sha256:249d8d9ecbf7ee5b",
+      "byte_size": 1890650,
+      "checksum": "sha256:5136752c859c383b",
       "jurisdiction_count": 2,
       "supported_fips": [
         "37119",
@@ -863,7 +947,7 @@
       "file": "states/NE.json",
       "record_count": 2000,
       "byte_size": 938764,
-      "checksum": "sha256:c1f759f830cf96c0",
+      "checksum": "sha256:f2deaed7cf4dfb83",
       "jurisdiction_count": 1,
       "supported_fips": [
         "31055"
@@ -881,7 +965,7 @@
       "file": "states/NJ.json",
       "record_count": 4000,
       "byte_size": 2070822,
-      "checksum": "sha256:9c700a50f639147b",
+      "checksum": "sha256:5dde345ba018e911",
       "jurisdiction_count": 3,
       "supported_fips": [
         "34013",
@@ -901,29 +985,30 @@
     },
     "NV": {
       "file": "states/NV.json",
-      "record_count": 2000,
-      "byte_size": 1065278,
-      "checksum": "sha256:6978d4ee745d4b71",
-      "jurisdiction_count": 1,
+      "record_count": 3000,
+      "byte_size": 1977583,
+      "checksum": "sha256:a5d8b469183ab01b",
+      "jurisdiction_count": 2,
       "supported_fips": [
+        "32003",
         "32031"
       ],
       "size_filtered_fips": [
         "32031"
       ],
-      "unfiltered_sample_fips": [],
+      "unfiltered_sample_fips": [
+        "32003"
+      ],
       "truncated_fips": [
         "32031"
       ],
-      "failed_fips": [
-        "32003"
-      ]
+      "failed_fips": []
     },
     "NY": {
       "file": "states/NY.json",
       "record_count": 2000,
       "byte_size": 1078625,
-      "checksum": "sha256:cff082a334f92f21",
+      "checksum": "sha256:d15b31cc1240c3c0",
       "jurisdiction_count": 1,
       "supported_fips": [
         "36061"
@@ -940,8 +1025,8 @@
     "OH": {
       "file": "states/OH.json",
       "record_count": 5000,
-      "byte_size": 2707078,
-      "checksum": "sha256:fbbf994944a31a07",
+      "byte_size": 2707088,
+      "checksum": "sha256:c71e9fd2562759df",
       "jurisdiction_count": 3,
       "supported_fips": [
         "39035",
@@ -962,9 +1047,9 @@
     },
     "OR": {
       "file": "states/OR.json",
-      "record_count": 4000,
-      "byte_size": 2076863,
-      "checksum": "sha256:50b5bd2dd1d6df24",
+      "record_count": 2635,
+      "byte_size": 1292865,
+      "checksum": "sha256:e1a4025f65aa8f7c",
       "jurisdiction_count": 2,
       "supported_fips": [
         "41051",
@@ -976,7 +1061,6 @@
       ],
       "unfiltered_sample_fips": [],
       "truncated_fips": [
-        "41051",
         "41067"
       ],
       "failed_fips": []
@@ -985,7 +1069,7 @@
       "file": "states/PA.json",
       "record_count": 2000,
       "byte_size": 839248,
-      "checksum": "sha256:7f03e866dbb23a3b",
+      "checksum": "sha256:512092cbd14c76b5",
       "jurisdiction_count": 2,
       "supported_fips": [
         "42003",
@@ -1000,11 +1084,27 @@
       "truncated_fips": [],
       "failed_fips": []
     },
+    "SD": {
+      "file": "states/SD.json",
+      "record_count": 1000,
+      "byte_size": 513640,
+      "checksum": "sha256:54355361baf34ba5",
+      "jurisdiction_count": 1,
+      "supported_fips": [
+        "46099"
+      ],
+      "size_filtered_fips": [
+        "46099"
+      ],
+      "unfiltered_sample_fips": [],
+      "truncated_fips": [],
+      "failed_fips": []
+    },
     "TN": {
       "file": "states/TN.json",
       "record_count": 2000,
-      "byte_size": 1084436,
-      "checksum": "sha256:278065ad076a7020",
+      "byte_size": 1084419,
+      "checksum": "sha256:6f8fb44c4a9581f3",
       "jurisdiction_count": 1,
       "supported_fips": [
         "47037"
@@ -1021,8 +1121,8 @@
     "TX": {
       "file": "states/TX.json",
       "record_count": 10028,
-      "byte_size": 4896700,
-      "checksum": "sha256:06d1d3372f5ebcb3",
+      "byte_size": 4896716,
+      "checksum": "sha256:154148d238c77a73",
       "jurisdiction_count": 6,
       "supported_fips": [
         "48029",
@@ -1055,7 +1155,7 @@
       "file": "states/UT.json",
       "record_count": 4000,
       "byte_size": 1967270,
-      "checksum": "sha256:04ec23939266605c",
+      "checksum": "sha256:973b51d02918a6b2",
       "jurisdiction_count": 2,
       "supported_fips": [
         "49035",
@@ -1075,8 +1175,8 @@
     "VA": {
       "file": "states/VA.json",
       "record_count": 4146,
-      "byte_size": 1781565,
-      "checksum": "sha256:3aae0465d9bcaae7",
+      "byte_size": 1781579,
+      "checksum": "sha256:e8b898db91018b95",
       "jurisdiction_count": 4,
       "supported_fips": [
         "51059",
@@ -1100,7 +1200,7 @@
       "file": "states/WA.json",
       "record_count": 1000,
       "byte_size": 543025,
-      "checksum": "sha256:58e05486ce9ef026",
+      "checksum": "sha256:e8127e6ba217db5c",
       "jurisdiction_count": 1,
       "supported_fips": [
         "53033"
@@ -1116,7 +1216,7 @@
       "file": "states/WY.json",
       "record_count": 2000,
       "byte_size": 1020516,
-      "checksum": "sha256:c9fe8f77f997bc40",
+      "checksum": "sha256:519f34fceda58109",
       "jurisdiction_count": 1,
       "supported_fips": [
         "56021"
