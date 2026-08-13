@@ -726,6 +726,16 @@ function renderAnalyticsPage() {
     </div>
 
     <div class="page-section">
+      <div class="page-section-title">Parcel Data Coverage</div>
+      <div id="analytics-parcel-coverage-section">
+        <div class="analytics-pipeline-loading">
+          <div class="spinner"></div>
+          <span>Loading parcel coverage data…</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-section">
       <div class="page-section-title">Development Scenario Builder</div>
       <div id="analytics-scenario-section"></div>
     </div>
@@ -761,6 +771,7 @@ function renderAnalyticsPage() {
   _fillPowerStats();
   _fillFiberStats();
   _fillGridReadinessStats();
+  _fillParcelCoverageStats();
   _renderScenarioBuilder();
   _renderCountyRankings();
   _renderInvestmentHotspots();
@@ -1985,6 +1996,115 @@ async function _fillGridReadinessStats() {
       Top 15 counties by overall Grid Readiness score
     </div>
     <div class="ranked-list">${rankRows}</div>`;
+}
+
+/* data/parcel_coverage_metrics.json is entirely derived (see that file's own
+   generator, data/parcel_pipeline/generate_coverage_metrics.mjs) from
+   js/parcel/registry.js + data/parcel_source_catalog.json +
+   data/facilities_index.json, and was already regenerated on every relevant
+   PR this session — but until now nothing rendered it: it fed only a docs
+   file (docs/PARCEL_COVERAGE.md) and a CI --check gate, never the product.
+   This section is the missing consumer, following the same
+   fetch-JSON/compute/innerHTML pattern as Grid Readiness above it. */
+async function _fillParcelCoverageStats() {
+  const container = document.getElementById("analytics-parcel-coverage-section");
+  if (!container) return;
+
+  let metrics;
+  try {
+    metrics = await fetch("data/parcel_coverage_metrics.json")
+      .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); });
+  } catch (_) {
+    container.innerHTML = `<div class="callout warning" style="margin:0">Parcel coverage data unavailable.</div>`;
+    return;
+  }
+
+  const cov = metrics.coverage || {};
+  const tiers = metrics.tierDistribution || {};
+  const opportunities = Array.isArray(metrics.opportunities) ? metrics.opportunities : [];
+
+  const TIER_COLORS = {
+    "full-intelligence": "#22c55e", rich: "#4ade80", standard: "#60a5fa",
+    basic: "#f59e0b", "boundary-only": "#94a3b8", degraded: "#f97316",
+    blocked: "#ef4444", unsupported: "#64748b",
+  };
+  const tierOrder = ["full-intelligence", "rich", "standard", "basic", "boundary-only", "degraded", "blocked", "unsupported"];
+  const tierTotal = tierOrder.reduce((s, t) => s + (tiers[t] || 0), 0) || 1;
+  const tierBar = tierOrder.filter(t => tiers[t] > 0).map(t => {
+    const pct = Math.round((tiers[t] || 0) / tierTotal * 100);
+    return `<div style="width:${pct}%;background:${TIER_COLORS[t] || "#64748b"}" title="${escHtml(t)}: ${tiers[t]} jurisdiction(s)"></div>`;
+  }).join("");
+  const tierLegend = tierOrder.filter(t => tiers[t] > 0).map(t =>
+    `<span style="display:inline-flex;align-items:center;gap:4px;margin-right:14px;font-size:11px;color:var(--text-muted)">
+      <span style="width:8px;height:8px;border-radius:2px;background:${TIER_COLORS[t] || "#64748b"};display:inline-block"></span>
+      ${escHtml(t)} (${tiers[t]})
+    </span>`).join("");
+
+  const topOpp = opportunities.slice().sort((a, b) => (b.facilities || 0) - (a.facilities || 0)).slice(0, 12);
+  const maxFac = topOpp.length ? Math.max(...topOpp.map(o => o.facilities || 0)) : 1;
+  const EFFORT_COLOR = { low: "#22c55e", medium: "#f59e0b", high: "#ef4444" };
+  const oppRows = topOpp.map((o, i) => {
+    const pct = maxFac ? Math.round((o.facilities || 0) / maxFac * 100) : 0;
+    const label = `${o.name}${o.state ? ", " + o.state : ""}`;
+    return `<div class="ranked-item">
+      <div class="rank-num">${i + 1}</div>
+      <div class="rank-name">${escHtml(label)}</div>
+      <div class="rank-bar-wrap" style="flex:1">
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${pct}%;background:${EFFORT_COLOR[o.effort] || "#94a3b8"}" title="${escHtml(o.status || "")} — ${escHtml(o.effort || "unknown")} effort"></div>
+        </div>
+      </div>
+      <div class="rank-count">${(o.facilities || 0).toLocaleString()}</div>
+    </div>`;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="callout info" style="margin-bottom:16px;font-size:12px">
+      Facility-weighted coverage counts real data centers sitting inside a jurisdiction with a
+      configured parcel source, not raw county counts — a handful of counties (Loudoun VA among
+      them) hold more facilities than most states, so plain "N of 3,143 counties" understates
+      how much of the real footprint is covered. See
+      <a href="docs/PARCEL_COVERAGE.md" target="_blank" rel="noopener noreferrer">the full coverage report</a>
+      for per-field depth and the complete opportunity queue. This is an engineering coverage
+      signal, not a measure of data accuracy or freshness.
+    </div>
+    <div class="analytics-kpi-grid" style="margin-bottom:20px">
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(34,197,94,0.12);color:#22c55e">${analyticsIcon('county')}</div>
+        <div class="analytics-kpi-label">Production Jurisdictions</div>
+        <div class="analytics-kpi-value">${(cov.productionJurisdictions || 0).toLocaleString()}</div>
+        <div class="analytics-kpi-meta">of ${(cov.cataloguedJurisdictions || 0).toLocaleString()} catalogued</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(96,165,250,0.12);color:#60a5fa">${analyticsIcon('zap')}</div>
+        <div class="analytics-kpi-label">Facility-Weighted Coverage</div>
+        <div class="analytics-kpi-value">${cov.facilityWeightedCoveragePct != null ? cov.facilityWeightedCoveragePct + "%" : "—"}</div>
+        <div class="analytics-kpi-meta">${(cov.facilitiesInCoveredJurisdictions || 0).toLocaleString()} of ${(cov.totalFacilities || 0).toLocaleString()} facilities</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(245,158,11,0.12);color:#f59e0b">${analyticsIcon('pro')}</div>
+        <div class="analytics-kpi-label">Jurisdiction Coverage</div>
+        <div class="analytics-kpi-value">${cov.jurisdictionCoveragePct != null ? cov.jurisdictionCoveragePct + "%" : "—"}</div>
+        <div class="analytics-kpi-meta">of ${(cov.facilityBearingJurisdictions || 0).toLocaleString()} facility-bearing jurisdictions</div>
+      </div>
+      <div class="analytics-kpi-card">
+        <div class="analytics-kpi-card-icon" style="background:rgba(239,68,68,0.12);color:#ef4444">${analyticsIcon('server')}</div>
+        <div class="analytics-kpi-label">Unattributed Facilities</div>
+        <div class="analytics-kpi-value">${(cov.facilitiesUnattributed || 0).toLocaleString()}</div>
+        <div class="analytics-kpi-meta">in jurisdictions with no configured source</div>
+      </div>
+    </div>
+    ${tierOrder.some(t => tiers[t] > 0) ? `
+    <div class="page-section-subtitle" style="font-size:12.5px;color:var(--text-muted);margin-bottom:8px">
+      Jurisdictions by data-depth tier
+    </div>
+    <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:8px">${tierBar}</div>
+    <div style="margin-bottom:20px">${tierLegend}</div>` : ""}
+    ${oppRows ? `
+    <div class="page-section-subtitle" style="font-size:12.5px;color:var(--text-muted);margin-bottom:8px">
+      Top uncovered opportunities by facility count (bar color = investigation effort: green=low, amber=medium, red=high)
+    </div>
+    <div class="ranked-list">${oppRows}</div>` : ""}`;
 }
 
 /* ─────────────────────────────────────────────────────────────── */
