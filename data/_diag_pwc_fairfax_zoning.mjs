@@ -1,10 +1,8 @@
-// DISPOSABLE DIAGNOSTIC. Discovering real zoning geometry sources for
-// Prince William County VA and Fairfax County VA, following the same
-// methodology that found Loudoun's COL/Zoning/MapServer: query the REST
-// services root of the same host family as the already-verified parcel
-// service, list folders/services, then inspect layers for a real
-// countywide zoning polygon layer (never trust a title search alone).
-async function getJson(url, label, { printBody = false, limit = 2000 } = {}) {
+// DISPOSABLE DIAGNOSTIC — round 2.
+// Round 1 found: PWC has Planning/Zoning MapServer (real lead, not yet
+// inspected). Fairfax's Zoning/Planning folders 404'd, but DPZ (Department
+// of Planning and Zoning) was never probed -- the obvious real candidate.
+async function getJson(url, label, { printBody = false, limit = 3000 } = {}) {
   const start = Date.now();
   try {
     const res = await fetch(url, { headers: { "User-Agent": "us-datacenter-tracker-diagnostic/1.0" } });
@@ -24,24 +22,27 @@ async function getJson(url, label, { printBody = false, limit = 2000 } = {}) {
   }
 }
 
-console.log("========== PRINCE WILLIAM COUNTY VA ==========");
-// Parcel service host: gisweb.pwcva.gov/arcgis/rest/services/AGOL/AGOL/MapServer/13
-// Enrichment host: gisweb.pwcva.gov/arcgis/rest/services/GTS/Cadastral/MapServer/5
-const pwcRoot = await getJson("https://gisweb.pwcva.gov/arcgis/rest/services?f=json", "PWC REST services root", { printBody: true, limit: 4000 });
-if (pwcRoot && pwcRoot.folders) {
-  console.log("\nfolders:", pwcRoot.folders.join(", "));
+console.log("========== PRINCE WILLIAM COUNTY VA — Planning/Zoning/MapServer ==========");
+const pwcZoningSvc = await getJson("https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer?f=json",
+  "PWC Planning/Zoning MapServer metadata", { printBody: true, limit: 3000 });
+if (pwcZoningSvc && pwcZoningSvc.layers) {
+  console.log("\nlayers:", pwcZoningSvc.layers.map((l) => `${l.id}:${l.name}`).join(", "));
 }
-// Try likely folder names directly.
-for (const folder of ["Zoning", "Planning", "GTS", "AGOL"]) {
-  await getJson(`https://gisweb.pwcva.gov/arcgis/rest/services/${folder}?f=json`, `PWC folder: ${folder}`, { printBody: true, limit: 3000 });
+// Inspect the most promising layer (id 0, or whichever name contains "zoning").
+if (pwcZoningSvc && pwcZoningSvc.layers && pwcZoningSvc.layers.length) {
+  const zoningLayer = pwcZoningSvc.layers.find((l) => /zoning/i.test(l.name)) || pwcZoningSvc.layers[0];
+  const layerMeta = await getJson(`https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/${zoningLayer.id}?f=json`,
+    `PWC layer ${zoningLayer.id} (${zoningLayer.name}) metadata`, { printBody: false });
+  if (layerMeta && layerMeta.fields) {
+    console.log("\nfield names:", layerMeta.fields.map((f) => `${f.name}(${f.type})`).join(", "));
+    console.log("geometryType:", layerMeta.geometryType);
+  }
+  await getJson(`https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/${zoningLayer.id}/query?where=1%3D1&returnCountOnly=true&f=json`,
+    `PWC layer ${zoningLayer.id} count`, { printBody: true });
+  await getJson(`https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/${zoningLayer.id}/query?where=1%3D1&outFields=*&resultRecordCount=3&f=geojson`,
+    `PWC layer ${zoningLayer.id} sample (3 records)`, { printBody: true, limit: 2500 });
 }
 
-console.log("\n\n========== FAIRFAX COUNTY VA ==========");
-// Parcel service host: www.fairfaxcounty.gov/mercator/rest/services/OpenData/OpenData_A9/FeatureServer/0
-const ffxRoot = await getJson("https://www.fairfaxcounty.gov/mercator/rest/services?f=json", "Fairfax REST services root", { printBody: true, limit: 4000 });
-if (ffxRoot && ffxRoot.folders) {
-  console.log("\nfolders:", ffxRoot.folders.join(", "));
-}
-for (const folder of ["OpenData", "Zoning", "Planning"]) {
-  await getJson(`https://www.fairfaxcounty.gov/mercator/rest/services/${folder}?f=json`, `Fairfax folder: ${folder}`, { printBody: true, limit: 3000 });
-}
+console.log("\n\n========== FAIRFAX COUNTY VA — DPZ folder ==========");
+const ffxDpz = await getJson("https://www.fairfaxcounty.gov/mercator/rest/services/DPZ?f=json",
+  "Fairfax DPZ folder", { printBody: true, limit: 3000 });
