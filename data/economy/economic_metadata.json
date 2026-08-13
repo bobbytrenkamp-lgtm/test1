@@ -75,12 +75,12 @@
  "eia_state_count": 0,
  "fred_series_count": 23,
  "fred_skipped": [],
- "generated_at": "2026-08-13T01:51:09+00:00",
- "last_run_at": "2026-08-13T01:51:09+00:00",
+ "generated_at": "2026-08-13T06:26:18+00:00",
+ "last_run_at": "2026-08-13T06:26:18+00:00",
  "latest_observation_date": "2026-08-12",
- "nri_available": false,
- "nri_county_count": 0,
- "nri_last_successful_update": null,
+ "nri_available": true,
+ "nri_county_count": 3222,
+ "nri_last_successful_update": "2026-08-13T06:26:18+00:00",
  "oldest_history_year": 2019,
  "permits_available": true,
  "permits_county_count": 3015,
@@ -127,11 +127,17 @@
    "publisher": "U.S. Bureau of Labor Statistics",
    "update_frequency": "Annual file, published with a 5-6 month lag; refreshed independently of the rest of this pipeline (see bls_last_successful_update).",
    "url": "https://www.bls.gov/cew/"
+  },
+  {
+   "id": "fema_nri",
+   "name": "National Risk Index (NRI)",
+   "note": "County-level composite natural hazard risk score and rating across 18 hazard types, merged into each county record as natural_hazard_risk. No API key required. A physical/environmental risk signal, deliberately kept separate from both the Readiness Score (economic attractiveness) and the regulatory restriction level (legal risk) rather than blended into either.",
+   "publisher": "Federal Emergency Management Agency",
+   "update_frequency": "Infrequent (roughly annual FEMA releases); refreshed independently of the rest of this pipeline (see nri_last_successful_update).",
+   "url": "https://hazards.fema.gov/nri/"
   }
  ],
  "stale": true,
  "state_count": 52,
- "warnings": [
-  "FEMA National Risk Index fetch failed (HTTP 403: '<HTML><HEAD>\\n<TITLE>Access Denied</TITLE>\\n</HEAD><BODY>\\n<H1>Access Denied</H1>\\n \\nYou don\\'t have permission to access \"http&#58;&#47;&#47;www&#46;fema&#46;gov&#47;emergency&#45;managers&#47;practitione') — module skipped"
- ]
+ "warnings": []
 }
