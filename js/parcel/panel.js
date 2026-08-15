@@ -3,6 +3,8 @@
  * Five tabs: Details · Zoning · Valuation · Intelligence · Compare
  *
  * Depends on: PARCEL_SCHEMA, PARCEL_REGISTRY, PARCEL_SELECTION, ZONING (optional),
+ *   ZONING_GEOMETRY (optional -- parcel-to-zoning spatial join for
+ *   jurisdictions whose parcel source publishes no native zoning_code),
  *   PARCEL_SUITABILITY, PARCEL_SALES, PARCEL_PROXIMITY, PARCEL_CONSTRAINTS,
  *   PARCEL_FEASIBILITY (all optional -- the Intelligence tab degrades per
  *   missing module the same way it degrades per missing data)
@@ -104,12 +106,29 @@ window.PARCEL_PANEL = (function () {
     const feasibility = window.PARCEL_FEASIBILITY?.assess(props, fips);
     if (feasibility?.available) {
       html += _renderFeasibility(feasibility, fips, code);
+    } else if (feasibility?.zoningCodeSource === 'parcel_boundary_spatial_join' && feasibility.zoningCode) {
+      // Honest partial result: the county's own parcel service doesn't
+      // publish zoning_code, but a real district was resolved via the
+      // spatial (point-in-polygon) join against the county's zoning map --
+      // it just hasn't been researched for data-center eligibility yet.
+      // Never rendered as "not eligible" or left silent.
+      html += `<div class="pp-group pp-feasibility">
+        <div class="pp-group-label">DC Development Feasibility</div>
+        <div class="pf-eligibility pf-unknown">
+          <span class="pf-eligibility-icon">?</span>
+          <span class="pf-eligibility-label">District Resolved — Classification Pending</span>
+        </div>
+        <p class="pp-muted">${esc(feasibility.reason)}</p>
+      </div>`;
     }
 
     // Zoning fields
     let zoningFields = '';
     if (code) {
       zoningFields += `<div class="pp-zoning-badge">${esc(code)}${desc ? ` — ${esc(desc)}` : ''}</div>`;
+    } else if (feasibility?.zoningCodeSource === 'parcel_boundary_spatial_join' && feasibility.zoningCode) {
+      zoningFields += `<div class="pp-zoning-badge">${esc(feasibility.zoningCode)}${feasibility.zoningName ? ` — ${esc(feasibility.zoningName)}` : ''}
+        <span class="pp-muted"> (resolved from county zoning map, not published by parcel source)</span></div>`;
     } else if (window.PARCEL_REGISTRY?.get(fips)?.notProvidedBySource?.includes('zoning_code')) {
       zoningFields += `<div class="pp-muted pp-field-na">Zoning code not published by this source</div>`;
     }
@@ -122,10 +141,20 @@ window.PARCEL_PANEL = (function () {
     }
 
     // Zoning intelligence link / status
-    if (fips && window.ZONING?.hasCoverage(fips) && code) {
+    const resolvedCode = code || (feasibility?.zoningCodeSource === 'parcel_boundary_spatial_join' ? feasibility.zoningCode : null);
+    if (fips && window.ZONING?.hasCoverage(fips) && resolvedCode) {
       html += `<div class="pp-zoning-link-row">
-        <button class="pp-zoning-btn" onclick="window.PARCEL_PANEL._openZoning(${JSON.stringify(fips)}, ${JSON.stringify(code)})">
+        <button class="pp-zoning-btn" onclick="window.PARCEL_PANEL._openZoning(${JSON.stringify(fips)}, ${JSON.stringify(resolvedCode)})">
           View Full Zoning Intelligence →
+        </button>
+      </div>`;
+    } else if (fips && !code && !resolvedCode && props._geometry &&
+               window.ZONING_GEOMETRY?.hasCoverage(fips) && !window.ZONING_GEOMETRY?.isCached(fips)) {
+      // Parcel source has no zoning_code, but county zoning-district
+      // geometry exists and just hasn't been fetched into cache yet.
+      html += `<div class="pp-zoning-link-row">
+        <button class="pp-zoning-btn" onclick="window.PARCEL_PANEL._loadZoningGeometryAndRefresh(${JSON.stringify(fips)})">
+          Resolve Zoning from County Map →
         </button>
       </div>`;
     } else if (fips && !feasibility?.available && window.ZONING?.hasCoverage(fips) && !window.ZONING?.getCachedByFips?.(fips)) {
@@ -628,6 +657,12 @@ window.PARCEL_PANEL = (function () {
     _open();
 
     const props   = feature.properties || {};
+    // Attached so PARCEL_FEASIBILITY.assess() can fall back to a spatial
+    // (point-in-polygon) zoning-district resolution when the parcel source
+    // itself doesn't publish a zoning_code -- true for all three NoVA
+    // counties today. Also the same field js/parcel/envelope.js already
+    // reads for the geometric buildable-envelope calculation.
+    props._geometry = feature.geometry || null;
     const address = props.address || props.pin || props.parcel_id || 'Parcel';
     const owner   = props.owner || '';
     const compared = window.PARCEL_SELECTION?.getCompared() || [];
@@ -852,6 +887,23 @@ window.PARCEL_PANEL = (function () {
     refresh();
   }
 
+  /* Lazy-loads a jurisdiction's zoning DISTRICT GEOMETRY (not the
+   * classification data _loadAndRefresh above loads) so
+   * PARCEL_FEASIBILITY.assess()'s spatial fallback can resolve a district
+   * for parcels whose source publishes no native zoning_code. */
+  async function _loadZoningGeometryAndRefresh(fips) {
+    if (!fips) return;
+    try {
+      await window.ZONING_GEOMETRY?.loadByFips(fips);
+    } catch (_) {}
+    // The resolved code's district classification also needs to be
+    // in cache for the feasibility section to render fully.
+    if (window.ZONING?.hasCoverage(fips) && !window.ZONING?.getCachedByFips(fips)) {
+      try { await window.ZONING.loadByFips(fips); } catch (_) {}
+    }
+    refresh();
+  }
+
   /* ── Event listeners ── */
 
   document.addEventListener('parcel:selected', e => {
@@ -923,7 +975,7 @@ window.PARCEL_PANEL = (function () {
   })();
 
   return {
-    show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _exportCSV, _openReport,
+    show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _loadZoningGeometryAndRefresh, _exportCSV, _openReport,
     _toggleSave, _compareSaved, _unsave, _exportSavedCSV, _reportIntel,
     // Exposed for unit testing (pure functions: data in, HTML string out --
     // no DOM APIs used inside them), matching the existing pattern of

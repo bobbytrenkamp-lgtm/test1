@@ -8,7 +8,20 @@
  * { available: false }.  Callers should load zoning data first via
  * window.ZONING.loadByFips(fips) if needed.
  *
- * Depends on: window.ZONING (optional — degrades gracefully if absent)
+ * ZONING CODE SOURCE
+ * -------------------
+ * None of the NoVA parcel services publish a native zoning_code attribute.
+ * When props.zoning_code is absent AND the caller has attached the
+ * parcel's raw geometry (props._geometry) AND window.ZONING_GEOMETRY has
+ * that jurisdiction's district polygons cached, assess() falls back to a
+ * point-in-polygon spatial join to resolve the district. The result
+ * always carries zoningCodeSource: 'parcel_attribute' |
+ * 'parcel_boundary_spatial_join' so callers can disclose provenance
+ * rather than presenting a spatially-inferred code as if the source
+ * itself had published it.
+ *
+ * Depends on: window.ZONING (optional — degrades gracefully if absent),
+ *   window.ZONING_GEOMETRY (optional — spatial fallback only)
  */
 window.PARCEL_FEASIBILITY = (function () {
   'use strict';
@@ -173,7 +186,18 @@ window.PARCEL_FEASIBILITY = (function () {
 
   function assess(props, fips) {
     const resolvedFips = String(fips || props.county_fips || '').padStart(5, '0');
-    const zoningCode   = props.zoning_code;
+    let zoningCode        = props.zoning_code || null;
+    let zoningCodeSource  = zoningCode ? 'parcel_attribute' : null;
+    let spatialZoningName = null;
+
+    if (!zoningCode && props._geometry && window.ZONING_GEOMETRY) {
+      const resolved = window.ZONING_GEOMETRY.resolveForFips(resolvedFips, props._geometry);
+      if (resolved && resolved.zoningCode) {
+        zoningCode        = resolved.zoningCode;
+        zoningCodeSource  = 'parcel_boundary_spatial_join';
+        spatialZoningName = resolved.zoningName;
+      }
+    }
 
     // Try cached zoning data first — do not trigger a new fetch
     const zoningData = window.ZONING?.getCachedByFips(resolvedFips) || null;
@@ -193,10 +217,19 @@ window.PARCEL_FEASIBILITY = (function () {
 
     const district = zoningData.districts?.[zoningCode];
     if (!district) {
+      // A spatially-resolved code that isn't (yet) in the classified
+      // districts registry is a real, honest partial result -- the code
+      // itself is a fact from the county's own zoning map, it just hasn't
+      // been researched for data-center eligibility yet. Surface it rather
+      // than returning a blank "not found."
       return {
         available:  false,
-        reason:     `District "${zoningCode}" not found in zoning data.`,
+        reason:     zoningCodeSource === 'parcel_boundary_spatial_join'
+          ? `District "${zoningCode}" was resolved from the county's zoning map, but has not yet been classified for data-center eligibility.`
+          : `District "${zoningCode}" not found in zoning data.`,
         zoningCode,
+        zoningCodeSource,
+        zoningName: spatialZoningName,
       };
     }
 
@@ -273,6 +306,7 @@ window.PARCEL_FEASIBILITY = (function () {
       available:           true,
       fips:                resolvedFips,
       zoningCode,
+      zoningCodeSource,
       permissionStatus,
       statusMeta,
       approvalType,
@@ -283,7 +317,7 @@ window.PARCEL_FEASIBILITY = (function () {
       geometricEnvelope,
       score:               compositeScore,
       factors,
-      districtName:        district.district_name,
+      districtName:        district.district_name || spatialZoningName || null,
       dcSummary:           district.dc_eligibility_summary ?? district.dc_analysis?.notes ?? null,
       jurisdictionName:    zoningData.jurisdiction?.jurisdiction_name ?? null,
       ordinanceUrl:        zoningData.jurisdiction?.official_ordinance_url ?? null,
@@ -291,12 +325,21 @@ window.PARCEL_FEASIBILITY = (function () {
     };
   }
 
-  /* ── Async variant: loads zoning data if not yet cached ── */
+  /* ── Async variant: loads zoning data (and, when the parcel has no native
+     zoning_code, the geometry needed for the spatial fallback) if not yet
+     cached ── */
   async function assessAsync(props, fips) {
     const resolvedFips = String(fips || props.county_fips || '').padStart(5, '0');
+    const loads = [];
     if (window.ZONING?.hasCoverage(resolvedFips) && !window.ZONING?.getCachedByFips(resolvedFips)) {
-      await window.ZONING.loadByFips(resolvedFips).catch(() => {});
+      loads.push(window.ZONING.loadByFips(resolvedFips).catch(() => {}));
     }
+    if (!props.zoning_code && props._geometry &&
+        window.ZONING_GEOMETRY?.hasCoverage(resolvedFips) &&
+        !window.ZONING_GEOMETRY?.isCached(resolvedFips)) {
+      loads.push(window.ZONING_GEOMETRY.loadByFips(resolvedFips).catch(() => {}));
+    }
+    if (loads.length) await Promise.all(loads);
     return assess(props, resolvedFips);
   }
 

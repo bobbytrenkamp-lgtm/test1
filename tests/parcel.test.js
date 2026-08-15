@@ -37,6 +37,7 @@ if (typeof window === 'undefined') {
   for (const rel of [
     'js/parcel/schema.js', 'js/parcel/registry.js', 'js/parcel/selection.js',
     'js/parcel/connector-arcgis.js', 'js/parcel/connector-geojson.js', 'js/parcel/connector-wfs.js',
+    'js/parcel/geo.js', 'js/parcel/zoning-geometry.js',
     'js/parcel/feasibility.js', 'js/parcel/comparables.js', 'js/parcel/massing.js',
     'js/parcel/draw-tool.js', 'js/parcel/search.js', 'js/parcel/index.js',
   ]) {
