@@ -9,6 +9,79 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 Date: 2026-08-15
 AI Assistant: Claude Code
+Session: NoVA milestone Phase 13-14 — parcels_registry wired into the data health dashboard on real live data, plus two independent pre-existing bugs found and fixed in generate_data_health.py
+
+Closes out the 14-phase NoVA milestone's remaining item.
+
+WHAT WAS BUILT:
+
+- `data/check_parcel_services.mjs`'s `--record-history` output
+  (`data/parcel_health_history.json`) had never actually been committed
+  despite the workflow being configured to do so since it shipped -- the
+  monthly cron hadn't fired yet (next: Sept 1) and no one had manually
+  dispatched it since. Manually dispatched `check_parcel_services.yml` this
+  session to get real data rather than build new health-tracking logic
+  against a fixture that had never been observed to work end-to-end: it
+  found 58/59 registered jurisdictions LIVE (all three NoVA counties
+  included) and one real, confirmed-dead service -- Jefferson County, KY
+  (FIPS 21111, "JSON has no field list — not a layer endpoint") -- which the
+  existing workflow correctly auto-filed as GitHub issue #538. That county is
+  outside the NoVA milestone's scope, so it was left to the issue and not
+  chased further here, per "do not expand nationwide."
+- `data/generate_data_health.py` gained `_parcel_service_health()`, a new
+  `parcels_registry` entry in the `pipelines` dict, aggregating that history
+  file with the exact same "confirmed dead" rule
+  `check_parcel_services.mjs`'s own `isConfirmedDead()` uses (>=2 failures in
+  the latest 3 recorded runs, OR a first-ever recorded run with no prior
+  history at all -- reproduced deliberately rather than a "safer"-looking
+  approximation that would disagree with what the CI job itself already
+  concluded and acted on).
+
+TWO REAL BUGS FOUND ALONG THE WAY (both pre-existing, both fixed):
+
+1. `build_report()` computed `tracked_pipeline_names = set(pipelines.keys())`
+   and then never used it -- `datasets_without_automated_health_tracking`
+   listed every registered dataset unconditionally, so the moment
+   `parcels_registry` became a real, tracked pipeline it would have appeared
+   BOTH as a live pipeline entry AND in the "no automated health signal yet"
+   fallback list, self-contradicting the same document. Fixed: the fallback
+   list now excludes any dataset id that exactly matches a pipeline key.
+2. `render_markdown()`'s "Datasets with no automated health signal yet"
+   line read `f"{n} of {n} datasets"` -- both sides used
+   `datasets_without_tracking_count`, so it was tautologically "100%" no
+   matter what and would have gone on saying that even after bug #1's fix
+   changed the real count. Fixed: added `total_registered_datasets` to the
+   report's `summary` and the line now reads correctly ("29 of 30" once
+   `parcels_registry` is excluded from the untracked list). A second, related
+   gap: the markdown detail column only recognized policy_pipeline_sources'
+   `total_sources` key, so `parcels_registry`'s identically-shaped
+   `total_jurisdictions` down/transient/total counts rendered as a bare "-"
+   even while the health column correctly said SOURCE_DOWN -- fixed
+   alongside it.
+
+Also confirmed `zoning_jurisdictions` correctly remains in the honest
+untracked list: the only per-jurisdiction file that looked like a candidate
+signal (Loudoun's `validation_report.json`) is a data-quality/completeness
+report, not a pipeline-health signal, and only exists for 1 of the 3 NoVA
+counties anyway -- treating it as a health check would have been a fabricated
+diagnosis this project's own honesty bar exists to prevent, so it was left
+alone rather than shoehorned into the SOURCE_DOWN/NETWORK_FAILURE vocabulary.
+
+Tests: `tests/test_data_health.py` gained 6 new tests (independent recount
+against the real committed history file, missing-file honesty, the
+first-failure-confirmed-immediately edge case, the single-transient-failure
+edge case, and regression tests pinning both markdown bugs) and one existing
+test (`test_no_dataset_is_ever_silently_marked_ok_without_a_real_signal`) was
+corrected -- it had hard-coded "today nothing maps 1:1" as if that were a
+permanent invariant rather than the thing this change correctly fixed; the
+real safety property (no dataset silently vanishes, none is silently
+upgraded to OK) is preserved and, if anything, checked more precisely now.
+Full suite: 176/176 passed, zero failures.
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
 Session: NoVA milestone Phase 11-12 — real per-field source provenance wired into the live connector, surfaced in the panel UI
 
 Verification pass on the two remaining NoVA milestone items (Phase 11

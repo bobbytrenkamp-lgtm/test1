@@ -30,7 +30,6 @@
     "pad_us_protected_lands",
     "parcel_assessment_sales_ownership",
     "parcel_source_catalog",
-    "parcels_registry",
     "political_risk",
     "power_plants",
     "rail",
@@ -61,6 +60,16 @@
       "total_urls_checked": 2949,
       "unreachable": 1378,
       "unreachable_ratio": 0.4673
+    },
+    "parcels_registry": {
+      "health": "SOURCE_DOWN",
+      "last_checked": "2026-08-15T20:57:32.193Z",
+      "persistently_down": [
+        "21111"
+      ],
+      "pipeline": "parcels_registry",
+      "total_jurisdictions": 59,
+      "transiently_unreachable": []
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
@@ -101,10 +110,11 @@
   "summary": {
     "counts_by_health": {
       "OK": 1,
-      "SOURCE_DOWN": 1,
+      "SOURCE_DOWN": 2,
       "VALIDATION_FAILURE": 2
     },
-    "datasets_without_tracking_count": 30,
-    "pipelines_tracked": 4
+    "datasets_without_tracking_count": 29,
+    "pipelines_tracked": 5,
+    "total_registered_datasets": 30
   }
 }

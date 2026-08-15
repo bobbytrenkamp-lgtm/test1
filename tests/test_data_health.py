@@ -64,6 +64,83 @@ def test_policy_source_health_matches_independent_recount():
         assert p["health"] == gdh.OK
 
 
+def test_parcel_service_health_matches_independent_recount():
+    # Re-derive down/transient status independently from the real
+    # data/parcel_health_history.json (written by check_parcel_services.mjs's
+    # scheduled/dispatch runs), reimplementing isConfirmedDead's exact rule
+    # (>=2 failures in the latest 3 recorded runs for a FIPS, OR a first-ever
+    # recorded run with no prior history at all) rather than calling the
+    # function under test twice, so this can actually catch a divergence
+    # between the dashboard and the CI job that produced the data it reads.
+    history_path = ROOT / "data" / "parcel_health_history.json"
+    if not history_path.exists():
+        return  # honestly nothing to check yet -- see the NOT_YET_TRACKED test below
+    data = json.loads(history_path.read_text())
+    down, transient = [], []
+    for fips, runs in data.get("history", {}).items():
+        if not runs or runs[-1].get("ok"):
+            continue
+        prior = runs[:-1][-(gdh.PARCEL_CONFIRMATION_WINDOW - 1):]
+        if not prior:
+            confirmed = True
+        else:
+            confirmed = (sum(1 for r in prior if not r.get("ok")) + 1) >= gdh.PARCEL_CONFIRMATION_THRESHOLD
+        (down if confirmed else transient).append(fips)
+
+    report = gdh.build_report()
+    p = report["pipelines"]["parcels_registry"]
+    assert sorted(p["persistently_down"]) == sorted(down)
+    assert sorted(p["transiently_unreachable"]) == sorted(transient)
+    if down:
+        assert p["health"] == gdh.SOURCE_DOWN
+    elif transient:
+        assert p["health"] == gdh.NETWORK_FAILURE
+    else:
+        assert p["health"] == gdh.OK
+
+
+def test_parcel_service_health_is_not_yet_tracked_without_a_history_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(gdh, "DATA_DIR", tmp_path)
+    result = gdh._parcel_service_health()
+    assert result["health"] == gdh.NOT_YET_TRACKED
+
+
+def test_parcel_service_health_first_ever_failure_counts_as_confirmed(tmp_path, monkeypatch):
+    # Mirrors data/check_parcel_services.mjs's own isConfirmedDead(): a FIPS
+    # whose only recorded run ever is a failure has no prior runs to weigh
+    # against, and the source script treats that as confirmed immediately
+    # rather than waiting for a second data point -- this dashboard must
+    # reach the same conclusion the CI job already acted on (tracking issue,
+    # failed build), not a more lenient one that looks safer but disagrees.
+    (tmp_path / "parcel_health_history.json").write_text(json.dumps({
+        "meta": {"last_updated": "2026-01-01T00:00:00Z"},
+        "history": {"99999": [{"timestamp": "2026-01-01T00:00:00Z", "ok": False, "errorType": "unknown"}]},
+    }))
+    monkeypatch.setattr(gdh, "DATA_DIR", tmp_path)
+    result = gdh._parcel_service_health()
+    assert result["health"] == gdh.SOURCE_DOWN
+    assert result["persistently_down"] == ["99999"]
+
+
+def test_parcel_service_health_single_unconfirmed_failure_is_transient(tmp_path, monkeypatch):
+    # Two clean prior runs, then one failure -- only 1 failure in the window,
+    # below the >=2 confirmation threshold, so this must NOT be reported as
+    # SOURCE_DOWN (that would open a tracking issue for a possible blip).
+    (tmp_path / "parcel_health_history.json").write_text(json.dumps({
+        "meta": {"last_updated": "2026-01-01T00:00:00Z"},
+        "history": {"99999": [
+            {"timestamp": "2025-11-01T00:00:00Z", "ok": True, "errorType": None},
+            {"timestamp": "2025-12-01T00:00:00Z", "ok": True, "errorType": None},
+            {"timestamp": "2026-01-01T00:00:00Z", "ok": False, "errorType": "timeout"},
+        ]},
+    }))
+    monkeypatch.setattr(gdh, "DATA_DIR", tmp_path)
+    result = gdh._parcel_service_health()
+    assert result["health"] == gdh.NETWORK_FAILURE
+    assert result["transiently_unreachable"] == ["99999"]
+    assert result["persistently_down"] == []
+
+
 def test_citation_health_ratio_above_threshold_is_validation_failure():
     result = gdh._citation_link_health({"summary": {"checked": 100, "unreachable": 20}}, "test")
     assert result["health"] == gdh.VALIDATION_FAILURE
@@ -89,10 +166,14 @@ def test_no_dataset_is_ever_silently_marked_ok_without_a_real_signal():
     registry = json.loads((ROOT / "data" / "catalog" / "dataset_registry.json").read_text())
     all_ids = {d["id"] for d in registry["datasets"]}
     untracked = set(report["datasets_without_automated_health_tracking"])
-    # Every dataset must be accounted for: either it's in the untracked list,
-    # or there is a real reason it's covered by name in `pipelines` -- today
-    # nothing maps 1:1, so every dataset must currently appear untracked.
-    assert untracked == all_ids
+    pipeline_names = set(report["pipelines"].keys())
+    # Every dataset must be accounted for exactly once: either it's in the
+    # untracked list, or its id exactly matches a real pipeline key (which
+    # reports its own honest health -- possibly NOT_YET_TRACKED itself, but
+    # that's then visible via `pipelines` rather than silently dropped from
+    # both places). A dataset must never appear in neither, and never in both.
+    assert untracked | (pipeline_names & all_ids) == all_ids
+    assert untracked.isdisjoint(pipeline_names)
 
 
 def test_summary_counts_match_pipeline_entries():
@@ -102,6 +183,35 @@ def test_summary_counts_match_pipeline_entries():
         recount[p["health"]] = recount.get(p["health"], 0) + 1
     assert report["summary"]["counts_by_health"] == recount
     assert report["summary"]["pipelines_tracked"] == len(report["pipelines"])
+
+
+def test_markdown_detail_column_is_not_blank_for_a_down_count_pipeline():
+    # Regression: render_markdown() originally only recognized the
+    # "total_sources" key (policy_pipeline_sources' shape), so
+    # parcels_registry's identically-shaped "total_jurisdictions" down/
+    # transient/total counts silently rendered as a bare "-" even while the
+    # health column said SOURCE_DOWN -- a real finding, just invisible.
+    report = gdh.build_report()
+    md = gdh.render_markdown(report)
+    p = report["pipelines"]["parcels_registry"]
+    if "total_jurisdictions" in p:
+        line = next(l for l in md.splitlines() if l.startswith("| parcels_registry "))
+        assert " - |" not in line, "parcels_registry's down/transient/total detail must not render blank"
+        assert str(p["total_jurisdictions"]) in line
+
+
+def test_untracked_dataset_count_is_never_reported_as_of_itself():
+    # Regression: the markdown literally said "N of N datasets have no
+    # health check" using datasets_without_tracking_count on both sides of
+    # "of" -- always tautologically 100%, and wrong the moment any dataset
+    # id gained a real pipeline signal (as parcels_registry now has).
+    report = gdh.build_report()
+    md = gdh.render_markdown(report)
+    n = report["summary"]["datasets_without_tracking_count"]
+    total = report["summary"]["total_registered_datasets"]
+    assert f"{n} of {total} datasets" in md
+    if n != total:
+        assert f"{n} of {n} datasets" not in md
 
 
 def test_markdown_never_claims_full_tracking_when_gaps_exist():
