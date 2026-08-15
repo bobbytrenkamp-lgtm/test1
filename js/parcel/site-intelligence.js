@@ -33,7 +33,10 @@
  *   renaming or repurposing one breaks consumers silently, so the version
  *   field exists to make a breaking change visible.
  *
- * Depends on: nothing required. Reads optional parcel modules when present.
+ * Depends on: nothing required. Reads optional parcel modules when present
+ *   (window.PARCEL_PROVENANCE, window.PARCEL_GEO, window.PARCEL_SALES,
+ *   window.PARCEL_FEASIBILITY -- the last one feeds zoning.feasibility and
+ *   the deterministic findings/site_status below).
  */
 window.PARCEL_SITE_INTELLIGENCE = (function () {
   'use strict';
@@ -335,6 +338,136 @@ window.PARCEL_SITE_INTELLIGENCE = (function () {
     };
   }
 
+  /* Runs the zoning feasibility engine (js/parcel/feasibility.js) when it is
+     loaded and cached zoning data exists for the jurisdiction. Purely
+     read-only against the cache -- this never triggers a network fetch, so a
+     site built before the caller has loaded zoning data honestly reports
+     "not yet loaded" rather than blocking on I/O inside a schema builder.
+     Never mutates the caller's properties object: a copy carrying _geometry
+     is made only when the caller has not already attached one (mirroring
+     js/parcel/panel.js's own attachment of props._geometry). */
+  function buildZoningFeasibility(props, geometry, fips) {
+    const F = window.PARCEL_FEASIBILITY;
+    if (!F || !fips) return null;
+    const propsForAssess = (geometry && !props._geometry)
+      ? Object.assign({}, props, { _geometry: geometry })
+      : props;
+    try {
+      return F.assess(propsForAssess, fips);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /* Deterministic, rule-based findings -- NOT an LLM summary. Every statement
+     traces to a specific field on a specific upstream result so a consumer
+     (or a human reviewing this record) can verify it against the same data.
+     A missing input produces an "unknowns" entry, never a guessed
+     advantage or constraint. */
+  function buildFindings(zoningFeasibility, constraintResult, proximityResult) {
+    const advantages = [];
+    const constraints = [];
+    const unknowns = [];
+    const add = (list, statement, category, source) => list.push({ statement, category, source });
+
+    // ── Zoning ──
+    if (zoningFeasibility && zoningFeasibility.available) {
+      const status = zoningFeasibility.permissionStatus;
+      const label = (zoningFeasibility.statusMeta && zoningFeasibility.statusMeta.label) || status;
+      if (status === 'permitted_by_right') {
+        add(advantages, `Data center use is permitted by right in zoning district ${zoningFeasibility.zoningCode}.`,
+          'zoning', 'zoning_feasibility');
+      } else if (status === 'prohibited') {
+        add(constraints, `Data center use is prohibited in zoning district ${zoningFeasibility.zoningCode}.`,
+          'zoning', 'zoning_feasibility');
+      } else if (['special_use_permit', 'conditional', 'administrative_approval', 'site_plan_approval',
+                  'permitted_with_limitations'].includes(status)) {
+        add(constraints, `Data center use in zoning district ${zoningFeasibility.zoningCode} requires ${label}.`,
+          'zoning', 'zoning_feasibility');
+      } else {
+        add(unknowns, `Data-center eligibility for zoning district ${zoningFeasibility.zoningCode} has not been researched.`,
+          'zoning', 'zoning_feasibility');
+      }
+    } else {
+      add(unknowns, (zoningFeasibility && zoningFeasibility.reason)
+        ? `Zoning feasibility is unknown: ${zoningFeasibility.reason}`
+        : 'Zoning feasibility has not been assessed for this parcel.', 'zoning', 'zoning_feasibility');
+    }
+
+    // ── Environmental / development constraints ──
+    if (constraintResult && constraintResult.summary) {
+      const s = constraintResult.summary;
+      if (s.constrainedPct != null && s.constrainedPct >= 25) {
+        add(constraints, `Mapped constraints (flood, wetlands, and similar layers) intersect approximately ${s.constrainedPct}% of the parcel.`,
+          'environmental', 'constraints_summary');
+      } else if (s.constrainedPct != null && s.constrainedPct < 5) {
+        add(advantages, 'Mapped environmental constraints intersect less than 5% of the parcel.',
+          'environmental', 'constraints_summary');
+      }
+      if (s.layersUnevaluated) {
+        add(unknowns, `${s.layersUnevaluated} constraint layer(s) could not be evaluated.`,
+          'environmental', 'constraints_summary');
+      }
+      if ((constraintResult.unavailable || []).length) {
+        add(unknowns, `${constraintResult.unavailable.length} constraint layer(s) have no data source available for this area.`,
+          'environmental', 'constraints_summary');
+      }
+    } else {
+      add(unknowns, 'No environmental or development constraint analysis has been run for this parcel.',
+        'environmental', 'constraints_summary');
+    }
+
+    // ── Power infrastructure proximity ──
+    if (proximityResult && proximityResult.results) {
+      const power = proximityResult.results.find(r => r.category === 'power');
+      if (power && !power.error && power.nearest && power.nearest.distanceMiles != null) {
+        if (power.nearest.distanceMiles <= 2) {
+          add(advantages, `Nearest ${(power.label || 'power infrastructure').toLowerCase()} is ${power.nearest.distanceMiles} miles away.`,
+            'power', 'proximity_power');
+        }
+        add(unknowns, 'Proximity to a substation or transmission line is not evidence of available interconnection capacity.',
+          'power', 'proximity_power');
+      } else {
+        add(unknowns, 'No power infrastructure proximity data is available for this parcel.',
+          'power', 'proximity_power');
+      }
+    } else {
+      add(unknowns, 'No infrastructure proximity analysis has been run for this parcel.',
+        'power', 'proximity_power');
+    }
+
+    return { advantages, constraints, unknowns };
+  }
+
+  /* Site status -- deterministic derivation using only the milestone's fixed
+     vocabulary. Never "approved"/"buildable"/"good site": those imply an
+     entitlement decision this system does not make. Ordered so the two
+     "material_constraints" checks (an outright zoning prohibition, or a
+     majority of the parcel under mapped constraints) always win over a
+     weaker "conditional"/"insufficient_data" read, and so a genuinely
+     ambiguous zoning read (not_listed/unclear/unknown) never gets upgraded
+     to "potentially_viable" just because constraints happen to be clean. */
+  function deriveSiteStatus(zoningFeasibility, constraintResult) {
+    const zoningKnown = !!(zoningFeasibility && zoningFeasibility.available);
+    const s = constraintResult && constraintResult.summary;
+    const constraintsKnown = !!s;
+
+    if (!zoningKnown && !constraintsKnown) return 'insufficient_data';
+    if (zoningKnown && zoningFeasibility.permissionStatus === 'prohibited') return 'material_constraints';
+    if (constraintsKnown && s.constrainedPct != null && s.constrainedPct >= 50) return 'material_constraints';
+    if (!zoningKnown) return 'insufficient_data';
+
+    const status = zoningFeasibility.permissionStatus;
+    if (['not_listed', 'unclear', 'unknown'].includes(status)) return 'insufficient_data';
+    if (['special_use_permit', 'conditional', 'administrative_approval', 'site_plan_approval',
+         'permitted_with_limitations'].includes(status)) return 'conditional';
+    if (status === 'permitted_by_right') {
+      if (constraintsKnown && s.constrainedPct != null && s.constrainedPct >= 25) return 'conditional';
+      return 'potentially_viable';
+    }
+    return 'insufficient_data';
+  }
+
   function buildPolicyContext(fips) {
     const index = (typeof window !== 'undefined' && window.DC_RISK_BY_FIPS) || null;
     if (!index || !fips) return { available: false, why: 'no policy index loaded for this county' };
@@ -369,6 +502,10 @@ window.PARCEL_SITE_INTELLIGENCE = (function () {
       ? i.assemblage.combinedAcres
       : parcelRows.reduce((sum, p) => sum + (p.acres || 0), 0);
 
+    const zoningFeasibility = buildZoningFeasibility(props, primary ? primary.geometry : null, fips);
+    const findings = buildFindings(zoningFeasibility, i.constraints, i.proximity);
+    const siteStatus = deriveSiteStatus(zoningFeasibility, i.constraints);
+
     return {
       schema_version: SCHEMA_VERSION,
       site_id: str(i.site_id) ?? (parcelRows.length ? parcelRows.map(p => p.parcel_id).join('+') : null),
@@ -397,6 +534,26 @@ window.PARCEL_SITE_INTELLIGENCE = (function () {
         note: 'Zoning district as published. District compatibility is not the same as a ' +
               'determination that a particular use is permitted on this parcel.',
         confidence: sectionConfidence(props, ['zoning_code']),
+        // Deterministic data-center permitted-use read, when the zoning
+        // feasibility engine and its cached district data are both loaded.
+        // null (not omitted) so a consumer can tell "not assessed" from
+        // "assessed, found nothing".
+        feasibility: zoningFeasibility ? {
+          available: zoningFeasibility.available,
+          zoning_code: zoningFeasibility.zoningCode ?? null,
+          zoning_code_source: zoningFeasibility.zoningCodeSource ?? null,
+          district_name: zoningFeasibility.districtName ?? null,
+          permission_status: zoningFeasibility.permissionStatus ?? null,
+          approval_type: zoningFeasibility.approvalType ?? null,
+          conditions: zoningFeasibility.conditions ?? [],
+          confidence: zoningFeasibility.confidence ?? null,
+          manual_review_required: zoningFeasibility.manualReviewRequired ?? null,
+          reason: zoningFeasibility.reason ?? null,
+          dc_summary: zoningFeasibility.dcSummary ?? null,
+          jurisdiction_name: zoningFeasibility.jurisdictionName ?? null,
+          ordinance_url: zoningFeasibility.ordinanceUrl ?? null,
+          disclaimer: zoningFeasibility.disclaimer ?? null,
+        } : null,
       },
 
       infrastructure: buildInfrastructure(i.proximity),
@@ -418,6 +575,11 @@ window.PARCEL_SITE_INTELLIGENCE = (function () {
       policy_context: buildPolicyContext(fips),
 
       suitability: buildScore(i.score),
+
+      // Deterministic, rule-based synthesis -- see buildFindings/deriveSiteStatus.
+      // Never LLM-generated; every statement traces to a named upstream field.
+      findings,
+      site_status: siteStatus,
 
       source_confidence: {
         by_section: {

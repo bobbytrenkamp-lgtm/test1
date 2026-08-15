@@ -341,9 +341,11 @@ window.PARCEL_PANEL = (function () {
         : undefined,
       constraintSummary: cached?.constraints?.summary,
     };
+    const suit = window.PARCEL_SUITABILITY?.score(ctx);
 
     let html = '';
-    html += _renderSuitability(window.PARCEL_SUITABILITY?.score(ctx));
+    html += _renderSiteStatus(props, feature, cached, suit, key);
+    html += _renderSuitability(suit);
     html += _renderProximity(cached?.proximity);
     html += _renderConstraints(cached?.constraints);
     html += _renderSales(window.PARCEL_SALES?.buildHistory(props));
@@ -353,6 +355,62 @@ window.PARCEL_PANEL = (function () {
     }
 
     return html || '<p class="pp-empty">Site intelligence not available for this parcel.</p>';
+  }
+
+  const SITE_STATUS_META = {
+    potentially_viable:   { cls: 'pf-eligible',    icon: '✓', label: 'Potentially Viable' },
+    conditional:          { cls: 'pf-conditional', icon: '!', label: 'Conditional' },
+    material_constraints: { cls: 'pf-prohibited',  icon: '✗', label: 'Material Constraints' },
+    insufficient_data:    { cls: 'pf-unknown',     icon: '?', label: 'Insufficient Data' },
+  };
+
+  /* Renders the canonical, deterministic synthesis from
+     window.PARCEL_SITE_INTELLIGENCE.build() -- the single normalized
+     read of zoning feasibility + mapped constraints + infrastructure
+     proximity for this parcel. Site status uses only the milestone's
+     fixed vocabulary (never "approved"/"buildable"/"good site"), and
+     every advantage/constraint/unknown traces to a named upstream field
+     rather than being an LLM summary. Degrades to nothing when the
+     module isn't loaded or proximity/constraints haven't resolved yet --
+     those layers still render their own "loading…" state below. */
+  function _renderSiteStatus(props, feature, cached, suit, key) {
+    if (!window.PARCEL_SITE_INTELLIGENCE) return '';
+    let si;
+    try {
+      si = window.PARCEL_SITE_INTELLIGENCE.build({
+        site_id: key,
+        parcels: [{ id: key, geometry: feature.geometry, properties: props }],
+        proximity: cached?.proximity,
+        constraints: cached?.constraints,
+        score: suit,
+      });
+    } catch (_) {
+      return '';
+    }
+
+    const meta = SITE_STATUS_META[si.site_status] || SITE_STATUS_META.insufficient_data;
+    const f = si.findings;
+    const list = items => `<ul class="pf-conditions-list">${items.map(x => `<li>${esc(x.statement)}</li>`).join('')}</ul>`;
+
+    let html = `<div class="pp-group pp-site-status">
+      <div class="pp-group-label">Site Status</div>
+      <div class="pf-eligibility ${esc(meta.cls)}">
+        <span class="pf-eligibility-icon">${esc(meta.icon)}</span>
+        <span class="pf-eligibility-label">${esc(meta.label)}</span>
+      </div>`;
+
+    if (f.advantages.length) {
+      html += `<p class="pp-muted"><strong>Advantages</strong></p>${list(f.advantages)}`;
+    }
+    if (f.constraints.length) {
+      html += `<p class="pp-muted"><strong>Constraints</strong></p>${list(f.constraints)}`;
+    }
+    if (f.unknowns.length) {
+      html += `<details class="pf-conditions"><summary>Unknowns (${f.unknowns.length})</summary>${list(f.unknowns)}</details>`;
+    }
+    html += `<p class="pf-disclaimer">Deterministic synthesis from mapped data only. Not a determination of developability or entitlement.</p>`;
+    html += `</div>`;
+    return html;
   }
 
   function _renderSuitability(suit) {
@@ -980,7 +1038,7 @@ window.PARCEL_PANEL = (function () {
     // Exposed for unit testing (pure functions: data in, HTML string out --
     // no DOM APIs used inside them), matching the existing pattern of
     // exposing "_"-prefixed internals above.
-    _tabIntelligence, _renderSuitability, _renderProximity, _renderConstraints, _renderSales,
+    _tabIntelligence, _renderSuitability, _renderProximity, _renderConstraints, _renderSales, _renderSiteStatus,
     _saveButtonHtml, _renderSavedSites,
   };
 })();

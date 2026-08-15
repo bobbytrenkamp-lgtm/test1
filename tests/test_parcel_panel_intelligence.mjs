@@ -20,8 +20,16 @@ const require = createRequire(import.meta.url);
 global.window = global;
 global.document = { dispatchEvent: () => true, addEventListener: () => {}, getElementById: () => null };
 
+global.polygonClipping = require('../js/vendor/polygon-clipping.umd.min.js');
+require('../js/parcel/schema.js');
+require('../js/parcel/provenance.js');
+require('../js/parcel/geo.js');
+require('../js/parcel/sales.js');
+require('../js/parcel/site-intelligence.js');
 require('../js/parcel/panel.js');
 const PANEL = global.window.PARCEL_PANEL;
+
+const geom = { type: 'Polygon', coordinates: [[[0, 0], [0.01, 0], [0.01, 0.01], [0, 0.01], [0, 0]]] };
 
 let pass = 0, fail = 0;
 function ok(name, cond) {
@@ -140,6 +148,38 @@ function ok(name, cond) {
   const html = PANEL._renderSales(many);
   const rowCount = (html.match(/pp-field-label/g) || []).length;
   ok('sales history is capped at 5 rows even when more exist', rowCount === 5);
+}
+
+// ── Site Status (Phase 5/7/8: canonical schema + deterministic findings) ──
+{
+  const html = PANEL._renderSiteStatus(
+    { parcel_id: 'X-1', county_fips: '51107' },
+    { geometry: geom },
+    null, // no cached proximity/constraints yet
+    null, // no suitability score yet
+    'X-1',
+  );
+  ok('site status renders even with nothing else resolved yet', html.includes('Site Status'));
+  ok('with no zoning or constraint data, site status reads as Insufficient Data', html.includes('Insufficient Data'));
+  ok('an unassessed zoning read shows up under unknowns', html.includes('Unknowns'));
+}
+{
+  const html = PANEL._renderSiteStatus(
+    { parcel_id: 'X-2', county_fips: '51107' },
+    { geometry: geom },
+    { constraints: { parcelAcres: 10, results: [], summary: { constrainedPct: 5, partial: false } } },
+    null,
+    'X-2',
+  );
+  ok('a disclaimer distinguishes this from a developability determination',
+    html.includes('Not a determination of developability or entitlement'));
+}
+{
+  const originalSI = global.window.PARCEL_SITE_INTELLIGENCE;
+  delete global.window.PARCEL_SITE_INTELLIGENCE;
+  ok('site status section is empty when PARCEL_SITE_INTELLIGENCE was never loaded',
+    PANEL._renderSiteStatus({ parcel_id: 'X-3' }, { geometry: geom }, null, null, 'X-3') === '');
+  global.window.PARCEL_SITE_INTELLIGENCE = originalSI;
 }
 
 // ── XSS safety ───────────────────────────────────────────────────────────

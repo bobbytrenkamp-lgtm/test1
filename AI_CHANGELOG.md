@@ -7,6 +7,70 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 ---
 
+Date: 2026-08-15
+AI Assistant: Claude Code
+Session: NoVA milestone Phase 5/7/8/9/10 — Site Intelligence schema wired to zoning feasibility, deterministic findings/site_status, panel UI
+
+`js/parcel/site-intelligence.js` (`window.PARCEL_SITE_INTELLIGENCE`) existed
+already, fully tested, and completely orphaned: zero callers anywhere in the
+codebase, its `zoning` section only listed the raw published code with no
+data-center eligibility read. This session closed both gaps and shipped the
+result to the parcel panel:
+
+- **Zoning feasibility wired into the schema.** `build()` now calls
+  `window.PARCEL_FEASIBILITY.assess()` (read-only against whatever zoning
+  data is already cached — never triggers a fetch from inside a schema
+  builder) and exports the result under `zoning.feasibility`: permission
+  status, approval type, conditions, confidence, and the district name/code,
+  including its source (`parcel_attribute` vs the spatial-join fallback).
+  Never mutates the caller's parcel properties object — a geometry-bearing
+  copy is made only when the caller has not already attached one.
+- **Deterministic `findings` (advantages / constraints / unknowns).** Rule-based,
+  not LLM-generated — every statement traces to a named upstream field
+  (`zoning_feasibility`, `constraints_summary`, `proximity_power`) so it can
+  be verified against the same data a human would check. A missing input
+  produces an "unknowns" entry, never a guessed advantage or constraint. A
+  failed proximity layer (e.g. a BTS service 503) never becomes a finding.
+- **`site_status`**, using only the milestone's fixed vocabulary —
+  `potentially_viable` / `conditional` / `material_constraints` /
+  `insufficient_data` — never "approved," "buildable," or "good site." An
+  outright zoning prohibition or a majority-constrained parcel always wins
+  over a weaker read; a genuinely ambiguous zoning code (`not_listed`/
+  `unclear`/`unknown`) is `insufficient_data`, never silently upgraded to
+  `potentially_viable` just because the constraint layer happened to be clean.
+- **UI wiring (Phase 10).** `js/parcel/panel.js`'s Intelligence tab gained a
+  new `_renderSiteStatus()` section above the existing suitability/proximity/
+  constraints/sales rendering, calling `PARCEL_SITE_INTELLIGENCE.build()`
+  with the same cached proximity/constraints/score inputs those renderers
+  already use. Degrades to nothing (not a misleading empty group) when the
+  module isn't loaded, mirroring the pattern the other Intelligence-tab
+  renderers already established.
+- Confirmed via re-reading the site-intelligence audit and the codebase that
+  Phase 6's remaining scope (power/fiber/water/environmental/market spatial
+  joins) was already substantially built — `js/parcel/proximity.js` and
+  `js/parcel/constraints.js` already feed `buildInfrastructure`/
+  `buildConstraints` generically. Only zoning's parcel-to-district resolution
+  was the real gap, and PR #531 (previous session) had already closed it;
+  this session's job was wiring that result into the schema and the UI.
+
+New/changed: `js/parcel/site-intelligence.js`, `js/parcel/panel.js`,
+`index.html` (cache-busted script versions), `tests/test_parcel_site_intelligence.mjs`
+(+~90 assertions covering the no-engine-loaded degrade path and six
+zoning/constraint × site_status combinations against a mocked zoning
+registry), `tests/test_parcel_panel_intelligence.mjs` (+new `_renderSiteStatus`
+coverage), `PROJECT_CONTEXT.md`.
+
+Still open from the 14-phase brief: Phase 9's fuller per-category
+completeness/confidence matrix (today's `source_confidence.by_section` is a
+partial read of this), Phase 11's comparable-sites wiring verification
+(`js/parcel/comparables.js` already exists and is already called from
+`panel.js`'s compare tray — needs a pass to confirm it's fully wired, not
+newly built), Phase 12's provenance pass beyond what `site-intelligence.js`
+already surfaces, and Phase 13/14 (a source-status model + a final
+documentation cleanup pass).
+
+---
+
 Date: 2026-08-13 to 2026-08-15
 AI Assistant: Claude Code
 Session: NoVA Data Center Parcel Intelligence milestone — zoning geometry, permitted-use research, spatial join (PRs #517-#536)
