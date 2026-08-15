@@ -9,6 +9,72 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 Date: 2026-08-15
 AI Assistant: Claude Code
+Session: Weak-point audit across the site-intelligence/provenance system — one real bug found and fixed, one real coverage gap closed, provenance parity extended to all three connector types
+
+User asked to identify and fix weak points across what this session built.
+Read through site-intelligence.js, panel.js, and all three parcel connectors
+looking specifically for logic bugs and silent coverage gaps, not just
+"more research needed" items (those are tracked separately, see below).
+
+REAL BUG FOUND AND FIXED: `buildFindings()` in js/parcel/site-intelligence.js
+used `proximityResult.results.find(r => r.category === 'power')` to pick the
+power-infrastructure reading for the findings/site_status engine. Power has
+TWO layers (substations, transmission-lines) sharing that category --
+`.find()` silently returns whichever one happens to be first in the array
+and ignores the other entirely, even when the first one errored or the
+second one was actually closer. Fixed with a new `_nearestAcrossCategory()`
+helper that considers every layer in a category and picks the genuinely
+nearest usable result. Added two regression tests that would have caught
+this: one where the first power layer errors and the second must still be
+used, one where array order is deliberately reversed to prove distance, not
+position, decides the winner.
+
+REAL COVERAGE GAP CLOSED: the same findings engine only ever checked the
+`power` category -- `telecom` (fiber) proximity, which is real, mapped data
+for the CA middle-mile corridor and TX Fiberlight network
+(js/parcel/proximity-layers.js), was never surfaced as a finding at all.
+Extended `buildFindings()` to also report nearby mapped fiber as an
+advantage (capped at 1 mile, same capacity-is-not-proximity disclaimer
+pattern as power) using the same `_nearestAcrossCategory()` helper --
+deliberately NOT adding an "unknown" entry for every site outside those two
+states, since that gap is already honestly disclosed via
+`infrastructure.unavailable` and repeating it in findings would be noise,
+not information.
+
+PROVENANCE PARITY: Phase 12 (prior session) wired per-field source
+provenance into `connector-arcgis.js` only, since all 59 currently-registered
+jurisdictions use that connector type. Extended the identical pattern to
+`connector-geojson.js` and `connector-wfs.js` so a future jurisdiction using
+either type doesn't silently fall back to no provenance while every ArcGIS
+jurisdiction has it -- a latent inconsistency in a system whose whole point
+is "never let one place look more evidenced than the data actually
+supports." Added matching tests for both (GeoJSON's `_normalize()` had no
+existing direct test at all; WFS's existing test gained provenance
+assertions).
+
+Tests: 7 new assertions in tests/test_parcel_site_intelligence.mjs (multi-
+layer power selection x2, fiber advantage, fiber-too-far, fiber disclaimer,
+no-invented-telecom-finding), ~12 new assertions across the three connector
+tests in tests/parcel.test.js. Full suite: 176/176 passed, zero failures, no
+existing test weakened.
+
+DELIBERATELY NOT TOUCHED (documented, not silently ignored): zoning.feasibility
+in site-intelligence.js only assesses the PRIMARY parcel of a multi-parcel
+assemblage, while zoning.codes already aggregates across all parcels via
+`uniq()` -- a real inconsistency for assembled sites, but restructuring
+feasibility into a per-parcel array is a bigger schema change than this pass
+should make without a clearer signal it's needed (single-parcel lookup is
+the dominant real workflow today, and every existing test uses it). Also not
+touched: the underlying zoning ordinance research gaps (Loudoun 3/58 codes
+researched, Fairfax 0/44, PWC's CTY/FED/TWN codes and DCOZOD overlay
+geometry) -- these are data-completion work requiring real primary-source
+research per code, not architecture weaknesses, and were already honestly
+tracked as open items in prior entries rather than claimed complete.
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
 Session: NoVA milestone Phase 13-14 — parcels_registry wired into the data health dashboard on real live data, plus two independent pre-existing bugs found and fixed in generate_data_health.py
 
 Closes out the 14-phase NoVA milestone's remaining item.

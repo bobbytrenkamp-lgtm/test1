@@ -411,6 +411,7 @@ if (typeof window === 'undefined') {
 
     const cfg = {
       fips: '51107',
+      id: 'va-loudoun-county',
       serviceUrl: 'data:application/json,{"type":"FeatureCollection","features":[]}',
       fieldMap: { parcel_id: 'OBJECTID', pin: 'PIN', address: 'SITE_ADDR' },
     };
@@ -419,6 +420,30 @@ if (typeof window === 'undefined') {
     assert(typeof conn.fetchViewport === 'function',  'fetchViewport is a function');
     assert(typeof conn.searchByQuery === 'function', 'searchByQuery is a function');
     assert(typeof conn.fetchById    === 'function',  'fetchById is a function');
+
+    // Test normalization + provenance (mirrors ArcGISParcelConnector's test)
+    const geoRaw = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [-77.4, 39.1] },
+        properties: { OBJECTID: 7, PIN: 'GJ-1', SITE_ADDR: '1 GeoJSON Way', EXTRA_FIELD: 'x' },
+      }],
+    };
+    const geoNorm = conn._normalize(geoRaw);
+    assertEq(geoNorm.features.length, 1, 'GeoJSON _normalize preserves feature count');
+    const gp = geoNorm.features[0].properties;
+    assertEq(gp.pin, 'GJ-1', 'GeoJSON _normalize maps PIN → pin');
+    assertEq(gp._source, 'geojson', 'GeoJSON _normalize sets _source');
+
+    const geoProv = (typeof window !== 'undefined' ? window : global).PARCEL_PROVENANCE;
+    if (geoProv) {
+      const addrProv = geoProv.get(gp, 'address');
+      assert(!!addrProv, 'GeoJSON _normalize attaches provenance for a verified fieldMap field');
+      assertEq(addrProv.sourceId, 'va-loudoun-county', 'GeoJSON provenance records the jurisdiction id');
+      assertEq(addrProv.confidence, 'direct-official', 'GeoJSON provenance is direct-official for a single-source connector');
+      assert(!geoProv.get(gp, 'extra_field'), 'no provenance is invented for an unmapped passthrough field');
+    }
 
     console.groupEnd();
   }
@@ -432,6 +457,7 @@ if (typeof window === 'undefined') {
 
     const wfsCfg = {
       fips: '51153',
+      id: 'va-prince-william-county',
       serviceUrl: 'https://example.com/geoserver/ows',
       layerName:  'parcel_data:parcels',
       wfsVersion: '2.0.0',
@@ -458,6 +484,16 @@ if (typeof window === 'undefined') {
     assertEq(wfsNorm.features[0].properties.pin, 'GP-42', 'WFS _normalize maps GPIN → pin');
     assertEq(wfsNorm.features[0].properties._source, 'wfs', 'WFS _normalize stamps _source');
     assertEq(wfsNorm.features[0].properties.county_fips, '51153', 'WFS _normalize stamps county_fips');
+
+    const wfsProv = (typeof window !== 'undefined' ? window : global).PARCEL_PROVENANCE;
+    if (wfsProv) {
+      const wp = wfsNorm.features[0].properties;
+      const pinProv = wfsProv.get(wp, 'pin');
+      assert(!!pinProv, 'WFS _normalize attaches provenance for a verified fieldMap field');
+      assertEq(pinProv.sourceId, 'va-prince-william-county', 'WFS provenance records the jurisdiction id');
+      assertEq(pinProv.sourceField, 'GPIN', 'WFS provenance records the real source attribute name');
+      assertEq(pinProv.confidence, 'direct-official', 'WFS provenance is direct-official for a single-source connector');
+    }
 
     // Verify 2.0.0 bbox axis order (lat-first)
     const u200 = wfsConn._buildUrl({ REQUEST: 'GetFeature', BBOX: 'test', COUNT: '10' });

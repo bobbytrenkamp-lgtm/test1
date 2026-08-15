@@ -418,9 +418,14 @@ window.PARCEL_SITE_INTELLIGENCE = (function () {
     }
 
     // ── Power infrastructure proximity ──
+    // There are usually TWO power-category layers (substations,
+    // transmission lines): the nearest across BOTH is what matters, not
+    // whichever happens to appear first in proximityResult.results (an
+    // earlier version used .find() and so silently ignored the second
+    // layer whenever the first one loaded, sorted, or errored differently).
     if (proximityResult && proximityResult.results) {
-      const power = proximityResult.results.find(r => r.category === 'power');
-      if (power && !power.error && power.nearest && power.nearest.distanceMiles != null) {
+      const power = _nearestAcrossCategory(proximityResult.results, 'power');
+      if (power) {
         if (power.nearest.distanceMiles <= 2) {
           add(advantages, `Nearest ${(power.label || 'power infrastructure').toLowerCase()} is ${power.nearest.distanceMiles} miles away.`,
             'power', 'proximity_power');
@@ -431,12 +436,40 @@ window.PARCEL_SITE_INTELLIGENCE = (function () {
         add(unknowns, 'No power infrastructure proximity data is available for this parcel.',
           'power', 'proximity_power');
       }
+
+      // ── Fiber / telecom proximity ── Real coverage exists only for the
+      // CA middle-mile corridor and the TX Fiberlight network today (see
+      // proximity-layers.js); everywhere else this category has no results
+      // and no finding is invented -- the schema's own infrastructure.unavailable
+      // array already discloses that gap, so repeating it here for every
+      // site outside those two states would be noise, not information.
+      const fiber = _nearestAcrossCategory(proximityResult.results, 'telecom');
+      if (fiber) {
+        if (fiber.nearest.distanceMiles <= 1) {
+          add(advantages, `Nearest mapped fiber route (${fiber.label || 'regional corridor'}) is ${fiber.nearest.distanceMiles} miles away.`,
+            'telecom', 'proximity_telecom');
+        }
+        add(unknowns, 'A mapped fiber route is not evidence of available strand capacity, lit service, or connection cost.',
+          'telecom', 'proximity_telecom');
+      }
     } else {
       add(unknowns, 'No infrastructure proximity analysis has been run for this parcel.',
         'power', 'proximity_power');
     }
 
     return { advantages, constraints, unknowns };
+  }
+
+  /* Nearest successful result across every layer sharing a category (a
+     category can have more than one layer -- e.g. power has both
+     substations and transmission lines). Returns null when no layer in
+     that category produced a usable distance, never a fabricated result
+     from an errored or empty layer. */
+  function _nearestAcrossCategory(results, category) {
+    const candidates = (results || [])
+      .filter(r => r.category === category && !r.error && r.nearest && r.nearest.distanceMiles != null);
+    if (!candidates.length) return null;
+    return candidates.reduce((a, b) => (a.nearest.distanceMiles <= b.nearest.distanceMiles ? a : b));
   }
 
   /* Site status -- deterministic derivation using only the milestone's fixed

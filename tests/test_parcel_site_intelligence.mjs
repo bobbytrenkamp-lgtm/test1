@@ -149,6 +149,78 @@ function richInput() {
   ok('a failed proximity layer never becomes a finding',
     !si.findings.advantages.some(a => /Interstates/i.test(a.statement)) &&
     !si.findings.constraints.some(c => /Interstates/i.test(c.statement)));
+  ok('a region with no mapped fiber coverage gets no invented telecom finding',
+    !si.findings.advantages.some(a => a.category === 'telecom') &&
+    !si.findings.unknowns.some(u => u.category === 'telecom'));
+}
+
+// ── Findings must consider EVERY layer in a category, not just the first ──
+// Regression: buildFindings originally used results.find(r => r.category ===
+// 'power'), which silently ignores a second power-category layer
+// (substations AND transmission-lines both use "power") whenever the first
+// one in the array happened to have no usable distance or an error.
+{
+  const si = SI.build({
+    site_id: 'MULTI-POWER', parcels: [{ id: 'M-1', geometry: geom, properties: { parcel_id: 'M-1' } }],
+    proximity: {
+      results: [
+        { layerId: 'substations', label: 'Substations', category: 'power', error: 'HTTP 503', nearest: null, counts: {} },
+        { layerId: 'transmission-lines', label: 'Transmission Lines', category: 'power',
+          nearest: { distanceMiles: 0.8, name: 'Line 4821' }, counts: { 1: 1, 3: 2, 5: 4, 10: 9 } },
+      ],
+      unavailable: [],
+    },
+  });
+  ok('the second power-category layer is used when the first one errored',
+    si.findings.advantages.some(a => a.category === 'power' && /0\.8 miles/.test(a.statement)));
+
+  const swapped = SI.build({
+    site_id: 'MULTI-POWER-2', parcels: [{ id: 'M-2', geometry: geom, properties: { parcel_id: 'M-2' } }],
+    proximity: {
+      results: [
+        { layerId: 'transmission-lines', label: 'Transmission Lines', category: 'power',
+          nearest: { distanceMiles: 5, name: 'Line X' }, counts: {} },
+        { layerId: 'substations', label: 'Substations', category: 'power',
+          nearest: { distanceMiles: 1.1, name: 'Nearby Sub' }, counts: {} },
+      ],
+      unavailable: [],
+    },
+  });
+  ok('the NEAREST power result wins across layers, regardless of array order',
+    swapped.findings.advantages.some(a => a.category === 'power' && /1\.1 miles/.test(a.statement)) &&
+    !swapped.findings.advantages.some(a => a.category === 'power' && /5 miles/.test(a.statement)));
+}
+
+// ── Fiber/telecom proximity, when real coverage exists ─────────────────────
+{
+  const si = SI.build({
+    site_id: 'FIBER-1', parcels: [{ id: 'F-1', geometry: geom, properties: { parcel_id: 'F-1' } }],
+    proximity: {
+      results: [
+        { layerId: 'tx-fiberlight-network', label: 'TX Fiberlight Network', category: 'telecom',
+          nearest: { distanceMiles: 0.4, name: 'Fiberlight route' }, counts: {} },
+      ],
+      unavailable: [],
+    },
+  });
+  ok('a nearby mapped fiber route is surfaced as an advantage',
+    si.findings.advantages.some(a => a.category === 'telecom' && /0\.4 miles/.test(a.statement)));
+  ok('fiber proximity is disclaimed as not being capacity or lit service',
+    si.findings.unknowns.some(u => u.category === 'telecom' && /not evidence of available strand capacity/.test(u.statement)));
+
+  const far = SI.build({
+    site_id: 'FIBER-2', parcels: [{ id: 'F-2', geometry: geom, properties: { parcel_id: 'F-2' } }],
+    proximity: {
+      results: [
+        { layerId: 'tx-fiberlight-network', label: 'TX Fiberlight Network', category: 'telecom',
+          nearest: { distanceMiles: 15, name: 'Fiberlight route' }, counts: {} },
+      ],
+      unavailable: [],
+    },
+  });
+  ok('a distant fiber route is not claimed as an advantage', !far.findings.advantages.some(a => a.category === 'telecom'));
+  ok('but the capacity disclaimer still travels since real fiber data exists',
+    far.findings.unknowns.some(u => u.category === 'telecom'));
 }
 
 // ── Zoning feasibility, findings, and site_status: feasibility engine loaded ──
