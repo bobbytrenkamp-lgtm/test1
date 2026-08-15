@@ -115,7 +115,7 @@ Leaflet layer manager. Integrates with the existing `layerState` system in map.j
 - Handle polygon click → call `ZONING.selectDistrict(code)`
 - Manage `#zoning-panel` open/close state
 
-**Geometry availability:** If no GeoJSON file exists for a jurisdiction, the panel still opens in district-browser mode (list of districts without map polygons). This is the current state for Loudoun County until the fetch pipeline is run.
+**Geometry availability:** If no GeoJSON file exists for a jurisdiction, the panel still opens in district-browser mode (list of districts without map polygons). As of 2026-08-15, base zoning district geometry is live for all three current jurisdictions (Loudoun, Prince William, Fairfax — `data/zoning/geometry/{id}.geojson`); this fallback now applies only to a jurisdiction before its first fetch, or to overlay geometry (e.g. Prince William's Data Center Opportunity Zone Overlay District, whose real GIS layer is documented but not yet fetched — see `overlays.json`).
 
 ### js/zoning-details.js
 
