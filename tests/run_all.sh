@@ -75,6 +75,8 @@ run "power layer viewport-aware loading (bbox intersection, cache, concurrency)"
 run "zoning normalization: punctuation-insensitive district code matching" python3 -m pytest tests/test_zoning_normalize.py -q
 run "zoning frontend: FIPS_TO_JURISDICTION coverage matches normalized data on disk" node tests/test_zoning_frontend_coverage.mjs
 run "zoning fetch: ArcGIS pagination doesn't truncate on unreliable exceededTransferLimit" python3 -m pytest tests/test_zoning_fetch_pagination.py -q
+run "parcel zoning geometry: spatial (point-in-polygon) district resolution" node tests/test_parcel_zoning_geometry.mjs
+run "parcel feasibility: spatial zoning-code fallback" node tests/test_parcel_feasibility_spatial.mjs
 run "parcel source catalog validator" python3 data/validate_parcel_catalog.py
 run "parcel catalog + priority queue tests" python3 -m pytest tests/test_parcel_catalog.py tests/test_parcel_priority_queue.py -q
 run "parcel registry integrity check" node data/parcel_pipeline/check_registry_integrity.mjs
