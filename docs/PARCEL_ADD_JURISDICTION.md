@@ -83,6 +83,8 @@ Open `js/parcel/registry.js` and add a new entry inside the `JURISDICTIONS` obje
 
 > **Field mapping note:** Set `'__computed__'` for any field whose value is derived (like `county_fips`, which the connector fills in automatically from `config.fips`). Fields not listed in `fieldMap` are passed through with their source names lowercased.
 
+> **Provenance note:** Every `fieldMap` entry you verify here also drives source provenance automatically — `connector-arcgis.js`'s `_normalize()` attaches a `direct-official` `window.PARCEL_PROVENANCE` record (this jurisdiction's `id`/`name`, the real source attribute name) for each canonical field listed in `fieldMap`. Nothing extra to configure; a field left out of `fieldMap` (passed through lowercased) never gets a provenance record, since this connector genuinely does not know what that attribute is.
+
 ## Step 4 — Add a layer-registry entry (optional)
 
 If you want the jurisdiction to appear as a distinct layer option (rather than always using the Loudoun County pilot toggle), you could add a per-jurisdiction entry to `js/layer-registry.js`. For Phase 1, all parcel data uses the single `parcels` layer toggle.

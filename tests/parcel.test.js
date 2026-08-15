@@ -35,7 +35,7 @@ if (typeof window === 'undefined') {
   // Dependency order: registry/schema before the connectors and index.js that
   // reference them; selection has no dependents among these.
   for (const rel of [
-    'js/parcel/schema.js', 'js/parcel/registry.js', 'js/parcel/selection.js',
+    'js/parcel/schema.js', 'js/parcel/registry.js', 'js/parcel/selection.js', 'js/parcel/provenance.js',
     'js/parcel/connector-arcgis.js', 'js/parcel/connector-geojson.js', 'js/parcel/connector-wfs.js',
     'js/parcel/geo.js', 'js/parcel/zoning-geometry.js',
     'js/parcel/feasibility.js', 'js/parcel/comparables.js', 'js/parcel/massing.js',
@@ -285,6 +285,19 @@ if (typeof window === 'undefined') {
     assertEq(p.county_fips, '51107', '_normalize sets county_fips from config');
     assertEq(p._source,   'arcgis', '_normalize sets _source');
     assert('unknown_field' in p || 'UNKNOWN_FIELD' in p, '_normalize passes through unknown fields (lowercased)');
+
+    // Per-field provenance (Phase 12: source provenance now flows from a
+    // real connector, not only test fixtures -- see connector-arcgis.js's
+    // _normalize()).
+    const PROV = (typeof window !== 'undefined' ? window : global).PARCEL_PROVENANCE;
+    if (PROV) {
+      const ownerProv = PROV.get(p, 'owner');
+      assert(!!ownerProv, '_normalize attaches provenance for a verified fieldMap field');
+      assertEq(ownerProv.sourceId, 'va-loudoun-county', 'provenance records the jurisdiction id');
+      assertEq(ownerProv.sourceField, 'OWNER_NAME', 'provenance records the real source attribute name');
+      assertEq(ownerProv.confidence, 'direct-official', 'a single-source ArcGIS connector is direct-official, not joined');
+      assert(!PROV.get(p, 'unknown_field'), 'no provenance is invented for an unmapped passthrough field');
+    }
   }
 
   console.groupEnd();

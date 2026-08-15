@@ -9,6 +9,65 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 Date: 2026-08-15
 AI Assistant: Claude Code
+Session: NoVA milestone Phase 11-12 — real per-field source provenance wired into the live connector, surfaced in the panel UI
+
+Verification pass on the two remaining NoVA milestone items (Phase 11
+"comparable nearby sites", Phase 12 "source provenance"):
+
+- **Phase 11 (comparables): already fully wired, no action needed.**
+  `js/parcel/comparables.js` (`window.PARCEL_COMPARABLES`) is called from
+  `js/parcel/panel.js`'s Compare tab tray (`_tabCompareTray()`) to suggest
+  similar parcels (ranked by zoning/area/land-use/value-per-acre similarity)
+  when the tray is empty and a parcel is selected. Live UI path, not orphaned.
+
+- **Phase 12 (provenance): real gap found and closed.** `js/parcel/provenance.js`
+  (`window.PARCEL_PROVENANCE`) is a mature, well-designed per-field citation
+  module -- but until now it was exercised ONLY by test fixtures and
+  internally by `site-intelligence.js`. The multi-source join engine that was
+  supposed to populate it (`js/parcel/enrichment.js`,
+  `js/parcel/enrichment-arcgis-table.js`) has zero callers anywhere in the
+  live pipeline (`js/parcel/index.js` never invokes it) -- so in production,
+  essentially no real parcel has ever carried a `_provenance` record, meaning
+  the Phase 5 `source_confidence` roll-up built earlier today always reads
+  "unknown" for real data, not because the data lacks a knowable source, but
+  because nothing ever recorded it.
+
+  Fix, scoped correctly rather than building the full multi-source join
+  engine no jurisdiction in this repo currently needs: confirmed all 59
+  registered jurisdictions (all three NoVA counties included) use the single
+  `arcgis` connector type with exactly one source per parcel -- so this is a
+  `direct-official` attribution problem, not a conflict-resolution problem.
+  `js/parcel/connector-arcgis.js`'s `_normalize()` now attaches a
+  `PARCEL_PROVENANCE` record (jurisdiction id/name, real source attribute
+  name, `direct-official` confidence) for every canonical field a
+  jurisdiction's `registry.js` `fieldMap` actually verifies against the live
+  service -- and deliberately nothing for a field that fell through to the
+  lowercase-passthrough guess, since the connector genuinely does not know
+  what that attribute is. Surfaced in the panel: Details and Valuation tab
+  field rows now show a small "source" badge (`js/parcel/panel.js`'s new
+  `_provenanceBadge()`) with the full citation in a tooltip, reusing
+  `PARCEL_PROVENANCE.describe()` rather than re-deriving the wording.
+
+  This also means the Phase 5 zoning/valuation/ownership confidence roll-ups
+  built earlier today will now actually report `direct-official` for real
+  NoVA parcels instead of `unknown`, without any change to that code --
+  they were reading the provenance layer correctly all along; the layer
+  itself just had nothing real to read.
+
+Files: `js/parcel/connector-arcgis.js`, `js/parcel/panel.js`, `css/parcel.css`
+(new `.pp-field-prov` badge, theme-agnostic), `docs/PARCEL_ADD_JURISDICTION.md`
+(new note that a verified `fieldMap` entry now also drives provenance
+automatically), `PROJECT_CONTEXT.md`. Tests: extended `tests/parcel.test.js`
+(provenance attachment on a verified field, none on a passthrough field,
+jurisdiction id/confidence correctness) and
+`tests/test_parcel_panel_intelligence.mjs` (badge presence/absence, XSS
+escaping of a hostile source label). Full suite: 176/176 passed (parcel.test.js
+alone: 298/298), zero failures, no existing test weakened.
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
 Session: Economic data pipeline audit — Home page staleness disclosure gap fixed
 
 User asked for a check of the economic data pipeline (data/update_economic_data.py,

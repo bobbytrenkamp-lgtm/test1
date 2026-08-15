@@ -7,6 +7,13 @@
  * Usage:
  *   const conn = new ArcGISParcelConnector(registry.get('51107'));
  *   const geojson = await conn.fetchViewport(leafletMap.getBounds(), abortSignal);
+ *
+ * Depends on: window.PARCEL_PROVENANCE (optional -- when present, _normalize()
+ *   attaches a per-field provenance record for every canonical field this
+ *   jurisdiction's registry.js fieldMap actually verifies, so downstream
+ *   consumers like site-intelligence.js's source_confidence roll-up and the
+ *   parcel panel's provenance badges reflect real production data rather
+ *   than only test fixtures).
  */
 window.ArcGISParcelConnector = (function () {
   'use strict';
@@ -94,7 +101,9 @@ window.ArcGISParcelConnector = (function () {
     /* Remap source attribute names to canonical field names.
      * Unknown source fields are lowercased and passed through unchanged. */
     _normalize(geojson) {
-      const { fieldMap, fips } = this._config;
+      const { fieldMap, fips, id: jurisdictionId, name: jurisdictionName } = this._config;
+      const PROV = window.PARCEL_PROVENANCE;
+      const fetchedAt = PROV ? new Date().toISOString() : null;
 
       // Build reverse map: source attr name → canonical id
       const reverse = {};
@@ -122,6 +131,29 @@ window.ArcGISParcelConnector = (function () {
           props.parcel_id = props.pin
             || props.objectid
             || String(f.id != null ? f.id : '');
+        }
+
+        /* Per-field provenance (window.PARCEL_PROVENANCE, optional). Attached
+           only for canonical fields this jurisdiction's registry.js entry has
+           a VERIFIED source mapping for -- every fieldMap entry was checked
+           against the live service's own field list (see each entry's own
+           comment). A field that fell back to the lowercase-passthrough
+           guess above never gets a record: this connector does not actually
+           know what that attribute is, so it must not claim to know where it
+           came from either. Distinct from props._source (which names the
+           CONNECTOR TYPE, 'arcgis', the same for every ArcGIS jurisdiction) --
+           sourceId here is the specific jurisdiction, e.g. 'va-loudoun-county'. */
+        if (PROV) {
+          for (const canonical of Object.values(reverse)) {
+            if (props[canonical] == null || props[canonical] === '') continue;
+            PROV.attach(props, canonical, PROV.record({
+              sourceId:    jurisdictionId,
+              sourceLabel: jurisdictionName,
+              sourceField: fieldMap[canonical],
+              confidence:  PROV.CONFIDENCE.DIRECT_OFFICIAL.id,
+              fetchedAt,
+            }));
+          }
         }
 
         return { ...f, properties: props };

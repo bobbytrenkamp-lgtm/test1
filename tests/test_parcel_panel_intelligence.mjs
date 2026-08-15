@@ -182,6 +182,48 @@ function ok(name, cond) {
   global.window.PARCEL_SITE_INTELLIGENCE = originalSI;
 }
 
+// ── Field-level source provenance (Phase 12) ───────────────────────────────
+// connector-arcgis.js's _normalize() now attaches window.PARCEL_PROVENANCE
+// records for real production parcels (see tests/parcel.test.js); this
+// covers the panel side -- that a recorded field gets a visible, honest
+// source badge and an unrecorded one gets none.
+{
+  const PROV = global.window.PARCEL_PROVENANCE;
+  const props = { parcel_id: 'P-1', county_fips: '51107', owner: 'ACME LLC', assessed_value: 500000 };
+  PROV.attach(props, 'owner', PROV.record({
+    sourceId: 'va-loudoun-county', sourceLabel: 'Loudoun County, Virginia',
+    sourceField: 'OWNER_NAME', confidence: 'direct-official',
+  }));
+
+  const withProv = PANEL._provenanceBadge(props, 'owner');
+  ok('a recorded field gets a visible source badge', withProv.includes('pp-field-prov'));
+  ok('the badge tooltip names the source label', withProv.includes('Loudoun County, Virginia'));
+
+  const withoutProv = PANEL._provenanceBadge(props, 'assessed_value');
+  ok('an unrecorded field gets no badge, not an "unknown source" badge', withoutProv === '');
+
+  ok('no badge at all when PARCEL_PROVENANCE is not loaded',
+    (() => {
+      const saved = global.window.PARCEL_PROVENANCE;
+      delete global.window.PARCEL_PROVENANCE;
+      const out = PANEL._provenanceBadge(props, 'owner');
+      global.window.PARCEL_PROVENANCE = saved;
+      return out === '';
+    })());
+
+  const detailsHtml = PANEL._tabDetails(props);
+  ok('the Details tab surfaces the badge for a provenance-backed field',
+    detailsHtml.includes('pp-field-prov'));
+
+  // XSS safety: a hostile sourceLabel must not break out of the title attribute.
+  const hostileProps = { parcel_id: 'P-2', owner: 'Someone' };
+  PROV.attach(hostileProps, 'owner', PROV.record({
+    sourceLabel: '"><script>evil()</script>', confidence: 'direct-official',
+  }));
+  const hostileBadge = PANEL._provenanceBadge(hostileProps, 'owner');
+  ok('a hostile source label is escaped, not injected as markup', !hostileBadge.includes('<script>evil()'));
+}
+
 // ── XSS safety ───────────────────────────────────────────────────────────
 {
   const html = PANEL._renderProximity({
