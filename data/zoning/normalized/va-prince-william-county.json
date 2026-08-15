@@ -1,6 +1,6 @@
 {
   "jurisdiction_id": "va-prince-william-county",
-  "exported_at": "2026-08-13T21:49:05.868648Z",
+  "exported_at": "2026-08-15T12:04:10.330783Z",
   "disclaimer": "Zoning information is provided for preliminary research only. District boundaries, overlays, parcel conditions, interpretations, variances, and recent amendments may affect a property. Confirm all requirements with the controlling jurisdiction before relying on this information.",
   "jurisdiction": {
     "jurisdiction_id": "va-prince-william-county",
@@ -15,31 +15,32 @@
     "official_planning_department_name": "Planning Office",
     "official_zoning_page_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
     "official_zoning_map_url": "https://gisweb.pwcva.gov/",
-    "official_ordinance_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
-    "official_code_provider": "Prince William County",
+    "official_ordinance_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
+    "official_code_provider": "Municode",
     "gis_service_url": "https://gisweb.pwcva.gov/arcgis/rest/services/",
     "open_data_portal_url": null,
     "source_license": "Public \u2014 official government data. Verify terms of use with Prince William County before commercial redistribution.",
     "retrieval_method": "arcgis_featureserver",
     "source_last_updated": null,
-    "source_last_checked": "2026-08-13",
-    "ordinance_effective_date": null,
-    "ordinance_version": null,
-    "data_coverage_status": "geometry_only",
+    "source_last_checked": "2026-08-15",
+    "ordinance_effective_date": "2016-05-17",
+    "ordinance_version": "Data Center Opportunity Zone Overlay District provisions (Sec. 32-509) adopted via Ord. No. 16-2, effective 2016-05-17 -- subsequent amendments (e.g. DPA2026-00006) may have updated specific by-right/SUP boundaries since; confirm current text at the Municode link before relying on specific section numbers.",
+    "data_coverage_status": "geometry_and_uses",
     "geometry_coverage_status": "live",
     "dimensional_standard_coverage": "none",
-    "permitted_use_coverage": "none",
-    "overlay_coverage": "none",
-    "verification_status": "geometry_verified_uses_unresearched",
+    "permitted_use_coverage": "partial",
+    "overlay_coverage": "researched_not_yet_geometry_wired",
+    "verification_status": "geometry_and_uses_verified",
     "data_center_relevance": "high",
-    "pilot_notes": "Live-verified 2026-08-13 via three rounds of disposable diagnostic GitHub Actions dispatch: Prince William County publishes real zoning district polygon geometry directly on its own ArcGIS Server (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5 'Zoning Districts', 2,227 features, field ZoningDistrict). The same MapServer also has a real 'Overlay District Data Center Opportunity Zone' layer (layer 7, a single designated rezoning case) not yet wired into this pipeline. Unlike Loudoun, this pilot ships with zero districts.json content -- district codes returned by the live geometry (e.g. via zoning_code on the normalized geometry) are real but have not yet been cross-referenced against the actual PWC Zoning Ordinance text for data-center permitted-use status. Do not treat an absent or 'not_listed' classification as meaning data centers are prohibited -- it means the classification has not been researched yet.",
+    "pilot_notes": "Zoning geometry live-verified 2026-08-13 (gisweb.pwcva.gov Planning/Zoning/MapServer layer 5 'Zoning Districts', 2,227 features, field ZoningDistrict). Data-center permitted-use research completed 2026-08-15 for 28 of 31 real district codes against real, primary-source PWC ordinance text: PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text (Ord. No. 16-2, Sec. 32-403.33 and Sec. 32-509.01-.06), both fetched and text-extracted directly from the government PDFs via a GitHub-Actions-dispatched pdf-parse run -- not a search-engine summary. 17 districts are prohibited (agricultural, residential, PMR, B-2, B-3, V), 11 are Special-Use-Permit-eligible outside the Data Center Opportunity Zone Overlay District (with several of those -- O(F)/O(H)/O(L)/O(M)/M-1/M-2/M-T -- upgrading to by-right when the parcel is also inside the overlay). CTY, FED, and TWN remain genuinely unresearched. The Overlay District's real boundary geometry (Planning/Zoning/MapServer layer 7 'Overlay District Data Center Opportunity Zone') has been found but is not yet wired into the pipeline as a queryable overlay -- so today's classification always uses the base-district (outside-overlay) permission level, never the more permissive by-right-in-overlay level, which is the conservative/honest direction to be wrong in.",
     "known_limitations": [
-      "districts.json does not exist for this jurisdiction yet -- every real zoning code returned by the live geometry will show as unclassified until permitted-use research is done against the actual ordinance.",
-      "The Planning/Zoning/MapServer layer 5 'Zoning Districts' has no separate district-name field -- ZoningDistrict is the only classification attribute (no human-readable name comes from the source).",
-      "layer 7 'Overlay District Data Center Opportunity Zone' (a real designated rezoning case relevant to data-center siting) has been found but is not yet wired into the pipeline as an overlay layer.",
-      "Parcel-level zoning_code is not published by Prince William's parcel service (see js/parcel/registry.js's notProvidedBySource for FIPS 51153) -- js/parcel/zoning-geometry.js's spatial point-in-polygon resolution is required to connect a parcel to this geometry."
+      "The Data Center Opportunity Zone Overlay District's real GIS boundary (layer 7) is not yet wired into the pipeline as a queryable overlay -- every classification currently reflects the base district's outside-overlay permission level (Special Use Permit for most non-prohibited districts), even for parcels that may actually be inside the overlay and therefore eligible by-right under Sec. 32-509.03. This is the conservative direction to be wrong in (understates eligibility, never overstates it), but it is a known gap, not a determination that overlay membership doesn't matter.",
+      "CTY, FED, and TWN district codes could not be matched to an official category via primary-source research after multiple targeted searches -- they remain 'not_listed', not a claim of prohibition.",
+      "District official names are only recorded where directly confirmed via a primary or clearly-attributed secondary source (SR-1/SR-1C/SR-5 'Semi-Rural Residential', RPC 'Residential Planned Community', MXD-U 'Mixed Use District-Urban'); most other codes' exact official titles are still unconfirmed even though their category and DC-eligibility are.",
+      "The Planning/Zoning/MapServer layer 5 'Zoning Districts' has no separate district-name field -- ZoningDistrict is the only classification attribute from the source itself.",
+      "Dimensional standards (setbacks, height, lot coverage) have not been researched for any district -- no buildable-envelope estimate is possible yet for Prince William parcels."
     ],
-    "notes": "Second Virginia pilot jurisdiction after Loudoun. Geometry pipeline proven end-to-end; permitted-use classification research is the next step, not yet done."
+    "notes": "Second Virginia pilot jurisdiction after Loudoun. Geometry pipeline proven end-to-end; 28 of 31 real district codes now carry ordinance-text-verified data-center permitted-use determinations. Remaining gaps: 3 unresearched codes (CTY/FED/TWN), the overlay boundary not yet wired spatially, and no dimensional standards yet."
   },
   "districts": {
     "A-1": {
@@ -47,18 +48,18 @@
       "district_code": "A-1",
       "original_district_code": "A-1",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "agricultural",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Agricultural district. PWC Zoning Ordinance Sec. 32-509.06 prohibits data centers in agricultural districts.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Agricultural district. PWC Zoning Ordinance Sec. 32-509.06 prohibits data centers in agricultural districts.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -69,25 +70,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "A-1",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Agricultural district. PWC Zoning Ordinance Sec. 32-509.06 prohibits data centers in agricultural districts."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Agricultural district. PWC Zoning Ordinance Sec. 32-509.06 prohibits data centers in agricultural districts.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "A-1C": {
@@ -95,18 +107,18 @@
       "district_code": "A-1C",
       "original_district_code": "A-1C",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "agricultural",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Agricultural district (conditional). Same Sec. 32-509.06 agricultural prohibition applies to the base A-1 category.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Agricultural district (conditional). Same Sec. 32-509.06 agricultural prohibition applies to the base A-1 category.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -117,25 +129,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "A-1C",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Agricultural district (conditional). Same Sec. 32-509.06 agricultural prohibition applies to the base A-1 category."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Agricultural district (conditional). Same Sec. 32-509.06 agricultural prohibition applies to the base A-1 category.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "B-1": {
@@ -143,18 +166,18 @@
       "district_code": "B-1",
       "original_district_code": "B-1",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "business",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
       "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "dc_eligibility_summary": "Business/commercial-category district (B-prefix), not named in Sec. 32-509.06's prohibited list. Treated as Special Use Permit under the FAQ's general 'commercial... districts' rule -- this determination is inferred from category rather than an explicit named citation (unlike B-2/B-3's explicit prohibition), so confidence is lower; verify directly before relying on it.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Business/commercial-category district (B-prefix), not named in Sec. 32-509.06's prohibited list. Treated as Special Use Permit under the FAQ's general 'commercial... districts' rule -- this determination is inferred from category rather than an explicit named citation (unlike B-2/B-3's explicit prohibition), so confidence is lower; verify directly before relying on it.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -165,25 +188,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "B-1",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "low",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Business/commercial-category district (B-prefix), not named in Sec. 32-509.06's prohibited list. Treated as Special Use Permit under the FAQ's general 'commercial... districts' rule -- this determination is inferred from category rather than an explicit named citation (unlike B-2/B-3's explicit prohibition), so confidence is lower; verify directly before relying on it."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "low",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Business/commercial-category district (B-prefix), not named in Sec. 32-509.06's prohibited list. Treated as Special Use Permit under the FAQ's general 'commercial... districts' rule -- this determination is inferred from category rather than an explicit named citation (unlike B-2/B-3's explicit prohibition), so confidence is lower; verify directly before relying on it.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "B-2": {
@@ -191,18 +229,18 @@
       "district_code": "B-2",
       "original_district_code": "B-2",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "business",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead).",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead).",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -213,25 +251,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "B-2",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead)."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead).",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "B-3": {
@@ -239,18 +288,18 @@
       "district_code": "B-3",
       "original_district_code": "B-3",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "business",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead).",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead).",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -261,25 +310,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "B-3",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead)."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead).",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "CTY": {
@@ -326,7 +386,18 @@
         "confidence_level": "unavailable",
         "manual_review_required": true,
         "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
         "overall_assessment": "unclear"
       }
     },
@@ -374,7 +445,18 @@
         "confidence_level": "unavailable",
         "manual_review_required": true,
         "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
         "overall_assessment": "unclear"
       }
     },
@@ -383,18 +465,18 @@
       "district_code": "M/T",
       "original_district_code": "M/T",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "industrial",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Industrial/transitional district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Industrial/transitional district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -405,25 +487,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "M/T",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Industrial/transitional district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Industrial/transitional district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "M-1": {
@@ -431,18 +528,18 @@
       "district_code": "M-1",
       "original_district_code": "M-1",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "industrial",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -453,25 +550,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "M-1",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "M-2": {
@@ -479,18 +591,18 @@
       "district_code": "M-2",
       "original_district_code": "M-2",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "industrial",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -501,44 +613,59 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "M-2",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "MXD-U": {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "MXD-U",
       "original_district_code": "MXD-U",
-      "district_name": null,
-      "district_category": "unclassified",
+      "district_name": "Mixed Use District-Urban",
+      "district_category": "mixed_use",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Confirmed via search as 'Mixed Use District-Urban' (intended for T-5/T-6 transect areas). Not on Sec. 32-509.03's explicit by-right list; treated as Special Use Permit under the FAQ's general 'mixed-use districts' rule outside the overlay, with only the general secondary/special-use pass-through (Sec. 32-509.04/.05) applying inside it.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Confirmed via search as 'Mixed Use District-Urban' (intended for T-5/T-6 transect areas). Not on Sec. 32-509.03's explicit by-right list; treated as Special Use Permit under the FAQ's general 'mixed-use districts' rule outside the overlay, with only the general secondary/special-use pass-through (Sec. 32-509.04/.05) applying inside it.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -549,25 +676,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "MXD-U",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Confirmed via search as 'Mixed Use District-Urban' (intended for T-5/T-6 transect areas). Not on Sec. 32-509.03's explicit by-right list; treated as Special Use Permit under the FAQ's general 'mixed-use districts' rule outside the overlay, with only the general secondary/special-use pass-through (Sec. 32-509.04/.05) applying inside it."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Confirmed via search as 'Mixed Use District-Urban' (intended for T-5/T-6 transect areas). Not on Sec. 32-509.03's explicit by-right list; treated as Special Use Permit under the FAQ's general 'mixed-use districts' rule outside the overlay, with only the general secondary/special-use pass-through (Sec. 32-509.04/.05) applying inside it.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "O(F)": {
@@ -575,18 +717,18 @@
       "district_code": "O(F)",
       "original_district_code": "O(F)",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "office",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -597,25 +739,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "O(F)",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "O(H)": {
@@ -623,18 +780,18 @@
       "district_code": "O(H)",
       "original_district_code": "O(H)",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "office",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -645,25 +802,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "O(H)",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "O(L)": {
@@ -671,18 +843,18 @@
       "district_code": "O(L)",
       "original_district_code": "O(L)",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "office",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -693,25 +865,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "O(L)",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "O(M)": {
@@ -719,18 +906,18 @@
       "district_code": "O(M)",
       "original_district_code": "O(M)",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "office",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -741,25 +928,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "O(M)",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "PBD": {
@@ -767,18 +969,18 @@
       "district_code": "PBD",
       "original_district_code": "PBD",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "planned_mixed_use",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -789,25 +991,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "PBD",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "PMD": {
@@ -815,18 +1032,18 @@
       "district_code": "PMD",
       "original_district_code": "PMD",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "planned_mixed_use",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -837,25 +1054,40 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "PMD",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
-          "conditions": [],
-          "confidence_level": "unavailable",
+          "official_use_name": "Data Center",
+          "permission_status": "special_use_permit",
+          "approval_type": "special_use_permit",
+          "conditions": [
+            "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+          ],
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
-        "conditions": [],
-        "confidence_level": "unavailable",
+        "base_zoning_status": "special_use_permit",
+        "official_use_name": "Data Center",
+        "approval_type": "special_use_permit",
+        "conditions": [
+          "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+        ],
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "potentially_eligible"
       }
     },
     "PMR": {
@@ -866,15 +1098,15 @@
       "district_category": "unclassified",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Explicitly named in PWC Zoning Ordinance Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment, Ord. No. 16-2). Official category name not yet confirmed.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Explicitly named in PWC Zoning Ordinance Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment, Ord. No. 16-2). Official category name not yet confirmed.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -885,25 +1117,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "PMR",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Explicitly named in PWC Zoning Ordinance Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment, Ord. No. 16-2). Official category name not yet confirmed."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Explicitly named in PWC Zoning Ordinance Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment, Ord. No. 16-2). Official category name not yet confirmed.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "R-16": {
@@ -911,18 +1154,18 @@
       "district_code": "R-16",
       "original_district_code": "R-16",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -933,25 +1176,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "R-16",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "R-2": {
@@ -959,18 +1213,18 @@
       "district_code": "R-2",
       "original_district_code": "R-2",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -981,25 +1235,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "R-2",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "R-2C": {
@@ -1007,18 +1272,18 @@
       "district_code": "R-2C",
       "original_district_code": "R-2C",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1029,25 +1294,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "R-2C",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "R-30": {
@@ -1055,18 +1331,18 @@
       "district_code": "R-30",
       "original_district_code": "R-30",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1077,25 +1353,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "R-30",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "R-4": {
@@ -1103,18 +1390,18 @@
       "district_code": "R-4",
       "original_district_code": "R-4",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1125,25 +1412,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "R-4",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "R-4C": {
@@ -1151,18 +1449,18 @@
       "district_code": "R-4C",
       "original_district_code": "R-4C",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1173,25 +1471,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "R-4C",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "R-6": {
@@ -1199,18 +1508,18 @@
       "district_code": "R-6",
       "original_district_code": "R-6",
       "district_name": null,
-      "district_category": "unclassified",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1221,44 +1530,55 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "R-6",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "RPC": {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "RPC",
       "original_district_code": "RPC",
-      "district_name": null,
-      "district_category": "unclassified",
+      "district_name": "Residential Planned Community",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Confirmed via search as 'Residential Planned Community,' Part 305, Article III (Agricultural and Residential Districts) -- planned developments of 500+ contiguous acres. Sec. 32-509.06 residential prohibition applies.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Confirmed via search as 'Residential Planned Community,' Part 305, Article III (Agricultural and Residential Districts) -- planned developments of 500+ contiguous acres. Sec. 32-509.06 residential prohibition applies.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1269,44 +1589,55 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "RPC",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Confirmed via search as 'Residential Planned Community,' Part 305, Article III (Agricultural and Residential Districts) -- planned developments of 500+ contiguous acres. Sec. 32-509.06 residential prohibition applies."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Confirmed via search as 'Residential Planned Community,' Part 305, Article III (Agricultural and Residential Districts) -- planned developments of 500+ contiguous acres. Sec. 32-509.06 residential prohibition applies.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "SR-1": {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "SR-1",
       "original_district_code": "SR-1",
-      "district_name": null,
-      "district_category": "unclassified",
+      "district_name": "Semi-Rural Residential District",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Confirmed via Municode Part 302 'SEMI-RURAL RESIDENTIAL DISTRICTS' (Article III, Agricultural and Residential Districts). Sec. 32-509.06 prohibits data centers in residential districts.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Confirmed via Municode Part 302 'SEMI-RURAL RESIDENTIAL DISTRICTS' (Article III, Agricultural and Residential Districts). Sec. 32-509.06 prohibits data centers in residential districts.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1317,44 +1648,55 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "SR-1",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Confirmed via Municode Part 302 'SEMI-RURAL RESIDENTIAL DISTRICTS' (Article III, Agricultural and Residential Districts). Sec. 32-509.06 prohibits data centers in residential districts."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Confirmed via Municode Part 302 'SEMI-RURAL RESIDENTIAL DISTRICTS' (Article III, Agricultural and Residential Districts). Sec. 32-509.06 prohibits data centers in residential districts.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "SR-1C": {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "SR-1C",
       "original_district_code": "SR-1C",
-      "district_name": null,
-      "district_category": "unclassified",
+      "district_name": "Semi-Rural Residential District (conditional)",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1365,44 +1707,55 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "SR-1C",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "SR-5": {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "SR-5",
       "original_district_code": "SR-5",
-      "district_name": null,
-      "district_category": "unclassified",
+      "district_name": "Semi-Rural Residential District",
+      "district_category": "residential",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "moderate",
+      "dc_eligibility_summary": "Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1413,25 +1766,36 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "SR-5",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
+          "confidence_level": "moderate",
           "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "notes": "Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
+        "confidence_level": "moderate",
         "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "notes": "Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     },
     "TWN": {
@@ -1478,7 +1842,18 @@
         "confidence_level": "unavailable",
         "manual_review_required": true,
         "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
         "overall_assessment": "unclear"
       }
     },
@@ -1490,15 +1865,15 @@
       "district_category": "unclassified",
       "district_description": null,
       "base_or_overlay": "base",
-      "ordinance_chapter": null,
-      "ordinance_section": null,
-      "official_source_url": "https://www.pwcva.gov/department/planning-office/zoning-ordinance",
+      "ordinance_chapter": "Chapter 32 - Zoning",
+      "ordinance_section": "Sec. 32-509 (Data Center Opportunity Zone Overlay District); Sec. 32-403.33 (Special uses -- Data Center outside the Overlay)",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO",
       "effective_date": null,
-      "last_verified": "2026-08-13",
-      "verification_method": "live_gis_service",
-      "confidence_level": "low",
-      "dc_eligibility_summary": null,
-      "reviewer_notes": "Real district code confirmed live from Prince William County's own zoning GIS service (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 5, 2026-08-13). Official full district name and data-center permitted-use status have NOT yet been researched against the actual PWC Zoning Ordinance text -- do not treat the absence of a permitted-use entry as meaning data centers are prohibited or permitted; it means unresearched.",
+      "last_verified": "2026-08-15",
+      "verification_method": "ordinance_text_verified",
+      "confidence_level": "high",
+      "dc_eligibility_summary": "Explicitly named in Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment). Official category name not yet confirmed.",
+      "reviewer_notes": "Live-verified 2026-08-15 via real, primary-source PWC ordinance text (PWC's own 'Data Center Overlay Frequently Asked Questions' PDF and the verbatim 2016 ordinance amendment text, Ord. No. 16-2, both fetched and text-extracted directly -- not a search-engine summary). Explicitly named in Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment). Official category name not yet confirmed.",
       "standards": {},
       "conditional_rules": [],
       "standards_confidence": "unavailable",
@@ -1509,29 +1884,85 @@
           "jurisdiction_id": "va-prince-william-county",
           "district_code": "V",
           "standardized_use_id": "data_center",
-          "official_use_name": "",
-          "permission_status": "not_listed",
-          "approval_type": null,
+          "official_use_name": "Data Center",
+          "permission_status": "prohibited",
+          "approval_type": "prohibited",
           "conditions": [],
-          "confidence_level": "unavailable",
-          "manual_review_required": true,
-          "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+          "confidence_level": "high",
+          "manual_review_required": false,
+          "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment). Official category name not yet confirmed."
         }
       ],
       "dc_analysis": {
-        "base_zoning_status": "not_listed",
-        "official_use_name": "",
-        "approval_type": null,
+        "base_zoning_status": "prohibited",
+        "official_use_name": "Data Center",
+        "approval_type": "prohibited",
         "conditions": [],
-        "confidence_level": "unavailable",
-        "manual_review_required": true,
-        "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district.",
-        "applicable_overlays": [],
-        "overall_assessment": "unclear"
+        "confidence_level": "high",
+        "manual_review_required": false,
+        "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment). Official category name not yet confirmed.",
+        "applicable_overlays": [
+          {
+            "overlay_code": "DCOZOD",
+            "overlay_name": "Data Center Opportunity Zone Overlay District",
+            "what_it_affects": [
+              "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+              "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+            ],
+            "confidence_level": "high",
+            "note": "Overlay applicability to a specific parcel requires GIS boundary verification"
+          }
+        ],
+        "overall_assessment": "not_eligible"
       }
     }
   },
-  "overlays": {},
+  "overlays": {
+    "DCOZOD": {
+      "overlay_code": "DCOZOD",
+      "overlay_name": "Data Center Opportunity Zone Overlay District",
+      "overlay_category": "special_purpose",
+      "base_or_overlay": "overlay",
+      "description": "Adopted in 2016 (Ord. No. 16-2) to promote data center development in areas of the county with existing infrastructure capable of supporting the use, while continuing to attract high-tech industrial development and limiting negative impacts to surrounding communities. The Overlay does not replace the underlying base zoning district -- both the underlying district's regulations and the Overlay's own regulations apply together. The Overlay covers approximately 9,500 acres; per PWC's own FAQ, roughly 72% of all industrially-zoned land countywide falls within it.",
+      "geographic_coverage": "Approximately 9,500 acres, concentrated in the county's existing office/industrial corridor. Real boundary geometry exists as a GIS layer (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 7, 'Overlay District Data Center Opportunity Zone') but has not yet been fetched/wired into this pipeline as a queryable spatial layer -- see known_geometry_gap.",
+      "what_it_affects": [
+        "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+        "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+      ],
+      "permitted_use_rules": {
+        "by_right_in_overlay": {
+          "description": "Data centers are permitted BY RIGHT within the Overlay boundary, in these base districts: O(L), O(H), O(M), O(F) (office), M-1, M-2, M/T (industrial); and in designated office or industrial land bays within the PBD and PMD districts.",
+          "ordinance_section": "Sec. 32-509.03 - Uses permitted by right",
+          "original_text_excerpt": "Data centers shall be permitted by right in the Data Center Opportunity Zone Overlay District in the O(L), O(H), O(M), O(F), M-1, M-2, and M/T zoning districts and in designated office or industrial land bays in the PBD and PMD district.",
+          "confidence_level": "high",
+          "verification_method": "primary_source_pdf_text_extraction"
+        },
+        "special_use_permit_outside_overlay": {
+          "description": "Outside the Overlay boundary, data centers are permitted subject to Special Use Permit approval in commercial, office, industrial, and mixed-use districts.",
+          "ordinance_section": "Sec. 32-403.33 - Special uses: Data Center outside the Data Center Opportunity Zone Overlay District; Sec. 32-509.05 - Uses permitted by Special Use Permit",
+          "confidence_level": "high",
+          "verification_method": "primary_source_pdf_text_extraction"
+        },
+        "prohibited": {
+          "description": "Data centers are prohibited in agricultural, residential, PMR, B-2, B-3, and V districts -- this reads as a countywide rule, not limited to inside/outside the Overlay.",
+          "ordinance_section": "Sec. 32-509.06 - Prohibited Districts",
+          "original_text_excerpt": "Data centers shall be prohibited in agricultural, residential, PMR, B-2, B-3, and V districts.",
+          "confidence_level": "moderate",
+          "verification_method": "primary_source_pdf_text_extraction",
+          "notes": "Confidence is 'moderate' rather than 'high' because the reading that this prohibition is Overlay-independent (applies countywide, not just inside the Overlay boundary) is an inference from Sec. 32-403.33's title and the FAQ's plain-language framing, not from an explicit standalone countywide-scope statement."
+        }
+      },
+      "ordinance_section": "Chapter 32 (Zoning), Article V, Part 509 (Sec. 32-509.01 through 32-509.06); related special-use grant at Sec. 32-403.33",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO_ARTVOVDI_PT509DACEOPZOOVDI",
+      "gis_layer_url": "https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/7",
+      "known_geometry_gap": "Layer 7 ('Overlay District Data Center Opportunity Zone') is a real, live GIS layer on PWC's own ArcGIS Server, discovered during the same round of diagnostic dispatch that found the base Zoning Districts layer (layer 5). It has not yet been fetched, normalized, or wired into a spatial point-in-polygon overlay-membership check the way js/parcel/zoning-geometry.js does for base district resolution. Until that exists, every parcel's data-center feasibility assessment uses the more conservative outside-overlay (Special Use Permit) treatment for eligible districts, never the by-right-in-overlay treatment, even if the parcel is actually inside the Overlay.",
+      "effective_date": "2016-05-17",
+      "last_verified": "2026-08-15",
+      "confidence_level": "high",
+      "verification_method": "primary_source_pdf_text_extraction",
+      "reviewer_notes": "Live-verified 2026-08-15 by fetching and text-extracting (via pdf-parse, not a search-engine summary) two independent real government documents: (1) PWC's own 'Data Center Overlay Frequently Asked Questions' PDF (pwcva.gov/assets/2022-01/..., updated 4/19/2022), and (2) the verbatim 2016 ordinance amendment text (Ord. No. 16-2) reproducing Sec. 32-403.33 and Sec. 32-509.01 through .06, found via a Virginia State Corporation Commission docket filing. Both independently state the same by-right / Special-Use-Permit / prohibited rules, which is strong corroboration. A more recent zoning text amendment (DPA2026-00006, per web search) proposes updates to the by-right/SUP boundaries and the Overlay's own geographic extent -- the current, in-force text should be confirmed at the Municode link before relying on specific district lists for a live decision."
+    }
+  },
   "geometry_available": true,
   "validation_summary": {
     "status": null,

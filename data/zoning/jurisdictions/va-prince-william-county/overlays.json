@@ -1,0 +1,51 @@
+{
+  "jurisdiction_id": "va-prince-william-county",
+  "last_updated": "2026-08-15",
+  "important_notice": "The Data Center Opportunity Zone Overlay District's regulatory content below is verified against real, primary-source ordinance text (PWC's own FAQ PDF plus the verbatim 2016 ordinance amendment text extracted directly from a government PDF). Its GIS BOUNDARY GEOMETRY is not yet wired into this pipeline as a queryable spatial layer -- see known_geometry_gap below and jurisdiction.json's known_limitations.",
+  "overlays": {
+    "DCOZOD": {
+      "overlay_code": "DCOZOD",
+      "overlay_name": "Data Center Opportunity Zone Overlay District",
+      "overlay_category": "special_purpose",
+      "base_or_overlay": "overlay",
+      "description": "Adopted in 2016 (Ord. No. 16-2) to promote data center development in areas of the county with existing infrastructure capable of supporting the use, while continuing to attract high-tech industrial development and limiting negative impacts to surrounding communities. The Overlay does not replace the underlying base zoning district -- both the underlying district's regulations and the Overlay's own regulations apply together. The Overlay covers approximately 9,500 acres; per PWC's own FAQ, roughly 72% of all industrially-zoned land countywide falls within it.",
+      "geographic_coverage": "Approximately 9,500 acres, concentrated in the county's existing office/industrial corridor. Real boundary geometry exists as a GIS layer (gisweb.pwcva.gov, Planning/Zoning/MapServer layer 7, 'Overlay District Data Center Opportunity Zone') but has not yet been fetched/wired into this pipeline as a queryable spatial layer -- see known_geometry_gap.",
+      "what_it_affects": [
+        "Whether a data center is permitted BY RIGHT (inside the Overlay, in eligible districts) versus requiring a Special Use Permit (outside the Overlay, or in districts/land-bay areas not covered by the by-right grant)",
+        "Whether a data center is entirely prohibited (agricultural, residential, PMR, B-2, B-3, V districts -- this prohibition applies regardless of Overlay membership)"
+      ],
+      "permitted_use_rules": {
+        "by_right_in_overlay": {
+          "description": "Data centers are permitted BY RIGHT within the Overlay boundary, in these base districts: O(L), O(H), O(M), O(F) (office), M-1, M-2, M/T (industrial); and in designated office or industrial land bays within the PBD and PMD districts.",
+          "ordinance_section": "Sec. 32-509.03 - Uses permitted by right",
+          "original_text_excerpt": "Data centers shall be permitted by right in the Data Center Opportunity Zone Overlay District in the O(L), O(H), O(M), O(F), M-1, M-2, and M/T zoning districts and in designated office or industrial land bays in the PBD and PMD district.",
+          "confidence_level": "high",
+          "verification_method": "primary_source_pdf_text_extraction"
+        },
+        "special_use_permit_outside_overlay": {
+          "description": "Outside the Overlay boundary, data centers are permitted subject to Special Use Permit approval in commercial, office, industrial, and mixed-use districts.",
+          "ordinance_section": "Sec. 32-403.33 - Special uses: Data Center outside the Data Center Opportunity Zone Overlay District; Sec. 32-509.05 - Uses permitted by Special Use Permit",
+          "confidence_level": "high",
+          "verification_method": "primary_source_pdf_text_extraction"
+        },
+        "prohibited": {
+          "description": "Data centers are prohibited in agricultural, residential, PMR, B-2, B-3, and V districts -- this reads as a countywide rule, not limited to inside/outside the Overlay.",
+          "ordinance_section": "Sec. 32-509.06 - Prohibited Districts",
+          "original_text_excerpt": "Data centers shall be prohibited in agricultural, residential, PMR, B-2, B-3, and V districts.",
+          "confidence_level": "moderate",
+          "verification_method": "primary_source_pdf_text_extraction",
+          "notes": "Confidence is 'moderate' rather than 'high' because the reading that this prohibition is Overlay-independent (applies countywide, not just inside the Overlay boundary) is an inference from Sec. 32-403.33's title and the FAQ's plain-language framing, not from an explicit standalone countywide-scope statement."
+        }
+      },
+      "ordinance_section": "Chapter 32 (Zoning), Article V, Part 509 (Sec. 32-509.01 through 32-509.06); related special-use grant at Sec. 32-403.33",
+      "official_source_url": "https://library.municode.com/va/prince_william_county/codes/code_of_ordinances?nodeId=CH32ZO_ARTVOVDI_PT509DACEOPZOOVDI",
+      "gis_layer_url": "https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Zoning/MapServer/7",
+      "known_geometry_gap": "Layer 7 ('Overlay District Data Center Opportunity Zone') is a real, live GIS layer on PWC's own ArcGIS Server, discovered during the same round of diagnostic dispatch that found the base Zoning Districts layer (layer 5). It has not yet been fetched, normalized, or wired into a spatial point-in-polygon overlay-membership check the way js/parcel/zoning-geometry.js does for base district resolution. Until that exists, every parcel's data-center feasibility assessment uses the more conservative outside-overlay (Special Use Permit) treatment for eligible districts, never the by-right-in-overlay treatment, even if the parcel is actually inside the Overlay.",
+      "effective_date": "2016-05-17",
+      "last_verified": "2026-08-15",
+      "confidence_level": "high",
+      "verification_method": "primary_source_pdf_text_extraction",
+      "reviewer_notes": "Live-verified 2026-08-15 by fetching and text-extracting (via pdf-parse, not a search-engine summary) two independent real government documents: (1) PWC's own 'Data Center Overlay Frequently Asked Questions' PDF (pwcva.gov/assets/2022-01/..., updated 4/19/2022), and (2) the verbatim 2016 ordinance amendment text (Ord. No. 16-2) reproducing Sec. 32-403.33 and Sec. 32-509.01 through .06, found via a Virginia State Corporation Commission docket filing. Both independently state the same by-right / Special-Use-Permit / prohibited rules, which is strong corroboration. A more recent zoning text amendment (DPA2026-00006, per web search) proposes updates to the by-right/SUP boundaries and the Overlay's own geographic extent -- the current, in-force text should be confirmed at the Municode link before relying on specific district lists for a live decision."
+    }
+  }
+}

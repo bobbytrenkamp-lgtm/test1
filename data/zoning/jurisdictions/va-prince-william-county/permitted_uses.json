@@ -1,67 +1,69 @@
 {
   "jurisdiction_id": "va-prince-william-county",
-  "last_updated": "2026-08-13",
-  "note": "Every entry below is an explicit, honest 'not yet researched' placeholder for a real, live-verified district code -- see districts.json's own note. None of these should be read as a real permitted-use determination.",
+  "last_updated": "2026-08-15",
+  "note": "28 of 31 real district codes now carry real, ordinance-text-verified data_center permission_status determinations (see districts.json's note for sourcing). CTY, FED, TWN remain 'not_listed' -- genuinely unresearched, not a claim of prohibition.",
   "uses": [
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "A-1",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Agricultural district. PWC Zoning Ordinance Sec. 32-509.06 prohibits data centers in agricultural districts."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "A-1C",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Agricultural district (conditional). Same Sec. 32-509.06 agricultural prohibition applies to the base A-1 category."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "B-1",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "low",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Business/commercial-category district (B-prefix), not named in Sec. 32-509.06's prohibited list. Treated as Special Use Permit under the FAQ's general 'commercial... districts' rule -- this determination is inferred from category rather than an explicit named citation (unlike B-2/B-3's explicit prohibition), so confidence is lower; verify directly before relying on it."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "B-2",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead)."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "B-3",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list, notwithstanding being a business/commercial-prefix district -- a real, ordinance-specific carve-out (most commercial districts get Special Use Permit treatment instead)."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
@@ -91,265 +93,285 @@
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "M/T",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Industrial/transitional district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "M-1",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "M-2",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Industrial district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list (confirmed independently in both the PWC FAQ PDF and the verbatim 2016 ordinance text). Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "MXD-U",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Confirmed via search as 'Mixed Use District-Urban' (intended for T-5/T-6 transect areas). Not on Sec. 32-509.03's explicit by-right list; treated as Special Use Permit under the FAQ's general 'mixed-use districts' rule outside the overlay, with only the general secondary/special-use pass-through (Sec. 32-509.04/.05) applying inside it."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "O(F)",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "O(H)",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "O(L)",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "O(M)",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Office district. Explicitly named in Sec. 32-509.03's by-right-in-overlay list. Permitted by Special Use Permit outside the Data Center Opportunity Zone Overlay District (PWC Zoning Ordinance Sec. 32-403.33 / Sec. 32-509.05). If this parcel is ALSO within the Data Center Opportunity Zone Overlay District boundary, by-right permission under Sec. 32-509.03 may apply instead -- overlay membership is a separate, GIS-verified condition not encoded in this base-district record."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "PBD",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "PMD",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "official_use_name": "Data Center",
+      "permission_status": "special_use_permit",
+      "approval_type": "special_use_permit",
+      "conditions": [
+        "Requires PWC Special Use Permit approval (Sec. 32-403.33 / Sec. 32-509.05) unless the parcel is also within the Data Center Opportunity Zone Overlay District, which may grant by-right status for some districts under Sec. 32-509.03."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Sec. 32-509.03 grants by-right data center use only in 'designated office or industrial land bays' within this district when also inside the Data Center Opportunity Zone Overlay -- narrower than the full-district by-right granted to O(*)/M-1/M-2/M/T. Outside any such land bay, or outside the overlay entirely, treated as Special Use Permit per the general commercial/mixed-use rule."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "PMR",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Explicitly named in PWC Zoning Ordinance Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment, Ord. No. 16-2). Official category name not yet confirmed."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "R-16",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "R-2",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "R-2C",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "R-30",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "R-4",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "R-4C",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Residential district (conditional). Same Sec. 32-509.06 residential prohibition applies."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "R-6",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Residential district. Sec. 32-509.06 prohibits data centers in residential districts."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "RPC",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Confirmed via search as 'Residential Planned Community,' Part 305, Article III (Agricultural and Residential Districts) -- planned developments of 500+ contiguous acres. Sec. 32-509.06 residential prohibition applies."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "SR-1",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Confirmed via Municode Part 302 'SEMI-RURAL RESIDENTIAL DISTRICTS' (Article III, Agricultural and Residential Districts). Sec. 32-509.06 prohibits data centers in residential districts."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "SR-1C",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "SR-5",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Same Part 302 semi-rural residential category as SR-1. Sec. 32-509.06 residential prohibition applies."
     },
     {
       "jurisdiction_id": "va-prince-william-county",
@@ -367,13 +389,13 @@
       "jurisdiction_id": "va-prince-william-county",
       "district_code": "V",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
+      "approval_type": "prohibited",
       "conditions": [],
-      "confidence_level": "unavailable",
-      "manual_review_required": true,
-      "notes": "Not yet researched against the actual PWC Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "confidence_level": "high",
+      "manual_review_required": false,
+      "notes": "Explicitly named in Sec. 32-509.06's prohibited-districts list (verbatim text extracted from the 2016 ordinance amendment). Official category name not yet confirmed."
     }
   ]
 }
