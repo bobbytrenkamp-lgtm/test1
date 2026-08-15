@@ -12,6 +12,7 @@ window.ZONING = (function () {
   const FIPS_TO_JURISDICTION = {
     "51107": "va-loudoun-county",
     "51153": "va-prince-william-county",
+    "51059": "va-fairfax-county",
   };
 
   /* In-memory cache: jurisdictionId → normalized data object */

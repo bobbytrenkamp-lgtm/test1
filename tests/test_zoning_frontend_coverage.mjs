@@ -43,8 +43,9 @@ ok('ZONING exposes FIPS_TO_JURISDICTION for zoning-map.js to key off',
 
 ok('Loudoun County (51107) has coverage', ZONING.hasCoverage('51107'));
 ok('Prince William County (51153) has coverage', ZONING.hasCoverage('51153'));
-ok('An uncovered county (e.g. Fairfax 51059) correctly reports no coverage -- never guessed',
-  !ZONING.hasCoverage('51059'));
+ok('Fairfax County (51059) has coverage', ZONING.hasCoverage('51059'));
+ok('An uncovered county (e.g. Montgomery County MD 24031, never wired) correctly reports no coverage -- never guessed',
+  !ZONING.hasCoverage('24031'));
 
 // ── Regression guard: every jurisdiction with a real normalized file on
 // disk must be reachable via FIPS_TO_JURISDICTION. This is exactly the gap
