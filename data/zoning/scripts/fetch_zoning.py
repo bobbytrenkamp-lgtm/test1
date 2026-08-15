@@ -102,8 +102,19 @@ def fetch_arcgis_featureserver(base_url: str, layer_id: int = 0,
         all_features.extend(features)
         print(f"  ...{len(all_features)} features fetched")
 
+        # `exceededTransferLimit` is not a reliable stop signal on every
+        # ArcGIS deployment -- confirmed 2026-08-15 against Fairfax
+        # County's zoning FeatureServer (hosted on ArcGIS Online's shared
+        # infrastructure, not a traditional ArcGIS Server instance): a
+        # request bounded by an explicit resultRecordCount came back with
+        # exactly that many features and no exceededTransferLimit flag at
+        # all, even though 6x more real features existed server-side. A
+        # full page (== page_size) is itself sufficient evidence more may
+        # remain -- only a page returning FEWER than page_size features is
+        # conclusive proof there's nothing left, since a server can't
+        # truthfully claim more exist while handing back a partial page.
         exceeded = data.get("exceededTransferLimit", False)
-        if not exceeded or len(features) == 0:
+        if len(features) == 0 or (len(features) < page_size and not exceeded):
             break
 
         offset += page_size
