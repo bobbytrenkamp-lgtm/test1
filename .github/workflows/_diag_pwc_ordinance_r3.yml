@@ -1,4 +1,4 @@
-name: _diag_pwc_ordinance_r2
+name: _diag_pwc_ordinance_r3
 on:
   workflow_dispatch: {}
 
@@ -11,4 +11,4 @@ jobs:
         with:
           node-version: "20"
       - run: npm install pdf-parse@1.1.1 --no-save
-      - run: node data/_diag_pwc_ordinance_r2.mjs
+      - run: node data/_diag_pwc_ordinance_r3.mjs

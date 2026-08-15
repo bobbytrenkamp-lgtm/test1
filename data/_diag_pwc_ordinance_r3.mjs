@@ -8,7 +8,11 @@
 // from the Actions runner (this sandbox's WebFetch is egress-blocked for
 // pwcva.gov, pwcgov.org, and scc.virginia.gov entirely) and extracts real
 // text via pdf-parse rather than trusting a search-engine summary.
-import pdfParse from "pdf-parse";
+// pdf-parse's package-root index.js has a known bug: its top-level debug
+// check misfires under ESM import and tries to read a bundled test PDF
+// that isn't present outside its own package tests. Importing the inner
+// implementation module directly bypasses that broken entry point.
+import pdfParse from "pdf-parse/lib/pdf-parse.js";
 
 async function fetchAndReport(url, label) {
   try {
