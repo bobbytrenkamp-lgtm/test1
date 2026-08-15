@@ -9,6 +9,64 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 Date: 2026-08-15
 AI Assistant: Claude Code
+Session: Economic data pipeline audit — Home page staleness disclosure gap fixed
+
+User asked for a check of the economic data pipeline (data/update_economic_data.py,
+data/economy/*.json, js/economy*.js, js/home.js) for outdated or incorrect data.
+
+AUDIT FINDINGS:
+
+- The backend pipeline is healthy: `update_economic_data.yml` has run successfully
+  every day for the last two weeks (verified via GitHub Actions run history), zero
+  entries in `economic_metadata.json`'s `warnings` array, `census.unverified_metrics`
+  empty. FRED (23 series), ACS 5-year (vintage 2024), County Business Patterns
+  (2023), Building Permits, BLS QCEW average wage, and FEMA NRI are all populated
+  and current. Spot-checked headline values (UNRATE 4.1% Jul 2026, DFF 3.63% Aug 13
+  2026, DGS10 4.63%, CPIAUCSL, PAYEMS) against plausible real-world figures -- all
+  freshly retrieved, none hardcoded or stale.
+- `economic_metadata.json`'s top-level `"stale": true` and 6 of 23 FRED series
+  individually flagged stale (CSUSHPINSA 106 days, HOUST/INDPRO/JTSJOL/PCEPI/PERMIT
+  75 days) is NOT a bug -- it is the pipeline's own honesty guard correctly
+  reporting normal government publication lag for monthly series, scaled to each
+  series' real cadence (see `update_economic_data.py`'s per-series `stale_days >
+  limit` logic).
+- `eia_available: false` (electricity price never populated) is also not a
+  regression -- `EIA_API_KEY` is a documented OPTIONAL free-registration secret
+  that has simply never been configured for this repo; every other source is
+  unaffected, and PROJECT_CONTEXT.md already discloses this as an expected state.
+- Data Center Readiness Score (js/economy.js `readinessScore()`): spot-checked all
+  9 factor weights and `invert` flags for directional correctness (unemployment,
+  housing vacancy, wage, and electricity price correctly inverted so LOWER is
+  better; population growth, bachelor's %, labor participation, broadband, and
+  permits YoY correctly NOT inverted). No bug found.
+
+REAL BUG FOUND AND FIXED: js/economy-view.js's Economy tab KPI strip discloses
+per-series staleness via a "stale" chip (`s.stale` / `s.stale_days`, reading
+directly off `fred_data.json`). js/home.js's 4-indicator Economic Pulse reads the
+exact same `fred_data.json` record for 3 of its 4 indicators (Fed Funds Rate,
+10-Year Treasury, US Unemployment) but never checked `s.stale` at all -- so the
+same underlying number could show as unqualified/current on Home while the
+Economy tab, one click away, flagged it stale. Fixed by propagating `stale`/
+`staleDays` through `_renderHomeEconomicPulse()`'s `add()` helper and rendering
+the same theme-aware `.econ-stale-chip` CSS class (already global, not scoped to
+the Economy tab) when applicable -- no new CSS needed. None of today's 4 Home
+indicators are currently stale, so this fix has no visible effect right now; it
+closes the gap so a future outage doesn't silently show different honesty levels
+on two pages reading the same file.
+
+Not fixed (deliberately out of scope, not bugs): jsdom is not installed in this
+sandbox, so no automated DOM test could be added for the Home pulse render path
+(same known pre-existing limitation `run_all.sh` already reports for 4 other
+suites) -- verified instead via `node --check js/home.js` and manual code
+inspection matching the already-tested economy-view.js pattern exactly.
+
+Files touched: `js/home.js` only. Full suite: 176/176 passed, zero failures,
+no data files changed, no tests weakened.
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
 Session: NoVA milestone Phase 5/7/8/9/10 — Site Intelligence schema wired to zoning feasibility, deterministic findings/site_status, panel UI
 
 `js/parcel/site-intelligence.js` (`window.PARCEL_SITE_INTELLIGENCE`) existed
