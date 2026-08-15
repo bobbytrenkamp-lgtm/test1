@@ -1,33 +1,33 @@
 {
   "jurisdiction_id": "va-loudoun-county",
-  "report_generated": "2026-07-17",
+  "report_generated": "2026-08-15",
   "report_type": "pilot_validation",
-  "overall_status": "pilot_complete_low_confidence",
-  "summary": "Loudoun County pilot data is architecturally complete but all dimensional standards and most use classifications carry LOW confidence because they were compiled from general public knowledge without direct access to the current adopted ordinance. The pilot demonstrates the complete data model and frontend architecture. Before production use, all values must be verified against the current Loudoun County Zoning Ordinance.",
+  "overall_status": "geometry_live_uses_partial_low_confidence",
+  "summary": "Loudoun County's zoning polygon geometry is real and live (1,271 features, logis.loudoun.gov COL/Zoning/MapServer layer 3, live-verified 2026-08-13) -- this is no longer a demo. Dimensional standards and most use classifications still carry LOW confidence because they were compiled from general public knowledge without direct access to the current adopted ordinance, and only a small fraction of the 58 real district codes the live geometry returns have been researched at all. Before production use, dimensional standards must be verified against the current Loudoun County Zoning Ordinance and district coverage must be expanded.",
   "coverage_matrix": {
     "geometry": {
-      "status": "demo_only",
-      "detail": "No real zoning polygon geometry. Run data/zoning/scripts/run_zoning_pipeline.py to download from Loudoun County Open Data / ArcGIS service.",
-      "passed": false
+      "status": "live",
+      "detail": "Real zoning polygon geometry live-verified 2026-08-13: logis.loudoun.gov COL/Zoning/MapServer layer 3, 1,271 features, geometryType esriGeometryPolygon. The live service returns 58 real district codes (field ZO_ZONE); only a small subset have researched names/categories/DC-eligibility in districts.json -- see permitted_uses coverage below.",
+      "passed": true
     },
     "district_names": {
       "status": "partial",
-      "detail": "6 of approximately 20+ Loudoun County zoning districts included. Key data center districts (PD-IP, I1, I2) are present. Remaining districts (B1, B3, B4, O1, OP, TR1-TR4, PDH, etc.) not yet included.",
-      "passed": true
+      "detail": "7 of the 58 real district codes the live geometry returns have researched names/categories in districts.json (PD-IP, I1, I2, AR1, JLMA-3, B2, PD-OP). Of those 7, only PD-IP, AR1, JLMA-3, and PD-OP have a punctuation-insensitive match against a real live ZO_ZONE code -- I1, I2, and B2 are pre-2023-ordinance-rewrite codes with no match in the live service at all (the live service's current equivalent, if any, has not been identified) and so never resolve on real parcels. 51 of the 58 live codes have no researched entry whatsoever.",
+      "passed": false
     },
     "dimensional_standards": {
       "status": "partial_low_confidence",
-      "detail": "Standards provided for 5 districts. All values are approximate and require official verification. PD-IP standards particularly depend on individual development plans (proffers) which are site-specific.",
+      "detail": "Standards provided for 5 districts (approximate, general-public-knowledge sourcing). All values require official verification. PD-IP standards particularly depend on individual development plans (proffers) which are site-specific. Two of the 5 (I1, I2) use codes that do not match any real live district.",
       "passed": false
     },
     "permitted_uses": {
       "status": "partial_low_confidence",
-      "detail": "Use classifications provided for data center, residential, office, warehouse, and a few other uses across 5 districts. Full use table not yet compiled.",
+      "detail": "Use classifications provided for data center, residential, office, warehouse, and a few other uses across 5 districts. Only 3 real live district codes (PD-IP, AR1, JLMA-3) carry an actual data-center permitted-use determination; the remaining 55 of 58 live codes are 'not_listed' (unresearched, not prohibited).",
       "passed": false
     },
     "data_center_classification": {
       "status": "partial_moderate_confidence",
-      "detail": "Data center use classified in all 5 included districts. PD-IP and AR1/JLMA-3 classifications have moderate confidence. I1 and I2 classifications are low confidence.",
+      "detail": "Data center use classified for 3 real live district codes: PD-IP (permitted_by_right, moderate confidence), AR1 and JLMA-3 (prohibited). I1 and I2 classifications exist in permitted_uses.json but never apply to a real parcel because those codes have no match in the live service.",
       "passed": true
     },
     "overlay_data": {
@@ -53,21 +53,22 @@
   },
   "conflicts_detected": [],
   "warnings": [
-    "Zoning polygon geometry not yet downloaded — zoning map layer will show no district polygons until pipeline runs.",
+    "Only 3 of the 58 real district codes the live geometry service returns (PD-IP, AR1, JLMA-3) carry an actual data-center permitted-use determination -- the other 55 are unresearched ('not_listed'), never 'prohibited'.",
+    "I1, I2, and B2 (three of the seven researched district codes in districts.json) do not match any current live district code -- Loudoun's 2023 Zoning Ordinance rewrite changed the code set, and these legacy codes never resolve on a real parcel today.",
     "All dimensional standards are approximate — do not cite specific numbers without official ordinance verification.",
     "PD-IP development standards are additionally governed by individual proffer conditions, which are parcel-specific and not captured in this dataset.",
     "Loudoun County has been revising its Zoning Ordinance — the active ordinance version should be confirmed before citing specific section numbers.",
     "DCOD boundary is not yet captured in this dataset — data center eligibility for specific parcels within the DCOD zone may differ from the general district classification."
   ],
   "required_actions": [
-    "Run data/zoning/scripts/run_zoning_pipeline.py to download real zoning geometry",
+    "Research the remaining 51 of 58 real live district codes against the current (2023-rewrite) Loudoun County Zoning Ordinance for name/category/data-center permitted-use status.",
+    "Reconcile or retire the I1/I2/B2 entries -- determine each legacy code's real current-ordinance equivalent (if any) rather than leaving them unmatchable.",
     "Verify all dimensional standards against the current Loudoun County Zoning Ordinance at https://library.municode.com/va/loudoun_county",
-    "Confirm the DCOD overlay boundary with Loudoun County GIS",
-    "Expand district coverage to include remaining Loudoun County zoning districts",
-    "Add parcel-level data integration",
+    "Confirm the DCOD overlay boundary with Loudoun County GIS and wire it into the zoning pipeline as a real overlay layer.",
+    "Build the parcel-to-zoning spatial join so a specific parcel resolves to a real district (not yet built in this codebase).",
     "Review and update confidence levels after official verification"
   ],
-  "next_review_date": "2026-10-17",
-  "reviewer": "Initial pilot — automated compilation",
-  "notes": "This is the first pilot jurisdiction in the zoning intelligence system. It demonstrates the complete architecture and data model. Production-readiness requires official source verification for all dimensional standards and geometry download."
+  "next_review_date": "2026-11-15",
+  "reviewer": "Initial pilot — automated compilation; geometry status corrected 2026-08-15",
+  "notes": "First pilot jurisdiction in the zoning intelligence system. Zoning polygon geometry moved from demo to live and verified 2026-08-13; this report corrects the coverage matrix and warnings accordingly. Production-readiness still requires official ordinance verification for dimensional standards and expanded district-level data-center permitted-use research (only 3 of 58 real live codes currently classified)."
 }

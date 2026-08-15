@@ -52,7 +52,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | WATER | 1 | 1 | 79 | 1 | 1 |
 | WATER INFRASTRUCTURE | 1 | 1 | 44,612 | 0 | 0 |
 | WETLANDS | 1 | 0 | 0 | 0 | 0 |
-| ZONING | 1 | 1 | 1 | 1 | 1 |
+| ZONING | 1 | 1 | 3 | 1 | 1 |
 
 ## Every dataset
 
@@ -510,7 +510,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Zoning district standards (pilot)** (zoning_jurisdictions) — ✅ has data
 
-- Records: 1
+- Records: 3
 - Source: Individual county zoning ordinances (manually researched)
 - Geographic scope (declared): 1 jurisdiction (Loudoun County, VA)
 - Update frequency (declared): manual

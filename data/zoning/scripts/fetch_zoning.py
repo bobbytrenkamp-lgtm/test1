@@ -42,23 +42,30 @@ def _fetch_json(url: str, timeout: int = 30) -> dict:
 
 def fetch_arcgis_featureserver(base_url: str, layer_id: int = 0,
                                 page_size: int = ARCGIS_PAGE_SIZE,
-                                dry_run: bool = False) -> dict:
+                                dry_run: bool = False, where: str = "1=1") -> dict:
     """
     Paginate an ArcGIS FeatureServer layer and return GeoJSON FeatureCollection.
     Supports objectId-based pagination (works across all ArcGIS versions).
+
+    `where` lets a jurisdiction config scope the query to a single attribute
+    value -- needed when one layer's features span more than one real
+    jurisdiction (e.g. Fairfax County's Zoning layer also carries Town of
+    Herndon and Town of Vienna records under the same layer via a
+    JURISDICTION field; without a where clause here those towns' district
+    codes would be ingested as if they were Fairfax County's own).
     """
     query_url = f"{base_url.rstrip('/')}/{layer_id}/query"
     all_features = []
     offset = 0
 
-    print(f"  Fetching {base_url} layer {layer_id}")
+    print(f"  Fetching {base_url} layer {layer_id} (where={where!r})")
     if dry_run:
         print("  [dry-run] Skipping actual request")
         return {"type": "FeatureCollection", "features": [], "dry_run": True}
 
     while True:
         params = {
-            "where":        "1=1",
+            "where":        where,
             "outFields":    "*",
             "f":            "geojson",
             "resultOffset": str(offset),
@@ -226,7 +233,8 @@ def fetch_for_jurisdiction(jurisdiction_id: str, dry_run: bool = False) -> dict 
     elif src_type == "arcgis_featureserver":
         url = src.get("url", "")
         layer = src.get("layer_id", 0)
-        geojson = fetch_arcgis_featureserver(url, layer, dry_run=dry_run)
+        where = src.get("where", "1=1")
+        geojson = fetch_arcgis_featureserver(url, layer, dry_run=dry_run, where=where)
 
     if geojson is None:
         print(f"  No geometry retrieved for {jurisdiction_id}")

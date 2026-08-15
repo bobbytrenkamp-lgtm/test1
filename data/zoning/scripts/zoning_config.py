@@ -38,19 +38,52 @@ JURISDICTION_CONFIGS = {
         "data_center_relevance": "high",
         "sources": {
             "zoning_geometry": {
-                "type":   "arcgis_open_data",
-                "portal": "https://data.fairfaxcounty.gov/",
-                "search_terms": ["zoning districts", "current zoning"],
-                "export_format": "geojson",
-                "expected_min_features": 100,
+                # Live-verified 2026-08-15 via six rounds of disposable
+                # diagnostic GitHub Actions dispatch. The previous
+                # "arcgis_open_data" config below never resolved (three full
+                # rounds enumerating 8 REST folders on Fairfax's own ArcGIS
+                # Server host, www.fairfaxcounty.gov/mercator, confirmed
+                # negative -- no zoning service exists there). The real
+                # service is instead hosted on ArcGIS Online's shared
+                # infrastructure under Fairfax's own official org account
+                # (FX.AuthData, contentStatus "public_authoritative"),
+                # findable only via an ArcGIS Online item search, not REST
+                # folder enumeration. Layer 0 ("Zoning"): real fields
+                # ZONECODE/ZONETYPE/PROFFER/PUBLIC_LAND/JURISDICTION,
+                # geometryType esriGeometryPolygon, 6,440 features total.
+                #
+                # That total spans THREE real jurisdictions merged into one
+                # layer via JURISDICTION ("FAIRFAX COUNTY" / "TOWN OF
+                # HERNDON" / "TOWN OF VIENNA", plus a handful of null-
+                # jurisdiction records) -- confirmed via a distinct-values
+                # query. The where clause below scopes every fetch to
+                # Fairfax County proper; Herndon/Vienna town zoning is a
+                # separate ordinance and is deliberately excluded rather
+                # than ingested as if it were county data. Fairfax-County-
+                # only count independently confirmed: 6,242 features, 0
+                # with null/empty ZONECODE, 44 real distinct ZONECODE
+                # values. ZONETYPE is a real but coarse GIS grouping field
+                # (RESIDENTIAL/COMMERCIAL/INDUSTRIAL/PLANNED UNITS/OTHER/
+                # TYSON covering many codes each) -- it is not a per-code
+                # district name, so district_name_field intentionally has
+                # no real value here (see below), same pattern as Prince
+                # William County.
+                "type":     "arcgis_featureserver",
+                "url":      "https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/Zoning/FeatureServer",
+                "layer_id": 0,
+                "where":    "JURISDICTION='FAIRFAX COUNTY'",
+                "expected_min_features": 6000,
             },
             "ordinance": {
                 "type": "url",
-                "url":  "https://library.municode.com/va/fairfax_county/codes/zoning_ordinance",
+                "url":  "https://www.fairfaxcounty.gov/planning-development/zoning/ordinance",
             },
         },
-        "district_code_field": "ZONINGCODE",
-        "district_name_field": "ZONINGDESC",
+        # Confirmed real GIS attribute name (round 5/6 diagnostics,
+        # 2026-08-15) -- replaces the previous unverified guesses
+        # ("ZONINGCODE" / "ZONINGDESC", which do not exist on this service).
+        "district_code_field": "ZONECODE",
+        "district_name_field": "__no_name_field_on_this_layer__",
     },
     "va-prince-william-county": {
         "display_name":   "Prince William County, VA",
