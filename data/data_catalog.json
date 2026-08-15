@@ -184,7 +184,7 @@
       "category": "ZONING",
       "dataset_count": 1,
       "datasets_with_data": 1,
-      "total_records": 1,
+      "total_records": 3,
       "ui_consumed_count": 1,
       "automated_count": 1
     }
@@ -968,7 +968,7 @@
       "license": "Public government ordinance text, hand-transcribed into structured data.",
       "known_coverage_holes": "1 of 58 production parcel jurisdictions has structured zoning district/setback/permitted-use data. This is the input the conceptual buildable envelope and suitability land-use scoring depend on for anything beyond the raw zoning_code string.",
       "known_quality_issues": "Hand-transcription from ordinance text carries transcription-error risk; docs/ZONING_VERIFICATION.md documents the verification process for this one jurisdiction.",
-      "record_count": 1,
+      "record_count": 3,
       "ui_consumed": true,
       "ci_tested": false,
       "automated_update_workflows": [

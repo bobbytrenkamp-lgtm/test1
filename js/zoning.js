@@ -11,6 +11,7 @@ window.ZONING = (function () {
    * Only covers jurisdictions that have a normalized JSON file. */
   const FIPS_TO_JURISDICTION = {
     "51107": "va-loudoun-county",
+    "51153": "va-prince-william-county",
   };
 
   /* In-memory cache: jurisdictionId → normalized data object */

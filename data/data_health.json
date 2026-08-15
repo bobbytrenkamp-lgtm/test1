@@ -64,7 +64,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-13T08:13:33.123886+00:00",
+      "last_checked": "2026-08-14T08:08:57.293615+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -82,10 +82,7 @@
       ],
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
-      "transiently_unreachable": [
-        "tx-gov-incentives",
-        "tx-legislature"
-      ]
+      "transiently_unreachable": []
     },
     "static_parcel_ingestion": {
       "health": "OK",
