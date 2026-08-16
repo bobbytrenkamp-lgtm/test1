@@ -4335,7 +4335,7 @@
   {
     "id": "fc-a6e329a3a6",
     "name": "CyrusOne PHX4",
-    "operator": "",
+    "operator": "CyrusOne",
     "status": "existing",
     "county_fips": "",
     "notes": "osm_tags:addr:city=Chandler,addr:housenumber=2335,addr:postcode=85286,addr:state=AZ,addr:street=South Ellis Street",
@@ -5031,5 +5031,15 @@
     "notes": "osm_tags:addr:city=Hermiston,addr:postcode=97838,addr:state=OR,addr:street=East Penney Avenue,building=industrial",
     "lat": 45.811209,
     "lon": -119.278247
+  },
+  {
+    "id": "fc-eeaa209ce5",
+    "name": "Equinix DC97",
+    "operator": "",
+    "status": "existing",
+    "county_fips": "",
+    "notes": "osm_tags:addr:housenumber=460,addr:postcode=20170,addr:street=Springpark Place,building=yes,fixme=not found on website",
+    "lat": 38.961573,
+    "lon": -77.377418
   }
 ]

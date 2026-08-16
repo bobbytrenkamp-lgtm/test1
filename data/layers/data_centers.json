@@ -44251,7 +44251,7 @@
   {
     "id": "fc-1003ac40db",
     "name": "Intergate Seattle East Building 2",
-    "operator": "",
+    "operator": "Digital Realty",
     "status": "existing",
     "county_fips": "",
     "notes": "osm_tags:addr:city=Tukwila,addr:housenumber=3311,addr:postcode=98168,addr:state=WA,addr:street=South 120th Place",
@@ -44331,7 +44331,7 @@
   {
     "id": "fc-607e420e1a",
     "name": "COPT Data Center",
-    "operator": "",
+    "operator": "Amazon Web Services",
     "status": "existing",
     "county_fips": "",
     "notes": "osm_tags:addr:city=Manassas,addr:housenumber=9651,addr:postcode=20109,addr:state=VA,addr:street=Hornbaker Road",
@@ -44751,7 +44751,7 @@
   {
     "id": "fc-9528347836",
     "name": "Element Critical VA1",
-    "operator": "",
+    "operator": "Equinix",
     "status": "existing",
     "county_fips": "",
     "notes": "osm_tags:addr:housenumber=7980,addr:postcode=22182,addr:street=Quantum Drive,building=office,name=Element Critical VA1",
@@ -45941,7 +45941,7 @@
   {
     "id": "fc-d51bf9123e",
     "name": "Flexential Brentwood Data Center",
-    "operator": "",
+    "operator": "Flexential",
     "status": "existing",
     "county_fips": "",
     "notes": "osm_tags:landuse=commercial,name=Flexential Brentwood Data Center,telecom=data_center,website=https://www.flexential.com/data-centers/tn/nashville/brentwood-data-center",
@@ -47271,7 +47271,7 @@
   {
     "id": "fc-e87c48a043",
     "name": "Blockfusion Niagra Falls",
-    "operator": "",
+    "operator": "Blockfusion",
     "status": "existing",
     "county_fips": "",
     "notes": "osm_tags:addr:city=Niagara Falls,addr:housenumber=5380,addr:postcode=14304,addr:state=NY,addr:street=Frontier Avenue",
