@@ -125,16 +125,23 @@ html[data-theme="light"] {
   font-size: 12px;
   font-family: inherit;
   font-weight: 500;
-  color: #4874e8;
+  /* var(--accent), not a hardcoded #4874e8 -- real a11y fix, 2026-08-16:
+     the hardcoded literal always used the token's DARK-theme value
+     (#4874e8, tuned for dark backgrounds) even in light mode, where
+     #4874e8 on white measures 4.25:1 (axe-core), under the 4.5:1 WCAG AA
+     threshold. --accent's own light-theme override (#2650c8) already
+     clears 6.85:1 against white -- this button just wasn't using the
+     token that already existed for exactly this. */
+  color: var(--accent);
   background: transparent;
-  border: 1px solid #4874e8;
+  border: 1px solid var(--accent);
   border-radius: 5px;
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.15s, color 0.15s;
 }
 .pl-export-btn:hover {
-  background: #4874e8;
+  background: var(--accent);
   color: #fff;
 }
 .pl-export-btn svg { flex-shrink: 0; }
@@ -163,7 +170,10 @@ html[data-theme="light"] {
   transition: background 0.15s, color 0.15s;
 }
 .pl-view-btn:hover { background: var(--hover); color: var(--text); }
-.pl-view-btn.active { background: #4874e8; color: #fff; }
+/* var(--accent) -- same real a11y fix as .pl-export-btn above: the
+   hardcoded #4874e8 literal always used the token's dark-theme value,
+   failing contrast in light mode. */
+.pl-view-btn.active { background: var(--accent); color: #fff; }
 
 /* ── Body / layout ── */
 .pipeline-freshness-bar {
