@@ -7,6 +7,493 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 ---
 
+Date: 2026-08-16
+AI Assistant: Claude Code
+Session: Exhaustive flaw-finding pass across the parcel/zoning system ("find flaws and fix each of them")
+
+Continued the "find flaws and fix each of them don't stop till complete"
+directive across files not yet audited this session: js/zoning-details.js,
+js/parcel/massing.js, js/parcel/comparables.js, js/parcel/panel.js, and the
+Node test harness for js/parcel/*.js. Six more real, verifiable bugs found
+and fixed, all covered by new/extended regression tests, full suite green
+(314/314 in tests/parcel.test.js, 176/176 in the main JS runner, no drift in
+either generated-artifact --check).
+
+1. STALE "PILOT COVERAGE" MESSAGE (js/zoning-details.js's renderNoCoverage()):
+   hardcoded "Pilot coverage: Loudoun County, VA (FIPS 51107)" as prose, even
+   though Prince William and Fairfax both shipped real zoning coverage
+   earlier this session. Anyone clicking an uncovered county with the zoning
+   layer on saw a message that actively undersold what's actually covered.
+   Fixed by adding JURISDICTION_LABELS + coveredJurisdictionLabels() to
+   js/zoning.js (kept next to FIPS_TO_JURISDICTION so both are touched
+   together when a jurisdiction is added) and having renderNoCoverage()
+   build its message from that live list instead of hardcoded text. New
+   regression coverage in tests/test_zoning_frontend_coverage.mjs: every
+   wired jurisdiction must have a real label (not its raw id), and the
+   label count must track FIPS_TO_JURISDICTION's size exactly.
+
+2. INVISIBLE SETBACK COLLAR (js/parcel/massing.js): the isometric massing
+   diagram's "setback exclusion collar" -- meant to show the ring of land
+   between the parcel edge and the building footprint -- was drawn as a
+   filled rectangle at the *exact same* bx/by/bw/bd coordinates as the
+   building footprint itself. It was therefore a duplicate of the building's
+   own ground plane, completely hidden underneath the building's opaque
+   faces drawn immediately after it. The collar never actually rendered
+   despite the file's own header comment claiming it did. Fixed with a new
+   `_ringFace()` helper (an evenodd `<path>` with two subpaths: outer parcel
+   boundary, inner building-footprint cutout) replacing the coincident
+   `_face()` rectangle. Also removed `sbFrac`/`bldSide`/`sbFront`/`sbSide` --
+   all dead code computed but never read by anything, left over from an
+   apparently-abandoned earlier version of the collar sizing. New DOM-gated
+   regression assertions in tests/parcel.test.js confirm the collar renders
+   as a two-subpath evenodd path rather than a 5th coincident polygon.
+
+3. AREA-BAND OPTIONS SILENTLY IGNORED (js/parcel/comparables.js): `find()`
+   merges caller overrides into `opts` (`Object.assign({}, DEFAULTS,
+   options)`), but `_score()` read `DEFAULTS.minAreaRatio` /
+   `DEFAULTS.maxAreaRatio` directly -- the module-level constant, not the
+   merged opts -- for both the area-band filter and the area-similarity
+   formula. Any caller passing `{minAreaRatio, maxAreaRatio}` to `find()` had
+   the override silently discarded; comparables were always filtered against
+   the hardcoded 20%-500% band regardless of what was requested. Fixed by
+   threading `opts` through to `_score(subject, candidate, opts)`.
+
+4. DEAD TEST COVERAGE, DISCOVERED WHILE WRITING A REGRESSION TEST FOR #3:
+   tests/parcel.test.js's entire PARCEL_COMPARABLES block mocks
+   `window.PARCEL_RENDERER.getFeatures` -- but only `if (window.PARCEL_RENDERER)`
+   already existed as an object first. Under the Node harness this file
+   actually runs in (renderer.js is deliberately excluded from the bootstrap
+   list since it touches Leaflet/the live DOM), `window.PARCEL_RENDERER` was
+   never defined at all, so that guard was always false, the mock was never
+   installed, `find()` always saw `features = []`, and every assertion in
+   the block -- all wrapped in `if (results.length) {...}` -- silently never
+   ran. This block had provided zero real coverage since it was written; it
+   could not have caught bug #3 or anything else. Fixed by creating
+   `window.PARCEL_RENDERER` outright (`Object.assign({}, window.PARCEL_RENDERER,
+   {getFeatures: ...})`) instead of requiring it to pre-exist, and restoring
+   the original value afterward (index.js calls
+   `window.PARCEL_RENDERER?.setActive(...)` with only a single optional-chain
+   guard, which throws if PARCEL_RENDERER is left as a truthy object missing
+   `.setActive` -- confirmed this would have broken the later
+   PARCEL.isActiveWithData block, and is why a full restore rather than a
+   partial one was needed). The block's pre-existing assertions now execute
+   for real, plus two new ones isolating bug #3's fix from unrelated scoring
+   terms.
+
+5. PROVENANCE BADGE GAP ON TWO ZONING-TAB FIELDS (js/parcel/panel.js):
+   `_fmtFieldRow(fieldId, rawValue, fips, props)`'s 4th `props` argument
+   feeds `_provenanceBadge()` -- every call site passed it except the two
+   `land_use_code`/`land_use_desc` rows in `_tabZoning()`, which silently
+   omitted it (no crash, `_provenanceBadge` returns '' for a missing props,
+   so the effect was just two fields in the Zoning tab that could never show
+   a source badge even when a connector recorded direct-official provenance
+   for them). Fixed by passing `props` through on both calls, matching every
+   other call site in the file.
+
+Files changed: js/zoning.js, js/zoning-details.js, js/parcel/massing.js,
+js/parcel/comparables.js, js/parcel/panel.js, tests/test_zoning_frontend_coverage.mjs,
+tests/parcel.test.js. Also includes the constraints.js/_trim()-cache-bound fix,
+the zoning-map.js stale-comment fix, and the normalize_zoning.py/zoning_config.py
+Douglas-Peucker simplification + DC_ELIGIBLE_STATUSES + re-normalize guard from
+earlier in this same continuous audit pass (see the entry immediately below for
+the Fairfax research those pipeline fixes were made alongside).
+
+Note on scope: js/parcel/registry.js (3,867 lines) was reviewed structurally --
+its only logic (get/has/all) is trivially correct, and the ~3,780 lines of
+per-jurisdiction data are already covered by validate_parcel_catalog.py,
+check_registry_integrity.mjs, and the field_mapper ground-truth regression
+(658 real mappings across 57 jurisdictions) -- not re-audited line-by-line, a
+deliberate scoping decision given that existing coverage. js/parcel/index.js's
+hardcoded-ArcGIS search() connector (noted in an earlier session's plan as a
+known gap) remains untouched: all 59 production registry entries are
+'arcgis'-connector today, so the gap is currently dormant, not live.
+
+---
+
+Date: 2026-08-16
+AI Assistant: Claude Code
+Session: Fairfax County data-center zoning research (10/44 codes) + a second real feasibility-engine bug found and fixed
+
+Continued the "Continue" / "identify weak points and solve them" directive.
+Picked Fairfax next since it was the least-researched of the three NoVA
+counties (0/44) despite being a major DC market (Reston/Tysons).
+
+FAIRFAX RESEARCH: Fairfax adopted a substantial, detailed data-center zoning
+ordinance amendment in September 2024 (Sec. 4102.6.A) -- much more specific
+than expected. Researched via WebSearch (this sandbox has no outbound
+network to fairfaxcounty.gov or the Encode Plus ordinance viewer; a GitHub
+Actions diagnostic dispatch to fetch the primary PDF was attempted but a
+brand-new workflow file isn't dispatchable until GitHub indexes it from the
+default branch, and this session's instructions say not to open a PR just to
+land it there -- so this round used multi-source secondary corroboration
+instead: Fairfax County's own news release and adopted-amendment page, plus
+independent law-firm summaries from McGuireWoods, Holland & Knight, and
+Venable, all citing the same specific numeric thresholds and Sept. 11 2024
+effective date). Findings, all recorded at "moderate" (not "high")
+confidence with the verification method stated explicitly in every entry:
+C-3/C-4 by-right under 40,000 sq ft (Special Exception at/above); I-2/I-3/I-4
+by-right under 80,000 sq ft (Special Exception at/above); I-5/I-6 by-right
+with NO size limit -- the only two districts keeping unlimited by-right
+development; PDC/PTC Special Exception only, no by-right path; PRC
+prohibited (removed as a permitted use by the 2024 amendment). A countywide
+standard applies to every approving district: 200 ft building setback / 300
+ft ground-equipment setback from a residential lot line. The other 34 codes
+remain honest not_listed placeholders -- their absence from the ordinance's
+enumerated eligible-district list was NOT inferred as prohibition, matching
+the same discipline already applied to Prince William's CTY/FED/TWN. Also
+corrected two now-stale claims in jurisdiction.json's known_limitations
+(claimed the parcel-to-zoning spatial join "does not exist yet" -- it was
+built earlier this session).
+
+SECOND REAL BUG FOUND (surfaced by using real data): js/parcel/feasibility.js's
+STATUS_META and ELIGIBILITY_SCORE maps covered only 9 of the 12
+permission_status values data/zoning/schemas/permitted_use.schema.json
+actually allows a researcher to record. Fairfax's ordinance uses Virginia's
+"Special Exception" terminology (Board of Supervisors approval) rather than
+"Special Use Permit" -- a real, schema-valid, distinct status that had no
+entry in either map and so silently fell through to the generic "Unknown"
+label and a 20-point score, exactly as if PDC/PTC's zoning had never been
+researched at all, even though real findings existed for them. Also missing:
+"accessory" and "manual_review_required", both real schema values. Fixed by
+adding all three; a new test (test_parcel_feasibility_status_coverage.mjs)
+reads the schema's own enum directly and asserts every value gets a real
+label and a score that doesn't collide with the generic unresearched
+fallback (except the two values -- not_listed, unclear -- that genuinely
+mean "we don't know," which correctly do collide with it) -- so a future
+schema value added without a matching STATUS_META/ELIGIBILITY_SCORE entry
+fails this test immediately instead of silently degrading to "Unknown" the
+next time a researcher happens to use it.
+
+Files: data/zoning/jurisdictions/va-fairfax-county/{districts,jurisdiction,
+permitted_uses}.json, data/zoning/normalized/va-fairfax-county.json (regenerated
+via export_zoning.py), js/parcel/feasibility.js, docs/ZONING_PILOT_STATUS.md,
+PROJECT_CONTEXT.md, tests/run_all.sh, new tests/test_parcel_feasibility_status_coverage.mjs.
+Full suite: 176/176 passed, zero failures, no data quality gates weakened
+(python3 data/zoning/scripts/validate_zoning.py --jurisdiction va-fairfax-county:
+0 errors, 44 warnings -- all "missing district_name," expected and honest).
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
+Session: Weak-point audit across the site-intelligence/provenance system — one real bug found and fixed, one real coverage gap closed, provenance parity extended to all three connector types
+
+User asked to identify and fix weak points across what this session built.
+Read through site-intelligence.js, panel.js, and all three parcel connectors
+looking specifically for logic bugs and silent coverage gaps, not just
+"more research needed" items (those are tracked separately, see below).
+
+REAL BUG FOUND AND FIXED: `buildFindings()` in js/parcel/site-intelligence.js
+used `proximityResult.results.find(r => r.category === 'power')` to pick the
+power-infrastructure reading for the findings/site_status engine. Power has
+TWO layers (substations, transmission-lines) sharing that category --
+`.find()` silently returns whichever one happens to be first in the array
+and ignores the other entirely, even when the first one errored or the
+second one was actually closer. Fixed with a new `_nearestAcrossCategory()`
+helper that considers every layer in a category and picks the genuinely
+nearest usable result. Added two regression tests that would have caught
+this: one where the first power layer errors and the second must still be
+used, one where array order is deliberately reversed to prove distance, not
+position, decides the winner.
+
+REAL COVERAGE GAP CLOSED: the same findings engine only ever checked the
+`power` category -- `telecom` (fiber) proximity, which is real, mapped data
+for the CA middle-mile corridor and TX Fiberlight network
+(js/parcel/proximity-layers.js), was never surfaced as a finding at all.
+Extended `buildFindings()` to also report nearby mapped fiber as an
+advantage (capped at 1 mile, same capacity-is-not-proximity disclaimer
+pattern as power) using the same `_nearestAcrossCategory()` helper --
+deliberately NOT adding an "unknown" entry for every site outside those two
+states, since that gap is already honestly disclosed via
+`infrastructure.unavailable` and repeating it in findings would be noise,
+not information.
+
+PROVENANCE PARITY: Phase 12 (prior session) wired per-field source
+provenance into `connector-arcgis.js` only, since all 59 currently-registered
+jurisdictions use that connector type. Extended the identical pattern to
+`connector-geojson.js` and `connector-wfs.js` so a future jurisdiction using
+either type doesn't silently fall back to no provenance while every ArcGIS
+jurisdiction has it -- a latent inconsistency in a system whose whole point
+is "never let one place look more evidenced than the data actually
+supports." Added matching tests for both (GeoJSON's `_normalize()` had no
+existing direct test at all; WFS's existing test gained provenance
+assertions).
+
+Tests: 7 new assertions in tests/test_parcel_site_intelligence.mjs (multi-
+layer power selection x2, fiber advantage, fiber-too-far, fiber disclaimer,
+no-invented-telecom-finding), ~12 new assertions across the three connector
+tests in tests/parcel.test.js. Full suite: 176/176 passed, zero failures, no
+existing test weakened.
+
+DELIBERATELY NOT TOUCHED (documented, not silently ignored): zoning.feasibility
+in site-intelligence.js only assesses the PRIMARY parcel of a multi-parcel
+assemblage, while zoning.codes already aggregates across all parcels via
+`uniq()` -- a real inconsistency for assembled sites, but restructuring
+feasibility into a per-parcel array is a bigger schema change than this pass
+should make without a clearer signal it's needed (single-parcel lookup is
+the dominant real workflow today, and every existing test uses it). Also not
+touched: the underlying zoning ordinance research gaps (Loudoun 3/58 codes
+researched, Fairfax 0/44, PWC's CTY/FED/TWN codes and DCOZOD overlay
+geometry) -- these are data-completion work requiring real primary-source
+research per code, not architecture weaknesses, and were already honestly
+tracked as open items in prior entries rather than claimed complete.
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
+Session: NoVA milestone Phase 13-14 — parcels_registry wired into the data health dashboard on real live data, plus two independent pre-existing bugs found and fixed in generate_data_health.py
+
+Closes out the 14-phase NoVA milestone's remaining item.
+
+WHAT WAS BUILT:
+
+- `data/check_parcel_services.mjs`'s `--record-history` output
+  (`data/parcel_health_history.json`) had never actually been committed
+  despite the workflow being configured to do so since it shipped -- the
+  monthly cron hadn't fired yet (next: Sept 1) and no one had manually
+  dispatched it since. Manually dispatched `check_parcel_services.yml` this
+  session to get real data rather than build new health-tracking logic
+  against a fixture that had never been observed to work end-to-end: it
+  found 58/59 registered jurisdictions LIVE (all three NoVA counties
+  included) and one real, confirmed-dead service -- Jefferson County, KY
+  (FIPS 21111, "JSON has no field list — not a layer endpoint") -- which the
+  existing workflow correctly auto-filed as GitHub issue #538. That county is
+  outside the NoVA milestone's scope, so it was left to the issue and not
+  chased further here, per "do not expand nationwide."
+- `data/generate_data_health.py` gained `_parcel_service_health()`, a new
+  `parcels_registry` entry in the `pipelines` dict, aggregating that history
+  file with the exact same "confirmed dead" rule
+  `check_parcel_services.mjs`'s own `isConfirmedDead()` uses (>=2 failures in
+  the latest 3 recorded runs, OR a first-ever recorded run with no prior
+  history at all -- reproduced deliberately rather than a "safer"-looking
+  approximation that would disagree with what the CI job itself already
+  concluded and acted on).
+
+TWO REAL BUGS FOUND ALONG THE WAY (both pre-existing, both fixed):
+
+1. `build_report()` computed `tracked_pipeline_names = set(pipelines.keys())`
+   and then never used it -- `datasets_without_automated_health_tracking`
+   listed every registered dataset unconditionally, so the moment
+   `parcels_registry` became a real, tracked pipeline it would have appeared
+   BOTH as a live pipeline entry AND in the "no automated health signal yet"
+   fallback list, self-contradicting the same document. Fixed: the fallback
+   list now excludes any dataset id that exactly matches a pipeline key.
+2. `render_markdown()`'s "Datasets with no automated health signal yet"
+   line read `f"{n} of {n} datasets"` -- both sides used
+   `datasets_without_tracking_count`, so it was tautologically "100%" no
+   matter what and would have gone on saying that even after bug #1's fix
+   changed the real count. Fixed: added `total_registered_datasets` to the
+   report's `summary` and the line now reads correctly ("29 of 30" once
+   `parcels_registry` is excluded from the untracked list). A second, related
+   gap: the markdown detail column only recognized policy_pipeline_sources'
+   `total_sources` key, so `parcels_registry`'s identically-shaped
+   `total_jurisdictions` down/transient/total counts rendered as a bare "-"
+   even while the health column correctly said SOURCE_DOWN -- fixed
+   alongside it.
+
+Also confirmed `zoning_jurisdictions` correctly remains in the honest
+untracked list: the only per-jurisdiction file that looked like a candidate
+signal (Loudoun's `validation_report.json`) is a data-quality/completeness
+report, not a pipeline-health signal, and only exists for 1 of the 3 NoVA
+counties anyway -- treating it as a health check would have been a fabricated
+diagnosis this project's own honesty bar exists to prevent, so it was left
+alone rather than shoehorned into the SOURCE_DOWN/NETWORK_FAILURE vocabulary.
+
+Tests: `tests/test_data_health.py` gained 6 new tests (independent recount
+against the real committed history file, missing-file honesty, the
+first-failure-confirmed-immediately edge case, the single-transient-failure
+edge case, and regression tests pinning both markdown bugs) and one existing
+test (`test_no_dataset_is_ever_silently_marked_ok_without_a_real_signal`) was
+corrected -- it had hard-coded "today nothing maps 1:1" as if that were a
+permanent invariant rather than the thing this change correctly fixed; the
+real safety property (no dataset silently vanishes, none is silently
+upgraded to OK) is preserved and, if anything, checked more precisely now.
+Full suite: 176/176 passed, zero failures.
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
+Session: NoVA milestone Phase 11-12 — real per-field source provenance wired into the live connector, surfaced in the panel UI
+
+Verification pass on the two remaining NoVA milestone items (Phase 11
+"comparable nearby sites", Phase 12 "source provenance"):
+
+- **Phase 11 (comparables): already fully wired, no action needed.**
+  `js/parcel/comparables.js` (`window.PARCEL_COMPARABLES`) is called from
+  `js/parcel/panel.js`'s Compare tab tray (`_tabCompareTray()`) to suggest
+  similar parcels (ranked by zoning/area/land-use/value-per-acre similarity)
+  when the tray is empty and a parcel is selected. Live UI path, not orphaned.
+
+- **Phase 12 (provenance): real gap found and closed.** `js/parcel/provenance.js`
+  (`window.PARCEL_PROVENANCE`) is a mature, well-designed per-field citation
+  module -- but until now it was exercised ONLY by test fixtures and
+  internally by `site-intelligence.js`. The multi-source join engine that was
+  supposed to populate it (`js/parcel/enrichment.js`,
+  `js/parcel/enrichment-arcgis-table.js`) has zero callers anywhere in the
+  live pipeline (`js/parcel/index.js` never invokes it) -- so in production,
+  essentially no real parcel has ever carried a `_provenance` record, meaning
+  the Phase 5 `source_confidence` roll-up built earlier today always reads
+  "unknown" for real data, not because the data lacks a knowable source, but
+  because nothing ever recorded it.
+
+  Fix, scoped correctly rather than building the full multi-source join
+  engine no jurisdiction in this repo currently needs: confirmed all 59
+  registered jurisdictions (all three NoVA counties included) use the single
+  `arcgis` connector type with exactly one source per parcel -- so this is a
+  `direct-official` attribution problem, not a conflict-resolution problem.
+  `js/parcel/connector-arcgis.js`'s `_normalize()` now attaches a
+  `PARCEL_PROVENANCE` record (jurisdiction id/name, real source attribute
+  name, `direct-official` confidence) for every canonical field a
+  jurisdiction's `registry.js` `fieldMap` actually verifies against the live
+  service -- and deliberately nothing for a field that fell through to the
+  lowercase-passthrough guess, since the connector genuinely does not know
+  what that attribute is. Surfaced in the panel: Details and Valuation tab
+  field rows now show a small "source" badge (`js/parcel/panel.js`'s new
+  `_provenanceBadge()`) with the full citation in a tooltip, reusing
+  `PARCEL_PROVENANCE.describe()` rather than re-deriving the wording.
+
+  This also means the Phase 5 zoning/valuation/ownership confidence roll-ups
+  built earlier today will now actually report `direct-official` for real
+  NoVA parcels instead of `unknown`, without any change to that code --
+  they were reading the provenance layer correctly all along; the layer
+  itself just had nothing real to read.
+
+Files: `js/parcel/connector-arcgis.js`, `js/parcel/panel.js`, `css/parcel.css`
+(new `.pp-field-prov` badge, theme-agnostic), `docs/PARCEL_ADD_JURISDICTION.md`
+(new note that a verified `fieldMap` entry now also drives provenance
+automatically), `PROJECT_CONTEXT.md`. Tests: extended `tests/parcel.test.js`
+(provenance attachment on a verified field, none on a passthrough field,
+jurisdiction id/confidence correctness) and
+`tests/test_parcel_panel_intelligence.mjs` (badge presence/absence, XSS
+escaping of a hostile source label). Full suite: 176/176 passed (parcel.test.js
+alone: 298/298), zero failures, no existing test weakened.
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
+Session: Economic data pipeline audit — Home page staleness disclosure gap fixed
+
+User asked for a check of the economic data pipeline (data/update_economic_data.py,
+data/economy/*.json, js/economy*.js, js/home.js) for outdated or incorrect data.
+
+AUDIT FINDINGS:
+
+- The backend pipeline is healthy: `update_economic_data.yml` has run successfully
+  every day for the last two weeks (verified via GitHub Actions run history), zero
+  entries in `economic_metadata.json`'s `warnings` array, `census.unverified_metrics`
+  empty. FRED (23 series), ACS 5-year (vintage 2024), County Business Patterns
+  (2023), Building Permits, BLS QCEW average wage, and FEMA NRI are all populated
+  and current. Spot-checked headline values (UNRATE 4.1% Jul 2026, DFF 3.63% Aug 13
+  2026, DGS10 4.63%, CPIAUCSL, PAYEMS) against plausible real-world figures -- all
+  freshly retrieved, none hardcoded or stale.
+- `economic_metadata.json`'s top-level `"stale": true` and 6 of 23 FRED series
+  individually flagged stale (CSUSHPINSA 106 days, HOUST/INDPRO/JTSJOL/PCEPI/PERMIT
+  75 days) is NOT a bug -- it is the pipeline's own honesty guard correctly
+  reporting normal government publication lag for monthly series, scaled to each
+  series' real cadence (see `update_economic_data.py`'s per-series `stale_days >
+  limit` logic).
+- `eia_available: false` (electricity price never populated) is also not a
+  regression -- `EIA_API_KEY` is a documented OPTIONAL free-registration secret
+  that has simply never been configured for this repo; every other source is
+  unaffected, and PROJECT_CONTEXT.md already discloses this as an expected state.
+- Data Center Readiness Score (js/economy.js `readinessScore()`): spot-checked all
+  9 factor weights and `invert` flags for directional correctness (unemployment,
+  housing vacancy, wage, and electricity price correctly inverted so LOWER is
+  better; population growth, bachelor's %, labor participation, broadband, and
+  permits YoY correctly NOT inverted). No bug found.
+
+REAL BUG FOUND AND FIXED: js/economy-view.js's Economy tab KPI strip discloses
+per-series staleness via a "stale" chip (`s.stale` / `s.stale_days`, reading
+directly off `fred_data.json`). js/home.js's 4-indicator Economic Pulse reads the
+exact same `fred_data.json` record for 3 of its 4 indicators (Fed Funds Rate,
+10-Year Treasury, US Unemployment) but never checked `s.stale` at all -- so the
+same underlying number could show as unqualified/current on Home while the
+Economy tab, one click away, flagged it stale. Fixed by propagating `stale`/
+`staleDays` through `_renderHomeEconomicPulse()`'s `add()` helper and rendering
+the same theme-aware `.econ-stale-chip` CSS class (already global, not scoped to
+the Economy tab) when applicable -- no new CSS needed. None of today's 4 Home
+indicators are currently stale, so this fix has no visible effect right now; it
+closes the gap so a future outage doesn't silently show different honesty levels
+on two pages reading the same file.
+
+Not fixed (deliberately out of scope, not bugs): jsdom is not installed in this
+sandbox, so no automated DOM test could be added for the Home pulse render path
+(same known pre-existing limitation `run_all.sh` already reports for 4 other
+suites) -- verified instead via `node --check js/home.js` and manual code
+inspection matching the already-tested economy-view.js pattern exactly.
+
+Files touched: `js/home.js` only. Full suite: 176/176 passed, zero failures,
+no data files changed, no tests weakened.
+
+---
+
+Date: 2026-08-15
+AI Assistant: Claude Code
+Session: NoVA milestone Phase 5/7/8/9/10 — Site Intelligence schema wired to zoning feasibility, deterministic findings/site_status, panel UI
+
+`js/parcel/site-intelligence.js` (`window.PARCEL_SITE_INTELLIGENCE`) existed
+already, fully tested, and completely orphaned: zero callers anywhere in the
+codebase, its `zoning` section only listed the raw published code with no
+data-center eligibility read. This session closed both gaps and shipped the
+result to the parcel panel:
+
+- **Zoning feasibility wired into the schema.** `build()` now calls
+  `window.PARCEL_FEASIBILITY.assess()` (read-only against whatever zoning
+  data is already cached — never triggers a fetch from inside a schema
+  builder) and exports the result under `zoning.feasibility`: permission
+  status, approval type, conditions, confidence, and the district name/code,
+  including its source (`parcel_attribute` vs the spatial-join fallback).
+  Never mutates the caller's parcel properties object — a geometry-bearing
+  copy is made only when the caller has not already attached one.
+- **Deterministic `findings` (advantages / constraints / unknowns).** Rule-based,
+  not LLM-generated — every statement traces to a named upstream field
+  (`zoning_feasibility`, `constraints_summary`, `proximity_power`) so it can
+  be verified against the same data a human would check. A missing input
+  produces an "unknowns" entry, never a guessed advantage or constraint. A
+  failed proximity layer (e.g. a BTS service 503) never becomes a finding.
+- **`site_status`**, using only the milestone's fixed vocabulary —
+  `potentially_viable` / `conditional` / `material_constraints` /
+  `insufficient_data` — never "approved," "buildable," or "good site." An
+  outright zoning prohibition or a majority-constrained parcel always wins
+  over a weaker read; a genuinely ambiguous zoning code (`not_listed`/
+  `unclear`/`unknown`) is `insufficient_data`, never silently upgraded to
+  `potentially_viable` just because the constraint layer happened to be clean.
+- **UI wiring (Phase 10).** `js/parcel/panel.js`'s Intelligence tab gained a
+  new `_renderSiteStatus()` section above the existing suitability/proximity/
+  constraints/sales rendering, calling `PARCEL_SITE_INTELLIGENCE.build()`
+  with the same cached proximity/constraints/score inputs those renderers
+  already use. Degrades to nothing (not a misleading empty group) when the
+  module isn't loaded, mirroring the pattern the other Intelligence-tab
+  renderers already established.
+- Confirmed via re-reading the site-intelligence audit and the codebase that
+  Phase 6's remaining scope (power/fiber/water/environmental/market spatial
+  joins) was already substantially built — `js/parcel/proximity.js` and
+  `js/parcel/constraints.js` already feed `buildInfrastructure`/
+  `buildConstraints` generically. Only zoning's parcel-to-district resolution
+  was the real gap, and PR #531 (previous session) had already closed it;
+  this session's job was wiring that result into the schema and the UI.
+
+New/changed: `js/parcel/site-intelligence.js`, `js/parcel/panel.js`,
+`index.html` (cache-busted script versions), `tests/test_parcel_site_intelligence.mjs`
+(+~90 assertions covering the no-engine-loaded degrade path and six
+zoning/constraint × site_status combinations against a mocked zoning
+registry), `tests/test_parcel_panel_intelligence.mjs` (+new `_renderSiteStatus`
+coverage), `PROJECT_CONTEXT.md`.
+
+Still open from the 14-phase brief: Phase 9's fuller per-category
+completeness/confidence matrix (today's `source_confidence.by_section` is a
+partial read of this), Phase 11's comparable-sites wiring verification
+(`js/parcel/comparables.js` already exists and is already called from
+`panel.js`'s compare tray — needs a pass to confirm it's fully wired, not
+newly built), Phase 12's provenance pass beyond what `site-intelligence.js`
+already surfaces, and Phase 13/14 (a source-status model + a final
+documentation cleanup pass).
+
+---
+
 Date: 2026-08-13 to 2026-08-15
 AI Assistant: Claude Code
 Session: NoVA Data Center Parcel Intelligence milestone — zoning geometry, permitted-use research, spatial join (PRs #517-#536)

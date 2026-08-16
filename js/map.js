@@ -7573,6 +7573,12 @@ function initRouterBinding() {
       document.getElementById("methodology-section")?.scrollIntoView({ behavior: "smooth" });
       return;
     }
+    if (r.route === "terms" || r.route === "privacy") {
+      switchTab("about");
+      if (typeof renderAboutPage === "function") renderAboutPage();
+      document.getElementById(r.route + "-section")?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
     switchTab(r.route);
     const label = document.getElementById("tab-" + r.route)?.textContent?.trim();
     if (label) announceView(label);
@@ -7597,6 +7603,12 @@ function applyInitialRoute() {
     switchTab("about");
     if (typeof renderAboutPage === "function") renderAboutPage();
     document.getElementById("methodology-section")?.scrollIntoView();
+    return;
+  }
+  if (r.route === "terms" || r.route === "privacy") {
+    switchTab("about");
+    if (typeof renderAboutPage === "function") renderAboutPage();
+    document.getElementById(r.route + "-section")?.scrollIntoView();
     return;
   }
   switchTab(r.route);

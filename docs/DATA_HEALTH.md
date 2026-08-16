@@ -8,14 +8,15 @@ Project-wide data health: is each pipeline's most recent automated run actually 
 
 | Pipeline | Health | Detail |
 |---|---|---|
-| policy_pipeline_sources | SOURCE_DOWN | 13 down / 2 transient / 109 total |
+| policy_pipeline_sources | SOURCE_DOWN | 13 down / 4 transient / 109 total |
 | county_page_citations | VALIDATION_FAILURE | 956/1994 unreachable (47.9%) |
-| map_data_citations | VALIDATION_FAILURE | 1378/2949 unreachable (46.7%) |
+| map_data_citations | VALIDATION_FAILURE | 1299/2949 unreachable (44.0%) |
 | static_parcel_ingestion | OK | - |
+| parcels_registry | SOURCE_DOWN | 1 down / 0 transient / 59 total |
 
 ## Datasets with no automated health signal yet
 
-30 of 30 datasets in data/catalog/dataset_registry.json have no per-dataset automated health check (they are hand-curated JSON or covered only indirectly by the pipeline signals above, not fetched/validated per dataset). Listed here, not defaulted to OK:
+29 of 30 datasets in data/catalog/dataset_registry.json have no per-dataset automated health check (they are hand-curated JSON or covered only indirectly by the pipeline signals above, not fetched/validated per dataset). Listed here, not defaulted to OK:
 
 - ai_news
 - ca_middle_mile_corridor
@@ -33,7 +34,6 @@ Project-wide data health: is each pipeline's most recent automated run actually 
 - pad_us_protected_lands
 - parcel_assessment_sales_ownership
 - parcel_source_catalog
-- parcels_registry
 - political_risk
 - power_plants
 - rail

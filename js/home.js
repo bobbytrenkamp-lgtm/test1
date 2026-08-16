@@ -534,6 +534,14 @@ function _renderHomeEconomicPulse(view) {
                : `${dir.glyph} ${E.fmtChange(s.change_abs, o.unit)}`),
           cls: dir.cls,
           date: E.fmtDate(s.latest_date),
+          // Same staleness the Economy tab's KPI strip discloses per series
+          // (js/economy-view.js renderKpis) -- Home reads the same fred_data.json
+          // record, so it must not present a number as current that the Economy
+          // tab would flag as stale. Without this, the two surfaces could show
+          // the same indicator with different honesty, which is worse than
+          // showing it nowhere.
+          stale: !!s.stale,
+          staleDays: s.stale_days,
         });
       };
 
@@ -569,7 +577,9 @@ function _renderHomeEconomicPulse(view) {
           <div class="home-econ-label">${escHtml(it.label)}</div>
           <div class="home-econ-value">${escHtml(it.value)}</div>
           ${it.change ? `<div class="home-econ-change ${it.cls}">${escHtml(it.change)}</div>` : ""}
-          <div class="home-econ-date">${escHtml(it.date)}</div>
+          <div class="home-econ-date">${escHtml(it.date)}
+            ${it.stale ? `<span class="econ-stale-chip" title="No new observation for ${escHtml(String(it.staleDays))} days">stale</span>` : ""}
+          </div>
         </div>`).join("");
 
       if (note) {

@@ -120,9 +120,188 @@ function richInput() {
   // Every top-level key a consumer contracts against.
   for (const key of ['location', 'parcels', 'acreage', 'land_use', 'zoning', 'infrastructure',
                      'constraints', 'conceptual_buildable_area', 'valuations', 'transactions',
-                     'market_context', 'policy_context', 'suitability', 'source_confidence', 'limitations']) {
+                     'market_context', 'policy_context', 'suitability', 'findings', 'site_status',
+                     'source_confidence', 'limitations']) {
     ok(`the contract key "${key}" is present`, si[key] !== undefined);
   }
+}
+
+// ── Zoning feasibility, findings, and site_status: no feasibility engine loaded ──
+// PARCEL_FEASIBILITY is not required by this test file's own module list, so
+// this section proves the schema degrades honestly rather than crashing or
+// inventing a result when that optional module is absent.
+{
+  const si = SI.build(richInput());
+  t('zoning.feasibility is null when the feasibility engine is not loaded', si.zoning.feasibility, null);
+  ok('an unassessed zoning read produces an "unknowns" finding, not a guess',
+    si.findings.unknowns.some(u => u.category === 'zoning'));
+  t('site_status is insufficient_data with no zoning and no constraint data',
+    SI.build({ parcels: [{ id: 'G', geometry: geom, properties: { parcel_id: 'G' } }] }).site_status,
+    'insufficient_data');
+  ok('unevaluated constraint layers still surface as unknowns without a feasibility engine',
+    si.findings.unknowns.some(u => u.category === 'environmental' && /could not be evaluated/.test(u.statement)));
+  ok('constraint layers with no available data source also surface as unknowns',
+    si.findings.unknowns.some(u => u.category === 'environmental' && /no data source available/.test(u.statement)));
+  ok('a nearby substation (1.4 miles) is surfaced as an advantage',
+    si.findings.advantages.some(a => a.category === 'power' && /1\.4 miles/.test(a.statement)));
+  ok('proximity is explicitly disclaimed as not being capacity',
+    si.findings.unknowns.some(u => u.category === 'power' && u.statement.includes('not evidence of available interconnection capacity')));
+  ok('a failed proximity layer never becomes a finding',
+    !si.findings.advantages.some(a => /Interstates/i.test(a.statement)) &&
+    !si.findings.constraints.some(c => /Interstates/i.test(c.statement)));
+  ok('a region with no mapped fiber coverage gets no invented telecom finding',
+    !si.findings.advantages.some(a => a.category === 'telecom') &&
+    !si.findings.unknowns.some(u => u.category === 'telecom'));
+}
+
+// ── Findings must consider EVERY layer in a category, not just the first ──
+// Regression: buildFindings originally used results.find(r => r.category ===
+// 'power'), which silently ignores a second power-category layer
+// (substations AND transmission-lines both use "power") whenever the first
+// one in the array happened to have no usable distance or an error.
+{
+  const si = SI.build({
+    site_id: 'MULTI-POWER', parcels: [{ id: 'M-1', geometry: geom, properties: { parcel_id: 'M-1' } }],
+    proximity: {
+      results: [
+        { layerId: 'substations', label: 'Substations', category: 'power', error: 'HTTP 503', nearest: null, counts: {} },
+        { layerId: 'transmission-lines', label: 'Transmission Lines', category: 'power',
+          nearest: { distanceMiles: 0.8, name: 'Line 4821' }, counts: { 1: 1, 3: 2, 5: 4, 10: 9 } },
+      ],
+      unavailable: [],
+    },
+  });
+  ok('the second power-category layer is used when the first one errored',
+    si.findings.advantages.some(a => a.category === 'power' && /0\.8 miles/.test(a.statement)));
+
+  const swapped = SI.build({
+    site_id: 'MULTI-POWER-2', parcels: [{ id: 'M-2', geometry: geom, properties: { parcel_id: 'M-2' } }],
+    proximity: {
+      results: [
+        { layerId: 'transmission-lines', label: 'Transmission Lines', category: 'power',
+          nearest: { distanceMiles: 5, name: 'Line X' }, counts: {} },
+        { layerId: 'substations', label: 'Substations', category: 'power',
+          nearest: { distanceMiles: 1.1, name: 'Nearby Sub' }, counts: {} },
+      ],
+      unavailable: [],
+    },
+  });
+  ok('the NEAREST power result wins across layers, regardless of array order',
+    swapped.findings.advantages.some(a => a.category === 'power' && /1\.1 miles/.test(a.statement)) &&
+    !swapped.findings.advantages.some(a => a.category === 'power' && /5 miles/.test(a.statement)));
+}
+
+// ── Fiber/telecom proximity, when real coverage exists ─────────────────────
+{
+  const si = SI.build({
+    site_id: 'FIBER-1', parcels: [{ id: 'F-1', geometry: geom, properties: { parcel_id: 'F-1' } }],
+    proximity: {
+      results: [
+        { layerId: 'tx-fiberlight-network', label: 'TX Fiberlight Network', category: 'telecom',
+          nearest: { distanceMiles: 0.4, name: 'Fiberlight route' }, counts: {} },
+      ],
+      unavailable: [],
+    },
+  });
+  ok('a nearby mapped fiber route is surfaced as an advantage',
+    si.findings.advantages.some(a => a.category === 'telecom' && /0\.4 miles/.test(a.statement)));
+  ok('fiber proximity is disclaimed as not being capacity or lit service',
+    si.findings.unknowns.some(u => u.category === 'telecom' && /not evidence of available strand capacity/.test(u.statement)));
+
+  const far = SI.build({
+    site_id: 'FIBER-2', parcels: [{ id: 'F-2', geometry: geom, properties: { parcel_id: 'F-2' } }],
+    proximity: {
+      results: [
+        { layerId: 'tx-fiberlight-network', label: 'TX Fiberlight Network', category: 'telecom',
+          nearest: { distanceMiles: 15, name: 'Fiberlight route' }, counts: {} },
+      ],
+      unavailable: [],
+    },
+  });
+  ok('a distant fiber route is not claimed as an advantage', !far.findings.advantages.some(a => a.category === 'telecom'));
+  ok('but the capacity disclaimer still travels since real fiber data exists',
+    far.findings.unknowns.some(u => u.category === 'telecom'));
+}
+
+// ── Zoning feasibility, findings, and site_status: feasibility engine loaded ──
+{
+  const mockZoningData = {
+    '51107': {
+      districts: {
+        'PD-IP': {
+          district_name: 'Planned Development - Industrial Park',
+          uses: [{ standardized_use_id: 'data_center', permission_status: 'permitted_by_right', confidence_level: 'moderate' }],
+        },
+        'AR1': {
+          district_name: 'Agricultural Rural',
+          uses: [{ standardized_use_id: 'data_center', permission_status: 'prohibited', confidence_level: 'moderate' }],
+        },
+        'B2': {
+          district_name: 'Community Business',
+          uses: [{ standardized_use_id: 'data_center', permission_status: 'special_use_permit', confidence_level: 'moderate' }],
+        },
+        'PD-OP': {
+          district_name: 'Planned Development - Office Park',
+          uses: [{ standardized_use_id: 'data_center', permission_status: 'not_listed', confidence_level: 'low' }],
+        },
+      },
+      jurisdiction: { jurisdiction_name: 'Loudoun County, VA' },
+      disclaimer: 'Test disclaimer',
+    },
+  };
+  global.window.ZONING = {
+    getCachedByFips: (fips) => mockZoningData[fips] || null,
+    hasCoverage: (fips) => !!mockZoningData[fips],
+  };
+  require('../js/parcel/feasibility.js');
+
+  function siteFor(zoningCode, constrainedPct) {
+    const props = {
+      parcel_id: 'Z-1', county_fips: '51107', state: 'VA', zoning_code: zoningCode, area_acres: 50,
+    };
+    const input = { site_id: 'ZSITE', parcels: [{ id: 'Z-1', geometry: geom, properties: props }] };
+    if (constrainedPct != null) {
+      input.constraints = { parcelAcres: 50, results: [], summary: { constrainedPct, partial: false } };
+    }
+    return SI.build(input);
+  }
+
+  {
+    const si = siteFor('PD-IP', 2);
+    t('a by-right district is exported on the zoning section', si.zoning.feasibility.permission_status, 'permitted_by_right');
+    t('site_status is potentially_viable for a clean by-right site', si.site_status, 'potentially_viable');
+    ok('the by-right eligibility is stated as an advantage',
+      si.findings.advantages.some(a => a.category === 'zoning' && /permitted by right/.test(a.statement)));
+  }
+  {
+    const si = siteFor('AR1', 2);
+    t('a prohibited district rolls up to material_constraints', si.site_status, 'material_constraints');
+    ok('the prohibition is stated as a constraint',
+      si.findings.constraints.some(c => c.category === 'zoning' && /prohibited/.test(c.statement)));
+  }
+  {
+    const si = siteFor('B2', 2);
+    t('a special-use-permit district rolls up to conditional', si.site_status, 'conditional');
+    ok('the approval requirement is stated as a constraint',
+      si.findings.constraints.some(c => c.category === 'zoning' && /requires/.test(c.statement)));
+  }
+  {
+    const si = siteFor('PD-OP', 2);
+    t('an unresearched (not_listed) district is insufficient_data, never upgraded by clean constraints',
+      si.site_status, 'insufficient_data');
+  }
+  {
+    const si = siteFor('PD-IP', 60);
+    t('a majority-constrained parcel overrides an otherwise by-right zoning read',
+      si.site_status, 'material_constraints');
+  }
+  {
+    const si = siteFor('PD-IP', 30);
+    t('a partially-constrained by-right site is conditional, not potentially_viable',
+      si.site_status, 'conditional');
+  }
+
+  delete global.window.ZONING;
 }
 
 // ── Parcels and acreage ────────────────────────────────────────────────────

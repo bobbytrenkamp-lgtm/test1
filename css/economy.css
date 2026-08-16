@@ -243,9 +243,14 @@
   border: 1px solid rgba(180, 83, 15, 0.4);
 }
 .econ-kpi-src {
+  /* No opacity dimming here (real a11y fix, 2026-08-16): --text-muted
+     alone already meets 4.5:1 contrast against --surface-2 (5.59:1), but
+     compositing it at opacity 0.72 lightened the rendered color enough to
+     fail WCAG AA (axe-core measured 3.13:1). The color and small font-size
+     already provide enough visual de-emphasis without needing opacity on
+     top of it. */
   font-size: 9px;
   color: var(--text-muted);
-  opacity: 0.72;
   margin-top: 4px;
   overflow: hidden;
   text-overflow: ellipsis;

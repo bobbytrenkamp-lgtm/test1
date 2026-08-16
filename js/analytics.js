@@ -2361,6 +2361,77 @@ function renderAboutPage() {
       </div>
     </div>
 
+    <div class="page-section" id="terms-section">
+      <div class="page-section-title">Terms of Service</div>
+      <div class="about-card">
+        <div class="about-card-title">Use of this platform</div>
+        <p>This platform is provided free of charge, for research and informational purposes. By using it you agree to these terms. If you do not agree, do not use the site.</p>
+        <p>No account is required for the Map, Economy, AI News, AI Stocks, Analytics, or Parcel Intelligence features. An optional account (email + password, via Supabase) unlocks preference sync and saved items across devices — see the Privacy Policy below for exactly what that stores.</p>
+      </div>
+      <div class="about-two-col">
+        <div class="about-card">
+          <div class="about-card-title">No warranty, no professional advice</div>
+          <ul>
+            <li>All data is provided "as is," with no warranty of accuracy, completeness, or fitness for any purpose.</li>
+            <li>Nothing here is legal, financial, investment, engineering, or professional advice of any kind. Zoning eligibility, feasibility estimates, and site-intelligence scores are conceptual screening aids, not entitlements or guarantees — confirm everything with the relevant jurisdiction and licensed professionals before acting on it.</li>
+            <li>AI Stocks data is delayed approximately 15 minutes and is not investment advice.</li>
+            <li>To the fullest extent permitted by law, this platform and its contributors are not liable for any decision made using this data.</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <div class="about-card-title">Data licensing &amp; acceptable use</div>
+          <ul>
+            <li>Government parcel, zoning, and infrastructure data displayed here comes from public sources credited in each panel. This platform does not claim ownership of that underlying data, and has not independently obtained commercial redistribution rights from every source — if you intend to redistribute it commercially, verify that source's own terms yourself.</li>
+            <li>Please don't use automated tools to scrape or bulk-download this site in a way that circumvents its normal use, or to send an abnormal volume of requests toward the live government GIS services this platform queries on your behalf — those services belong to the counties that run them, not to this project.</li>
+            <li>This project's own source code is open source; see the GitHub repository link below for its license.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">Changes, and who to contact</div>
+        <p>These terms may be updated as the platform changes; the date at the bottom of this section reflects the last revision. Questions, corrections, or takedown requests can be filed as an issue on the <a href="https://github.com/bobbytrenkamp-lgtm/test1" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none">GitHub repository</a> — this is a small open-source project with no dedicated support line.</p>
+        <p class="callout-body">Last revised: 2026-08-16.</p>
+      </div>
+    </div>
+
+    <div class="page-section" id="privacy-section">
+      <div class="page-section-title">Privacy Policy</div>
+      <div class="about-two-col">
+        <div class="about-card">
+          <div class="about-card-title">What is collected</div>
+          <ul>
+            <li><strong>Nothing, if you don't create an account.</strong> Browsing the Map, News, Stocks, Analytics, and Parcel Intelligence tabs stores nothing about you beyond ordinary <code>localStorage</code> preferences (theme, bookmarks, watchlist) kept entirely on your own device.</li>
+            <li><strong>If you create an optional account</strong> (via Supabase): your email address, a display name you choose, and whatever preferences/saved items you explicitly save. See <code>data/supabase_schema.sql</code> in the repository for the exact table structure — it's public, since this is an open-source project.</li>
+            <li><strong>If your browser hits a JS error</strong>, and only once an account owner has configured error logging: an anonymous report (the error message, file/line, a stack trace, the page URL, and your browser's user-agent string) may be sent. No user identity, email, or account information is ever included in that report, even if you're signed in.</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <div class="about-card-title">What is never collected</div>
+          <ul>
+            <li>No advertising or cross-site tracking cookies. No ad network, and nothing here is sold or shared for advertising.</li>
+            <li>No analytics/telemetry service tracks your individual browsing behavior across this site.</li>
+            <li>Passwords are never stored or handled by this platform's own code — sign-in is delegated entirely to Supabase's authentication service.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">Third-party services this site uses</div>
+        <table class="sources-table">
+          <thead><tr><th style="width:160px">Service</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><span class="src-name">Supabase</span></td><td class="callout-body">Optional account sign-in, preference sync, and saved items. Only used if you create an account. See <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Supabase's own privacy policy</a>.</td></tr>
+            <tr><td><span class="src-name">TradingView</span></td><td class="callout-body">Embedded chart/quote widgets on the AI Stocks tab. Loaded directly from TradingView's own servers when you open that tab. See <a href="https://www.tradingview.com/policies/" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">TradingView's policies</a>.</td></tr>
+            <tr><td><span class="src-name">GitHub Pages</span></td><td class="callout-body">Static hosting for this site. GitHub, as any web host, logs standard server access data (e.g. IP address) per its own policies.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">Your data, your control</div>
+        <p>There is currently no self-service "delete my account" button in the UI. To request deletion of an account and its associated data, file a request on the <a href="https://github.com/bobbytrenkamp-lgtm/test1" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none">GitHub repository</a> — stated here plainly rather than promising a feature that doesn't exist yet. This site is not directed at children under 13, and knowingly collects no data from them.</p>
+        <p class="callout-body">Last revised: 2026-08-16.</p>
+      </div>
+    </div>
+
     <div id="about-footer-target"></div>
   `;
 
@@ -4101,6 +4172,8 @@ function renderPageFooter(targetId) {
       </div>
       <div class="footer-links">
         <span class="footer-col-title">Legal</span>
+        <a class="footer-link" href="#terms">Terms of Service</a>
+        <a class="footer-link" href="#privacy">Privacy Policy</a>
         <button class="footer-link" onclick="switchTab('about')">Disclaimer</button>
         <button class="footer-link" onclick="switchTab('about')">Data Limitations</button>
       </div>

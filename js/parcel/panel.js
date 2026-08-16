@@ -7,7 +7,10 @@
  *   jurisdictions whose parcel source publishes no native zoning_code),
  *   PARCEL_SUITABILITY, PARCEL_SALES, PARCEL_PROXIMITY, PARCEL_CONSTRAINTS,
  *   PARCEL_FEASIBILITY (all optional -- the Intelligence tab degrades per
- *   missing module the same way it degrades per missing data)
+ *   missing module the same way it degrades per missing data),
+ *   PARCEL_PROVENANCE (optional -- when present, Details/Valuation field rows
+ *   that carry a per-field source record from connector-arcgis.js get a small
+ *   "source" badge; see _provenanceBadge())
  */
 window.PARCEL_PANEL = (function () {
   'use strict';
@@ -51,14 +54,30 @@ window.PARCEL_PANEL = (function () {
     </div>`;
   }
 
-  function _fmtFieldRow(fieldId, rawValue, fips) {
+  /* Small "source" indicator next to a field value, from window.PARCEL_PROVENANCE
+     (optional -- populated for real parcels by connector-arcgis.js's _normalize(),
+     which attaches a record per canonical field this jurisdiction's registry.js
+     fieldMap actually verifies against the live service). Uses the plain-text
+     one-line summary PARCEL_PROVENANCE.describe() already builds rather than
+     re-deriving one here, so panel.js and any future consumer never disagree on
+     the wording. Returns '' when there is nothing recorded -- a field with no
+     provenance shows no badge rather than an "unknown source" badge on every row. */
+  function _provenanceBadge(props, fieldId) {
+    const PROV = window.PARCEL_PROVENANCE;
+    if (!PROV || !props) return '';
+    const desc = PROV.describe(props, fieldId);
+    if (!desc) return '';
+    return `<span class="pp-field-prov" title="${esc(desc)}" aria-label="Source: ${esc(desc)}">source</span>`;
+  }
+
+  function _fmtFieldRow(fieldId, rawValue, fips, props) {
     const field = window.PARCEL_SCHEMA?.FIELD_MAP[fieldId];
     if (!field) return '';
     const displayed = window.PARCEL_SCHEMA.format(fieldId, rawValue);
     if (displayed && displayed !== '—') {
       return `<div class="pp-field">
         <span class="pp-field-label">${esc(field.label)}</span>
-        <span class="pp-field-value">${esc(displayed)}</span>
+        <span class="pp-field-value">${esc(displayed)}${_provenanceBadge(props, fieldId)}</span>
       </div>`;
     }
     // Distinguish "this source never publishes this field" (registry.js's
@@ -84,7 +103,7 @@ window.PARCEL_PANEL = (function () {
     let html = '';
     for (const grp of schema.GROUPS) {
       const fields = schema.FIELDS.filter(f => f.group === grp.id);
-      const rows   = fields.map(f => _fmtFieldRow(f.id, props[f.id], props.county_fips)).filter(Boolean).join('');
+      const rows   = fields.map(f => _fmtFieldRow(f.id, props[f.id], props.county_fips, props)).filter(Boolean).join('');
       if (!rows) continue;
       html += `<div class="pp-group">
         <div class="pp-group-label">${esc(grp.label)}</div>
@@ -132,8 +151,8 @@ window.PARCEL_PANEL = (function () {
     } else if (window.PARCEL_REGISTRY?.get(fips)?.notProvidedBySource?.includes('zoning_code')) {
       zoningFields += `<div class="pp-muted pp-field-na">Zoning code not published by this source</div>`;
     }
-    zoningFields += _fmtFieldRow('land_use_code', props.land_use_code, fips);
-    zoningFields += _fmtFieldRow('land_use_desc', props.land_use_desc, fips);
+    zoningFields += _fmtFieldRow('land_use_code', props.land_use_code, fips, props);
+    zoningFields += _fmtFieldRow('land_use_desc', props.land_use_desc, fips, props);
     zoningFields += _fieldRow('Overlay Districts', props.overlay_districts);
 
     if (zoningFields) {
@@ -303,15 +322,15 @@ window.PARCEL_PANEL = (function () {
   function _tabValuation(props) {
     const fips = props.county_fips;
     const rows = [
-      _fmtFieldRow('assessed_value',    props.assessed_value,    fips),
-      _fmtFieldRow('land_value',        props.land_value,        fips),
-      _fmtFieldRow('improvement_value', props.improvement_value, fips),
-      _fmtFieldRow('tax_year',          props.tax_year,          fips),
-      _fmtFieldRow('tax_amount',        props.tax_amount,        fips),
-      _fmtFieldRow('last_sale_date',    props.last_sale_date,    fips),
-      _fmtFieldRow('last_sale_price',   props.last_sale_price,   fips),
-      _fmtFieldRow('deed_book',         props.deed_book,         fips),
-      _fmtFieldRow('deed_page',         props.deed_page,         fips),
+      _fmtFieldRow('assessed_value',    props.assessed_value,    fips, props),
+      _fmtFieldRow('land_value',        props.land_value,        fips, props),
+      _fmtFieldRow('improvement_value', props.improvement_value, fips, props),
+      _fmtFieldRow('tax_year',          props.tax_year,          fips, props),
+      _fmtFieldRow('tax_amount',        props.tax_amount,        fips, props),
+      _fmtFieldRow('last_sale_date',    props.last_sale_date,    fips, props),
+      _fmtFieldRow('last_sale_price',   props.last_sale_price,   fips, props),
+      _fmtFieldRow('deed_book',         props.deed_book,         fips, props),
+      _fmtFieldRow('deed_page',         props.deed_page,         fips, props),
     ].filter(Boolean).join('');
 
     if (!rows) return '<p class="pp-empty">Valuation data not available for this parcel.</p>';
@@ -341,9 +360,11 @@ window.PARCEL_PANEL = (function () {
         : undefined,
       constraintSummary: cached?.constraints?.summary,
     };
+    const suit = window.PARCEL_SUITABILITY?.score(ctx);
 
     let html = '';
-    html += _renderSuitability(window.PARCEL_SUITABILITY?.score(ctx));
+    html += _renderSiteStatus(props, feature, cached, suit, key);
+    html += _renderSuitability(suit);
     html += _renderProximity(cached?.proximity);
     html += _renderConstraints(cached?.constraints);
     html += _renderSales(window.PARCEL_SALES?.buildHistory(props));
@@ -353,6 +374,62 @@ window.PARCEL_PANEL = (function () {
     }
 
     return html || '<p class="pp-empty">Site intelligence not available for this parcel.</p>';
+  }
+
+  const SITE_STATUS_META = {
+    potentially_viable:   { cls: 'pf-eligible',    icon: '✓', label: 'Potentially Viable' },
+    conditional:          { cls: 'pf-conditional', icon: '!', label: 'Conditional' },
+    material_constraints: { cls: 'pf-prohibited',  icon: '✗', label: 'Material Constraints' },
+    insufficient_data:    { cls: 'pf-unknown',     icon: '?', label: 'Insufficient Data' },
+  };
+
+  /* Renders the canonical, deterministic synthesis from
+     window.PARCEL_SITE_INTELLIGENCE.build() -- the single normalized
+     read of zoning feasibility + mapped constraints + infrastructure
+     proximity for this parcel. Site status uses only the milestone's
+     fixed vocabulary (never "approved"/"buildable"/"good site"), and
+     every advantage/constraint/unknown traces to a named upstream field
+     rather than being an LLM summary. Degrades to nothing when the
+     module isn't loaded or proximity/constraints haven't resolved yet --
+     those layers still render their own "loading…" state below. */
+  function _renderSiteStatus(props, feature, cached, suit, key) {
+    if (!window.PARCEL_SITE_INTELLIGENCE) return '';
+    let si;
+    try {
+      si = window.PARCEL_SITE_INTELLIGENCE.build({
+        site_id: key,
+        parcels: [{ id: key, geometry: feature.geometry, properties: props }],
+        proximity: cached?.proximity,
+        constraints: cached?.constraints,
+        score: suit,
+      });
+    } catch (_) {
+      return '';
+    }
+
+    const meta = SITE_STATUS_META[si.site_status] || SITE_STATUS_META.insufficient_data;
+    const f = si.findings;
+    const list = items => `<ul class="pf-conditions-list">${items.map(x => `<li>${esc(x.statement)}</li>`).join('')}</ul>`;
+
+    let html = `<div class="pp-group pp-site-status">
+      <div class="pp-group-label">Site Status</div>
+      <div class="pf-eligibility ${esc(meta.cls)}">
+        <span class="pf-eligibility-icon">${esc(meta.icon)}</span>
+        <span class="pf-eligibility-label">${esc(meta.label)}</span>
+      </div>`;
+
+    if (f.advantages.length) {
+      html += `<p class="pp-muted"><strong>Advantages</strong></p>${list(f.advantages)}`;
+    }
+    if (f.constraints.length) {
+      html += `<p class="pp-muted"><strong>Constraints</strong></p>${list(f.constraints)}`;
+    }
+    if (f.unknowns.length) {
+      html += `<details class="pf-conditions"><summary>Unknowns (${f.unknowns.length})</summary>${list(f.unknowns)}</details>`;
+    }
+    html += `<p class="pf-disclaimer">Deterministic synthesis from mapped data only. Not a determination of developability or entitlement.</p>`;
+    html += `</div>`;
+    return html;
   }
 
   function _renderSuitability(suit) {
@@ -980,7 +1057,7 @@ window.PARCEL_PANEL = (function () {
     // Exposed for unit testing (pure functions: data in, HTML string out --
     // no DOM APIs used inside them), matching the existing pattern of
     // exposing "_"-prefixed internals above.
-    _tabIntelligence, _renderSuitability, _renderProximity, _renderConstraints, _renderSales,
-    _saveButtonHtml, _renderSavedSites,
+    _tabIntelligence, _renderSuitability, _renderProximity, _renderConstraints, _renderSales, _renderSiteStatus,
+    _saveButtonHtml, _renderSavedSites, _tabDetails, _tabValuation, _fmtFieldRow, _provenanceBadge,
   };
 })();

@@ -13,9 +13,9 @@ Run `node data/parcel_pipeline/generate_coverage_metrics.mjs` to regenerate.
 | Facility-bearing jurisdictions | 549 |
 | Jurisdiction coverage | 10.7% |
 | **Facility-weighted coverage** | **53.4%** |
-| Known facilities | 4455 |
+| Known facilities | 4456 |
 | Facilities in covered jurisdictions | 2047 |
-| Facilities with no county FIPS (unattributable) | 624 |
+| Facilities with no county FIPS (unattributable) | 625 |
 
 Facility-weighted coverage is the number worth watching. Plain jurisdiction
 coverage understates the product badly, because the counties that matter are

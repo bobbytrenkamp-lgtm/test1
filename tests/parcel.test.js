@@ -35,8 +35,10 @@ if (typeof window === 'undefined') {
   // Dependency order: registry/schema before the connectors and index.js that
   // reference them; selection has no dependents among these.
   for (const rel of [
-    'js/parcel/schema.js', 'js/parcel/registry.js', 'js/parcel/selection.js',
+    'js/parcel/schema.js', 'js/parcel/registry.js', 'js/parcel/selection.js', 'js/parcel/provenance.js',
+    'js/parcel/request-cache.js',
     'js/parcel/connector-arcgis.js', 'js/parcel/connector-geojson.js', 'js/parcel/connector-wfs.js',
+    'js/parcel/connector-factory.js',
     'js/parcel/geo.js', 'js/parcel/zoning-geometry.js',
     'js/parcel/feasibility.js', 'js/parcel/comparables.js', 'js/parcel/massing.js',
     'js/parcel/draw-tool.js', 'js/parcel/search.js', 'js/parcel/index.js',
@@ -45,7 +47,7 @@ if (typeof window === 'undefined') {
   }
 }
 
-(function runTests() {
+(async function runTests() {
   'use strict';
 
   let passed = 0;
@@ -285,9 +287,115 @@ if (typeof window === 'undefined') {
     assertEq(p.county_fips, '51107', '_normalize sets county_fips from config');
     assertEq(p._source,   'arcgis', '_normalize sets _source');
     assert('unknown_field' in p || 'UNKNOWN_FIELD' in p, '_normalize passes through unknown fields (lowercased)');
+
+    // Per-field provenance (Phase 12: source provenance now flows from a
+    // real connector, not only test fixtures -- see connector-arcgis.js's
+    // _normalize()).
+    const PROV = (typeof window !== 'undefined' ? window : global).PARCEL_PROVENANCE;
+    if (PROV) {
+      const ownerProv = PROV.get(p, 'owner');
+      assert(!!ownerProv, '_normalize attaches provenance for a verified fieldMap field');
+      assertEq(ownerProv.sourceId, 'va-loudoun-county', 'provenance records the jurisdiction id');
+      assertEq(ownerProv.sourceField, 'OWNER_NAME', 'provenance records the real source attribute name');
+      assertEq(ownerProv.confidence, 'direct-official', 'a single-source ArcGIS connector is direct-official, not joined');
+      assert(!PROV.get(p, 'unknown_field'), 'no provenance is invented for an unmapped passthrough field');
+    }
   }
 
   console.groupEnd();
+
+  // ── PARCEL_REQUEST_CACHE ──────────────────────────────────────────────────
+  //
+  // Launch-readiness fix (2026-08-16): parcel viewport/search/by-id queries
+  // went straight from the browser to the county's own GIS server on every
+  // request, with no caching -- a user panning away from a viewport and
+  // back within the same session re-issued an identical request. At real
+  // traffic that's the kind of pattern that gets a site's own IP throttled
+  // by a county IT department. Added a small TTL'd client-side cache
+  // (js/parcel/request-cache.js) wired into connector-arcgis.js's
+  // _execute() and connector-wfs.js's _fetch(), keyed by the exact request
+  // URL (which already fully encodes the query).
+
+  {
+    const RC = (typeof window !== 'undefined' ? window : global).PARCEL_REQUEST_CACHE;
+    if (RC) {
+      console.group('PARCEL_REQUEST_CACHE');
+
+      RC.clear();
+      assertEq(RC.size(), 0, 'starts empty (or clears cleanly)');
+      assertEq(RC.get('missing-key'), undefined, 'a miss returns undefined');
+
+      const value = { type: 'FeatureCollection', features: [{ properties: { a: 1 } }] };
+      RC.set('k1', value);
+      const got = RC.get('k1');
+      assert(!!got, 'a stored value can be read back');
+      assertEq(got.features[0].properties.a, 1, 'the read-back value has the right shape');
+      assert(got !== value, 'the read-back value is a clone, not the original reference');
+      assert(got.features !== value.features, 'nested arrays are cloned too (deep, not shallow)');
+
+      got.features[0].properties.a = 999;
+      const gotAgain = RC.get('k1');
+      assertEq(gotAgain.features[0].properties.a, 1, 'mutating a returned value does not corrupt the cache (regression)');
+
+      RC.set('k2', { x: 1 }, 1); // 1ms TTL
+      const before = RC.get('k2');
+      assert(before !== undefined, 'a value is readable immediately after being set');
+      await new Promise(resolve => setTimeout(resolve, 15));
+      assertEq(RC.get('k2'), undefined, 'an expired entry (past its TTL) is treated as a miss, not stale data');
+
+      RC.clear();
+      assertEq(RC.size(), 0, 'clear() empties the cache');
+
+      // Bounded size (mirrors the constraints.js _trim() cache-bound pattern).
+      const N = RC.MAX_ENTRIES + 20;
+      for (let i = 0; i < N; i++) RC.set(`bulk-${i}`, { i });
+      assert(RC.size() > 0 && RC.size() <= RC.MAX_ENTRIES, `cache stays bounded at MAX_ENTRIES (size=${RC.size()}, cap=${RC.MAX_ENTRIES})`);
+      RC.clear();
+
+      console.groupEnd();
+    }
+  }
+
+  // ── ArcGISParcelConnector: request caching (regression) ────────────────────
+
+  if (typeof Connector === 'function' && (typeof window !== 'undefined' ? window : global).PARCEL_REQUEST_CACHE) {
+    console.group('ArcGISParcelConnector — request caching');
+
+    const RC = (typeof window !== 'undefined' ? window : global).PARCEL_REQUEST_CACHE;
+    RC.clear();
+
+    const cacheConn = new Connector({
+      fips: '51107', id: 'va-loudoun-county',
+      serviceUrl: 'https://example.com/arcgis/rest/services/Parcels/FeatureServer/0',
+      fieldMap: { parcel_id: 'OBJECTID' },
+    });
+
+    const fakeBounds = { getWest: () => -77.5, getSouth: () => 38.9, getEast: () => -77.4, getNorth: () => 39.0 };
+    const fakeResponse = { type: 'FeatureCollection', features: [{ type: 'Feature', properties: { OBJECTID: 1 }, geometry: null }] };
+
+    const g = (typeof window !== 'undefined' ? window : global);
+    const origFetch = g.fetch;
+    let fetchCalls = 0;
+    g.fetch = async () => {
+      fetchCalls++;
+      return { ok: true, json: async () => fakeResponse };
+    };
+
+    try {
+      await cacheConn.fetchViewport(fakeBounds, undefined);
+      await cacheConn.fetchViewport(fakeBounds, undefined);
+      assertEq(fetchCalls, 1, 'an identical second fetchViewport() call is served from cache, not re-fetched');
+
+      const otherBounds = { getWest: () => -78, getSouth: () => 39, getEast: () => -77.9, getNorth: () => 39.1 };
+      await cacheConn.fetchViewport(otherBounds, undefined);
+      assertEq(fetchCalls, 2, 'a genuinely different viewport still issues a real request');
+    } finally {
+      g.fetch = origFetch;
+      RC.clear();
+    }
+
+    console.groupEnd();
+  }
 
   // ── PARCEL_FEASIBILITY (Phase 2) ─────────────────────────────────────────
 
@@ -345,11 +453,18 @@ if (typeof window === 'undefined') {
       { type: 'Feature', geometry: null, properties: { parcel_id: 'A4', zoning_code: 'I1',    area_sqft: 250000, area_acres: 5.7,   land_use_code: 'I1' } },
     ];
 
-    // Mock getFeatures
-    const origGetFeatures = window.PARCEL_RENDERER?.getFeatures;
-    if (window.PARCEL_RENDERER) {
-      window.PARCEL_RENDERER.getFeatures = () => candidates;
-    }
+    // Mock getFeatures. window.PARCEL_RENDERER does not exist at all under
+    // the Node harness (renderer.js touches Leaflet/the live document and is
+    // deliberately excluded from the bootstrap list above) -- the previous
+    // `if (window.PARCEL_RENDERER)` guard was therefore always false here,
+    // so this mock was silently never installed, find() always saw features
+    // = [], and every assertion below (all wrapped in `if (results.length)`)
+    // silently never ran. Real bug found 2026-08-16: this whole test block
+    // provided zero actual coverage under the only harness this suite runs
+    // in. Fixed by creating the stub object outright rather than requiring
+    // it to already exist.
+    const origPARCEL_RENDERER = window.PARCEL_RENDERER;
+    window.PARCEL_RENDERER = Object.assign({}, window.PARCEL_RENDERER, { getFeatures: () => candidates });
 
     const results = window.PARCEL_COMPARABLES.find(subject, { maxResults: 5 });
     assert(Array.isArray(results), 'find() returns an array');
@@ -364,6 +479,25 @@ if (typeof window === 'undefined') {
       assert(!a3, 'very small residential parcel outside area band excluded');
     }
 
+    // Regression (2026-08-16): _score() used to read DEFAULTS.minAreaRatio/
+    // maxAreaRatio directly instead of the merged opts, so overriding these
+    // via find()'s options argument had no effect on filtering or scoring.
+    // B1 shares the subject's zoning code (guaranteeing a >0 score once it
+    // clears the area-band filter, so this isolates the band check from the
+    // unrelated area/land-use/value scoring terms that made A3 score 0 for
+    // reasons that had nothing to do with the band). B1's ratio (0.15) sits
+    // just below the DEFAULT 0.20 floor -- excluded by default, and must be
+    // let back in once minAreaRatio is widened to 0.10.
+    const b1 = { type: 'Feature', geometry: null, properties: { parcel_id: 'B1', zoning_code: 'PD-IP', area_sqft: 75000, area_acres: 1.7, land_use_code: 'PD-IP' } };
+    window.PARCEL_RENDERER.getFeatures = () => [...candidates, b1];
+    const defaultBand = window.PARCEL_COMPARABLES.find(subject, { maxResults: 10 });
+    assert(!defaultBand.find(r => r.feature.properties.parcel_id === 'B1'),
+      'B1 (ratio 0.15) is excluded by the default 0.20 floor');
+
+    const widened = window.PARCEL_COMPARABLES.find(subject, { maxResults: 10, minAreaRatio: 0.10 });
+    const b1Widened = widened.find(r => r.feature.properties.parcel_id === 'B1');
+    assert(!!b1Widened, 'overriding minAreaRatio via find() options actually widens the area band (regression)');
+
     // diff()
     const d = window.PARCEL_COMPARABLES.diff(subject.properties, candidates[0].properties);
     assert(typeof d === 'object', 'diff() returns an object');
@@ -371,9 +505,12 @@ if (typeof window === 'undefined') {
       assert(typeof d.assessed_value.delta_pct === 'number', 'diff() computes delta_pct');
     }
 
-    if (origGetFeatures && window.PARCEL_RENDERER) {
-      window.PARCEL_RENDERER.getFeatures = origGetFeatures;
-    }
+    // Restore, so later blocks (e.g. PARCEL.isActiveWithData below) see the
+    // same window.PARCEL_RENDERER state they would have without this block
+    // -- index.js calls window.PARCEL_RENDERER?.setActive(...) with only a
+    // single optional-chain guard, which throws if PARCEL_RENDERER is a
+    // truthy object missing a .setActive method.
+    window.PARCEL_RENDERER = origPARCEL_RENDERER;
 
     console.groupEnd();
   }
@@ -398,6 +535,7 @@ if (typeof window === 'undefined') {
 
     const cfg = {
       fips: '51107',
+      id: 'va-loudoun-county',
       serviceUrl: 'data:application/json,{"type":"FeatureCollection","features":[]}',
       fieldMap: { parcel_id: 'OBJECTID', pin: 'PIN', address: 'SITE_ADDR' },
     };
@@ -406,6 +544,30 @@ if (typeof window === 'undefined') {
     assert(typeof conn.fetchViewport === 'function',  'fetchViewport is a function');
     assert(typeof conn.searchByQuery === 'function', 'searchByQuery is a function');
     assert(typeof conn.fetchById    === 'function',  'fetchById is a function');
+
+    // Test normalization + provenance (mirrors ArcGISParcelConnector's test)
+    const geoRaw = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [-77.4, 39.1] },
+        properties: { OBJECTID: 7, PIN: 'GJ-1', SITE_ADDR: '1 GeoJSON Way', EXTRA_FIELD: 'x' },
+      }],
+    };
+    const geoNorm = conn._normalize(geoRaw);
+    assertEq(geoNorm.features.length, 1, 'GeoJSON _normalize preserves feature count');
+    const gp = geoNorm.features[0].properties;
+    assertEq(gp.pin, 'GJ-1', 'GeoJSON _normalize maps PIN → pin');
+    assertEq(gp._source, 'geojson', 'GeoJSON _normalize sets _source');
+
+    const geoProv = (typeof window !== 'undefined' ? window : global).PARCEL_PROVENANCE;
+    if (geoProv) {
+      const addrProv = geoProv.get(gp, 'address');
+      assert(!!addrProv, 'GeoJSON _normalize attaches provenance for a verified fieldMap field');
+      assertEq(addrProv.sourceId, 'va-loudoun-county', 'GeoJSON provenance records the jurisdiction id');
+      assertEq(addrProv.confidence, 'direct-official', 'GeoJSON provenance is direct-official for a single-source connector');
+      assert(!geoProv.get(gp, 'extra_field'), 'no provenance is invented for an unmapped passthrough field');
+    }
 
     console.groupEnd();
   }
@@ -419,6 +581,7 @@ if (typeof window === 'undefined') {
 
     const wfsCfg = {
       fips: '51153',
+      id: 'va-prince-william-county',
       serviceUrl: 'https://example.com/geoserver/ows',
       layerName:  'parcel_data:parcels',
       wfsVersion: '2.0.0',
@@ -446,6 +609,16 @@ if (typeof window === 'undefined') {
     assertEq(wfsNorm.features[0].properties._source, 'wfs', 'WFS _normalize stamps _source');
     assertEq(wfsNorm.features[0].properties.county_fips, '51153', 'WFS _normalize stamps county_fips');
 
+    const wfsProv = (typeof window !== 'undefined' ? window : global).PARCEL_PROVENANCE;
+    if (wfsProv) {
+      const wp = wfsNorm.features[0].properties;
+      const pinProv = wfsProv.get(wp, 'pin');
+      assert(!!pinProv, 'WFS _normalize attaches provenance for a verified fieldMap field');
+      assertEq(pinProv.sourceId, 'va-prince-william-county', 'WFS provenance records the jurisdiction id');
+      assertEq(pinProv.sourceField, 'GPIN', 'WFS provenance records the real source attribute name');
+      assertEq(pinProv.confidence, 'direct-official', 'WFS provenance is direct-official for a single-source connector');
+    }
+
     // Verify 2.0.0 bbox axis order (lat-first)
     const u200 = wfsConn._buildUrl({ REQUEST: 'GetFeature', BBOX: 'test', COUNT: '10' });
     assert(u200.includes('VERSION=2.0.0'), 'WFS 2.0.0 version in URL');
@@ -455,6 +628,67 @@ if (typeof window === 'undefined') {
     const wfsConn11 = new window.WFSParcelConnector(wfsCfg11);
     const u110 = wfsConn11._buildUrl({ REQUEST: 'GetFeature', BBOX: 'test', COUNT: '10' });
     assert(u110.includes('VERSION=1.1.0'), 'WFS 1.1.0 version in URL');
+
+    console.groupEnd();
+  }
+
+  // ── PARCEL_CONNECTOR_FACTORY + PARCEL.search() dialect selection ──────────
+  //
+  // Regression (2026-08-16): js/parcel/index.js's search() used to hardcode
+  // `new window.ArcGISParcelConnector(config)` regardless of the
+  // jurisdiction's actual registered connector type, and built an
+  // ArcGIS-only SQL-92-style WHERE clause unconditionally. Every one of the
+  // 59 production jurisdictions is 'arcgis' today so this never misfired in
+  // practice, but a 'geojson' or 'wfs' jurisdiction would have silently
+  // gotten the wrong connector class AND a query string in the wrong
+  // dialect the moment someone searched it. Fixed by extracting connector
+  // selection into window.PARCEL_CONNECTOR_FACTORY (shared with
+  // renderer.js, so the two call sites can't drift apart again) and making
+  // search() branch on connector type for query-clause construction too.
+
+  if (typeof window !== 'undefined' && window.PARCEL_CONNECTOR_FACTORY && window.PARCEL) {
+    console.group('PARCEL_CONNECTOR_FACTORY + PARCEL.search() dialect selection');
+
+    const arcgisMade  = window.PARCEL_CONNECTOR_FACTORY.make({ connector: 'arcgis',  serviceUrl: 'https://x/arcgis' });
+    const geojsonMade = window.PARCEL_CONNECTOR_FACTORY.make({ connector: 'geojson', serviceUrl: 'https://x/geo.json' });
+    const wfsMade     = window.PARCEL_CONNECTOR_FACTORY.make({ connector: 'wfs',     serviceUrl: 'https://x/wfs' });
+    const defaultMade = window.PARCEL_CONNECTOR_FACTORY.make({ serviceUrl: 'https://x/none' });
+
+    assert(arcgisMade instanceof window.ArcGISParcelConnector, "make({connector:'arcgis'}) returns an ArcGISParcelConnector");
+    assert(geojsonMade instanceof window.GeoJSONParcelConnector, "make({connector:'geojson'}) returns a GeoJSONParcelConnector");
+    assert(wfsMade instanceof window.WFSParcelConnector, "make({connector:'wfs'}) returns a WFSParcelConnector");
+    assert(defaultMade instanceof window.ArcGISParcelConnector, 'make() with no connector field defaults to ArcGIS (matches renderer.js\'s prior default)');
+
+    // Intercept the factory to capture the clause search() builds, without
+    // exercising each connector's own real network-calling searchByQuery().
+    const origMake = window.PARCEL_CONNECTOR_FACTORY.make;
+    const origGet  = window.PARCEL_REGISTRY.get;
+    let capturedClause = null;
+    window.PARCEL_CONNECTOR_FACTORY.make = () => ({
+      searchByQuery: (clause) => { capturedClause = clause; return Promise.resolve({ type: 'FeatureCollection', features: [] }); },
+    });
+
+    const baseConfig = { fieldMap: { address: 'SITE_ADDR', pin: 'PIN_NO' } };
+
+    window.PARCEL_REGISTRY.get = () => ({ ...baseConfig, connector: 'arcgis' });
+    window.PARCEL.onCountyChanged('51107');
+    await window.PARCEL.search("O'Brien");
+    assert(capturedClause && capturedClause.includes('UPPER("SITE_ADDR")'), 'ArcGIS dialect: quoted-identifier UPPER()/LIKE clause');
+    assert(capturedClause.includes("O''Brien"), "ArcGIS dialect: embedded apostrophe is doubled, not passed through raw");
+
+    window.PARCEL_REGISTRY.get = () => ({ ...baseConfig, connector: 'wfs' });
+    capturedClause = null;
+    await window.PARCEL.search('Main St');
+    assert(capturedClause && capturedClause.includes('strToUpperCase(SITE_ADDR)'), 'WFS dialect: strToUpperCase() CQL function, not ArcGIS UPPER()');
+    assert(!capturedClause.includes('"'), 'WFS dialect: no double-quoted identifiers (ArcGIS-only syntax)');
+
+    window.PARCEL_REGISTRY.get = () => ({ ...baseConfig, connector: 'geojson' });
+    capturedClause = null;
+    await window.PARCEL.search('Main St');
+    assertEq(capturedClause, 'Main St', 'GeoJSON dialect: raw search term passed through, not a constructed WHERE/CQL clause');
+
+    window.PARCEL_CONNECTOR_FACTORY.make = origMake;
+    window.PARCEL_REGISTRY.get = origGet;
 
     console.groupEnd();
   }
@@ -483,6 +717,17 @@ if (typeof window === 'undefined') {
     const svg = container.querySelector('svg');
     assert(svg.querySelectorAll('polygon').length >= 4, 'SVG contains at least 4 polygon faces');
     assert(svg.querySelector('text') !== null, 'SVG contains text labels');
+
+    // Regression (2026-08-16): the setback collar used to be drawn as a
+    // filled rectangle at the exact same coordinates as the building
+    // footprint, so it was completely hidden underneath the building and
+    // never visible. It's now an evenodd ring path between the parcel
+    // outline and the building footprint -- confirm that shape actually
+    // exists rather than a 5th coincident polygon.
+    const ring = svg.querySelector('path[fill-rule="evenodd"]');
+    assert(ring !== null, 'setback collar is rendered as a ring path, not a hidden duplicate rectangle');
+    assert((ring.getAttribute('d').match(/M /g) || []).length === 2,
+      'the ring path has two subpaths (outer parcel boundary + inner building footprint cutout)');
 
     // Light theme
     const containerL = document.createElement('div');

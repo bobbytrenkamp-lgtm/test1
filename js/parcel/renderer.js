@@ -224,12 +224,7 @@ window.PARCEL_RENDERER = (function () {
   /* ── Connector factory ── */
 
   function _makeConnector(config) {
-    switch (config.connector) {
-      case 'geojson': return new window.GeoJSONParcelConnector(config);
-      case 'wfs':     return new window.WFSParcelConnector(config);
-      case 'arcgis':
-      default:        return new window.ArcGISParcelConnector(config);
-    }
+    return window.PARCEL_CONNECTOR_FACTORY.make(config);
   }
 
   /* ── Public API ── */

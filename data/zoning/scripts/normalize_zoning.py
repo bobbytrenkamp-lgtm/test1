@@ -15,8 +15,27 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from zoning_config import (
     GEOMETRY_DIR, JURISDICTIONS_DIR, JURISDICTION_CONFIGS,
-    SIMPLIFY_TOLERANCE, load_jurisdiction_file, write_geometry
+    SIMPLIFY_TOLERANCE, load_jurisdiction_file, write_geometry, simplify_geometry
 )
+
+# Every permission_status in data/zoning/schemas/permitted_use.schema.json's
+# enum that means "a data center can be built here in some form," even if
+# conditioned on an approval process. Deliberately excludes "accessory" --
+# an accessory-use permission means the use is allowed only when subordinate
+# to a different primary use, which is not what a standalone data-center
+# site needs. Kept as an explicit set here (not re-derived from
+# js/parcel/feasibility.js's STATUS_META, which lives in a different
+# language) so both sides of this pipeline can be checked against the same
+# real schema file in tests.
+DC_ELIGIBLE_STATUSES = {
+    "permitted_by_right",
+    "permitted_with_limitations",
+    "conditional",
+    "special_exception",
+    "special_use_permit",
+    "administrative_approval",
+    "site_plan_approval",
+}
 
 # Canonical GeoJSON property names in normalized output
 CANONICAL_FIELDS = {
@@ -101,9 +120,30 @@ def normalize_geometry_for_jurisdiction(jurisdiction_id: str, dry_run: bool = Fa
         print("  Run fetch_zoning.py first")
         return None
 
+    # fetch_zoning.py and this script share ONE file path: fetch writes raw
+    # ArcGIS geometry there, and this function overwrites it in place with
+    # normalized canonical properties -- there is no separate raw/normalized
+    # split. That makes it destructive and NOT idempotent to run standalone:
+    # a second run reads the already-normalized properties (zoning_code,
+    # zoning_name, ...) instead of the raw ArcGIS field names
+    # (district_code_field/district_name_field from JURISDICTION_CONFIGS),
+    # finds none of them, and silently overwrites every feature's
+    # classification with an empty/unknown code -- discovered the hard way
+    # 2026-08-16 (real geometry data was destroyed and had to be restored
+    # from git). Refuse rather than repeat that: fetch_zoning.py already
+    # writes normalized=false-by-omission on the raw file it produces, and
+    # this function itself sets normalized=true on its own output below --
+    # so a True value here means this IS already-normalized data, and
+    # re-running against it needs a fresh fetch first, not a second pass.
     print(f"  Loading geometry: {geom_path}")
     with open(geom_path, encoding="utf-8") as f:
         raw_geojson = json.load(f)
+
+    if raw_geojson.get("normalized") is True:
+        print(f"  REFUSING: {geom_path} is already normalized output, not raw fetched geometry.")
+        print("  Run fetch_zoning.py first (or run_zoning_pipeline.py, which always fetches")
+        print("  before normalizing) to get fresh raw geometry, then normalize that.")
+        return None
 
     # Load structured data
     districts_data = load_jurisdiction_file(jurisdiction_id, "districts.json")
@@ -140,12 +180,7 @@ def normalize_geometry_for_jurisdiction(jurisdiction_id: str, dry_run: bool = Fa
             "zoning_name":       district.get("district_name") or props.get(name_field, ""),
             "zoning_category":   district.get("district_category", "unclassified"),
             "zoning_description":district.get("district_description", ""),
-            "dc_eligible":       dc_class["permission_status"] in (
-                                     "permitted_by_right",
-                                     "permitted_with_limitations",
-                                     "conditional",
-                                     "special_use_permit",
-                                 ),
+            "dc_eligible":       dc_class["permission_status"] in DC_ELIGIBLE_STATUSES,
             "dc_classification": dc_class["permission_status"],
             "dc_official_use_name": dc_class["official_use_name"],
             "dc_conditions":     dc_class["conditions"],
@@ -158,7 +193,7 @@ def normalize_geometry_for_jurisdiction(jurisdiction_id: str, dry_run: bool = Fa
 
         normalized_features.append({
             "type":       "Feature",
-            "geometry":   feature.get("geometry"),
+            "geometry":   simplify_geometry(feature.get("geometry"), SIMPLIFY_TOLERANCE),
             "properties": new_props,
         })
 

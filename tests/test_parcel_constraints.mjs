@@ -248,6 +248,30 @@ const disjoint = poly([[1, 1], [1.01, 1], [1.01, 1.01], [1, 1.01], [1, 1]]);
   t('clearCache empties it', C.cacheSize(), 0);
 }
 
+// ── Cache is actually bounded (regression) ──────────────────────────────────
+// _trim() existed, was exported, and its own comment said "Bound the cache
+// after each insert-heavy analyze() call" -- but nothing ever called it from
+// inside analyze(), so PARCEL_CONSTRAINTS' cache grew without limit for the
+// lifetime of the page no matter how many distinct parcels a user visited.
+{
+  C.reset();
+  C.clearCache();
+  C.registerLayer({ id: 'flood', constraintClass: 'flood', label: 'Flood',
+    provider: async () => [feat(westHalf)] });
+
+  // MAX_CACHE is an internal constant (300), not exported -- exercise the
+  // real public contract instead: analyze() for more distinct cache keys
+  // than any reasonable bound, then assert the cache did not simply keep
+  // growing forever.
+  const KEYS = 400;
+  for (let i = 0; i < KEYS; i++) {
+    await C.analyze(parcel, { cacheKey: `bound-test-${i}` });
+  }
+  ok(`the cache does not grow past a bound even after ${KEYS} distinct parcels`,
+    C.cacheSize() > 0 && C.cacheSize() < KEYS);
+  C.clearCache();
+}
+
 // ── Cancellation and validation ────────────────────────────────────────────
 {
   C.reset();

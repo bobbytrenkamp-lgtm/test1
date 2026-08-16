@@ -36,6 +36,7 @@ from policy_pipeline.normalize import (
     extract_date_from_text,
 )
 from policy_pipeline.adapters.rss_atom import _parse_rss2, _parse_atom, _parse_feed
+from policy_pipeline.reporting import health_report_summary, determine_exit_code
 import xml.etree.ElementTree as ET
 
 
@@ -546,3 +547,54 @@ class TestGovernmentSourcesJson:
             if "url_verified" in s:
                 assert isinstance(s["url_verified"], bool), \
                     f"url_verified must be bool in source {s['id']}"
+
+
+# ---------------------------------------------------------------------------
+# determine_exit_code (real bug found 2026-08-16, launch-readiness pass)
+# ---------------------------------------------------------------------------
+#
+# run_policy_pipeline.py's daily-run exit code used to be `1 if valid else 0`
+# -- it only ever looked at newly-discovered candidates, completely ignoring
+# chronic source failures (3+ consecutive, per health_report_summary). That
+# exit code gates update_policy_sources.yml's issue-opening step, whose body
+# already has a dedicated "Chronic Source Failures" section -- but on any day
+# with zero new candidates (the common case), a source stuck broken for weeks
+# never triggered that step at all. Confirmed live in production data:
+# data/source_health.json's az-water-resources entry has consecutive_failures
+# = 36 with no alert ever having fired for it under the old logic.
+
+def _health(failures_by_source):
+    """Build a minimal health_data dict: {source_id: consecutive_failures}."""
+    return {
+        "meta": {"last_run": "2026-08-16T00:00:00+00:00"},
+        "sources": {
+            sid: {"reachable": n == 0, "consecutive_failures": n}
+            for sid, n in failures_by_source.items()
+        },
+    }
+
+
+class TestDetermineExitCode:
+    def test_no_candidates_no_failures_is_zero(self):
+        assert determine_exit_code([], _health({"a": 0, "b": 1})) == 0
+
+    def test_new_candidates_alone_trigger_exit_1(self):
+        assert determine_exit_code(["fake-candidate"], _health({})) == 1
+
+    def test_chronic_failure_alone_triggers_exit_1(self):
+        # The literal bug: zero new candidates, one source chronically down.
+        assert determine_exit_code([], _health({"az-water-resources": 36})) == 1
+
+    def test_a_failure_below_the_chronic_threshold_does_not_trigger(self):
+        # 1-2 consecutive failures is a transient blip, not confirmed chronic
+        # -- matches the same >=3 threshold health_report_summary already uses.
+        assert determine_exit_code([], _health({"flaky-source": 2})) == 0
+
+    def test_both_candidates_and_chronic_failures_trigger_exit_1(self):
+        assert determine_exit_code(["fake-candidate"], _health({"dead-source": 10})) == 1
+
+    def test_agrees_with_health_report_summary_chronic_failures(self):
+        health = _health({"a": 0, "b": 3, "c": 5, "d": 2})
+        report = health_report_summary(health)
+        assert set(report["chronic_failures"]) == {"b", "c"}
+        assert determine_exit_code([], health) == 1

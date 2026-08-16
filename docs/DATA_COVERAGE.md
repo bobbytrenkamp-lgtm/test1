@@ -32,7 +32,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | Category | Datasets | With data | Total records | UI-consumed | Automated |
 |---|---|---|---|---|---|
 | ASSESSMENT | 1 | 0 | 0 | 0 | 0 |
-| DATA CENTERS | 2 | 2 | 4,465 | 1 | 1 |
+| DATA CENTERS | 2 | 2 | 4,466 | 1 | 1 |
 | ECONOMIC DATA | 2 | 2 | 14 | 0 | 0 |
 | FIBER | 4 | 0 | 0 | 1 | 1 |
 | FLOOD | 1 | 0 | 0 | 1 | 0 |
@@ -77,7 +77,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Facility index (production, map-consumed)** (data_centers) — ✅ has data
 
-- Records: 4455
+- Records: 4456
 - Source: Multiple (see facility_sources.json)
 - Geographic scope (declared): United States
 - Update frequency (declared): weekly (update_facilities.yml)

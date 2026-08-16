@@ -1,7 +1,7 @@
 # Zoning Intelligence — NoVA Production Status
 
-**Last updated:** 2026-08-15
-**Phase:** NoVA milestone (Loudoun, Prince William, Fairfax) — zoning geometry live for all three; permitted-use research complete for Loudoun and Prince William's real district codes, in progress for Fairfax
+**Last updated:** 2026-08-16
+**Phase:** NoVA milestone (Loudoun, Prince William, Fairfax) — zoning geometry live for all three; permitted-use research in progress for all three (Loudoun 3/58, Prince William 28/31, Fairfax 10/44)
 **Coverage:** 3 of 3 in-scope jurisdictions have live geometry; the milestone is explicitly scoped to these three counties only (see `PROJECT_CONTEXT.md`) — do not expand nationwide until this workflow is proven here
 
 ---
@@ -12,7 +12,7 @@
 |---|---|---|---|---|---|
 | Loudoun | 51107 | 58 | 3 (PD-IP, AR1, JLMA-3) | 7 (3 match a live code; I1/I2/B2 are pre-2023-rewrite codes with no live match) | Live (1,271 features) |
 | Prince William | 51153 | 31 | 28 | 5 (SR-1/SR-1C/SR-5 "Semi-Rural Residential", RPC "Residential Planned Community", MXD-U "Mixed Use District-Urban") | Live (2,227 features) |
-| Fairfax | 51059 | 44 | 0 | 0 | Live (6,242 features) |
+| Fairfax | 51059 | 44 | 10 (C-3, C-4, I-2, I-3, I-4, I-5, I-6, PDC, PTC, PRC) | 0 | Live (6,242 features) |
 
 "Classified" means a district has an actual data-center permitted-use determination (by-right / special use permit / conditional / prohibited) verified against real ordinance text — not merely a name or category. An unclassified district is `not_listed`: genuinely unresearched, never treated as prohibited.
 
@@ -79,10 +79,11 @@ None of the three counties' parcel services publish a native `zoning_code` attri
 
 | Attribute | Value |
 |---|---|
-| Verification Status | Geometry live-verified 2026-08-15; zero permitted-use research done |
+| Verification Status | Geometry live-verified 2026-08-15; 10 of 44 permitted-use research live-verified 2026-08-16 |
 | Geometry | Live — ArcGIS Online (`services1.arcgis.com`), Zoning/FeatureServer layer 0, filtered to `JURISDICTION='FAIRFAX COUNTY'`, 6,242 polygon features |
+| Ordinance | Fairfax's 2024 data-center zoning ordinance amendment (Sec. 4102.6.A, Board-adopted 2024-09-10, effective 2024-09-11) — a much more recent, detailed, use-specific standard than the other two counties have |
 
-All 44 real district codes are `not_listed` (unresearched, not prohibited). This is the next research priority to bring Fairfax to parity with Prince William.
+10 of 44 real district codes are classified, all at **moderate** (not high) confidence — researched via multiple independent, mutually corroborating secondary sources (Fairfax County's own news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same numeric thresholds), not a direct extraction of the raw ordinance PDF text (this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer). Findings: C-3/C-4 (commercial) by-right under 40,000 sq ft, Special Exception at or above; I-2/I-3/I-4 (light/medium industrial) by-right under 80,000 sq ft, Special Exception at or above; I-5/I-6 (heavy industrial) by-right with **no** size limit — the only unlimited-by-right districts; PDC/PTC (planned commercial/transit) Special Exception only, no by-right path; PRC (planned residential community) **prohibited** — removed as a permitted use by the 2024 amendment. A countywide standard applies to every approving district: 200 ft building setback and 300 ft ground-equipment setback from a residential district lot line, all equipment enclosed in a building. The remaining 34 codes (all residential R-*/PDH-*/R-A/R-C/R-E/R-MHP, plus C-1/C-2/C-5–C-8, I-I, PCC, PRM) are honest `not_listed` placeholders — their absence from the researched-eligible list is NOT treated as an inferred prohibition, only PRC's explicit removal is recorded as such. See `data/zoning/jurisdictions/va-fairfax-county/permitted_uses.json` and `districts.json` for full per-code detail.
 
 ---
 

@@ -43,7 +43,7 @@ from policy_pipeline.lifecycle import migrate_restrictions_file
 from policy_pipeline.reporting import (
     load_source_health, save_source_health, update_source_health_entry,
     load_candidates, save_candidates, build_run_summary, append_change_log,
-    health_report_summary,
+    health_report_summary, determine_exit_code,
 )
 import policy_pipeline.adapters.generic_html as generic_html_adapter
 import policy_pipeline.adapters.rss_atom as rss_atom_adapter
@@ -255,7 +255,11 @@ def main(argv: list[str] | None = None) -> int:
     print(f"\nRun complete in {elapsed:.1f}s")
     print(json.dumps(run_summary, indent=2))
 
-    return 1 if valid else 0
+    chronic_failures = health_report_summary(health_data)["chronic_failures"]
+    if chronic_failures:
+        print(f"Chronic failures (3+ consecutive): {chronic_failures}")
+
+    return determine_exit_code(valid, health_data)
 
 
 if __name__ == "__main__":

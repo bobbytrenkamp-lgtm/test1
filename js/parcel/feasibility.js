@@ -26,31 +26,46 @@
 window.PARCEL_FEASIBILITY = (function () {
   'use strict';
 
-  /* ── Permission status metadata ── */
+  /* ── Permission status metadata ──
+     Keys must cover every value in data/zoning/schemas/permitted_use.schema.json's
+     permission_status enum (12 values), not just the ones exercised by the
+     jurisdictions researched so far -- a status a researcher correctly
+     records (e.g. "special_exception", the term Virginia counties like
+     Fairfax use instead of "special_use_permit" for the same kind of
+     legislative-body approval) must not silently fall through to the
+     generic "Unknown" bucket just because no jurisdiction had used it yet
+     when this map was first written. */
   const STATUS_META = {
     permitted_by_right:       { cls: 'pf-eligible',     icon: '✓', label: 'Eligible — By Right'       },
     permitted_with_limitations:{ cls: 'pf-conditional', icon: '!', label: 'Eligible with Limitations'  },
+    accessory:                { cls: 'pf-conditional',  icon: '!', label: 'Accessory Use Only'         },
     conditional:              { cls: 'pf-conditional',  icon: '!', label: 'Conditional Approval Req.'  },
+    special_exception:        { cls: 'pf-conditional',  icon: '!', label: 'Special Exception Req.'     },
     special_use_permit:       { cls: 'pf-conditional',  icon: '!', label: 'Special Use Permit Req.'    },
     administrative_approval:  { cls: 'pf-conditional',  icon: '!', label: 'Admin Approval Required'    },
     site_plan_approval:       { cls: 'pf-conditional',  icon: '!', label: 'Site Plan Approval Req.'    },
     prohibited:               { cls: 'pf-prohibited',   icon: '✗', label: 'Prohibited'                 },
     not_listed:               { cls: 'pf-unknown',      icon: '?', label: 'Not Listed in District'     },
     unclear:                  { cls: 'pf-unknown',      icon: '?', label: 'Status Unclear'             },
+    manual_review_required:   { cls: 'pf-unknown',      icon: '?', label: 'Manual Review Required'     },
     unknown:                  { cls: 'pf-unknown',      icon: '?', label: 'Unknown'                    },
   };
 
-  /* Eligibility contribution to the composite score (0–100 component) */
+  /* Eligibility contribution to the composite score (0–100 component).
+     Same coverage requirement as STATUS_META above. */
   const ELIGIBILITY_SCORE = {
     permitted_by_right:        100,
     permitted_with_limitations: 80,
+    accessory:                  40,
     conditional:                60,
+    special_exception:          55,
     special_use_permit:         55,
     administrative_approval:    60,
     site_plan_approval:         60,
     prohibited:                  0,
     not_listed:                 20,
     unclear:                    20,
+    manual_review_required:     20,
     unknown:                    20,
   };
 

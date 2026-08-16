@@ -178,6 +178,24 @@
   font-style: italic;
 }
 
+/* Small provenance indicator next to a field value (window.PARCEL_PROVENANCE) --
+   the full "where did this come from" text lives in the native title tooltip,
+   so this stays a one-word marker rather than crowding the row. */
+.pp-field-prov {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0 4px;
+  cursor: help;
+  vertical-align: middle;
+}
+
 /* ── Zoning tab ── */
 .pp-zoning-badge {
   display: inline-block;

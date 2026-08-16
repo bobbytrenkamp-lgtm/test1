@@ -15,6 +15,11 @@
  *   crsCode     — CRS for bbox parameter (default: EPSG:4326)
  *   fieldMap    — canonical field id → source property name
  *   fips        — county FIPS
+ *
+ * Depends on: window.PARCEL_PROVENANCE (optional -- when present, _normalize()
+ *   attaches a per-field provenance record the same way connector-arcgis.js's
+ *   connector does, for every canonical field this jurisdiction's fieldMap
+ *   actually verifies).
  */
 window.WFSParcelConnector = (function () {
   'use strict';
@@ -76,15 +81,25 @@ window.WFSParcelConnector = (function () {
     }
 
     async _fetch(url, signal) {
+      const cache = window.PARCEL_REQUEST_CACHE;
+      const cached = cache?.get(url);
+      if (cached !== undefined) return cached;
+
       const res = await fetch(url, signal ? { signal } : {});
       if (!res.ok) throw new Error(`WFS request failed: ${res.status} ${res.statusText}`);
       const data = await res.json();
-      return this._normalize(data);
+      const normalized = this._normalize(data);
+      cache?.set(url, normalized);
+      return normalized;
     }
 
     _normalize(geojson) {
       const revMap = this._revMap;
       const fips   = String(this._config.fips || '').padStart(5, '0');
+      const { id: jurisdictionId, name: jurisdictionName, fieldMap } = this._config;
+      const PROV = window.PARCEL_PROVENANCE;
+      const fetchedAt = PROV ? new Date().toISOString() : null;
+
       const features = (geojson.features || []).map(f => {
         const raw    = f.properties || {};
         const mapped = {};
@@ -97,6 +112,26 @@ window.WFSParcelConnector = (function () {
         }
         if (fips) mapped.county_fips = fips;
         mapped._source = 'wfs';
+
+        // Per-field provenance (window.PARCEL_PROVENANCE, optional) -- same
+        // rule as connector-arcgis.js's _normalize(): only for canonical
+        // fields this jurisdiction's registry.js fieldMap actually verifies,
+        // never for the lowercase-passthrough guess. revMap holds each
+        // source name twice (original casing + lowercased); dedupe via a Set
+        // of canonical ids so a field isn't attached twice.
+        if (PROV) {
+          for (const canonical of new Set(Object.values(revMap))) {
+            if (mapped[canonical] == null || mapped[canonical] === '') continue;
+            PROV.attach(mapped, canonical, PROV.record({
+              sourceId:    jurisdictionId,
+              sourceLabel: jurisdictionName,
+              sourceField: (fieldMap || {})[canonical],
+              confidence:  PROV.CONFIDENCE.DIRECT_OFFICIAL.id,
+              fetchedAt,
+            }));
+          }
+        }
+
         return { ...f, properties: mapped };
       });
       return { type: 'FeatureCollection', features };

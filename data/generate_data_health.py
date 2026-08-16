@@ -43,10 +43,17 @@ WHAT THIS AGGREGATES (real signals only, nothing invented)
   data/map_data.json#validation_report   map_data.json's own citation URLs
   data/parcel_pipeline/static_ingestion/state/*.manifest.json
                                      per static-ingestion-source pipeline health
+  data/parcel_health_history.json   per-jurisdiction ArcGIS parcel service
+                                     reachability (data/check_parcel_services.mjs
+                                     --record-history; only scheduled/dispatch
+                                     runs write it, never a PR run)
 
 Every dataset in data/catalog/dataset_registry.json that has none of the
 above is listed under `datasets_without_automated_health_tracking` --
-reported, not hidden, and never defaulted to OK.
+reported, not hidden, and never defaulted to OK. When a pipeline's own key in
+`pipelines` exactly matches a registered dataset id (parcels_registry,
+static_parcel_ingestion), that dataset is excluded from the fallback list
+since a real signal already covers it by name.
 
 Usage:
     python3 data/generate_data_health.py            # regenerate
@@ -91,6 +98,13 @@ PERSISTENT_FAILURE_THRESHOLD = 3
 # this doesn't fire on noise -- both real signals below are currently far
 # past it (42% and 48%), which is itself the finding.
 UNREACHABLE_RATIO_ALERT_THRESHOLD = 0.15
+
+# Mirrors data/check_parcel_services.mjs's own CONFIRMATION_WINDOW /
+# CONFIRMATION_THRESHOLD exactly (see _parcel_service_health below) -- these
+# values must stay in sync with that script's constants, not be tuned
+# independently here.
+PARCEL_CONFIRMATION_WINDOW = 3
+PARCEL_CONFIRMATION_THRESHOLD = 2
 
 
 def _load_json(path: Path):
@@ -187,6 +201,63 @@ def _static_ingestion_health() -> dict:
     return {"pipeline": "static_parcel_ingestion", "health": worst, "sources": per_source}
 
 
+def _parcel_service_health() -> dict:
+    """Aggregates data/parcel_health_history.json (written by
+       check_parcel_services.mjs --record-history on scheduled/dispatch runs
+       only -- a PR-triggered run can never populate it, so a missing file
+       here is an honest "not yet run", not a hidden failure).
+
+       Mirrors check_parcel_services.mjs's own isConfirmedDead() decision
+       exactly (>=2 failures within the latest 3 recorded runs for a FIPS, OR
+       a first-ever recorded run with no prior history to consult -- that
+       second case is deliberately aggressive in the source script, so this
+       dashboard must reproduce it rather than a "safer"-looking approximation
+       that would disagree with what the CI job itself concluded and acted on
+       (opening a tracking issue, failing the job)."""
+    data = _load_json(DATA_DIR / "parcel_health_history.json")
+    history = (data or {}).get("history") or {}
+    if not history:
+        return {
+            "pipeline": "parcels_registry",
+            "health": NOT_YET_TRACKED,
+            "why": "data/parcel_health_history.json does not exist yet -- "
+                   "check_parcel_services.yml only writes it on a scheduled "
+                   "or manually-dispatched run, never on a pull_request run",
+        }
+
+    down = []
+    transient = []
+    for fips, runs in history.items():
+        if not runs:
+            continue
+        latest = runs[-1]
+        if latest.get("ok"):
+            continue
+        prior = runs[:-1][-(PARCEL_CONFIRMATION_WINDOW - 1):]
+        if not prior:
+            confirmed = True  # matches isConfirmedDead's "no history" branch
+        else:
+            prior_failures = sum(1 for r in prior if not r.get("ok"))
+            confirmed = (prior_failures + 1) >= PARCEL_CONFIRMATION_THRESHOLD
+        (down if confirmed else transient).append(fips)
+
+    if down:
+        health = SOURCE_DOWN
+    elif transient:
+        health = NETWORK_FAILURE
+    else:
+        health = OK
+
+    return {
+        "pipeline": "parcels_registry",
+        "health": health,
+        "last_checked": (data or {}).get("meta", {}).get("last_updated"),
+        "total_jurisdictions": len(history),
+        "persistently_down": sorted(down),
+        "transiently_unreachable": sorted(transient),
+    }
+
+
 def build_report() -> dict:
     map_data = _load_json(DATA_DIR / "map_data.json") or {}
 
@@ -197,17 +268,24 @@ def build_report() -> dict:
         "map_data_citations": _citation_link_health(
             map_data.get("validation_report"), "map_data_citations", checked_at_key="last_run"),
         "static_parcel_ingestion": _static_ingestion_health(),
+        "parcels_registry": _parcel_service_health(),
     }
 
     registry = _load_json(ROOT / "data" / "catalog" / "dataset_registry.json") or {"datasets": []}
     tracked_pipeline_names = set(pipelines.keys())
-    # No 1:1 dataset-id mapping is asserted here -- these are pipeline-level
-    # signals (a citation-URL checker, a source-reachability checker), not
-    # per-dataset ones, and forcing a fake mapping would misrepresent which
-    # specific dataset a signal actually covers. Every declared dataset is
-    # simply reported as not-yet-covered by a per-dataset health signal
-    # unless/until one is built for it.
-    untracked_datasets = sorted(d["id"] for d in registry.get("datasets", []))
+    # Most pipeline-level signals here (a citation-URL checker, a
+    # source-reachability checker) don't map 1:1 onto one dataset id, so no
+    # mapping is invented for those -- forcing one would misrepresent which
+    # specific dataset a signal actually covers. But when a pipeline's own key
+    # in `pipelines` above IS exactly a registered dataset id (parcels_registry,
+    # static_parcel_ingestion), that dataset genuinely does have a health
+    # signal -- whatever it currently reports, including NOT_YET_TRACKED --
+    # and must not also appear in the generic fallback list below, or the
+    # same fact would be reported two different ways in the same document.
+    untracked_datasets = sorted(
+        d["id"] for d in registry.get("datasets", [])
+        if d["id"] not in tracked_pipeline_names
+    )
 
     counts = {}
     for p in pipelines.values():
@@ -229,6 +307,7 @@ def build_report() -> dict:
         "summary": {
             "pipelines_tracked": len(pipelines),
             "counts_by_health": counts,
+            "total_registered_datasets": len(registry.get("datasets", [])),
             "datasets_without_tracking_count": len(untracked_datasets),
         },
     }
@@ -249,9 +328,15 @@ def render_markdown(report: dict) -> str:
     ]
     for name, p in report["pipelines"].items():
         detail_bits = []
-        if "total_sources" in p:
+        # total_sources (policy_pipeline_sources) and total_jurisdictions
+        # (parcels_registry) are the same "down/transient/total" shape under
+        # different names -- both real pipeline-level down/transient counts,
+        # just counting different kinds of things (config'd sources vs.
+        # registered county GIS services).
+        total_key = "total_sources" if "total_sources" in p else "total_jurisdictions" if "total_jurisdictions" in p else None
+        if total_key:
             detail_bits.append(f"{len(p.get('persistently_down', []))} down / "
-                                f"{len(p.get('transiently_unreachable', []))} transient / {p['total_sources']} total")
+                                f"{len(p.get('transiently_unreachable', []))} transient / {p[total_key]} total")
         if "total_urls_checked" in p:
             detail_bits.append(f"{p['unreachable']}/{p['total_urls_checked']} unreachable "
                                 f"({p['unreachable_ratio']*100:.1f}%)")
@@ -264,7 +349,7 @@ def render_markdown(report: dict) -> str:
         "## Datasets with no automated health signal yet",
         "",
         f"{report['summary']['datasets_without_tracking_count']} of "
-        f"{report['summary']['datasets_without_tracking_count']} datasets in "
+        f"{report['summary']['total_registered_datasets']} datasets in "
         "data/catalog/dataset_registry.json have no per-dataset automated health check "
         "(they are hand-curated JSON or covered only indirectly by the pipeline signals "
         "above, not fetched/validated per dataset). Listed here, not defaulted to OK:",

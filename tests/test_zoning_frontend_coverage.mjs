@@ -63,5 +63,27 @@ for (const jid of normalizedIds) {
     wiredIds.has(jid));
 }
 
+// ── Regression guard: the "no zoning data available" panel (js/zoning-
+// details.js's renderNoCoverage) used to hardcode "Pilot coverage: Loudoun
+// County, VA (FIPS 51107)" as prose -- stale the moment Prince William and
+// Fairfax were wired in above. It was switched to build its coverage line
+// from ZONING.coveredJurisdictionLabels() instead. Pin that every wired
+// jurisdiction has a real label (not its raw id) so the message can never
+// silently regress to showing "va-loudoun-county" or go stale again.
+ok('ZONING exposes coveredJurisdictionLabels() for the no-coverage panel',
+  typeof ZONING.coveredJurisdictionLabels === 'function');
+ok('ZONING exposes JURISDICTION_LABELS', !!ZONING.JURISDICTION_LABELS && typeof ZONING.JURISDICTION_LABELS === 'object');
+
+for (const jid of wiredIds) {
+  ok(`Wired jurisdiction (${jid}) has a human-readable display label, not just its raw id`,
+    typeof ZONING.JURISDICTION_LABELS[jid] === 'string' && ZONING.JURISDICTION_LABELS[jid] !== jid);
+}
+
+const labels = ZONING.coveredJurisdictionLabels();
+ok('coveredJurisdictionLabels() returns one label per wired jurisdiction',
+  labels.length === wiredIds.size);
+ok('coveredJurisdictionLabels() output never contains a raw jurisdiction id',
+  !labels.some(l => wiredIds.has(l)));
+
 console.log(`\n${pass} passed, ${fail} failed`);
 if (fail > 0) process.exit(1);

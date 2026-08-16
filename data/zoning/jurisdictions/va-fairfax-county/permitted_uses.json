@@ -1,7 +1,7 @@
 {
   "jurisdiction_id": "va-fairfax-county",
-  "last_updated": "2026-08-15",
-  "note": "Every entry below is an explicit, honest 'not yet researched' placeholder for a real, live-verified district code -- see districts.json's own note. None of these should be read as a real permitted-use determination.",
+  "last_updated": "2026-08-16",
+  "note": "10 of 44 real district codes now carry real, secondary-source-corroborated data-center permitted-use research (see each entry's own notes for the verification method and confidence caveat). The remaining 34 are honest 'not yet researched' placeholders -- not_listed, never inferred as prohibited merely because Fairfax's data-center ordinance amendment enumerates a specific list of eligible districts and these codes were not among the ones confirmed.",
   "uses": [
     {
       "jurisdiction_id": "va-fairfax-county",
@@ -31,25 +31,37 @@
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "C-3",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
+      "official_use_name": "Data Center",
+      "permission_status": "permitted_with_limitations",
       "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "conditions": [
+        "By-right only if gross floor area is under 40,000 sq ft.",
+        "Developments of 40,000 sq ft or more require Special Exception approval by the Board of Supervisors."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "C-4",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
+      "official_use_name": "Data Center",
+      "permission_status": "permitted_with_limitations",
       "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "conditions": [
+        "By-right only if gross floor area is under 40,000 sq ft.",
+        "Developments of 40,000 sq ft or more require Special Exception approval by the Board of Supervisors."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
@@ -103,61 +115,89 @@
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "I-2",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
+      "official_use_name": "Data Center",
+      "permission_status": "permitted_with_limitations",
       "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "conditions": [
+        "By-right only if gross floor area is under 80,000 sq ft.",
+        "Developments of 80,000 sq ft or more require Special Exception approval by the Board of Supervisors."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "I-3",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
+      "official_use_name": "Data Center",
+      "permission_status": "permitted_with_limitations",
       "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "conditions": [
+        "By-right only if gross floor area is under 80,000 sq ft.",
+        "Developments of 80,000 sq ft or more require Special Exception approval by the Board of Supervisors."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "I-4",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
+      "official_use_name": "Data Center",
+      "permission_status": "permitted_with_limitations",
       "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "conditions": [
+        "By-right only if gross floor area is under 80,000 sq ft (2024 amendment; prior 2021 rule had no I-4 cap).",
+        "Developments of 80,000 sq ft or more require Special Exception approval by the Board of Supervisors."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "I-5",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
+      "official_use_name": "Data Center",
+      "permission_status": "permitted_by_right",
       "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "conditions": [
+        "No use-specific size limit; subject only to the district's ordinary bulk/dimensional regulations."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "I-6",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
+      "official_use_name": "Data Center",
+      "permission_status": "permitted_by_right",
       "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "conditions": [
+        "No use-specific size limit; subject only to the district's ordinary bulk/dimensional regulations."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
@@ -187,13 +227,18 @@
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "PDC",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "official_use_name": "Data Center",
+      "permission_status": "special_exception",
+      "approval_type": "Special Exception (Board of Supervisors)",
+      "conditions": [
+        "No by-right path in this planned district as of the 2024 amendment; Special Exception required regardless of size."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
@@ -331,13 +376,18 @@
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "PRC",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
+      "official_use_name": "Data Center",
+      "permission_status": "prohibited",
       "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "conditions": [
+        "Data center removed as a permitted use in this district by the 2024 amendment, per county staff's proposal and Board action -- re-verify against the final adopted text if precision matters for a specific parcel."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",
@@ -355,13 +405,18 @@
       "jurisdiction_id": "va-fairfax-county",
       "district_code": "PTC",
       "standardized_use_id": "data_center",
-      "official_use_name": "",
-      "permission_status": "not_listed",
-      "approval_type": null,
-      "conditions": [],
-      "confidence_level": "unavailable",
+      "official_use_name": "Data Center",
+      "permission_status": "special_exception",
+      "approval_type": "Special Exception (Board of Supervisors)",
+      "conditions": [
+        "No by-right path in this planned district as of the 2024 amendment; Special Exception required regardless of size."
+      ],
+      "confidence_level": "moderate",
       "manual_review_required": true,
-      "notes": "Not yet researched against the actual Fairfax County Zoning Ordinance text -- this explicitly records 'not yet classified', matching what the pipeline would otherwise synthesize by default for an absent entry. Not a claim that data centers are prohibited or permitted in this district."
+      "notes": "Verified via multiple independent, mutually corroborating secondary sources (Fairfax County's own official news release and adopted-amendment page, plus law-firm summaries from McGuireWoods, Holland & Knight, and Venable, all citing the same specific numeric thresholds and effective date) rather than a direct extraction of the raw ordinance PDF text -- this sandbox has no outbound network to fairfaxcounty.gov or the Encode Plus ordinance viewer, and a GitHub Actions diagnostic dispatch to fetch the primary PDF was not attempted this pass since it would have required a new workflow file to first land on main. Confidence is \"moderate\", not \"high\", for that reason -- re-verify against the primary ordinance text (Sec. 4102.6.A, online.encodeplus.com/regs/fairfaxcounty-va) before relying on this for a specific transaction. Adopted Sept. 10, 2024 (effective Sept. 11, 2024) zoning ordinance amendment. Countywide standards applying to every district that permits the use: data center building must be at least 200 ft from the lot line of an adjacent/abutting residential district; ground-mounted equipment (including emergency generators) must be at least 300 ft from a residential district lot line or separated from it by the data center building itself; all equipment must be enclosed within a building.",
+      "ordinance_section": "Sec. 4102.6.A (Data Center use standards)",
+      "source_url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
+      "effective_date": "2024-09-11"
     },
     {
       "jurisdiction_id": "va-fairfax-county",

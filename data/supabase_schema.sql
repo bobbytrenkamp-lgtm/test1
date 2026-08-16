@@ -89,3 +89,38 @@ create policy "Users can manage own saved items"
   on public.saved_items for all
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
+
+-- ─────────────────────────────────────────────────────────────────
+-- client_errors
+-- Opt-in client-side error logging (js/error-logging.js). Write-only
+-- telemetry: any visitor (signed in or anonymous) may INSERT a report,
+-- but there is no select/update/delete policy for anon/authenticated
+-- roles, so RLS's default-deny means nobody can read this table from the
+-- frontend -- only the project owner via the Supabase dashboard (or a
+-- service_role key, which this frontend never holds) can review reports.
+-- No user identity is captured, by design -- see js/error-logging.js's
+-- header for why.
+--
+-- Free-tier note: this table has no automatic pruning. The Supabase free
+-- tier caps database storage at 500MB; the client rate-limits how many
+-- reports one page load can send (see js/error-logging.js), but if this
+-- table grows large over months, periodically run:
+--   delete from public.client_errors where occurred_at < now() - interval '90 days';
+-- ─────────────────────────────────────────────────────────────────
+create table if not exists public.client_errors (
+  id          uuid primary key default gen_random_uuid(),
+  message     text not null,
+  source      text,
+  lineno      integer,
+  colno       integer,
+  stack       text,
+  page_url    text,
+  user_agent  text,
+  occurred_at timestamptz not null default now()
+);
+
+alter table public.client_errors enable row level security;
+
+create policy "Anyone can report a client error"
+  on public.client_errors for insert
+  with check (true);

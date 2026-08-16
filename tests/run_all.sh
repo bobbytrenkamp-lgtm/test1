@@ -77,6 +77,7 @@ run "zoning frontend: FIPS_TO_JURISDICTION coverage matches normalized data on d
 run "zoning fetch: ArcGIS pagination doesn't truncate on unreliable exceededTransferLimit" python3 -m pytest tests/test_zoning_fetch_pagination.py -q
 run "parcel zoning geometry: spatial (point-in-polygon) district resolution" node tests/test_parcel_zoning_geometry.mjs
 run "parcel feasibility: spatial zoning-code fallback" node tests/test_parcel_feasibility_spatial.mjs
+run "parcel feasibility: permission_status schema coverage" node tests/test_parcel_feasibility_status_coverage.mjs
 run "parcel source catalog validator" python3 data/validate_parcel_catalog.py
 run "parcel catalog + priority queue tests" python3 -m pytest tests/test_parcel_catalog.py tests/test_parcel_priority_queue.py -q
 run "parcel registry integrity check" node data/parcel_pipeline/check_registry_integrity.mjs
@@ -126,6 +127,7 @@ run "economy core (readiness score, signals, stats)" node tests/test_economy_cor
 run "economy map (layer-toggle race safety)" node tests/test_economy_map_race.mjs
 run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
 run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
+run "client error logging (opt-in Supabase reporting)" node tests/test_error_logging.mjs
 run "data loading (critical/deferred)" node tests/test_data_loading.mjs
 run "map point clustering (grid clustering for large point layers)" node tests/test_map_point_clustering.mjs
 run "pipeline (windowing + a11y)"   node tests/test_pipeline.mjs
