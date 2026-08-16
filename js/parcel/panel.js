@@ -151,8 +151,8 @@ window.PARCEL_PANEL = (function () {
     } else if (window.PARCEL_REGISTRY?.get(fips)?.notProvidedBySource?.includes('zoning_code')) {
       zoningFields += `<div class="pp-muted pp-field-na">Zoning code not published by this source</div>`;
     }
-    zoningFields += _fmtFieldRow('land_use_code', props.land_use_code, fips);
-    zoningFields += _fmtFieldRow('land_use_desc', props.land_use_desc, fips);
+    zoningFields += _fmtFieldRow('land_use_code', props.land_use_code, fips, props);
+    zoningFields += _fmtFieldRow('land_use_desc', props.land_use_desc, fips, props);
     zoningFields += _fieldRow('Overlay Districts', props.overlay_districts);
 
     if (zoningFields) {

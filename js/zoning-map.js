@@ -73,9 +73,10 @@ window.ZONING_MAP = (function () {
   async function _buildZoningLayer(jurisdictionId, record) {
     /* The normalized jurisdiction record already states whether polygon
        geometry exists. Consulting it first avoids a request that is certain to
-       404 — data/zoning/geometry/ is currently empty, so every activation of
-       the zoning layer logged a failed fetch before falling back to the
-       district browser. The fallback was always correct; the noise was not. */
+       404 -- geometry is live for all three NoVA counties as of 2026-08,
+       but a jurisdiction added later may not have it yet, and this same
+       fallback covers that case: no failed-fetch noise, straight to the
+       district-browser mode below. */
     if (record && record.geometry_available === false) return null;
 
     const url = `data/zoning/geometry/${jurisdictionId}.geojson`;

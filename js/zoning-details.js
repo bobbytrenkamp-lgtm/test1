@@ -421,6 +421,14 @@
   function renderNoCoverage() {
     const panel = document.getElementById("zoning-panel");
     if (!panel) return;
+    /* Pulled live from window.ZONING rather than hardcoded -- a hardcoded
+       county list here previously went stale the moment coverage expanded
+       (found 2026-08-16: it still said "Loudoun County only" after Prince
+       William and Fairfax were both added). */
+    const labels = window.ZONING?.coveredJurisdictionLabels?.() || [];
+    const coverageLine = labels.length
+      ? `Pilot coverage: ${labels.map(esc).join(", ")}.`
+      : "Pilot coverage: none loaded.";
     panel.innerHTML = `
       <div class="z-header">
         <button class="z-header-close" aria-label="Close" title="Close">&times;</button>
@@ -429,7 +437,7 @@
       <div class="z-body">
         <div class="z-no-geometry-notice">
           <p><strong>No zoning data available</strong> for this county yet.</p>
-          <p>Pilot coverage: Loudoun County, VA (FIPS 51107).<br>
+          <p>${coverageLine}<br>
              Additional jurisdictions will be added over time.</p>
         </div>
       </div>`;

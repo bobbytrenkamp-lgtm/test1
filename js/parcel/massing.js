@@ -40,6 +40,16 @@ window.PARCEL_MASSING = (function () {
     return `<polygon points="${corners.join(' ')}" fill="${fill}" stroke="${stroke}" stroke-width="0.8" opacity="${opacity ?? 1}"/>`;
   }
 
+  /* A "ring" between an outer and inner rectangle, via an evenodd path with
+     two subpaths — used for the setback collar, which must show the area
+     between the parcel edge and the building footprint, not a filled
+     rectangle (see the fixed bug this replaces, below). */
+  function _ringFace(outerCorners, innerCorners, fill, stroke, opacity) {
+    const outerPath = `M ${outerCorners.join(' L ')} Z`;
+    const innerPath = `M ${innerCorners.join(' L ')} Z`;
+    return `<path d="${outerPath} ${innerPath}" fill="${fill}" stroke="${stroke}" stroke-width="0.8" opacity="${opacity ?? 1}" fill-rule="evenodd"/>`;
+  }
+
   /* ── SVG construction ───────────────────────────────────────────────────── */
 
   function _buildSVG(env, colors) {
@@ -47,14 +57,10 @@ window.PARCEL_MASSING = (function () {
     const rawFt   = env.footprintSqft  || 20000;
     const covPct  = env.lotCoveragePct || 60;
     const htFt    = env.maxHeight_ft   || 40;
-    const sbFront = env.setbacks?.front || 25;
-    const sbSide  = env.setbacks?.side  || 10;
 
     // Map parcel dimensions to isometric unit lengths
     // Treat footprint as square for simplicity; scale proportionally
     const lotSide  = Math.sqrt(rawFt);                    // ft, square approximation
-    const bldSide  = Math.sqrt(rawFt * covPct / 100);    // ft
-    const sbFrac   = Math.max(sbFront, sbSide) / lotSide; // fraction of lot
     const aspect   = htFt / lotSide;                      // height-to-width ratio
 
     // Isometric drawing units (dimensionless)
@@ -83,13 +89,27 @@ window.PARCEL_MASSING = (function () {
       _pt(0, D, 0, SCALE, OX, OY),
     ], ground, strokeColor, 0.55));
 
-    // Setback collar (lighter fill inside parcel, outside building zone)
-    polys.push(_face([
-      _pt(bx,      by,      0, SCALE, OX, OY),
-      _pt(bx + bw, by,      0, SCALE, OX, OY),
-      _pt(bx + bw, by + bd, 0, SCALE, OX, OY),
-      _pt(bx,      by + bd, 0, SCALE, OX, OY),
-    ], setbackFill, strokeColor, 0.30));
+    // Setback collar (lighter fill inside parcel, outside building zone).
+    // Rendered as a ring between the full parcel outline and the building
+    // footprint -- previously this drew a filled rectangle at the exact
+    // same bx/by/bw/bd coordinates as the building footprint itself, so it
+    // was a duplicate of the building's own ground plane and completely
+    // hidden underneath the opaque building faces drawn right after it.
+    // The collar never actually appeared despite the header comment's claim.
+    polys.push(_ringFace(
+      [
+        _pt(0, 0, 0, SCALE, OX, OY),
+        _pt(W, 0, 0, SCALE, OX, OY),
+        _pt(W, D, 0, SCALE, OX, OY),
+        _pt(0, D, 0, SCALE, OX, OY),
+      ],
+      [
+        _pt(bx,      by,      0, SCALE, OX, OY),
+        _pt(bx + bw, by,      0, SCALE, OX, OY),
+        _pt(bx + bw, by + bd, 0, SCALE, OX, OY),
+        _pt(bx,      by + bd, 0, SCALE, OX, OY),
+      ],
+      setbackFill, strokeColor, 0.30));
 
     // Building — left face (depth)
     polys.push(_face([

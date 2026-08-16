@@ -51,7 +51,7 @@ window.PARCEL_COMPARABLES = (function () {
   }
 
   /* Compute similarity score (0–100) between subject and a candidate */
-  function _score(subject, candidate) {
+  function _score(subject, candidate, opts) {
     const sp = subject.properties || {};
     const cp = candidate.properties || {};
 
@@ -63,8 +63,13 @@ window.PARCEL_COMPARABLES = (function () {
 
     const areaRatio = cArea / sArea;
 
-    // Area band filter
-    if (areaRatio < DEFAULTS.minAreaRatio || areaRatio > DEFAULTS.maxAreaRatio) return 0;
+    // Area band filter — reads the caller's opts (merged over DEFAULTS in
+    // find()), not the DEFAULTS constant directly. Previously this read
+    // DEFAULTS.minAreaRatio/maxAreaRatio unconditionally, so a caller
+    // overriding those via find(subject, {minAreaRatio, maxAreaRatio}) had
+    // no effect on the actual filtering/scoring -- the override was silently
+    // ignored.
+    if (areaRatio < opts.minAreaRatio || areaRatio > opts.maxAreaRatio) return 0;
 
     let score = 0;
 
@@ -78,7 +83,7 @@ window.PARCEL_COMPARABLES = (function () {
     }
 
     // Area proximity (30 pts) — peak score at ratio = 1.0
-    const areaSimilarity = 1 - Math.abs(Math.log(areaRatio)) / Math.log(DEFAULTS.maxAreaRatio);
+    const areaSimilarity = 1 - Math.abs(Math.log(areaRatio)) / Math.log(opts.maxAreaRatio);
     score += Math.max(0, Math.round(areaSimilarity * 30));
 
     // Land use category match (20 pts)
@@ -113,7 +118,7 @@ window.PARCEL_COMPARABLES = (function () {
 
       if (opts.requireSameZone && f.properties?.zoning_code !== subject.properties?.zoning_code) continue;
 
-      const s = _score(subject, f);
+      const s = _score(subject, f, opts);
       if (s > 0) scored.push({ feature: f, score: s });
     }
 

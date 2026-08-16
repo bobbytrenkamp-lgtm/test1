@@ -358,11 +358,18 @@ if (typeof window === 'undefined') {
       { type: 'Feature', geometry: null, properties: { parcel_id: 'A4', zoning_code: 'I1',    area_sqft: 250000, area_acres: 5.7,   land_use_code: 'I1' } },
     ];
 
-    // Mock getFeatures
-    const origGetFeatures = window.PARCEL_RENDERER?.getFeatures;
-    if (window.PARCEL_RENDERER) {
-      window.PARCEL_RENDERER.getFeatures = () => candidates;
-    }
+    // Mock getFeatures. window.PARCEL_RENDERER does not exist at all under
+    // the Node harness (renderer.js touches Leaflet/the live document and is
+    // deliberately excluded from the bootstrap list above) -- the previous
+    // `if (window.PARCEL_RENDERER)` guard was therefore always false here,
+    // so this mock was silently never installed, find() always saw features
+    // = [], and every assertion below (all wrapped in `if (results.length)`)
+    // silently never ran. Real bug found 2026-08-16: this whole test block
+    // provided zero actual coverage under the only harness this suite runs
+    // in. Fixed by creating the stub object outright rather than requiring
+    // it to already exist.
+    const origPARCEL_RENDERER = window.PARCEL_RENDERER;
+    window.PARCEL_RENDERER = Object.assign({}, window.PARCEL_RENDERER, { getFeatures: () => candidates });
 
     const results = window.PARCEL_COMPARABLES.find(subject, { maxResults: 5 });
     assert(Array.isArray(results), 'find() returns an array');
@@ -377,6 +384,25 @@ if (typeof window === 'undefined') {
       assert(!a3, 'very small residential parcel outside area band excluded');
     }
 
+    // Regression (2026-08-16): _score() used to read DEFAULTS.minAreaRatio/
+    // maxAreaRatio directly instead of the merged opts, so overriding these
+    // via find()'s options argument had no effect on filtering or scoring.
+    // B1 shares the subject's zoning code (guaranteeing a >0 score once it
+    // clears the area-band filter, so this isolates the band check from the
+    // unrelated area/land-use/value scoring terms that made A3 score 0 for
+    // reasons that had nothing to do with the band). B1's ratio (0.15) sits
+    // just below the DEFAULT 0.20 floor -- excluded by default, and must be
+    // let back in once minAreaRatio is widened to 0.10.
+    const b1 = { type: 'Feature', geometry: null, properties: { parcel_id: 'B1', zoning_code: 'PD-IP', area_sqft: 75000, area_acres: 1.7, land_use_code: 'PD-IP' } };
+    window.PARCEL_RENDERER.getFeatures = () => [...candidates, b1];
+    const defaultBand = window.PARCEL_COMPARABLES.find(subject, { maxResults: 10 });
+    assert(!defaultBand.find(r => r.feature.properties.parcel_id === 'B1'),
+      'B1 (ratio 0.15) is excluded by the default 0.20 floor');
+
+    const widened = window.PARCEL_COMPARABLES.find(subject, { maxResults: 10, minAreaRatio: 0.10 });
+    const b1Widened = widened.find(r => r.feature.properties.parcel_id === 'B1');
+    assert(!!b1Widened, 'overriding minAreaRatio via find() options actually widens the area band (regression)');
+
     // diff()
     const d = window.PARCEL_COMPARABLES.diff(subject.properties, candidates[0].properties);
     assert(typeof d === 'object', 'diff() returns an object');
@@ -384,9 +410,12 @@ if (typeof window === 'undefined') {
       assert(typeof d.assessed_value.delta_pct === 'number', 'diff() computes delta_pct');
     }
 
-    if (origGetFeatures && window.PARCEL_RENDERER) {
-      window.PARCEL_RENDERER.getFeatures = origGetFeatures;
-    }
+    // Restore, so later blocks (e.g. PARCEL.isActiveWithData below) see the
+    // same window.PARCEL_RENDERER state they would have without this block
+    // -- index.js calls window.PARCEL_RENDERER?.setActive(...) with only a
+    // single optional-chain guard, which throws if PARCEL_RENDERER is a
+    // truthy object missing a .setActive method.
+    window.PARCEL_RENDERER = origPARCEL_RENDERER;
 
     console.groupEnd();
   }
@@ -532,6 +561,17 @@ if (typeof window === 'undefined') {
     const svg = container.querySelector('svg');
     assert(svg.querySelectorAll('polygon').length >= 4, 'SVG contains at least 4 polygon faces');
     assert(svg.querySelector('text') !== null, 'SVG contains text labels');
+
+    // Regression (2026-08-16): the setback collar used to be drawn as a
+    // filled rectangle at the exact same coordinates as the building
+    // footprint, so it was completely hidden underneath the building and
+    // never visible. It's now an evenodd ring path between the parcel
+    // outline and the building footprint -- confirm that shape actually
+    // exists rather than a 5th coincident polygon.
+    const ring = svg.querySelector('path[fill-rule="evenodd"]');
+    assert(ring !== null, 'setback collar is rendered as a ring path, not a hidden duplicate rectangle');
+    assert((ring.getAttribute('d').match(/M /g) || []).length === 2,
+      'the ring path has two subpaths (outer parcel boundary + inner building footprint cutout)');
 
     // Light theme
     const containerL = document.createElement('div');

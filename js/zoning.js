@@ -15,6 +15,20 @@ window.ZONING = (function () {
     "51059": "va-fairfax-county",
   };
 
+  /* Display name per jurisdiction_id, for user-facing coverage messaging
+   * (e.g. the "no zoning data for this county" notice). Kept alongside
+   * FIPS_TO_JURISDICTION so both are updated together when a jurisdiction
+   * is added -- a hardcoded prose list elsewhere would go stale silently. */
+  const JURISDICTION_LABELS = {
+    "va-loudoun-county":          "Loudoun County, VA",
+    "va-prince-william-county":   "Prince William County, VA",
+    "va-fairfax-county":          "Fairfax County, VA",
+  };
+
+  function coveredJurisdictionLabels() {
+    return Object.values(FIPS_TO_JURISDICTION).map(jid => JURISDICTION_LABELS[jid] || jid);
+  }
+
   /* In-memory cache: jurisdictionId → normalized data object */
   const _cache = {};
 
@@ -150,6 +164,8 @@ window.ZONING = (function () {
 
   return {
     FIPS_TO_JURISDICTION,
+    JURISDICTION_LABELS,
+    coveredJurisdictionLabels,
     hasCoverage,
     load,
     loadByFips,

@@ -9,6 +9,109 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 Date: 2026-08-16
 AI Assistant: Claude Code
+Session: Exhaustive flaw-finding pass across the parcel/zoning system ("find flaws and fix each of them")
+
+Continued the "find flaws and fix each of them don't stop till complete"
+directive across files not yet audited this session: js/zoning-details.js,
+js/parcel/massing.js, js/parcel/comparables.js, js/parcel/panel.js, and the
+Node test harness for js/parcel/*.js. Six more real, verifiable bugs found
+and fixed, all covered by new/extended regression tests, full suite green
+(314/314 in tests/parcel.test.js, 176/176 in the main JS runner, no drift in
+either generated-artifact --check).
+
+1. STALE "PILOT COVERAGE" MESSAGE (js/zoning-details.js's renderNoCoverage()):
+   hardcoded "Pilot coverage: Loudoun County, VA (FIPS 51107)" as prose, even
+   though Prince William and Fairfax both shipped real zoning coverage
+   earlier this session. Anyone clicking an uncovered county with the zoning
+   layer on saw a message that actively undersold what's actually covered.
+   Fixed by adding JURISDICTION_LABELS + coveredJurisdictionLabels() to
+   js/zoning.js (kept next to FIPS_TO_JURISDICTION so both are touched
+   together when a jurisdiction is added) and having renderNoCoverage()
+   build its message from that live list instead of hardcoded text. New
+   regression coverage in tests/test_zoning_frontend_coverage.mjs: every
+   wired jurisdiction must have a real label (not its raw id), and the
+   label count must track FIPS_TO_JURISDICTION's size exactly.
+
+2. INVISIBLE SETBACK COLLAR (js/parcel/massing.js): the isometric massing
+   diagram's "setback exclusion collar" -- meant to show the ring of land
+   between the parcel edge and the building footprint -- was drawn as a
+   filled rectangle at the *exact same* bx/by/bw/bd coordinates as the
+   building footprint itself. It was therefore a duplicate of the building's
+   own ground plane, completely hidden underneath the building's opaque
+   faces drawn immediately after it. The collar never actually rendered
+   despite the file's own header comment claiming it did. Fixed with a new
+   `_ringFace()` helper (an evenodd `<path>` with two subpaths: outer parcel
+   boundary, inner building-footprint cutout) replacing the coincident
+   `_face()` rectangle. Also removed `sbFrac`/`bldSide`/`sbFront`/`sbSide` --
+   all dead code computed but never read by anything, left over from an
+   apparently-abandoned earlier version of the collar sizing. New DOM-gated
+   regression assertions in tests/parcel.test.js confirm the collar renders
+   as a two-subpath evenodd path rather than a 5th coincident polygon.
+
+3. AREA-BAND OPTIONS SILENTLY IGNORED (js/parcel/comparables.js): `find()`
+   merges caller overrides into `opts` (`Object.assign({}, DEFAULTS,
+   options)`), but `_score()` read `DEFAULTS.minAreaRatio` /
+   `DEFAULTS.maxAreaRatio` directly -- the module-level constant, not the
+   merged opts -- for both the area-band filter and the area-similarity
+   formula. Any caller passing `{minAreaRatio, maxAreaRatio}` to `find()` had
+   the override silently discarded; comparables were always filtered against
+   the hardcoded 20%-500% band regardless of what was requested. Fixed by
+   threading `opts` through to `_score(subject, candidate, opts)`.
+
+4. DEAD TEST COVERAGE, DISCOVERED WHILE WRITING A REGRESSION TEST FOR #3:
+   tests/parcel.test.js's entire PARCEL_COMPARABLES block mocks
+   `window.PARCEL_RENDERER.getFeatures` -- but only `if (window.PARCEL_RENDERER)`
+   already existed as an object first. Under the Node harness this file
+   actually runs in (renderer.js is deliberately excluded from the bootstrap
+   list since it touches Leaflet/the live DOM), `window.PARCEL_RENDERER` was
+   never defined at all, so that guard was always false, the mock was never
+   installed, `find()` always saw `features = []`, and every assertion in
+   the block -- all wrapped in `if (results.length) {...}` -- silently never
+   ran. This block had provided zero real coverage since it was written; it
+   could not have caught bug #3 or anything else. Fixed by creating
+   `window.PARCEL_RENDERER` outright (`Object.assign({}, window.PARCEL_RENDERER,
+   {getFeatures: ...})`) instead of requiring it to pre-exist, and restoring
+   the original value afterward (index.js calls
+   `window.PARCEL_RENDERER?.setActive(...)` with only a single optional-chain
+   guard, which throws if PARCEL_RENDERER is left as a truthy object missing
+   `.setActive` -- confirmed this would have broken the later
+   PARCEL.isActiveWithData block, and is why a full restore rather than a
+   partial one was needed). The block's pre-existing assertions now execute
+   for real, plus two new ones isolating bug #3's fix from unrelated scoring
+   terms.
+
+5. PROVENANCE BADGE GAP ON TWO ZONING-TAB FIELDS (js/parcel/panel.js):
+   `_fmtFieldRow(fieldId, rawValue, fips, props)`'s 4th `props` argument
+   feeds `_provenanceBadge()` -- every call site passed it except the two
+   `land_use_code`/`land_use_desc` rows in `_tabZoning()`, which silently
+   omitted it (no crash, `_provenanceBadge` returns '' for a missing props,
+   so the effect was just two fields in the Zoning tab that could never show
+   a source badge even when a connector recorded direct-official provenance
+   for them). Fixed by passing `props` through on both calls, matching every
+   other call site in the file.
+
+Files changed: js/zoning.js, js/zoning-details.js, js/parcel/massing.js,
+js/parcel/comparables.js, js/parcel/panel.js, tests/test_zoning_frontend_coverage.mjs,
+tests/parcel.test.js. Also includes the constraints.js/_trim()-cache-bound fix,
+the zoning-map.js stale-comment fix, and the normalize_zoning.py/zoning_config.py
+Douglas-Peucker simplification + DC_ELIGIBLE_STATUSES + re-normalize guard from
+earlier in this same continuous audit pass (see the entry immediately below for
+the Fairfax research those pipeline fixes were made alongside).
+
+Note on scope: js/parcel/registry.js (3,867 lines) was reviewed structurally --
+its only logic (get/has/all) is trivially correct, and the ~3,780 lines of
+per-jurisdiction data are already covered by validate_parcel_catalog.py,
+check_registry_integrity.mjs, and the field_mapper ground-truth regression
+(658 real mappings across 57 jurisdictions) -- not re-audited line-by-line, a
+deliberate scoping decision given that existing coverage. js/parcel/index.js's
+hardcoded-ArcGIS search() connector (noted in an earlier session's plan as a
+known gap) remains untouched: all 59 production registry entries are
+'arcgis'-connector today, so the gap is currently dormant, not live.
+
+---
+
+Date: 2026-08-16
+AI Assistant: Claude Code
 Session: Fairfax County data-center zoning research (10/44 codes) + a second real feasibility-engine bug found and fixed
 
 Continued the "Continue" / "identify weak points and solve them" directive.

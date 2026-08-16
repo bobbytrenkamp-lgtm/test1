@@ -240,6 +240,8 @@ window.PARCEL_CONSTRAINTS = (function () {
       }
     }
 
+    _trim();
+
     return {
       parcelAcres: Math.round(geo.sqmToAcres(parcelSqm) * 100) / 100,
       results,

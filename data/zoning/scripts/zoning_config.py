@@ -27,6 +27,80 @@ SIMPLIFY_TOLERANCE = 0.001
 # Maximum GeoJSON feature count before we warn about file size
 GEOMETRY_RECORD_WARN_THRESHOLD = 5000
 
+
+def _perp_distance(pt, a, b):
+    """Perpendicular distance from pt to the line through a-b (2D, degrees)."""
+    (px, py), (ax, ay), (bx, by) = pt, a, b
+    dx, dy = bx - ax, by - ay
+    if dx == 0 and dy == 0:
+        return ((px - ax) ** 2 + (py - ay) ** 2) ** 0.5
+    t = ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)
+    nx, ny = ax + t * dx, ay + t * dy
+    return ((px - nx) ** 2 + (py - ny) ** 2) ** 0.5
+
+
+def douglas_peucker(points: list, tolerance: float) -> list:
+    """Ramer-Douglas-Peucker line simplification, pure Python (no Shapely/GEOS
+    dependency needed for a tolerance this coarse). Keeps the first and last
+    point always; a point survives only if it deviates from the straight line
+    between its neighbors by more than `tolerance`. This is exactly what
+    docs/ZONING_ARCHITECTURE.md has described as the pipeline's own geometry
+    simplification step since the doc was written -- SIMPLIFY_TOLERANCE
+    existed, but nothing ever called an implementation of it."""
+    if len(points) < 3:
+        return list(points)
+
+    first, last = points[0], points[-1]
+    max_dist = -1.0
+    max_idx = 0
+    for i in range(1, len(points) - 1):
+        d = _perp_distance(points[i], first, last)
+        if d > max_dist:
+            max_dist = d
+            max_idx = i
+
+    if max_dist > tolerance:
+        left = douglas_peucker(points[:max_idx + 1], tolerance)
+        right = douglas_peucker(points[max_idx:], tolerance)
+        return left[:-1] + right
+    return [first, last]
+
+
+def simplify_ring(ring: list, tolerance: float) -> list:
+    """Simplifies one closed GeoJSON linear ring. Never returns fewer than 4
+    points (3 distinct + the repeated closing point), the minimum GeoJSON
+    allows for a valid Polygon ring -- falling back to the original ring
+    rather than emitting invalid geometry if simplification would go below
+    that floor."""
+    simplified = douglas_peucker(ring, tolerance)
+    if len(simplified) < 4:
+        return ring
+    # Douglas-Peucker on an already-closed ring keeps both the start and end
+    # point (identical coordinates) since both are endpoints of the input --
+    # confirm closure explicitly rather than relying on that as an assumption.
+    if simplified[0] != simplified[-1]:
+        simplified = simplified + [simplified[0]]
+    return simplified
+
+
+def simplify_geometry(geometry: dict, tolerance: float) -> dict:
+    """Simplifies a GeoJSON Polygon or MultiPolygon geometry ring-by-ring.
+    Other geometry types (Point, LineString) pass through unchanged --
+    zoning district geometry is always polygonal, so this only needs to
+    handle the two real cases rather than a generic GeoJSON simplifier."""
+    if not geometry:
+        return geometry
+    gtype = geometry.get("type")
+    coords = geometry.get("coordinates")
+    if gtype == "Polygon" and coords:
+        return {"type": gtype, "coordinates": [simplify_ring(r, tolerance) for r in coords]}
+    if gtype == "MultiPolygon" and coords:
+        return {
+            "type": gtype,
+            "coordinates": [[simplify_ring(r, tolerance) for r in poly] for poly in coords],
+        }
+    return geometry
+
 # ArcGIS FeatureServer default page size
 ARCGIS_PAGE_SIZE = 1000
 
