@@ -7,6 +7,70 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 ---
 
+Date: 2026-08-16
+AI Assistant: Claude Code
+Session: Fairfax County data-center zoning research (10/44 codes) + a second real feasibility-engine bug found and fixed
+
+Continued the "Continue" / "identify weak points and solve them" directive.
+Picked Fairfax next since it was the least-researched of the three NoVA
+counties (0/44) despite being a major DC market (Reston/Tysons).
+
+FAIRFAX RESEARCH: Fairfax adopted a substantial, detailed data-center zoning
+ordinance amendment in September 2024 (Sec. 4102.6.A) -- much more specific
+than expected. Researched via WebSearch (this sandbox has no outbound
+network to fairfaxcounty.gov or the Encode Plus ordinance viewer; a GitHub
+Actions diagnostic dispatch to fetch the primary PDF was attempted but a
+brand-new workflow file isn't dispatchable until GitHub indexes it from the
+default branch, and this session's instructions say not to open a PR just to
+land it there -- so this round used multi-source secondary corroboration
+instead: Fairfax County's own news release and adopted-amendment page, plus
+independent law-firm summaries from McGuireWoods, Holland & Knight, and
+Venable, all citing the same specific numeric thresholds and Sept. 11 2024
+effective date). Findings, all recorded at "moderate" (not "high")
+confidence with the verification method stated explicitly in every entry:
+C-3/C-4 by-right under 40,000 sq ft (Special Exception at/above); I-2/I-3/I-4
+by-right under 80,000 sq ft (Special Exception at/above); I-5/I-6 by-right
+with NO size limit -- the only two districts keeping unlimited by-right
+development; PDC/PTC Special Exception only, no by-right path; PRC
+prohibited (removed as a permitted use by the 2024 amendment). A countywide
+standard applies to every approving district: 200 ft building setback / 300
+ft ground-equipment setback from a residential lot line. The other 34 codes
+remain honest not_listed placeholders -- their absence from the ordinance's
+enumerated eligible-district list was NOT inferred as prohibition, matching
+the same discipline already applied to Prince William's CTY/FED/TWN. Also
+corrected two now-stale claims in jurisdiction.json's known_limitations
+(claimed the parcel-to-zoning spatial join "does not exist yet" -- it was
+built earlier this session).
+
+SECOND REAL BUG FOUND (surfaced by using real data): js/parcel/feasibility.js's
+STATUS_META and ELIGIBILITY_SCORE maps covered only 9 of the 12
+permission_status values data/zoning/schemas/permitted_use.schema.json
+actually allows a researcher to record. Fairfax's ordinance uses Virginia's
+"Special Exception" terminology (Board of Supervisors approval) rather than
+"Special Use Permit" -- a real, schema-valid, distinct status that had no
+entry in either map and so silently fell through to the generic "Unknown"
+label and a 20-point score, exactly as if PDC/PTC's zoning had never been
+researched at all, even though real findings existed for them. Also missing:
+"accessory" and "manual_review_required", both real schema values. Fixed by
+adding all three; a new test (test_parcel_feasibility_status_coverage.mjs)
+reads the schema's own enum directly and asserts every value gets a real
+label and a score that doesn't collide with the generic unresearched
+fallback (except the two values -- not_listed, unclear -- that genuinely
+mean "we don't know," which correctly do collide with it) -- so a future
+schema value added without a matching STATUS_META/ELIGIBILITY_SCORE entry
+fails this test immediately instead of silently degrading to "Unknown" the
+next time a researcher happens to use it.
+
+Files: data/zoning/jurisdictions/va-fairfax-county/{districts,jurisdiction,
+permitted_uses}.json, data/zoning/normalized/va-fairfax-county.json (regenerated
+via export_zoning.py), js/parcel/feasibility.js, docs/ZONING_PILOT_STATUS.md,
+PROJECT_CONTEXT.md, tests/run_all.sh, new tests/test_parcel_feasibility_status_coverage.mjs.
+Full suite: 176/176 passed, zero failures, no data quality gates weakened
+(python3 data/zoning/scripts/validate_zoning.py --jurisdiction va-fairfax-county:
+0 errors, 44 warnings -- all "missing district_name," expected and honest).
+
+---
+
 Date: 2026-08-15
 AI Assistant: Claude Code
 Session: Weak-point audit across the site-intelligence/provenance system — one real bug found and fixed, one real coverage gap closed, provenance parity extended to all three connector types

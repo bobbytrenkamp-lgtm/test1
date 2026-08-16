@@ -19,21 +19,22 @@
   "retrieval_method": "arcgis_featureserver",
   "source_last_updated": null,
   "source_last_checked": "2026-08-15",
-  "ordinance_effective_date": null,
+  "ordinance_effective_date": "2024-09-11",
   "ordinance_version": null,
-  "data_coverage_status": "geometry_only",
+  "data_coverage_status": "geometry_and_partial_uses",
   "geometry_coverage_status": "live",
   "dimensional_standard_coverage": "none",
-  "permitted_use_coverage": "none",
+  "permitted_use_coverage": "partial",
   "overlay_coverage": "none",
-  "verification_status": "geometry_verified_uses_unresearched",
+  "verification_status": "geometry_verified_uses_partially_researched",
   "data_center_relevance": "high",
   "pilot_notes": "Live-verified 2026-08-15 via six rounds of disposable diagnostic GitHub Actions dispatch, the same methodology used for Loudoun and Prince William. Three rounds enumerating Fairfax County's own ArcGIS Server host (www.fairfaxcounty.gov/mercator, 8 REST folders) found nothing -- the real zoning service is instead hosted on ArcGIS Online's shared infrastructure under Fairfax's own official org account (FX.AuthData, contentStatus 'public_authoritative'), findable only via an ArcGIS Online item search. Layer 0 ('Zoning') carries real fields ZONECODE/ZONETYPE/PROFFER/PUBLIC_LAND/JURISDICTION, geometryType esriGeometryPolygon, 6,440 features total -- but that spans THREE real jurisdictions merged into one layer (Fairfax County, Town of Herndon, Town of Vienna, plus a few null-jurisdiction records). The fetch pipeline is configured with a where clause (JURISDICTION='FAIRFAX COUNTY') to scope to the county only: 6,242 features, 0 with null/empty ZONECODE, 44 real distinct ZONECODE values, independently confirmed. Do not treat an absent or 'not_listed' classification as meaning data centers are prohibited -- it means the classification has not been researched yet.",
   "known_limitations": [
-    "districts.json does not exist with researched names/categories yet -- every real zoning code returned by the live geometry will show as unclassified until permitted-use research is done against the actual ordinance.",
-    "The Zoning FeatureServer layer 0 has no separate district-name field -- ZONECODE is the only classification attribute. A coarse ZONETYPE grouping field exists (RESIDENTIAL/COMMERCIAL/INDUSTRIAL/PLANNED UNITS/OTHER/TYSON) but is not a per-code name and is not mapped into district_category.",
+    "10 of 44 real district codes (C-3, C-4, I-2, I-3, I-4, I-5, I-6, PDC, PTC, PRC) now have data-center permitted-use research at moderate confidence (secondary-source corroboration, not raw ordinance text extraction -- see permitted_uses.json). The remaining 34 codes are honest not_listed placeholders.",
+    "The Zoning FeatureServer layer 0 has no separate district-name field -- ZONECODE is the only classification attribute. A coarse ZONETYPE grouping field exists (RESIDENTIAL/COMMERCIAL/INDUSTRIAL/PLANNED UNITS/OTHER/TYSON) but is not a per-code name and is not mapped into district_category for the 34 still-unresearched codes.",
     "The same FeatureServer also carries Town of Herndon and Town of Vienna zoning under the same layer -- deliberately excluded from this jurisdiction's data via a where-clause filter (JURISDICTION='FAIRFAX COUNTY') rather than ingested as county data.",
-    "Parcel-level zoning_code is not published by Fairfax County's parcel service -- connecting a parcel to this geometry requires a parcel-to-zoning spatial join, which does not exist in this codebase yet (planned, not yet built)."
+    "Dimensional standards (setbacks, height, FAR) are entirely unresearched for every district. The 2024 data-center amendment's own countywide setbacks (200 ft building / 300 ft ground equipment from a residential lot line) are recorded in permitted_uses.json's notes but not yet modeled as structured dimensional_standards entries.",
+    "PRC's 'prohibited' classification reflects county staff's proposal and the Board's September 2024 action as reported by secondary sources -- re-verify against the final adopted ordinance text if precision matters for a specific parcel."
   ],
-  "notes": "Third Virginia pilot jurisdiction after Loudoun and Prince William. Geometry pipeline proven end-to-end; permitted-use classification research is the next step, not yet done."
+  "notes": "Third Virginia pilot jurisdiction after Loudoun and Prince William. Geometry pipeline proven end-to-end. Parcel-to-zoning spatial join now exists (js/parcel/zoning-geometry.js, built for all three NoVA counties). Data-center permitted-use research: 10 of 44 codes done at moderate confidence (2026-08-16); the other 34 remain the next step."
 }
