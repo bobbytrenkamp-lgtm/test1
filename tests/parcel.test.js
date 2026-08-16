@@ -37,6 +37,7 @@ if (typeof window === 'undefined') {
   for (const rel of [
     'js/parcel/schema.js', 'js/parcel/registry.js', 'js/parcel/selection.js', 'js/parcel/provenance.js',
     'js/parcel/connector-arcgis.js', 'js/parcel/connector-geojson.js', 'js/parcel/connector-wfs.js',
+    'js/parcel/connector-factory.js',
     'js/parcel/geo.js', 'js/parcel/zoning-geometry.js',
     'js/parcel/feasibility.js', 'js/parcel/comparables.js', 'js/parcel/massing.js',
     'js/parcel/draw-tool.js', 'js/parcel/search.js', 'js/parcel/index.js',
@@ -45,7 +46,7 @@ if (typeof window === 'undefined') {
   }
 }
 
-(function runTests() {
+(async function runTests() {
   'use strict';
 
   let passed = 0;
@@ -533,6 +534,67 @@ if (typeof window === 'undefined') {
     const wfsConn11 = new window.WFSParcelConnector(wfsCfg11);
     const u110 = wfsConn11._buildUrl({ REQUEST: 'GetFeature', BBOX: 'test', COUNT: '10' });
     assert(u110.includes('VERSION=1.1.0'), 'WFS 1.1.0 version in URL');
+
+    console.groupEnd();
+  }
+
+  // ── PARCEL_CONNECTOR_FACTORY + PARCEL.search() dialect selection ──────────
+  //
+  // Regression (2026-08-16): js/parcel/index.js's search() used to hardcode
+  // `new window.ArcGISParcelConnector(config)` regardless of the
+  // jurisdiction's actual registered connector type, and built an
+  // ArcGIS-only SQL-92-style WHERE clause unconditionally. Every one of the
+  // 59 production jurisdictions is 'arcgis' today so this never misfired in
+  // practice, but a 'geojson' or 'wfs' jurisdiction would have silently
+  // gotten the wrong connector class AND a query string in the wrong
+  // dialect the moment someone searched it. Fixed by extracting connector
+  // selection into window.PARCEL_CONNECTOR_FACTORY (shared with
+  // renderer.js, so the two call sites can't drift apart again) and making
+  // search() branch on connector type for query-clause construction too.
+
+  if (typeof window !== 'undefined' && window.PARCEL_CONNECTOR_FACTORY && window.PARCEL) {
+    console.group('PARCEL_CONNECTOR_FACTORY + PARCEL.search() dialect selection');
+
+    const arcgisMade  = window.PARCEL_CONNECTOR_FACTORY.make({ connector: 'arcgis',  serviceUrl: 'https://x/arcgis' });
+    const geojsonMade = window.PARCEL_CONNECTOR_FACTORY.make({ connector: 'geojson', serviceUrl: 'https://x/geo.json' });
+    const wfsMade     = window.PARCEL_CONNECTOR_FACTORY.make({ connector: 'wfs',     serviceUrl: 'https://x/wfs' });
+    const defaultMade = window.PARCEL_CONNECTOR_FACTORY.make({ serviceUrl: 'https://x/none' });
+
+    assert(arcgisMade instanceof window.ArcGISParcelConnector, "make({connector:'arcgis'}) returns an ArcGISParcelConnector");
+    assert(geojsonMade instanceof window.GeoJSONParcelConnector, "make({connector:'geojson'}) returns a GeoJSONParcelConnector");
+    assert(wfsMade instanceof window.WFSParcelConnector, "make({connector:'wfs'}) returns a WFSParcelConnector");
+    assert(defaultMade instanceof window.ArcGISParcelConnector, 'make() with no connector field defaults to ArcGIS (matches renderer.js\'s prior default)');
+
+    // Intercept the factory to capture the clause search() builds, without
+    // exercising each connector's own real network-calling searchByQuery().
+    const origMake = window.PARCEL_CONNECTOR_FACTORY.make;
+    const origGet  = window.PARCEL_REGISTRY.get;
+    let capturedClause = null;
+    window.PARCEL_CONNECTOR_FACTORY.make = () => ({
+      searchByQuery: (clause) => { capturedClause = clause; return Promise.resolve({ type: 'FeatureCollection', features: [] }); },
+    });
+
+    const baseConfig = { fieldMap: { address: 'SITE_ADDR', pin: 'PIN_NO' } };
+
+    window.PARCEL_REGISTRY.get = () => ({ ...baseConfig, connector: 'arcgis' });
+    window.PARCEL.onCountyChanged('51107');
+    await window.PARCEL.search("O'Brien");
+    assert(capturedClause && capturedClause.includes('UPPER("SITE_ADDR")'), 'ArcGIS dialect: quoted-identifier UPPER()/LIKE clause');
+    assert(capturedClause.includes("O''Brien"), "ArcGIS dialect: embedded apostrophe is doubled, not passed through raw");
+
+    window.PARCEL_REGISTRY.get = () => ({ ...baseConfig, connector: 'wfs' });
+    capturedClause = null;
+    await window.PARCEL.search('Main St');
+    assert(capturedClause && capturedClause.includes('strToUpperCase(SITE_ADDR)'), 'WFS dialect: strToUpperCase() CQL function, not ArcGIS UPPER()');
+    assert(!capturedClause.includes('"'), 'WFS dialect: no double-quoted identifiers (ArcGIS-only syntax)');
+
+    window.PARCEL_REGISTRY.get = () => ({ ...baseConfig, connector: 'geojson' });
+    capturedClause = null;
+    await window.PARCEL.search('Main St');
+    assertEq(capturedClause, 'Main St', 'GeoJSON dialect: raw search term passed through, not a constructed WHERE/CQL clause');
+
+    window.PARCEL_CONNECTOR_FACTORY.make = origMake;
+    window.PARCEL_REGISTRY.get = origGet;
 
     console.groupEnd();
   }

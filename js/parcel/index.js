@@ -83,25 +83,51 @@ window.PARCEL = (function () {
     const config = window.PARCEL_REGISTRY?.get(_currentFips);
     if (!config) return null;
 
-    const conn = new window.ArcGISParcelConnector(config);
+    /* Connector type is picked via the shared factory, not hardcoded to
+       ArcGIS -- every one of the 59 production jurisdictions is 'arcgis'
+       today so this was previously dormant, but a jurisdiction added with
+       connector: 'geojson' or 'wfs' would otherwise have silently gotten an
+       ArcGIS-shaped query built against a non-ArcGIS service the moment a
+       user searched it. */
+    const conn = window.PARCEL_CONNECTOR_FACTORY.make(config);
 
-    /* Build the WHERE from fields this service actually has. The previous
-       version fell back to hardcoded 'SITE_ADDR'/'PIN' when a mapping was
-       absent, which sends the server an unknown column and gets the whole
-       query rejected — so a missing address field broke PIN search too, even
-       though the PIN field was fine. Three of the five registry services are
-       boundary layers with no address column at all, so that is the common
-       case, not an edge case. Quote the identifier because joined layers
-       expose table-qualified names (GISPROD.VECTOR.Parcels.GPIN). */
+    /* connector-geojson.js's searchByQuery() does not take a WHERE/CQL
+       clause at all -- it does its own client-side substring match against
+       the parcel's already-normalized address/pin/parcel_id fields (see
+       that file). Passing it a raw search term, not a constructed clause,
+       is what it actually expects. */
+    if (config.connector === 'geojson') {
+      return conn.searchByQuery(query, null);
+    }
+
+    /* Build the WHERE/CQL from fields this service actually has. The
+       previous version fell back to hardcoded 'SITE_ADDR'/'PIN' when a
+       mapping was absent, which sends the server an unknown column and gets
+       the whole query rejected — so a missing address field broke PIN
+       search too, even though the PIN field was fine. Three of the five
+       registry services are boundary layers with no address column at all,
+       so that is the common case, not an edge case. */
     const safe   = query.replace(/'/g, "''");
-    const clause = f => `UPPER("${f}") LIKE UPPER('%${safe}%')`;
     const fields = ['address', 'pin', 'parcel_id']
       .map(k => config.fieldMap[k])
       .filter(f => f && f !== '__computed__');
 
     if (!fields.length) return null;   // nothing searchable on this source
+    const uniqueFields = [...new Set(fields)];
 
-    return conn.searchByQuery([...new Set(fields)].map(clause).join(' OR '), null);
+    if (config.connector === 'wfs') {
+      /* WFS's CQL_FILTER dialect (see connector-wfs.js's own documented
+         example: "strToUpperCase(SITE_ADDR) LIKE '%MAIN%'") -- a different
+         function name and quoting convention than ArcGIS's WHERE clause. */
+      const cqlClause = f => `strToUpperCase(${f}) LIKE '%${safe.toUpperCase()}%'`;
+      return conn.searchByQuery(uniqueFields.map(cqlClause).join(' OR '), null);
+    }
+
+    /* ArcGIS (default): SQL-92-style WHERE clause. Quote the identifier
+       because joined layers expose table-qualified names
+       (GISPROD.VECTOR.Parcels.GPIN). */
+    const arcgisClause = f => `UPPER("${f}") LIKE UPPER('%${safe}%')`;
+    return conn.searchByQuery(uniqueFields.map(arcgisClause).join(' OR '), null);
   }
 
   /* Zoom the map to a parcel's bounds and select it.
