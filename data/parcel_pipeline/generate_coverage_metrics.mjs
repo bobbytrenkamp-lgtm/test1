@@ -286,11 +286,29 @@ function main() {
 
   if (check) {
     let stale = [];
+    // DX: when a file is stale, show exactly where -- the first differing
+    // line and a few lines of context on each side -- instead of only
+    // naming the file. A bare "is stale" with no diff is expensive to debug
+    // when the mismatch can't be reproduced locally (e.g. CI-only drift).
+    function firstDiff(committed, fresh) {
+      const a = committed.split('\n'), b = fresh.split('\n');
+      const n = Math.max(a.length, b.length);
+      for (let i = 0; i < n; i++) {
+        if (a[i] !== b[i]) {
+          return `    line ${i + 1}:\n` +
+            `      committed: ${JSON.stringify(a[i] ?? '<EOF>')}\n` +
+            `      fresh:     ${JSON.stringify(b[i] ?? '<EOF>')}`;
+        }
+      }
+      return '    (files differ only in trailing whitespace/EOF)';
+    }
     try {
-      if (readFileSync(METRICS_PATH, 'utf8') !== json) stale.push('data/parcel_coverage_metrics.json');
+      const committed = readFileSync(METRICS_PATH, 'utf8');
+      if (committed !== json) stale.push('data/parcel_coverage_metrics.json\n' + firstDiff(committed, json));
     } catch { stale.push('data/parcel_coverage_metrics.json (missing)'); }
     try {
-      if (readFileSync(REPORT_PATH, 'utf8') !== report) stale.push('docs/PARCEL_COVERAGE.md');
+      const committed = readFileSync(REPORT_PATH, 'utf8');
+      if (committed !== report) stale.push('docs/PARCEL_COVERAGE.md\n' + firstDiff(committed, report));
     } catch { stale.push('docs/PARCEL_COVERAGE.md (missing)'); }
 
     if (stale.length) {
