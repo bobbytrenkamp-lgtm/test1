@@ -69,7 +69,7 @@
   cursor: pointer;
   gap: 8px;
 }
-#stocks-browser-btn:hover { color: var(--accent); }
+#stocks-browser-btn:hover { color: var(--accent-text); }
 .stocks-chevron {
   flex-shrink: 0;
   transition: transform 0.25s ease;
@@ -171,7 +171,7 @@
     color var(--dur-fast) var(--ease-standard),
     border-color var(--dur-fast) var(--ease-standard);
 }
-.stocks-list-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.stocks-list-tab.active { color: var(--accent-text); border-bottom-color: var(--accent); }
 .stocks-list-tab:hover:not(.active) { color: var(--text); }
 
 /* ── Watchlist (row-based) ── */
@@ -228,7 +228,7 @@
 .stocks-wl-symbol {
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-text);
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
   min-width: 42px;
@@ -324,7 +324,7 @@
     color var(--dur-fast) var(--ease-standard);
   white-space: nowrap;
 }
-.stocks-export-btn:hover { border-color: var(--accent); color: var(--accent); }
+.stocks-export-btn:hover { border-color: var(--accent); color: var(--accent-text); }
 .stocks-kb-hint {
   font-size: 0.6875rem;
   color: var(--text-muted);
@@ -384,7 +384,7 @@
 #stocks-selected-symbol {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--accent);
+  color: var(--accent-text);
   letter-spacing: -0.02em;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
@@ -483,7 +483,7 @@
   background: var(--surface-2);
 }
 .stocks-time-btn.active {
-  background: var(--accent);
+  background: var(--accent-fill);
   color: #fff;
   border-color: var(--accent);
 }
@@ -546,7 +546,7 @@
     border-color var(--dur-fast) var(--ease-standard);
   flex-shrink: 0;
 }
-.stocks-detail-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.stocks-detail-tab.active { color: var(--accent-text); border-bottom-color: var(--accent); }
 .stocks-detail-tab:hover:not(.active) { color: var(--text); }
 
 /* ── Detail body ── */
@@ -562,7 +562,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 6px;
 }
 .stocks-overview-desc {
@@ -593,7 +593,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 4px;
 }
 .stocks-profile-name {
@@ -621,7 +621,7 @@
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 7px;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 0.8125rem;
   font-weight: 500;
   padding: 7px 13px;
@@ -711,7 +711,7 @@
   border-radius: 6px;
   border: 1px solid var(--accent);
   background: none;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 13px;
   cursor: pointer;
   font-family: inherit;
@@ -719,7 +719,7 @@
     background var(--dur-fast) var(--ease-standard),
     color var(--dur-fast) var(--ease-standard);
 }
-.tv-retry-btn:hover { background: var(--accent); color: #fff; }
+.tv-retry-btn:hover { background: var(--accent-fill); color: #fff; }
 
 /* ── News tab ── */
 .stocks-news-tv { overflow: hidden; }
@@ -743,12 +743,12 @@
 }
 .stocks-news-item:last-child { border-bottom: none; }
 .stocks-news-item:hover { opacity: 0.85; }
-.stocks-news-item:hover .stocks-news-title { color: var(--accent); }
+.stocks-news-item:hover .stocks-news-title { color: var(--accent-text); }
 .stocks-news-item:active { opacity: 0.7; }
 .stocks-news-cat {
   font-size: 0.6875rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 2px;
@@ -832,7 +832,7 @@
   font-size: 0.6875rem;
   font-weight: 700;
   background: rgba(72, 116, 232, 0.12);
-  color: var(--accent);
+  color: var(--accent-text);
   border-radius: 4px;
   padding: 2px 7px;
   text-transform: uppercase;
@@ -865,7 +865,7 @@
   border-top: 1px solid var(--border);
   text-align: center;
 }
-#stocks-disclaimer a { color: var(--accent); text-decoration: none; }
+#stocks-disclaimer a { color: var(--accent-text); text-decoration: none; }
 #stocks-disclaimer a:hover { text-decoration: underline; }
 
 /* ── Toast ── */

@@ -369,7 +369,7 @@ body.ws-resizing-rail * {
 .ws-preset-btn.active {
   border-color: var(--accent);
   background: color-mix(in srgb, var(--accent) 14%, var(--surface));
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 600;
 }
 .ws-preset-btn:focus-visible {
@@ -440,7 +440,7 @@ body.ws-resizing-rail * {
 .ws-text-btn {
   background: transparent;
   border: none;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 11px;
   font-family: inherit;
   cursor: pointer;
@@ -564,7 +564,7 @@ body.ws-resizing-rail * {
   background: transparent;
   border: 1px solid var(--border);
   border-radius: 5px;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 11px;
   font-family: inherit;
   cursor: pointer;
@@ -653,7 +653,7 @@ body.ws-resizing-rail * {
 .ws-fc-body .detail-section { margin-bottom: 8px; }
 .ws-fc-body .detail-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
 .ws-fc-body .detail-value { font-size: 13px; color: var(--text); line-height: 1.5; }
-.ws-fc-body a { color: var(--accent); word-break: break-all; }
+.ws-fc-body a { color: var(--accent-text); word-break: break-all; }
 .ws-fc-body .sources-list { padding-left: 14px; margin: 0; }
 .ws-fc-body .sources-list li { margin-bottom: 4px; }
 

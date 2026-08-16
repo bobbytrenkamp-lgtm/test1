@@ -79,7 +79,7 @@
   font-family: monospace;
   font-size: 11px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-text);
   background: rgba(88, 141, 239, 0.12);
   border-radius: 4px;
   padding: 2px 6px;
@@ -146,7 +146,7 @@
 
 .z-tab:hover { color: var(--text); }
 .z-tab.active {
-  color: var(--accent);
+  color: var(--accent-text);
   border-bottom-color: var(--accent);
 }
 
@@ -361,7 +361,7 @@
   font-family: monospace;
   font-size: 11px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-text);
   min-width: 56px;
 }
 
@@ -427,7 +427,7 @@
 .z-source-value { color: var(--text); flex: 1; word-break: break-all; }
 
 .z-source-link {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
 }
 .z-source-link:hover { text-decoration: underline; }
