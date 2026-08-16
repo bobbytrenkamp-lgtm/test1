@@ -127,6 +127,7 @@ run "economy core (readiness score, signals, stats)" node tests/test_economy_cor
 run "economy map (layer-toggle race safety)" node tests/test_economy_map_race.mjs
 run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
 run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
+run "client error logging (opt-in Supabase reporting)" node tests/test_error_logging.mjs
 run "data loading (critical/deferred)" node tests/test_data_loading.mjs
 run "map point clustering (grid clustering for large point layers)" node tests/test_map_point_clustering.mjs
 run "pipeline (windowing + a11y)"   node tests/test_pipeline.mjs

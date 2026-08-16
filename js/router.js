@@ -30,7 +30,7 @@ window.Router = (function () {
   /* Tabs that switchTab() understands. Anything else is a virtual route. */
   const TAB_ROUTES = ["home", "map", "economy", "news", "stocks", "analytics", "pipeline", "about"];
   /* Virtual routes render their own view rather than mapping to a header tab. */
-  const VIRTUAL_ROUTES = ["jurisdiction", "methodology"];
+  const VIRTUAL_ROUTES = ["jurisdiction", "methodology", "terms", "privacy"];
 
   const _listeners = [];
   let _suppress = false;   // guards against reacting to our own hash writes

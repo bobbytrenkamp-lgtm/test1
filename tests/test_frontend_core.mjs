@@ -87,6 +87,14 @@ t('multi params',     P('#news?q=x&cat=ai').params,    { q: 'x', cat: 'ai' });
 t('decodes params',   P('#news?q=a%20b').params,       { q: 'a b' });
 t('unknown -> home',  P('#bogus').route,               'home');
 
+/* Terms/Privacy virtual routes (2026-08-16) — must resolve as known routes,
+   not fall through to home like an unregistered tab would (see the
+   "economy route" comment above for why that distinction matters). */
+t('terms is a known route',   P('#terms').route,     'terms');
+t('privacy is a known route', P('#privacy').route,   'privacy');
+t('terms not legacy',         P('#terms').legacy,    null);
+t('privacy build',            R.build('privacy', {}), '#privacy');
+
 /* Economy tab. It must be a real route rather than falling through to home —
    an unregistered tab name silently routes to Home, which is how a new tab can
    look wired up while every shared link to it lands on the wrong page. */

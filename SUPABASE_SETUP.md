@@ -24,13 +24,21 @@ Authentication is built on [Supabase](https://supabase.com), a hosted Postgres d
 3. Click **Run** (Cmd/Ctrl+Enter).
 4. Confirm the output shows no errors.
 
-This creates three tables with RLS enforced:
+This creates four tables with RLS enforced:
 
 | Table | Purpose |
 |-------|---------|
 | `profiles` | Display name and avatar, auto-created on signup via trigger |
 | `user_preferences` | Per-key preference store (`theme`, stock favorites, map bookmarks) |
 | `saved_items` | Saved counties, news articles, and stocks |
+| `client_errors` | Opt-in client-side error reports (see `js/error-logging.js`) — write-only, no user identity captured, insert-only RLS policy |
+
+The same `SUPABASE_URL`/`SUPABASE_ANON_KEY` pair from Step 4 below also turns
+on client-side error logging automatically (`js/error-logging.js` checks the
+same config `js/auth.js` does) — there is no separate setup step for it. This
+is the site's only error observability today (no Sentry or similar is used,
+per this project's zero-paid-services rule); if `client_errors` grows large
+over months, see the pruning note in `data/supabase_schema.sql`.
 
 ---
 
