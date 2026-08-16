@@ -77,6 +77,10 @@ window.ArcGISParcelConnector = (function () {
     }
 
     async _execute(url, signal) {
+      const cache = window.PARCEL_REQUEST_CACHE;
+      const cached = cache?.get(url);
+      if (cached !== undefined) return cached;
+
       const res = await fetch(url, signal ? { signal } : {});
 
       if (!res.ok) {
@@ -95,7 +99,9 @@ window.ArcGISParcelConnector = (function () {
         throw new Error(`ArcGIS error: ${msg}`);
       }
 
-      return this._normalize(json);
+      const normalized = this._normalize(json);
+      cache?.set(url, normalized);
+      return normalized;
     }
 
     /* Remap source attribute names to canonical field names.

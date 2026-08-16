@@ -36,6 +36,7 @@ if (typeof window === 'undefined') {
   // reference them; selection has no dependents among these.
   for (const rel of [
     'js/parcel/schema.js', 'js/parcel/registry.js', 'js/parcel/selection.js', 'js/parcel/provenance.js',
+    'js/parcel/request-cache.js',
     'js/parcel/connector-arcgis.js', 'js/parcel/connector-geojson.js', 'js/parcel/connector-wfs.js',
     'js/parcel/connector-factory.js',
     'js/parcel/geo.js', 'js/parcel/zoning-geometry.js',
@@ -302,6 +303,99 @@ if (typeof window === 'undefined') {
   }
 
   console.groupEnd();
+
+  // ── PARCEL_REQUEST_CACHE ──────────────────────────────────────────────────
+  //
+  // Launch-readiness fix (2026-08-16): parcel viewport/search/by-id queries
+  // went straight from the browser to the county's own GIS server on every
+  // request, with no caching -- a user panning away from a viewport and
+  // back within the same session re-issued an identical request. At real
+  // traffic that's the kind of pattern that gets a site's own IP throttled
+  // by a county IT department. Added a small TTL'd client-side cache
+  // (js/parcel/request-cache.js) wired into connector-arcgis.js's
+  // _execute() and connector-wfs.js's _fetch(), keyed by the exact request
+  // URL (which already fully encodes the query).
+
+  {
+    const RC = (typeof window !== 'undefined' ? window : global).PARCEL_REQUEST_CACHE;
+    if (RC) {
+      console.group('PARCEL_REQUEST_CACHE');
+
+      RC.clear();
+      assertEq(RC.size(), 0, 'starts empty (or clears cleanly)');
+      assertEq(RC.get('missing-key'), undefined, 'a miss returns undefined');
+
+      const value = { type: 'FeatureCollection', features: [{ properties: { a: 1 } }] };
+      RC.set('k1', value);
+      const got = RC.get('k1');
+      assert(!!got, 'a stored value can be read back');
+      assertEq(got.features[0].properties.a, 1, 'the read-back value has the right shape');
+      assert(got !== value, 'the read-back value is a clone, not the original reference');
+      assert(got.features !== value.features, 'nested arrays are cloned too (deep, not shallow)');
+
+      got.features[0].properties.a = 999;
+      const gotAgain = RC.get('k1');
+      assertEq(gotAgain.features[0].properties.a, 1, 'mutating a returned value does not corrupt the cache (regression)');
+
+      RC.set('k2', { x: 1 }, 1); // 1ms TTL
+      const before = RC.get('k2');
+      assert(before !== undefined, 'a value is readable immediately after being set');
+      await new Promise(resolve => setTimeout(resolve, 15));
+      assertEq(RC.get('k2'), undefined, 'an expired entry (past its TTL) is treated as a miss, not stale data');
+
+      RC.clear();
+      assertEq(RC.size(), 0, 'clear() empties the cache');
+
+      // Bounded size (mirrors the constraints.js _trim() cache-bound pattern).
+      const N = RC.MAX_ENTRIES + 20;
+      for (let i = 0; i < N; i++) RC.set(`bulk-${i}`, { i });
+      assert(RC.size() > 0 && RC.size() <= RC.MAX_ENTRIES, `cache stays bounded at MAX_ENTRIES (size=${RC.size()}, cap=${RC.MAX_ENTRIES})`);
+      RC.clear();
+
+      console.groupEnd();
+    }
+  }
+
+  // ── ArcGISParcelConnector: request caching (regression) ────────────────────
+
+  if (typeof Connector === 'function' && (typeof window !== 'undefined' ? window : global).PARCEL_REQUEST_CACHE) {
+    console.group('ArcGISParcelConnector — request caching');
+
+    const RC = (typeof window !== 'undefined' ? window : global).PARCEL_REQUEST_CACHE;
+    RC.clear();
+
+    const cacheConn = new Connector({
+      fips: '51107', id: 'va-loudoun-county',
+      serviceUrl: 'https://example.com/arcgis/rest/services/Parcels/FeatureServer/0',
+      fieldMap: { parcel_id: 'OBJECTID' },
+    });
+
+    const fakeBounds = { getWest: () => -77.5, getSouth: () => 38.9, getEast: () => -77.4, getNorth: () => 39.0 };
+    const fakeResponse = { type: 'FeatureCollection', features: [{ type: 'Feature', properties: { OBJECTID: 1 }, geometry: null }] };
+
+    const g = (typeof window !== 'undefined' ? window : global);
+    const origFetch = g.fetch;
+    let fetchCalls = 0;
+    g.fetch = async () => {
+      fetchCalls++;
+      return { ok: true, json: async () => fakeResponse };
+    };
+
+    try {
+      await cacheConn.fetchViewport(fakeBounds, undefined);
+      await cacheConn.fetchViewport(fakeBounds, undefined);
+      assertEq(fetchCalls, 1, 'an identical second fetchViewport() call is served from cache, not re-fetched');
+
+      const otherBounds = { getWest: () => -78, getSouth: () => 39, getEast: () => -77.9, getNorth: () => 39.1 };
+      await cacheConn.fetchViewport(otherBounds, undefined);
+      assertEq(fetchCalls, 2, 'a genuinely different viewport still issues a real request');
+    } finally {
+      g.fetch = origFetch;
+      RC.clear();
+    }
+
+    console.groupEnd();
+  }
 
   // ── PARCEL_FEASIBILITY (Phase 2) ─────────────────────────────────────────
 

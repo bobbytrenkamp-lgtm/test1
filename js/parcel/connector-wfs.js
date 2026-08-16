@@ -81,10 +81,16 @@ window.WFSParcelConnector = (function () {
     }
 
     async _fetch(url, signal) {
+      const cache = window.PARCEL_REQUEST_CACHE;
+      const cached = cache?.get(url);
+      if (cached !== undefined) return cached;
+
       const res = await fetch(url, signal ? { signal } : {});
       if (!res.ok) throw new Error(`WFS request failed: ${res.status} ${res.statusText}`);
       const data = await res.json();
-      return this._normalize(data);
+      const normalized = this._normalize(data);
+      cache?.set(url, normalized);
+      return normalized;
     }
 
     _normalize(geojson) {
