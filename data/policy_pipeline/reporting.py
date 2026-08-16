@@ -97,6 +97,25 @@ def health_report_summary(health_data: dict) -> dict:
     }
 
 
+def determine_exit_code(valid_candidates: list, health_data: dict) -> int:
+    """Exit code for a normal (non --check-health-only) pipeline run.
+
+    Real bug found 2026-08-16: this used to be `1 if valid_candidates else 0`
+    inline in run_policy_pipeline.py's main() -- it only ever looked at
+    whether new candidates were found, completely ignoring chronic source
+    failures. update_policy_sources.yml's "Open issue" step is gated on this
+    exit code, and its own issue body already builds a dedicated "Chronic
+    Source Failures" section -- but on any day with zero new candidates (the
+    common case), a source stuck broken for weeks never triggered that step
+    at all. The --check-health-only code path already got this right
+    (`0 if not report["unreachable"] else 1`, using this same
+    health_report_summary() chronic_failures list); this makes both paths
+    agree on what counts as chronic (3+ consecutive failures).
+    """
+    chronic_failures = health_report_summary(health_data)["chronic_failures"]
+    return 1 if (valid_candidates or chronic_failures) else 0
+
+
 def append_change_log(entries: list[dict]) -> None:
     """Append new change log entries to policy_change_log.json."""
     data = load_json_file(CHANGE_LOG_PATH)
