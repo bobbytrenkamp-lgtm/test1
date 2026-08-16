@@ -55,11 +55,11 @@
     },
     "map_data_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-09T07:07:55.353092+00:00",
+      "last_checked": "2026-08-16T06:49:40.290060+00:00",
       "pipeline": "map_data_citations",
       "total_urls_checked": 2949,
-      "unreachable": 1378,
-      "unreachable_ratio": 0.4673
+      "unreachable": 1299,
+      "unreachable_ratio": 0.4405
     },
     "parcels_registry": {
       "health": "SOURCE_DOWN",
@@ -73,7 +73,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-15T07:23:59.270388+00:00",
+      "last_checked": "2026-08-16T07:25:25.329572+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -92,6 +92,8 @@
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
       "transiently_unreachable": [
+        "nc-orange-commissioners",
+        "nc-rowan-commissioners",
         "tn-washington-commission",
         "wa-douglas-pud"
       ]

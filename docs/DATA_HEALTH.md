@@ -8,9 +8,9 @@ Project-wide data health: is each pipeline's most recent automated run actually 
 
 | Pipeline | Health | Detail |
 |---|---|---|
-| policy_pipeline_sources | SOURCE_DOWN | 13 down / 2 transient / 109 total |
+| policy_pipeline_sources | SOURCE_DOWN | 13 down / 4 transient / 109 total |
 | county_page_citations | VALIDATION_FAILURE | 956/1994 unreachable (47.9%) |
-| map_data_citations | VALIDATION_FAILURE | 1378/2949 unreachable (46.7%) |
+| map_data_citations | VALIDATION_FAILURE | 1299/2949 unreachable (44.0%) |
 | static_parcel_ingestion | OK | - |
 | parcels_registry | SOURCE_DOWN | 1 down / 0 transient / 59 total |
 
