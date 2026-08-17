@@ -10854,6 +10854,21 @@ html.is-light-theme .map-mode-chip.active {
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
+/* Light theme needs a darker foreground for the same 4.5:1 AA target —
+   verified with axe-core's color-contrast rule against the rendered
+   badge, not computed by eye. */
+html[data-theme="light"] #creos-suite-badge {
+  border-color: rgba(29, 78, 216, 0.35);
+  background: rgba(29, 78, 216, 0.1);
+  color: #1d4ed8;
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) #creos-suite-badge {
+    border-color: rgba(29, 78, 216, 0.35);
+    background: rgba(29, 78, 216, 0.1);
+    color: #1d4ed8;
+  }
+}
 @media (max-width: 860px) {
   #creos-suite-badge {
     display: none;
