@@ -47,7 +47,7 @@
   "pipelines": {
     "county_page_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-03T07:51:19+00:00",
+      "last_checked": "2026-08-17T05:33:15+00:00",
       "pipeline": "county_page_citations",
       "total_urls_checked": 1994,
       "unreachable": 956,
@@ -73,7 +73,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-16T07:25:25.329572+00:00",
+      "last_checked": "2026-08-17T07:46:03.409476+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -92,10 +92,8 @@
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
       "transiently_unreachable": [
-        "nc-orange-commissioners",
-        "nc-rowan-commissioners",
-        "tn-washington-commission",
-        "wa-douglas-pud"
+        "nv-washoe-commissioners",
+        "or-business-oregon"
       ]
     },
     "static_parcel_ingestion": {
