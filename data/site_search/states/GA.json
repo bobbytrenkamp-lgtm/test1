@@ -1,6 +1,6 @@
 {
   "state": "GA",
-  "source_generated_at": "2026-08-13T00:48:14.397Z",
+  "source_generated_at": "2026-08-17T06:56:38.368Z",
   "record_count": 3463,
   "parcels": [
     {
@@ -54044,48 +54044,6 @@
       }
     },
     {
-      "id": "13121:08 240001210496",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.78639999999999,
-          33.57665
-        ]
-      },
-      "properties": {
-        "pin": "08 240001210496",
-        "area_acres": 8.43,
-        "land_use_code": "113",
-        "owner": "OUDRHIRI KAMAL & CLEGHORN MARISA ",
-        "assessed_value": 3870,
-        "county_fips": "13121",
-        "state": "GA",
-        "_source": "national-site-index",
-        "parcel_id": "08 240001210496"
-      }
-    },
-    {
-      "id": "13121:08 310001290424",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.7888,
-          33.57665
-        ]
-      },
-      "properties": {
-        "pin": "08 310001290424",
-        "area_acres": 6.1,
-        "land_use_code": "101",
-        "owner": "JOHNSON LEE E ",
-        "assessed_value": 172280,
-        "county_fips": "13121",
-        "state": "GA",
-        "_source": "national-site-index",
-        "parcel_id": "08 310001290424"
-      }
-    },
-    {
       "id": "13121:08 310001290440",
       "geometry": {
         "type": "Point",
@@ -54419,27 +54377,6 @@
         "state": "GA",
         "_source": "national-site-index",
         "parcel_id": "07 200000420514"
-      }
-    },
-    {
-      "id": "13121:08 230001220553",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.78639999999999,
-          33.5783
-        ]
-      },
-      "properties": {
-        "pin": "08 230001220553",
-        "area_acres": 6.47,
-        "land_use_code": "113",
-        "owner": "OUDRHIRI KAMAL & CLEGHORN MARISA ",
-        "assessed_value": 3160,
-        "county_fips": "13121",
-        "state": "GA",
-        "_source": "national-site-index",
-        "parcel_id": "08 230001220553"
       }
     },
     {
@@ -54860,27 +54797,6 @@
         "state": "GA",
         "_source": "national-site-index",
         "parcel_id": "09F140000800549"
-      }
-    },
-    {
-      "id": "13121:08 320001280077",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.7886,
-          33.57895
-        ]
-      },
-      "properties": {
-        "pin": "08 320001280077",
-        "area_acres": 9.27,
-        "land_use_code": "113",
-        "owner": "REEVES EARLE F JR ",
-        "assessed_value": 4400,
-        "county_fips": "13121",
-        "state": "GA",
-        "_source": "national-site-index",
-        "parcel_id": "08 320001280077"
       }
     },
     {
@@ -56963,27 +56879,6 @@
       }
     },
     {
-      "id": "13121:08 230001220116",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.78555,
-          33.5822
-        ]
-      },
-      "properties": {
-        "pin": "08 230001220116",
-        "area_acres": 47.61,
-        "land_use_code": "113",
-        "owner": "REEVES EARLE F JR ",
-        "assessed_value": 22680,
-        "county_fips": "13121",
-        "state": "GA",
-        "_source": "national-site-index",
-        "parcel_id": "08 230001220116"
-      }
-    },
-    {
       "id": "13121:07 130000860965",
       "geometry": {
         "type": "Point",
@@ -57107,27 +57002,6 @@
         "state": "GA",
         "_source": "national-site-index",
         "parcel_id": "08 230001220371"
-      }
-    },
-    {
-      "id": "13121:08 230001220470",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.78565,
-          33.582350000000005
-        ]
-      },
-      "properties": {
-        "pin": "08 230001220470",
-        "area_acres": 6.49,
-        "land_use_code": "100",
-        "owner": "SMITH CHARLES & CHARLES VIRGINIA B ",
-        "assessed_value": 14360,
-        "county_fips": "13121",
-        "state": "GA",
-        "_source": "national-site-index",
-        "parcel_id": "08 230001220470"
       }
     },
     {
@@ -65436,7 +65310,7 @@
       },
       "properties": {
         "pin": "08 060000301462",
-        "area_acres": 33.498,
+        "area_acres": 33.465,
         "land_use_code": "113",
         "owner": "MC ELREATH C G & CLARA C ",
         "assessed_value": 20510,
@@ -71261,6 +71135,132 @@
         "state": "GA",
         "_source": "national-site-index",
         "parcel_id": "07 030200790766"
+      }
+    },
+    {
+      "id": "13121:09F330301340325",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.56535,
+          33.6174
+        ]
+      },
+      "properties": {
+        "pin": "09F330301340325",
+        "area_acres": 25.5,
+        "land_use_code": "600",
+        "owner": "CITY OF UNION CITY THE ",
+        "assessed_value": 0,
+        "county_fips": "13121",
+        "state": "GA",
+        "_source": "national-site-index",
+        "parcel_id": "09F330301340325"
+      }
+    },
+    {
+      "id": "13121:09F340001334973",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.5452,
+          33.617999999999995
+        ]
+      },
+      "properties": {
+        "pin": "09F340001334973",
+        "area_acres": 7.35,
+        "land_use_code": "301",
+        "owner": "ANTAEUS INC ",
+        "assessed_value": 106880,
+        "county_fips": "13121",
+        "state": "GA",
+        "_source": "national-site-index",
+        "parcel_id": "09F340001334973"
+      }
+    },
+    {
+      "id": "13121:09F310001391489",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.61144999999999,
+          33.61815
+        ]
+      },
+      "properties": {
+        "pin": "09F310001391489",
+        "area_acres": 6.05,
+        "land_use_code": "101",
+        "owner": "BTR GROUP LLC ",
+        "assessed_value": 106360,
+        "county_fips": "13121",
+        "state": "GA",
+        "_source": "national-site-index",
+        "parcel_id": "09F310001391489"
+      }
+    },
+    {
+      "id": "13121:09F350001311327",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.5293,
+          33.6165
+        ]
+      },
+      "properties": {
+        "pin": "09F350001311327",
+        "area_acres": 12.94,
+        "land_use_code": "100",
+        "owner": "COSTCO WHOLESALE CORPORATION ",
+        "assessed_value": 109360,
+        "county_fips": "13121",
+        "state": "GA",
+        "_source": "national-site-index",
+        "parcel_id": "09F350001311327"
+      }
+    },
+    {
+      "id": "13121:08 080200330020",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.7307,
+          33.617149999999995
+        ]
+      },
+      "properties": {
+        "pin": "08 080200330020",
+        "area_acres": 6.3,
+        "land_use_code": "101",
+        "owner": "CUMMINGS ANNETTE B ",
+        "assessed_value": 269560,
+        "county_fips": "13121",
+        "state": "GA",
+        "_source": "national-site-index",
+        "parcel_id": "08 080200330020"
+      }
+    },
+    {
+      "id": "13121:08 080200340011",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.73079999999999,
+          33.61585
+        ]
+      },
+      "properties": {
+        "pin": "08 080200340011",
+        "area_acres": 11.44,
+        "land_use_code": "101",
+        "owner": "STRONG ALICIA & AARON A ",
+        "assessed_value": 217240,
+        "county_fips": "13121",
+        "state": "GA",
+        "_source": "national-site-index",
+        "parcel_id": "08 080200340011"
       }
     }
   ]

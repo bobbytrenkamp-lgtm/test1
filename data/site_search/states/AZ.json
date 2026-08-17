@@ -1,6 +1,6 @@
 {
   "state": "AZ",
-  "source_generated_at": "2026-08-13T00:48:14.397Z",
+  "source_generated_at": "2026-08-17T06:56:38.368Z",
   "record_count": 1000,
   "parcels": [
     {
@@ -925,27 +925,6 @@
         "state": "AZ",
         "_source": "national-site-index",
         "parcel_id": "10101052"
-      }
-    },
-    {
-      "id": "04013:10225002J",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.2557,
-          33.49005
-        ]
-      },
-      "properties": {
-        "pin": "10225002J",
-        "zoning_code": "CONTACT LOCAL JURISDICTION",
-        "land_use_code": "5700",
-        "owner": "S R P A I & P D",
-        "assessed_value": "     891,300",
-        "county_fips": "04013",
-        "state": "AZ",
-        "_source": "national-site-index",
-        "parcel_id": "10225002J"
       }
     },
     {
@@ -3406,24 +3385,24 @@
       }
     },
     {
-      "id": "04013:10225002Q",
+      "id": "04013:10223826",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -112.25540000000001,
-          33.4936
+          -112.23920000000001,
+          33.48635
         ]
       },
       "properties": {
-        "pin": "10225002Q",
+        "pin": "10223826",
         "zoning_code": "CONTACT LOCAL JURISDICTION",
-        "land_use_code": "9920",
-        "owner": "SALT RIVER PROJECT AGRICULTURAL IMPROVEMENT AND POWER DISTRICT",
-        "assessed_value": "      29,700",
+        "land_use_code": "0131",
+        "owner": "SARABIA PABLO",
+        "assessed_value": "     287,200",
         "county_fips": "04013",
         "state": "AZ",
         "_source": "national-site-index",
-        "parcel_id": "10225002Q"
+        "parcel_id": "10223826"
       }
     },
     {
@@ -4789,27 +4768,6 @@
         "state": "AZ",
         "_source": "national-site-index",
         "parcel_id": "10101223"
-      }
-    },
-    {
-      "id": "04013:10225002R",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -112.25540000000001,
-          33.4935
-        ]
-      },
-      "properties": {
-        "pin": "10225002R",
-        "zoning_code": "CONTACT LOCAL JURISDICTION",
-        "land_use_code": "9920",
-        "owner": "SALT RIVER PROJECT AGRICULTURAL IMPROVEMENT AND POWER DISTRICT",
-        "assessed_value": "      14,200",
-        "county_fips": "04013",
-        "state": "AZ",
-        "_source": "national-site-index",
-        "parcel_id": "10225002R"
       }
     },
     {
@@ -18391,7 +18349,7 @@
         "pin": "10101850",
         "zoning_code": "CONTACT LOCAL JURISDICTION",
         "land_use_code": "0141",
-        "owner": "ZIMMERMAN JEREMY J/PARGAS MINERVA",
+        "owner": "PEN15 TRUST",
         "assessed_value": "     491,000",
         "county_fips": "04013",
         "state": "AZ",
@@ -19273,7 +19231,7 @@
         "pin": "10101888",
         "zoning_code": "CONTACT LOCAL JURISDICTION",
         "land_use_code": "0131",
-        "owner": "MARRERO RAFAEL/ANA",
+        "owner": "MARRERO RAFAEL/ALVARADO HONDINA HERNANDEZ",
         "assessed_value": "     321,200",
         "county_fips": "04013",
         "state": "AZ",
@@ -21001,6 +20959,48 @@
         "state": "AZ",
         "_source": "national-site-index",
         "parcel_id": "10101949"
+      }
+    },
+    {
+      "id": "04013:10101959",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.29509999999999,
+          33.447050000000004
+        ]
+      },
+      "properties": {
+        "pin": "10101959",
+        "zoning_code": "CONTACT LOCAL JURISDICTION",
+        "land_use_code": "0261",
+        "owner": "ROOSEVELT PARK UNIT ONE COMMUNITY ASSOC",
+        "assessed_value": "         500",
+        "county_fips": "04013",
+        "state": "AZ",
+        "_source": "national-site-index",
+        "parcel_id": "10101959"
+      }
+    },
+    {
+      "id": "04013:10101961",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.29685,
+          33.447900000000004
+        ]
+      },
+      "properties": {
+        "pin": "10101961",
+        "zoning_code": "CONTACT LOCAL JURISDICTION",
+        "land_use_code": "0261",
+        "owner": "ROOSEVELT PARK UNIT ONE COMMUNITY ASSOCIATION",
+        "assessed_value": "         500",
+        "county_fips": "04013",
+        "state": "AZ",
+        "_source": "national-site-index",
+        "parcel_id": "10101961"
       }
     }
   ]

@@ -1,6 +1,6 @@
 {
   "state": "SD",
-  "source_generated_at": "2026-08-13T00:48:14.397Z",
+  "source_generated_at": "2026-08-17T06:56:38.368Z",
   "record_count": 1000,
   "parcels": [
     {
@@ -3826,27 +3826,6 @@
       }
     },
     {
-      "id": "46099:012214101002000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.68889999999999,
-          43.55575
-        ]
-      },
-      "properties": {
-        "pin": "012214101002000",
-        "area_acres": 19.5,
-        "area_sqft": 849420,
-        "land_use_code": 170,
-        "owner": "CACTUS HILLS LLC",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012214101002000"
-      }
-    },
-    {
       "id": "46099:012209176002000",
       "geometry": {
         "type": "Point",
@@ -3865,6 +3844,27 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "012209176002000"
+      }
+    },
+    {
+      "id": "46099:012214101002000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.68889999999999,
+          43.55575
+        ]
+      },
+      "properties": {
+        "pin": "012214101002000",
+        "area_acres": 19.5,
+        "area_sqft": 849420,
+        "land_use_code": 170,
+        "owner": "CACTUS HILLS LLC",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012214101002000"
       }
     },
     {
@@ -4666,48 +4666,6 @@
       }
     },
     {
-      "id": "46099:012209385002000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.72370000000001,
-          43.558949999999996
-        ]
-      },
-      "properties": {
-        "pin": "012209385002000",
-        "area_acres": 7.46,
-        "area_sqft": 324893,
-        "land_use_code": 860,
-        "owner": "CITY OF SIOUX FALLS",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012209385002000"
-      }
-    },
-    {
-      "id": "46099:012204376003000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.7239,
-          43.57465
-        ]
-      },
-      "properties": {
-        "pin": "012204376003000",
-        "area_acres": 28.57,
-        "area_sqft": 1244692,
-        "land_use_code": 970,
-        "owner": "STATE OF SOUTH DAKOTA",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012204376003000"
-      }
-    },
-    {
       "id": "46099:012210276001000",
       "geometry": {
         "type": "Point",
@@ -4729,27 +4687,6 @@
       }
     },
     {
-      "id": "46099:012211401002000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.679,
-          43.563
-        ]
-      },
-      "properties": {
-        "pin": "012211401002000",
-        "area_acres": 20,
-        "area_sqft": 871200,
-        "land_use_code": 940,
-        "owner": "L.G. EVERIST INC",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012211401002000"
-      }
-    },
-    {
       "id": "46099:012210151012000",
       "geometry": {
         "type": "Point",
@@ -4768,27 +4705,6 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "012210151012000"
-      }
-    },
-    {
-      "id": "46099:012209476001000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.7131,
-          43.55995
-        ]
-      },
-      "properties": {
-        "pin": "012209476001000",
-        "area_acres": 10.08,
-        "area_sqft": 438910,
-        "land_use_code": 530,
-        "owner": "ALLIED MIDWEST MERCHANDISERS",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012209476001000"
       }
     },
     {
@@ -4834,6 +4750,111 @@
       }
     },
     {
+      "id": "46099:012209385002000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.72370000000001,
+          43.558949999999996
+        ]
+      },
+      "properties": {
+        "pin": "012209385002000",
+        "area_acres": 7.46,
+        "area_sqft": 324893,
+        "land_use_code": 860,
+        "owner": "CITY OF SIOUX FALLS",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012209385002000"
+      }
+    },
+    {
+      "id": "46099:012204376003000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7239,
+          43.57465
+        ]
+      },
+      "properties": {
+        "pin": "012204376003000",
+        "area_acres": 28.57,
+        "area_sqft": 1244692,
+        "land_use_code": 970,
+        "owner": "STATE OF SOUTH DAKOTA",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012204376003000"
+      }
+    },
+    {
+      "id": "46099:012211401002000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.679,
+          43.563
+        ]
+      },
+      "properties": {
+        "pin": "012211401002000",
+        "area_acres": 20,
+        "area_sqft": 871200,
+        "land_use_code": 940,
+        "owner": "L.G. EVERIST INC",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012211401002000"
+      }
+    },
+    {
+      "id": "46099:012216202032000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.71754999999999,
+          43.558499999999995
+        ]
+      },
+      "properties": {
+        "pin": "012216202032000",
+        "area_acres": 7.23,
+        "area_sqft": 315000,
+        "land_use_code": 970,
+        "owner": "CITY OF SIOUX FALLS",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012216202032000"
+      }
+    },
+    {
+      "id": "46099:012209476001000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7131,
+          43.55995
+        ]
+      },
+      "properties": {
+        "pin": "012209476001000",
+        "area_acres": 10.08,
+        "area_sqft": 438910,
+        "land_use_code": 530,
+        "owner": "ALLIED MIDWEST MERCHANDISERS",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012209476001000"
+      }
+    },
+    {
       "id": "46099:012209476002000",
       "geometry": {
         "type": "Point",
@@ -4873,27 +4894,6 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "012214451015000"
-      }
-    },
-    {
-      "id": "46099:012216202032000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.71754999999999,
-          43.558499999999995
-        ]
-      },
-      "properties": {
-        "pin": "012216202032000",
-        "area_acres": 7.23,
-        "area_sqft": 315000,
-        "land_use_code": 970,
-        "owner": "CITY OF SIOUX FALLS",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012216202032000"
       }
     },
     {
@@ -6451,27 +6451,6 @@
       }
     },
     {
-      "id": "46099:012113425001000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.77475,
-          43.55315
-        ]
-      },
-      "properties": {
-        "pin": "012113425001000",
-        "area_acres": 16.06,
-        "area_sqft": 699374,
-        "land_use_code": 780,
-        "owner": "MINNEHAHA COUNTY",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012113425001000"
-      }
-    },
-    {
       "id": "46099:012101351002000",
       "geometry": {
         "type": "Point",
@@ -6490,6 +6469,27 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "012101351002000"
+      }
+    },
+    {
+      "id": "46099:012113425001000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.77475,
+          43.55315
+        ]
+      },
+      "properties": {
+        "pin": "012113425001000",
+        "area_acres": 16.06,
+        "area_sqft": 699374,
+        "land_use_code": 780,
+        "owner": "MINNEHAHA COUNTY",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012113425001000"
       }
     },
     {
@@ -6514,6 +6514,27 @@
       }
     },
     {
+      "id": "46099:012113377001000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.78255,
+          43.5447
+        ]
+      },
+      "properties": {
+        "pin": "012113377001000",
+        "area_acres": 7.03,
+        "area_sqft": 306046,
+        "land_use_code": 171,
+        "owner": "CAL-DAK I LLC",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012113377001000"
+      }
+    },
+    {
       "id": "46099:012208179003000",
       "geometry": {
         "type": "Point",
@@ -6532,6 +6553,27 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "012208179003000"
+      }
+    },
+    {
+      "id": "46099:012113377005000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.78280000000001,
+          43.5464
+        ]
+      },
+      "properties": {
+        "pin": "012113377005000",
+        "area_acres": 14.64,
+        "area_sqft": 637633,
+        "land_use_code": 580,
+        "owner": "GP REAL ESTATE -- SF LLC",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012113377005000"
       }
     },
     {
@@ -6616,48 +6658,6 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "012113201003000"
-      }
-    },
-    {
-      "id": "46099:012113377001000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.78255,
-          43.5447
-        ]
-      },
-      "properties": {
-        "pin": "012113377001000",
-        "area_acres": 7.03,
-        "area_sqft": 306046,
-        "land_use_code": 171,
-        "owner": "CAL-DAK I LLC",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012113377001000"
-      }
-    },
-    {
-      "id": "46099:012113377005000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.78280000000001,
-          43.5464
-        ]
-      },
-      "properties": {
-        "pin": "012113377005000",
-        "area_acres": 14.64,
-        "area_sqft": 637633,
-        "land_use_code": 580,
-        "owner": "GP REAL ESTATE -- SF LLC",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012113377005000"
       }
     },
     {
@@ -9958,27 +9958,6 @@
       }
     },
     {
-      "id": "46099:012124251013000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.7789,
-          43.537400000000005
-        ]
-      },
-      "properties": {
-        "pin": "012124251013000",
-        "area_acres": 6.61,
-        "area_sqft": 287928,
-        "land_use_code": 460,
-        "owner": "NORTHERN STATES POWER COMPANY",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012124251013000"
-      }
-    },
-    {
       "id": "46099:012124401009000",
       "geometry": {
         "type": "Point",
@@ -10102,6 +10081,27 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "012231176001000"
+      }
+    },
+    {
+      "id": "46099:012124251013000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7789,
+          43.537400000000005
+        ]
+      },
+      "properties": {
+        "pin": "012124251013000",
+        "area_acres": 6.61,
+        "area_sqft": 287928,
+        "land_use_code": 460,
+        "owner": "NORTHERN STATES POWER COMPANY",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012124251013000"
       }
     },
     {
@@ -12730,6 +12730,27 @@
       }
     },
     {
+      "id": "46099:012320300032000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.62049999999999,
+          43.53485
+        ]
+      },
+      "properties": {
+        "pin": "012320300032000",
+        "area_acres": 139.51,
+        "area_sqft": 6076933,
+        "land_use_code": 860,
+        "owner": "ALL IN GOLF LLC",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "012320300032000"
+      }
+    },
+    {
       "id": "46099:012320301001000",
       "geometry": {
         "type": "Point",
@@ -12937,27 +12958,6 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "011634326004000"
-      }
-    },
-    {
-      "id": "46099:012320300032000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.62049999999999,
-          43.53485
-        ]
-      },
-      "properties": {
-        "pin": "012320300032000",
-        "area_acres": 139.51,
-        "area_sqft": 6076933,
-        "land_use_code": 860,
-        "owner": "ALL IN GOLF LLC",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "012320300032000"
       }
     },
     {
@@ -14725,27 +14725,6 @@
       }
     },
     {
-      "id": "46099:022812426001000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.69194999999999,
-          43.4945
-        ]
-      },
-      "properties": {
-        "pin": "022812426001000",
-        "area_acres": 8.15,
-        "area_sqft": 355073,
-        "land_use_code": 970,
-        "owner": "WHISPER RIDGE HOMEOWNERS ASSO",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "022812426001000"
-      }
-    },
-    {
       "id": "46099:022814401001000",
       "geometry": {
         "type": "Point",
@@ -14764,6 +14743,27 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "022814401001000"
+      }
+    },
+    {
+      "id": "46099:022812426001000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.69194999999999,
+          43.4945
+        ]
+      },
+      "properties": {
+        "pin": "022812426001000",
+        "area_acres": 8.15,
+        "area_sqft": 355073,
+        "land_use_code": 970,
+        "owner": "WHISPER RIDGE HOMEOWNERS ASSO",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "022812426001000"
       }
     },
     {
@@ -17287,27 +17287,6 @@
       }
     },
     {
-      "id": "46099:011536101003000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -96.7853,
-          43.599199999999996
-        ]
-      },
-      "properties": {
-        "pin": "011536101003000",
-        "area_acres": 55.89,
-        "area_sqft": 2434671,
-        "land_use_code": 970,
-        "owner": "SOUTH DAKOTA BOARD OF REGENTS",
-        "county_fips": "46099",
-        "state": "SD",
-        "_source": "national-site-index",
-        "parcel_id": "011536101003000"
-      }
-    },
-    {
       "id": "46099:012212452037000",
       "geometry": {
         "type": "Point",
@@ -17326,6 +17305,27 @@
         "state": "SD",
         "_source": "national-site-index",
         "parcel_id": "012212452037000"
+      }
+    },
+    {
+      "id": "46099:011536101003000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7853,
+          43.599199999999996
+        ]
+      },
+      "properties": {
+        "pin": "011536101003000",
+        "area_acres": 55.89,
+        "area_sqft": 2434671,
+        "land_use_code": 970,
+        "owner": "SOUTH DAKOTA BOARD OF REGENTS",
+        "county_fips": "46099",
+        "state": "SD",
+        "_source": "national-site-index",
+        "parcel_id": "011536101003000"
       }
     },
     {
@@ -19181,14 +19181,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -96.63884999999999,
+          -96.6388,
           43.50675
         ]
       },
       "properties": {
         "pin": "012331401001000",
-        "area_acres": 20,
-        "area_sqft": 871200,
+        "area_acres": 19.4,
+        "area_sqft": 845327,
         "land_use_code": 970,
         "owner": "BRANDON VALLEY SCHOOL DIST.",
         "county_fips": "46099",

@@ -1,6 +1,6 @@
 {
   "state": "VA",
-  "source_generated_at": "2026-08-13T00:48:14.397Z",
+  "source_generated_at": "2026-08-17T06:56:38.368Z",
   "record_count": 4146,
   "parcels": [
     {
@@ -21310,25 +21310,6 @@
       }
     },
     {
-      "id": "51107:005401940000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -77.3451,
-          39.05485
-        ]
-      },
-      "properties": {
-        "pin": "005401940000",
-        "area_acres": 487.213,
-        "area_sqft": 21222998,
-        "county_fips": "51107",
-        "state": "VA",
-        "_source": "national-site-index",
-        "parcel_id": "005401940000"
-      }
-    },
-    {
       "id": "51107:002380608000",
       "geometry": {
         "type": "Point",
@@ -21345,25 +21326,6 @@
         "state": "VA",
         "_source": "national-site-index",
         "parcel_id": "002380608000"
-      }
-    },
-    {
-      "id": "51107:010389374000",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -77.3676,
-          39.05805
-        ]
-      },
-      "properties": {
-        "pin": "010389374000",
-        "area_acres": 380.696,
-        "area_sqft": 16583147,
-        "county_fips": "51107",
-        "state": "VA",
-        "_source": "national-site-index",
-        "parcel_id": "010389374000"
       }
     },
     {
@@ -21443,22 +21405,60 @@
       }
     },
     {
-      "id": "51107:027470634000",
+      "id": "51107:005401940000",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.422,
-          39.06005
+          -77.3451,
+          39.05485
         ]
       },
       "properties": {
-        "pin": "027470634000",
-        "area_acres": 147.179,
-        "area_sqft": 6357130,
+        "pin": "005401940000",
+        "area_acres": 487.213,
+        "area_sqft": 21222998,
         "county_fips": "51107",
         "state": "VA",
         "_source": "national-site-index",
-        "parcel_id": "027470634000"
+        "parcel_id": "005401940000"
+      }
+    },
+    {
+      "id": "51107:010389374000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.3676,
+          39.05805
+        ]
+      },
+      "properties": {
+        "pin": "010389374000",
+        "area_acres": 380.696,
+        "area_sqft": 16583147,
+        "county_fips": "51107",
+        "state": "VA",
+        "_source": "national-site-index",
+        "parcel_id": "010389374000"
+      }
+    },
+    {
+      "id": "51107:027360959000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4211,
+          39.063199999999995
+        ]
+      },
+      "properties": {
+        "pin": "027360959000",
+        "area_acres": 90.559,
+        "area_sqft": 3944755,
+        "county_fips": "51107",
+        "state": "VA",
+        "_source": "national-site-index",
+        "parcel_id": "027360959000"
       }
     },
     {
@@ -72568,14 +72568,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -77.6451,
-          38.79275
+          -77.6461,
+          38.7936
         ]
       },
       "properties": {
         "parcel_id": 9637,
-        "pin": "7297-63-2604",
-        "area_acres": 40.299,
+        "pin": "7297-52-9587",
+        "area_acres": 14.7107,
         "land_use_code": null,
         "owner": null,
         "county_fips": "51153",
