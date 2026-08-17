@@ -10834,6 +10834,32 @@ html.is-light-theme .map-mode-chip.active {
   white-space: nowrap;
 }
 .pty-th-yr { text-align: left; color: var(--text-muted); }
+/* ==========================================================================
+   CREOS suite badge — added for CREOS Enterprise Phase 2 (consistent
+   branding across the CREOS product family). Purely additive: a small,
+   non-interactive label in the header identifying this app as CREOS
+   SiteIntel. Does not touch any existing selector, id, or script hook.
+   ========================================================================== */
+#creos-suite-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(111, 155, 255, 0.4);
+  background: rgba(111, 155, 255, 0.14);
+  color: #6f9bff;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+@media (max-width: 860px) {
+  #creos-suite-badge {
+    display: none;
+  }
+}
+
 .pty-yr {
   padding: 4px 10px;
   color: var(--text-muted);
