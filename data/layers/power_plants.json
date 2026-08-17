@@ -3900,19 +3900,6 @@
     "lat": 40.84681
   },
   {
-    "id": "pp-54895",
-    "name": "Falls Hydro",
-    "fuel_type": "WAT",
-    "sector": "Electric Utility",
-    "status": "OP",
-    "operating_year": 1922,
-    "capacity_mw": null,
-    "county_fips": "37167",
-    "state": "NC",
-    "lon": -80.0753,
-    "lat": 35.3944
-  },
-  {
     "id": "pp-54385",
     "name": "Kinneytown New Old",
     "fuel_type": "WAT",
@@ -4583,7 +4570,7 @@
     "status": "OP",
     "operating_year": 2001,
     "capacity_mw": null,
-    "county_fips": "48183",
+    "county_fips": "48203",
     "state": "TX",
     "lon": -94.6903,
     "lat": 32.4481
@@ -10996,19 +10983,6 @@
     "state": "AZ",
     "lon": -111.28923,
     "lat": 32.55103
-  },
-  {
-    "id": "pp-60064",
-    "name": "White Pine Solar, LLC",
-    "fuel_type": "SUN",
-    "sector": "IPP Non-CHP",
-    "status": "OP",
-    "operating_year": 2016,
-    "capacity_mw": null,
-    "county_fips": "13269",
-    "state": "GA",
-    "lon": -84.25698,
-    "lat": 32.50602
   },
   {
     "id": "pp-60068",
