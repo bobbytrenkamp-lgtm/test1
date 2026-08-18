@@ -736,7 +736,11 @@ function _exportWatchlistCSV() {
   const TYPE_MAP  = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
 
   const csvCell = v => {
-    const s = String(v ?? "");
+    let s = String(v ?? "");
+    // CSV/formula injection guard: incentive-program/notes text is sourced
+    // from policy documents, not written by us, so a leading =/+/-/@ can't
+    // be assumed safe -- Excel/Sheets would interpret it as a formula.
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
     return (s.includes(",") || s.includes('"') || s.includes("\n")) ? '"' + s.replace(/"/g, '""') + '"' : s;
   };
 

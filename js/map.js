@@ -2009,7 +2009,15 @@ function exportCountiesCSV() {
       ]);
     });
 
-  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  // CSV/formula injection guard: Policy Title/Notes are free-text sourced
+  // from policy documents, not written by us -- a leading =/+/-/@ would be
+  // interpreted as a formula by Excel/Sheets even inside a quoted cell.
+  const csvCell = v => {
+    let s = String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+  const csv  = rows.map(r => r.map(csvCell).join(",")).join("\n");
   const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
   const url  = URL.createObjectURL(blob);
   const a    = Object.assign(document.createElement("a"), { href: url, download: `dc-restrictions-${new Date().toISOString().slice(0, 10)}.csv` });
@@ -2808,7 +2816,15 @@ function exportScene3dObjectsCSV() {
       (o.constraint && o.constraint.status) || "unknown",
     ]);
   });
-  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  // CSV/formula injection guard: Label is free-text the user typed into the
+  // 3D tool -- a leading =/+/-/@ would be interpreted as a formula by
+  // Excel/Sheets even inside a quoted cell.
+  const csvCell3d = v => {
+    let s = String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+  const csv  = rows.map(r => r.map(csvCell3d).join(",")).join("\n");
   const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
   const url  = URL.createObjectURL(blob);
   const a    = Object.assign(document.createElement("a"), { href: url, download: `3d-site-objects-${new Date().toISOString().slice(0, 10)}.csv` });

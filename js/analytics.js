@@ -46,7 +46,11 @@ function exportCountiesCSV() {
   const TYPE_MAP = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
 
   const csvCell = v => {
-    const s = String(v ?? "");
+    let s = String(v ?? "");
+    // CSV/formula injection guard: Description is free-text sourced from
+    // policy documents, not written by us, so a leading =/+/-/@ can't be
+    // assumed safe -- it would be interpreted as a formula by Excel/Sheets.
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
     if (s.includes(",") || s.includes('"') || s.includes("\n")) return '"' + s.replace(/"/g, '""') + '"';
     return s;
   };

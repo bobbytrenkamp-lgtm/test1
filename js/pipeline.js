@@ -587,7 +587,12 @@ window.PIPELINE = (function () {
     ];
 
     const csvCell = v => {
-      const s = String(v ?? "");
+      let s = String(v ?? "");
+      // CSV/formula injection guard: operator/project-name fields are
+      // sourced from external project data, not written by us, so a
+      // leading =/+/-/@ can't be assumed safe -- Excel/Sheets would
+      // interpret it as a formula.
+      if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
       if (s.includes(",") || s.includes('"') || s.includes("\n")) return '"' + s.replace(/"/g, '""') + '"';
       return s;
     };
