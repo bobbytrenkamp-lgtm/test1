@@ -237,7 +237,7 @@
         ? `<div class="z-use-official">${esc(u.official_use_name)}</div>` : "";
       const conf = confidenceBadge(u.confidence_level);
       return `<li class="z-use-item">
-        <span class="z-use-status-pill ${pill.cls}">${pill.label}</span>
+        <span class="z-use-status-pill ${pill.cls}">${esc(pill.label)}</span>
         <span class="z-use-name">${distLabel}${esc((u.standardized_use_id||"").replace(/_/g," "))}${official}</span>
         ${conf}
       </li>`;

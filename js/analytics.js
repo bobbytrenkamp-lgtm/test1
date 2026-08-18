@@ -132,7 +132,9 @@ function renderAnalyticsPage() {
   }
 
   const activeRestrict = levelCounts[2] + levelCounts[3] + levelCounts[4];
-  const aiCompanyCount = (typeof AI_COMPANIES !== 'undefined' ? AI_COMPANIES.length : 50);
+  // 0 when the data isn't loaded, never a fabricated placeholder number
+  // standing in for a real count.
+  const aiCompanyCount = (typeof AI_COMPANIES !== 'undefined' ? AI_COMPANIES.length : 0);
 
   // News by category
   const newsCats = {};
