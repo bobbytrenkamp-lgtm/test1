@@ -33,70 +33,70 @@
     "caveat": "These figures measure how many canonical fields each jurisdiction's configured sources are wired up to populate. They are an engineering signal, not a measure of data accuracy, freshness, or fitness for any real estate decision. A county can score 100 here while publishing values that are years stale."
   },
   "coverage": {
-    "productionJurisdictions": 59,
+    "productionJurisdictions": 60,
     "facilityBearingJurisdictions": 549,
-    "jurisdictionCoveragePct": 10.7,
+    "jurisdictionCoveragePct": 10.9,
     "cataloguedJurisdictions": 167,
     "totalFacilities": 4456,
-    "facilitiesInCoveredJurisdictions": 2047,
+    "facilitiesInCoveredJurisdictions": 2059,
     "facilitiesUnattributed": 625,
-    "facilityWeightedCoveragePct": 53.4
+    "facilityWeightedCoveragePct": 53.7
   },
   "depth": {
     "area": {
-      "jurisdictions": 46,
-      "jurisdictionPct": 78,
-      "facilityWeightedPct": 74.2
+      "jurisdictions": 47,
+      "jurisdictionPct": 78.3,
+      "facilityWeightedPct": 74.3
     },
     "identity": {
-      "jurisdictions": 59,
+      "jurisdictions": 60,
       "jurisdictionPct": 100,
       "facilityWeightedPct": 100
     },
     "address": {
-      "jurisdictions": 38,
-      "jurisdictionPct": 64.4,
-      "facilityWeightedPct": 58.7
+      "jurisdictions": 39,
+      "jurisdictionPct": 65,
+      "facilityWeightedPct": 58.9
     },
     "ownership": {
-      "jurisdictions": 36,
-      "jurisdictionPct": 61,
-      "facilityWeightedPct": 64.6
+      "jurisdictions": 37,
+      "jurisdictionPct": 61.7,
+      "facilityWeightedPct": 64.8
     },
     "assessment": {
-      "jurisdictions": 40,
-      "jurisdictionPct": 67.8,
-      "facilityWeightedPct": 69.1
+      "jurisdictions": 41,
+      "jurisdictionPct": 68.3,
+      "facilityWeightedPct": 69.3
     },
     "sales": {
       "jurisdictions": 25,
-      "jurisdictionPct": 42.4,
-      "facilityWeightedPct": 38.8
+      "jurisdictionPct": 41.7,
+      "facilityWeightedPct": 38.6
     },
     "zoning": {
       "jurisdictions": 17,
-      "jurisdictionPct": 28.8,
-      "facilityWeightedPct": 27.2
+      "jurisdictionPct": 28.3,
+      "facilityWeightedPct": 27.1
     },
     "building": {
       "jurisdictions": 27,
-      "jurisdictionPct": 45.8,
-      "facilityWeightedPct": 41.9
+      "jurisdictionPct": 45,
+      "facilityWeightedPct": 41.6
     },
     "legal": {
       "jurisdictions": 33,
-      "jurisdictionPct": 55.9,
-      "facilityWeightedPct": 55.3
+      "jurisdictionPct": 55,
+      "facilityWeightedPct": 54.9
     },
     "land_use": {
-      "jurisdictions": 47,
-      "jurisdictionPct": 79.7,
-      "facilityWeightedPct": 76.7
+      "jurisdictions": 48,
+      "jurisdictionPct": 80,
+      "facilityWeightedPct": 76.9
     }
   },
   "tierDistribution": {
     "full-intelligence": 6,
-    "rich": 33,
+    "rich": 34,
     "standard": 6,
     "basic": 6,
     "boundary-only": 8,
@@ -4648,6 +4648,87 @@
       "declaredGaps": 13
     },
     {
+      "fips": "50007",
+      "id": "vt-chittenden-county",
+      "name": "Chittenden County, Vermont",
+      "state": "VT",
+      "connector": "geojson",
+      "facilities": 12,
+      "tier": "rich",
+      "categories": {
+        "area": true,
+        "identity": true,
+        "address": true,
+        "ownership": true,
+        "assessment": true,
+        "sales": false,
+        "zoning": false,
+        "building": false,
+        "legal": false,
+        "land_use": true
+      },
+      "qualityScore": 45,
+      "qualityComponents": {
+        "identity": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "area": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "address": {
+          "weight": 10,
+          "ratio": 1,
+          "earned": 10
+        },
+        "ownership": {
+          "weight": 10,
+          "ratio": 0.5,
+          "earned": 5
+        },
+        "assessment": {
+          "weight": 15,
+          "ratio": 1,
+          "earned": 15
+        },
+        "sales": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "zoning": {
+          "weight": 15,
+          "ratio": 0,
+          "earned": 0
+        },
+        "building": {
+          "weight": 10,
+          "ratio": 0,
+          "earned": 0
+        },
+        "land_use": {
+          "weight": 5,
+          "ratio": 0.5,
+          "earned": 2.5
+        },
+        "legal": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        },
+        "provenance": {
+          "weight": 5,
+          "ratio": 0,
+          "earned": 0
+        }
+      },
+      "enrichmentSources": [],
+      "declaredGaps": 19
+    },
+    {
       "fips": "51153",
       "id": "va-prince-william-county",
       "name": "Prince William County, Virginia",
@@ -5151,19 +5232,6 @@
       "previousInvestigation": "catalogued, not yet promoted"
     },
     {
-      "fips": "50007",
-      "name": "Chittenden County",
-      "state": "VT",
-      "facilities": 12,
-      "status": "candidate",
-      "likelySource": "https://www.arcgis.com/home/item.html?id=697a3a4b4f10452e8b4c950fca2fd4a1",
-      "sourceType": null,
-      "sharedService": false,
-      "fieldsAvailable": 0,
-      "effort": "high",
-      "previousInvestigation": "catalogued, not yet promoted"
-    },
-    {
       "fips": "51760",
       "name": "Richmond city",
       "state": "VA",
@@ -5222,6 +5290,19 @@
       "facilities": 11,
       "status": "candidate",
       "likelySource": "https://www.arcgis.com/home/item.html?id=7f456edec3494165b70ce26e9a9b3e4c",
+      "sourceType": null,
+      "sharedService": false,
+      "fieldsAvailable": 0,
+      "effort": "high",
+      "previousInvestigation": "catalogued, not yet promoted"
+    },
+    {
+      "fips": "48139",
+      "name": "Ellis County",
+      "state": "TX",
+      "facilities": 11,
+      "status": "candidate",
+      "likelySource": "https://www.arcgis.com/home/item.html?id=243d00b2c2bb41a89c199d4a534f7150",
       "sourceType": null,
       "sharedService": false,
       "fieldsAvailable": 0,

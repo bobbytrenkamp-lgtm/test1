@@ -80,7 +80,7 @@
       "category": "PARCELS",
       "dataset_count": 3,
       "datasets_with_data": 3,
-      "total_records": 89672,
+      "total_records": 89673,
       "ui_consumed_count": 1,
       "automated_count": 3
     },
@@ -204,7 +204,7 @@
       "license": "Public government open data; per-service terms vary and are not separately tracked here.",
       "known_coverage_holes": "Geometry coverage is 58 of ~3,000+ US counties. Most jurisdictions provide geometry + identity only; ownership/assessment/sales/zoning require the multi-source enrichment engine, which currently has zero production jurisdictions with a declared enrichment block.",
       "known_quality_issues": "Field depth varies enormously by jurisdiction; see data/parcel_coverage_metrics.json for the per-category breakdown this file does not duplicate.",
-      "record_count": 59,
+      "record_count": 60,
       "ui_consumed": true,
       "ci_tested": true,
       "automated_update_workflows": [

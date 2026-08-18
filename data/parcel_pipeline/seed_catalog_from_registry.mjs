@@ -151,7 +151,13 @@ function main() {
   };
 
   const orderedFips = Object.keys(existing.jurisdictions).sort();
-  const ordered = { meta: existing.meta, jurisdictions: {} };
+  // Preserve every other top-level key (e.g. shared_services, added by a
+  // later pass and unknown to this script when first written) instead of
+  // reconstructing the file from only meta+jurisdictions -- that silently
+  // deleted shared_services on the first re-run after it existed, exactly
+  // the kind of destructive "regeneration" this script's own doc comment
+  // claims not to be.
+  const ordered = { ...existing, meta: existing.meta, jurisdictions: {} };
   for (const fips of orderedFips) ordered.jurisdictions[fips] = existing.jurisdictions[fips];
 
   writeFileSync(CATALOG_PATH, JSON.stringify(ordered, null, 2) + '\n');

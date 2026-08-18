@@ -9,12 +9,12 @@ Run `node data/parcel_pipeline/generate_coverage_metrics.mjs` to regenerate.
 
 | | |
 |---|---|
-| Production jurisdictions | 59 |
+| Production jurisdictions | 60 |
 | Facility-bearing jurisdictions | 549 |
-| Jurisdiction coverage | 10.7% |
-| **Facility-weighted coverage** | **53.4%** |
+| Jurisdiction coverage | 10.9% |
+| **Facility-weighted coverage** | **53.7%** |
 | Known facilities | 4456 |
-| Facilities in covered jurisdictions | 2047 |
+| Facilities in covered jurisdictions | 2059 |
 | Facilities with no county FIPS (unattributable) | 625 |
 
 Facility-weighted coverage is the number worth watching. Plain jurisdiction
@@ -29,23 +29,23 @@ counties have it?
 
 | Category | Jurisdictions | Facility-weighted |
 |---|---|---|
-| area | 46 (78%) | 74.2% |
-| identity | 59 (100%) | 100% |
-| address | 38 (64.4%) | 58.7% |
-| ownership | 36 (61%) | 64.6% |
-| assessment | 40 (67.8%) | 69.1% |
-| sales | 25 (42.4%) | 38.8% |
-| zoning | 17 (28.8%) | 27.2% |
-| building | 27 (45.8%) | 41.9% |
-| legal | 33 (55.9%) | 55.3% |
-| land_use | 47 (79.7%) | 76.7% |
+| area | 47 (78.3%) | 74.3% |
+| identity | 60 (100%) | 100% |
+| address | 39 (65%) | 58.9% |
+| ownership | 37 (61.7%) | 64.8% |
+| assessment | 41 (68.3%) | 69.3% |
+| sales | 25 (41.7%) | 38.6% |
+| zoning | 17 (28.3%) | 27.1% |
+| building | 27 (45%) | 41.6% |
+| legal | 33 (55%) | 54.9% |
+| land_use | 48 (80%) | 76.9% |
 
 ## Quality distribution
 
 | Tier | Count | Meaning |
 |---|---|---|
 | full-intelligence | 6 | Geometry, ownership, assessment, sales, and zoning all wired up. |
-| rich | 33 | Geometry and identity plus ownership/address and valuation. |
+| rich | 34 | Geometry and identity plus ownership/address and valuation. |
 | standard | 6 | Geometry plus several useful attribute categories. |
 | basic | 6 | Geometry and identity plus limited attributes. |
 | boundary-only | 8 | Essentially polygons and an identifier. |
@@ -87,7 +87,7 @@ Facility-bearing jurisdictions not yet in production, ranked by facility count.
 | 12095 | Orange County | 12 | catalogued, not yet promoted | high | 0 | no |
 | 13097 | Douglas County | 12 | catalogued, not yet promoted | high | 0 | no |
 | 23005 | Cumberland County | 12 | catalogued, not yet promoted | high | 0 | no |
-| 50007 | Chittenden County | 12 | catalogued, not yet promoted | high | 0 | no |
+| 51760 | Richmond city | 12 | catalogued, not yet promoted | high | 0 | no |
 
 ## Covered jurisdictions
 
@@ -149,6 +149,7 @@ Facility-bearing jurisdictions not yet in production, ranked by facility count.
 | 46099 | Minnehaha County | 14 | standard | 34.2 |
 | 24033 | Prince George's County, Maryland | 12 | rich | 80.4 |
 | 34013 | Essex County, New Jersey | 12 | rich | 64.6 |
+| 50007 | Chittenden County, Vermont | 12 | rich | 45 |
 | 51153 | Prince William County, Virginia | 9 | standard | 44.2 |
 | 49049 | Utah County | 5 | rich | 45 |
 | 24027 | Howard County, Maryland | 4 | rich | 80.4 |

@@ -3849,6 +3849,102 @@ window.PARCEL_REGISTRY = (function () {
       },
     },
 
+    /* ── Chittenden County, Vermont — first static-download-ingestion entry ──
+     *
+     * Every other jurisdiction in this file queries a live ArcGIS/WFS
+     * service. This one instead reads a static file derived from a real,
+     * already-run static-ingestion pipeline (see
+     * data/parcel_pipeline/static_ingestion/ — sources.json's
+     * vt-vcgi-statewide-parcels entry, live-verified and ingested
+     * 2026-08-13, 338,862 statewide parcels). That statewide file is far
+     * too large to serve to a browser in one fetch (GeoJSONParcelConnector
+     * caches its whole file in memory), and Vermont's schema has no COUNTY
+     * field at all (VT's local government units are towns, not counties),
+     * so a derivation step was needed to produce a single, county-scoped,
+     * browser-sized file — see
+     * data/parcel_pipeline/static_ingestion/derive_county_registry_layer.py
+     * for exactly how, and re-run it with --check to confirm the committed
+     * file below is current.
+     *
+     * SCOPED TO 4 OF CHITTENDEN COUNTY'S ~18 TOWNS, NOT THE WHOLE COUNTY:
+     * every known Vermont facility in data/facilities_index.json is
+     * explicitly named "...Burlington VT" or "...Colchester VT" — this
+     * covers Burlington, South Burlington, Winooski, and Colchester (the
+     * actual DC-relevant urban core) rather than including the county's
+     * sparser rural towns (Bolton, Huntington, Underhill, …) just because
+     * they share a FIPS code. This is a real, honestly-scoped subset, not
+     * full county coverage — same spirit as other entries in this file
+     * that are explicit about being thin/partial (e.g. Bexar, Dallas).
+     *
+     * The town→county assignment itself was NOT taken from memory (VT's
+     * schema has no COUNTY field to check it against, and guessing here
+     * would be exactly the "confidently wrong" failure mode
+     * static_ingestion/models.py's docstring warns about). The derivation
+     * script instead decodes the real US Census county boundary already
+     * vendored for the main policy map (vendor/counties-10m.json) and does
+     * an actual point-in-polygon test per parcel — 2 towns bordering the
+     * county line (Monkton, Starksboro) had a handful of parcels whose
+     * representative point fell just inside the polygon and were excluded
+     * as boundary-precision artifacts, not included on a name guess. */
+    '50007': {
+      id:          'vt-chittenden-county',
+      name:        'Chittenden County, Vermont',
+      state:       'VT',
+      fips:        '50007',
+      connector:   'geojson',
+      serviceUrl:  'data/generated/static_parcels/vt-vcgi-statewide-parcels/chittenden-burlington-metro.geojson',
+      minZoom:     14,
+      maxFeatures: 500,
+
+      /* Field names and semantics come from sources.json's own
+         live-ingestion notes for this source, not guessed:
+         GLIST_SPAN (not SPAN) is the true unique-per-feature key — SPAN
+         repeats across "stacked" records (e.g. multiple mobile homes on
+         one land parcel sharing one land-level SPAN); E911ADDR is
+         Vermont's real single-string situs address (confirmed via a real
+         Burlington sample record, "151 DUNDER RD"); GLYEAR is the grand-
+         list (assessment) year, mapped to tax_year, NOT year_built --
+         YEAR/GLYEAR are listing years, never a construction date. */
+      fieldMap: {
+        parcel_id:           'GLIST_SPAN',
+        pin:                 'SPAN',
+        address:             'E911ADDR',
+        owner:               'OWNER1',
+        land_use_code:       'CAT',
+        area_acres:          'ACRESGL',
+        assessed_value:      'REAL_FLV',
+        land_value:          'LAND_LV',
+        improvement_value:   'IMPRV_LV',
+        tax_year:            'GLYEAR',
+        county_fips:         '__computed__',
+      },
+
+      /* owner_mailing is split across ADDRGL1/ADDRGL2/CITYGL/STGL/ZIPGL
+         with no single combined field, so it is not mapped (this file's
+         own no-concatenation discipline). Everything else here is a
+         genuine schema gap: this source is an assessment/grand-list
+         extract, not a zoning or transaction record -- no zoning, sale-
+         history, deed, subdivision, or legal-description fields exist in
+         it at all. */
+      notProvidedBySource: [
+        'owner_mailing', 'zoning_code', 'zoning_desc', 'land_use_desc',
+        'overlay_districts', 'area_sqft', 'lot_depth_ft', 'lot_width_ft',
+        'building_count', 'year_built', 'gross_floor_area', 'tax_amount',
+        'last_sale_date', 'last_sale_price', 'deed_book', 'deed_page',
+        'subdivision', 'legal_desc', 'census_tract',
+      ],
+
+      outFields: null,
+
+      attribution: {
+        name:    'Vermont Center for Geographic Information (VCGI)',
+        url:     'https://geodata.vermont.gov/datasets/VCGI::vt-data-statewide-standardized-parcel-data-parcel-polygons',
+        portal:  'https://geodata.vermont.gov/',
+        license: 'Public (DCAT accessLevel=public). Publisher disclaimer, not a restrictive license: "This data layer is not a legal survey. It is not a legal conveyance or description of property and is intended for planning purposes only. VCGI and the State of VT make no representations of any kind, including but not limited to the warranties of merchantability or fitness for a particular use, nor are any such warranties to be implied with respect to the data." Confirmed via the source\'s own DCAT metadata during live ingestion, 2026-08-13.',
+        note:    'Burlington/South Burlington/Winooski/Colchester -- the urban core of Vermont\'s only notable data-center market (12 of 19 statewide facilities in data/facilities_index.json are in this county, nearly all named "Burlington VT"). Derived from a real statewide static-ingestion run (338,862 parcels) via a point-in-polygon spatial join against the actual county boundary, not a live query -- data updates whenever the ingestion + derivation scripts are re-run, not automatically. See data/parcel_pipeline/static_ingestion/ for the full pipeline.',
+      },
+    },
+
   };
 
   function get(fips) {
