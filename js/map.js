@@ -3295,7 +3295,15 @@ function exportScreenerCSV() {
       county.effective_date || "",
     ]);
   });
-  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  // CSV/formula injection guard: County is free-text sourced from policy
+  // data, not written by us -- a leading =/+/-/@ would be interpreted as a
+  // formula by Excel/Sheets even inside a quoted cell.
+  const csvCellScreener = v => {
+    let s = String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+  const csv  = rows.map(r => r.map(csvCellScreener).join(",")).join("\n");
   const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
   const url  = URL.createObjectURL(blob);
   const a    = Object.assign(document.createElement("a"), { href: url, download: `screener-results-${new Date().toISOString().slice(0,10)}.csv` });
@@ -7028,7 +7036,15 @@ function initAdvancedFiltersPanel() {
           c.effective_date || c.date || "",
         ]);
       }
-      const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+      // CSV/formula injection guard: County is free-text sourced from
+      // policy data, not written by us -- a leading =/+/-/@ would be
+      // interpreted as a formula by Excel/Sheets even inside a quoted cell.
+      const csvCellFilter = v => {
+        let s = String(v);
+        if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+        return `"${s.replace(/"/g, '""')}"`;
+      };
+      const csv = rows.map(r => r.map(csvCellFilter).join(",")).join("\n");
       const a = Object.assign(document.createElement("a"), {
         href: URL.createObjectURL(new Blob([csv], { type: "text/csv" })),
         download: `dc-policy-filter-export-${new Date().toISOString().slice(0,10)}.csv`,
