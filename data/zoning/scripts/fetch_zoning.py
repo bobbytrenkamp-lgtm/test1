@@ -188,6 +188,26 @@ def validate_geometry_response(geojson: dict, min_features: int = 0) -> list[str
     return errors
 
 
+def build_hub_search_url(search_term: str, hub_organization: str | None = None) -> str:
+    """ArcGIS Hub search API URL for discovering a jurisdiction's zoning
+    FeatureServer from its open-data portal. Pure and exported so it's
+    testable without a network call.
+
+    Used to hardcode filter[organization]=Loudoun regardless of which
+    jurisdiction was being fetched -- harmless for the VA pilot counties
+    (none of them actually use this code path; all three were live-verified
+    to a direct arcgis_featureserver URL instead, see zoning_config.py's own
+    comments), but a real bug for md-montgomery-county, which DOES use this
+    path and would have had its search silently scoped to the wrong
+    organization. Only adds the filter when a jurisdiction explicitly
+    provides hub_organization, rather than defaulting to any single
+    county's name."""
+    url = f"https://opendata.arcgis.com/api/v3/search?q={urllib.parse.quote(search_term)}"
+    if hub_organization:
+        url += f"&filter%5Borganization%5D={urllib.parse.quote(hub_organization)}"
+    return url
+
+
 def fetch_for_jurisdiction(jurisdiction_id: str, dry_run: bool = False) -> dict | None:
     """Fetch zoning geometry for a single jurisdiction. Returns GeoJSON or None."""
     cfg = JURISDICTION_CONFIGS.get(jurisdiction_id)
@@ -205,14 +225,20 @@ def fetch_for_jurisdiction(jurisdiction_id: str, dry_run: bool = False) -> dict 
         portal = src.get("portal", "")
         search_terms = src.get("search_terms", ["zoning"])
         fallback = src.get("fallback_mapserver", "")
+        # Optional: a jurisdiction can specify the exact Hub organization
+        # slug its portal is registered under, to scope the search tightly.
+        # No jurisdiction currently sets this (md-montgomery-county, the
+        # only one using this code path today, doesn't), and there's no
+        # generic way to derive an org slug from an arbitrary portal URL --
+        # so the default is an unscoped search rather than a guess.
+        hub_organization = src.get("hub_organization")
 
         # Try to discover FeatureServer from portal (simplified — real portal
         # search would use Hub API: {portal}api/search?q=zoning&f=json)
         # For now attempt a known pattern or fall back.
         discovered = None
         if portal:
-            # ArcGIS Hub search API
-            hub_search = f"https://opendata.arcgis.com/api/v3/search?q={urllib.parse.quote(search_terms[0])}&filter%5Borganization%5D=Loudoun"
+            hub_search = build_hub_search_url(search_terms[0], hub_organization)
             try:
                 if not dry_run:
                     result = _fetch_json(hub_search)

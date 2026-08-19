@@ -86,6 +86,7 @@ run "parcel registry integrity check" node data/parcel_pipeline/check_registry_i
 run "parcel registry replacementHistory validation" node tests/test_parcel_registry_integrity.mjs
 run "parcel licensing classifier"      node tests/test_parcel_licensing.mjs
 run "parcel licensing staleness gate"  node data/parcel_pipeline/classify_licensing.mjs --check
+run "generate_entry.mjs live-refetch guards" node tests/test_generate_entry_live_refetch.mjs
 run "parcel changed-FIPS diff mapper" node tests/test_parcel_changed_fips.mjs
 run "parcel field mapper (ground-truth regression)" node tests/test_parcel_field_mapper.mjs
 run "parcel field mapping validator" node tests/test_parcel_mapping_validator.mjs

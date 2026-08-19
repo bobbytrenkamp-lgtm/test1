@@ -121,6 +121,37 @@ def test_where_clause_is_forwarded_to_the_query_url():
     assert "FAIRFAX" in captured_urls[0]
 
 
+# ---------------------------------------------------------------------------
+# build_hub_search_url -- regression for a real county-specific hardcoding
+# bug: this used to hardcode filter[organization]=Loudoun regardless of
+# which jurisdiction was being fetched. Harmless for the VA pilot counties
+# (none of them use this code path), but a real bug for
+# md-montgomery-county, which does.
+# ---------------------------------------------------------------------------
+
+def test_hub_search_url_has_no_organization_filter_by_default():
+    url = fetch_zoning.build_hub_search_url("zoning districts")
+    assert "organization" not in url
+
+def test_hub_search_url_never_defaults_to_loudoun():
+    # The literal regression case: no jurisdiction should ever get an
+    # unrequested "Loudoun" filter baked into its own search.
+    url = fetch_zoning.build_hub_search_url("zoning districts")
+    assert "Loudoun" not in url
+
+def test_hub_search_url_includes_the_search_term():
+    url = fetch_zoning.build_hub_search_url("zoning districts")
+    assert "zoning" in url
+
+def test_hub_search_url_applies_an_explicit_organization_when_given():
+    url = fetch_zoning.build_hub_search_url("zoning", hub_organization="Montgomery")
+    assert "filter%5Borganization%5D=Montgomery" in url
+
+def test_hub_search_url_url_encodes_the_organization():
+    url = fetch_zoning.build_hub_search_url("zoning", hub_organization="Prince William")
+    assert "Prince+William" in url or "Prince%20William" in url
+
+
 if __name__ == "__main__":
     import pytest
     sys.exit(pytest.main([__file__, "-v"]))
