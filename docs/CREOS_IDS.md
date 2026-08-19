@@ -31,16 +31,24 @@ and [`test4/docs/ARCHITECTURE.md`](https://github.com/bobbytrenkamp-lgtm/test4/b
 
 ## Status
 
-**Utility available, not yet used anywhere.** `js/creos-ids.js` (Phase 4)
-implements the generator/validator side of this scheme — a hand-ported,
-test-verified copy of test4's own spec-compliant algorithm (see that
-file's header comment and `tests/test_creos_ids.mjs`, which re-checks
-the same known-timestamp vectors test4 verified independently against
-the ULID spec). This repository's own parcel/facility identifiers
-(`facilities_master.json`, county FIPS codes, etc.) remain the sole
-source of truth for everything this app does internally — nothing calls
-`generateCreosUlid()` yet, no schema changed, no existing ID was
-touched or replaced. The utility exists so a future SiteIntel ->
-Underwrite handoff (Phase 5 of `test4/docs/INTEGRATION_ROADMAP.md`,
-still not scheduled) has a ready, tested building block for tagging a
-record with a real CREOS ID at that boundary.
+**Utility available; now used by the Phase 5 Underwrite handoff export.**
+`js/creos-ids.js` (Phase 4) implements the generator/validator side of
+this scheme — a hand-ported, test-verified copy of test4's own
+spec-compliant algorithm (see that file's header comment and
+`tests/test_creos_ids.mjs`, which re-checks the same known-timestamp
+vectors test4 verified independently against the ULID spec). This
+repository's own parcel/facility identifiers (`facilities_master.json`,
+county FIPS codes, etc.) remain the sole source of truth for everything
+this app does internally — no schema changed, no existing ID was
+touched or replaced.
+
+As of Phase 5 (`test4/docs/INTEGRATION_ROADMAP.md`), `js/parcel/handoff.js`
+calls `generateCreosUlid()`/`creosDisplayId()` to mint the `handoffId`,
+`propertyId`, and each `assumptionId` in a `creos-handoff-v1` payload —
+the first real consumer of this utility. It is wired into the parcel
+side panel's "→ Underwrite" action (`js/parcel/panel.js`'s
+`_sendToUnderwrite()`), which downloads a JSON file a user can then
+import into CREOS Underwrite's assumption-import screen. See that
+file's own header comment for the translation-layer decisions
+(why `identity.address` and a real `acquisition_price` are never
+sent) and `tests/test_handoff_export.mjs` for its regression coverage.

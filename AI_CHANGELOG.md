@@ -7,6 +7,72 @@ oldest entries there the same way rather than letting it grow unbounded.
 
 ---
 
+Date: 2026-08-18
+AI Assistant: Claude Code
+Session: Phase 5 — SiteIntel -> Underwrite handoff (export side)
+
+Implemented the "Send to Underwrite" action described but not built in
+`docs/CREOS_IDS.md`'s Phase 4 status note: a parcel's data now leaves this
+app as a real `creos-handoff-v1` JSON file, per
+`test4/docs/HANDOFF_DESIGN.md`'s recommended zero-backend JSON
+export/import transport (this app has no bundler/package.json and no
+server component, so a downloaded file — not an API call — is the only
+transport that made sense here).
+
+New file `js/parcel/handoff.js` (`window.PARCEL_HANDOFF`): builds the
+payload from a parcel's `feature.properties` plus
+`PARCEL_SITE_INTELLIGENCE.toUnderwritingInputs()`'s `observed` block
+(never its `assumptions_required` block — those are deliberate nulls
+this app refuses to answer, and inventing a value would fabricate data),
+and triggers a browser download via the same Blob + `<a download>`
+pattern `panel.js`'s existing CSV exports already use. Four translation
+decisions, each documented in that file's header comment because they
+are not obvious from the target schema alone:
+
+1. `property.identity.address` is never populated — the target schema
+   requires a structured `{ line1, city, state, postalCode }` and this
+   app only ever has a single-line address plus, sometimes,
+   `county_fips`/`state`. Rather than fabricate a city/postal code, the
+   raw strings travel as `observations[]` entries instead, and
+   `propertyName` carries the human-readable address so nothing is lost.
+2. `classification.propertyType` is always `'land'` — this app assesses
+   raw parcels for site acquisition/entitlement, not completed
+   buildings, and there is no zoning-code → office/retail/multifamily
+   table here to consult; guessing one would fabricate a determination
+   this app doesn't actually make. Real zoning/land-use codes still
+   travel as `subtype` and as observations.
+3. `assumptions_required` is never sent, full stop — including
+   `acquisition_price`, which SiteIntel already refuses to supply
+   anywhere else in this codebase.
+4. SiteIntel's confidence vocabulary (`direct-official` >
+   `official-joined` > `official-derived` > `third-party-mirror` >
+   `inferred` > `unknown`) is mapped onto the target schema's
+   `low`/`medium`/`high`/`verified` via a fixed table; `unknown` maps to
+   "omit the field" rather than a guessed tier.
+
+Also wired `js/creos-ids.js` into `index.html` for the first time — it
+was added in Phase 4 but never actually `<script>`-tagged, so
+`window.generateCreosUlid()` did not exist in the running app until now
+(only in its own Node test). Added the "→ Underwrite" button to the
+parcel panel's existing `.pp-actions` toolbar
+(`panel.js`'s `_sendToUnderwrite()`).
+
+New test `tests/test_handoff_export.mjs` (69 assertions): payload shape,
+governance (every observation is `status: 'proposed'`/`sourceType:
+'observed'`, per the target schema's Underwrite-boundary rule), the
+confidence mapping table, epoch-ms-to-ISO-date normalization, that null/
+empty observed values are omitted rather than sent as null, and — an
+explicit regression guard — that `acquisition_price` never appears
+anywhere in an emitted payload. Registered in `tests/run_all.sh`.
+Full suite verified green (176/176 JS assertions in the main runner,
+plus this new suite) after also installing this repo's own
+`data/requirements.txt` (a pre-existing, declared-but-not-installed
+`bs4` dependency was causing one unrelated Python suite to fail in this
+sandbox — unrelated to this session's change, fixed by installing the
+repo's own declared requirements, not a code fix).
+
+---
+
 Date: 2026-08-16
 AI Assistant: Claude Code
 Session: Exhaustive flaw-finding pass across the parcel/zoning system ("find flaws and fix each of them")

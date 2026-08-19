@@ -129,6 +129,7 @@ run "jurisdiction page (DOM)"     node tests/test_jurisdiction.mjs
 run "watchlist (migration + alerts)" node tests/test_watchlist.mjs
 run "client error logging (opt-in Supabase reporting)" node tests/test_error_logging.mjs
 run "CREOS universal entity ID utility (spec-verified ULID port)" node tests/test_creos_ids.mjs
+run "Phase 5: SiteIntel -> Underwrite handoff export" node tests/test_handoff_export.mjs
 run "data loading (critical/deferred)" node tests/test_data_loading.mjs
 run "map point clustering (grid clustering for large point layers)" node tests/test_map_point_clustering.mjs
 run "pipeline (windowing + a11y)"   node tests/test_pipeline.mjs
