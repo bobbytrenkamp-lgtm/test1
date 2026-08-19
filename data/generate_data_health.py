@@ -258,6 +258,108 @@ def _parcel_service_health() -> dict:
     }
 
 
+# How much a pipeline's health matters, on a small explainable 1-5 scale --
+# not a precise model, just enough to stop "one optional county's parcel
+# service is down" from reading as equally urgent as "the citation system
+# backing every one of 1,467 county policy records is failing." Documented
+# here rather than hidden in a formula: policy_pipeline_sources feeds the
+# platform's core 1,500+ jurisdiction dataset (highest); the two citation
+# pipelines are direct user-facing trust signals across the same corpus
+# (high); parcels_registry failures are scoped to one jurisdiction at a
+# time (moderate); static_parcel_ingestion currently has a single
+# registered source, so its blast radius is narrow by construction (lower).
+PIPELINE_CRITICALITY = {
+    "policy_pipeline_sources": 5,
+    "county_page_citations": 4,
+    "map_data_citations": 4,
+    "parcels_registry": 3,
+    "static_parcel_ingestion": 2,
+}
+DEFAULT_CRITICALITY = 2
+
+# A state that reflects a sustained, confirmed problem counts for more than
+# one that could still resolve on its own by the next scheduled run.
+_PERSISTENCE_MULTIPLIER = {
+    SOURCE_DOWN: 2.0,
+    VALIDATION_FAILURE: 2.0,
+    NETWORK_FAILURE: 1.0,
+}
+
+
+def _pipeline_affected_count(detail: dict) -> int:
+    """How many individual things (sources, citations, jurisdictions) this
+    pipeline's current health actually affects -- the raw scope number
+    already present in each pipeline's own detail dict, read generically
+    rather than re-deriving it a second way."""
+    if "persistently_down" in detail or "transiently_unreachable" in detail:
+        return len(detail.get("persistently_down", [])) + len(detail.get("transiently_unreachable", []))
+    if "unreachable" in detail:
+        return detail["unreachable"]
+    return 0
+
+
+def _severity_score(pipeline_name: str, detail: dict) -> float:
+    """Explainable, not precise: criticality (1-5) x persistence (1x or 2x)
+    x a scope factor that grows with how many things are affected but
+    doesn't let a single pipeline with thousands of citations completely
+    drown out everything else (capped growth via a log-ish diminishing
+    step, not a hard cap -- a genuinely huge backlog should still visibly
+    outrank a small one)."""
+    health = detail["health"]
+    if health in (OK, NOT_YET_TRACKED):
+        return 0.0
+    criticality = PIPELINE_CRITICALITY.get(pipeline_name, DEFAULT_CRITICALITY)
+    persistence = _PERSISTENCE_MULTIPLIER.get(health, 1.0)
+    affected = _pipeline_affected_count(detail)
+    scope_factor = 1.0
+    remaining = affected
+    while remaining > 0:
+        step = min(remaining, 100)
+        scope_factor += step / 100.0
+        remaining -= step
+        if remaining > 0:
+            scope_factor += 0.1  # sharply diminishing return past the first 100
+    return round(criticality * persistence * scope_factor, 2)
+
+
+def _remediation_reason(pipeline_name: str, detail: dict) -> str:
+    health = detail["health"]
+    affected = _pipeline_affected_count(detail)
+    if pipeline_name in ("county_page_citations", "map_data_citations"):
+        return (f"{affected} citation URL(s) unreachable ({detail.get('unreachable_ratio', 0) * 100:.1f}%) -- "
+                f"see data/citation_remediation_queue.json for individually reviewable candidates.")
+    if pipeline_name == "policy_pipeline_sources":
+        return (f"{len(detail.get('persistently_down', []))} source(s) persistently down, "
+                f"{len(detail.get('transiently_unreachable', []))} transient -- see each source's "
+                f"down_reason/notes in data/source_health.json / data/government_sources.json.")
+    if pipeline_name == "parcels_registry":
+        return (f"{len(detail.get('persistently_down', []))} jurisdiction(s) persistently down, "
+                f"{len(detail.get('transiently_unreachable', []))} transient -- see "
+                f"js/parcel/registry.js entries for details.")
+    return f"health={health}, affected={affected}"
+
+
+def _build_remediation_queue(pipelines: dict) -> list[dict]:
+    """Turns 'several things are unhealthy' into 'fix this one first' --
+    ranked descending by _severity_score so a national-scope failure
+    doesn't sit at the same visual priority as one optional county's."""
+    queue = []
+    for name, detail in pipelines.items():
+        score = _severity_score(name, detail)
+        if score <= 0:
+            continue
+        queue.append({
+            "pipeline": name,
+            "health": detail["health"],
+            "severity_score": score,
+            "criticality_weight": PIPELINE_CRITICALITY.get(name, DEFAULT_CRITICALITY),
+            "affected_count": _pipeline_affected_count(detail),
+            "reason": _remediation_reason(name, detail),
+        })
+    queue.sort(key=lambda q: -q["severity_score"])
+    return queue
+
+
 def build_report() -> dict:
     map_data = _load_json(DATA_DIR / "map_data.json") or {}
 
@@ -291,6 +393,8 @@ def build_report() -> dict:
     for p in pipelines.values():
         counts[p["health"]] = counts.get(p["health"], 0) + 1
 
+    remediation_queue = _build_remediation_queue(pipelines)
+
     return {
         "_meta": {
             "description": (
@@ -301,14 +405,24 @@ def build_report() -> dict:
             ),
             "generator": "data/generate_data_health.py",
             "health_states": list(HEALTH_STATES),
+            "remediation_queue_note": (
+                "severity_score = criticality_weight (1-5, how much of the platform this "
+                "pipeline underpins) x a persistence multiplier (2x for a confirmed/sustained "
+                "problem, 1x for a fresh transient one) x a scope factor that grows with how "
+                "many things are affected but with sharply diminishing weight past the first "
+                "100 -- explainable, not a precise model. Ranked descending so a national-scope "
+                "problem doesn't sit at the same visual priority as one optional county's."
+            ),
         },
         "pipelines": pipelines,
+        "remediation_queue": remediation_queue,
         "datasets_without_automated_health_tracking": untracked_datasets,
         "summary": {
             "pipelines_tracked": len(pipelines),
             "counts_by_health": counts,
             "total_registered_datasets": len(registry.get("datasets", [])),
             "datasets_without_tracking_count": len(untracked_datasets),
+            "remediation_queue_length": len(remediation_queue),
         },
     }
 
@@ -343,6 +457,24 @@ def render_markdown(report: dict) -> str:
         if "why" in p:
             detail_bits.append(p["why"])
         lines.append(f"| {name} | {p['health']} | {'; '.join(detail_bits) or '-'} |")
+
+    lines += [
+        "",
+        "## Remediation queue",
+        "",
+        "Ranked descending by severity_score (see `_meta.remediation_queue_note` in "
+        "data_health.json for the formula). Empty means every tracked pipeline is currently OK "
+        "or NOT_YET_TRACKED -- an honest silence, not evidence nothing was ever wrong.",
+        "",
+    ]
+    if report["remediation_queue"]:
+        lines += ["| Rank | Pipeline | Health | Severity | Affected | Reason |", "|---|---|---|---|---|---|"]
+        for i, q in enumerate(report["remediation_queue"], 1):
+            lines.append(f"| {i} | {q['pipeline']} | {q['health']} | {q['severity_score']} | "
+                          f"{q['affected_count']} | {q['reason']} |")
+    else:
+        lines.append("_(empty)_")
+    lines.append("")
 
     lines += [
         "",

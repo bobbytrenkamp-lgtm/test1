@@ -14,6 +14,18 @@ Project-wide data health: is each pipeline's most recent automated run actually 
 | static_parcel_ingestion | OK | - |
 | parcels_registry | SOURCE_DOWN | 1 down / 0 transient / 59 total |
 
+## Remediation queue
+
+Ranked descending by severity_score (see `_meta.remediation_queue_note` in data_health.json for the formula). Empty means every tracked pipeline is currently OK or NOT_YET_TRACKED -- an honest silence, not evidence nothing was ever wrong.
+
+| Rank | Pipeline | Health | Severity | Affected | Reason |
+|---|---|---|---|---|---|
+| 1 | map_data_citations | VALIDATION_FAILURE | 121.52 | 1299 | 1299 citation URL(s) unreachable (44.0%) -- see data/citation_remediation_queue.json for individually reviewable candidates. |
+| 2 | county_page_citations | VALIDATION_FAILURE | 92.32 | 964 | 964 citation URL(s) unreachable (48.4%) -- see data/citation_remediation_queue.json for individually reviewable candidates. |
+| 3 | policy_pipeline_sources | SOURCE_DOWN | 11.7 | 17 | 13 source(s) persistently down, 4 transient -- see each source's down_reason/notes in data/source_health.json / data/government_sources.json. |
+| 4 | parcels_registry | SOURCE_DOWN | 6.06 | 1 | 1 jurisdiction(s) persistently down, 0 transient -- see js/parcel/registry.js entries for details. |
+
+
 ## Datasets with no automated health signal yet
 
 29 of 30 datasets in data/catalog/dataset_registry.json have no per-dataset automated health check (they are hand-curated JSON or covered only indirectly by the pipeline signals above, not fetched/validated per dataset). Listed here, not defaulted to OK:
