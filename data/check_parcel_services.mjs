@@ -130,32 +130,63 @@ async function probe(url) {
    itself never got a response). A real HTTP error response, or a 200 with a
    malformed/error body, is a genuine answer from the server — retrying it
    wastes time without changing the result. */
+/* Mirrors data/lib/endpoint_diagnostics.py's DOWN_REASONS taxonomy so a
+   failure reported here and one reported by the Python citation/policy
+   checkers speak the same vocabulary once both land in data_health.json.
+   downReason is a *reason*, layered on top of (not replacing) errorType and
+   the existing ok/transient fields this script's callers already depend on. */
+const DOWN_REASON = {
+  TRANSIENT_FAILURE: 'TRANSIENT_FAILURE',
+  SOURCE_MOVED: 'SOURCE_MOVED',
+  SOURCE_RETIRED: 'SOURCE_RETIRED',
+  ACCESS_BLOCKED: 'ACCESS_BLOCKED',
+  REPLACEMENT_REQUIRED: 'REPLACEMENT_REQUIRED',
+};
+
+/* Bot-wall/challenge-page signatures — same list as the Python side's
+   _ACCESS_BLOCKED_MARKERS in data/lib/endpoint_diagnostics.py, kept in sync
+   by hand since one is Python and one is JS. */
+const ACCESS_BLOCKED_MARKERS = /cf-browser-verification|checking your browser|captcha|access denied|request blocked|akamai|incapsula|perimeterx|attention required|cloudflare/i;
+
+function downReasonFor({ httpStatus, errorType, rawBody, transient }) {
+  if (httpStatus === 999 || (httpStatus === 403 && rawBody && ACCESS_BLOCKED_MARKERS.test(rawBody))) {
+    return DOWN_REASON.ACCESS_BLOCKED;
+  }
+  if (httpStatus === 404 || httpStatus === 410) return DOWN_REASON.SOURCE_RETIRED;
+  if (transient) return DOWN_REASON.TRANSIENT_FAILURE;
+  return DOWN_REASON.TRANSIENT_FAILURE;
+}
+
 function classify(r) {
   if (r.error) {
     let errorType = 'unknown';
     if (/timeout after/.test(r.error)) errorType = 'timeout';
     else if (/ENOTFOUND|EAI_AGAIN|getaddrinfo/i.test(r.error)) errorType = 'dns';
     else if (/ECONNRESET|ECONNREFUSED|ECONNABORTED|EPIPE/i.test(r.error)) errorType = 'connection-reset';
-    return { ok: false, why: r.error, errorType, transient: true };
+    return { ok: false, why: r.error, errorType, transient: true,
+             downReason: downReasonFor({ errorType, transient: true }) };
   }
   if (r.httpStatus !== 200) {
     const errorType = r.httpStatus >= 500 ? 'http-5xx' : r.httpStatus >= 400 ? 'http-4xx' : 'unknown';
-    return { ok: false, why: `HTTP ${r.httpStatus}`, errorType, transient: false };
+    return { ok: false, why: `HTTP ${r.httpStatus}`, errorType, transient: false,
+             downReason: downReasonFor({ httpStatus: r.httpStatus, errorType, rawBody: r.raw, transient: false }) };
   }
   if (!r.body) {
     return {
       ok: false,
       why: `non-JSON response (${r.raw.replace(/\s+/g, ' ').slice(0, 80)})`,
-      errorType: 'unknown', transient: false,
+      errorType: 'unknown', transient: false, downReason: DOWN_REASON.TRANSIENT_FAILURE,
     };
   }
   if (r.body.error) {
     const e = r.body.error;
     const errorType = (e.code === 499 || e.code === 498) ? 'auth' : 'unknown';
-    return { ok: false, why: `ArcGIS error ${e.code ?? '?'}: ${e.message || JSON.stringify(e).slice(0, 80)}`, errorType, transient: false };
+    const downReason = errorType === 'auth' ? DOWN_REASON.ACCESS_BLOCKED : DOWN_REASON.TRANSIENT_FAILURE;
+    return { ok: false, why: `ArcGIS error ${e.code ?? '?'}: ${e.message || JSON.stringify(e).slice(0, 80)}`, errorType, transient: false, downReason };
   }
   if (!Array.isArray(r.body.fields)) {
-    return { ok: false, why: 'JSON has no field list — not a layer endpoint', errorType: 'unknown', transient: false };
+    return { ok: false, why: 'JSON has no field list — not a layer endpoint', errorType: 'unknown', transient: false,
+             downReason: DOWN_REASON.SOURCE_RETIRED };
   }
   return { ok: true, name: r.body.name || '(unnamed layer)', fields: r.body.fields.map(f => f.name) };
 }

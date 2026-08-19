@@ -17,6 +17,7 @@ from policy_pipeline.models import (
     PolicyCandidate, PolicySource, LifecycleEvent,
     LIFECYCLE_STAGES, STATUS_TO_LIFECYCLE, LIFECYCLE_TO_STATUS,
     load_json_file, save_json_file,
+    validate_replacement_history, REPLACEMENT_HISTORY_REQUIRED_KEYS,
 )
 from policy_pipeline.classify import (
     classify_policy_types, classify_level, classify_lifecycle_stage, score_relevance,
@@ -488,6 +489,37 @@ class TestModels:
     def test_load_json_missing_returns_none(self):
         result = load_json_file("/nonexistent/path/file.json")
         assert result is None
+
+    def test_policy_source_roundtrip_preserves_replacement_history(self):
+        source = make_source()
+        source.replacement_history.append({
+            "old_value": "http://old.example.gov", "new_value": "https://new.example.gov",
+            "changed_at": "2026-08-19", "reason": "http->https migration, confirmed live",
+            "verified_via": "manual-browser-check",
+        })
+        restored = PolicySource.from_dict(source.to_dict())
+        assert restored.replacement_history == source.replacement_history
+
+    def test_policy_source_defaults_to_empty_replacement_history(self):
+        source = make_source()
+        assert source.replacement_history == []
+
+    def test_validate_replacement_history_empty_list_is_valid(self):
+        assert validate_replacement_history([]) == []
+
+    def test_validate_replacement_history_rejects_non_list(self):
+        problems = validate_replacement_history("not-a-list")
+        assert len(problems) == 1
+
+    def test_validate_replacement_history_flags_missing_keys(self):
+        problems = validate_replacement_history([{"old_value": "a", "new_value": "b"}])
+        assert len(problems) == 1
+        for key in REPLACEMENT_HISTORY_REQUIRED_KEYS - {"old_value", "new_value"}:
+            assert key in problems[0]
+
+    def test_validate_replacement_history_accepts_a_complete_record(self):
+        record = {k: "x" for k in REPLACEMENT_HISTORY_REQUIRED_KEYS}
+        assert validate_replacement_history([record]) == []
 
 
 # ---------------------------------------------------------------------------

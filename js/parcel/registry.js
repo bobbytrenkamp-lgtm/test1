@@ -12,6 +12,15 @@
  *   fieldMap    — canonical field id → source attribute name (the field key in GeoJSON properties)
  *   outFields   — array of source fields to request, or null for all ('*')
  *   attribution — source credit shown in the panel
+ *   replacementHistory — optional; only present once serviceUrl has been
+ *                 repointed at least once. Array of {old_value, new_value,
+ *                 changed_at, reason, verified_via} so a URL fix leaves a
+ *                 trace instead of silently overwriting the old value with
+ *                 no record of why. See data/lib/endpoint_diagnostics.py's
+ *                 down_reason taxonomy for the kind of finding that
+ *                 justifies an entry here (SOURCE_MOVED confirmed live, not
+ *                 a guess). Checked for shape (not required) by
+ *                 data/parcel_pipeline/check_registry_integrity.mjs.
  *
  * To add a new jurisdiction, copy the Loudoun County block and update the values.
  * See docs/PARCEL_ADD_JURISDICTION.md for a step-by-step guide.

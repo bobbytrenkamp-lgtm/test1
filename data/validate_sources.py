@@ -4,6 +4,16 @@ Validate all source URLs in the data files and report broken links.
 Runs weekly via GitHub Actions and writes results to map_data.json
 under the 'validation_report' key so the frontend can surface them.
 
+This checker covers a larger citation corpus than data/check_source_links.py
+(county pages plus every facility-layer and state-regulation source), but
+used to be a strictly weaker implementation of the same idea: no retry, no
+per-host throttling, no Wayback fallback, no "may have moved to" suggestion.
+It now shares data/lib/endpoint_diagnostics.py's checker with
+check_source_links.py, so this corpus gets the same capability instead of
+staying the more primitive of the two, and gains the same down_reason
+classification (TRANSIENT_FAILURE / SOURCE_MOVED / SOURCE_RETIRED /
+ACCESS_BLOCKED / REPLACEMENT_REQUIRED) on every broken/warning URL.
+
 Exit codes:
   0 — all URLs OK (or no URLs to check)
   1 — one or more URLs broken
@@ -13,10 +23,14 @@ import json
 import os
 import sys
 import time
-import urllib.request
-import urllib.error
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from lib.endpoint_diagnostics import (   # noqa: E402
+    check_url as _shared_check_url, wayback, find_replacement_candidate,
+    classify_down_reason,
+)
 
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 MAP_DATA_PATH = os.path.join(DATA_DIR, "map_data.json")
@@ -25,10 +39,6 @@ STATE_REGS_PATH = os.path.join(DATA_DIR, "state_regulations.json")
 
 TIMEOUT = 10
 MAX_WORKERS = 8
-USER_AGENT = (
-    "Mozilla/5.0 (compatible; DataCenterRestrictionsMap/1.0; "
-    "+https://github.com/bobbytrenkamp-lgtm/test1)"
-)
 
 
 def extract_urls_from_sources(sources, context=""):
@@ -89,27 +99,10 @@ def collect_all_urls():
 
 
 def check_url(url, context):
-    """HEAD request with fallback to GET. Returns (url, context, status, error)."""
-    req = urllib.request.Request(url, method="HEAD")
-    req.add_header("User-Agent", USER_AGENT)
-    try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-            return url, context, resp.status, None
-    except urllib.error.HTTPError as e:
-        if e.code in (405, 403):
-            # Some servers block HEAD — retry with GET
-            req2 = urllib.request.Request(url, method="GET")
-            req2.add_header("User-Agent", USER_AGENT)
-            try:
-                with urllib.request.urlopen(req2, timeout=TIMEOUT) as resp2:
-                    return url, context, resp2.status, None
-            except urllib.error.HTTPError as e2:
-                return url, context, e2.code, str(e2)
-            except Exception as e2:
-                return url, context, None, str(e2)
-        return url, context, e.code, str(e)
-    except Exception as e:
-        return url, context, None, str(e)
+    """Delegates to the shared HEAD->GET-fallback, per-host-throttled checker
+    in lib/endpoint_diagnostics.py. Returns (url, context, status, error)."""
+    res = _shared_check_url(url, TIMEOUT)
+    return url, context, res["status"], res["error"], res["final_url"]
 
 
 def run_validation():
@@ -121,19 +114,42 @@ def run_validation():
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
         futures = {ex.submit(check_url, url, ctx): (url, ctx) for url, ctx in urls}
         for i, future in enumerate(as_completed(futures), 1):
-            url, context, status, error = future.result()
+            url, context, status, error, final_url = future.result()
             label = f"[{i:3d}/{len(urls)}]"
             if error is None and status and 200 <= status < 400:
                 print(f"{label} OK  {status}  {url}")
                 results["ok"].append({"url": url, "status": status, "context": context})
-            elif status and 400 <= status < 500 and status != 404:
+                continue
+
+            # Broken/warning: enrich with the same archive lookup + sitemap
+            # "may have moved to" suggestion + down_reason classification
+            # check_source_links.py already provides for county citations,
+            # so this larger corpus (facility layers + state regs) isn't
+            # stuck with a weaker signal for citations of the same kind.
+            archive = wayback(url, TIMEOUT)
+            suggestion = find_replacement_candidate(url, TIMEOUT)
+            down_reason = classify_down_reason(
+                status=status, error=error, final_url=final_url, original_url=url,
+                consecutive_failures=3,  # single-pass checker has no history to consult
+                has_replacement_candidate=bool(suggestion or archive),
+            )
+            record = {"url": url, "status": status, "context": context, "error": error,
+                      "down_reason": down_reason}
+            if final_url:
+                record["final_url"] = final_url
+            if archive:
+                record["archive"] = archive
+            if suggestion:
+                record["suggested_replacement"] = suggestion
+
+            if status and 400 <= status < 500 and status != 404:
                 # 4xx other than 404 (e.g. 429 rate-limit) — treat as warning
                 print(f"{label} WARN {status}  {url}  ({context})")
-                results["warning"].append({"url": url, "status": status, "context": context, "error": error})
+                results["warning"].append(record)
             else:
                 code = status if status else "ERR"
                 print(f"{label} FAIL {code}  {url}  ({context})")
-                results["broken"].append({"url": url, "status": status, "context": context, "error": error})
+                results["broken"].append(record)
 
     return results
 

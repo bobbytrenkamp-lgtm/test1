@@ -29,6 +29,29 @@ import { REGISTRY_PATH, loadRegistry } from './lib/load_registry.mjs';
 // Keep in sync with tests/parcel.test.js's connector-enum assertion.
 const ALLOWED_CONNECTORS = ['arcgis', 'geojson', 'wfs'];
 
+// Keep in sync with data/policy_pipeline/models.py's
+// REPLACEMENT_HISTORY_REQUIRED_KEYS -- one Python side, one JS side, same
+// shape, since a replaced serviceUrl on a parcel entry and a replaced url
+// on a policy source are the same kind of provenance record.
+const REPLACEMENT_HISTORY_REQUIRED_KEYS = ['old_value', 'new_value', 'changed_at', 'reason', 'verified_via'];
+
+// Pure and exported so tests/test_parcel_registry_integrity.mjs can exercise
+// every branch (missing keys, non-array, empty/undefined) against synthetic
+// fixtures without needing a real registry.js entry to carry the field yet.
+export function validateReplacementHistory(entries) {
+  const problems = [];
+  if (!Array.isArray(entries)) {
+    return [`replacementHistory must be an array, got ${typeof entries}`];
+  }
+  entries.forEach((rec, i) => {
+    const missing = REPLACEMENT_HISTORY_REQUIRED_KEYS.filter(k => !(k in (rec || {})));
+    if (missing.length) {
+      problems.push(`replacementHistory[${i}] missing keys: ${JSON.stringify(missing)}`);
+    }
+  });
+  return problems;
+}
+
 /* Loads the browser-side enrichment validator so a jurisdiction's
    `enrichment` block is checked by the SAME code that will execute it at
    runtime, rather than by a second, drifting reimplementation here. Both
@@ -105,6 +128,15 @@ function main() {
     if (!/^\d{5}$/.test(String(entry.fips))) {
       problems.push(`FIPS ${entry.fips}: not a valid 5-digit FIPS string`);
     }
+    // Optional, additive field -- most entries have never had their
+    // serviceUrl repointed and carry none of this. When present, though,
+    // each entry must be a real provenance record, not a partial one that
+    // would leave "why was this changed" unanswerable later.
+    if (entry.replacementHistory !== undefined) {
+      for (const p of validateReplacementHistory(entry.replacementHistory)) {
+        problems.push(`FIPS ${entry.fips}: ${p}`);
+      }
+    }
   }
 
   /* Multi-source enrichment blocks. A bad join configuration is exactly the
@@ -157,4 +189,6 @@ function main() {
   console.log(`OK -- ${registry.all().length} jurisdictions, no integrity problems found.`);
 }
 
-main();
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}
