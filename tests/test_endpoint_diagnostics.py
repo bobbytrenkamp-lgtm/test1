@@ -147,6 +147,46 @@ def test_all_down_reasons_are_distinct_and_match_the_public_tuple():
     assert set(DOWN_REASONS) == values
 
 
+# ---------------------------------------------------------------------------
+# check_url -- final_url capture on a failed (redirect-then-error) request.
+# ---------------------------------------------------------------------------
+
+def test_check_url_captures_final_url_on_a_redirect_that_then_errors():
+    # HTTPError.url reflects the request that actually raised it -- for a
+    # redirect chain ending in an error, urllib has already updated it to
+    # the redirected-to URL. Without capturing this, classify_down_reason's
+    # SOURCE_MOVED branch could never fire for any real failure (only a
+    # successful response ever populated final_url before this fix).
+    import urllib.error
+    from unittest.mock import patch
+    from lib.endpoint_diagnostics import check_url
+
+    def raise_moved_then_404(req, timeout):
+        raise urllib.error.HTTPError(
+            "https://newdomain.example.gov/moved", 404, "Not Found", {}, None)
+
+    with patch("lib.endpoint_diagnostics.urllib.request.urlopen", side_effect=raise_moved_then_404):
+        result = check_url("https://olddomain.example.gov/page", 10)
+
+    assert result["ok"] is False
+    assert result["status"] == 404
+    assert result["final_url"] == "https://newdomain.example.gov/moved"
+
+
+def test_check_url_final_url_none_when_error_url_matches_original():
+    import urllib.error
+    from unittest.mock import patch
+    from lib.endpoint_diagnostics import check_url
+
+    def raise_same_url_404(req, timeout):
+        raise urllib.error.HTTPError("https://example.gov/page", 404, "Not Found", {}, None)
+
+    with patch("lib.endpoint_diagnostics.urllib.request.urlopen", side_effect=raise_same_url_404):
+        result = check_url("https://example.gov/page", 10)
+
+    assert result["final_url"] is None
+
+
 if __name__ == "__main__":
     import pytest
     raise SystemExit(pytest.main([__file__, "-q"]))

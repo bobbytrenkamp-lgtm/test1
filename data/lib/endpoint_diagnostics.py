@@ -98,7 +98,19 @@ def check_url(url: str, timeout: int) -> dict:
             # 4xx/5xx to HEAD is often method-not-allowed; retry with GET.
             if method == "HEAD" and e.code in (400, 403, 405, 501):
                 continue
-            return {"ok": False, "status": e.code, "final_url": None,
+            # HTTPError.url reflects the request that actually raised it --
+            # for a redirect chain that ends in an error, urllib's own
+            # HTTPRedirectHandler has already updated it to the final
+            # (redirected-to) URL, not the one originally requested. Capturing
+            # it here is what makes classify_down_reason's SOURCE_MOVED
+            # branch able to fire at all: a URL that redirects to a different
+            # domain and *that* domain 404s is "moved to somewhere now also
+            # broken," not "never moved" -- distinct, useful information a
+            # bare final_url=None would have thrown away.
+            final_url = getattr(e, "url", None)
+            if final_url == url:
+                final_url = None
+            return {"ok": False, "status": e.code, "final_url": final_url,
                     "error": f"HTTP {e.code}"}
         except Exception as e:                      # noqa: BLE001 - network is messy
             if method == "HEAD":

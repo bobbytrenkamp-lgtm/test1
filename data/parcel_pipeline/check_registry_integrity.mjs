@@ -25,9 +25,13 @@ import { createRequire } from 'node:module';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { REGISTRY_PATH, loadRegistry } from './lib/load_registry.mjs';
+import { LICENSE_STATUSES } from './classify_licensing.mjs';
 
 // Keep in sync with tests/parcel.test.js's connector-enum assertion.
 const ALLOWED_CONNECTORS = ['arcgis', 'geojson', 'wfs'];
+
+const COMMERCIAL_USE_STATUSES = ['permitted', 'restricted', 'unknown'];
+const CONFIDENCE_LEVELS = ['high', 'medium', 'none'];
 
 // Keep in sync with data/policy_pipeline/models.py's
 // REPLACEMENT_HISTORY_REQUIRED_KEYS -- one Python side, one JS side, same
@@ -49,6 +53,50 @@ export function validateReplacementHistory(entries) {
       problems.push(`replacementHistory[${i}] missing keys: ${JSON.stringify(missing)}`);
     }
   });
+  return problems;
+}
+
+// Pure and exported, same rationale as validateReplacementHistory above.
+// Structured licensing fields are optional at the schema level -- an entry
+// with none of them is not an error, just not yet classified by
+// classify_licensing.mjs. A partially-shaped one (an invalid enum value,
+// or a strong RESTRICTED/NONCOMMERCIAL claim with no evidence backing it)
+// is a real integrity problem worth catching at PR time.
+export function validateLicenseFields(attribution) {
+  const problems = [];
+  if (attribution.license_status === undefined) return problems;
+
+  if (!LICENSE_STATUSES.includes(attribution.license_status)) {
+    problems.push(`license_status '${attribution.license_status}' not in ${JSON.stringify(LICENSE_STATUSES)}`);
+  }
+  if (attribution.commercial_use_status !== undefined
+      && !COMMERCIAL_USE_STATUSES.includes(attribution.commercial_use_status)) {
+    problems.push(`commercial_use_status '${attribution.commercial_use_status}' not in `
+      + `${JSON.stringify(COMMERCIAL_USE_STATUSES)}`);
+  }
+  if (attribution.redistribution_status !== undefined
+      && !COMMERCIAL_USE_STATUSES.includes(attribution.redistribution_status)) {
+    problems.push(`redistribution_status '${attribution.redistribution_status}' not in `
+      + `${JSON.stringify(COMMERCIAL_USE_STATUSES)}`);
+  }
+  if (attribution.confidence_level !== undefined
+      && !CONFIDENCE_LEVELS.includes(attribution.confidence_level)) {
+    problems.push(`confidence_level '${attribution.confidence_level}' not in ${JSON.stringify(CONFIDENCE_LEVELS)}`);
+  }
+  if (attribution.attribution_required !== undefined
+      && attribution.attribution_required !== null
+      && typeof attribution.attribution_required !== 'boolean') {
+    problems.push('attribution_required must be true, false, or null');
+  }
+  // A RESTRICTED or NONCOMMERCIAL claim is a strong, actionable fact -- it
+  // must be backed by real evidence text (the free-text license field),
+  // never asserted with nothing behind it. UNKNOWN/TERMS_UNCLEAR have no
+  // such requirement since they represent honest absence of evidence, not
+  // a claim.
+  if (['RESTRICTED', 'NONCOMMERCIAL'].includes(attribution.license_status)
+      && !(typeof attribution.license === 'string' && attribution.license.length > 20)) {
+    problems.push(`license_status '${attribution.license_status}' has no supporting evidence text in attribution.license`);
+  }
   return problems;
 }
 
@@ -136,6 +184,10 @@ function main() {
       for (const p of validateReplacementHistory(entry.replacementHistory)) {
         problems.push(`FIPS ${entry.fips}: ${p}`);
       }
+    }
+
+    for (const p of validateLicenseFields(entry.attribution || {})) {
+      problems.push(`FIPS ${entry.fips}: ${p}`);
     }
   }
 
