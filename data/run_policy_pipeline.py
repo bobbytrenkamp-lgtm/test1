@@ -86,7 +86,7 @@ def run_health_checks(registry: SourceRegistry) -> dict:
     results: dict[str, SourceHealth] = {}
 
     def check(source):
-        reachable, status, error, ms = check_url_reachable(source.url)
+        reachable, status, error, ms, body_snippet = check_url_reachable(source.url)
         return source, SourceHealth(
             source_id=source.id,
             url=source.url,
@@ -96,6 +96,7 @@ def run_health_checks(registry: SourceRegistry) -> dict:
             response_ms=ms,
             error=error,
             robots_allowed=True,  # We only check reachability here, not robots
+            body_snippet=body_snippet,
         )
 
     with ThreadPoolExecutor(max_workers=MAX_HEALTH_WORKERS) as ex:

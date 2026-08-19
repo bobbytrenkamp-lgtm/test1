@@ -35,7 +35,10 @@
       "response_ms": 250,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:02.390182+00:00",
+      "first_failure_at_is_approximate": true
     },
     "az-maricopa-board": {
       "source_id": "az-maricopa-board",
@@ -68,7 +71,10 @@
       "response_ms": 156,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:02.793362+00:00",
+      "first_failure_at_is_approximate": true
     },
     "ca-sf-bos": {
       "source_id": "ca-sf-bos",
@@ -134,7 +140,10 @@
       "response_ms": 163,
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:02.954782+00:00",
+      "first_failure_at_is_approximate": true
     },
     "ga-clayton-commissioners": {
       "source_id": "ga-clayton-commissioners",
@@ -442,7 +451,10 @@
       "response_ms": 284,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:04.363730+00:00",
+      "first_failure_at_is_approximate": true
     },
     "mn-legislature": {
       "source_id": "mn-legislature",
@@ -541,7 +553,10 @@
       "response_ms": 211,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:05.395937+00:00",
+      "first_failure_at_is_approximate": true
     },
     "ny-nyc-mocej": {
       "source_id": "ny-nyc-mocej",
@@ -552,7 +567,10 @@
       "response_ms": 176,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:05.534166+00:00",
+      "first_failure_at_is_approximate": true
     },
     "ny-local-law-97": {
       "source_id": "ny-local-law-97",
@@ -563,7 +581,10 @@
       "response_ms": 290,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:05.541185+00:00",
+      "first_failure_at_is_approximate": true
     },
     "ny-climate-clcpa": {
       "source_id": "ny-climate-clcpa",
@@ -574,7 +595,10 @@
       "response_ms": 105,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:05.576520+00:00",
+      "first_failure_at_is_approximate": true
     },
     "md-pgc-zoning": {
       "source_id": "md-pgc-zoning",
@@ -607,7 +631,10 @@
       "response_ms": 15082,
       "error": "The read operation timed out",
       "robots_allowed": true,
-      "consecutive_failures": 1
+      "consecutive_failures": 1,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:20.977948+00:00",
+      "first_failure_at_is_approximate": true
     },
     "nc-orange-commissioners": {
       "source_id": "nc-orange-commissioners",
@@ -618,7 +645,10 @@
       "response_ms": 15205,
       "error": "The read operation timed out",
       "robots_allowed": true,
-      "consecutive_failures": 1
+      "consecutive_failures": 1,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:20.782791+00:00",
+      "first_failure_at_is_approximate": true
     },
     "nc-chatham-commissioners": {
       "source_id": "nc-chatham-commissioners",
@@ -629,7 +659,10 @@
       "response_ms": 517,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:06.060668+00:00",
+      "first_failure_at_is_approximate": true
     },
     "ny-clinton-citycouncil": {
       "source_id": "ny-clinton-citycouncil",
@@ -684,7 +717,10 @@
       "response_ms": 244,
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:06.504753+00:00",
+      "first_failure_at_is_approximate": true
     },
     "or-legislature": {
       "source_id": "or-legislature",
@@ -717,7 +753,10 @@
       "response_ms": 172,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:08.315946+00:00",
+      "first_failure_at_is_approximate": true
     },
     "ri-legislature": {
       "source_id": "ri-legislature",
@@ -783,7 +822,10 @@
       "response_ms": 580,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 37
+      "consecutive_failures": 37,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:09.080457+00:00",
+      "first_failure_at_is_approximate": true
     },
     "or-business-oregon": {
       "source_id": "or-business-oregon",
@@ -838,7 +880,10 @@
       "response_ms": 15885,
       "error": "The read operation timed out",
       "robots_allowed": true,
-      "consecutive_failures": 2
+      "consecutive_failures": 2,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:25.328565+00:00",
+      "first_failure_at_is_approximate": true
     },
     "tn-hamilton-commission": {
       "source_id": "tn-hamilton-commission",
@@ -1036,7 +1081,10 @@
       "response_ms": 729,
       "error": "HTTP Error 403: Forbidden",
       "robots_allowed": true,
-      "consecutive_failures": 2
+      "consecutive_failures": 2,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:13.458653+00:00",
+      "first_failure_at_is_approximate": true
     },
     "wa-grant-pud": {
       "source_id": "wa-grant-pud",
@@ -1179,7 +1227,10 @@
       "response_ms": 190,
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1016)>",
       "robots_allowed": true,
-      "consecutive_failures": 32
+      "consecutive_failures": 32,
+      "down_reason": "TRANSIENT_FAILURE",
+      "first_failure_at": "2026-08-16T07:25:04.118796+00:00",
+      "first_failure_at_is_approximate": true
     },
     "mt-flathead-commissioners": {
       "source_id": "mt-flathead-commissioners",

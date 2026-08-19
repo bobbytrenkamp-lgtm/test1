@@ -57,7 +57,12 @@ def update_source_health_entry(health_data: dict, health: SourceHealth) -> None:
             status=health.http_status, error=health.error,
             final_url=None, original_url=health.url,
             consecutive_failures=entry["consecutive_failures"],
+            body_snippet=health.body_snippet,
         )
+    # body_snippet only exists to feed the classification above -- storing
+    # arbitrary third-party response HTML long-term in a committed JSON file
+    # isn't worth it once down_reason has already been computed from it.
+    entry["body_snippet"] = None
     sources[health.source_id] = entry
 
 

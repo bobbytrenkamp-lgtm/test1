@@ -88,16 +88,39 @@ def fetch_url(url: str, *, check_robots: bool = True, timeout: int = TIMEOUT) ->
     raise FetchError(url, None, f"Max retries exceeded: {last_err}")
 
 
-def check_url_reachable(url: str, timeout: int = TIMEOUT) -> tuple[bool, Optional[int], Optional[str], int]:
-    """Check if a URL is reachable. Returns (reachable, status, error, response_ms)."""
+_BODY_SNIPPET_CAP = 4000  # bytes; enough to catch a WAF/challenge-page marker
+
+
+def _read_body_snippet(err_or_resp) -> Optional[str]:
+    """Best-effort read of a small response/error body for down_reason
+    classification (a 403 with a Cloudflare/Akamai challenge-page marker in
+    the body is ACCESS_BLOCKED; a bare 403 with no readable body is not
+    enough evidence to say that -- see lib/endpoint_diagnostics.py's
+    is_access_blocked, which only flags a body match, never a bare status).
+    Never raises -- a body read failing is not itself an error worth
+    reporting, it just means classification falls back to "not enough
+    evidence." """
+    try:
+        return err_or_resp.read(_BODY_SNIPPET_CAP).decode("utf-8", "replace")
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def check_url_reachable(url: str, timeout: int = TIMEOUT) -> tuple[bool, Optional[int], Optional[str], int, Optional[str]]:
+    """Check if a URL is reachable. Returns
+    (reachable, status, error, response_ms, body_snippet). body_snippet is
+    only populated on a non-2xx response with a body worth reading -- most
+    callers ignore it, but it's what lets down_reason classification tell
+    "genuinely gone" apart from "blocked by a WAF/bot-wall" after the fact."""
     start = time.monotonic()
     req = urllib.request.Request(url, method="HEAD")
     _add_standard_headers(req)
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             ms = int((time.monotonic() - start) * 1000)
-            return True, resp.status, None, ms
+            return True, resp.status, None, ms, None
     except urllib.error.HTTPError as e:
+        body_snippet = _read_body_snippet(e)
         if e.code in (405, 403):
             # Retry with GET
             req2 = urllib.request.Request(url, method="GET")
@@ -105,13 +128,16 @@ def check_url_reachable(url: str, timeout: int = TIMEOUT) -> tuple[bool, Optiona
             try:
                 with urllib.request.urlopen(req2, timeout=timeout) as resp2:
                     ms = int((time.monotonic() - start) * 1000)
-                    return True, resp2.status, None, ms
+                    return True, resp2.status, None, ms, None
+            except urllib.error.HTTPError as e2:
+                ms = int((time.monotonic() - start) * 1000)
+                return False, e2.code, str(e2), ms, _read_body_snippet(e2)
             except Exception as e2:
                 ms = int((time.monotonic() - start) * 1000)
-                return False, None, str(e2), ms
+                return False, None, str(e2), ms, body_snippet
         ms = int((time.monotonic() - start) * 1000)
         ok = 200 <= e.code < 400
-        return ok, e.code, (None if ok else str(e)), ms
+        return ok, e.code, (None if ok else str(e)), ms, (None if ok else body_snippet)
     except Exception as e:
         ms = int((time.monotonic() - start) * 1000)
-        return False, None, str(e), ms
+        return False, None, str(e), ms, None

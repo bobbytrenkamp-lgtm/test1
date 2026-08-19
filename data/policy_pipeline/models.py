@@ -172,6 +172,12 @@ class SourceHealth:
     # generate_data_health.py's SOURCE_DOWN/NETWORK_FAILURE split could say
     # a source failed >=3 times, never how long that's been going on.
     down_reason: Optional[str] = None  # one of data/lib/endpoint_diagnostics.DOWN_REASONS
+    body_snippet: Optional[str] = None  # first ~4KB of a non-2xx response body,
+    # only kept transiently to feed classify_down_reason's access-blocked
+    # detection (a WAF/challenge-page marker in the body). Not meant as a
+    # permanent audit log -- update_source_health_entry clears it back to
+    # None once down_reason has been computed from it, so source_health.json
+    # doesn't accumulate arbitrary third-party HTML long-term.
 
     def to_dict(self) -> dict:
         return asdict(self)
