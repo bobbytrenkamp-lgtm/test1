@@ -3,7 +3,7 @@
     "description": "Exact-match seed corpus of verified source-field-name -> canonical-field synonyms, extracted from every fieldMap in js/parcel/registry.js. Every entry here has been human-verified against a real live service, not inferred. Consumed by a future tiered field-mapper (Phase 2) as its first, highest-confidence resolution tier, before normalized-name matching or sample-value inspection are attempted.",
     "generated_by": "data/parcel_pipeline/extract_field_synonyms.mjs",
     "generated_from": "js/parcel/registry.js",
-    "last_regenerated": "2026-08-11"
+    "last_regenerated": "2026-08-19"
   },
   "synonyms": {
     "address": [
@@ -32,6 +32,12 @@
           "36061",
           "42101",
           "46099"
+        ]
+      },
+      {
+        "name": "E911ADDR",
+        "seen_in": [
+          "50007"
         ]
       },
       {
@@ -217,6 +223,12 @@
         "name": "ACRES_POLY",
         "seen_in": [
           "27053"
+        ]
+      },
+      {
+        "name": "ACRESGL",
+        "seen_in": [
+          "50007"
         ]
       },
       {
@@ -567,6 +579,12 @@
         "name": "REA017_FCV_TOTAL",
         "seen_in": [
           "17043"
+        ]
+      },
+      {
+        "name": "REAL_FLV",
+        "seen_in": [
+          "50007"
         ]
       },
       {
@@ -1032,6 +1050,12 @@
         ]
       },
       {
+        "name": "IMPRV_LV",
+        "seen_in": [
+          "50007"
+        ]
+      },
+      {
         "name": "IMPRVT_VAL",
         "seen_in": [
           "34013",
@@ -1119,6 +1143,12 @@
         "name": "BC_LANDUSE",
         "seen_in": [
           "42101"
+        ]
+      },
+      {
+        "name": "CAT",
+        "seen_in": [
+          "50007"
         ]
       },
       {
@@ -1479,6 +1509,12 @@
         "seen_in": [
           "06001",
           "12057"
+        ]
+      },
+      {
+        "name": "LAND_LV",
+        "seen_in": [
+          "50007"
         ]
       },
       {
@@ -2053,7 +2089,8 @@
       {
         "name": "OWNER1",
         "seen_in": [
-          "42101"
+          "42101",
+          "50007"
         ]
       },
       {
@@ -2195,6 +2232,12 @@
         "name": "GISPROD.VECTOR.PARCELS.OBJECTID",
         "seen_in": [
           "51153"
+        ]
+      },
+      {
+        "name": "GLIST_SPAN",
+        "seen_in": [
+          "50007"
         ]
       },
       {
@@ -2573,6 +2616,12 @@
         ]
       },
       {
+        "name": "SPAN",
+        "seen_in": [
+          "50007"
+        ]
+      },
+      {
         "name": "SQUARE",
         "seen_in": [
           "11001"
@@ -2783,6 +2832,12 @@
         "name": "CURRVALYEAR",
         "seen_in": [
           "48085"
+        ]
+      },
+      {
+        "name": "GLYEAR",
+        "seen_in": [
+          "50007"
         ]
       },
       {
