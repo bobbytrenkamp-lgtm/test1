@@ -1,0 +1,386 @@
+{
+  "_schema": "map_data_citation_health_v1",
+  "checked_at": "2026-08-20T03:50:18+00:00",
+  "urls": {
+    "https://cloudhq.com/campus/lc-campus/": {
+      "ok": true,
+      "status": 200,
+      "context": "sample_layers.json / ai_campuses / fc-9ce764424e (CloudHQ LC1 - Ashburn)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://mghpcc.org/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 25015 (Hampshire County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.cobbcounty.gov/economic-development": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 13067 (Cobb County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://rheacountytn.gov/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 47143 (Rhea County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.utc.wa.gov/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 53007 (Chelan County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.governor.ny.gov/news/first-statewide-moratorium-new-hyperscale-data-centers-launched-governor-kathy-hochul": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 36101 (Steuben County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.macombgov.org/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 26099 (Macomb County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://expedient.com/about/media/expedient-opens-new-phoenix-data-center-extending-the-reach-of-its-universal-multi-cloud-services-portfolio/": {
+      "ok": true,
+      "status": 200,
+      "context": "sample_layers.json / data_centers / fc-1f2928083c (Expedient Data Center - Phoenix)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.williamsnd.com/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 38105 (Williams County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://cologix.com/news/cologix-expands-central-ohio-footprint-with-land-acquisition-for-new-ai-ready-800mw-data-center-campus/": {
+      "ok": true,
+      "status": 200,
+      "context": "sample_layers.json / ai_campuses / fc-75ae2a4c86 (Cologix - Johnstown Ohio Campus)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://cedarcountyne.gov/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 31027 (Cedar County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.cabarruscounty.us/Home": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 37025 (Cabarrus County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.basinelectric.com/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 38089 (Stark County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.utmb.edu": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 48167 (Galveston County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://hermannmo.com/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 29073 (Gasconade County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.flsenate.gov/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 12031 (Duval County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.alamosacounty.org": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 08003 (Alamosa County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.nationalgridus.com/Default.aspx": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 36093 (Schenectady County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://richardsoncounty.ne.gov/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 31147 (Richardson County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.poncacityok.gov/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 40071 (Kay County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.jacksoncounty.in.gov/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 18071 (Jackson County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.co.bergen.nj.us/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 34003 (Bergen County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.nemours.org/": {
+      "ok": true,
+      "status": 200,
+      "context": "sample_layers.json / data_centers / fc-8bb6bcd640 (Nemours Children's Health Data Center - Wilmington DE)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.madeinalabama.com/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 01089 (Madison County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.wesbanco.com/about/": {
+      "ok": true,
+      "status": 200,
+      "context": "sample_layers.json / data_centers / fc-852216a8df (WesBanco Data Center - Wheeling WV)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://willcountyced.com/": {
+      "ok": true,
+      "status": 200,
+      "context": "map_data.json / 17197 (Will County)",
+      "checked_at": "2026-08-20T03:50:18+00:00"
+    },
+    "https://www.claycountygov.com/community/economic-development": {
+      "ok": false,
+      "status": 403,
+      "context": "map_data.json / 12019 (Clay County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 403",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://www.cityoflaredo.com/": {
+      "ok": false,
+      "status": 403,
+      "context": "map_data.json / 48479 (Webb County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 403",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "archive": {
+        "url": "http://web.archive.org/web/20260811160807/https://www.cityoflaredo.com/",
+        "timestamp": "20260811160807"
+      }
+    },
+    "https://openai.com/index/announcing-the-stargate-project/": {
+      "ok": false,
+      "status": 403,
+      "context": "map_data.json / 48441 (Taylor County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 403",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "archive": {
+        "url": "http://web.archive.org/web/20260804023053/https://openai.com/index/announcing-the-stargate-project/",
+        "timestamp": "20260804023053"
+      }
+    },
+    "https://www.marincounty.gov/depts/cd": {
+      "ok": false,
+      "status": 403,
+      "context": "map_data.json / 06041 (Marin County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 403",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://kingsborodigital.com/": {
+      "ok": false,
+      "status": null,
+      "context": "sample_layers.json / ai_campuses / fc-266167975e (Kingsboro Digital Tech Park - Albany NY)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://www.fayettecountyga.gov/community_development/planning_zoning": {
+      "ok": false,
+      "status": 404,
+      "context": "map_data.json / 13113 (Fayette County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_RETIRED"
+    },
+    "https://www.co.dakota.ne.us/": {
+      "ok": false,
+      "status": null,
+      "context": "map_data.json / 31043 (Dakota County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://www.gibsoncounty.in.gov": {
+      "ok": false,
+      "status": null,
+      "context": "map_data.json / 18051 (Gibson County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://www.evoquedcs.com/locations/austin/": {
+      "ok": false,
+      "status": null,
+      "context": "sample_layers.json / data_centers / fc-c14204e975 (Evoque Data Center - Austin TX)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1016)>",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://www.xcelenergy.com/staticfiles/xe/Corporate/Corporate%20PDFs/eco-dev-TX.pdf": {
+      "ok": false,
+      "status": 404,
+      "context": "map_data.json / 48375 (Potter County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_RETIRED"
+    },
+    "https://www.robesonnc.com/departments/economic-development": {
+      "ok": false,
+      "status": null,
+      "context": "map_data.json / 37155 (Robeson County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://www.coruscorpuschristi.com": {
+      "ok": false,
+      "status": null,
+      "context": "map_data.json / 48355 (Nueces County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://www.atascosacountytexas.gov": {
+      "ok": false,
+      "status": null,
+      "context": "map_data.json / 48013 (Atascosa County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+      "down_reason": "TRANSIENT_FAILURE"
+    },
+    "https://www.roanokecountyva.gov/economic-development": {
+      "ok": false,
+      "status": 404,
+      "context": "map_data.json / 51161 (Roanoke County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 404",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "suggested_replacement": {
+        "url": "https://www.roanokecountyva.gov/1954/Economic-Development-Focus-Group",
+        "score": 2,
+        "found_via": "sitemap"
+      }
+    },
+    "https://www.illinois.gov/sites/dceo/": {
+      "ok": false,
+      "status": 404,
+      "context": "map_data.json / 17089 (Kane County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_RETIRED"
+    },
+    "https://www.oconeecounty.com/water-authority": {
+      "ok": false,
+      "status": 404,
+      "context": "map_data.json / 13219 (Oconee County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "final_url": "https://www.oconeecountyga.gov/water-authority",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_MOVED"
+    },
+    "https://www.ucf.edu/research/computing/": {
+      "ok": false,
+      "status": 404,
+      "context": "sample_layers.json / data_centers / fc-3cd453dc90 (UCF Research Computing - Orlando)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_RETIRED"
+    },
+    "https://news.microsoft.com/2022/microsoft-iowa-data-center-west-des-moines/": {
+      "ok": false,
+      "status": 404,
+      "context": "sample_layers.json / ai_campuses / fc-7f262d9195 (Microsoft Data Center - West Des Moines IA)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "final_url": "https://news.microsoft.com/source/2022/microsoft-iowa-data-center-west-des-moines/",
+      "error": "HTTP 404",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+        "score": 2,
+        "found_via": "sitemap"
+      }
+    },
+    "https://tax.utah.gov/sales/exemptions": {
+      "ok": false,
+      "status": 404,
+      "context": "map_data.json / 49011 (Davis County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_RETIRED"
+    },
+    "https://www.cmmc.org/": {
+      "ok": false,
+      "status": null,
+      "context": "sample_layers.json / data_centers / fc-1aa6dd5f3c (Central Maine Medical Center Data Center - Lewiston ME)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error [SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1016)>",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "archive": {
+        "url": "http://web.archive.org/web/20171002023830/https://www.cmmc.org/",
+        "timestamp": "20171002023830"
+      }
+    },
+    "https://lunavi.com/data-centers/denver-colorado/": {
+      "ok": false,
+      "status": 404,
+      "context": "sample_layers.json / data_centers / fc-a5d221b3fb (Lunavi Data Center - Denver CO)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "final_url": "https://www.lunavi.com/data-centers/denver-colorado",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_MOVED",
+      "suggested_replacement": {
+        "url": "https://www.lunavi.com/data-centers/denver",
+        "score": 3,
+        "found_via": "sitemap"
+      }
+    },
+    "https://www2.cisl.ucar.edu/resources/facilities/nwsc": {
+      "ok": false,
+      "status": 404,
+      "context": "sample_layers.json / data_centers / fc-debe2b0583 (NCAR Wyoming Supercomputing Center - Cheyenne)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "final_url": "https://www.cisl.ucar.edu/resources/facilities/nwsc",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_MOVED"
+    },
+    "https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/demand-side-management/demand-response": {
+      "ok": false,
+      "status": 404,
+      "context": "map_data.json / 06075 (San Francisco County)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "final_url": "https://www.cpuc.ca.gov/Error-Pages/404?item=%2findustries-and-topics%2felectrical-energy%2fdemand-side-management%2fdemand-response&user=extranet%5cAnonymous&site=website",
+      "error": "HTTP 404",
+      "down_reason": "SOURCE_RETIRED"
+    },
+    "https://www.budget.sc.gov/dto": {
+      "ok": false,
+      "status": null,
+      "context": "sample_layers.json / data_centers / fc-f1eb0ce85b (South Carolina Division of Technology Operations - Columbia SC)",
+      "checked_at": "2026-08-20T03:50:18+00:00",
+      "error": "URLError: <urlopen error timed out>",
+      "down_reason": "TRANSIENT_FAILURE"
+    }
+  }
+}
