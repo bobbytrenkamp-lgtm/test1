@@ -105,10 +105,15 @@ jobs:
 
   check_map_data_citations:
     # Manual dispatch only -- see the header comment above for why this
-    # doesn't also run on the weekly cron.
+    # doesn't also run on the weekly cron. timeout-minutes matches the
+    # county job's 50: a first live run at 30 min hit the timeout and got
+    # cancelled without committing anything (2026-08-20) -- this corpus is
+    # ~3x the county-only one and validate_sources.py does an extra
+    # archive+sitemap-suggestion lookup per broken/warning URL, same as
+    # check_source_links.py, so it needs comparable wall-clock budget.
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 50
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

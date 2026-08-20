@@ -48,11 +48,11 @@
   "pipelines": {
     "county_page_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-19T16:47:56+00:00",
+      "last_checked": "2026-08-20T00:53:30+00:00",
       "pipeline": "county_page_citations",
-      "total_urls_checked": 1994,
-      "unreachable": 964,
-      "unreachable_ratio": 0.4835
+      "total_urls_checked": 1811,
+      "unreachable": 959,
+      "unreachable_ratio": 0.5295
     },
     "map_data_citations": {
       "health": "VALIDATION_FAILURE",
@@ -120,12 +120,12 @@
       "severity_score": 121.52
     },
     {
-      "affected_count": 964,
+      "affected_count": 959,
       "criticality_weight": 4,
       "health": "VALIDATION_FAILURE",
       "pipeline": "county_page_citations",
-      "reason": "964 citation URL(s) unreachable (48.4%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
-      "severity_score": 92.32
+      "reason": "959 citation URL(s) unreachable (52.9%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
+      "severity_score": 91.92
     },
     {
       "affected_count": 17,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T16:54:59.020592+00:00",
+  "generated_at": "2026-08-20T01:04:07.142963+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
     "total_counties_tracked": 1467,
@@ -4656,7 +4656,16 @@
       "sources": [
         {
           "label": "Montgomery County PA \u2014 Data Center Ordinance Guide",
-          "url": "https://www.montgomerycountypa.gov/departments/planning-commission/publications/data-center-ordinance-guide"
+          "url": "https://www.montgomerycountypa.gov/departments/planning-commission/planning-topic/publications/data-center-ordinance-guide",
+          "replacement_history": [
+            {
+              "old_value": "https://www.montgomerycountypa.gov/departments/planning-commission/publications/data-center-ordinance-guide",
+              "new_value": "https://www.montgomerycountypa.gov/departments/planning-commission/planning-topic/publications/data-center-ordinance-guide",
+              "changed_at": "2026-08-20",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T00:44:24+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         },
         {
           "label": "montco.today \u2014 Upper Merion residents fear it's too late",
@@ -7455,7 +7464,16 @@
       "sources": [
         {
           "label": "Sioux Falls Development Foundation",
-          "url": "https://www.siouxfalls.com"
+          "url": "https://siouxfalls.com/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.siouxfalls.com",
+              "new_value": "https://siouxfalls.com/",
+              "changed_at": "2026-08-20",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T00:39:02+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -10530,7 +10548,16 @@
       "sources": [
         {
           "label": "Ocala Metro Chamber and Economic Partnership",
-          "url": "https://www.ocalacep.com"
+          "url": "https://ocalacep.com/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.ocalacep.com",
+              "new_value": "https://ocalacep.com/",
+              "changed_at": "2026-08-20",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T00:49:43+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -14904,7 +14931,16 @@
       "sources": [
         {
           "label": "Washington County Community Development",
-          "url": "https://www.washingtoncounty.us/2059/Community-Development"
+          "url": "http://survey-smiles.com/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.washingtoncounty.us/2059/Community-Development",
+              "new_value": "http://survey-smiles.com/",
+              "changed_at": "2026-08-20",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T00:38:22+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         },
         {
           "label": "Xcel Energy \u2014 Data Center Programs",
@@ -15417,7 +15453,16 @@
       "sources": [
         {
           "label": "Chester County Economic Development Council",
-          "url": "https://www.cceconomicdevelopment.com"
+          "url": "https://www.africanroadsafetyobservatory.org/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.cceconomicdevelopment.com",
+              "new_value": "https://www.africanroadsafetyobservatory.org/",
+              "changed_at": "2026-08-20",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T00:43:57+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         },
         {
           "label": "PECO \u2014 Business",
@@ -15444,7 +15489,16 @@
       "sources": [
         {
           "label": "Ashland Alliance \u2014 Economic Development",
-          "url": "https://www.ashlandalliance.com"
+          "url": "https://www.ashlandalliance.com:443/login_up.php",
+          "replacement_history": [
+            {
+              "old_value": "https://www.ashlandalliance.com",
+              "new_value": "https://www.ashlandalliance.com:443/login_up.php",
+              "changed_at": "2026-08-20",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T00:51:23+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         },
         {
           "label": "Kentucky Cabinet for Economic Development \u2014 Data Centers",
@@ -25654,7 +25708,16 @@
       "sources": [
         {
           "label": "Menominee County Michigan",
-          "url": "https://www.menomineecounty.com/"
+          "url": "https://www.menomineecountymi.gov/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.menomineecounty.com/",
+              "new_value": "https://www.menomineecountymi.gov/",
+              "changed_at": "2026-08-20",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T00:45:38+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
