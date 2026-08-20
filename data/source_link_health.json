@@ -1,6 +1,6 @@
 {
  "_schema": "source_link_health_v1",
- "checked_at": "2026-08-20T00:53:30+00:00",
+ "checked_at": "2026-08-20T01:06:49+00:00",
  "counties_with_textual_only_citations": [
   "13097",
   "17031",
@@ -24,14 +24,14 @@
   "56021"
  ],
  "summary": {
-  "checked": 1811,
+  "checked": 1814,
   "counties_with_textual_only_citations": 20,
-  "reachable": 852,
-  "total_citation_urls": 1986,
-  "unreachable": 959,
-  "unreachable_pct": 53.0,
+  "reachable": 854,
+  "total_citation_urls": 1985,
+  "unreachable": 960,
+  "unreachable_pct": 52.9,
   "unreachable_with_archive": 297,
-  "unreachable_with_suggested_replacement": 89
+  "unreachable_with_suggested_replacement": 92
  },
  "urls": {
   "http://mississippi.org/doing-business/incentives/": {
@@ -283,6 +283,14 @@
    "ok": false,
    "status": 404
   },
+  "https://baltimoredevelopment.com/": {
+   "checked_at": "2026-08-20T01:05:40+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://batescountymo.org/": {
    "checked_at": "2026-08-19T16:39:37+00:00",
    "consecutive_failures": 1,
@@ -348,7 +356,8 @@
    "status": 200
   },
   "https://boonecounty.in.gov/2026/06/15/19190/": {
-   "checked_at": "2026-07-29T02:34:59+00:00",
+   "checked_at": "2026-08-20T01:06:12+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -505,9 +514,13 @@
    "status": 404
   },
   "https://ced.ky.gov/Incentives/Kentucky_Business_Investment": {
-   "checked_at": "2026-07-30T03:17:26+00:00",
+   "checked_at": "2026-08-20T01:06:12+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "SOURCE_MOVED",
    "error": "HTTP 404",
+   "final_url": "https://newkentuckyhome.ky.gov/Incentives/Kentucky_Business_Investment",
+   "first_failure_at": "2026-08-20T01:06:12+00:00",
    "ok": false,
    "status": 404
   },
@@ -741,6 +754,14 @@
   },
   "https://corp.delaware.gov/": {
    "checked_at": "2026-07-30T03:26:52+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://corporate.exxonmobil.com/": {
+   "checked_at": "2026-08-20T01:05:50+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -1323,6 +1344,14 @@
    "ok": false,
    "status": null
   },
+  "https://fcidc.com/": {
+   "checked_at": "2026-08-20T01:06:09+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://floridajobs.org": {
    "archive": {
     "timestamp": "20260626192849",
@@ -1465,7 +1494,8 @@
    "status": 200
   },
   "https://gov.texas.gov/business/page/incentives": {
-   "checked_at": "2026-07-29T02:13:39+00:00",
+   "checked_at": "2026-08-20T01:05:57+00:00",
+   "consecutive_failures": 0,
    "counties": 4,
    "error": null,
    "ok": true,
@@ -1495,7 +1525,8 @@
    "status": 200
   },
   "https://greenmountainpower.com/": {
-   "checked_at": "2026-07-30T03:18:22+00:00",
+   "checked_at": "2026-08-20T01:05:52+00:00",
+   "consecutive_failures": 0,
    "counties": 2,
    "error": null,
    "ok": true,
@@ -1525,6 +1556,14 @@
   },
   "https://hancockky.us/": {
    "checked_at": "2026-07-29T02:32:45+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://handcountysd.gov/": {
+   "checked_at": "2026-08-20T01:05:42+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -1587,9 +1626,12 @@
     "timestamp": "20250612230932",
     "url": "http://web.archive.org/web/20250612230932/https://home.army.mil/cavazos/"
    },
-   "checked_at": "2026-07-29T02:14:56+00:00",
+   "checked_at": "2026-08-20T01:06:48+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
-   "error": "URLError",
+   "down_reason": "TRANSIENT_FAILURE",
+   "error": "URLError: <urlopen error timed out>",
+   "first_failure_at": "2026-08-20T01:06:48+00:00",
    "ok": false,
    "status": null
   },
@@ -1660,7 +1702,8 @@
    "status": 404
   },
   "https://iga.in.gov/laws/2023/ic/titles/6#6-2.5-5-37": {
-   "checked_at": "2026-07-30T03:07:08+00:00",
+   "checked_at": "2026-08-20T01:06:19+00:00",
+   "consecutive_failures": 0,
    "counties": 4,
    "error": null,
    "ok": true,
@@ -1879,6 +1922,14 @@
   },
   "https://kyrc.org/krc-releases-data-center-model-guidance/": {
    "checked_at": "2026-07-30T03:11:07+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://lakecountymn.gov/": {
+   "checked_at": "2026-08-20T01:05:40+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -2144,6 +2195,14 @@
    "first_failure_at": "2026-08-19T16:35:37+00:00",
    "ok": false,
    "status": 404
+  },
+  "https://mississippi.org/": {
+   "checked_at": "2026-08-20T01:05:50+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://missouri.edu/": {
    "checked_at": "2026-08-19T16:31:51+00:00",
@@ -3630,7 +3689,8 @@
    "status": 200
   },
   "https://www.amazon.com/": {
-   "checked_at": "2026-07-30T03:27:45+00:00",
+   "checked_at": "2026-08-20T01:05:31+00:00",
+   "consecutive_failures": 0,
    "counties": 2,
    "error": null,
    "ok": true,
@@ -3799,9 +3859,12 @@
    "status": 404
   },
   "https://www.arkansascountyar.gov": {
-   "checked_at": "2026-07-30T03:42:56+00:00",
+   "checked_at": "2026-08-20T01:06:07+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:06:07+00:00",
    "ok": false,
    "status": null
   },
@@ -3925,19 +3988,6 @@
    "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
    "ok": false,
    "status": null
-  },
-  "https://www.ashlandalliance.com": {
-   "archive": {
-    "timestamp": "20251104171232",
-    "url": "http://web.archive.org/web/20251104171232/http://www.ashlandalliance.com/"
-   },
-   "checked_at": "2026-08-20T00:51:23+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://www.ashlandalliance.com:443/login_up.php",
-   "ok": true,
-   "status": 200
   },
   "https://www.ashleycountyarkansas.com": {
    "checked_at": "2026-08-20T00:40:06+00:00",
@@ -4975,9 +5025,12 @@
    "status": 200
   },
   "https://www.caldwellcountyky.org": {
-   "checked_at": "2026-07-30T03:09:49+00:00",
+   "checked_at": "2026-08-20T01:06:31+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:06:31+00:00",
    "ok": false,
    "status": null
   },
@@ -5225,9 +5278,12 @@
    "status": null
   },
   "https://www.caseycountyky.us": {
-   "checked_at": "2026-07-30T03:38:25+00:00",
+   "checked_at": "2026-08-20T01:05:34+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:05:34+00:00",
    "ok": false,
    "status": null
   },
@@ -5294,15 +5350,6 @@
     "url": "https://www.cbs17.com/news/local-news/cumberland-county-news/north-carolina-foster-care-shortage-sparks-new-call-for-teachers-to-step-up/"
    }
   },
-  "https://www.cceconomicdevelopment.com": {
-   "checked_at": "2026-08-20T00:43:57+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://www.africanroadsafetyobservatory.org/",
-   "ok": true,
-   "status": 200
-  },
   "https://www.ccgov.net/economic-development": {
    "checked_at": "2026-08-19T16:34:24+00:00",
    "consecutive_failures": 1,
@@ -5330,11 +5377,19 @@
    "status": 200
   },
   "https://www.centerpointenergy.com/en-us/Business/Economic-Development": {
-   "checked_at": "2026-07-29T02:36:32+00:00",
+   "checked_at": "2026-08-20T01:05:57+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "REPLACEMENT_REQUIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T01:05:57+00:00",
    "ok": false,
-   "status": 404
+   "status": 404,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 3,
+    "url": "https://www.centerpointenergy.com/en-us/business/services/electric-utility/economic-development?sa=IN"
+   }
   },
   "https://www.cga.ct.gov/": {
    "archive": {
@@ -6236,7 +6291,8 @@
    "status": null
   },
   "https://www.co.hill.tx.us": {
-   "checked_at": "2026-07-30T03:29:57+00:00",
+   "checked_at": "2026-08-20T01:06:09+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -6282,7 +6338,8 @@
    "status": 200
   },
   "https://www.co.jasper.tx.us/": {
-   "checked_at": "2026-07-30T03:08:12+00:00",
+   "checked_at": "2026-08-20T01:05:32+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -6369,9 +6426,12 @@
    "status": null
   },
   "https://www.co.lafayette.ms.us/": {
-   "checked_at": "2026-07-30T03:33:41+00:00",
+   "checked_at": "2026-08-20T01:05:32+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:05:32+00:00",
    "ok": false,
    "status": null
   },
@@ -6612,7 +6672,8 @@
    "status": null
   },
   "https://www.co.terrell.tx.us": {
-   "checked_at": "2026-07-30T03:27:52+00:00",
+   "checked_at": "2026-08-20T01:05:32+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -6826,11 +6887,15 @@
    "status": null
   },
   "https://www.cologix.com/data-centers/new-orleans/": {
-   "checked_at": "2026-07-30T03:27:19+00:00",
+   "checked_at": "2026-08-20T01:06:23+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
-   "error": "HTTP 307",
+   "down_reason": "SOURCE_MOVED",
+   "error": "HTTP 404",
+   "final_url": "https://cologix.com/data-centers/new-orleans/",
+   "first_failure_at": "2026-08-20T01:06:23+00:00",
    "ok": false,
-   "status": 307,
+   "status": 404,
    "suggested_replacement": {
     "found_via": "sitemap",
     "score": 2,
@@ -6981,6 +7046,22 @@
    "error": "HTTP 500",
    "ok": false,
    "status": 500
+  },
+  "https://www.consumersenergy.com/work-with-us/economic-development": {
+   "checked_at": "2026-08-20T01:05:52+00:00",
+   "consecutive_failures": 1,
+   "counties": 2,
+   "down_reason": "TRANSIENT_FAILURE",
+   "error": "HTTP 500",
+   "final_url": "https://www.consumersenergy.com/staticError500.aspx?aspxerrorpath=/work-with-us/economic-development",
+   "first_failure_at": "2026-08-20T01:05:52+00:00",
+   "ok": false,
+   "status": 500,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 4,
+    "url": "https://www.consumersenergy.com/work-with-us/economic-development/advanced-manufacturing-district"
+   }
   },
   "https://www.contracosta.ca.gov/": {
    "checked_at": "2026-07-30T03:06:23+00:00",
@@ -7490,9 +7571,12 @@
    "status": 200
   },
   "https://www.dekalbcountyedc.com/": {
-   "checked_at": "2026-07-30T03:44:54+00:00",
+   "checked_at": "2026-08-20T01:05:29+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:05:29+00:00",
    "ok": false,
    "status": null
   },
@@ -7830,16 +7914,20 @@
    "status": null
   },
   "https://www.duke-energy.com/business": {
-   "checked_at": "2026-07-30T03:06:59+00:00",
+   "checked_at": "2026-08-20T01:05:57+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
    "status": 200
   },
   "https://www.duke-energy.com/business/economic-development": {
-   "checked_at": "2026-07-30T03:32:26+00:00",
+   "checked_at": "2026-08-20T01:05:50+00:00",
+   "consecutive_failures": 1,
    "counties": 8,
+   "down_reason": "SOURCE_RETIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T01:05:50+00:00",
    "ok": false,
    "status": 404
   },
@@ -8077,7 +8165,8 @@
    "status": 403
   },
   "https://www.elbertcounty-co.gov": {
-   "checked_at": "2026-07-30T03:21:37+00:00",
+   "checked_at": "2026-08-20T01:05:32+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -8260,7 +8349,8 @@
    "status": 403
   },
   "https://www.ercot.com/gridinfo/load/load_hist": {
-   "checked_at": "2026-07-30T03:27:28+00:00",
+   "checked_at": "2026-08-20T01:06:19+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -8664,7 +8754,8 @@
    "status": 200
   },
   "https://www.forsythco.com/": {
-   "checked_at": "2026-07-29T02:35:38+00:00",
+   "checked_at": "2026-08-20T01:05:32+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -8880,9 +8971,12 @@
    "status": null
   },
   "https://www.genevacountyalabama.com": {
-   "checked_at": "2026-07-29T02:19:33+00:00",
+   "checked_at": "2026-08-20T01:05:42+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
-   "error": "URLError",
+   "down_reason": "TRANSIENT_FAILURE",
+   "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:05:42+00:00",
    "ok": false,
    "status": null
   },
@@ -9636,9 +9730,12 @@
    "status": null
   },
   "https://www.heartofill.com/": {
-   "checked_at": "2026-07-30T03:06:40+00:00",
+   "checked_at": "2026-08-20T01:06:06+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:06:06+00:00",
    "ok": false,
    "status": null
   },
@@ -10105,9 +10202,12 @@
     "timestamp": "20160516193457",
     "url": "http://web.archive.org/web/20160516193457/http://isleofwightus.net:80/"
    },
-   "checked_at": "2026-07-30T03:33:22+00:00",
+   "checked_at": "2026-08-20T01:06:19+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+   "first_failure_at": "2026-08-20T01:06:19+00:00",
    "ok": false,
    "status": null
   },
@@ -10148,7 +10248,8 @@
    "status": null
   },
   "https://www.jacksoncounty.in.gov/": {
-   "checked_at": "2026-07-30T03:42:00+00:00",
+   "checked_at": "2026-08-20T01:05:52+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -10915,7 +11016,8 @@
    "status": 200
   },
   "https://www.lcra.org": {
-   "checked_at": "2026-07-30T03:36:41+00:00",
+   "checked_at": "2026-08-20T01:06:12+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -11258,7 +11360,8 @@
    "status": 200
   },
   "https://www.loudoun.gov/5990/Data-Center-Standards-Locations": {
-   "checked_at": "2026-07-30T03:08:16+00:00",
+   "checked_at": "2026-08-20T01:05:40+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -11515,7 +11618,8 @@
    "status": 403
   },
   "https://www.mass.gov/": {
-   "checked_at": "2026-07-30T03:32:24+00:00",
+   "checked_at": "2026-08-20T01:05:52+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -11709,7 +11813,8 @@
    "status": 200
   },
   "https://www.mecklenburgva.com/": {
-   "checked_at": "2026-07-29T02:25:58+00:00",
+   "checked_at": "2026-08-20T01:05:52+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -11725,15 +11830,6 @@
    "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.menifeecounty.ky.gov'. (_ssl.c:1016)>",
    "ok": false,
    "status": null
-  },
-  "https://www.menomineecounty.com/": {
-   "checked_at": "2026-08-20T00:45:38+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://www.menomineecountymi.gov/",
-   "ok": true,
-   "status": 200
   },
   "https://www.meriweathercounty.com/": {
    "checked_at": "2026-07-30T03:11:57+00:00",
@@ -11762,9 +11858,12 @@
     "timestamp": "20220702094844",
     "url": "http://web.archive.org/web/20220702094844/http://www42.mhpcc.edu/"
    },
-   "checked_at": "2026-07-30T03:44:41+00:00",
+   "checked_at": "2026-08-20T01:05:31+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:05:31+00:00",
    "ok": false,
    "status": null
   },
@@ -12003,7 +12102,8 @@
    "status": null
   },
   "https://www.monroems.com/": {
-   "checked_at": "2026-08-03T07:51:11+00:00",
+   "checked_at": "2026-08-20T01:05:40+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -12033,12 +12133,11 @@
    "ok": false,
    "status": null
   },
-  "https://www.montgomerycountypa.gov/departments/planning-commission/publications/data-center-ordinance-guide": {
-   "checked_at": "2026-08-20T00:44:24+00:00",
+  "https://www.montgomerycountypa.gov/departments/planning-commission/planning-topic/publications/data-center-ordinance-guide": {
+   "checked_at": "2026-08-20T01:05:32+00:00",
    "consecutive_failures": 0,
    "counties": 1,
    "error": null,
-   "final_url": "https://www.montgomerycountypa.gov/departments/planning-commission/planning-topic/publications/data-center-ordinance-guide",
    "ok": true,
    "status": 200
   },
@@ -12196,7 +12295,8 @@
    "status": null
   },
   "https://www.mywoodcounty.com/": {
-   "checked_at": "2026-07-30T03:20:19+00:00",
+   "checked_at": "2026-08-20T01:06:19+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -12377,11 +12477,19 @@
    "status": 404
   },
   "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/exemptions-exclusions-and-refunds/data-centers": {
-   "checked_at": "2026-07-29T02:18:36+00:00",
+   "checked_at": "2026-08-20T01:05:40+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "REPLACEMENT_REQUIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T01:05:40+00:00",
    "ok": false,
-   "status": 404
+   "status": 404,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 4,
+    "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/other-sales-and-use-tax-resources/nonprofit-sales-and-use-tax-information/frequently-asked-questions-nonprofit-sales-and-use-tax-refunds"
+   }
   },
   "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/sales-and-use-tax-technical-bulletins/data-centers": {
    "checked_at": "2026-08-19T16:33:26+00:00",
@@ -12946,19 +13054,6 @@
    "ok": false,
    "status": null
   },
-  "https://www.ocalacep.com": {
-   "archive": {
-    "timestamp": "20260618124802",
-    "url": "http://web.archive.org/web/20260618124802/https://ocalacep.com/"
-   },
-   "checked_at": "2026-08-20T00:49:43+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://ocalacep.com/",
-   "ok": true,
-   "status": 200
-  },
   "https://www.oconeecounty.com/board-of-commissioners": {
    "checked_at": "2026-07-29T02:22:47+00:00",
    "counties": 1,
@@ -13167,6 +13262,14 @@
    "ok": false,
    "status": 404
   },
+  "https://www.opportunitylouisiana.gov/incentive/quality-jobs": {
+   "checked_at": "2026-08-20T01:05:32+00:00",
+   "consecutive_failures": 0,
+   "counties": 5,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.oracle.com/cloud/infrastructure/": {
    "checked_at": "2026-08-20T00:34:38+00:00",
    "consecutive_failures": 1,
@@ -13351,6 +13454,15 @@
    "consecutive_failures": 0,
    "counties": 1,
    "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.osteriadacecco.com/": {
+   "checked_at": "2026-08-20T01:06:23+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "final_url": "https://islandsucursales.com/",
    "ok": true,
    "status": 200
   },
@@ -13765,7 +13877,8 @@
    "status": null
   },
   "https://www.poncacityok.gov/": {
-   "checked_at": "2026-07-29T02:21:16+00:00",
+   "checked_at": "2026-08-20T01:06:09+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -13924,9 +14037,12 @@
    "status": 200
   },
   "https://www.pushmatahacounty.gov": {
-   "checked_at": "2026-07-29T02:21:35+00:00",
+   "checked_at": "2026-08-20T01:06:14+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
-   "error": "URLError",
+   "down_reason": "TRANSIENT_FAILURE",
+   "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+   "first_failure_at": "2026-08-20T01:06:14+00:00",
    "ok": false,
    "status": null
   },
@@ -14625,9 +14741,12 @@
    "status": 200
   },
   "https://www.shannoncountymo.gov": {
-   "checked_at": "2026-07-30T03:42:00+00:00",
+   "checked_at": "2026-08-20T01:06:09+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+   "first_failure_at": "2026-08-20T01:06:09+00:00",
    "ok": false,
    "status": null
   },
@@ -14695,23 +14814,13 @@
    "ok": true,
    "status": 200
   },
-  "https://www.siouxfalls.com": {
-   "archive": {
-    "timestamp": "20260718225237",
-    "url": "http://web.archive.org/web/20260718225237/https://siouxfalls.com/"
-   },
-   "checked_at": "2026-08-20T00:39:02+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://siouxfalls.com/",
-   "ok": true,
-   "status": 200
-  },
   "https://www.sjced.com/": {
-   "checked_at": "2026-07-30T03:14:15+00:00",
+   "checked_at": "2026-08-20T01:06:02+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T01:06:02+00:00",
    "ok": false,
    "status": null
   },
@@ -15414,9 +15523,12 @@
    "status": 200
   },
   "https://www.townscountyga.gov/": {
-   "checked_at": "2026-07-30T03:39:30+00:00",
+   "checked_at": "2026-08-20T01:05:24+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+   "first_failure_at": "2026-08-20T01:05:24+00:00",
    "ok": false,
    "status": null
   },
@@ -15837,9 +15949,12 @@
    }
   },
   "https://www.vedp.org/location/hanover-county": {
-   "checked_at": "2026-07-30T03:20:39+00:00",
+   "checked_at": "2026-08-20T01:05:48+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "REPLACEMENT_REQUIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T01:05:48+00:00",
    "ok": false,
    "status": 404,
    "suggested_replacement": {
@@ -15964,15 +16079,6 @@
    "checked_at": "2026-07-29T02:15:04+00:00",
    "counties": 1,
    "error": null,
-   "ok": true,
-   "status": 200
-  },
-  "https://www.washingtoncounty.us/2059/Community-Development": {
-   "checked_at": "2026-08-20T00:38:22+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "http://survey-smiles.com/",
    "ok": true,
    "status": 200
   },
