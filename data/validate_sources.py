@@ -31,11 +31,13 @@ Exit codes:
   1 — one or more URLs broken
 """
 
+import argparse
 import json
 import os
+import random
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -111,61 +113,155 @@ def collect_all_urls():
     return deduped
 
 
-def check_url(url, context):
+def check_url(url, context, timeout):
     """Delegates to the shared HEAD->GET-fallback, per-host-throttled checker
     in lib/endpoint_diagnostics.py. Returns (url, context, status, error)."""
-    res = _shared_check_url(url, TIMEOUT)
+    res = _shared_check_url(url, timeout)
     return url, context, res["status"], res["error"], res["final_url"]
 
 
-def run_validation():
-    urls = collect_all_urls()
-    print(f"Checking {len(urls)} unique source URLs...")
+def load_citation_health():
+    """Existing data/map_data_citation_health.json, or an empty shell.
+    Used to know which URLs are already fresh enough to skip this run."""
+    if os.path.exists(CITATION_HEALTH_PATH):
+        try:
+            with open(CITATION_HEALTH_PATH, encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:                            # noqa: BLE001
+            print(f"[WARN] existing {CITATION_HEALTH_PATH} unreadable, starting fresh: {e}",
+                  file=sys.stderr)
+    return {"_schema": "map_data_citation_health_v1", "checked_at": None, "urls": {}}
+
+
+def _bucket_for_stored_record(rec):
+    """Which of ok/warning/broken a previously-stored per-URL record
+    belongs in -- lets a skipped-this-run (still-fresh) URL be carried
+    forward into the final tallies without re-checking it."""
+    if rec.get("ok"):
+        return "ok"
+    status = rec.get("status")
+    if status and 400 <= status < 500 and status != 404:
+        return "warning"
+    return "broken"
+
+
+def _stored_record_to_result(url, ctx, rec):
+    # context comes from the current collect_all_urls() pass (ctx), not the
+    # stored record -- a county/entry name can be edited between runs, and
+    # the freshly-collected context is always the accurate one. checked_at
+    # IS carried over unchanged -- this URL was skipped this run precisely
+    # because it was still fresh, so re-stamping it "now" would defeat the
+    # whole point of the staleness window on the next run.
+    keys = ("status", "error", "final_url", "down_reason", "suggested_replacement",
+            "archive", "checked_at")
+    result = {"url": url, "context": ctx}
+    for k in keys:
+        if rec.get(k):
+            result[k] = rec[k]
+    return result
+
+
+def run_validation(limit=0, max_age_days=0, workers=MAX_WORKERS, timeout=TIMEOUT):
+    """Checks whichever URLs are "stale": never checked, or (when
+    max_age_days > 0) checked more than max_age_days ago. Everything else
+    is carried forward from data/map_data_citation_health.json as-is, same
+    rolling-window approach check_source_links.py already uses for county
+    citations -- this corpus is ~3x larger and re-checking all of it every
+    single run doesn't fit in a normal CI job's time budget (confirmed
+    2026-08-20: two live dispatches, one at a 30-minute and one at a
+    50-minute job timeout, both got cancelled mid-run before finishing a
+    full pass). max_age_days=0 (the default) disables staleness filtering
+    entirely and checks every URL every run -- preserves the exact behavior
+    update_data.yml has always relied on for its own unbounded weekly job.
+
+    Returns the full ok/warning/broken tallies across the WHOLE corpus (not
+    just the freshly-checked subset), so map_data.json's validation_report
+    and the citation health file both always reflect the complete current
+    picture."""
+    all_urls = collect_all_urls()
+    existing = load_citation_health()
+    existing_urls = existing.get("urls", {})
+
+    if max_age_days > 0:
+        cutoff = datetime.now(timezone.utc) - timedelta(days=max_age_days)
+        stale = []
+        for url, ctx in all_urls:
+            rec = existing_urls.get(url)
+            if not rec or not rec.get("checked_at"):
+                stale.append((url, ctx))
+                continue
+            try:
+                if datetime.fromisoformat(rec["checked_at"]) < cutoff:
+                    stale.append((url, ctx))
+            except Exception:                              # noqa: BLE001
+                stale.append((url, ctx))
+        random.shuffle(stale)                              # spread load across hosts
+    else:
+        stale = list(all_urls)
+
+    if limit:
+        stale = stale[:limit]
+
+    stale_urls = {url for url, _ in stale}
+    print(f"{len(all_urls)} unique source URLs; {len(stale)} due for check "
+          f"(workers={workers}, timeout={timeout}s)")
 
     results = {"ok": [], "broken": [], "warning": []}
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-        futures = {ex.submit(check_url, url, ctx): (url, ctx) for url, ctx in urls}
-        for i, future in enumerate(as_completed(futures), 1):
-            url, context, status, error, final_url = future.result()
-            label = f"[{i:3d}/{len(urls)}]"
-            if error is None and status and 200 <= status < 400:
-                print(f"{label} OK  {status}  {url}")
-                ok_record = {"url": url, "status": status, "context": context}
+    if stale:
+        with ThreadPoolExecutor(max_workers=workers) as ex:
+            futures = {ex.submit(check_url, url, ctx, timeout): (url, ctx) for url, ctx in stale}
+            for i, future in enumerate(as_completed(futures), 1):
+                url, context, status, error, final_url = future.result()
+                label = f"[{i:3d}/{len(stale)}]"
+                if error is None and status and 200 <= status < 400:
+                    print(f"{label} OK  {status}  {url}")
+                    ok_record = {"url": url, "status": status, "context": context}
+                    if final_url:
+                        ok_record["final_url"] = final_url
+                    results["ok"].append(ok_record)
+                    continue
+
+                # Broken/warning: enrich with the same archive lookup + sitemap
+                # "may have moved to" suggestion + down_reason classification
+                # check_source_links.py already provides for county citations,
+                # so this larger corpus (facility layers + state regs) isn't
+                # stuck with a weaker signal for citations of the same kind.
+                archive = wayback(url, timeout)
+                suggestion = find_replacement_candidate(url, timeout)
+                down_reason = classify_down_reason(
+                    status=status, error=error, final_url=final_url, original_url=url,
+                    consecutive_failures=3,  # single-pass checker has no history to consult
+                    has_replacement_candidate=bool(suggestion or archive),
+                )
+                record = {"url": url, "status": status, "context": context, "error": error,
+                          "down_reason": down_reason}
                 if final_url:
-                    ok_record["final_url"] = final_url
-                results["ok"].append(ok_record)
-                continue
+                    record["final_url"] = final_url
+                if archive:
+                    record["archive"] = archive
+                if suggestion:
+                    record["suggested_replacement"] = suggestion
 
-            # Broken/warning: enrich with the same archive lookup + sitemap
-            # "may have moved to" suggestion + down_reason classification
-            # check_source_links.py already provides for county citations,
-            # so this larger corpus (facility layers + state regs) isn't
-            # stuck with a weaker signal for citations of the same kind.
-            archive = wayback(url, TIMEOUT)
-            suggestion = find_replacement_candidate(url, TIMEOUT)
-            down_reason = classify_down_reason(
-                status=status, error=error, final_url=final_url, original_url=url,
-                consecutive_failures=3,  # single-pass checker has no history to consult
-                has_replacement_candidate=bool(suggestion or archive),
-            )
-            record = {"url": url, "status": status, "context": context, "error": error,
-                      "down_reason": down_reason}
-            if final_url:
-                record["final_url"] = final_url
-            if archive:
-                record["archive"] = archive
-            if suggestion:
-                record["suggested_replacement"] = suggestion
+                if status and 400 <= status < 500 and status != 404:
+                    # 4xx other than 404 (e.g. 429 rate-limit) — treat as warning
+                    print(f"{label} WARN {status}  {url}  ({context})")
+                    results["warning"].append(record)
+                else:
+                    code = status if status else "ERR"
+                    print(f"{label} FAIL {code}  {url}  ({context})")
+                    results["broken"].append(record)
 
-            if status and 400 <= status < 500 and status != 404:
-                # 4xx other than 404 (e.g. 429 rate-limit) — treat as warning
-                print(f"{label} WARN {status}  {url}  ({context})")
-                results["warning"].append(record)
-            else:
-                code = status if status else "ERR"
-                print(f"{label} FAIL {code}  {url}  ({context})")
-                results["broken"].append(record)
+    # Carry forward every URL that's still fresh (or that a limit skipped
+    # this run) from the previous health file, so the returned tallies
+    # cover the whole current corpus, not just what was freshly checked.
+    for url, ctx in all_urls:
+        if url in stale_urls:
+            continue
+        rec = existing_urls.get(url)
+        if not rec:
+            continue
+        results[_bucket_for_stored_record(rec)].append(_stored_record_to_result(url, ctx, rec))
 
     return results
 
@@ -209,8 +305,14 @@ def write_citation_health(results):
     """Every checked URL (OK included), for data/remediate_citations.py to
     consume -- map_data.json's own validation_report deliberately drops OK
     entries to stay small, but the remediation engine needs exactly those to
-    find requests that succeeded only after a redirect."""
-    checked_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    find requests that succeeded only after a redirect.
+
+    A record carried forward from a previous run (run_validation() skipped
+    it this time because it was still fresh) keeps its OWN checked_at
+    rather than being re-stamped with this run's time -- otherwise the
+    staleness window in run_validation() would never let a URL go stale
+    again, since every run would make every URL look freshly-checked."""
+    run_checked_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     urls = {}
     for bucket in ("ok", "warning", "broken"):
         for rec in results[bucket]:
@@ -218,7 +320,7 @@ def write_citation_health(results):
                 "ok": bucket == "ok",
                 "status": rec.get("status"),
                 "context": rec.get("context"),
-                "checked_at": checked_at,
+                "checked_at": rec.get("checked_at") or run_checked_at,
             }
             if rec.get("final_url"):
                 entry["final_url"] = rec["final_url"]
@@ -234,7 +336,7 @@ def write_citation_health(results):
 
     health = {
         "_schema": "map_data_citation_health_v1",
-        "checked_at": checked_at,
+        "checked_at": run_checked_at,
         "urls": urls,
     }
     with open(CITATION_HEALTH_PATH, "w", encoding="utf-8") as f:
@@ -244,8 +346,19 @@ def write_citation_health(results):
 
 
 def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--limit", type=int, default=0,
+                    help="max URLs to check this run, 0 = no cap (default: 0)")
+    ap.add_argument("--max-age-days", type=int, default=0,
+                    help="skip URLs checked within this many days, 0 = always check every URL "
+                         "(default: 0, matches this script's historical behavior)")
+    ap.add_argument("--workers", type=int, default=MAX_WORKERS)
+    ap.add_argument("--timeout", type=int, default=TIMEOUT)
+    args = ap.parse_args()
+
     start = time.time()
-    results = run_validation()
+    results = run_validation(limit=args.limit, max_age_days=args.max_age_days,
+                              workers=args.workers, timeout=args.timeout)
     elapsed = time.time() - start
 
     total = len(results["ok"]) + len(results["broken"]) + len(results["warning"])

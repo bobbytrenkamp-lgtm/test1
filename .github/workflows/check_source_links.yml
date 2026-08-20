@@ -105,12 +105,15 @@ jobs:
 
   check_map_data_citations:
     # Manual dispatch only -- see the header comment above for why this
-    # doesn't also run on the weekly cron. timeout-minutes matches the
-    # county job's 50: a first live run at 30 min hit the timeout and got
-    # cancelled without committing anything (2026-08-20) -- this corpus is
-    # ~3x the county-only one and validate_sources.py does an extra
-    # archive+sitemap-suggestion lookup per broken/warning URL, same as
-    # check_source_links.py, so it needs comparable wall-clock budget.
+    # doesn't also run on the weekly cron. Two live runs (2026-08-20) tried
+    # checking the FULL ~2,949-URL corpus every dispatch and got cancelled
+    # at both a 30- and a 50-minute job timeout without committing anything
+    # -- validate_sources.py now supports the same --limit/--max-age-days
+    # rolling-window slicing check_source_links.py already uses (reusing
+    # this workflow's existing `limit`/`max_age_days` inputs below), so a
+    # single dispatch only checks what's actually due and the full corpus
+    # gets covered incrementally across repeated dispatches/scheduled runs,
+    # the same way county citations already work.
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 50
@@ -127,7 +130,12 @@ jobs:
       # run, so don't let it fail the job.
       - name: Validate map_data_citations (county + facility + state sources)
         continue-on-error: true
-        run: python data/validate_sources.py
+        run: |
+          python data/validate_sources.py \
+            --limit "${{ github.event.inputs.limit || 600 }}" \
+            --max-age-days "${{ github.event.inputs.max_age_days || 14 }}" \
+            --workers 8 \
+            --timeout 15
 
       - name: Commit validation report + citation health
         run: |
