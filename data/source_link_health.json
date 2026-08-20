@@ -1,6 +1,6 @@
 {
  "_schema": "source_link_health_v1",
- "checked_at": "2026-08-20T01:06:49+00:00",
+ "checked_at": "2026-08-20T03:49:42+00:00",
  "counties_with_textual_only_citations": [
   "13097",
   "17031",
@@ -24,14 +24,14 @@
   "56021"
  ],
  "summary": {
-  "checked": 1814,
+  "checked": 1825,
   "counties_with_textual_only_citations": 20,
-  "reachable": 854,
+  "reachable": 866,
   "total_citation_urls": 1985,
-  "unreachable": 960,
-  "unreachable_pct": 52.9,
+  "unreachable": 959,
+  "unreachable_pct": 52.5,
   "unreachable_with_archive": 297,
-  "unreachable_with_suggested_replacement": 92
+  "unreachable_with_suggested_replacement": 95
  },
  "urls": {
   "http://mississippi.org/doing-business/incentives/": {
@@ -143,6 +143,14 @@
   },
   "https://allamakeecounty.iowa.gov/": {
    "checked_at": "2026-07-29T02:16:15+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://alleghenyconference.org/": {
+   "checked_at": "2026-08-20T03:49:37+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -834,6 +842,14 @@
    "ok": true,
    "status": 200
   },
+  "https://datacenters.google/locations/iowa/": {
+   "checked_at": "2026-08-20T03:49:19+00:00",
+   "consecutive_failures": 0,
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://datacenters.google/locations/oregon/": {
    "checked_at": "2026-08-20T00:48:12+00:00",
    "consecutive_failures": 0,
@@ -949,7 +965,8 @@
    "status": 404
   },
   "https://ded.mo.gov": {
-   "checked_at": "2026-07-29T02:13:06+00:00",
+   "checked_at": "2026-08-20T03:49:10+00:00",
+   "consecutive_failures": 0,
    "counties": 2,
    "error": null,
    "ok": true,
@@ -1486,6 +1503,14 @@
    "ok": false,
    "status": 404
   },
+  "https://gopikems.com/": {
+   "checked_at": "2026-08-20T03:49:08+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://gov.texas.gov/business": {
    "checked_at": "2026-07-30T03:18:30+00:00",
    "counties": 1,
@@ -1510,6 +1535,14 @@
   },
   "https://gradickcommunications.com/carroll-county-board-of-commissioners-approve-100-day-moratorium-on-data-centers-battery-energy-storage-systems/": {
    "checked_at": "2026-08-19T16:37:28+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://grantcounty.ky.gov/": {
+   "checked_at": "2026-08-20T03:49:42+00:00",
    "consecutive_failures": 0,
    "counties": 1,
    "error": null,
@@ -2380,9 +2413,12 @@
     "timestamp": "20190113145251",
     "url": "http://web.archive.org/web/20190113145251/https://nnmrec.oregonstate.edu/"
    },
-   "checked_at": "2026-07-30T03:15:33+00:00",
+   "checked_at": "2026-08-20T03:49:21+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T03:49:21+00:00",
    "ok": false,
    "status": null
   },
@@ -2539,14 +2575,25 @@
    "ok": false,
    "status": null
   },
+  "https://planning.co.ocean.nj.us/": {
+   "checked_at": "2026-08-20T03:48:56+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://planning.lacounty.gov/generalplan": {
    "archive": {
     "timestamp": "20230329064609",
     "url": "http://web.archive.org/web/20230329064609/https://planning.lacounty.gov/generalplan"
    },
-   "checked_at": "2026-07-30T03:12:38+00:00",
+   "checked_at": "2026-08-20T03:49:10+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "REPLACEMENT_REQUIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T03:49:10+00:00",
    "ok": false,
    "status": 404
   },
@@ -2710,9 +2757,12 @@
    "status": null
   },
   "https://researchcomputing.wvu.edu": {
-   "checked_at": "2026-07-30T03:24:08+00:00",
+   "checked_at": "2026-08-20T03:49:03+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T03:49:03+00:00",
    "ok": false,
    "status": null
   },
@@ -2750,14 +2800,16 @@
    "status": 200
   },
   "https://revisor.mo.gov/main/OneSection.aspx?section=144.810": {
-   "checked_at": "2026-07-30T03:31:32+00:00",
+   "checked_at": "2026-08-20T03:48:56+00:00",
+   "consecutive_failures": 0,
    "counties": 2,
    "error": null,
    "ok": true,
    "status": 200
   },
   "https://rhodeislandcurrent.com/2026/04/13/as-smithfield-moves-to-ban-data-centers-smith-hill-is-still-debating-how-to-define-them/": {
-   "checked_at": "2026-07-30T03:08:12+00:00",
+   "checked_at": "2026-08-20T03:48:58+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -2884,6 +2936,14 @@
    "ok": false,
    "status": null
   },
+  "https://smokymountainnews.com/news/news-latest/clyde-enacts-moratorium-as-broader-data-center-fight-builds/": {
+   "checked_at": "2026-08-20T03:49:37+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://smokymountainnews.com/news/news-latest/swain-public-hearing-brings-moratorium-support-data-center-opposition/": {
    "checked_at": "2026-08-20T00:41:21+00:00",
    "consecutive_failures": 0,
@@ -2908,7 +2968,8 @@
    "status": 200
   },
   "https://southerncoalition.org/stokes-county-commissioners-open-door-to-data-centers-despite-overwhelming-community-opposition/": {
-   "checked_at": "2026-07-30T03:17:31+00:00",
+   "checked_at": "2026-08-20T03:49:22+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -3010,6 +3071,14 @@
    "ok": false,
    "status": 404
   },
+  "https://tcad.com/": {
+   "checked_at": "2026-08-20T03:49:22+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://tcoeda.com/": {
    "checked_at": "2026-08-20T00:47:34+00:00",
    "consecutive_failures": 0,
@@ -3068,9 +3137,12 @@
     "timestamp": "20260701200607",
     "url": "http://web.archive.org/web/20260701200607/https://therealdeal.com/texas/2026/06/30/can-san-marcos-data-center-ban-survive-legal-challenges/"
    },
-   "checked_at": "2026-07-30T03:16:27+00:00",
+   "checked_at": "2026-08-20T03:49:16+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "HTTP 403",
+   "first_failure_at": "2026-08-20T03:49:16+00:00",
    "ok": false,
    "status": 403
   },
@@ -3272,6 +3344,14 @@
     "url": "https://wedc.org/enterprise-zone-credits-help-power-generac-expansion/"
    }
   },
+  "https://willcountyced.com/": {
+   "checked_at": "2026-08-20T03:49:37+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://wsbt.com/news/local/fulton-county-commissioners-approve-data-center-moratorium-one-year-paise-research-rumors-development-measure-benefits-financial-residents-commission-area-planning-job-work-concern-action-fulton-county-indiana": {
    "checked_at": "2026-07-29T02:21:21+00:00",
    "counties": 1,
@@ -3430,7 +3510,8 @@
    "status": null
   },
   "https://www.adamscountyms.net/": {
-   "checked_at": "2026-07-29T02:20:14+00:00",
+   "checked_at": "2026-08-20T03:49:31+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -3559,6 +3640,14 @@
    "error": "URLError: <urlopen error [Errno 104] Connection reset by peer>",
    "ok": false,
    "status": null
+  },
+  "https://www.albanymed.org/glensfalls/": {
+   "checked_at": "2026-08-20T03:49:09+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.alcf.anl.gov/aurora": {
    "checked_at": "2026-07-29T02:27:11+00:00",
@@ -4490,9 +4579,12 @@
    "status": 200
   },
   "https://www.bentoncountymo.gov": {
-   "checked_at": "2026-07-30T03:30:39+00:00",
+   "checked_at": "2026-08-20T03:49:01+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+   "first_failure_at": "2026-08-20T03:49:01+00:00",
    "ok": false,
    "status": null
   },
@@ -4892,9 +4984,12 @@
    "status": null
   },
   "https://www.burkenc.org/government/departments/planning": {
-   "checked_at": "2026-07-30T03:14:23+00:00",
+   "checked_at": "2026-08-20T03:49:31+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "SOURCE_RETIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T03:49:31+00:00",
    "ok": false,
    "status": 404
   },
@@ -5078,9 +5173,12 @@
    "status": 200
   },
   "https://www.callawaycountyedc.org": {
-   "checked_at": "2026-07-30T03:42:45+00:00",
+   "checked_at": "2026-08-20T03:48:51+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T03:48:51+00:00",
    "ok": false,
    "status": null
   },
@@ -5222,11 +5320,13 @@
    "status": 403
   },
   "https://www.carrollcounty.in.gov": {
-   "checked_at": "2026-07-30T03:46:58+00:00",
+   "checked_at": "2026-08-20T03:49:42+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
-   "error": "URLError: <urlopen error timed out>",
-   "ok": false,
-   "status": null
+   "error": null,
+   "final_url": "https://www.in.gov/counties/carroll/",
+   "ok": true,
+   "status": 200
   },
   "https://www.carrollcountyar.net/": {
    "checked_at": "2026-08-19T16:32:02+00:00",
@@ -5434,11 +5534,19 @@
    "status": 200
   },
   "https://www.charlottecountyfl.gov/government/departments/economic-development": {
-   "checked_at": "2026-07-29T02:30:37+00:00",
+   "checked_at": "2026-08-20T03:49:40+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "REPLACEMENT_REQUIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T03:49:40+00:00",
    "ok": false,
-   "status": 404
+   "status": 404,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 2,
+    "url": "https://www.charlottecountyfl.gov/news/2012366-new-businesses-networking-event-will-be-hosted-by-charlotte-county-economic-development-office.stml"
+   }
   },
   "https://www.charltoncountyga.gov": {
    "archive": {
@@ -5484,9 +5592,12 @@
    "status": 403
   },
   "https://www.chautauquaedc.com": {
-   "checked_at": "2026-07-29T02:29:55+00:00",
+   "checked_at": "2026-08-20T03:49:33+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
-   "error": "URLError",
+   "down_reason": "TRANSIENT_FAILURE",
+   "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T03:49:33+00:00",
    "ok": false,
    "status": null
   },
@@ -5691,7 +5802,8 @@
    "status": 200
   },
   "https://www.cityofscottsbluff.com/": {
-   "checked_at": "2026-07-30T03:08:16+00:00",
+   "checked_at": "2026-08-20T03:48:56+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -5774,9 +5886,12 @@
    "status": null
   },
   "https://www.clarkcountyillinois.org/": {
-   "checked_at": "2026-07-30T03:29:28+00:00",
+   "checked_at": "2026-08-20T03:48:56+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T03:48:56+00:00",
    "ok": false,
    "status": null
   },
@@ -6618,7 +6733,8 @@
    "status": null
   },
   "https://www.co.san-augustine.tx.us/": {
-   "checked_at": "2026-07-29T02:28:04+00:00",
+   "checked_at": "2026-08-20T03:49:08+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -6651,7 +6767,8 @@
    "status": null
   },
   "https://www.co.sherburne.mn.us/1411/Economic-Development": {
-   "checked_at": "2026-08-03T07:50:57+00:00",
+   "checked_at": "2026-08-20T03:49:22+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -6944,7 +7061,8 @@
    "status": null
   },
   "https://www.colvilletribes.com/": {
-   "checked_at": "2026-07-30T03:07:24+00:00",
+   "checked_at": "2026-08-20T03:48:50+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -7628,7 +7746,8 @@
    "status": 200
   },
   "https://www.depts.ttu.edu/hpcc/": {
-   "checked_at": "2026-07-30T03:31:12+00:00",
+   "checked_at": "2026-08-20T03:49:08+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -7762,9 +7881,12 @@
    "status": 200
   },
   "https://www.dodgeiowa.com/": {
-   "checked_at": "2026-07-30T03:07:35+00:00",
+   "checked_at": "2026-08-20T03:48:58+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T03:48:58+00:00",
    "ok": false,
    "status": null
   },
@@ -8032,9 +8154,12 @@
    "status": null
   },
   "https://www.dunklincountymo.gov/": {
-   "checked_at": "2026-07-29T02:22:38+00:00",
+   "checked_at": "2026-08-20T03:49:19+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
-   "error": "URLError",
+   "down_reason": "TRANSIENT_FAILURE",
+   "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+   "first_failure_at": "2026-08-20T03:49:19+00:00",
    "ok": false,
    "status": null
   },
@@ -8102,7 +8227,8 @@
    "status": 200
   },
   "https://www.edcsarasotacounty.com": {
-   "checked_at": "2026-07-30T03:44:32+00:00",
+   "checked_at": "2026-08-20T03:49:19+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -8147,11 +8273,19 @@
    "status": 200
   },
   "https://www.effinghamil.com/economic-development": {
-   "checked_at": "2026-07-29T02:18:35+00:00",
+   "checked_at": "2026-08-20T03:49:22+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "REPLACEMENT_REQUIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T03:49:22+00:00",
    "ok": false,
-   "status": 404
+   "status": 404,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 2,
+    "url": "https://www.effinghamil.com/economic-development-and-tourism-staff/"
+   }
   },
   "https://www.eglin.af.mil": {
    "archive": {
@@ -8226,9 +8360,12 @@
    "status": 403
   },
   "https://www.ellsworthcountyks.gov": {
-   "checked_at": "2026-07-30T03:19:04+00:00",
+   "checked_at": "2026-08-20T03:49:09+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T03:49:09+00:00",
    "ok": false,
    "status": null
   },
@@ -9467,7 +9604,8 @@
    "status": 200
   },
   "https://www.hagerstownmd.org/1827/Planning-Economic-Development": {
-   "checked_at": "2026-08-03T07:51:11+00:00",
+   "checked_at": "2026-08-20T03:49:37+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -9643,7 +9781,8 @@
    "status": 404
   },
   "https://www.harveycounty.gov/commission-implements-moratorium-on-data-center-developments": {
-   "checked_at": "2026-07-30T03:34:08+00:00",
+   "checked_at": "2026-08-20T03:49:19+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -10191,7 +10330,8 @@
    "status": null
   },
   "https://www.irs.gov/credits-deductions/businesses/opportunity-zones": {
-   "checked_at": "2026-07-30T03:08:53+00:00",
+   "checked_at": "2026-08-20T03:49:10+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -11839,9 +11979,12 @@
    "status": null
   },
   "https://www.meriweathercounty.com/planning": {
-   "checked_at": "2026-07-30T03:39:11+00:00",
+   "checked_at": "2026-08-20T03:49:35+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+   "first_failure_at": "2026-08-20T03:49:35+00:00",
    "ok": false,
    "status": null
   },
@@ -12068,9 +12211,12 @@
    "status": 403
   },
   "https://www.monroecounty-fl.gov/445/Comprehensive-Plan": {
-   "checked_at": "2026-07-29T02:24:49+00:00",
+   "checked_at": "2026-08-20T03:48:59+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "SOURCE_RETIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T03:48:59+00:00",
    "ok": false,
    "status": 404
   },
@@ -12238,6 +12384,14 @@
   },
   "https://www.multistate.us/insider/2026/2/20/state-data-center-legislation-in-2026-tackles-energy-and-tax-issues": {
    "checked_at": "2026-07-30T03:07:10+00:00",
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.muncie.in.gov/": {
+   "checked_at": "2026-08-20T03:49:19+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -12470,11 +12624,20 @@
    }
   },
   "https://www.nccommerce.com/jdig": {
-   "checked_at": "2026-07-29T02:20:58+00:00",
+   "checked_at": "2026-08-20T03:49:17+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "SOURCE_MOVED",
    "error": "HTTP 404",
+   "final_url": "https://www.commerce.nc.gov/jdig",
+   "first_failure_at": "2026-08-20T03:49:17+00:00",
    "ok": false,
-   "status": 404
+   "status": 404,
+   "suggested_replacement": {
+    "found_via": "sitemap",
+    "score": 1,
+    "url": "https://www.commerce.nc.gov/compliance-grantee-annual-report-materials-job-development-investment-grant-jdig-recipients"
+   }
   },
   "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/exemptions-exclusions-and-refunds/data-centers": {
    "checked_at": "2026-08-20T01:05:40+00:00",
@@ -13192,9 +13355,12 @@
    "status": 404
   },
   "https://www.oncor.com/EN/economic-development/": {
-   "checked_at": "2026-07-30T03:26:06+00:00",
+   "checked_at": "2026-08-20T03:49:37+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "SOURCE_RETIRED",
    "error": "HTTP 404",
+   "first_failure_at": "2026-08-20T03:49:37+00:00",
    "ok": false,
    "status": 404
   },
@@ -14403,6 +14569,14 @@
    "ok": true,
    "status": 200
   },
+  "https://www.rockymountainpower.net/working-with-us/business-customers.html": {
+   "checked_at": "2026-08-20T03:49:19+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.rogermillscounty.gov": {
    "checked_at": "2026-08-20T00:43:53+00:00",
    "consecutive_failures": 1,
@@ -14678,7 +14852,8 @@
    "status": 404
   },
   "https://www.seviervilletn.org": {
-   "checked_at": "2026-07-30T03:30:14+00:00",
+   "checked_at": "2026-08-20T03:49:40+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -15011,9 +15186,12 @@
     "timestamp": "20260718203116",
     "url": "http://web.archive.org/web/20260718203116/https://www.stamfordct.gov/"
    },
-   "checked_at": "2026-07-30T03:12:44+00:00",
+   "checked_at": "2026-08-20T03:49:08+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "HTTP 403",
+   "first_failure_at": "2026-08-20T03:49:08+00:00",
    "ok": false,
    "status": 403
   },
@@ -15634,9 +15812,12 @@
    "status": 403
   },
   "https://www.tva.com/energy/economic-development": {
-   "checked_at": "2026-07-30T03:23:50+00:00",
+   "checked_at": "2026-08-20T03:48:47+00:00",
+   "consecutive_failures": 1,
    "counties": 7,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "HTTP 403",
+   "first_failure_at": "2026-08-20T03:48:47+00:00",
    "ok": false,
    "status": 403
   },
@@ -15748,9 +15929,12 @@
    "status": 202
   },
   "https://www.unioncountync.gov/departments/economic-development": {
-   "checked_at": "2026-07-29T02:14:59+00:00",
+   "checked_at": "2026-08-20T03:48:50+00:00",
+   "consecutive_failures": 1,
    "counties": 1,
+   "down_reason": "TRANSIENT_FAILURE",
    "error": "HTTP 403",
+   "first_failure_at": "2026-08-20T03:48:50+00:00",
    "ok": false,
    "status": 403
   },
@@ -16329,7 +16513,8 @@
    "status": 200
   },
   "https://www.williamsoncounty-tn.gov/": {
-   "checked_at": "2026-07-30T03:36:00+00:00",
+   "checked_at": "2026-08-20T03:49:37+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
@@ -16556,7 +16741,8 @@
    "status": 200
   },
   "https://www.wsbradio.com/news/local/clayton-county-commission-approve-data-center-moratorium-through-end-2025/YSDKDDK4F5EP3HT2DEESPHXZ7U/": {
-   "checked_at": "2026-07-30T03:24:52+00:00",
+   "checked_at": "2026-08-20T03:49:08+00:00",
+   "consecutive_failures": 0,
    "counties": 1,
    "error": null,
    "ok": true,
