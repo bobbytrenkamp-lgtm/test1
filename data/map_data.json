@@ -40326,116 +40326,553 @@
     }
   },
   "validation_report": {
-    "last_run": "2026-08-20T03:50:18.273625+00:00",
-    "total_checked": 50,
-    "ok": 26,
-    "broken": 20,
-    "warnings": 4,
+    "last_run": "2026-08-20T04:19:52.282947+00:00",
+    "total_checked": 850,
+    "ok": 420,
+    "broken": 358,
+    "warnings": 72,
     "broken_urls": [
       {
-        "url": "https://kingsborodigital.com/",
+        "url": "https://www.mitchellcountyia.gov",
         "status": null,
-        "context": "sample_layers.json / ai_campuses / fc-266167975e (Kingsboro Digital Tech Park - Albany NY)",
-        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
-        "down_reason": "TRANSIENT_FAILURE"
-      },
-      {
-        "url": "https://www.fayettecountyga.gov/community_development/planning_zoning",
-        "status": 404,
-        "context": "map_data.json / 13113 (Fayette County)",
-        "error": "HTTP 404",
-        "down_reason": "SOURCE_RETIRED"
-      },
-      {
-        "url": "https://www.co.dakota.ne.us/",
-        "status": null,
-        "context": "map_data.json / 31043 (Dakota County)",
-        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
-        "down_reason": "TRANSIENT_FAILURE"
-      },
-      {
-        "url": "https://www.gibsoncounty.in.gov",
-        "status": null,
-        "context": "map_data.json / 18051 (Gibson County)",
+        "context": "map_data.json / 19131 (Mitchell County)",
         "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
         "down_reason": "TRANSIENT_FAILURE"
       },
       {
-        "url": "https://www.evoquedcs.com/locations/austin/",
+        "url": "https://brookecountywv.org/",
         "status": null,
-        "context": "sample_layers.json / data_centers / fc-c14204e975 (Evoque Data Center - Austin TX)",
-        "error": "URLError: <urlopen error [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1016)>",
-        "down_reason": "TRANSIENT_FAILURE"
-      },
-      {
-        "url": "https://www.xcelenergy.com/staticfiles/xe/Corporate/Corporate%20PDFs/eco-dev-TX.pdf",
-        "status": 404,
-        "context": "map_data.json / 48375 (Potter County)",
-        "error": "HTTP 404",
-        "down_reason": "SOURCE_RETIRED"
-      },
-      {
-        "url": "https://www.robesonnc.com/departments/economic-development",
-        "status": null,
-        "context": "map_data.json / 37155 (Robeson County)",
+        "context": "map_data.json / 54009 (Brooke County)",
         "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
         "down_reason": "TRANSIENT_FAILURE"
       },
       {
-        "url": "https://www.coruscorpuschristi.com",
+        "url": "https://www.waynecountymo.us",
         "status": null,
-        "context": "map_data.json / 48355 (Nueces County)",
+        "context": "map_data.json / 29223 (Wayne County)",
         "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
         "down_reason": "TRANSIENT_FAILURE"
       },
       {
-        "url": "https://www.atascosacountytexas.gov",
+        "url": "https://www.co.fergus.mt.gov/",
         "status": null,
-        "context": "map_data.json / 48013 (Atascosa County)",
+        "context": "map_data.json / 30027 (Fergus County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.c7dc.com/locations/lindon/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-3c507d2238 (C7 Data Centers - Lindon UT)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.c7dc.com'. (_ssl.c:1016)>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.caldwellparishla.gov",
+        "status": null,
+        "context": "map_data.json / 22021 (Caldwell Parish)",
         "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
         "down_reason": "TRANSIENT_FAILURE"
       },
       {
-        "url": "https://www.roanokecountyva.gov/economic-development",
+        "url": "https://www.bremercountyia.org/",
+        "status": null,
+        "context": "map_data.json / 19017 (Bremer County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://phoenixnap.com/data-centers/seattle",
         "status": 404,
-        "context": "map_data.json / 51161 (Roanoke County)",
+        "context": "sample_layers.json / data_centers / fc-1d3329795d (PhoenixNAP Data Center - Seattle WA)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.edgecombecountync.gov/departments/economic-development",
+        "status": 404,
+        "context": "map_data.json / 37065 (Edgecombe County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.google.com/about/datacenters/locations/moncks-corner/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-92628e9876 (Google Data Center - Moncks Corner SC)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://about.google/datacenters/locations/moncks-corner/"
+      },
+      {
+        "url": "https://about.fb.com/news/2024/meta-rosemount-minnesota-data-center/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-5e5053acef (Meta Data Center - Rosemount MN)",
         "error": "HTTP 404",
         "down_reason": "REPLACEMENT_REQUIRED",
         "suggested_replacement": {
-          "url": "https://www.roanokecountyva.gov/1954/Economic-Development-Focus-Group",
+          "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.dominionenergy.com/company/about-us",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-b41449669e (Dominion Energy Data Center - Richmond)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.dominionenergy.com/about/our-company",
           "score": 2,
           "found_via": "sitemap"
         }
       },
       {
-        "url": "https://www.illinois.gov/sites/dceo/",
-        "status": 404,
-        "context": "map_data.json / 17089 (Kane County)",
-        "error": "HTTP 404",
-        "down_reason": "SOURCE_RETIRED"
+        "url": "https://www.montgomerycoks.gov/",
+        "status": null,
+        "context": "map_data.json / 20125 (Montgomery County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
       },
       {
-        "url": "https://www.oconeecounty.com/water-authority",
-        "status": 404,
-        "context": "map_data.json / 13219 (Oconee County)",
-        "error": "HTTP 404",
-        "down_reason": "SOURCE_MOVED",
-        "final_url": "https://www.oconeecountyga.gov/water-authority"
+        "url": "https://arcs.gmu.edu/",
+        "status": null,
+        "context": "map_data.json / 51600 (Fairfax city)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
       },
       {
-        "url": "https://www.ucf.edu/research/computing/",
+        "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/exemptions-exclusions-and-refunds/data-centers",
         "status": 404,
-        "context": "sample_layers.json / data_centers / fc-3cd453dc90 (UCF Research Computing - Orlando)",
-        "error": "HTTP 404",
-        "down_reason": "SOURCE_RETIRED"
-      },
-      {
-        "url": "https://news.microsoft.com/2022/microsoft-iowa-data-center-west-des-moines/",
-        "status": 404,
-        "context": "sample_layers.json / ai_campuses / fc-7f262d9195 (Microsoft Data Center - West Des Moines IA)",
+        "context": "map_data.json / 37067 (Forsyth County)",
         "error": "HTTP 404",
         "down_reason": "REPLACEMENT_REQUIRED",
-        "final_url": "https://news.microsoft.com/source/2022/microsoft-iowa-data-center-west-des-moines/",
+        "suggested_replacement": {
+          "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/other-sales-and-use-tax-resources/nonprofit-sales-and-use-tax-information/frequently-asked-questions-nonprofit-sales-and-use-tax-refunds",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.hawaiielectriclight.com/about/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-4435375e94 (Hawaii Electric Light Company Data Center - Hilo HI)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.hawaiianelectric.com/about/"
+      },
+      {
+        "url": "https://www.suwannee.fl.us/",
+        "status": null,
+        "context": "map_data.json / 12121 (Suwannee County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.njleg.state.nj.us/Bills/2020/S3500/3232_I1.HTM",
+        "status": 404,
+        "context": "map_data.json / 34007 (Camden County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://pub.njleg.gov/bills/2020/S3500/3232_I1.HTM"
+      },
+      {
+        "url": "https://www.pickettcountytn.gov",
+        "status": null,
+        "context": "map_data.json / 47137 (Pickett County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.atrion.net/managed-services/data-center-services/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-8f2410db37 (Atrion - Providence RI Data Center)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.richlandcountymt.gov/",
+        "status": null,
+        "context": "map_data.json / 30083 (Richland County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.mississippi.org/wp-content/uploads/2021/06/IncentivesGuide.pdf",
+        "status": 404,
+        "context": "map_data.json / 28089 (Madison County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://mississippi.org/wp-content/uploads/2021/06/IncentivesGuide.pdf"
+      },
+      {
+        "url": "https://www.mhpcc.edu",
+        "status": null,
+        "context": "map_data.json / 15009 (Maui County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220702094844/http://www42.mhpcc.edu/",
+          "timestamp": "20220702094844"
+        }
+      },
+      {
+        "url": "https://www.paulding.gov/212/Board-of-Commissioners",
+        "status": 404,
+        "context": "map_data.json / 13223 (Paulding County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.paulding.gov/101/Board-of-Commissioners",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://vantagedc.com/data-centers/atlanta/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-d6574d2798 (Vantage Data Centers - Atlanta GA ATL1)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.dow.com/en-us/about-dow/facilities/north-america/midland.html",
+        "status": 404,
+        "context": "map_data.json / 26111 (Midland County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://corporate.dow.com/en-us/about/facilities/north-america/midland.html"
+      },
+      {
+        "url": "https://www.etex.coop/",
+        "status": null,
+        "context": "map_data.json / 48449 (Titus County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.manateeedc.com",
+        "status": null,
+        "context": "map_data.json / 12081 (Manatee County)",
+        "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20210416235946/http://www.manateeedc.com/",
+          "timestamp": "20210416235946"
+        }
+      },
+      {
+        "url": "https://www.fillmorecounty.org/",
+        "status": null,
+        "context": "map_data.json / 31059 (Fillmore County)",
+        "error": "URLError: <urlopen error [Errno 104] Connection reset by peer>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260203031233/http://fillmorecounty.org/",
+          "timestamp": "20260203031233"
+        }
+      },
+      {
+        "url": "https://www.cologix.com/data-centers/philadelphia/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-0fe8d7fbe6 (Cologix Data Center - Philadelphia PA PHL1)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://cologix.com/data-centers/philadelphia/",
+        "suggested_replacement": {
+          "url": "https://cologix.com/resources/blogs/cloud-choice-and-network-neutral-data-centers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.corscale.com/data-centers/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-bdea43326d (Corscale Data Center - Prince William County VA)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://corscale.com/data-centers/",
+        "suggested_replacement": {
+          "url": "https://corscale.com/press-releases/corscale-data-centers-and-affinius-capital-announce-strategic-partnership-with-e2companies/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.athenscountyohio.gov",
+        "status": null,
+        "context": "map_data.json / 39009 (Athens County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.lanl.gov/",
+        "status": 404,
+        "context": "map_data.json / 35028 (Los Alamos County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260815230020/https://www.lanl.gov/",
+          "timestamp": "20260815230020"
+        }
+      },
+      {
+        "url": "https://www.co.monroe.mi.us/brd",
+        "status": 404,
+        "context": "map_data.json / 26115 (Monroe County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://web.uri.edu/it/research-computing/",
+        "status": 404,
+        "context": "map_data.json / 44009 (Washington County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://researchcomputing.uga.edu/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-f760f0a002 (University of Georgia Research Computing - Athens)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.putnam-fl.com/economic-development",
+        "status": 404,
+        "context": "map_data.json / 12107 (Putnam County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.vedp.org/incentive/data-center-investment-grant",
+        "status": 404,
+        "context": "map_data.json / 51087 (Henrico County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "http://live-vedp-d9.pantheonsite.io/incentive/virginia-investment-performance-grant-vip",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.kansascommerce.gov/program/incentives/high-performance-incentive-program/",
+        "status": 404,
+        "context": "map_data.json / 20091 (Johnson County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.co.brewster.tx.us/",
+        "status": null,
+        "context": "map_data.json / 48043 (Brewster County)",
+        "error": "URLError: <urlopen error [Errno 104] Connection reset by peer>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20240530153237/https://www.co.brewster.tx.us/",
+          "timestamp": "20240530153237"
+        }
+      },
+      {
+        "url": "https://www.franklincountync.us/economic-development",
+        "status": null,
+        "context": "map_data.json / 37069 (Franklin County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.franklincountync.us'. (_ssl.c:1016)>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.hivelocity.net/dedicated-server/chicago/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-960b42a31d (Hivelocity Data Center - Chicago IL)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.hivelocity.net/blog/guide-to-evaluating-dedicated-server-providers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.midlanddc.com/",
+        "status": null,
+        "context": "map_data.json / 48329 (Midland County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20140517163345/http://midlanddc.com/",
+          "timestamp": "20140517163345"
+        }
+      },
+      {
+        "url": "https://about.fb.com/news/2023/10/meta-to-build-data-center-in-goodyear-arizona/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-8eb39d70cb (Meta Data Center - Goodyear AZ)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.shepherdsvilleky.us/",
+        "status": null,
+        "context": "map_data.json / 21029 (Bullitt County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.bathcountyva.org",
+        "status": null,
+        "context": "map_data.json / 51017 (Bath County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20221123180713/https://www.bathcountyva.org/",
+          "timestamp": "20221123180713"
+        }
+      },
+      {
+        "url": "https://research.iu.edu/facilities/supercomputing.html",
+        "status": 404,
+        "context": "map_data.json / 18105 (Monroe County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.serverfarm.com/locations/atlanta/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-9ad6284c3e (Serverfarm Data Center - Atlanta GA)",
+        "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.lancasteredc.com",
+        "status": null,
+        "context": "map_data.json / 45057 (Lancaster County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.dominionenergy.com/company/making-energy/nuclear-generation/north-anna-power-station",
+        "status": 404,
+        "context": "map_data.json / 51109 (Louisa County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.dominionenergy.com/about/making-energy/nuclear-facilities/north-anna-power-station",
+          "score": 7,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://blog.google/technology/infrastructure/google-data-center-clarksville-tennessee/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-048f7c75e3 (Google Data Center - Clarksville TN)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://ir.applieddigital.com/news-releases/news-release-details/applied-digital-opens-new-200-megawatt-hpc-data-center-corsicana",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-9523fdf867 (Applied Digital Data Center - Corsicana TX)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://ir.applieddigital.com/news-events/press-releases",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.claremorechamber.com",
+        "status": null,
+        "context": "map_data.json / 40131 (Rogers County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.midamericanenergy.com/home",
+        "status": 500,
+        "context": "map_data.json / 19193 (Woodbury County)",
+        "error": "HTTP 500",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260814180809/https://www.midamericanenergy.com/home",
+          "timestamp": "20260814180809"
+        }
+      },
+      {
+        "url": "https://www.fresno.gov/mayor/departments/information-technology/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-76a482dbe5 (City of Fresno Information Services Department - Fresno CA)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://evocative.com/data-centers/fremont/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-d999f575fd (Evocative Data Center - Fremont CA)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://evocative.com/resources/whitepaper/navigating-the-journey-to-hybrid-cloud-advantages-of-colocation-data-centers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.erieinsurance.com/about-erie/company-information",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-fae3e6f00a (Erie Insurance Data Center - Erie PA)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://und.edu/research/core-research-facilities/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-5eb0f73f53 (University of North Dakota Research Computing - Grand Forks ND)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.madeinalabama.com/2015/11/alabama-jobs-act/",
+        "status": 404,
+        "context": "state_regulations.json / 01 (Alabama)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.madeinalabama.com/2023/01/peak-north-america-usa-creating-175-jobs-with-new-alabama-facility/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.columbus.gov/311-service-center/departments/technology/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-6986b2cb76 (City of Columbus Department of Technology - Columbus OH)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.columbus.gov/311-Customer-Service-Center",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://news.microsoft.com/2024/microsoft-spokane-washington-data-center/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-52c78e6ad9 (Microsoft Data Center - Spokane WA)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://news.microsoft.com/source/2024/microsoft-spokane-washington-data-center/",
         "suggested_replacement": {
           "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
           "score": 2,
@@ -40443,96 +40880,3459 @@
         }
       },
       {
-        "url": "https://tax.utah.gov/sales/exemptions",
+        "url": "https://www.windstream.com/enterprise/solutions/colocation/jackson-ms",
         "status": 404,
-        "context": "map_data.json / 49011 (Davis County)",
+        "context": "sample_layers.json / data_centers / fc-779c01118b (Windstream Data Center - Jackson MS)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.gokinetic.com/enterprise/solutions/colocation/jackson-ms"
+      },
+      {
+        "url": "https://edgecore.com/data-centers/reno/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-e6c12a9b83 (EdgeCore Internet Real Estate - Reno NV)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://edgecore.com/data-centers/reno",
+        "suggested_replacement": {
+          "url": "https://edgecore.com/locations/culpeper-data-centers",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.stonecountyms.org",
+        "status": null,
+        "context": "map_data.json / 28131 (Stone County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.serverfarm.com/data-centers/newark/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-929a71a0c6 (Serverfarm Data Center - Newark NJ)",
+        "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.sccommerce.com/incentives/data-center-incentives",
+        "status": 404,
+        "context": "map_data.json / 45063 (Lexington County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.sccommerce.com/news/google-brings-additional-investment-berkeley-county-data-center",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.bastropcounty.org/edc",
+        "status": null,
+        "context": "map_data.json / 48021 (Bastrop County)",
+        "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://phoenixnap.com/data-center/dallas-tx",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-049c9b813d (PhoenixNAP Data Center - Dallas TX)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://phoenixnap.com/company/it-resources/data-center-rfp-template",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.oracle.com/news/announcement/oracle-to-invest-in-tennessee-cloud-region-2024/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-f2ab9aea1e (Oracle Cloud Data Center - Nashville TN)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.oracle.com/cloud/azure/oracle-database-at-azure/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://sdreadytowork.com/why-sd/business-climate/",
+        "status": 404,
+        "context": "map_data.json / 46099 (Minnehaha County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://sdgoed.com/why-sd/business-climate/"
+      },
+      {
+        "url": "https://www.claytoncountyga.gov/news/clayton-county-board-of-commissioners-approves-moratorium-on-new-data-centers-in-clayton-county/",
+        "status": 307,
+        "context": "map_data.json / 13063 (Clayton County)",
+        "error": "HTTP 307",
+        "down_reason": null,
+        "suggested_replacement": {
+          "url": "https://www.claytoncountyga.gov/news-articles/clayton-county-board-of-commissioners-recently-hosted-trash-amnesty-days-free-of-charge-to-clayton-county-residents-watch-a-recap-of-the-district-1-trash-amnesty-day/",
+          "score": 5,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.tn.gov/revenue/taxes/sales-and-use-tax/exemptions.html",
+        "status": 404,
+        "context": "map_data.json / 47105 (Loudon County)",
         "error": "HTTP 404",
         "down_reason": "SOURCE_RETIRED"
       },
       {
-        "url": "https://www.cmmc.org/",
+        "url": "https://www.aligned.com/data-centers/phoenix/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-50bf9dfbf2 (Aligned Data Center - Phoenix AZ PHX-01)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://blog.google/technology/infrastructure/google-data-center-henderson-nevada/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-db52618cc3 (Google Data Center - Henderson NV)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.logancountywv.com/",
         "status": null,
+        "context": "map_data.json / 54045 (Logan County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220224012158/http://www.logancountywv.com/",
+          "timestamp": "20220224012158"
+        }
+      },
+      {
+        "url": "https://www.baxleychamber.com",
+        "status": null,
+        "context": "map_data.json / 13001 (Appling County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.co.custer.mt.us/",
+        "status": null,
+        "context": "map_data.json / 30017 (Custer County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20110914104954/http://www.co.custer.mt.us:80/",
+          "timestamp": "20110914104954"
+        }
+      },
+      {
+        "url": "https://mi-psc.force.com/",
+        "status": 404,
+        "context": "map_data.json / 26147 (St. Clair County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.365datacenters.com/data-centers/baltimore/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-9b7ba9ae00 (365 Data Centers - Baltimore MD)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://365datacenters.com/data-centers/baltimore/",
+        "suggested_replacement": {
+          "url": "https://365datacenters.com/365-data-centers-significantly-enhances-available/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.oregon.gov/biz/programs/ez/pages/default.aspx",
+        "status": 404,
+        "context": "map_data.json / 41031 (Jefferson County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://development.ohio.gov/business/site-selection",
+        "status": 404,
+        "context": "map_data.json / 39127 (Perry County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.cosentry.com/locations/lincoln/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-c9583506e7 (Cosentry Data Center - Lincoln NE)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.pepsico.com/our-company/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-fcea165fa4 (PepsiCo Data Center - Purchase NY)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://www.pepsico.com/our-company",
+        "suggested_replacement": {
+          "url": "https://www.pepsico.com/newsroom/press-releases/2007/pepsiamericas-and-pepsico-to-jointly-acquire-leading-juice-company-in-ukraine",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.williamsoncountyillinois.gov/",
+        "status": null,
+        "context": "map_data.json / 17199 (Williamson County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.perrycounty.in.gov",
+        "status": 525,
+        "context": "map_data.json / 18123 (Perry County)",
+        "error": "HTTP 525",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260420131448/https://perrycounty.in.gov/",
+          "timestamp": "20260420131448"
+        }
+      },
+      {
+        "url": "https://www.obriencountyiowa.gov",
+        "status": null,
+        "context": "map_data.json / 19141 (O'Brien County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-boise-idaho-data-center",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-a394203c6b (Amazon AWS Data Center - Boise ID)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.cvtels.com/services/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-2814000949 (Copper Valley Telephone Data Center - Glennallen AK)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.evoquedcs.com/locations/orlando/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-2140c61603 (Evoque Data Center - Orlando FL)",
+        "error": "URLError: <urlopen error [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1016)>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.adamscountyoh.net",
+        "status": null,
+        "context": "map_data.json / 39001 (Adams County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.reynoldscountymo.gov",
+        "status": null,
+        "context": "map_data.json / 29179 (Reynolds County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.salesforce.com/company/infrastructure/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-51ef7002c0 (Salesforce Data Center - San Francisco CA 2)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.antelopecounty.ne.gov",
+        "status": null,
+        "context": "map_data.json / 31003 (Antelope County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://cga.ct.gov/2021/act/pa/pdf/2021PA-00076-R00SB-01202-PA.PDF",
+        "status": null,
+        "context": "map_data.json / 09007 (Middlesex County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://hpcc.umd.edu/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-654d7d9b31 (University of Maryland High Performance Computing - College Park MD)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260808081445/https://hpcc.umd.edu/",
+          "timestamp": "20260808081445"
+        }
+      },
+      {
+        "url": "https://www.montagueCounty.org",
+        "status": null,
+        "context": "map_data.json / 48337 (Montague County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20130619180410/http://montaguecounty.org/",
+          "timestamp": "20130619180410"
+        }
+      },
+      {
+        "url": "https://www.bentoncountyiowa.gov",
+        "status": null,
+        "context": "map_data.json / 19011 (Benton County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.duke-energy.com/home/products/interconnection",
+        "status": 404,
+        "context": "map_data.json / 37023 (Burke County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://piutecounty.utah.gov",
+        "status": null,
+        "context": "map_data.json / 49031 (Piute County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.kohler.com",
+        "status": null,
+        "context": "map_data.json / 55117 (Sheboygan County)",
+        "error": "TimeoutError: The read operation timed out",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20100924100236/http://kohler.com/",
+          "timestamp": "20100924100236"
+        }
+      },
+      {
+        "url": "https://dced.pa.gov/",
+        "status": null,
+        "context": "map_data.json / 42049 (Erie County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260814164656/https://dced.pa.gov/",
+          "timestamp": "20260814164656"
+        }
+      },
+      {
+        "url": "https://www.middlebury.edu/information-technology/research-computing",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-e5238ce23d (Middlebury College Research Computing - Middlebury VT)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.middlebury.edu/information-technology-services/policies/computing-policies",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.hpe.com/us/en/contact-hpe.html",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-bb63c8eb95 (Hewlett Packard Enterprise Data Center - Spring TX)",
+        "error": "TimeoutError: The read operation timed out",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260806052600/https://www.hpe.com/us/en/contact-hpe.html",
+          "timestamp": "20260806052600"
+        }
+      },
+      {
+        "url": "https://www.nationallife.com/about/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-8dfbce0ae1 (National Life Group Data Center - Montpelier VT)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.nationallife.com/resource-center/what-annuity-owners-need-to-know-about-qualified-plans-vs-non-qualified-plans",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.linnbiz.com",
+        "status": null,
+        "context": "map_data.json / 41043 (Linn County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20190809212134/http://linnbiz.com/",
+          "timestamp": "20190809212134"
+        }
+      },
+      {
+        "url": "https://news.microsoft.com/2024/11/microsoft-chehalis-washington-data-center-investment/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-9ad16d1103 (Microsoft Data Center - Chehalis WA)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://news.microsoft.com/source/2024/11/microsoft-chehalis-washington-data-center-investment/",
+        "suggested_replacement": {
+          "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://research.uconn.edu/rit/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-96ebb9e717 (University of Connecticut Research Computing - Storrs)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.hillsboroughcounty.org/en/government/departments/it",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-de7ff87a62 (Hillsborough County Information Technology Data Center - Tampa FL)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://hcfl.gov/departments/it"
+      },
+      {
+        "url": "https://www.fannincountytexas.com",
+        "status": null,
+        "context": "map_data.json / 48147 (Fannin County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.fannincountytexas.com'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20230607223043/https://www.fannincountytexas.com/",
+          "timestamp": "20230607223043"
+        }
+      },
+      {
+        "url": "https://www.cockechamber.com",
+        "status": null,
+        "context": "map_data.json / 47029 (Cocke County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.duke-energy.com/home/products/energy-efficiency/indiana",
+        "status": 404,
+        "context": "map_data.json / 18005 (Bartholomew County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.oncor.com/EN/OurCompany/Pages/Wholesale.aspx",
+        "status": 404,
+        "context": "map_data.json / 48231 (Hunt County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.duchesnecounty.net",
+        "status": null,
+        "context": "map_data.json / 49013 (Duchesne County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.rockeda.com",
+        "status": null,
+        "context": "map_data.json / 55105 (Rock County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.eaton.com/us/en-us/company/locations.html",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-f6596edcee (Eaton Corporation Data Center - Beachwood OH)",
+        "error": "TimeoutError: The read operation timed out",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.elevancehealth.com/our-company",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-8266aca989 (Anthem/Elevance Health Data Center - Indianapolis IN)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.elevancehealth.com/newsroom/anthem-announces-solar-power-purchase-agreement-to-move-company-closer-towards-100-percent-renewable-energy-goal",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.xcelenergy.com/business/products_and_services/high_density_computing",
+        "status": 404,
+        "context": "map_data.json / 27163 (Washington County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.xcelenergy.com/staticfiles/xe/Corporate/Corporate%20PDFs/eco-dev-MN.pdf",
+        "status": 404,
+        "context": "map_data.json / 27145 (Stearns County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.jecdc.org",
+        "status": null,
+        "context": "map_data.json / 29099 (Jefferson County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20241208122828/http://www.jecdc.org/",
+          "timestamp": "20241208122828"
+        }
+      },
+      {
+        "url": "https://www.citruscountychamber.com/economic-development",
+        "status": 404,
+        "context": "map_data.json / 12017 (Citrus County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://desotoparishgov.com/",
+        "status": null,
+        "context": "map_data.json / 22031 (De Soto Parish)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.sheridanarkansas.com/economic-development",
+        "status": 404,
+        "context": "map_data.json / 05053 (Grant County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://docs.legis.wisconsin.gov/",
+        "status": null,
+        "context": "map_data.json / 55073 (Marathon County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260730151535/https://docs.legis.wisconsin.gov/",
+          "timestamp": "20260730151535"
+        }
+      },
+      {
+        "url": "https://deft.com/data-centers/chicago/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-6e330ddf80 (Deft Data Centers - Chicago IL)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://summithq.com/data-centers/chicago-illinois-data-center/",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://vxchnge.com/colocation-data-centers/jacksonville-fl/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-453316dc1c (vXchnge Data Center - Jacksonville FL)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.vxchnge.com/colocation-data-centers/jacksonville-fl/"
+      },
+      {
+        "url": "https://iedc.in.gov/business-resources/key-industries/data-centers",
+        "status": 404,
+        "context": "map_data.json / 18097 (Marion County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.delawaretechnologypark.org/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-994f9bb241 (Delaware Technology Park Data Center)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.ashleycountyarkansas.com",
+        "status": null,
+        "context": "map_data.json / 05003 (Ashley County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.scottcountytn.gov/",
+        "status": null,
+        "context": "map_data.json / 47151 (Scott County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://news.microsoft.com/2024/microsoft-louisville-kentucky-data-center/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-b38c925e81 (Microsoft Data Center - Louisville KY)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://news.microsoft.com/source/2024/microsoft-louisville-kentucky-data-center/",
+        "suggested_replacement": {
+          "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.houstoncounty.org/",
+        "status": null,
+        "context": "map_data.json / 01069 (Houston County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.houstoncounty.org'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20240713184902/https://houstoncounty.org/",
+          "timestamp": "20240713184902"
+        }
+      },
+      {
+        "url": "https://www.arsenal.army.mil/",
+        "status": null,
+        "context": "map_data.json / 19163 (Scott County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.uintacounty.com/",
+        "status": null,
+        "context": "map_data.json / 56041 (Uinta County)",
+        "error": "URLError: <urlopen error [Errno 104] Connection reset by peer>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20240917202909/http://www.uintacounty.com/",
+          "timestamp": "20240917202909"
+        }
+      },
+      {
+        "url": "https://www.jonescountysd.org",
+        "status": null,
+        "context": "map_data.json / 46075 (Jones County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.limestonecountyeda.com",
+        "status": null,
+        "context": "map_data.json / 01083 (Limestone County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-umatilla-oregon",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-2794223342 (Amazon AWS Data Center - Umatilla OR)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.florencecounty.org",
+        "status": null,
+        "context": "map_data.json / 55037 (Florence County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20240913053750/https://www.florencecounty.org/",
+          "timestamp": "20240913053750"
+        }
+      },
+      {
+        "url": "https://www.jobsohio.com/why-ohio/target-industries/data-centers",
+        "status": 404,
+        "context": "map_data.json / 39061 (Hamilton County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.woodcountyohio.gov/economic",
+        "status": 404,
+        "context": "map_data.json / 39173 (Wood County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.woodcountyohio.gov/320/Economic-Development",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.kiowacountyok.gov",
+        "status": null,
+        "context": "map_data.json / 40075 (Kiowa County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://lunavi.com/data-centers/cheyenne-wyoming/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-173b1988a8 (Lunavi Data Center - Cheyenne WY)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.lunavi.com/data-centers/cheyenne-wyoming",
+        "suggested_replacement": {
+          "url": "https://www.lunavi.com/data-centers/cheyenne",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.dcblox.com/data-centers/oklahoma-city/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-60f36447aa (DC BLOX Data Center - Oklahoma City OK OKC-1)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.dcblox.com/dc-blox-expands-birmingham-and-greenville-data-centers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.cityofconway.org/",
+        "status": null,
+        "context": "map_data.json / 05045 (Faulkner County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20141025220141/http://www.cityofconway.org/",
+          "timestamp": "20141025220141"
+        }
+      },
+      {
+        "url": "https://www.bluelock.com/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-0dabd0d70b (Bluelock Data Center - Indianapolis IN)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.bluelock.com'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20190822002006/https://www.bluelock.com/",
+          "timestamp": "20190822002006"
+        }
+      },
+      {
+        "url": "https://www.youngcounty.org/",
+        "status": 502,
+        "context": "map_data.json / 48503 (Young County)",
+        "error": "HTTP 502",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220812211925/http://youngcounty.org/",
+          "timestamp": "20220812211925"
+        }
+      },
+      {
+        "url": "https://www.deafsmithcounty.org/",
+        "status": null,
+        "context": "map_data.json / 48117 (Deaf Smith County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.jaspercounty.in.gov/",
+        "status": null,
+        "context": "map_data.json / 18073 (Jasper County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.hamilton-co.org/departments/information-technology",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-38c39a987b (Hamilton County Information Technology Data Center - Cincinnati OH)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.hamiltoncountyohio.gov/departments/information-technology"
+      },
+      {
+        "url": "https://www.cologix.com/data-centers/minneapolis/min1/",
+        "status": 307,
+        "context": "sample_layers.json / data_centers / fc-36d7e865bb (Cologix MTL1 - Montreal QC (US ops))",
+        "error": "HTTP 307",
+        "down_reason": null,
+        "archive": {
+          "url": "http://web.archive.org/web/20260630000256/https://cologix.com/data-centers/minneapolis/min1/",
+          "timestamp": "20260630000256"
+        },
+        "suggested_replacement": {
+          "url": "https://cologix.com/resources/blogs/cloud-choice-and-network-neutral-data-centers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.cheyennecountyks.gov",
+        "status": null,
+        "context": "map_data.json / 20023 (Cheyenne County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.acgov.org/planning/generalplan/",
+        "status": 404,
+        "context": "map_data.json / 06001 (Alameda County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://ycea-pa.org/",
+        "status": null,
+        "context": "map_data.json / 42133 (York County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'ycea-pa.org'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20181001200348/http://www.ycea-pa.org/",
+          "timestamp": "20181001200348"
+        }
+      },
+      {
+        "url": "https://www.co.union.or.us/",
+        "status": null,
+        "context": "map_data.json / 41061 (Union County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.charitoncountymo.gov",
+        "status": null,
+        "context": "map_data.json / 29041 (Chariton County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://news.microsoft.com/2023/microsoft-georgia-data-center-investment/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-915bb4f6ea (Microsoft Data Center - Atlanta GA)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://news.microsoft.com/source/2023/microsoft-georgia-data-center-investment/",
+        "suggested_replacement": {
+          "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.ozarkcountymo.gov",
+        "status": null,
+        "context": "map_data.json / 29153 (Ozark County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.flexential.com/data-centers/colorado/colorado-springs",
+        "status": 404,
+        "context": "map_data.json / 08041 (El Paso County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.flexential.com/data-centers/tn/nashville/cool-springs-data-center",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-springfield-illinois-data-center",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-6dcda0deee (Amazon AWS Data Center - Springfield IL)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.effinghamil.com/economic-development",
+        "status": 404,
+        "context": "map_data.json / 17049 (Effingham County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.effinghamil.com/economic-development-and-tourism-staff/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.dodgeiowa.com/",
+        "status": null,
+        "context": "map_data.json / 19187 (Webster County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.firstenergycorp.com/content/customer/save_energy/pa/for_your_business/economic-development.html",
+        "status": 404,
+        "context": "map_data.json / 42129 (Westmoreland County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.bsb.mt.gov/",
+        "status": null,
+        "context": "map_data.json / 30093 (Silver Bow County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.bsb.mt.gov'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20181216104739/http://www.bsb.mt.gov/",
+          "timestamp": "20181216104739"
+        }
+      },
+      {
+        "url": "https://www.redwingeda.org/",
+        "status": null,
+        "context": "map_data.json / 27049 (Goodhue County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.co.cass.mn.us",
+        "status": null,
+        "context": "map_data.json / 27021 (Cass County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.co.cass.mn.us'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220713130818/http://www.co.cass.mn.us/",
+          "timestamp": "20220713130818"
+        }
+      },
+      {
+        "url": "https://www.colfaxcounty.ne.gov/",
+        "status": null,
+        "context": "map_data.json / 31037 (Colfax County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20130117204420/http://www.colfaxcounty.ne.gov/",
+          "timestamp": "20130117204420"
+        }
+      },
+      {
+        "url": "https://www.doit.nc.gov/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-90558eec40 (North Carolina Government Data Analytics Center - Raleigh NC)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.hidalgo.nm.us",
+        "status": null,
+        "context": "map_data.json / 35023 (Hidalgo County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.wilsonedc.com/",
+        "status": 404,
+        "context": "map_data.json / 37195 (Wilson County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260606165141/https://www.wilsonedc.com/",
+          "timestamp": "20260606165141"
+        }
+      },
+      {
+        "url": "https://www.vedp.org/capability/data-centers",
+        "status": 404,
+        "context": "map_data.json / 51660 (Harrisonburg city)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "http://live-vedp-d9.pantheonsite.io/industry/data-centers",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.dewittcountyil.com",
+        "status": null,
+        "context": "map_data.json / 17039 (De Witt County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20240907143126/https://dewittcountyil.com/",
+          "timestamp": "20240907143126"
+        }
+      },
+      {
+        "url": "https://dced.pa.gov/programs/pennsylvania-industrial-development-authority-pida/",
+        "status": null,
+        "context": "map_data.json / 42045 (Delaware County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260801005018/https://dced.pa.gov/programs/pennsylvania-industrial-development-authority-pida/",
+          "timestamp": "20260801005018"
+        }
+      },
+      {
+        "url": "https://www.snhu.edu/about-snhu/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-1f88658d84 (Southern New Hampshire University Data Center - Manchester NH)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://www.snhu.edu/about-snhu",
+        "suggested_replacement": {
+          "url": "https://www.snhu.edu/about-us/ai-at-snhu",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.hbgrc.org",
+        "status": null,
+        "context": "map_data.json / 42043 (Dauphin County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.hbgrc.org'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20120508042541/http://www.hbgrc.org:80/",
+          "timestamp": "20120508042541"
+        }
+      },
+      {
+        "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/chicago",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-8011739d9f (NTT Data Center - Elk Grove Village IL)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://www.nttdata.com/global/en/404",
+        "suggested_replacement": {
+          "url": "https://www.nttdata.com/en-us/services/global-data-centers",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.kandiyohicounty.org/",
+        "status": null,
+        "context": "map_data.json / 27067 (Kandiyohi County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://home.army.mil/knox/index.php/about/directorate-of-plans-training-mobilization-security/cyber",
+        "status": null,
+        "context": "map_data.json / 21093 (Hardin County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.stlucieedc.com",
+        "status": null,
+        "context": "map_data.json / 12111 (St. Lucie County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.tax.ny.gov/bus/excelsior/excelsior_jobs_program.htm",
+        "status": 404,
+        "context": "map_data.json / 36003 (Allegany County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.umt.edu/it/research-computing/",
+        "status": 404,
+        "context": "map_data.json / 30063 (Missoula County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.ohsu.edu/sites/default/files/2020-04/Exacloud_FlyerV3.pdf",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-d8220af51b (OHSU Exacloud Research Computing - Portland)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://blog.google/technology/infrastructure/google-data-center-birmingham-alabama-2024/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-1b64078203 (Google Data Center - Birmingham AL)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://coloradosprings.gov/innovation-technology",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-693d94c67a (City of Colorado Springs Office of Innovation and Technology - Colorado Springs CO)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://about.fb.com/news/2024/meta-data-center-sherman-texas/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-4f9b4e39af (Meta Data Center - Sherman TX)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+          "score": 5,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.clintoncountymo.org",
+        "status": null,
+        "context": "map_data.json / 29049 (Clinton County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.dunnco.us/",
+        "status": null,
+        "context": "map_data.json / 38025 (Dunn County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://ntirety.com/",
+        "status": 520,
+        "context": "sample_layers.json / data_centers / fc-9e0e50c07c (Ntirety Data Center - Dallas TX)",
+        "error": "HTTP 520",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260521192430/https://www.ntirety.com/",
+          "timestamp": "20260521192430"
+        }
+      },
+      {
+        "url": "https://www.genevacountyalabama.com",
+        "status": null,
+        "context": "map_data.json / 01061 (Geneva County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.sussex.nj.us/cn/webpages/showPagecn.php?pid=planningboard",
+        "status": 404,
+        "context": "map_data.json / 34037 (Sussex County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://atriumhealth.org/about-us/who-we-are",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-a8a8af5e41 (Atrium Health Data Center - Charlotte NC)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://atriumhealth.org/about-us",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.hanovercounty.gov/economy",
+        "status": 404,
+        "context": "map_data.json / 51085 (Hanover County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-south-carolina-data-center",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-635045e410 (Amazon AWS Data Center - Columbia SC)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.phs.org/about/Pages/default.aspx",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-f0abb358cb (Presbyterian Healthcare Data Center - Albuquerque NM)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://www.phs.org/about",
+        "suggested_replacement": {
+          "url": "https://www.phs.org/santa-fe-medical-center/about/report-to-community",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.berriencountyga.gov",
+        "status": null,
+        "context": "map_data.json / 13019 (Berrien County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.tric.com",
+        "status": null,
+        "context": "map_data.json / 32019 (Lyon County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260212081412/http://www.tric.com/",
+          "timestamp": "20260212081412"
+        }
+      },
+      {
+        "url": "https://www.vedp.org/data-centers",
+        "status": 404,
+        "context": "map_data.json / 51121 (Montgomery County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "http://live-vedp-d9.pantheonsite.io/industry/data-centers",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-denton-texas",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-434aa73a61 (Amazon AWS Data Center - Denton TX)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.aboutamazon.com/news/company-news/amazon-pecos-county-texas-data-center-clean-energy-jobs",
+          "score": 5,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.glaciercountymt.gov/",
+        "status": null,
+        "context": "map_data.json / 30035 (Glacier County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260207000209/https://glaciercountymt.gov/",
+          "timestamp": "20260207000209"
+        }
+      },
+      {
+        "url": "https://www.nccommerce.com/grants-incentives/nc-county-tier-designations",
+        "status": 404,
+        "context": "map_data.json / 37045 (Cleveland County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.commerce.nc.gov/grants-incentives/nc-county-tier-designations",
+        "suggested_replacement": {
+          "url": "https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers/county-tier-designation-archives",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.newmadridcounty.org/",
+        "status": null,
+        "context": "map_data.json / 29143 (New Madrid County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.spectrum.com/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-6dd14dc0f2 (Charter Communications / Spectrum Data Center - Los Angeles CA)",
+        "error": "TimeoutError: The read operation timed out",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260815232853/https://www.spectrum.com/",
+          "timestamp": "20260815232853"
+        }
+      },
+      {
+        "url": "https://www.jewellcountyks.org/",
+        "status": null,
+        "context": "map_data.json / 20089 (Jewell County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.lightedge.com/colocation/data-centers/des-moines-iowa/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-9f8e4ae61a (LightEdge Data Center - Des Moines)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://lightedge.com/colocation/data-centers/des-moines-iowa/"
+      },
+      {
+        "url": "https://www.clermontcountyohio.gov/economic-development",
+        "status": 404,
+        "context": "map_data.json / 39025 (Clermont County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.lightedge.com/locations/dallas/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-17bee711b9 (LightEdge Data Center - Dallas TX)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://lightedge.com/locations/dallas/"
+      },
+      {
+        "url": "https://dceo.illinois.gov/communities/enterprisezones.htm",
+        "status": 404,
+        "context": "map_data.json / 17077 (Jackson County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.jcmos.com",
+        "status": null,
+        "context": "map_data.json / 29051 (Cole County)",
+        "error": "URLError: <urlopen error [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20170407084028/http://www.jcmos.com/",
+          "timestamp": "20170407084028"
+        }
+      },
+      {
+        "url": "https://www.polkgeorgia.gov/planning-zoning",
+        "status": null,
+        "context": "map_data.json / 13233 (Polk County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.hceda.org",
+        "status": 404,
+        "context": "map_data.json / 24027 (Howard County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20240914222930/https://www.hceda.org/",
+          "timestamp": "20240914222930"
+        }
+      },
+      {
+        "url": "https://www.involta.com/data-centers/eau-claire/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-10992cd0b9 (Involta Data Center - Eau Claire WI)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.arkdna.com/data-centers/ohio/canton/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-sioux-falls-south-dakota",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-9ad0e89fcf (Amazon AWS Data Center - Sioux Falls SD)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.co.jones.ms.us/",
+        "status": null,
+        "context": "map_data.json / 28067 (Jones County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.co.jones.ms.us'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20130530005723/http://www.co.jones.ms.us:80/",
+          "timestamp": "20130530005723"
+        }
+      },
+      {
+        "url": "https://www.co.adams.il.us",
+        "status": 404,
+        "context": "map_data.json / 17001 (Adams County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20231101020306/https://www.co.adams.il.us/",
+          "timestamp": "20231101020306"
+        }
+      },
+      {
+        "url": "https://www.umaine.edu/it/research-computing/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-799697e0b1 (University of Maine - Orono ME HPC)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://umaine.edu/it/research-computing/"
+      },
+      {
+        "url": "https://www.yavapai.us/economic-development",
+        "status": null,
+        "context": "map_data.json / 04025 (Yavapai County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.tract.com/locations/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-5fe0a6ec02 (Tract Data Centers - Phoenix AZ)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.dickinsonnd.com/",
+        "status": null,
+        "context": "map_data.json / 38089 (Stark County)",
+        "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220112155233/http://www.dickinsonnd.com/",
+          "timestamp": "20220112155233"
+        }
+      },
+      {
+        "url": "https://das.ohio.gov/divisions/state-technology-office",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-7995dc61af (Ohio Department of Administrative Services Data Center - Columbus OH)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.eddy.nm.gov",
+        "status": null,
+        "context": "map_data.json / 35015 (Eddy County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.barnescountynd.com/",
+        "status": null,
+        "context": "map_data.json / 38003 (Barnes County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://vxchnge.com/colocation-data-centers/pittsburgh-pa/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-a780a35228 (vXchnge Data Center - Pittsburgh PA)",
+        "error": "TimeoutError: The read operation timed out",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.oregon.gov/dor/programs/businesses/Pages/ez.aspx",
+        "status": 404,
+        "context": "map_data.json / 41005 (Clackamas County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.firstinterstatebank.com/about/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-48e3883fe4 (First Interstate BancSystem Data Center - Billings MT)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://www.firstinterstatebank.com/about",
+        "archive": {
+          "url": "http://web.archive.org/web/20121005032145/https://www.firstinterstatebank.com/about/",
+          "timestamp": "20121005032145"
+        },
+        "suggested_replacement": {
+          "url": "https://www.firstinterstatebank.com/company/about/careers",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.boonecountyia.gov/",
+        "status": null,
+        "context": "map_data.json / 19015 (Boone County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.shelbycountyal.com/economic-development/",
+        "status": 404,
+        "context": "map_data.json / 01117 (Shelby County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.co.eastland.tx.us/",
+        "status": null,
+        "context": "map_data.json / 48133 (Eastland County)",
+        "error": "URLError: <urlopen error [Errno 104] Connection reset by peer>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260212191100/http://www.co.eastland.tx.us/",
+          "timestamp": "20260212191100"
+        }
+      },
+      {
+        "url": "https://www.oregon.gov/deq/water/pages/klamath-basin.aspx",
+        "status": 404,
+        "context": "map_data.json / 41035 (Klamath County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://aaedc.org/",
+        "status": null,
+        "context": "map_data.json / 24003 (Anne Arundel County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260730115500/https://aaedc.org/",
+          "timestamp": "20260730115500"
+        }
+      },
+      {
+        "url": "https://www.co.haskell.tx.us",
+        "status": null,
+        "context": "map_data.json / 48207 (Haskell County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.co.haskell.tx.us'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20211207161650/http://www.co.haskell.tx.us",
+          "timestamp": "20211207161650"
+        }
+      },
+      {
+        "url": "https://www.pamlicocounty.org/departments/planning/",
+        "status": 404,
+        "context": "map_data.json / 37137 (Pamlico County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://about.fb.com/news/2024/05/meta-announces-kearney-nebraska-data-center/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-504f5554e5 (Meta Data Center - Kearney NE)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://about.fb.com/news/2026/07/meta-announces-new-venture-with-blackrock-to-develop-data-center-in-el-paso/",
+          "score": 5,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.wyomingbusiness.org/content/data-centers",
+        "status": 404,
+        "context": "map_data.json / 56001 (Albany County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://wyomingbusiness.org/content/data-centers"
+      },
+      {
+        "url": "https://group.softbank/en/news/press/20250121_02",
+        "status": 404,
+        "context": "map_data.json / 48441 (Taylor County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://group.softbank/news/press",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.aligneddc.com/data-centers/minneapolis/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-b875e23936 (Aligned Data Center - Minneapolis MN MSP-01)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://aligneddc.com/data-centers/minneapolis/",
+        "suggested_replacement": {
+          "url": "https://aligneddc.com/press-release/aligned-data-centers-to-acquire-odata/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.elkcountyks.com/",
+        "status": null,
+        "context": "map_data.json / 20049 (Elk County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20130404001628/http://elkcountyks.com",
+          "timestamp": "20130404001628"
+        }
+      },
+      {
+        "url": "https://www.pikecountyky.gov",
+        "status": null,
+        "context": "map_data.json / 21195 (Pike County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260316121052/https://www.pikecountyky.gov/",
+          "timestamp": "20260316121052"
+        }
+      },
+      {
+        "url": "https://sill.army.mil",
+        "status": null,
+        "context": "map_data.json / 40031 (Comanche County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20250602061858/https://www.sill.army.mil/",
+          "timestamp": "20250602061858"
+        }
+      },
+      {
+        "url": "https://www.benningtoncounty.org",
+        "status": null,
+        "context": "map_data.json / 50003 (Bennington County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20080930192815/http://www.benningtoncounty.org:80/",
+          "timestamp": "20080930192815"
+        }
+      },
+      {
+        "url": "https://www.andersoncounty.ky.gov/",
+        "status": null,
+        "context": "map_data.json / 21005 (Anderson County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.andersoncounty.ky.gov'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20140726132207/http://www.andersoncounty.ky.gov/",
+          "timestamp": "20140726132207"
+        }
+      },
+      {
+        "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers",
+        "status": 404,
+        "context": "map_data.json / 13039 (Camden County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-and-use-tax-registration-faq",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/govregions.htm",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-4d47cf76e4 (Oracle Cloud - Reston VA (us-gov-ashburn-1))",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.callowaycounty.ky.gov/",
+        "status": null,
+        "context": "map_data.json / 21035 (Calloway County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.muskogeecity.org/",
+        "status": null,
+        "context": "map_data.json / 40101 (Muskogee County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.candlercountyga.gov",
+        "status": null,
+        "context": "map_data.json / 13043 (Candler County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.duke-energy.com/home/products/south-carolina",
+        "status": 404,
+        "context": "map_data.json / 45007 (Anderson County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://corporate.comcast.com/company-info",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-3f2cf2b686 (Comcast NBC Universal Data Center - Philadelphia PA)",
+        "error": "TimeoutError: The read operation timed out",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.loraincounty.us/departments/economic-development/",
+        "status": null,
+        "context": "map_data.json / 39093 (Lorain County)",
+        "error": "URLError: <urlopen error [Errno 104] Connection reset by peer>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.infomartdc.com/data-centers/dallas/",
+        "status": 521,
+        "context": "sample_layers.json / data_centers / fc-0b72a6b3cc (Infomart Data Centers - Dallas TX)",
+        "error": "HTTP 521",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.claycountygeorgia.com",
+        "status": null,
+        "context": "map_data.json / 13061 (Clay County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.westpointms.org",
+        "status": null,
+        "context": "map_data.json / 28025 (Clay County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20221012115415/http://www.westpointms.org/",
+          "timestamp": "20221012115415"
+        }
+      },
+      {
+        "url": "https://www.trcrpc.org",
+        "status": null,
+        "context": "map_data.json / 17143 (Peoria County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.cologix.com/data-centers/boston/",
+        "status": 307,
+        "context": "sample_layers.json / data_centers / fc-9874335c04 (Cologix Data Center - Boston MA BOS1)",
+        "error": "HTTP 307",
+        "down_reason": null,
+        "suggested_replacement": {
+          "url": "https://cologix.com/resources/blogs/cloud-choice-and-network-neutral-data-centers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.basinelectric.com/our-cooperative/annual-report/",
+        "status": 404,
+        "context": "map_data.json / 38057 (Mercer County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED",
+        "final_url": "https://www.basinelectric.com/our-cooperative/annual-report"
+      },
+      {
+        "url": "https://www.gdeb.com/about/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-4eb14e70be (Electric Boat Data Center - North Kingstown RI)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260730011228/https://gdeb.com/about/",
+          "timestamp": "20260730011228"
+        }
+      },
+      {
+        "url": "https://www.cosentry.com/data-centers/kansas-city/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-ef8ea04001 (Cosentry Data Center - Kansas City MO)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.kenergy.com/",
+        "status": null,
+        "context": "map_data.json / 21047 (Christian County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.kenergy.com'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260306115740/http://www.kenergy.com/",
+          "timestamp": "20260306115740"
+        }
+      },
+      {
+        "url": "https://www.nccommerce.com/business/site-selection",
+        "status": 404,
+        "context": "map_data.json / 37077 (Granville County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.commerce.nc.gov/business/site-selection"
+      },
+      {
+        "url": "https://phoenixnap.com/data-centers/ashburn-virginia",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-6a9930b165 (PhoenixNAP - Ashburn)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://phoenixnap.com/data-center/ashburn",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://azure.microsoft.com/en-us/global-infrastructure/",
+        "status": 404,
+        "context": "map_data.json / 53061 (Snohomish County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220902032839/https://azure.microsoft.com/en-us/global-infrastructure/",
+          "timestamp": "20220902032839"
+        }
+      },
+      {
+        "url": "https://www.primedatacenters.com/data-centers/hillsboro/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-6f1b1ba097 (Prime Data Centers - Hillsboro OR)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://primedatacenters.com/data-centers/hillsboro/",
+        "suggested_replacement": {
+          "url": "https://primedatacenters.com/news/women-in-construction-success-story-courtney-schmidt-of-prime-data-centers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.sjcedc.com",
+        "status": 500,
+        "context": "map_data.json / 12109 (St. Johns County)",
+        "error": "HTTP 500",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220813005633/https://www.sjcedc.com/",
+          "timestamp": "20220813005633"
+        }
+      },
+      {
+        "url": "https://www.johnsoncountyar.com/",
+        "status": null,
+        "context": "map_data.json / 05071 (Johnson County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20130607230803/http://johnsoncountyar.com/",
+          "timestamp": "20130607230803"
+        }
+      },
+      {
+        "url": "https://www.thomaswv.org/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-4fccec5540 (Thomas Health System Data Center - South Charleston WV)",
+        "error": "URLError: <urlopen error [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20200811200849/http://thomaswv.org:80/",
+          "timestamp": "20200811200849"
+        }
+      },
+      {
+        "url": "https://www.bryancountyga.org",
+        "status": 404,
+        "context": "map_data.json / 13029 (Bryan County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20240124234347/https://www.bryancountyga.org/",
+          "timestamp": "20240124234347"
+        }
+      },
+      {
+        "url": "https://www.orangecountyva.gov/1100/Planning-Zoning",
+        "status": 404,
+        "context": "map_data.json / 51137 (Orange County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.orangecountyva.gov/784/Planning-and-Zoning",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://edd.nm.gov/tax-incentives/data-centers",
+        "status": null,
+        "context": "map_data.json / 35057 (Torrance County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://compassdatacenters.com/locations/san-antonio/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-4ee381f6f1 (Compass Datacenters - San Antonio TX)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.compassdatacenters.com/locations/san-antonio/"
+      },
+      {
+        "url": "https://salutedatacenters.com/data-centers/denver/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-1c33141550 (Salute Data Centers - Denver CO)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.crossvillememphischamber.com/",
+        "status": null,
+        "context": "map_data.json / 47035 (Cumberland County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.richmondfed.org/utilities/about-us/our_organization",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-9ca99f20fd (Federal Reserve Bank of Richmond Data Center - Richmond VA)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.njleg.state.nj.us/Bills/2011/PL12/52_.HTM",
+        "status": 404,
+        "context": "map_data.json / 34025 (Monmouth County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://pub.njleg.gov/bills/2011/PL12/52_.HTM"
+      },
+      {
+        "url": "https://www.charltoncountyga.gov",
+        "status": null,
+        "context": "map_data.json / 13049 (Charlton County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20231208060923/https://charltoncountyga.gov/",
+          "timestamp": "20231208060923"
+        }
+      },
+      {
+        "url": "https://cloudhq.com/data-centers/ashburn/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-e1328b67df (CloudHQ Data Center - Ashburn VA)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.kitcarsoncountyco.com",
+        "status": null,
+        "context": "map_data.json / 08063 (Kit Carson County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20020126013327/http://kitcarsoncountyco.com:80/",
+          "timestamp": "20020126013327"
+        }
+      },
+      {
+        "url": "https://www.beadlecountysd.gov/",
+        "status": null,
+        "context": "map_data.json / 46005 (Beadle County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.kia.com/us/en/about-kia",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-4cbf278612 (Kia America Data Center - Irvine CA)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.kia.com/kr/pbv/solution/about-solution",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.solanoedc.com",
+        "status": null,
+        "context": "map_data.json / 06095 (Solano County)",
+        "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20240807095015/http://www.solanoedc.com/",
+          "timestamp": "20240807095015"
+        }
+      },
+      {
+        "url": "https://www.ccgov.net/economic-development",
+        "status": 404,
+        "context": "map_data.json / 56005 (Campbell County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.campbellcountywy.gov/economic-development"
+      },
+      {
+        "url": "https://www.ilga.gov/legislation/ilcs/fulltext.asp?Name=0035010500K2-5",
+        "status": 404,
+        "context": "map_data.json / 17007 (Boone County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://ilga.gov/Legislation/ILCS/Chapters",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.muhlenbergcounty.ky.gov/",
+        "status": null,
+        "context": "map_data.json / 21177 (Muhlenberg County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.muhlenbergcounty.ky.gov'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20161118013325/http://www.muhlenbergcounty.ky.gov/",
+          "timestamp": "20161118013325"
+        }
+      },
+      {
+        "url": "https://www.visaliaedo.com/",
+        "status": null,
+        "context": "map_data.json / 06107 (Tulare County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.digitalrealty.com/data-centers/americas/denver",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-6808085b7d (Digital Realty - DEN1 Denver CO)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.digitalrealty.com/data-centers/americas/los-angeles/bur10",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://randolphcountymo.gov/",
+        "status": null,
+        "context": "map_data.json / 29175 (Randolph County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.rogermillscounty.gov",
+        "status": null,
+        "context": "map_data.json / 40129 (Roger Mills County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://evocative.com/data-centers/oakland/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-246c36ed47 (Evocative Data Center - Oakland CA)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://evocative.com/resources/whitepaper/navigating-the-journey-to-hybrid-cloud-advantages-of-colocation-data-centers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.allencountyks.org/",
+        "status": null,
+        "context": "map_data.json / 20001 (Allen County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.puc.texas.gov/agency/resources/dockets/",
+        "status": null,
+        "context": "map_data.json / 48473 (Waller County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.bms.com/about-us/our-company/global-locations.html",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-6c5430533a (Bristol-Myers Squibb Data Center - Lawrenceville NJ)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.bms.com/our-company/locations.html",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.brantleycountyga.gov",
+        "status": null,
+        "context": "map_data.json / 13025 (Brantley County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.beauregardonline.com/",
+        "status": null,
+        "context": "map_data.json / 22011 (Beauregard Parish)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20190509133540/http://beauregardonline.com/",
+          "timestamp": "20190509133540"
+        }
+      },
+      {
+        "url": "https://www.ussignal.com/data-centers/kalamazoo-michigan/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-2cf5ba7aec (US Signal Data Center - Kalamazoo MI)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "http://ussignal.com/data-centers/kalamazoo-michigan/",
+        "suggested_replacement": {
+          "url": "https://ussignal.com/blog/michigan-data-centers-what-it-leaders-need-to-know/",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.nced.info",
+        "status": null,
+        "context": "map_data.json / 36063 (Niagara County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20160119182542/http://nced.info:80/",
+          "timestamp": "20160119182542"
+        }
+      },
+      {
+        "url": "https://www.emmonscountynd.gov/",
+        "status": null,
+        "context": "map_data.json / 38029 (Emmons County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.heartofill.com/",
+        "status": null,
+        "context": "map_data.json / 17049 (Effingham County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.monroecounty-fl.gov/445/Comprehensive-Plan",
+        "status": 404,
+        "context": "map_data.json / 12087 (Monroe County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://cyrusone.com/data-centers/north-america/florida/pompano-beach/",
+        "status": 404,
+        "context": "map_data.json / 12011 (Broward County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.cyrusone.com/data-centers/north-america/florida/pompano-beach/",
+        "suggested_replacement": {
+          "url": "https://www.cyrusone.com/data-centers/north-america/yorkville-technology-campus",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.dec.ny.gov/lands/5265.html",
+        "status": 404,
+        "context": "map_data.json / 36039 (Greene County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://dec.ny.gov/lands/5265.html",
+        "archive": {
+          "url": "http://web.archive.org/web/20191229220129/http://www.dec.ny.gov/lands/5265.html",
+          "timestamp": "20191229220129"
+        },
+        "suggested_replacement": {
+          "url": "https://dec.ny.gov/news/environmental-notice-bulletin/2021-08-11/pursuant-to-section-30-a-of-the-public-lands-law-the",
+          "score": 1,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.logancountyarkansas.com",
+        "status": null,
+        "context": "map_data.json / 05083 (Logan County)",
+        "error": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.custercountysd.gov/",
+        "status": null,
+        "context": "map_data.json / 46033 (Custer County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.rockinghamcountyedcnc.com",
+        "status": null,
+        "context": "map_data.json / 37157 (Rockingham County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.k-state.edu/it/beocat/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-89847db935 (Kansas State University Beocat HPC - Manhattan)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.expedient.com/data-centers/orlando/",
+        "status": 404,
+        "context": "map_data.json / 12095 (Orange County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://expedient.com/knowledgebase/blog/2013-07-09-not-all-data-centers-are-equal-which-is-right-for-you/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.crowleycountyco.com",
+        "status": null,
+        "context": "map_data.json / 08025 (Crowley County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.delawarecountyok.com/",
+        "status": null,
+        "context": "map_data.json / 40041 (Delaware County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20160111222409/http://delawarecountyok.com/",
+          "timestamp": "20160111222409"
+        }
+      },
+      {
+        "url": "https://www.dfwregionaldata.org",
+        "status": null,
+        "context": "map_data.json / 48397 (Rockwall County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.qtsdatacenters.com/data-centers/nashville",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-7c49235ced (QTS Data Center - Nashville TN)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "http://q.com/data-centers/nashville",
+        "suggested_replacement": {
+          "url": "https://q.com/jet-popup/data-centers-menu-popup/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.nyi.net/data-centers/nyi-nj1/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-a862d7b482 (NYI Data Center - Secaucus NJ)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.cityofsearcy.net/",
+        "status": null,
+        "context": "map_data.json / 05145 (White County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://netrality.com/data-centers/pittsburgh/",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-b0f95c76f3 (Netrality Data Center - Pittsburgh PA (429 Fourth Ave))",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://netrality.com/blog/pittsburgh/",
+        "suggested_replacement": {
+          "url": "https://netrality.com/services/edge-data-centers/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.up.com/aboutup/community/inside_track/bailey_yard/index.htm",
+        "status": 404,
+        "context": "map_data.json / 31111 (Lincoln County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.flexential.com/data-centers/new-hampshire/manchester",
+        "status": 404,
+        "context": "map_data.json / 33011 (Hillsborough County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.flexential.com/data-centers",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://eits.nv.gov",
+        "status": null,
+        "context": "map_data.json / 32510 (Carson City)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.umass.edu/it/support/mghpcc",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-597539bfd9 (UMass Amherst Massachusetts Green HPC - Amherst)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.gallatin.mt.gov/",
+        "status": null,
+        "context": "map_data.json / 30031 (Gallatin County)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.gallatin.mt.gov'. (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20150221120039/http://www.gallatin.mt.gov:80/",
+          "timestamp": "20150221120039"
+        }
+      },
+      {
+        "url": "https://www.eastfelicianaparish.net",
+        "status": null,
+        "context": "map_data.json / 22037 (East Feliciana Parish)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.grantcountywv.com",
+        "status": null,
+        "context": "map_data.json / 54023 (Grant County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220309005627/http://www.grantcountywv.com/",
+          "timestamp": "20220309005627"
+        }
+      },
+      {
+        "url": "https://hawaiiantel.com/",
+        "status": 302,
+        "context": "state_regulations.json / 15 (Hawaii)",
+        "error": "HTTP 302",
+        "down_reason": null,
+        "final_url": "https://www.hawaiiantel.com/",
+        "archive": {
+          "url": "http://web.archive.org/web/20260618214718/https://www.hawaiiantel.com/",
+          "timestamp": "20260618214718"
+        }
+      },
+      {
+        "url": "https://www.gdeb.com/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-4eb14e70be (Electric Boat Data Center - North Kingstown RI)",
+        "error": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260812180322/https://www.gdeb.com/",
+          "timestamp": "20260812180322"
+        }
+      },
+      {
+        "url": "https://dnrc.mt.gov/divisions/water/",
+        "status": 404,
+        "context": "state_regulations.json / 30 (Montana)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://vantagedc.com/data-centers/phoenix/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-2b22756aa7 (Vantage Data Centers - Phoenix AZ PHX1)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://www.chippewafallschamber.com/",
+        "status": null,
+        "context": "map_data.json / 55017 (Chippewa County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.aepohio.com/economic-development",
+        "status": 404,
+        "context": "map_data.json / 39127 (Perry County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED",
+        "final_url": "https://www.aepohio.com/404?aspxerrorpath=/economic-development.aspx"
+      },
+      {
+        "url": "https://blog.google/technology/infrastructure/google-data-center-topeka-kansas/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-f4c8fce3e6 (Google Data Center - Topeka KS)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+          "score": 4,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.greaterbirminghalliance.com/",
+        "status": null,
+        "context": "map_data.json / 01073 (Jefferson County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.co.columbia.wi.us/County-Board",
+        "status": 404,
+        "context": "map_data.json / 55021 (Columbia County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED"
+      },
+      {
+        "url": "https://newlook.dteenergy.com/wps/wcm/connect/dte-web/home/home",
+        "status": null,
+        "context": "map_data.json / 26163 (Wayne County)",
+        "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20170920072458/https://www.newlook.dteenergy.com/wps/wcm/connect/dte-web/home/home/",
+          "timestamp": "20170920072458"
+        }
+      },
+      {
+        "url": "https://www.swepco.com/account/business/economic-development/",
+        "status": 404,
+        "context": "map_data.json / 48449 (Titus County)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED",
+        "final_url": "https://www.swepco.com/404?aspxerrorpath=/account/business/economic-development/.aspx"
+      },
+      {
+        "url": "https://www.calvertcountymd.gov/economic-development",
+        "status": 404,
+        "context": "map_data.json / 24009 (Calvert County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.calvertcountymd.gov/681/Economic-Development-Advisory-Commission",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.noxubeecountyms.com",
+        "status": null,
+        "context": "map_data.json / 28103 (Noxubee County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20250210195228/https://noxubeecountyms.com/",
+          "timestamp": "20250210195228"
+        }
+      },
+      {
+        "url": "https://www.boxbuttecounty.org",
+        "status": null,
+        "context": "map_data.json / 31013 (Box Butte County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.putnamcounty.in.gov/",
+        "status": null,
+        "context": "map_data.json / 18133 (Putnam County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.kansascommerce.gov/program/incentives/promoting-employment-across-kansas/",
+        "status": 404,
+        "context": "map_data.json / 20209 (Wyandotte County)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.kansascommerce.gov/2022/11/kansas-main-street-program-seeking-new-communities-hosting-application-workshop/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://doas.ga.gov/state-purchasing/technology-services",
+        "status": 404,
+        "context": "sample_layers.json / data_centers / fc-5b61229db6 (Georgia Department of Administrative Services - Atlanta GA)",
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.doas.ga.gov/state-purchasing/supplier-services",
+          "score": 3,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://compassdatacenters.com/locations/columbus/",
+        "status": 404,
+        "context": "sample_layers.json / ai_campuses / fc-781af30bfa (Compass Datacenters - Columbus OH)",
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.compassdatacenters.com/locations/columbus/"
+      },
+      {
+        "url": "https://www.vbgov.com/",
+        "status": null,
+        "context": "map_data.json / 51810 (Virginia Beach city)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260131062756/https://www.vbgov.com/",
+          "timestamp": "20260131062756"
+        }
+      },
+      {
+        "url": "https://vxchnge.com/colocation-data-centers/fort-worth-tx/",
+        "status": null,
+        "context": "sample_layers.json / data_centers / fc-6ced196191 (vXchnge Data Center - Fort Worth TX)",
+        "error": "TimeoutError: The read operation timed out",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.jeffersonedc.com",
+        "status": null,
+        "context": "map_data.json / 54037 (Jefferson County)",
+        "error": "URLError: <urlopen error [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1016)>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20250710011357/http://jeffersonedc.com/",
+          "timestamp": "20250710011357"
+        }
+      },
+      {
+        "url": "https://www.yorkcounty.org",
+        "status": null,
+        "context": "map_data.json / 23031 (York County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260413013211/http://yorkcounty.org/",
+          "timestamp": "20260413013211"
+        }
+      },
+      {
+        "url": "https://www.nefrpc.org",
+        "status": null,
+        "context": "map_data.json / 12109 (St. Johns County)",
+        "error": "URLError: <urlopen error timed out>",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20190406132809/http://www.nefrpc.org:80/",
+          "timestamp": "20190406132809"
+        }
+      },
+      {
+        "url": "https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/demand-side-management/demand-response",
+        "context": "map_data.json / 06075 (San Francisco County)",
+        "status": 404,
+        "error": "HTTP 404",
+        "final_url": "https://www.cpuc.ca.gov/Error-Pages/404?item=%2findustries-and-topics%2felectrical-energy%2fdemand-side-management%2fdemand-response&user=extranet%5cAnonymous&site=website",
+        "down_reason": "SOURCE_RETIRED",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://tax.utah.gov/sales/exemptions",
+        "context": "map_data.json / 49011 (Davis County)",
+        "status": 404,
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.illinois.gov/sites/dceo/",
+        "context": "map_data.json / 17089 (Kane County)",
+        "status": 404,
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.fayettecountyga.gov/community_development/planning_zoning",
+        "context": "map_data.json / 13113 (Fayette County)",
+        "status": 404,
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.coruscorpuschristi.com",
+        "context": "map_data.json / 48355 (Nueces County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.xcelenergy.com/staticfiles/xe/Corporate/Corporate%20PDFs/eco-dev-TX.pdf",
+        "context": "map_data.json / 48375 (Potter County)",
+        "status": 404,
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.roanokecountyva.gov/economic-development",
+        "context": "map_data.json / 51161 (Roanoke County)",
+        "status": 404,
+        "error": "HTTP 404",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.roanokecountyva.gov/1954/Economic-Development-Focus-Group",
+          "score": 2,
+          "found_via": "sitemap"
+        },
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.co.dakota.ne.us/",
+        "context": "map_data.json / 31043 (Dakota County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.atascosacountytexas.gov",
+        "context": "map_data.json / 48013 (Atascosa County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.gibsoncounty.in.gov",
+        "context": "map_data.json / 18051 (Gibson County)",
+        "error": "URLError: <urlopen error [Errno -5] No address associated with hostname>",
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.oconeecounty.com/water-authority",
+        "context": "map_data.json / 13219 (Oconee County)",
+        "status": 404,
+        "error": "HTTP 404",
+        "final_url": "https://www.oconeecountyga.gov/water-authority",
+        "down_reason": "SOURCE_MOVED",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.robesonnc.com/departments/economic-development",
+        "context": "map_data.json / 37155 (Robeson County)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www2.cisl.ucar.edu/resources/facilities/nwsc",
+        "context": "sample_layers.json / data_centers / fc-debe2b0583 (NCAR Wyoming Supercomputing Center - Cheyenne)",
+        "status": 404,
+        "error": "HTTP 404",
+        "final_url": "https://www.cisl.ucar.edu/resources/facilities/nwsc",
+        "down_reason": "SOURCE_MOVED",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://lunavi.com/data-centers/denver-colorado/",
+        "context": "sample_layers.json / data_centers / fc-a5d221b3fb (Lunavi Data Center - Denver CO)",
+        "status": 404,
+        "error": "HTTP 404",
+        "final_url": "https://www.lunavi.com/data-centers/denver-colorado",
+        "down_reason": "SOURCE_MOVED",
+        "suggested_replacement": {
+          "url": "https://www.lunavi.com/data-centers/denver",
+          "score": 3,
+          "found_via": "sitemap"
+        },
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.ucf.edu/research/computing/",
+        "context": "sample_layers.json / data_centers / fc-3cd453dc90 (UCF Research Computing - Orlando)",
+        "status": 404,
+        "error": "HTTP 404",
+        "down_reason": "SOURCE_RETIRED",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.cmmc.org/",
         "context": "sample_layers.json / data_centers / fc-1aa6dd5f3c (Central Maine Medical Center Data Center - Lewiston ME)",
         "error": "URLError: <urlopen error [SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1016)>",
         "down_reason": "REPLACEMENT_REQUIRED",
         "archive": {
           "url": "http://web.archive.org/web/20171002023830/https://www.cmmc.org/",
           "timestamp": "20171002023830"
-        }
+        },
+        "checked_at": "2026-08-20T03:50:18+00:00"
       },
       {
-        "url": "https://lunavi.com/data-centers/denver-colorado/",
-        "status": 404,
-        "context": "sample_layers.json / data_centers / fc-a5d221b3fb (Lunavi Data Center - Denver CO)",
-        "error": "HTTP 404",
-        "down_reason": "SOURCE_MOVED",
-        "final_url": "https://www.lunavi.com/data-centers/denver-colorado",
-        "suggested_replacement": {
-          "url": "https://www.lunavi.com/data-centers/denver",
-          "score": 3,
-          "found_via": "sitemap"
-        }
-      },
-      {
-        "url": "https://www2.cisl.ucar.edu/resources/facilities/nwsc",
-        "status": 404,
-        "context": "sample_layers.json / data_centers / fc-debe2b0583 (NCAR Wyoming Supercomputing Center - Cheyenne)",
-        "error": "HTTP 404",
-        "down_reason": "SOURCE_MOVED",
-        "final_url": "https://www.cisl.ucar.edu/resources/facilities/nwsc"
-      },
-      {
-        "url": "https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/demand-side-management/demand-response",
-        "status": 404,
-        "context": "map_data.json / 06075 (San Francisco County)",
-        "error": "HTTP 404",
-        "down_reason": "SOURCE_RETIRED",
-        "final_url": "https://www.cpuc.ca.gov/Error-Pages/404?item=%2findustries-and-topics%2felectrical-energy%2fdemand-side-management%2fdemand-response&user=extranet%5cAnonymous&site=website"
+        "url": "https://www.evoquedcs.com/locations/austin/",
+        "context": "sample_layers.json / data_centers / fc-c14204e975 (Evoque Data Center - Austin TX)",
+        "error": "URLError: <urlopen error [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1016)>",
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
       },
       {
         "url": "https://www.budget.sc.gov/dto",
-        "status": null,
         "context": "sample_layers.json / data_centers / fc-f1eb0ce85b (South Carolina Division of Technology Operations - Columbia SC)",
         "error": "URLError: <urlopen error timed out>",
-        "down_reason": "TRANSIENT_FAILURE"
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://news.microsoft.com/2022/microsoft-iowa-data-center-west-des-moines/",
+        "context": "sample_layers.json / ai_campuses / fc-7f262d9195 (Microsoft Data Center - West Des Moines IA)",
+        "status": 404,
+        "error": "HTTP 404",
+        "final_url": "https://news.microsoft.com/source/2022/microsoft-iowa-data-center-west-des-moines/",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+          "score": 2,
+          "found_via": "sitemap"
+        },
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://kingsborodigital.com/",
+        "context": "sample_layers.json / ai_campuses / fc-266167975e (Kingsboro Digital Tech Park - Albany NY)",
+        "error": "URLError: <urlopen error [Errno -2] Name or service not known>",
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
       }
     ],
     "warning_urls": [
       {
-        "url": "https://www.claycountygov.com/community/economic-development",
+        "url": "https://www.avera.org/",
         "status": 403,
-        "context": "map_data.json / 12019 (Clay County)",
+        "context": "sample_layers.json / data_centers / fc-be3a507024 (Avera Health Data Center - Sioux Falls SD)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260810194912/https://www.avera.org/",
+          "timestamp": "20260810194912"
+        }
+      },
+      {
+        "url": "https://wvu.edu/about-wvu",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-6e5ecf658a (West Virginia University Research Computing - Morgantown WV)",
+        "error": "HTTP 403",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.wvu.edu/about-wvu",
+        "archive": {
+          "url": "http://web.archive.org/web/20260804145002/https://www.wvu.edu/about-wvu/",
+          "timestamp": "20260804145002"
+        }
+      },
+      {
+        "url": "https://www.eglin.af.mil",
+        "status": 403,
+        "context": "map_data.json / 12091 (Okaloosa County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260716184847/https://www.eglin.af.mil/",
+          "timestamp": "20260716184847"
+        }
+      },
+      {
+        "url": "https://www.sas.usace.army.mil/Missions/Civil-Works/Recreation/Hartwell-Lake/",
+        "status": 403,
+        "context": "map_data.json / 13147 (Hart County)",
         "error": "HTTP 403",
         "down_reason": "TRANSIENT_FAILURE"
       },
       {
-        "url": "https://www.cityoflaredo.com/",
+        "url": "https://colocrossing.com/locations/san-antonio/",
         "status": 403,
-        "context": "map_data.json / 48479 (Webb County)",
+        "context": "sample_layers.json / data_centers / fc-50d88367e0 (ColoCrossing - San Antonio TX)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://app.leg.wa.gov/",
+        "status": 403,
+        "context": "map_data.json / 53067 (Thurston County)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.ironmountain.com/resources/general/d/data-centers/phoenix-arizona",
+        "status": 429,
+        "context": "sample_layers.json / data_centers / fc-33b9e658f2 (Iron Mountain Data Center - Phoenix AZ)",
+        "error": "HTTP 429",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.ssa.gov/agency/organization/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-645198727f (Social Security Administration - Baltimore MD Data Center)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.erdc.usace.army.mil/",
+        "status": 403,
+        "context": "map_data.json / 28149 (Warren County)",
         "error": "HTTP 403",
         "down_reason": "REPLACEMENT_REQUIRED",
         "archive": {
-          "url": "http://web.archive.org/web/20260811160807/https://www.cityoflaredo.com/",
-          "timestamp": "20260811160807"
+          "url": "http://web.archive.org/web/20260724013844/https://www.erdc.usace.army.mil/",
+          "timestamp": "20260724013844"
+        }
+      },
+      {
+        "url": "https://aset.az.gov/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-a7d8e50744 (Arizona Strategic Enterprise Technology - Phoenix AZ)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260413042004/https://aset.az.gov/",
+          "timestamp": "20260413042004"
+        }
+      },
+      {
+        "url": "https://www.georgia.org/",
+        "status": 403,
+        "context": "map_data.json / 13157 (Jackson County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260814174242/https://georgia.org/",
+          "timestamp": "20260814174242"
+        }
+      },
+      {
+        "url": "https://www.alliantenergy.com/",
+        "status": 403,
+        "context": "map_data.json / 19033 (Cerro Gordo County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260811212931/https://www.alliantenergy.com/",
+          "timestamp": "20260811212931"
+        }
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny3",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-e48c05a6a5 (Equinix - NY3 Parsippany)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260509193412/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny3",
+          "timestamp": "20260509193412"
+        }
+      },
+      {
+        "url": "https://www.co.douglas.or.us/planning/economic-development.asp",
+        "status": 403,
+        "context": "map_data.json / 41019 (Douglas County)",
+        "error": "HTTP 403",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.douglascountyor.gov/planning/economic-development.asp"
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc3",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-56c8796070 (Equinix - DC3 Ashburn)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260207215140/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc3",
+          "timestamp": "20260207215140"
+        }
+      },
+      {
+        "url": "https://www.hardincountyil.org",
+        "status": 403,
+        "context": "map_data.json / 17069 (Hardin County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20230528035720/https://hardincountyil.org/",
+          "timestamp": "20230528035720"
+        }
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv4",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-e5ab4a5a8d (Equinix - SV4 Santa Clara)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260715001753/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv4",
+          "timestamp": "20260715001753"
+        }
+      },
+      {
+        "url": "https://www.netcom.army.mil",
+        "status": 403,
+        "context": "map_data.json / 04003 (Cochise County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260605152829/https://www.netcom.army.mil//",
+          "timestamp": "20260605152829"
+        }
+      },
+      {
+        "url": "https://www.mcrdpi.marines.mil/",
+        "status": 403,
+        "context": "map_data.json / 45013 (Beaufort County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260702033650/https://www.mcrdpi.marines.mil/",
+          "timestamp": "20260702033650"
+        }
+      },
+      {
+        "url": "https://www.co.barron.wi.us/",
+        "status": 403,
+        "context": "map_data.json / 55005 (Barron County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20150102164947/http://www.co.barron.wi.us/",
+          "timestamp": "20150102164947"
+        }
+      },
+      {
+        "url": "https://www.lubrizol.com",
+        "status": 403,
+        "context": "map_data.json / 39085 (Lake County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260726065514/https://www.lubrizol.com/",
+          "timestamp": "20260726065514"
+        }
+      },
+      {
+        "url": "https://www.cnic.navy.mil/regions/cnrnw/installations/nbk.html",
+        "status": 403,
+        "context": "map_data.json / 53035 (Kitsap County)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.bedfordcountyva.gov/",
+        "status": 403,
+        "context": "map_data.json / 51019 (Bedford County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260718212211/https://www.bedfordcountyva.gov/",
+          "timestamp": "20260718212211"
+        }
+      },
+      {
+        "url": "https://laruecountyky.gov/",
+        "status": 403,
+        "context": "map_data.json / 21123 (Larue County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260727085150/https://laruecountyky.gov/",
+          "timestamp": "20260727085150"
+        }
+      },
+      {
+        "url": "https://www.times-georgian.com/news/local/data-center-moratorium-extended/article_a7d31b38-3e6a-59d0-8da4-6ac3a17a167c.html",
+        "status": 429,
+        "context": "map_data.json / 13045 (Carroll County)",
+        "error": "HTTP 429",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.times-georgian.com/news/local/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://colocrossing.com/locations/miami/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-341da1f004 (ColoCrossing - Miami FL)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-7886081377 (Equinix - SE4 Seattle)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260518031842/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4",
+          "timestamp": "20260518031842"
+        }
+      },
+      {
+        "url": "https://www.wpafb.af.mil/",
+        "status": 403,
+        "context": "map_data.json / 39057 (Greene County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260809195710/https://www.wpafb.af.mil/",
+          "timestamp": "20260809195710"
+        }
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/charlotte-data-centers/charlotte",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-76bf23351c (Equinix CL1 - Charlotte NC)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.fcgov.com/economicdevelopment/",
+        "status": 403,
+        "context": "map_data.json / 08069 (Larimer County)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.seymourjohnson.af.mil/",
+        "status": 403,
+        "context": "map_data.json / 37191 (Wayne County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260706094235/https://www.seymourjohnson.af.mil/",
+          "timestamp": "20260706094235"
+        }
+      },
+      {
+        "url": "https://www.robins.af.mil",
+        "status": 403,
+        "context": "map_data.json / 13153 (Houston County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260815232706/https://www.robins.af.mil/",
+          "timestamp": "20260815232706"
+        }
+      },
+      {
+        "url": "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page",
+        "status": 403,
+        "context": "state_regulations.json / 36 (New York)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260803133932/https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page",
+          "timestamp": "20260803133932"
+        }
+      },
+      {
+        "url": "https://www.mainegeneral.org/about-us/information-technology",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-831f61e507 (MaineGeneral Medical Center Data Center - Augusta ME)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/las-vegas-data-centers/las-vegas",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-91885fc478 (Equinix LV1 - Las Vegas NV)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/boston-data-centers/boston",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-2114c53aec (Equinix BO1 - Boston MA)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.navsea.navy.mil/Home/Warfare-Centers/NUWC-Newport/",
+        "status": 403,
+        "context": "map_data.json / 44005 (Newport County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260813011442/https://www.navsea.navy.mil/home/warfare-centers/nuwc-newport/",
+          "timestamp": "20260813011442"
+        }
+      },
+      {
+        "url": "https://therealdeal.com/texas/2026/06/30/can-san-marcos-data-center-ban-survive-legal-challenges/",
+        "status": 403,
+        "context": "map_data.json / 48209 (Hays County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260701200607/https://therealdeal.com/texas/2026/06/30/can-san-marcos-data-center-ban-survive-legal-challenges/",
+          "timestamp": "20260701200607"
+        }
+      },
+      {
+        "url": "https://pinalpost.com/the-water-accounting-behind-the-la-osa-vote/",
+        "status": 403,
+        "context": "map_data.json / 04021 (Pinal County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://pinalpost.com/the-employment-projection-behind-the-la-osa-vote/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.southshorechamber.org",
+        "status": 429,
+        "context": "map_data.json / 25023 (Plymouth County)",
+        "error": "HTTP 429",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260706031206/https://www.southshorechamber.org/",
+          "timestamp": "20260706031206"
+        }
+      },
+      {
+        "url": "https://www.co.jefferson.or.us/planning",
+        "status": 403,
+        "context": "map_data.json / 41031 (Jefferson County)",
+        "error": "HTTP 403",
+        "down_reason": "SOURCE_MOVED",
+        "final_url": "https://www.jeffersoncountyor.gov/planning"
+      },
+      {
+        "url": "https://www.navsea.navy.mil/Home/WarfareCenters/NavalUnderwaterWarfareCenter/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-45ba8fa2d3 (US Navy - Keyport WA Data Center)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.masoncity.net/",
+        "status": 403,
+        "context": "map_data.json / 19033 (Cerro Gordo County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260201031904/https://www.masoncity.net/",
+          "timestamp": "20260201031904"
+        }
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/denver-data-centers/de1",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-f28faebb45 (Equinix DE1 - Englewood)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260314203559/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/denver-data-centers/de1",
+          "timestamp": "20260314203559"
+        }
+      },
+      {
+        "url": "https://www.tsys.com",
+        "status": 403,
+        "context": "map_data.json / 13215 (Muscogee County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260819171459/https://www.tsys.com/",
+          "timestamp": "20260819171459"
+        }
+      },
+      {
+        "url": "https://www.netcom.army.mil/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-25ff7282ee (US Army - Fort Huachuca AZ Data Center (NETCOM))",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260605152829/https://www.netcom.army.mil//",
+          "timestamp": "20260605152829"
+        }
+      },
+      {
+        "url": "https://www.sjcounty.net/",
+        "status": 403,
+        "context": "map_data.json / 35045 (San Juan County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260815225250/https://www.sjcounty.net/",
+          "timestamp": "20260815225250"
+        }
+      },
+      {
+        "url": "https://www.afrl.af.mil",
+        "status": 403,
+        "context": "map_data.json / 39113 (Montgomery County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260809152308/https://www.afrl.af.mil/",
+          "timestamp": "20260809152308"
+        }
+      },
+      {
+        "url": "https://www.mohavecounty.us/ContentPage.aspx?id=173&cid=93",
+        "status": 403,
+        "context": "map_data.json / 04015 (Mohave County)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://colocrossing.com/locations/denver/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-55b2cf3205 (ColoCrossing - Denver CO)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/dallas-data-centers/da9",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-9db4b901bc (Equinix - DA9 Dallas)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260512191117/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/dallas-data-centers/da9",
+          "timestamp": "20260512191117"
+        }
+      },
+      {
+        "url": "https://www.citizensbank.com/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-3ec59a8b11 (Citizens Bank Operations Center Data Center - Manchester NH)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20220401075002/http://www.citizensbank.com/",
+          "timestamp": "20220401075002"
+        }
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/salt-lake-city-data-centers/sl2",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-5a9bdc0c65 (Equinix - SL2 Salt Lake City)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://accd.vermont.gov/",
+        "status": 403,
+        "context": "map_data.json / 50027 (Windsor County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260704222531/https://accd.vermont.gov/",
+          "timestamp": "20260704222531"
+        }
+      },
+      {
+        "url": "https://www.nyc.gov/site/mocej/index.page",
+        "status": 403,
+        "context": "map_data.json / 36061 (New York County)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://floridajobs.org/business-growth-and-partnerships/incentives/capital-investment-tax-credit",
+        "status": 403,
+        "context": "map_data.json / 12113 (Santa Rosa County)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.gadsdencountyfl.gov/",
+        "status": 403,
+        "context": "map_data.json / 12039 (Gadsden County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260718220954/https://www.gadsdencountyfl.gov/",
+          "timestamp": "20260718220954"
+        }
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/st-louis-data-centers/stl1",
+        "status": 403,
+        "context": "map_data.json / 29510 (St. Louis city)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://researchcomputing.princeton.edu",
+        "status": 403,
+        "context": "map_data.json / 34021 (Mercer County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260812214500/https://researchcomputing.princeton.edu/",
+          "timestamp": "20260812214500"
+        }
+      },
+      {
+        "url": "https://www.tva.com/energy/our-power-system",
+        "status": 403,
+        "context": "map_data.json / 47049 (Fentress County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260813175343/https://www.tva.com/energy/our-power-system",
+          "timestamp": "20260813175343"
+        }
+      },
+      {
+        "url": "https://www.michiganbusiness.org/industries/data-centers/",
+        "status": 403,
+        "context": "map_data.json / 26125 (Oakland County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "suggested_replacement": {
+          "url": "https://www.michiganbusiness.org/industries/outdoor-recreation/industry-data/",
+          "score": 2,
+          "found_via": "sitemap"
+        }
+      },
+      {
+        "url": "https://www.metronet.com/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-893e960ff4 (Metronet Data Center - Kokomo IN)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260814005458/https://www.metronet.com/",
+          "timestamp": "20260814005458"
+        }
+      },
+      {
+        "url": "https://louisvilleky.gov/government/technology",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-cd07cf110a (Louisville Metro Government Technology - Louisville KY)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.hill.af.mil",
+        "status": 403,
+        "context": "map_data.json / 49057 (Weber County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260811033047/https://www.hill.af.mil/",
+          "timestamp": "20260811033047"
+        }
+      },
+      {
+        "url": "https://www.avec.org/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-8eb87c38f0 (Alaska Village Electric Cooperative Data Center - Anchorage AK)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260218154423/https://avec.org/",
+          "timestamp": "20260218154423"
+        }
+      },
+      {
+        "url": "https://www.cummins.com/",
+        "status": 403,
+        "context": "map_data.json / 18071 (Jackson County)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "final_url": "https://www.cummins.com/en-na",
+        "archive": {
+          "url": "http://web.archive.org/web/20260810054015/https://www.cummins.com/",
+          "timestamp": "20260810054015"
+        }
+      },
+      {
+        "url": "https://www.metronet.com/business/colocation/",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-893e960ff4 (Metronet Data Center - Kokomo IN)",
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE"
+      },
+      {
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc21",
+        "status": 403,
+        "context": "sample_layers.json / data_centers / fc-4a743194f8 (Equinix - DC21 Ashburn)",
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260421070654/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc21",
+          "timestamp": "20260421070654"
         }
       },
       {
         "url": "https://openai.com/index/announcing-the-stargate-project/",
-        "status": 403,
         "context": "map_data.json / 48441 (Taylor County)",
+        "status": 403,
         "error": "HTTP 403",
         "down_reason": "REPLACEMENT_REQUIRED",
         "archive": {
           "url": "http://web.archive.org/web/20260804023053/https://openai.com/index/announcing-the-stargate-project/",
           "timestamp": "20260804023053"
-        }
+        },
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.claycountygov.com/community/economic-development",
+        "context": "map_data.json / 12019 (Clay County)",
+        "status": 403,
+        "error": "HTTP 403",
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
+      },
+      {
+        "url": "https://www.cityoflaredo.com/",
+        "context": "map_data.json / 48479 (Webb County)",
+        "status": 403,
+        "error": "HTTP 403",
+        "down_reason": "REPLACEMENT_REQUIRED",
+        "archive": {
+          "url": "http://web.archive.org/web/20260811160807/https://www.cityoflaredo.com/",
+          "timestamp": "20260811160807"
+        },
+        "checked_at": "2026-08-20T03:50:18+00:00"
       },
       {
         "url": "https://www.marincounty.gov/depts/cd",
-        "status": 403,
         "context": "map_data.json / 06041 (Marin County)",
+        "status": 403,
         "error": "HTTP 403",
-        "down_reason": "TRANSIENT_FAILURE"
+        "down_reason": "TRANSIENT_FAILURE",
+        "checked_at": "2026-08-20T03:50:18+00:00"
       }
     ]
   }
