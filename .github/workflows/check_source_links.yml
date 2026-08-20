@@ -9,8 +9,17 @@ name: Check Source Link Health
 # module docstring for how that heuristic works.
 #
 # Runs weekly, in slices, so no host is hammered and the whole corpus is
-# revisited roughly monthly. Never modifies map_data.json — link health is
-# written to its own derived file.
+# revisited roughly monthly. The county-citation job never modifies
+# map_data.json — link health is written to its own derived file.
+#
+# check_map_data_citations is the map_data_citations equivalent (a larger
+# corpus: county sources plus every facility-layer and state-regulation
+# source, via data/validate_sources.py). It only runs on a manual dispatch,
+# not the weekly cron — data/validate_sources.py already runs weekly in
+# production via update_data.yml (which is deliberately pinned to main, see
+# that workflow's own comments); this job exists so the same check can also
+# be run, live, against a feature branch on demand for a remediation pass,
+# without duplicating validate_sources.py's production cadence here.
 
 on:
   schedule:
@@ -34,7 +43,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  check:
+  check_county_citations:
     runs-on: ubuntu-latest
     timeout-minutes: 50
     steps:
@@ -92,4 +101,45 @@ jobs:
         run: |
           if [ -f data/source_link_health.json ]; then
             python data/check_source_links.py --report-only
+          fi
+
+  check_map_data_citations:
+    # Manual dispatch only -- see the header comment above for why this
+    # doesn't also run on the weekly cron.
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Exits 1 if broken URLs were found -- that's a report, not a failed
+      # run, so don't let it fail the job.
+      - name: Validate map_data_citations (county + facility + state sources)
+        continue-on-error: true
+        run: python data/validate_sources.py
+
+      - name: Commit validation report + citation health
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/map_data.json data/map_data_citation_health.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: refresh map_data citation validation [${TIMESTAMP}] [skip ci]"
+            # Same any-ref-safe retry pattern as check_county_citations above.
+            for attempt in 1 2 3 4 5; do
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then break; fi
+              if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
+              echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
+              git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}"
+              sleep $((attempt * 5))
+            done
           fi

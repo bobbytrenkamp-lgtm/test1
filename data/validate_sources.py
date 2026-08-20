@@ -14,6 +14,18 @@ staying the more primitive of the two, and gains the same down_reason
 classification (TRANSIENT_FAILURE / SOURCE_MOVED / SOURCE_RETIRED /
 ACCESS_BLOCKED / REPLACEMENT_REQUIRED) on every broken/warning URL.
 
+Also writes data/map_data_citation_health.json: a per-URL record for EVERY
+checked URL (not just broken/warning ones), including final_url on a
+successful-but-redirected request. map_data.json's own validation_report
+only keeps broken/warning entries (it's embedded in a file the frontend
+reads, so it stays small) -- but data/remediate_citations.py needs the OK
+entries too, specifically ones where the request succeeded only after a
+redirect, so it can apply the same directly-observed-redirect auto-fix this
+already does for county citations via source_link_health.json. Without a
+separate file, that signal was discarded the moment a redirect landed
+somewhere live, which is why map_data_citations never got the same
+remediation-loop treatment county_page_citations did.
+
 Exit codes:
   0 — all URLs OK (or no URLs to check)
   1 — one or more URLs broken
@@ -36,6 +48,7 @@ DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 MAP_DATA_PATH = os.path.join(DATA_DIR, "map_data.json")
 SAMPLE_LAYERS_PATH = os.path.join(DATA_DIR, "sample_layers.json")
 STATE_REGS_PATH = os.path.join(DATA_DIR, "state_regulations.json")
+CITATION_HEALTH_PATH = os.path.join(DATA_DIR, "map_data_citation_health.json")
 
 TIMEOUT = 10
 MAX_WORKERS = 8
@@ -118,7 +131,10 @@ def run_validation():
             label = f"[{i:3d}/{len(urls)}]"
             if error is None and status and 200 <= status < 400:
                 print(f"{label} OK  {status}  {url}")
-                results["ok"].append({"url": url, "status": status, "context": context})
+                ok_record = {"url": url, "status": status, "context": context}
+                if final_url:
+                    ok_record["final_url"] = final_url
+                results["ok"].append(ok_record)
                 continue
 
             # Broken/warning: enrich with the same archive lookup + sitemap
@@ -189,6 +205,44 @@ def write_report_to_map_data(results):
     print(f"\nValidation report written to map_data.json")
 
 
+def write_citation_health(results):
+    """Every checked URL (OK included), for data/remediate_citations.py to
+    consume -- map_data.json's own validation_report deliberately drops OK
+    entries to stay small, but the remediation engine needs exactly those to
+    find requests that succeeded only after a redirect."""
+    checked_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    urls = {}
+    for bucket in ("ok", "warning", "broken"):
+        for rec in results[bucket]:
+            entry = {
+                "ok": bucket == "ok",
+                "status": rec.get("status"),
+                "context": rec.get("context"),
+                "checked_at": checked_at,
+            }
+            if rec.get("final_url"):
+                entry["final_url"] = rec["final_url"]
+            if rec.get("error"):
+                entry["error"] = rec["error"]
+            if rec.get("down_reason"):
+                entry["down_reason"] = rec["down_reason"]
+            if rec.get("suggested_replacement"):
+                entry["suggested_replacement"] = rec["suggested_replacement"]
+            if rec.get("archive"):
+                entry["archive"] = rec["archive"]
+            urls[rec["url"]] = entry
+
+    health = {
+        "_schema": "map_data_citation_health_v1",
+        "checked_at": checked_at,
+        "urls": urls,
+    }
+    with open(CITATION_HEALTH_PATH, "w", encoding="utf-8") as f:
+        json.dump(health, f, indent=2)
+        f.write("\n")
+    print(f"Citation health for {len(urls)} URL(s) written to {CITATION_HEALTH_PATH}")
+
+
 def main():
     start = time.time()
     results = run_validation()
@@ -210,6 +264,7 @@ def main():
                 print(f"        Error:   {b['error']}")
 
     write_report_to_map_data(results)
+    write_citation_health(results)
 
     return 1 if results["broken"] else 0
 

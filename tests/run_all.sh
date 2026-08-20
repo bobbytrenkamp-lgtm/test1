@@ -51,6 +51,7 @@ run "policy pipeline unit tests"  python3 -m pytest tests/test_policy_pipeline.p
 run "source link move-suggestion logic" python3 -m pytest tests/test_check_source_links.py -q
 run "endpoint diagnostics: down_reason classifier" python3 -m pytest tests/test_endpoint_diagnostics.py -q
 run "citation remediation: redirect-fix + queue logic" python3 -m pytest tests/test_remediate_citations.py -q
+run "map_data citation health writer"  python3 -m pytest tests/test_validate_sources_citation_health.py -q
 run "economic data pipeline"      python3 tests/test_economic_data.py
 run "economic output validation"  python3 data/update_economic_data.py --check
 run "no paid dependencies"        python3 tests/test_no_paid_dependencies.py

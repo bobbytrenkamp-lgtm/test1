@@ -14,6 +14,8 @@ sys.path.insert(0, DATA_DIR)
 
 from remediate_citations import (   # noqa: E402
     find_redirect_fixes, find_queue_candidates, apply_redirect_fixes,
+    find_map_data_redirect_fixes, find_map_data_queue_candidates,
+    apply_sample_layers_fixes, apply_state_regs_fixes,
 )
 
 
@@ -109,3 +111,76 @@ def test_apply_redirect_fixes_no_fixes_changes_nothing():
     assert applied == 0
     assert restrictions["restrictions"][0]["sources"][0]["url"] == "http://x.gov/y"
     assert "replacement_history" not in restrictions["restrictions"][0]["sources"][0]
+
+
+# ---------------------------------------------------------------------------
+# map_data_citation_health.json support -- validate_sources.py's larger
+# corpus (county + sample_layers.json facility sources + state_regulations.json
+# state sources), added so map_data_citations gets the same auto-remediation
+# loop county_page_citations already had.
+# ---------------------------------------------------------------------------
+
+def test_find_map_data_redirect_fixes_only_includes_ok_with_final_url():
+    citation_health = {"urls": {
+        "http://a.gov/x": {"ok": True, "final_url": "http://a.gov/y",
+                            "checked_at": "2026-08-20", "context": "sample_layers.json / data_centers / fc-1 (X)"},
+        "http://a.gov/dead": {"ok": False, "final_url": None, "checked_at": "2026-08-20",
+                               "context": "state_regulations.json / 04 (Arizona)"},
+    }}
+    fixes = find_map_data_redirect_fixes(citation_health)
+    assert list(fixes.keys()) == ["http://a.gov/x"]
+    assert fixes["http://a.gov/x"]["new_url"] == "http://a.gov/y"
+    assert fixes["http://a.gov/x"]["context"].startswith("sample_layers.json")
+
+
+def test_apply_sample_layers_fixes_updates_facility_source_and_records_provenance():
+    sample_layers = {"data_centers": [
+        {"id": "fc-1", "name": "X", "sources": [{"label": "Old", "url": "http://a.gov/old"}]},
+    ], "ai_campuses": [], "power_infrastructure": [], "fiber_network": []}
+    fixes = {"http://a.gov/old": {"new_url": "http://a.gov/new", "checked_at": "2026-08-20",
+                                   "context": "sample_layers.json / data_centers / fc-1 (X)"}}
+    applied = apply_sample_layers_fixes(sample_layers, fixes)
+    assert applied == 1
+    source = sample_layers["data_centers"][0]["sources"][0]
+    assert source["url"] == "http://a.gov/new"
+    assert source["replacement_history"][0]["old_value"] == "http://a.gov/old"
+    assert source["replacement_history"][0]["verified_via"] == "data/map_data_citation_health.json"
+
+
+def test_apply_state_regs_fixes_updates_state_source():
+    state_regs = {"states": {
+        "04": {"name": "Arizona", "sources": [{"label": "AZ DOR", "url": "http://azdor.gov/old"}]},
+    }}
+    fixes = {"http://azdor.gov/old": {"new_url": "http://azdor.gov/new", "checked_at": "2026-08-20",
+                                       "context": "state_regulations.json / 04 (Arizona)"}}
+    applied = apply_state_regs_fixes(state_regs, fixes)
+    assert applied == 1
+    assert state_regs["states"]["04"]["sources"][0]["url"] == "http://azdor.gov/new"
+
+
+def test_apply_sample_layers_fixes_no_fixes_changes_nothing():
+    sample_layers = {"data_centers": [
+        {"id": "fc-1", "sources": [{"label": "X", "url": "http://a.gov/y"}]},
+    ], "ai_campuses": [], "power_infrastructure": [], "fiber_network": []}
+    applied = apply_sample_layers_fixes(sample_layers, {})
+    assert applied == 0
+    assert "replacement_history" not in sample_layers["data_centers"][0]["sources"][0]
+
+
+def test_find_map_data_queue_candidates_excludes_map_data_json_context():
+    # map_data.json-context (county) candidates are already surfaced by
+    # find_queue_candidates via source_link_health.json -- must not double-list.
+    citation_health = {"urls": {
+        "http://a.gov/county-dead": {"ok": False, "context": "map_data.json / 04013 (X County)",
+                                      "archive": {"url": "http://web.archive.org/..."}},
+        "http://a.gov/facility-dead": {"ok": False, "context": "sample_layers.json / data_centers / fc-1 (Y)",
+                                        "suggested_replacement": {"url": "http://a.gov/new"}},
+        "http://a.gov/no-lead": {"ok": False, "context": "state_regulations.json / 04 (Arizona)"},
+        "http://a.gov/reachable": {"ok": True, "context": "sample_layers.json / data_centers / fc-2 (Z)"},
+    }}
+    candidates = find_map_data_queue_candidates(citation_health)
+    urls = [c["url"] for c in candidates]
+    assert "http://a.gov/county-dead" not in urls
+    assert "http://a.gov/no-lead" not in urls
+    assert "http://a.gov/reachable" not in urls
+    assert "http://a.gov/facility-dead" in urls
