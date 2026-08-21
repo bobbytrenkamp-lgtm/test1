@@ -1,5 +1,5 @@
 {
-  "_disclaimer": "State-level policy summary — for reference and UI demonstration. Verify with current legislation before reliance.",
+  "_disclaimer": "State-level policy summary \u2014 for reference and UI demonstration. Verify with current legislation before reliance.",
   "_sources": [
     "NCSL AI legislation tracker (ncsl.org)",
     "State legislature websites",
@@ -18,7 +18,7 @@
       ],
       "sources": [
         {
-          "label": "Arizona Department of Revenue — Data Center Exemptions",
+          "label": "Arizona Department of Revenue \u2014 Data Center Exemptions",
           "url": "https://azdor.gov/"
         }
       ]
@@ -34,11 +34,11 @@
       ],
       "sources": [
         {
-          "label": "California Legislative Information — SB 1047 veto",
+          "label": "California Legislative Information \u2014 SB 1047 veto",
           "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1047"
         },
         {
-          "label": "AB 2013 — AI Training Data Transparency Act",
+          "label": "AB 2013 \u2014 AI Training Data Transparency Act",
           "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2013"
         }
       ]
@@ -48,13 +48,13 @@
       "abbr": "CO",
       "level": 2,
       "status": "active",
-      "summary": "SB 205 (2024) — Colorado Artificial Intelligence Act: nation's first comprehensive state AI regulation. Requires risk assessments and impact notices for developers and deployers of high-risk AI systems. Signed by Gov. Polis May 2024.",
+      "summary": "SB 205 (2024) \u2014 Colorado Artificial Intelligence Act: nation's first comprehensive state AI regulation. Requires risk assessments and impact notices for developers and deployers of high-risk AI systems. Signed by Gov. Polis May 2024.",
       "types": [
         "ai"
       ],
       "sources": [
         {
-          "label": "Colorado SB 205 — Artificial Intelligence Act (2024)",
+          "label": "Colorado SB 205 \u2014 Artificial Intelligence Act (2024)",
           "url": "https://leg.colorado.gov/bills/sb24-205"
         }
       ]
@@ -64,7 +64,7 @@
       "abbr": "CT",
       "level": 1,
       "status": "proposed",
-      "summary": "Multiple AI regulation bills proposed 2024–2025 session. Connecticut Data Privacy Act (CTDPA) applies to AI-driven automated decision-making.",
+      "summary": "Multiple AI regulation bills proposed 2024\u20132025 session. Connecticut Data Privacy Act (CTDPA) applies to AI-driven automated decision-making.",
       "types": [
         "ai"
       ],
@@ -86,7 +86,7 @@
       ],
       "sources": [
         {
-          "label": "Georgia Department of Revenue — Technology Tax Exemptions",
+          "label": "Georgia Department of Revenue \u2014 Technology Tax Exemptions",
           "url": "https://dor.georgia.gov/"
         }
       ]
@@ -102,7 +102,7 @@
       ],
       "sources": [
         {
-          "label": "IL AIVIA — 820 ILCS 42",
+          "label": "IL AIVIA \u2014 820 ILCS 42",
           "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015&ChapterID=68"
         },
         {
@@ -116,7 +116,7 @@
       "abbr": "IN",
       "level": -1,
       "status": "active",
-      "summary": "Indiana continues to offer data center tax exemptions on equipment and electricity for qualified facilities, and remains a major hyperscale hub (Meta, Microsoft, Amazon). However, as of mid-2026, nearly a third of Indiana's 92 counties have enacted data center restrictions, representing one of the most extensive statewide county-level moratorium waves in the US. Indiana University's Environmental Resilience Institute identified at least 17 counties with temporary moratoriums and two — Marshall County and Cass County — that have enacted permanent bans. Additional counties with active moratoriums include Boone, White, Putnam, Starke (Dec 2025), Dearborn (Feb 2026), Fulton (Mar 2026), Madison (Jun 2026), and others. An Indianapolis City-County Council committee voted 10-3 on July 13, 2026 to recommend a moratorium through December 31, 2027, with a full council vote scheduled for August 10, 2026. County concerns center on water resources, energy grid capacity, agricultural land preservation, and rural community character.",
+      "summary": "Indiana continues to offer data center tax exemptions on equipment and electricity for qualified facilities, and remains a major hyperscale hub (Meta, Microsoft, Amazon). However, as of mid-2026, nearly a third of Indiana's 92 counties have enacted data center restrictions, representing one of the most extensive statewide county-level moratorium waves in the US. Indiana University's Environmental Resilience Institute identified at least 17 counties with temporary moratoriums and two \u2014 Marshall County and Cass County \u2014 that have enacted permanent bans. Additional counties with active moratoriums include Boone, White, Putnam, Starke (Dec 2025), Dearborn (Feb 2026), Fulton (Mar 2026), Madison (Jun 2026), and others. An Indianapolis City-County Council committee voted 10-3 on July 13, 2026 to recommend a moratorium through December 31, 2027, with a full council vote scheduled for August 10, 2026. County concerns center on water resources, energy grid capacity, agricultural land preservation, and rural community character.",
       "types": [
         "data_center"
       ],
@@ -140,13 +140,13 @@
       "abbr": "IA",
       "level": -1,
       "status": "active",
-      "summary": "0% sales and use tax on data center equipment and electricity for qualifying facilities (Iowa Code §423.3). Considered the most aggressive state data center incentive package in the US. Google, Microsoft, Facebook all have large campuses.",
+      "summary": "0% sales and use tax on data center equipment and electricity for qualifying facilities (Iowa Code \u00a7423.3). Considered the most aggressive state data center incentive package in the US. Google, Microsoft, Facebook all have large campuses.",
       "types": [
         "data_center"
       ],
       "sources": [
         {
-          "label": "Iowa Code § 423.3 — Data Center Exemptions",
+          "label": "Iowa Code \u00a7 423.3 \u2014 Data Center Exemptions",
           "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90"
         }
       ]
@@ -156,7 +156,7 @@
       "abbr": "MA",
       "level": 1,
       "status": "proposed",
-      "summary": "Multiple AI oversight bills proposed in 2024–2025 sessions. No comprehensive AI law enacted as of 2025. Consumer protection laws applied to AI systems by AG.",
+      "summary": "Multiple AI oversight bills proposed in 2024\u20132025 sessions. No comprehensive AI law enacted as of 2025. Consumer protection laws applied to AI systems by AG.",
       "types": [
         "ai"
       ],
@@ -178,7 +178,7 @@
       ],
       "sources": [
         {
-          "label": "Nebraska Legislature — LB 1043",
+          "label": "Nebraska Legislature \u2014 LB 1043",
           "url": "https://nebraskalegislature.gov/"
         }
       ]
@@ -212,19 +212,19 @@
       ],
       "sources": [
         {
-          "label": "NY Governor Hochul — Executive Order No. 62 (official)",
+          "label": "NY Governor Hochul \u2014 Executive Order No. 62 (official)",
           "url": "https://www.governor.ny.gov/executive-order/no-62-establishing-temporary-moratorium-data-centers-new-york-while-state-develops"
         },
         {
-          "label": "NY Governor Hochul — First Statewide Moratorium on Hyperscale Data Centers (press release)",
+          "label": "NY Governor Hochul \u2014 First Statewide Moratorium on Hyperscale Data Centers (press release)",
           "url": "https://www.governor.ny.gov/news/first-statewide-moratorium-new-hyperscale-data-centers-launched-governor-kathy-hochul"
         },
         {
-          "label": "NY Senate Bill S10642 — Responsible Data Center Development Act",
+          "label": "NY Senate Bill S10642 \u2014 Responsible Data Center Development Act",
           "url": "https://www.nysenate.gov/legislation/bills/2025/S10642"
         },
         {
-          "label": "NYC Local Law 144 — Automated Employment Decision Tools",
+          "label": "NYC Local Law 144 \u2014 Automated Employment Decision Tools",
           "url": "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page"
         }
       ]
@@ -240,7 +240,7 @@
       ],
       "sources": [
         {
-          "label": "NC Department of Commerce — Incentives",
+          "label": "NC Department of Commerce \u2014 Incentives",
           "url": "https://www.nccommerce.com/business-services/incentive-programs"
         }
       ]
@@ -256,7 +256,7 @@
       ],
       "sources": [
         {
-          "label": "Ohio Development — Data Center Incentives",
+          "label": "Ohio Development \u2014 Data Center Incentives",
           "url": "https://development.ohio.gov/"
         }
       ]
@@ -272,7 +272,7 @@
       ],
       "sources": [
         {
-          "label": "Business Oregon — Data Center Exemptions",
+          "label": "Business Oregon \u2014 Data Center Exemptions",
           "url": "https://www.oregon4biz.com/"
         }
       ]
@@ -288,7 +288,7 @@
       ],
       "sources": [
         {
-          "label": "SCDOR — Manufacturing & Data Center Exemptions",
+          "label": "SCDOR \u2014 Manufacturing & Data Center Exemptions",
           "url": "https://dor.sc.gov/"
         }
       ]
@@ -316,13 +316,13 @@
       "abbr": "TN",
       "level": -1,
       "status": "active",
-      "summary": "Sales tax exemption on data center equipment for qualifying facilities (Tenn. Code Ann. § 67-6-206). xAI Colossus supercomputer facility (world's largest GPU cluster as of 2024) operates in Memphis (Shelby County). Multiple TN counties enacted data center moratoriums in 2024 citing TVA grid capacity concerns.",
+      "summary": "Sales tax exemption on data center equipment for qualifying facilities (Tenn. Code Ann. \u00a7 67-6-206). xAI Colossus supercomputer facility (world's largest GPU cluster as of 2024) operates in Memphis (Shelby County). Multiple TN counties enacted data center moratoriums in 2024 citing TVA grid capacity concerns.",
       "types": [
         "data_center"
       ],
       "sources": [
         {
-          "label": "Tennessee Department of Revenue — Data Center Exemption",
+          "label": "Tennessee Department of Revenue \u2014 Data Center Exemption",
           "url": "https://www.tn.gov/revenue.html"
         },
         {
@@ -342,7 +342,7 @@
       ],
       "sources": [
         {
-          "label": "Texas Economic Development — Incentives",
+          "label": "Texas Economic Development \u2014 Incentives",
           "url": "https://gov.texas.gov/business/page/incentives"
         }
       ]
@@ -352,14 +352,14 @@
       "abbr": "VA",
       "level": 1,
       "status": "active",
-      "summary": "Virginia remains the world's largest data center market (Northern Virginia handles 70%+ of global internet traffic) and the largest US state market. On June 30, 2026, Governor Abigail Spanberger signed the 2026 biennial budget (HB30) which includes a new Data Center Electricity Consumption Tax of $0.011 per kWh, effective July 1, 2026. The tax applies to both utility-supplied and self-generated electricity at facilities of 1 MW or more. Revenue is capped at $600 million per year, with refunds if collections exceed the cap. The tax expires June 30, 2028 absent legislative extension. The existing sales and use tax exemption for qualifying data center equipment was preserved. Individual counties have significant local restrictions — see county data for Loudoun, Fauquier, Page, and Rappahannock counties in particular.",
+      "summary": "Virginia remains the world's largest data center market (Northern Virginia handles 70%+ of global internet traffic) and the largest US state market. On June 30, 2026, Governor Abigail Spanberger signed the 2026 biennial budget (HB30) which includes a new Data Center Electricity Consumption Tax of $0.011 per kWh, effective July 1, 2026. The tax applies to both utility-supplied and self-generated electricity at facilities of 1 MW or more. Revenue is capped at $600 million per year, with refunds if collections exceed the cap. The tax expires June 30, 2028 absent legislative extension. The existing sales and use tax exemption for qualifying data center equipment was preserved. Individual counties have significant local restrictions \u2014 see county data for Loudoun, Fauquier, Page, and Rappahannock counties in particular.",
       "types": [
         "data_center",
         "energy"
       ],
       "sources": [
         {
-          "label": "Virginia HB30 — Data Center Electricity Consumption Tax (budget amendment 3-5.24#1c)",
+          "label": "Virginia HB30 \u2014 Data Center Electricity Consumption Tax (budget amendment 3-5.24#1c)",
           "url": "https://budget.lis.virginia.gov/amendment/2026/2/HB30/Introduced/CR/3-5.24/1c"
         },
         {
@@ -371,7 +371,7 @@
           "url": "https://www.datacenterknowledge.com/regulations/virginia-approves-first-ever-data-center-power-tax"
         },
         {
-          "label": "Virginia DHCD — Data Center Incentive Package",
+          "label": "Virginia DHCD \u2014 Data Center Incentive Package",
           "url": "https://www.dhcd.virginia.gov/"
         }
       ]
@@ -391,7 +391,7 @@
           "url": "https://www.governor.wa.gov/executive-actions/executive-orders"
         },
         {
-          "label": "WA SHB 1951 — AI Accountability in Government (2024)",
+          "label": "WA SHB 1951 \u2014 AI Accountability in Government (2024)",
           "url": "https://app.leg.wa.gov/billsummary?BillNumber=1951&Year=2024"
         }
       ]
@@ -407,7 +407,7 @@
       ],
       "sources": [
         {
-          "label": "Louisiana Economic Development — ITEP Program",
+          "label": "Louisiana Economic Development \u2014 ITEP Program",
           "url": "https://www.opportunitylouisiana.gov/business-incentives/itep"
         },
         {
@@ -421,14 +421,14 @@
       "abbr": "MI",
       "level": 1,
       "status": "active",
-      "summary": "Michigan has proposed AI governance legislation in 2024–2025 sessions including data privacy bills. Several counties (Kalamazoo, Washtenaw) have proposed data center moratoriums as the state weighs large-scale data center incentive packages. Michigan does not have a statewide data center tax exemption as of 2025.",
+      "summary": "Michigan has proposed AI governance legislation in 2024\u20132025 sessions including data privacy bills. Several counties (Kalamazoo, Washtenaw) have proposed data center moratoriums as the state weighs large-scale data center incentive packages. Michigan does not have a statewide data center tax exemption as of 2025.",
       "types": [
         "ai",
         "data_center"
       ],
       "sources": [
         {
-          "label": "Michigan Legislature — AI and Data Privacy Bills",
+          "label": "Michigan Legislature \u2014 AI and Data Privacy Bills",
           "url": "https://www.legislature.mi.gov/"
         }
       ]
@@ -438,13 +438,13 @@
       "abbr": "RI",
       "level": 2,
       "status": "active",
-      "summary": "Rhode Island has no statewide data center incentive program. The Town of Smithfield (Providence County) enacted a permanent ban on large data centers in 2023 — one of the first US municipalities to do so — citing energy grid, water, and community impacts. This ban has been cited as a model by municipalities in other states.",
+      "summary": "Rhode Island has no statewide data center incentive program. The Town of Smithfield (Providence County) enacted a permanent ban on large data centers in 2023 \u2014 one of the first US municipalities to do so \u2014 citing energy grid, water, and community impacts. This ban has been cited as a model by municipalities in other states.",
       "types": [
         "data_center"
       ],
       "sources": [
         {
-          "label": "Smithfield RI data center ban — Data Center Bans",
+          "label": "Smithfield RI data center ban \u2014 Data Center Bans",
           "url": "https://datacenterbans.com/"
         },
         "Smithfield Town Council zoning prohibition (2023)"
@@ -455,7 +455,7 @@
       "abbr": "WI",
       "level": -1,
       "status": "active",
-      "summary": "Wisconsin offers data center property tax exemptions for qualifying facilities. Microsoft announced a $3.3B, 1GW+ AI data center campus in Mount Pleasant (Racine County) in May 2024. However, multiple Wisconsin counties and municipalities have enacted data center moratoriums as of 2026. Dane County (Madison) enacted an 18-month moratorium on hyperscale data centers (≥5,000 servers, ≥10,000 sq ft) in unincorporated county areas, signed by County Executive Melissa Agard after a unanimous board vote on June 4-5, 2026. The City of Madison enacted a separate moratorium on January 13, 2026. Manitowoc County has proposed data center restrictions. Additional moratoriums have been enacted in the town of Cassville, Westport (Dane County), Baldwin (St. Croix County), and Door County. See county-level data for specific details.",
+      "summary": "Wisconsin offers data center property tax exemptions for qualifying facilities. Microsoft announced a $3.3B, 1GW+ AI data center campus in Mount Pleasant (Racine County) in May 2024. However, multiple Wisconsin counties and municipalities have enacted data center moratoriums as of 2026. Dane County (Madison) enacted an 18-month moratorium on hyperscale data centers (\u22655,000 servers, \u226510,000 sq ft) in unincorporated county areas, signed by County Executive Melissa Agard after a unanimous board vote on June 4-5, 2026. The City of Madison enacted a separate moratorium on January 13, 2026. Manitowoc County has proposed data center restrictions. Additional moratoriums have been enacted in the town of Cassville, Westport (Dane County), Baldwin (St. Croix County), and Door County. See county-level data for specific details.",
       "types": [
         "data_center"
       ],
@@ -469,11 +469,11 @@
           "url": "https://news.microsoft.com/2024/05/07/microsoft-expands-digital-infrastructure-in-wisconsin/"
         },
         {
-          "label": "Dane County — Board introduces moratorium on data centers (official press release)",
+          "label": "Dane County \u2014 Board introduces moratorium on data centers (official press release)",
           "url": "https://www.danecounty.gov/PressDetail/11883"
         },
         {
-          "label": "City of Madison — Temporary Data Center Moratorium",
+          "label": "City of Madison \u2014 Temporary Data Center Moratorium",
           "url": "https://www.cityofmadison.com/dpced/about/temporary-data-center-moratorium"
         }
       ]
@@ -490,7 +490,16 @@
       "sources": [
         {
           "label": "Wyoming Business Council",
-          "url": "https://www.wyomingbusiness.org/"
+          "url": "https://wyomingbusiness.org/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.wyomingbusiness.org/",
+              "new_value": "https://wyomingbusiness.org/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/map_data_citation_health.json"
+            }
+          ]
         }
       ]
     },
@@ -498,7 +507,7 @@
       "status": "active",
       "regulatory_posture": "pro_investment",
       "data_center_law": "HB 7063 (2023)",
-      "ai_policy": "Florida AI in Government Act (SB 1680, 2023) — establishes AI use guidelines for state agencies",
+      "ai_policy": "Florida AI in Government Act (SB 1680, 2023) \u2014 establishes AI use guidelines for state agencies",
       "notes": "Florida actively courts data center investment. HB 7063 provides 20-year sales tax exemptions.",
       "sources": [
         "https://floridarevenue.com/taxes/taxesfees/Pages/data_centers.aspx",
@@ -517,7 +526,7 @@
     "16": {
       "status": "active",
       "regulatory_posture": "pro_investment",
-      "data_center_law": "Idaho Code §63-3622O",
+      "data_center_law": "Idaho Code \u00a763-3622O",
       "ai_policy": "No comprehensive state AI law as of 2024",
       "notes": "Idaho Power hydroelectric makes this a prime renewable energy data center state.",
       "sources": [
@@ -531,13 +540,13 @@
       "types": [
         "data_center"
       ],
-      "summary": "IC §63-3622O exempts data center equipment from sales tax. Major Meta campus in Ada County (Eagle)."
+      "summary": "IC \u00a763-3622O exempts data center equipment from sales tax. Major Meta campus in Ada County (Eagle)."
     },
     "21": {
       "status": "active",
       "regulatory_posture": "pro_investment",
-      "data_center_law": "KRS §139.517",
-      "ai_policy": "Kentucky AI Act (HB 4, 2023) — limited scope, state agency AI procurement guidelines",
+      "data_center_law": "KRS \u00a7139.517",
+      "ai_policy": "Kentucky AI Act (HB 4, 2023) \u2014 limited scope, state agency AI procurement guidelines",
       "notes": "Kentucky's low power costs and central US location drive growing data center investment.",
       "sources": [
         "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53453"
@@ -550,13 +559,13 @@
       "types": [
         "data_center"
       ],
-      "summary": "KRS §139.517 provides sales and use tax exemption for qualifying data centers. Louisville is a growing hub."
+      "summary": "KRS \u00a7139.517 provides sales and use tax exemption for qualifying data centers. Louisville is a growing hub."
     },
     "29": {
       "status": "active",
       "regulatory_posture": "neutral",
       "data_center_law": "Missouri Chapters 353 and 100 (property tax abatement programs)",
-      "ai_policy": "Missouri Executive Order on AI (2023) — state agency AI use guidance",
+      "ai_policy": "Missouri Executive Order on AI (2023) \u2014 state agency AI use guidance",
       "notes": "Missouri lacks a specific data center sales tax exemption law but uses Chapter 353 abatements.",
       "sources": [
         "https://ded.mo.gov/content/business-tax-incentives"
@@ -574,8 +583,8 @@
     "35": {
       "status": "active",
       "regulatory_posture": "pro_investment",
-      "data_center_law": "NMSA §7-9-57",
-      "ai_policy": "NM AI in State Government Task Force (2024) — studying AI use in state agencies",
+      "data_center_law": "NMSA \u00a77-9-57",
+      "ai_policy": "NM AI in State Government Task Force (2024) \u2014 studying AI use in state agencies",
       "notes": "New Mexico's renewable energy resources and tax incentives attract hyperscale operators.",
       "sources": [
         "https://www.tax.newmexico.gov/businesses/industries/data-centers/"
@@ -588,13 +597,13 @@
       "types": [
         "data_center"
       ],
-      "summary": "NMSA §7-9-57 provides GRT deduction for qualifying data centers. Meta and Microsoft have invested in Albuquerque."
+      "summary": "NMSA \u00a77-9-57 provides GRT deduction for qualifying data centers. Meta and Microsoft have invested in Albuquerque."
     },
     "40": {
       "status": "active",
       "regulatory_posture": "pro_investment",
-      "data_center_law": "68 O.S. §1359.2",
-      "ai_policy": "Oklahoma AI Act (HB 3939, 2024) — AI transparency requirements for state agencies",
+      "data_center_law": "68 O.S. \u00a71359.2",
+      "ai_policy": "Oklahoma AI Act (HB 3939, 2024) \u2014 AI transparency requirements for state agencies",
       "notes": "Oklahoma's full sales and use tax exemption has driven significant Microsoft investment.",
       "sources": [
         "https://oklahoma.gov/tax/business/industries/data-centers.html"
@@ -607,20 +616,20 @@
       "types": [
         "data_center"
       ],
-      "summary": "68 O.S. §1359.2 provides full sales and use tax exemption for qualifying data centers. Microsoft has announced multi-billion dollar investments in OKC."
+      "summary": "68 O.S. \u00a71359.2 provides full sales and use tax exemption for qualifying data centers. Microsoft has announced multi-billion dollar investments in OKC."
     },
     "01": {
       "name": "Alabama",
       "abbr": "AL",
       "level": -1,
       "status": "active",
-      "summary": "Alabama is a strongly favorable data center investment destination, anchored by Meta's Huntsville campus. The Alabama Jobs Act (§40-18-376) provides income tax credits and sales tax abatements for qualifying capital investments including data centers. The state's competitive power rates via TVA and available land make it attractive for hyperscale development.",
+      "summary": "Alabama is a strongly favorable data center investment destination, anchored by Meta's Huntsville campus. The Alabama Jobs Act (\u00a740-18-376) provides income tax credits and sales tax abatements for qualifying capital investments including data centers. The state's competitive power rates via TVA and available land make it attractive for hyperscale development.",
       "types": [
         "data_center"
       ],
       "sources": [
         {
-          "label": "Alabama Jobs Act — Made in Alabama",
+          "label": "Alabama Jobs Act \u2014 Made in Alabama",
           "url": "https://www.madeinalabama.com/2015/11/alabama-jobs-act/"
         }
       ]
@@ -636,7 +645,7 @@
       ],
       "sources": [
         {
-          "label": "Maryland Department of Assessments and Taxation — Data Center Credit",
+          "label": "Maryland Department of Assessments and Taxation \u2014 Data Center Credit",
           "url": "https://dat.maryland.gov/businesses/Pages/data-center-credit.aspx"
         }
       ]
@@ -646,18 +655,18 @@
       "abbr": "NJ",
       "level": 2,
       "status": "active",
-      "summary": "Governor Mikie Sherrill signed the Data Center Fair Share Act on July 7, 2026, making New Jersey the first state to create a separate ratepayer class for large data centers. The law requires facilities using 50 MW or more of power to commit to paying at least 85% of projected electricity costs for a decade. It creates a first-of-its-kind program incentivizing data centers to secure clean energy capacity by reducing demand elsewhere on the grid — data centers can pay for households to replace energy-inefficient appliances with heat pumps or install rooftop solar/batteries, receiving priority in the interconnection queue in return. When the grid is strained, data centers must curtail before residential ratepayers are impacted. Sponsored by Senator John Burzichelli. New Jersey hosts a significant colocation data center cluster in Parsippany, Piscataway, and Secaucus.",
+      "summary": "Governor Mikie Sherrill signed the Data Center Fair Share Act on July 7, 2026, making New Jersey the first state to create a separate ratepayer class for large data centers. The law requires facilities using 50 MW or more of power to commit to paying at least 85% of projected electricity costs for a decade. It creates a first-of-its-kind program incentivizing data centers to secure clean energy capacity by reducing demand elsewhere on the grid \u2014 data centers can pay for households to replace energy-inefficient appliances with heat pumps or install rooftop solar/batteries, receiving priority in the interconnection queue in return. When the grid is strained, data centers must curtail before residential ratepayers are impacted. Sponsored by Senator John Burzichelli. New Jersey hosts a significant colocation data center cluster in Parsippany, Piscataway, and Secaucus.",
       "types": [
         "data_center",
         "energy"
       ],
       "sources": [
         {
-          "label": "NJ Governor Sherrill — Signs legislation on energy including Data Center Fair Share Act (official)",
+          "label": "NJ Governor Sherrill \u2014 Signs legislation on energy including Data Center Fair Share Act (official)",
           "url": "https://www.nj.gov/governor/news/2026/20260707a.shtml"
         },
         {
-          "label": "NJ Assembly Democrats — Data Center Fair Share Act signed into law",
+          "label": "NJ Assembly Democrats \u2014 Data Center Fair Share Act signed into law",
           "url": "https://www.assemblydems.com/m/newsflash/Home/Detail/13131"
         },
         {
@@ -671,13 +680,13 @@
       "abbr": "ND",
       "level": -1,
       "status": "active",
-      "summary": "North Dakota is a favorable data center investment destination with low power costs, cold climate (reducing cooling overhead), and a 5-year property tax exemption for qualifying data center equipment under NDCC §57-02-08.31. Microsoft operates a major hyperscale campus in the state. The state government has actively marketed data center incentives.",
+      "summary": "North Dakota is a favorable data center investment destination with low power costs, cold climate (reducing cooling overhead), and a 5-year property tax exemption for qualifying data center equipment under NDCC \u00a757-02-08.31. Microsoft operates a major hyperscale campus in the state. The state government has actively marketed data center incentives.",
       "types": [
         "data_center"
       ],
       "sources": [
         {
-          "label": "North Dakota NDCC §57-02-08.31 — Data Center Exemption",
+          "label": "North Dakota NDCC \u00a757-02-08.31 \u2014 Data Center Exemption",
           "url": "https://www.legis.nd.gov/cencode/t57c02.html"
         }
       ]
@@ -693,7 +702,7 @@
       ],
       "sources": [
         {
-          "label": "Pennsylvania Act 84 of 2016 — Data Center Sales Tax Exemption",
+          "label": "Pennsylvania Act 84 of 2016 \u2014 Data Center Sales Tax Exemption",
           "url": "https://www.revenue.pa.gov/"
         }
       ]
@@ -703,13 +712,13 @@
       "abbr": "AR",
       "level": -1,
       "status": "active",
-      "summary": "Arkansas is a favorable data center investment destination with a sales and use tax exemption for qualifying data center equipment (§26-52-465) and the ADVANTAGE Arkansas income tax incentive program. Little Rock and Northwest Arkansas have attracted data center investment. Competitive power rates from Entergy Arkansas and a low-regulation environment make the state attractive for edge and enterprise facilities.",
+      "summary": "Arkansas is a favorable data center investment destination with a sales and use tax exemption for qualifying data center equipment (\u00a726-52-465) and the ADVANTAGE Arkansas income tax incentive program. Little Rock and Northwest Arkansas have attracted data center investment. Competitive power rates from Entergy Arkansas and a low-regulation environment make the state attractive for edge and enterprise facilities.",
       "types": [
         "data_center"
       ],
       "sources": [
         {
-          "label": "Arkansas DFA — Data Center Tax Exemption",
+          "label": "Arkansas DFA \u2014 Data Center Tax Exemption",
           "url": "https://www.dfa.arkansas.gov/"
         }
       ]
@@ -719,7 +728,7 @@
       "abbr": "DE",
       "level": 0,
       "status": "active",
-      "summary": "Delaware hosts a moderate data center cluster in New Castle County (Wilmington area), benefiting from proximity to the Philadelphia–Baltimore–Washington corridor. No Delaware-specific data center tax incentive exists, but the state's favorable corporate tax structure and existing financial services data center ecosystem support the market. No statewide data center restrictions are enacted.",
+      "summary": "Delaware hosts a moderate data center cluster in New Castle County (Wilmington area), benefiting from proximity to the Philadelphia\u2013Baltimore\u2013Washington corridor. No Delaware-specific data center tax incentive exists, but the state's favorable corporate tax structure and existing financial services data center ecosystem support the market. No statewide data center restrictions are enacted.",
       "types": [
         "data_center"
       ],
@@ -741,7 +750,7 @@
       ],
       "sources": [
         {
-          "label": "Kansas Commerce — IMPACT Program",
+          "label": "Kansas Commerce \u2014 IMPACT Program",
           "url": "https://www.kansascommerce.gov/"
         }
       ]
@@ -751,13 +760,13 @@
       "abbr": "SD",
       "level": -1,
       "status": "active",
-      "summary": "South Dakota is a favorable data center investment destination with zero corporate income tax, competitive electrical rates, and a business-friendly regulatory environment. Sioux Falls (Minnehaha County) is the primary data center market. T-Mobile and regional carriers operate significant facilities. No statewide data center restrictions or specific tax incentive programs exist — the competitive advantage is the absence of corporate taxation.",
+      "summary": "South Dakota is a favorable data center investment destination with zero corporate income tax, competitive electrical rates, and a business-friendly regulatory environment. Sioux Falls (Minnehaha County) is the primary data center market. T-Mobile and regional carriers operate significant facilities. No statewide data center restrictions or specific tax incentive programs exist \u2014 the competitive advantage is the absence of corporate taxation.",
       "types": [
         "data_center"
       ],
       "sources": [
         {
-          "label": "South Dakota GOED — Business Climate",
+          "label": "South Dakota GOED \u2014 Business Climate",
           "url": "https://sdreadytowork.com/why-sd/business-climate/"
         }
       ]
@@ -767,13 +776,13 @@
       "abbr": "UT",
       "level": -1,
       "status": "active",
-      "summary": "Utah is a fast-growing data center market anchored in Salt Lake County. The state's data center sales tax exemption (Utah Code Ann. §59-12-104(77)) and EDTIF incentive program support hyperscale investment. Google, C7 Data Centers, Novva, and regional colocation operators have significant facilities. Rocky Mountain Power provides reliable power; fiber infrastructure via the I-15 corridor is well-developed.",
+      "summary": "Utah is a fast-growing data center market anchored in Salt Lake County. The state's data center sales tax exemption (Utah Code Ann. \u00a759-12-104(77)) and EDTIF incentive program support hyperscale investment. Google, C7 Data Centers, Novva, and regional colocation operators have significant facilities. Rocky Mountain Power provides reliable power; fiber infrastructure via the I-15 corridor is well-developed.",
       "types": [
         "data_center"
       ],
       "sources": [
         {
-          "label": "Utah Code Ann. §59-12-104(77) — Data Center Exemption",
+          "label": "Utah Code Ann. \u00a759-12-104(77) \u2014 Data Center Exemption",
           "url": "https://le.utah.gov/xcode/Title59/Chapter12/C59-12-P1_1800010118000101.pdf"
         }
       ]
@@ -790,11 +799,11 @@
       ],
       "sources": [
         {
-          "label": "Maine LD 2064 (2024) — AI Advisory Council Act",
+          "label": "Maine LD 2064 (2024) \u2014 AI Advisory Council Act",
           "url": "https://legislature.maine.gov/"
         },
         {
-          "label": "Maine PUC — Transmission Interconnection Planning",
+          "label": "Maine PUC \u2014 Transmission Interconnection Planning",
           "url": "https://www.maine.gov/mpuc/"
         }
       ]
@@ -810,11 +819,11 @@
       ],
       "sources": [
         {
-          "label": "Montana DNRC — Water Rights Administration",
+          "label": "Montana DNRC \u2014 Water Rights Administration",
           "url": "https://dnrc.mt.gov/divisions/water/"
         },
         {
-          "label": "Montana Department of Commerce — Business Resources",
+          "label": "Montana Department of Commerce \u2014 Business Resources",
           "url": "https://commerce.mt.gov/Business/"
         }
       ]
@@ -824,7 +833,7 @@
       "abbr": "NH",
       "level": -1,
       "status": "active",
-      "summary": "New Hampshire has no statewide AI-specific regulation or data center siting legislation as of 2026. The state's unique tax profile — no general sales tax, no income tax — makes it one of the most favorable states for data center equipment procurement. The NH PUC regulates Eversource and Unitil as electric utilities but has no specific data center provisions. NH's 2025 legislative session considered but did not advance an AI transparency bill. Site Assessment of Market Power (SAMP) proceedings at the PUC may affect large load interconnection in Hillsborough and Rockingham counties.",
+      "summary": "New Hampshire has no statewide AI-specific regulation or data center siting legislation as of 2026. The state's unique tax profile \u2014 no general sales tax, no income tax \u2014 makes it one of the most favorable states for data center equipment procurement. The NH PUC regulates Eversource and Unitil as electric utilities but has no specific data center provisions. NH's 2025 legislative session considered but did not advance an AI transparency bill. Site Assessment of Market Power (SAMP) proceedings at the PUC may affect large load interconnection in Hillsborough and Rockingham counties.",
       "types": [
         "data_center"
       ],
@@ -834,7 +843,7 @@
           "url": "https://www.nheconomy.com/"
         },
         {
-          "label": "NH PUC — Electric Utility Regulation",
+          "label": "NH PUC \u2014 Electric Utility Regulation",
           "url": "https://www.puc.nh.gov/"
         }
       ]
@@ -844,18 +853,18 @@
       "abbr": "VT",
       "level": -1,
       "status": "active",
-      "summary": "Vermont has no statewide AI-specific regulation or data center legislation as of 2026. The state's Act 174 (2016) Energy Planning framework and Renewable Energy Standard (75% by 2032, 100% by 2035 under 30 V.S.A. §8005) apply to all large load customers including data centers through Green Mountain Power and VELCO. Vermont's Public Utility Commission reviews Certificate of Public Good applications for new large electrical loads. Vermont has no data center-specific tax incentive but the clean energy grid profile is a competitive differentiator. The 2024 Vermont Legislature considered and tabled an AI Impact Assessment bill.",
+      "summary": "Vermont has no statewide AI-specific regulation or data center legislation as of 2026. The state's Act 174 (2016) Energy Planning framework and Renewable Energy Standard (75% by 2032, 100% by 2035 under 30 V.S.A. \u00a78005) apply to all large load customers including data centers through Green Mountain Power and VELCO. Vermont's Public Utility Commission reviews Certificate of Public Good applications for new large electrical loads. Vermont has no data center-specific tax incentive but the clean energy grid profile is a competitive differentiator. The 2024 Vermont Legislature considered and tabled an AI Impact Assessment bill.",
       "types": [
         "data_center",
         "energy"
       ],
       "sources": [
         {
-          "label": "Vermont Agency of Commerce — Economic Development",
+          "label": "Vermont Agency of Commerce \u2014 Economic Development",
           "url": "https://accd.vermont.gov/economic-development"
         },
         {
-          "label": "Vermont PUC — Certificate of Public Good",
+          "label": "Vermont PUC \u2014 Certificate of Public Good",
           "url": "https://puc.vermont.gov/"
         }
       ]
@@ -877,7 +886,16 @@
         },
         {
           "label": "WV Department of Economic Development",
-          "url": "https://westvirginia.gov/business/"
+          "url": "https://westvirginia.gov/divisions/business-and-industrial-development/",
+          "replacement_history": [
+            {
+              "old_value": "https://westvirginia.gov/business/",
+              "new_value": "https://westvirginia.gov/divisions/business-and-industrial-development/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/map_data_citation_health.json"
+            }
+          ]
         }
       ]
     },
@@ -897,7 +915,7 @@
           "url": "https://www.mississippi.org/"
         },
         {
-          "label": "Mississippi Power — Industrial Rates",
+          "label": "Mississippi Power \u2014 Industrial Rates",
           "url": "https://www.mississippipower.com/"
         }
       ]
@@ -913,11 +931,11 @@
       ],
       "sources": [
         {
-          "label": "Alaska Dept. of Commerce — Business Programs",
+          "label": "Alaska Dept. of Commerce \u2014 Business Programs",
           "url": "https://www.commerce.alaska.gov/"
         },
         {
-          "label": "GCI — Alaska Network Infrastructure",
+          "label": "GCI \u2014 Alaska Network Infrastructure",
           "url": "https://www.gci.com/"
         }
       ]
@@ -927,18 +945,18 @@
       "abbr": "HI",
       "level": -1,
       "status": "active",
-      "summary": "Hawaii has no statewide AI-specific regulation or dedicated data center legislation as of 2026. The state's high electricity costs (among the highest in the US due to oil-fired generation, though rapidly transitioning to renewables) make conventional data center operations expensive. Hawaiian Telcom (Consolidated Communications) and Lumen/CenturyLink maintain carrier-grade network data center infrastructure. Pacific subsea cable landing sites in Oahu (including the SEA-US and TGN-IA cables) create strategic interconnection value for trans-Pacific workloads. Hawaii's 100% renewable portfolio standard by 2045 (HRS §269-92) is reshaping the power cost structure for large loads. No AI governance bill has been enacted as of 2025.",
+      "summary": "Hawaii has no statewide AI-specific regulation or dedicated data center legislation as of 2026. The state's high electricity costs (among the highest in the US due to oil-fired generation, though rapidly transitioning to renewables) make conventional data center operations expensive. Hawaiian Telcom (Consolidated Communications) and Lumen/CenturyLink maintain carrier-grade network data center infrastructure. Pacific subsea cable landing sites in Oahu (including the SEA-US and TGN-IA cables) create strategic interconnection value for trans-Pacific workloads. Hawaii's 100% renewable portfolio standard by 2045 (HRS \u00a7269-92) is reshaping the power cost structure for large loads. No AI governance bill has been enacted as of 2025.",
       "types": [
         "data_center",
         "energy"
       ],
       "sources": [
         {
-          "label": "Hawaii PUC — Energy Regulation",
+          "label": "Hawaii PUC \u2014 Energy Regulation",
           "url": "https://puc.hawaii.gov/"
         },
         {
-          "label": "Hawaiian Telcom — Data Center Services",
+          "label": "Hawaiian Telcom \u2014 Data Center Services",
           "url": "https://hawaiiantel.com/"
         }
       ]
@@ -948,7 +966,7 @@
       "abbr": "DC",
       "level": 1,
       "status": "active",
-      "summary": "Washington, DC is a significant government and commercial data center market anchored by federal agency cloud contracts and carrier-neutral facilities serving the federal and Mid-Atlantic markets. The DC Department of Energy & Environment enforces the Building Energy Performance Standards (BEPS) Act (DC Law 22-257, 2019), which requires large buildings including data centers to meet energy performance benchmarks or pay compliance fees — one of the most stringent commercial building energy laws in the US. The DC Council enacted the DC AI Accountability Act (B25-0644, introduced 2024) establishing requirements for District government use of automated decision systems, including bias audits, algorithmic impact assessments, and public transparency disclosures. DC has no data center-specific sales or property tax exemption, though the District's general business tax structure and federal procurement market are competitive drivers. Major colocation and carrier-hotel facilities serve the federal agency market. The bulk of the DC region's hyperscale data center capacity is located across the Potomac in Northern Virginia (Loudoun, Prince William, and Fairfax counties).",
+      "summary": "Washington, DC is a significant government and commercial data center market anchored by federal agency cloud contracts and carrier-neutral facilities serving the federal and Mid-Atlantic markets. The DC Department of Energy & Environment enforces the Building Energy Performance Standards (BEPS) Act (DC Law 22-257, 2019), which requires large buildings including data centers to meet energy performance benchmarks or pay compliance fees \u2014 one of the most stringent commercial building energy laws in the US. The DC Council enacted the DC AI Accountability Act (B25-0644, introduced 2024) establishing requirements for District government use of automated decision systems, including bias audits, algorithmic impact assessments, and public transparency disclosures. DC has no data center-specific sales or property tax exemption, though the District's general business tax structure and federal procurement market are competitive drivers. Major colocation and carrier-hotel facilities serve the federal agency market. The bulk of the DC region's hyperscale data center capacity is located across the Potomac in Northern Virginia (Loudoun, Prince William, and Fairfax counties).",
       "types": [
         "data_center",
         "ai",
@@ -956,15 +974,15 @@
       ],
       "sources": [
         {
-          "label": "DC DOEE — Building Energy Performance Standards (BEPS)",
+          "label": "DC DOEE \u2014 Building Energy Performance Standards (BEPS)",
           "url": "https://doee.dc.gov/service/building-energy-performance-standards-beps"
         },
         {
-          "label": "DC B25-0644 — AI Accountability Act",
+          "label": "DC B25-0644 \u2014 AI Accountability Act",
           "url": "https://lims.dccouncil.gov/Legislation/B25-0644"
         },
         {
-          "label": "DC Office of Unified Communications — Technology Infrastructure",
+          "label": "DC Office of Unified Communications \u2014 Technology Infrastructure",
           "url": "https://ouc.dc.gov/"
         }
       ],

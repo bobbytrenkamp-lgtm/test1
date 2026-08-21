@@ -11711,13 +11711,20 @@
       "sources": [
         {
           "label": "St. Tammany Economic Development Foundation",
-          "url": "https://www.osteriadacecco.com/",
+          "url": "https://islandsucursales.com/",
           "replacement_history": [
             {
               "old_value": "https://www.stedf.org/",
               "new_value": "https://www.osteriadacecco.com/",
               "changed_at": "2026-08-19",
               "reason": "HTTP redirect observed and followed live by check_source_links.py (checked_at=2026-07-30T03:44:36+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            },
+            {
+              "old_value": "https://www.osteriadacecco.com/",
+              "new_value": "https://islandsucursales.com/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T01:06:23+00:00) -- not a guess, an actually-followed request.",
               "verified_via": "data/source_link_health.json"
             }
           ]
@@ -17654,7 +17661,16 @@
       "sources": [
         {
           "label": "Kissimmee-Osceola County Chamber of Commerce",
-          "url": "https://www.kissimmeechamber.com"
+          "url": "https://www.theosceolachamber.com/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.kissimmeechamber.com",
+              "new_value": "https://www.theosceolachamber.com/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T04:11:40+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         },
         {
           "label": "Florida Department of Economic Opportunity",
@@ -17895,7 +17911,16 @@
         },
         {
           "label": "Greater Duluth Regional Chamber",
-          "url": "https://www.duluthchamber.com"
+          "url": "https://duluthchamber.com/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.duluthchamber.com",
+              "new_value": "https://duluthchamber.com/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         },
         {
           "label": "Iron Range Resources",
@@ -25196,7 +25221,16 @@
       "sources": [
         {
           "label": "Otter Tail County Minnesota",
-          "url": "https://www.co.ottertail.mn.us/"
+          "url": "https://ottertailcounty.gov/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.co.ottertail.mn.us/",
+              "new_value": "https://ottertailcounty.gov/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T03:53:50+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         }
       ],
       "status": "active",
@@ -28805,7 +28839,16 @@
       "sources": [
         {
           "label": "Carroll County Indiana",
-          "url": "https://www.carrollcounty.in.gov"
+          "url": "https://www.in.gov/counties/carroll/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.carrollcounty.in.gov",
+              "new_value": "https://www.in.gov/counties/carroll/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T03:49:42+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         }
       ],
       "status": "active",
@@ -36089,7 +36132,16 @@
       "sources": [
         {
           "label": "Grant County Council \u2014 Marion Indiana",
-          "url": "https://www.grantcounty.net/"
+          "url": "https://www.in.gov/counties/grant/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.grantcounty.net/",
+              "new_value": "https://www.in.gov/counties/grant/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live (checked_at=2026-08-20T04:11:59+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/source_link_health.json"
+            }
+          ]
         },
         {
           "label": "Indiana Utility Regulatory Commission",

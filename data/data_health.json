@@ -48,19 +48,19 @@
   "pipelines": {
     "county_page_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-20T00:53:30+00:00",
+      "last_checked": "2026-08-20T04:17:54+00:00",
       "pipeline": "county_page_citations",
-      "total_urls_checked": 1811,
-      "unreachable": 959,
-      "unreachable_ratio": 0.5295
+      "total_urls_checked": 1985,
+      "unreachable": 974,
+      "unreachable_ratio": 0.4907
     },
     "map_data_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-16T06:49:40.290060+00:00",
+      "last_checked": "2026-08-20T04:19:52.282947+00:00",
       "pipeline": "map_data_citations",
-      "total_urls_checked": 2949,
-      "unreachable": 1299,
-      "unreachable_ratio": 0.4405
+      "total_urls_checked": 850,
+      "unreachable": 358,
+      "unreachable_ratio": 0.4212
     },
     "parcels_registry": {
       "health": "SOURCE_DOWN",
@@ -112,20 +112,20 @@
   },
   "remediation_queue": [
     {
-      "affected_count": 1299,
-      "criticality_weight": 4,
-      "health": "VALIDATION_FAILURE",
-      "pipeline": "map_data_citations",
-      "reason": "1299 citation URL(s) unreachable (44.0%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
-      "severity_score": 121.52
-    },
-    {
-      "affected_count": 959,
+      "affected_count": 974,
       "criticality_weight": 4,
       "health": "VALIDATION_FAILURE",
       "pipeline": "county_page_citations",
-      "reason": "959 citation URL(s) unreachable (52.9%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
-      "severity_score": 91.92
+      "reason": "974 citation URL(s) unreachable (49.1%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
+      "severity_score": 93.12
+    },
+    {
+      "affected_count": 358,
+      "criticality_weight": 4,
+      "health": "VALIDATION_FAILURE",
+      "pipeline": "map_data_citations",
+      "reason": "358 citation URL(s) unreachable (42.1%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
+      "severity_score": 39.04
     },
     {
       "affected_count": 17,

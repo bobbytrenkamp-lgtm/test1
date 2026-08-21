@@ -2,11 +2,11 @@
   "_meta": {
     "description": "Citations that are unreachable AND have some lead (a sitemap-based \"may have moved to\" suggestion or a Wayback archive snapshot) but were NOT auto-applied -- a heuristic suggestion is not verified fact, so these need a human or a separately-reviewed pass to confirm before the underlying file is touched. County candidates (from source_link_health.json) are sorted by how many county records cite the URL, most first; facility/state candidates (from map_data_citation_health.json) follow, sorted by URL.",
     "generated_by": "data/remediate_citations.py",
-    "generated_at": "2026-08-20T01:04:07+00:00",
-    "source_link_health_checked_at": "2026-08-20T00:53:30+00:00",
-    "map_data_citation_health_checked_at": null
+    "generated_at": "2026-08-21T00:59:19+00:00",
+    "source_link_health_checked_at": "2026-08-20T04:17:54+00:00",
+    "map_data_citation_health_checked_at": "2026-08-20T04:19:52+00:00"
   },
-  "count": 375,
+  "count": 490,
   "candidates": [
     {
       "url": "https://www.georgia.org",
@@ -47,9 +47,9 @@
     },
     {
       "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -72,9 +72,9 @@
     },
     {
       "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -122,6 +122,19 @@
       "counties": 4
     },
     {
+      "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 3,
+        "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-and-use-tax-registration-faq"
+      },
+      "archive": null,
+      "counties": 3
+    },
+    {
       "url": "https://www.jobsohio.com/why-ohio/target-industries/data-centers",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
@@ -132,6 +145,18 @@
         "url": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers"
       },
       "archive": null,
+      "counties": 3
+    },
+    {
+      "url": "https://www.midamericanenergy.com/home",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": 500,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260814180809",
+        "url": "http://web.archive.org/web/20260814180809/https://www.midamericanenergy.com/home"
+      },
       "counties": 3
     },
     {
@@ -149,9 +174,9 @@
     },
     {
       "url": "https://www.vedp.org/data-centers",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -211,9 +236,9 @@
     },
     {
       "url": "https://www.cga.ct.gov/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260724132109",
@@ -234,6 +259,19 @@
       "counties": 2
     },
     {
+      "url": "https://www.consumersenergy.com/work-with-us/economic-development",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": 500,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 4,
+        "url": "https://www.consumersenergy.com/work-with-us/economic-development/advanced-manufacturing-district"
+      },
+      "archive": null,
+      "counties": 2
+    },
+    {
       "url": "https://www.georgia.org/",
       "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
@@ -247,9 +285,9 @@
     },
     {
       "url": "https://www.georgia.org/competitive-advantages/incentives",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20251112040912",
@@ -258,14 +296,14 @@
       "counties": 2
     },
     {
-      "url": "https://www.nypa.gov/economic-development",
-      "down_reason": null,
+      "url": "https://www.vedp.org/incentive/data-center-investment-grant",
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
-        "score": 2,
-        "url": "https://www.nypa.gov/Services/Incentives-and-Grants/Economic-Development"
+        "score": 3,
+        "url": "http://live-vedp-d9.pantheonsite.io/incentive/virginia-investment-performance-grant-vip"
       },
       "archive": null,
       "counties": 2
@@ -285,9 +323,9 @@
     },
     {
       "url": "https://about.att.com/innovation/labs",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20181110044725",
@@ -297,9 +335,9 @@
     },
     {
       "url": "https://accd.vermont.gov/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260704222531",
@@ -344,6 +382,18 @@
       "counties": 1
     },
     {
+      "url": "https://bradleycountytn.gov/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260521112125",
+        "url": "http://web.archive.org/web/20260521112125/https://bradleycountytn.gov/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://clintoniowa.us/",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -356,10 +406,23 @@
       "counties": 1
     },
     {
+      "url": "https://cyrusone.com/data-centers/north-america/florida/pompano-beach/",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 4,
+        "url": "https://www.cyrusone.com/data-centers/north-america/yorkville-technology-campus"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
       "url": "https://dailyjournal.net/2025/11/24/3-counties-put-moratoriums-on-data-center-projects/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260602191034",
@@ -407,9 +470,9 @@
     },
     {
       "url": "https://dii.vermont.gov",
-      "down_reason": null,
+      "down_reason": "SOURCE_MOVED",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20190123062917",
@@ -418,10 +481,22 @@
       "counties": 1
     },
     {
+      "url": "https://docs.legis.wisconsin.gov/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260730151535",
+        "url": "http://web.archive.org/web/20260730151535/https://docs.legis.wisconsin.gov/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://dor.sc.gov/business/corporate-incentives/data-center-incentives",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -431,10 +506,22 @@
       "counties": 1
     },
     {
+      "url": "https://douglaspud.org/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260602183319",
+        "url": "http://web.archive.org/web/20260602183319/https://douglaspud.org/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://ebit.ks.gov",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260514163631",
@@ -482,9 +569,9 @@
     },
     {
       "url": "https://go.okstate.edu/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260717104217",
@@ -518,6 +605,18 @@
       "counties": 1
     },
     {
+      "url": "https://hermannmo.com/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260811025312",
+        "url": "http://web.archive.org/web/20260811025312/https://hermannmo.com/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://home.army.mil/bliss",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -531,13 +630,25 @@
     },
     {
       "url": "https://home.army.mil/cavazos",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20250612230932",
         "url": "http://web.archive.org/web/20250612230932/https://home.army.mil/cavazos/"
+      },
+      "counties": 1
+    },
+    {
+      "url": "https://idahofallschamber.com/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260702051621",
+        "url": "http://web.archive.org/web/20260702051621/https://idahofallschamber.com/"
       },
       "counties": 1
     },
@@ -591,6 +702,18 @@
       "counties": 1
     },
     {
+      "url": "https://kernedc.com/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260731132050",
+        "url": "http://web.archive.org/web/20260731132050/https://kernedc.com/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://klamathtribes.org/water-rights/",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
@@ -612,6 +735,18 @@
       "archive": {
         "timestamp": "20260727085150",
         "url": "http://web.archive.org/web/20260727085150/https://laruecountyky.gov/"
+      },
+      "counties": 1
+    },
+    {
+      "url": "https://marinwater.org/district-ends-local-water-shortage-emergency-adopts-new-ongoing-rules-to-prevent-water-waste/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20251102054522",
+        "url": "http://web.archive.org/web/20251102054522/https://marinwater.org/district-ends-local-water-shortage-emergency-adopts-new-ongoing-rules-to-prevent-water-waste/"
       },
       "counties": 1
     },
@@ -654,9 +789,9 @@
     },
     {
       "url": "https://nnmrec.oregonstate.edu/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20190113145251",
@@ -678,9 +813,9 @@
     },
     {
       "url": "https://opportunity.nebraska.gov/programs/business/imagine-nebraska-act/",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 3,
@@ -704,9 +839,9 @@
     },
     {
       "url": "https://osfm.fire.ca.gov/divisions/community-wildfire-preparedness-and-mitigation/wildland-hazards-building-codes/fire-hazard-severity-zones-maps/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20221115031313",
@@ -729,9 +864,9 @@
     },
     {
       "url": "https://planning.lacounty.gov/generalplan",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20230329064609",
@@ -777,9 +912,9 @@
     },
     {
       "url": "https://siliconslopes.com",
-      "down_reason": null,
+      "down_reason": "SOURCE_MOVED",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260720211228",
@@ -800,6 +935,30 @@
       "counties": 1
     },
     {
+      "url": "https://snus.online/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20251227185153",
+        "url": "http://web.archive.org/web/20251227185153/https://snus.online/"
+      },
+      "counties": 1
+    },
+    {
+      "url": "https://suffolkida.org/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260115133042",
+        "url": "http://web.archive.org/web/20260115133042/https://suffolkida.org/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://thayercounty.ne.gov/",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -813,9 +972,9 @@
     },
     {
       "url": "https://therealdeal.com/texas/2026/06/30/can-san-marcos-data-center-ban-survive-legal-challenges/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260701200607",
@@ -849,6 +1008,18 @@
       "counties": 1
     },
     {
+      "url": "https://upstatecolorado.org/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260806042656",
+        "url": "http://web.archive.org/web/20260806042656/https://upstatecolorado.org/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://vita.virginia.gov",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -874,6 +1045,18 @@
       "counties": 1
     },
     {
+      "url": "https://westbatonrouge.net/",
+      "down_reason": null,
+      "status": 307,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20251125182452",
+        "url": "http://web.archive.org/web/20251125182452/https://westbatonrouge.net/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://www.abileneedc.com",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -887,9 +1070,9 @@
     },
     {
       "url": "https://www.adaircountymo.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20040614075149",
@@ -899,9 +1082,9 @@
     },
     {
       "url": "https://www.afrl.af.mil",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260724174007",
@@ -911,9 +1094,9 @@
     },
     {
       "url": "https://www.alabamapower.com/business/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 1,
@@ -951,9 +1134,9 @@
     },
     {
       "url": "https://www.alleghanycounty.us/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260417191248",
@@ -1048,9 +1231,9 @@
     },
     {
       "url": "https://www.augustacountyva.gov",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20161118012258",
@@ -1076,9 +1259,9 @@
     },
     {
       "url": "https://www.bakercountyga.org",
-      "down_reason": null,
-      "status": null,
-      "consecutive_failures": null,
+      "down_reason": "SOURCE_MOVED",
+      "status": 503,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20240905065821",
@@ -1088,9 +1271,9 @@
     },
     {
       "url": "https://www.barbourcountyalabama.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20240814011230",
@@ -1124,9 +1307,9 @@
     },
     {
       "url": "https://www.bayfieldcounty.org",
-      "down_reason": null,
-      "status": 502,
-      "consecutive_failures": null,
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260201214100",
@@ -1136,9 +1319,9 @@
     },
     {
       "url": "https://www.beaufort.marines.mil/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260702230942",
@@ -1148,9 +1331,9 @@
     },
     {
       "url": "https://www.beauregardonline.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20190509133540",
@@ -1184,9 +1367,9 @@
     },
     {
       "url": "https://www.benewahcounty.org",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20250201182255",
@@ -1257,9 +1440,9 @@
     },
     {
       "url": "https://www.calvertcountymd.gov/economic-development",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -1318,9 +1501,9 @@
     },
     {
       "url": "https://www.catoosacounty.org",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20180810053338",
@@ -1342,6 +1525,19 @@
       "counties": 1
     },
     {
+      "url": "https://www.centerpointenergy.com/en-us/Business/Economic-Development",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 3,
+        "url": "https://www.centerpointenergy.com/en-us/business/services/electric-utility/economic-development?sa=IN"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
       "url": "https://www.cga.ct.gov/asp/cgabillstatus/cgabillstatus.asp?selBillType=Bill&bill_num=SB00002&which_year=2023",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -1351,6 +1547,19 @@
         "timestamp": "20240724175742",
         "url": "http://web.archive.org/web/20240724175742/https://cga.ct.gov/asp/CGABillStatus/cgabillstatus.asp?selBillType=Bill&bill_num=SB00002&which_year=2023"
       },
+      "counties": 1
+    },
+    {
+      "url": "https://www.charlottecountyfl.gov/government/departments/economic-development",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 2,
+        "url": "https://www.charlottecountyfl.gov/news/2012366-new-businesses-networking-event-will-be-hosted-by-charlotte-county-economic-development-office.stml"
+      },
+      "archive": null,
       "counties": 1
     },
     {
@@ -1367,9 +1576,9 @@
     },
     {
       "url": "https://www.chathamcountync.gov/Home/Components/News/News/17295/19",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260429183406",
@@ -1379,9 +1588,9 @@
     },
     {
       "url": "https://www.chautauquacountyks.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260128143853",
@@ -1416,9 +1625,9 @@
     },
     {
       "url": "https://www.cityofconway.org/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20141025220141",
@@ -1466,7 +1675,7 @@
       "url": "https://www.claytoncountyga.gov/news/clayton-county-board-of-commissioners-approves-moratorium-on-new-data-centers-in-clayton-county/",
       "down_reason": null,
       "status": 307,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 5,
@@ -1477,9 +1686,9 @@
     },
     {
       "url": "https://www.cleburnecounty.net/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20181101061333",
@@ -1489,9 +1698,9 @@
     },
     {
       "url": "https://www.cnic.navy.mil/regions/cnrsw/installations/nas_lemoore.html",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20211206183959",
@@ -1501,9 +1710,9 @@
     },
     {
       "url": "https://www.co.adams.il.us",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20231101020306",
@@ -1513,9 +1722,9 @@
     },
     {
       "url": "https://www.co.ashland.wi.us",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20231117154222",
@@ -1549,9 +1758,9 @@
     },
     {
       "url": "https://www.co.brewster.tx.us/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20240530153237",
@@ -1585,9 +1794,9 @@
     },
     {
       "url": "https://www.co.clay.tx.us",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20240106194505",
@@ -1597,9 +1806,9 @@
     },
     {
       "url": "https://www.co.coles.il.us/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20251011001921",
@@ -1609,9 +1818,9 @@
     },
     {
       "url": "https://www.co.custer.mt.us/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20110914104954",
@@ -1669,9 +1878,9 @@
     },
     {
       "url": "https://www.co.haskell.tx.us",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20211207161650",
@@ -1692,6 +1901,19 @@
       "counties": 1
     },
     {
+      "url": "https://www.co.hunterdon.nj.us/planning/economic-development",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 2,
+        "url": "https://www.co.hunterdon.nj.us/1552/Economic-Development-Tourism"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
       "url": "https://www.co.jay.in.us/",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -1705,9 +1927,9 @@
     },
     {
       "url": "https://www.co.jones.ms.us/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20130530005723",
@@ -1742,25 +1964,13 @@
     },
     {
       "url": "https://www.co.monterey.ca.us/government/departments-a-h/economic-development",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20180626192534",
         "url": "http://web.archive.org/web/20180626192534/http://www.co.monterey.ca.us:80/government/departments-a-h/economic-development"
-      },
-      "counties": 1
-    },
-    {
-      "url": "https://www.co.ottertail.mn.us/",
-      "down_reason": null,
-      "status": 503,
-      "consecutive_failures": null,
-      "suggested_replacement": null,
-      "archive": {
-        "timestamp": "20181023112535",
-        "url": "http://web.archive.org/web/20181023112535/http://www.co.ottertail.mn.us:80/"
       },
       "counties": 1
     },
@@ -1790,9 +2000,9 @@
     },
     {
       "url": "https://www.co.shackelford.tx.us",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20181117072942",
@@ -1814,9 +2024,9 @@
     },
     {
       "url": "https://www.co.teton.id.us/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20170601070906",
@@ -1825,10 +2035,23 @@
       "counties": 1
     },
     {
+      "url": "https://www.co.wallowa.or.us/commissioners/",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 1,
+        "url": "https://www.co.wallowa.or.us/boc/meeting/wallowa-county-board-commissioners-regular-session-meeting"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
       "url": "https://www.co.warren.ia.us/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20151229132811",
@@ -1850,9 +2073,9 @@
     },
     {
       "url": "https://www.coalcountychamber.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20230208092623",
@@ -1874,9 +2097,9 @@
     },
     {
       "url": "https://www.cologix.com/data-centers/new-orleans/",
-      "down_reason": null,
-      "status": 307,
-      "consecutive_failures": null,
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -1898,10 +2121,22 @@
       "counties": 1
     },
     {
-      "url": "https://www.congress.gov/",
-      "down_reason": null,
+      "url": "https://www.community-news.com/stories/commissioners-address-data-center-concerns,170764",
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260618122522",
+        "url": "http://web.archive.org/web/20260618122522/http://www.community-news.com/stories/commissioners-address-data-center-concerns,170764"
+      },
+      "counties": 1
+    },
+    {
+      "url": "https://www.congress.gov/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": 403,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260726183302",
@@ -1911,10 +2146,14 @@
     },
     {
       "url": "https://www.consumersenergy.com/business",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 500,
-      "consecutive_failures": null,
-      "suggested_replacement": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 1,
+        "url": "https://www.consumersenergy.com/business/account-and-billing/view-or-pay-bill"
+      },
       "archive": {
         "timestamp": "20260421160004",
         "url": "http://web.archive.org/web/20260421160004/https://www.consumersenergy.com/business"
@@ -1934,6 +2173,18 @@
       "counties": 1
     },
     {
+      "url": "https://www.crawfordcountykansas.org/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": 429,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260814165140",
+        "url": "http://web.archive.org/web/20260814165140/https://www.crawfordcountykansas.org/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://www.cullmanchamber.org/economic-development/",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
@@ -1947,9 +2198,9 @@
     },
     {
       "url": "https://www.cummins.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260205142624",
@@ -2036,9 +2287,9 @@
     },
     {
       "url": "https://www.dickinsonnd.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20220112155233",
@@ -2073,9 +2324,9 @@
     },
     {
       "url": "https://www.drum.army.mil",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20041021090447",
@@ -2085,9 +2336,9 @@
     },
     {
       "url": "https://www.duboiscounty.org",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20140703164322",
@@ -2108,10 +2359,23 @@
       "counties": 1
     },
     {
+      "url": "https://www.effinghamil.com/economic-development",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 2,
+        "url": "https://www.effinghamil.com/economic-development-and-tourism-staff/"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
       "url": "https://www.eglin.af.mil",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260716184847",
@@ -2133,9 +2397,9 @@
     },
     {
       "url": "https://www.elliottcountykentucky.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20250421172635",
@@ -2145,9 +2409,9 @@
     },
     {
       "url": "https://www.ellsworth.af.mil/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260703143906",
@@ -2157,9 +2421,9 @@
     },
     {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/boston-data-centers",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260207134337",
@@ -2181,9 +2445,9 @@
     },
     {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny7",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260421064505",
@@ -2303,6 +2567,19 @@
       "counties": 1
     },
     {
+      "url": "https://www.flexential.com/data-centers/new-hampshire/manchester",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 2,
+        "url": "https://www.flexential.com/data-centers"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
       "url": "https://www.florencecounty.org",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -2316,9 +2593,9 @@
     },
     {
       "url": "https://www.franklincountyms.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20211204104912",
@@ -2328,9 +2605,9 @@
     },
     {
       "url": "https://www.freestonecounty.org",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20120414111731",
@@ -2352,9 +2629,9 @@
     },
     {
       "url": "https://www.gallatin.mt.gov/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20150221120039",
@@ -2364,13 +2641,13 @@
     },
     {
       "url": "https://www.gatescountyindex.com/news/is-a-data-center-in-gates-countys-future-c8f66c53",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
-        "score": 2,
-        "url": "https://www.gatescountyindex.com/news/hertford-gates-relay-for-life-set-for-sept-18-751a4b72"
+        "score": 3,
+        "url": "https://www.gatescountyindex.com/news/data-center-moratorium-approved-f56883de"
       },
       "archive": null,
       "counties": 1
@@ -2464,9 +2741,9 @@
     },
     {
       "url": "https://www.goliad.org",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20250810033509",
@@ -2476,9 +2753,9 @@
     },
     {
       "url": "https://www.goodfellow.af.mil/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260705032204",
@@ -2487,22 +2764,10 @@
       "counties": 1
     },
     {
-      "url": "https://www.grantcounty.net/",
-      "down_reason": null,
-      "status": null,
-      "consecutive_failures": null,
-      "suggested_replacement": null,
-      "archive": {
-        "timestamp": "20240621093046",
-        "url": "http://web.archive.org/web/20240621093046/https://www.grantcounty.net/"
-      },
-      "counties": 1
-    },
-    {
       "url": "https://www.grantcountywv.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20220309005627",
@@ -2548,9 +2813,9 @@
     },
     {
       "url": "https://www.hardincountyil.org",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20230528035720",
@@ -2585,9 +2850,9 @@
     },
     {
       "url": "https://www.harrisoncountyia.org/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260204092006",
@@ -2685,9 +2950,9 @@
     },
     {
       "url": "https://www.ilga.gov/legislation/ilcs/fulltext.asp?Name=0035010500K2-5",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -2747,9 +3012,9 @@
     },
     {
       "url": "https://www.isleofwightus.net",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20160516193457",
@@ -2759,9 +3024,9 @@
     },
     {
       "url": "https://www.jcmos.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20170407084028",
@@ -2845,9 +3110,9 @@
     },
     {
       "url": "https://www.kenergy.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260306115740",
@@ -2857,25 +3122,13 @@
     },
     {
       "url": "https://www.kentcountytx.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20061215091721",
         "url": "http://web.archive.org/web/20061215091721/http://www.kentcountytx.com:80/"
-      },
-      "counties": 1
-    },
-    {
-      "url": "https://www.kissimmeechamber.com",
-      "down_reason": null,
-      "status": null,
-      "consecutive_failures": null,
-      "suggested_replacement": null,
-      "archive": {
-        "timestamp": "20250329035626",
-        "url": "http://web.archive.org/web/20250329035626/http://www.kissimmeechamber.com/"
       },
       "counties": 1
     },
@@ -2901,19 +3154,6 @@
         "timestamp": "20100924100236",
         "url": "http://web.archive.org/web/20100924100236/http://kohler.com/"
       },
-      "counties": 1
-    },
-    {
-      "url": "https://www.kokomotribune.com/news/local_news/cass-county-officials-vote-against-allowing-data-centers/article_d809bb76-2a6c-5a95-a347-b4518cc797e3.html",
-      "down_reason": null,
-      "status": 429,
-      "consecutive_failures": null,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 3,
-        "url": "https://www.kokomotribune.com/news/local_news/crowds-turn-out-for-250-minutes-of-fun/article_cce1c9b2-bed7-42f9-a1e2-65af556f6d36.html"
-      },
-      "archive": null,
       "counties": 1
     },
     {
@@ -2947,13 +3187,13 @@
     },
     {
       "url": "https://www.ksn.com/news/local/harvey-county-bans-data-centers-for-now/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 3,
-        "url": "https://www.ksn.com/news/your-local-election-hq/sedgwick-county-advance-voting-open/"
+        "url": "https://www.ksn.com/news/local/woman-dies-a-week-after-suicide-attempt-at-sedgwick-county-jail/"
       },
       "archive": {
         "timestamp": "20260319005128",
@@ -2989,22 +3229,22 @@
     },
     {
       "url": "https://www.lagrangenews.com/news/commissioners-approve-data-center-ordinance-lift-moratorium-2b6e15ed",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 5,
-        "url": "https://www.lagrangenews.com/news/commissioners-table-discussion-on-data-center-ordinance-50155bbf"
+        "url": "https://www.lagrangenews.com/news/hogansville-denies-data-center-ordinance-extends-moratorium-720341ef"
       },
       "archive": null,
       "counties": 1
     },
     {
       "url": "https://www.lamarcountyms.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20181230134143",
@@ -3038,9 +3278,9 @@
     },
     {
       "url": "https://www.leecountync.gov/economic-development",
-      "down_reason": null,
+      "down_reason": "SOURCE_MOVED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -3065,10 +3305,34 @@
       "counties": 1
     },
     {
+      "url": "https://www.legislature.mi.gov/documents/2013-2014/publicact/htm/2014-PA-0328.htm",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20171218221319",
+        "url": "http://web.archive.org/web/20171218221319/http://www.legislature.mi.gov:80/documents/2013-2014/publicact/htm/2014-PA-0328.htm"
+      },
+      "counties": 1
+    },
+    {
+      "url": "https://www.legislature.mi.gov/documents/mcl/pdf/mcl-205-54bb.pdf",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": null,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20250222200425",
+        "url": "http://web.archive.org/web/20250222200425/http://www.legislature.mi.gov/documents/mcl/pdf/mcl-205-54bb.pdf"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://www.lejeune.marines.mil/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260702230818",
@@ -3141,10 +3405,22 @@
       "counties": 1
     },
     {
+      "url": "https://www.maineconnectivity.org/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": 429,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260607144550",
+        "url": "http://web.archive.org/web/20260607144550/https://www.maineconnectivity.org/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://www.malmstrom.af.mil",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260606195731",
@@ -3166,9 +3442,9 @@
     },
     {
       "url": "https://www.manateeedc.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20210416235946",
@@ -3251,9 +3527,9 @@
     },
     {
       "url": "https://www.menifeecounty.ky.gov",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20161118013251",
@@ -3263,9 +3539,9 @@
     },
     {
       "url": "https://www.mhpcc.edu",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20220702094844",
@@ -3300,9 +3576,9 @@
     },
     {
       "url": "https://www.midlanddc.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20140517163345",
@@ -3360,9 +3636,9 @@
     },
     {
       "url": "https://www.muhlenbergcounty.ky.gov/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20161118013325",
@@ -3384,9 +3660,9 @@
     },
     {
       "url": "https://www.nasa.gov/centers/stennis/",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20230407174921",
@@ -3408,9 +3684,9 @@
     },
     {
       "url": "https://www.navsea.navy.mil/Home/Warfare-Centers/NUWC-Newport/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260516121702",
@@ -3443,6 +3719,19 @@
       "counties": 1
     },
     {
+      "url": "https://www.nccommerce.com/business-services/incentive-programs",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 3,
+        "url": "https://www.commerce.nc.gov/documents/ncworks-business-services-programs-incentives-booklet"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
       "url": "https://www.nccommerce.com/business-services/incentive-programs/article-3f-data-center-incentive",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
@@ -3464,6 +3753,45 @@
         "found_via": "sitemap",
         "score": 3,
         "url": "https://www.commerce.nc.gov/grants-incentives/competitive-incentives/job-development-investment-grant-jdig"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
+      "url": "https://www.nccommerce.com/grants-incentives/nc-county-tier-designations",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 4,
+        "url": "https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers/county-tier-designation-archives"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
+      "url": "https://www.nccommerce.com/jdig",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 1,
+        "url": "https://www.commerce.nc.gov/compliance-grantee-annual-report-materials-job-development-investment-grant-jdig-recipients"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
+      "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/exemptions-exclusions-and-refunds/data-centers",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 4,
+        "url": "https://www.ncdor.gov/taxes-forms/sales-and-use-tax/other-sales-and-use-tax-resources/nonprofit-sales-and-use-tax-information/frequently-asked-questions-nonprofit-sales-and-use-tax-refunds"
       },
       "archive": null,
       "counties": 1
@@ -3506,9 +3834,9 @@
     },
     {
       "url": "https://www.netcom.army.mil",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260605152829",
@@ -3558,9 +3886,9 @@
     },
     {
       "url": "https://www.norfolkne.gov/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260626180544",
@@ -3631,14 +3959,27 @@
     },
     {
       "url": "https://www.nyseg.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260725171517",
         "url": "http://web.archive.org/web/20260725171517/https://www.nyseg.com/"
       },
+      "counties": 1
+    },
+    {
+      "url": "https://www.oconeecounty.com/board-of-commissioners",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 2,
+        "url": "https://www.oconeecountyga.gov/507/Board-of-Commissioners"
+      },
+      "archive": null,
       "counties": 1
     },
     {
@@ -3669,9 +4010,9 @@
     },
     {
       "url": "https://www.orangecountyva.gov/1100/Planning-Zoning",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -3731,6 +4072,19 @@
       "counties": 1
     },
     {
+      "url": "https://www.paulding.gov/212/Board-of-Commissioners",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 2,
+        "url": "https://www.paulding.gov/101/Board-of-Commissioners"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
       "url": "https://www.pembinacounty.com",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -3781,9 +4135,9 @@
     },
     {
       "url": "https://www.pmrf.navy.mil",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20140821175402",
@@ -3805,9 +4159,9 @@
     },
     {
       "url": "https://www.pueblocounty.us/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20160110212424",
@@ -3817,9 +4171,9 @@
     },
     {
       "url": "https://www.randolphcounty.us",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260606021531",
@@ -3855,9 +4209,9 @@
     },
     {
       "url": "https://www.ravallicounty.mt.gov/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20110531073324",
@@ -3903,9 +4257,9 @@
     },
     {
       "url": "https://www.riley.army.mil",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20190204152117",
@@ -3928,9 +4282,9 @@
     },
     {
       "url": "https://www.robins.af.mil",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260718225611",
@@ -3953,9 +4307,9 @@
     },
     {
       "url": "https://www.rollamo.com",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20170922042640",
@@ -4027,9 +4381,9 @@
     },
     {
       "url": "https://www.sewardcounty.org/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20160820102209",
@@ -4039,9 +4393,9 @@
     },
     {
       "url": "https://www.seymourjohnson.af.mil/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260706094235",
@@ -4088,9 +4442,9 @@
     },
     {
       "url": "https://www.solanoedc.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20240807095015",
@@ -4124,14 +4478,27 @@
     },
     {
       "url": "https://www.stamfordct.gov/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260718203116",
         "url": "http://web.archive.org/web/20260718203116/https://www.stamfordct.gov/"
       },
+      "counties": 1
+    },
+    {
+      "url": "https://www.stanlycountync.gov/commissioners",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 1,
+        "url": "https://www.stanlycountync.gov/162/County-Commissioners"
+      },
+      "archive": null,
       "counties": 1
     },
     {
@@ -4185,9 +4552,9 @@
     },
     {
       "url": "https://www.svec.net/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20180329043035",
@@ -4197,9 +4564,9 @@
     },
     {
       "url": "https://www.tampabaypartnership.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20240227131203",
@@ -4270,9 +4637,9 @@
     },
     {
       "url": "https://www.tooeleco.org/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20240628172456",
@@ -4282,9 +4649,9 @@
     },
     {
       "url": "https://www.transcom.mil/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20151026193107",
@@ -4294,9 +4661,9 @@
     },
     {
       "url": "https://www.tric.com",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260212081412",
@@ -4318,9 +4685,9 @@
     },
     {
       "url": "https://www.tva.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260628100532",
@@ -4330,9 +4697,9 @@
     },
     {
       "url": "https://www.tva.com/energy/our-power-system",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260720011050",
@@ -4342,9 +4709,9 @@
     },
     {
       "url": "https://www.tva.com/energy/our-power-system/nuclear/watts-bar-nuclear-plant",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260720011051",
@@ -4366,9 +4733,9 @@
     },
     {
       "url": "https://www.usda.gov/reconnect",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20241212200119",
@@ -4402,9 +4769,9 @@
     },
     {
       "url": "https://www.vbgov.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260131062756",
@@ -4427,9 +4794,9 @@
     },
     {
       "url": "https://www.vedp.org/location/hanover-county",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 2,
@@ -4440,13 +4807,13 @@
     },
     {
       "url": "https://www.wane.com/top-stories/commissioners-reject-rezoning-plan-for-kosciusko-county-data-center/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": {
         "found_via": "sitemap",
         "score": 3,
-        "url": "https://www.wane.com/top-stories/allen-county-commissioners-officially-decide-to-sell-former-byron-health-property/"
+        "url": "https://www.wane.com/top-stories/isp-fbi-arrest-illinois-men-with-outstanding-warrants-in-kosciusko-county/"
       },
       "archive": {
         "timestamp": "20250514145726",
@@ -4479,6 +4846,18 @@
       "counties": 1
     },
     {
+      "url": "https://www.wheelercountyoregon.com/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": 429,
+      "consecutive_failures": 1,
+      "suggested_replacement": null,
+      "archive": {
+        "timestamp": "20260723032556",
+        "url": "http://web.archive.org/web/20260723032556/https://www.wheelercountyoregon.com/"
+      },
+      "counties": 1
+    },
+    {
       "url": "https://www.wilmingtonnc.gov/departments/development-services/economic-development",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
@@ -4493,9 +4872,9 @@
     },
     {
       "url": "https://www.wilsonedc.com/",
-      "down_reason": null,
+      "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260606165141",
@@ -4521,13 +4900,42 @@
     },
     {
       "url": "https://www.windhamct.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20231201073014",
         "url": "http://web.archive.org/web/20231201073014/https://www2.windhamct.com/"
+      },
+      "counties": 1
+    },
+    {
+      "url": "https://www.wjbf.com/news/augusta-committee-has-first-discussion-on-on-proposed-data-center-ordinance/",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": 403,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 3,
+        "url": "https://www.wjbf.com/news/georgia-news/georgias-data-center-boom-raises-questions-about-power-costs/"
+      },
+      "archive": null,
+      "counties": 1
+    },
+    {
+      "url": "https://www.wkow.com/news/dane-county-approves-18-month-data-center-moratorium/article_0d0304c1-f6cf-4fe6-86cf-d6519662352f.html",
+      "down_reason": "TRANSIENT_FAILURE",
+      "status": 429,
+      "consecutive_failures": 1,
+      "suggested_replacement": {
+        "found_via": "sitemap",
+        "score": 4,
+        "url": "https://www.wkow.com/news/dane-county-rolls-out-ai-assistant-to-manage-non-emergency-calls/article_4ea5b621-d420-4248-96b5-05022e64255c.html"
+      },
+      "archive": {
+        "timestamp": "20260710132910",
+        "url": "http://web.archive.org/web/20260710132910/https://www.wkow.com/news/dane-county-approves-18-month-data-center-moratorium/article_0d0304c1-f6cf-4fe6-86cf-d6519662352f.html"
       },
       "counties": 1
     },
@@ -4546,9 +4954,9 @@
     },
     {
       "url": "https://www.wpafb.af.mil/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260626193919",
@@ -4571,9 +4979,9 @@
     },
     {
       "url": "https://www.wytheva.com/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20130722121714",
@@ -4596,9 +5004,9 @@
     },
     {
       "url": "https://www.yorkcounty.org",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20260413013211",
@@ -4620,15 +5028,992 @@
     },
     {
       "url": "https://ycea-pa.org/",
-      "down_reason": null,
+      "down_reason": "TRANSIENT_FAILURE",
       "status": null,
-      "consecutive_failures": null,
+      "consecutive_failures": 1,
       "suggested_replacement": null,
       "archive": {
         "timestamp": "20181001200348",
         "url": "http://web.archive.org/web/20181001200348/http://www.ycea-pa.org/"
       },
       "counties": 1
+    },
+    {
+      "url": "https://about.fb.com/news/2023/10/meta-to-build-data-center-in-goodyear-arizona/",
+      "context": "sample_layers.json / ai_campuses / fc-8eb39d70cb (Meta Data Center - Goodyear AZ)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://about.fb.com/news/2024/05/meta-announces-kearney-nebraska-data-center/",
+      "context": "sample_layers.json / ai_campuses / fc-504f5554e5 (Meta Data Center - Kearney NE)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://about.fb.com/news/2026/07/meta-announces-new-venture-with-blackrock-to-develop-data-center-in-el-paso/",
+        "score": 5,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://about.fb.com/news/2024/meta-data-center-sherman-texas/",
+      "context": "sample_layers.json / ai_campuses / fc-4f9b4e39af (Meta Data Center - Sherman TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+        "score": 5,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://about.fb.com/news/2024/meta-rosemount-minnesota-data-center/",
+      "context": "sample_layers.json / ai_campuses / fc-5e5053acef (Meta Data Center - Rosemount MN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://aset.az.gov/",
+      "context": "sample_layers.json / data_centers / fc-a7d8e50744 (Arizona Strategic Enterprise Technology - Phoenix AZ)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260413042004/https://aset.az.gov/",
+        "timestamp": "20260413042004"
+      }
+    },
+    {
+      "url": "https://atriumhealth.org/about-us/who-we-are",
+      "context": "sample_layers.json / data_centers / fc-a8a8af5e41 (Atrium Health Data Center - Charlotte NC)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://atriumhealth.org/about-us",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://blog.google/technology/infrastructure/google-data-center-birmingham-alabama-2024/",
+      "context": "sample_layers.json / ai_campuses / fc-1b64078203 (Google Data Center - Birmingham AL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://blog.google/technology/infrastructure/google-data-center-clarksville-tennessee/",
+      "context": "sample_layers.json / ai_campuses / fc-048f7c75e3 (Google Data Center - Clarksville TN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://blog.google/technology/infrastructure/google-data-center-henderson-nevada/",
+      "context": "sample_layers.json / ai_campuses / fc-db52618cc3 (Google Data Center - Henderson NV)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://blog.google/technology/infrastructure/google-data-center-topeka-kansas/",
+      "context": "sample_layers.json / ai_campuses / fc-f4c8fce3e6 (Google Data Center - Topeka KS)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://deft.com/data-centers/chicago/",
+      "context": "sample_layers.json / data_centers / fc-6e330ddf80 (Deft Data Centers - Chicago IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://summithq.com/data-centers/chicago-illinois-data-center/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://doas.ga.gov/state-purchasing/technology-services",
+      "context": "sample_layers.json / data_centers / fc-5b61229db6 (Georgia Department of Administrative Services - Atlanta GA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.doas.ga.gov/state-purchasing/supplier-services",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://edgecore.com/data-centers/reno/",
+      "context": "sample_layers.json / ai_campuses / fc-e6c12a9b83 (EdgeCore Internet Real Estate - Reno NV)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://edgecore.com/locations/culpeper-data-centers",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://evocative.com/data-centers/fremont/",
+      "context": "sample_layers.json / data_centers / fc-d999f575fd (Evocative Data Center - Fremont CA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://evocative.com/resources/whitepaper/navigating-the-journey-to-hybrid-cloud-advantages-of-colocation-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://evocative.com/data-centers/oakland/",
+      "context": "sample_layers.json / data_centers / fc-246c36ed47 (Evocative Data Center - Oakland CA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://evocative.com/resources/whitepaper/navigating-the-journey-to-hybrid-cloud-advantages-of-colocation-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://hawaiiantel.com/",
+      "context": "state_regulations.json / 15 (Hawaii)",
+      "down_reason": null,
+      "status": 302,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260618214718/https://www.hawaiiantel.com/",
+        "timestamp": "20260618214718"
+      }
+    },
+    {
+      "url": "https://hpcc.umd.edu/",
+      "context": "sample_layers.json / data_centers / fc-654d7d9b31 (University of Maryland High Performance Computing - College Park MD)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260808081445/https://hpcc.umd.edu/",
+        "timestamp": "20260808081445"
+      }
+    },
+    {
+      "url": "https://ir.applieddigital.com/news-releases/news-release-details/applied-digital-opens-new-200-megawatt-hpc-data-center-corsicana",
+      "context": "sample_layers.json / ai_campuses / fc-9523fdf867 (Applied Digital Data Center - Corsicana TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://ir.applieddigital.com/news-events/press-releases",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://lunavi.com/data-centers/cheyenne-wyoming/",
+      "context": "sample_layers.json / data_centers / fc-173b1988a8 (Lunavi Data Center - Cheyenne WY)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.lunavi.com/data-centers/cheyenne",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://lunavi.com/data-centers/denver-colorado/",
+      "context": "sample_layers.json / data_centers / fc-a5d221b3fb (Lunavi Data Center - Denver CO)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.lunavi.com/data-centers/denver",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://netrality.com/data-centers/pittsburgh/",
+      "context": "sample_layers.json / data_centers / fc-b0f95c76f3 (Netrality Data Center - Pittsburgh PA (429 Fourth Ave))",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://netrality.com/services/edge-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://news.microsoft.com/2022/microsoft-iowa-data-center-west-des-moines/",
+      "context": "sample_layers.json / ai_campuses / fc-7f262d9195 (Microsoft Data Center - West Des Moines IA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://news.microsoft.com/2023/microsoft-georgia-data-center-investment/",
+      "context": "sample_layers.json / ai_campuses / fc-915bb4f6ea (Microsoft Data Center - Atlanta GA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://news.microsoft.com/2024/11/microsoft-chehalis-washington-data-center-investment/",
+      "context": "sample_layers.json / ai_campuses / fc-9ad16d1103 (Microsoft Data Center - Chehalis WA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://news.microsoft.com/2024/microsoft-louisville-kentucky-data-center/",
+      "context": "sample_layers.json / ai_campuses / fc-b38c925e81 (Microsoft Data Center - Louisville KY)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://news.microsoft.com/2024/microsoft-spokane-washington-data-center/",
+      "context": "sample_layers.json / ai_campuses / fc-52c78e6ad9 (Microsoft Data Center - Spokane WA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://ntirety.com/",
+      "context": "sample_layers.json / data_centers / fc-9e0e50c07c (Ntirety Data Center - Dallas TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 520,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260521192430/https://www.ntirety.com/",
+        "timestamp": "20260521192430"
+      }
+    },
+    {
+      "url": "https://phoenixnap.com/data-center/dallas-tx",
+      "context": "sample_layers.json / data_centers / fc-049c9b813d (PhoenixNAP Data Center - Dallas TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://phoenixnap.com/company/it-resources/data-center-rfp-template",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://phoenixnap.com/data-centers/ashburn-virginia",
+      "context": "sample_layers.json / data_centers / fc-6a9930b165 (PhoenixNAP - Ashburn)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://phoenixnap.com/data-center/ashburn",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://wvu.edu/about-wvu",
+      "context": "sample_layers.json / data_centers / fc-6e5ecf658a (West Virginia University Research Computing - Morgantown WV)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260804145002/https://www.wvu.edu/about-wvu/",
+        "timestamp": "20260804145002"
+      }
+    },
+    {
+      "url": "https://www.365datacenters.com/data-centers/baltimore/",
+      "context": "sample_layers.json / data_centers / fc-9b7ba9ae00 (365 Data Centers - Baltimore MD)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://365datacenters.com/365-data-centers-significantly-enhances-available/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-boise-idaho-data-center",
+      "context": "sample_layers.json / ai_campuses / fc-a394203c6b (Amazon AWS Data Center - Boise ID)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-denton-texas",
+      "context": "sample_layers.json / ai_campuses / fc-434aa73a61 (Amazon AWS Data Center - Denton TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-pecos-county-texas-data-center-clean-energy-jobs",
+        "score": 5,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-sioux-falls-south-dakota",
+      "context": "sample_layers.json / ai_campuses / fc-9ad0e89fcf (Amazon AWS Data Center - Sioux Falls SD)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-umatilla-oregon",
+      "context": "sample_layers.json / ai_campuses / fc-2794223342 (Amazon AWS Data Center - Umatilla OR)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-south-carolina-data-center",
+      "context": "sample_layers.json / ai_campuses / fc-635045e410 (Amazon AWS Data Center - Columbia SC)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-springfield-illinois-data-center",
+      "context": "sample_layers.json / ai_campuses / fc-6dcda0deee (Amazon AWS Data Center - Springfield IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aligneddc.com/data-centers/minneapolis/",
+      "context": "sample_layers.json / data_centers / fc-b875e23936 (Aligned Data Center - Minneapolis MN MSP-01)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://aligneddc.com/press-release/aligned-data-centers-to-acquire-odata/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.avec.org/",
+      "context": "sample_layers.json / data_centers / fc-8eb87c38f0 (Alaska Village Electric Cooperative Data Center - Anchorage AK)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260218154423/https://avec.org/",
+        "timestamp": "20260218154423"
+      }
+    },
+    {
+      "url": "https://www.avera.org/",
+      "context": "sample_layers.json / data_centers / fc-be3a507024 (Avera Health Data Center - Sioux Falls SD)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260810194912/https://www.avera.org/",
+        "timestamp": "20260810194912"
+      }
+    },
+    {
+      "url": "https://www.bluelock.com/",
+      "context": "sample_layers.json / data_centers / fc-0dabd0d70b (Bluelock Data Center - Indianapolis IN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20190822002006/https://www.bluelock.com/",
+        "timestamp": "20190822002006"
+      }
+    },
+    {
+      "url": "https://www.bms.com/about-us/our-company/global-locations.html",
+      "context": "sample_layers.json / data_centers / fc-6c5430533a (Bristol-Myers Squibb Data Center - Lawrenceville NJ)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.bms.com/our-company/locations.html",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.citizensbank.com/",
+      "context": "sample_layers.json / data_centers / fc-3ec59a8b11 (Citizens Bank Operations Center Data Center - Manchester NH)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20220401075002/http://www.citizensbank.com/",
+        "timestamp": "20220401075002"
+      }
+    },
+    {
+      "url": "https://www.cmmc.org/",
+      "context": "sample_layers.json / data_centers / fc-1aa6dd5f3c (Central Maine Medical Center Data Center - Lewiston ME)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20171002023830/https://www.cmmc.org/",
+        "timestamp": "20171002023830"
+      }
+    },
+    {
+      "url": "https://www.cologix.com/data-centers/boston/",
+      "context": "sample_layers.json / data_centers / fc-9874335c04 (Cologix Data Center - Boston MA BOS1)",
+      "down_reason": null,
+      "status": 307,
+      "suggested_replacement": {
+        "url": "https://cologix.com/resources/blogs/cloud-choice-and-network-neutral-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.cologix.com/data-centers/minneapolis/min1/",
+      "context": "sample_layers.json / data_centers / fc-36d7e865bb (Cologix MTL1 - Montreal QC (US ops))",
+      "down_reason": null,
+      "status": 307,
+      "suggested_replacement": {
+        "url": "https://cologix.com/resources/blogs/cloud-choice-and-network-neutral-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": {
+        "url": "http://web.archive.org/web/20260630000256/https://cologix.com/data-centers/minneapolis/min1/",
+        "timestamp": "20260630000256"
+      }
+    },
+    {
+      "url": "https://www.cologix.com/data-centers/philadelphia/",
+      "context": "sample_layers.json / data_centers / fc-0fe8d7fbe6 (Cologix Data Center - Philadelphia PA PHL1)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://cologix.com/resources/blogs/cloud-choice-and-network-neutral-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.columbus.gov/311-service-center/departments/technology/",
+      "context": "sample_layers.json / data_centers / fc-6986b2cb76 (City of Columbus Department of Technology - Columbus OH)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.columbus.gov/311-Customer-Service-Center",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.corscale.com/data-centers/",
+      "context": "sample_layers.json / ai_campuses / fc-bdea43326d (Corscale Data Center - Prince William County VA)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://corscale.com/press-releases/corscale-data-centers-and-affinius-capital-announce-strategic-partnership-with-e2companies/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.dcblox.com/data-centers/oklahoma-city/",
+      "context": "sample_layers.json / data_centers / fc-60f36447aa (DC BLOX Data Center - Oklahoma City OK OKC-1)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.dcblox.com/dc-blox-expands-birmingham-and-greenville-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.digitalrealty.com/data-centers/americas/denver",
+      "context": "sample_layers.json / data_centers / fc-6808085b7d (Digital Realty - DEN1 Denver CO)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.digitalrealty.com/data-centers/americas/los-angeles/bur10",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.dominionenergy.com/company/about-us",
+      "context": "sample_layers.json / data_centers / fc-b41449669e (Dominion Energy Data Center - Richmond)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.dominionenergy.com/about/our-company",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.elevancehealth.com/our-company",
+      "context": "sample_layers.json / data_centers / fc-8266aca989 (Anthem/Elevance Health Data Center - Indianapolis IN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.elevancehealth.com/newsroom/anthem-announces-solar-power-purchase-agreement-to-move-company-closer-towards-100-percent-renewable-energy-goal",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/dallas-data-centers/da9",
+      "context": "sample_layers.json / data_centers / fc-9db4b901bc (Equinix - DA9 Dallas)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260512191117/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/dallas-data-centers/da9",
+        "timestamp": "20260512191117"
+      }
+    },
+    {
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/denver-data-centers/de1",
+      "context": "sample_layers.json / data_centers / fc-f28faebb45 (Equinix DE1 - Englewood)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260314203559/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/denver-data-centers/de1",
+        "timestamp": "20260314203559"
+      }
+    },
+    {
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny3",
+      "context": "sample_layers.json / data_centers / fc-e48c05a6a5 (Equinix - NY3 Parsippany)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260509193412/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny3",
+        "timestamp": "20260509193412"
+      }
+    },
+    {
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4",
+      "context": "sample_layers.json / data_centers / fc-7886081377 (Equinix - SE4 Seattle)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260518031842/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4",
+        "timestamp": "20260518031842"
+      }
+    },
+    {
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv4",
+      "context": "sample_layers.json / data_centers / fc-e5ab4a5a8d (Equinix - SV4 Santa Clara)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260715001753/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv4",
+        "timestamp": "20260715001753"
+      }
+    },
+    {
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc21",
+      "context": "sample_layers.json / data_centers / fc-4a743194f8 (Equinix - DC21 Ashburn)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260421070654/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc21",
+        "timestamp": "20260421070654"
+      }
+    },
+    {
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc3",
+      "context": "sample_layers.json / data_centers / fc-56c8796070 (Equinix - DC3 Ashburn)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260207215140/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc3",
+        "timestamp": "20260207215140"
+      }
+    },
+    {
+      "url": "https://www.firstinterstatebank.com/about/",
+      "context": "sample_layers.json / data_centers / fc-48e3883fe4 (First Interstate BancSystem Data Center - Billings MT)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.firstinterstatebank.com/company/about/careers",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": {
+        "url": "http://web.archive.org/web/20121005032145/https://www.firstinterstatebank.com/about/",
+        "timestamp": "20121005032145"
+      }
+    },
+    {
+      "url": "https://www.gdeb.com/",
+      "context": "sample_layers.json / data_centers / fc-4eb14e70be (Electric Boat Data Center - North Kingstown RI)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260812180322/https://www.gdeb.com/",
+        "timestamp": "20260812180322"
+      }
+    },
+    {
+      "url": "https://www.gdeb.com/about/",
+      "context": "sample_layers.json / data_centers / fc-4eb14e70be (Electric Boat Data Center - North Kingstown RI)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260730011228/https://gdeb.com/about/",
+        "timestamp": "20260730011228"
+      }
+    },
+    {
+      "url": "https://www.hivelocity.net/dedicated-server/chicago/",
+      "context": "sample_layers.json / data_centers / fc-960b42a31d (Hivelocity Data Center - Chicago IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.hivelocity.net/blog/guide-to-evaluating-dedicated-server-providers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.hpe.com/us/en/contact-hpe.html",
+      "context": "sample_layers.json / data_centers / fc-bb63c8eb95 (Hewlett Packard Enterprise Data Center - Spring TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260806052600/https://www.hpe.com/us/en/contact-hpe.html",
+        "timestamp": "20260806052600"
+      }
+    },
+    {
+      "url": "https://www.involta.com/data-centers/eau-claire/",
+      "context": "sample_layers.json / data_centers / fc-10992cd0b9 (Involta Data Center - Eau Claire WI)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.arkdna.com/data-centers/ohio/canton/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.kia.com/us/en/about-kia",
+      "context": "sample_layers.json / data_centers / fc-4cbf278612 (Kia America Data Center - Irvine CA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.kia.com/kr/pbv/solution/about-solution",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.madeinalabama.com/2015/11/alabama-jobs-act/",
+      "context": "state_regulations.json / 01 (Alabama)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.madeinalabama.com/2023/01/peak-north-america-usa-creating-175-jobs-with-new-alabama-facility/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.metronet.com/",
+      "context": "sample_layers.json / data_centers / fc-893e960ff4 (Metronet Data Center - Kokomo IN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260814005458/https://www.metronet.com/",
+        "timestamp": "20260814005458"
+      }
+    },
+    {
+      "url": "https://www.middlebury.edu/information-technology/research-computing",
+      "context": "sample_layers.json / data_centers / fc-e5238ce23d (Middlebury College Research Computing - Middlebury VT)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.middlebury.edu/information-technology-services/policies/computing-policies",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.nationallife.com/about/",
+      "context": "sample_layers.json / data_centers / fc-8dfbce0ae1 (National Life Group Data Center - Montpelier VT)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.nationallife.com/resource-center/what-annuity-owners-need-to-know-about-qualified-plans-vs-non-qualified-plans",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.netcom.army.mil/",
+      "context": "sample_layers.json / data_centers / fc-25ff7282ee (US Army - Fort Huachuca AZ Data Center (NETCOM))",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260605152829/https://www.netcom.army.mil//",
+        "timestamp": "20260605152829"
+      }
+    },
+    {
+      "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/chicago",
+      "context": "sample_layers.json / data_centers / fc-8011739d9f (NTT Data Center - Elk Grove Village IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.nttdata.com/en-us/services/global-data-centers",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page",
+      "context": "state_regulations.json / 36 (New York)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260803133932/https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page",
+        "timestamp": "20260803133932"
+      }
+    },
+    {
+      "url": "https://www.oracle.com/news/announcement/oracle-to-invest-in-tennessee-cloud-region-2024/",
+      "context": "sample_layers.json / ai_campuses / fc-f2ab9aea1e (Oracle Cloud Data Center - Nashville TN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.oracle.com/cloud/azure/oracle-database-at-azure/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.pepsico.com/our-company/",
+      "context": "sample_layers.json / data_centers / fc-fcea165fa4 (PepsiCo Data Center - Purchase NY)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.pepsico.com/newsroom/press-releases/2007/pepsiamericas-and-pepsico-to-jointly-acquire-leading-juice-company-in-ukraine",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.phs.org/about/Pages/default.aspx",
+      "context": "sample_layers.json / data_centers / fc-f0abb358cb (Presbyterian Healthcare Data Center - Albuquerque NM)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.phs.org/santa-fe-medical-center/about/report-to-community",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.primedatacenters.com/data-centers/hillsboro/",
+      "context": "sample_layers.json / data_centers / fc-6f1b1ba097 (Prime Data Centers - Hillsboro OR)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://primedatacenters.com/news/women-in-construction-success-story-courtney-schmidt-of-prime-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.qtsdatacenters.com/data-centers/nashville",
+      "context": "sample_layers.json / data_centers / fc-7c49235ced (QTS Data Center - Nashville TN)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://q.com/jet-popup/data-centers-menu-popup/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.snhu.edu/about-snhu/",
+      "context": "sample_layers.json / data_centers / fc-1f88658d84 (Southern New Hampshire University Data Center - Manchester NH)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.snhu.edu/about-us/ai-at-snhu",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.spectrum.com/",
+      "context": "sample_layers.json / data_centers / fc-6dd14dc0f2 (Charter Communications / Spectrum Data Center - Los Angeles CA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260815232853/https://www.spectrum.com/",
+        "timestamp": "20260815232853"
+      }
+    },
+    {
+      "url": "https://www.thomaswv.org/",
+      "context": "sample_layers.json / data_centers / fc-4fccec5540 (Thomas Health System Data Center - South Charleston WV)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20200811200849/http://thomaswv.org:80/",
+        "timestamp": "20200811200849"
+      }
+    },
+    {
+      "url": "https://www.ussignal.com/data-centers/kalamazoo-michigan/",
+      "context": "sample_layers.json / data_centers / fc-2cf5ba7aec (US Signal Data Center - Kalamazoo MI)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://ussignal.com/blog/michigan-data-centers-what-it-leaders-need-to-know/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
     }
   ]
 }
