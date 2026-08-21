@@ -1,6 +1,6 @@
 {
  "_schema": "source_link_health_v1",
- "checked_at": "2026-08-20T04:17:54+00:00",
+ "checked_at": "2026-08-21T18:37:36+00:00",
  "counties_with_textual_only_citations": [
   "13097",
   "17031",
@@ -26,11 +26,11 @@
  "summary": {
   "checked": 1985,
   "counties_with_textual_only_citations": 20,
-  "reachable": 1011,
+  "reachable": 1012,
   "total_citation_urls": 1985,
-  "unreachable": 974,
-  "unreachable_pct": 49.1,
-  "unreachable_with_archive": 313,
+  "unreachable": 973,
+  "unreachable_pct": 49.0,
+  "unreachable_with_archive": 312,
   "unreachable_with_suggested_replacement": 107
  },
  "urls": {
@@ -1535,6 +1535,14 @@
    "ok": false,
    "status": null
   },
+  "https://duluthchamber.com/": {
+   "checked_at": "2026-08-21T18:37:36+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://earthjustice.org/press/2024/new-york-state-cryptomining-moratorium-expires-in-one-month-and-still-no-environmental-impact-study": {
    "checked_at": "2026-08-20T03:54:44+00:00",
    "consecutive_failures": 0,
@@ -2244,6 +2252,14 @@
   },
   "https://ironcountyut.gov/files/planning/data-center-solar-moratorium.pdf": {
    "checked_at": "2026-08-20T00:34:55+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://islandsucursales.com/": {
+   "checked_at": "2026-08-21T18:37:36+00:00",
    "consecutive_failures": 0,
    "counties": 1,
    "error": null,
@@ -3207,6 +3223,14 @@
    "first_failure_at": "2026-08-20T04:05:58+00:00",
    "ok": false,
    "status": 403
+  },
+  "https://ottertailcounty.gov/": {
+   "checked_at": "2026-08-21T18:37:35+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://pascoedc.com/": {
    "checked_at": "2026-08-20T04:12:50+00:00",
@@ -6453,15 +6477,6 @@
    "ok": false,
    "status": 403
   },
-  "https://www.carrollcounty.in.gov": {
-   "checked_at": "2026-08-20T03:49:42+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://www.in.gov/counties/carroll/",
-   "ok": true,
-   "status": 200
-  },
   "https://www.carrollcountyar.net/": {
    "checked_at": "2026-08-19T16:32:02+00:00",
    "consecutive_failures": 1,
@@ -7955,19 +7970,6 @@
    "consecutive_failures": 0,
    "counties": 1,
    "error": null,
-   "ok": true,
-   "status": 200
-  },
-  "https://www.co.ottertail.mn.us/": {
-   "archive": {
-    "timestamp": "20181023112535",
-    "url": "http://web.archive.org/web/20181023112535/http://www.co.ottertail.mn.us:80/"
-   },
-   "checked_at": "2026-08-20T03:53:50+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://ottertailcounty.gov/",
    "ok": true,
    "status": 200
   },
@@ -9645,20 +9647,6 @@
    "ok": false,
    "status": 404
   },
-  "https://www.duluthchamber.com": {
-   "archive": {
-    "timestamp": "20260611065334",
-    "url": "http://web.archive.org/web/20260611065334/https://duluthchamber.com/"
-   },
-   "checked_at": "2026-08-19T16:38:09+00:00",
-   "consecutive_failures": 1,
-   "counties": 1,
-   "down_reason": "TRANSIENT_FAILURE",
-   "error": "URLError: <urlopen error timed out>",
-   "first_failure_at": "2026-08-19T16:38:09+00:00",
-   "ok": false,
-   "status": null
-  },
   "https://www.dunklincountymo.gov/": {
    "checked_at": "2026-08-20T03:49:19+00:00",
    "consecutive_failures": 1,
@@ -11088,19 +11076,6 @@
    "ok": true,
    "status": 200
   },
-  "https://www.grantcounty.net/": {
-   "archive": {
-    "timestamp": "20240621093046",
-    "url": "http://web.archive.org/web/20240621093046/https://www.grantcounty.net/"
-   },
-   "checked_at": "2026-08-20T04:11:59+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://www.in.gov/counties/grant/",
-   "ok": true,
-   "status": 200
-  },
   "https://www.grantcountyar.gov/": {
    "checked_at": "2026-08-19T16:41:55+00:00",
    "consecutive_failures": 1,
@@ -11950,8 +11925,24 @@
    "ok": false,
    "status": 404
   },
+  "https://www.in.gov/counties/carroll/": {
+   "checked_at": "2026-08-21T18:37:35+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.in.gov/counties/cass/": {
    "checked_at": "2026-08-20T00:49:34+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.in.gov/counties/grant/": {
+   "checked_at": "2026-08-21T18:37:36+00:00",
    "consecutive_failures": 0,
    "counties": 1,
    "error": null,
@@ -12646,19 +12637,6 @@
    "first_failure_at": "2026-08-20T04:07:15+00:00",
    "ok": false,
    "status": null
-  },
-  "https://www.kissimmeechamber.com": {
-   "archive": {
-    "timestamp": "20250329035626",
-    "url": "http://web.archive.org/web/20250329035626/http://www.kissimmeechamber.com/"
-   },
-   "checked_at": "2026-08-20T04:11:40+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://www.theosceolachamber.com/",
-   "ok": true,
-   "status": 200
   },
   "https://www.kitcarsoncountyco.com": {
    "archive": {
@@ -15907,15 +15885,6 @@
    "ok": true,
    "status": 200
   },
-  "https://www.osteriadacecco.com/": {
-   "checked_at": "2026-08-20T01:06:23+00:00",
-   "consecutive_failures": 0,
-   "counties": 1,
-   "error": null,
-   "final_url": "https://islandsucursales.com/",
-   "ok": true,
-   "status": 200
-  },
   "https://www.otoecounty.nebraska.gov/": {
    "checked_at": "2026-08-19T16:42:45+00:00",
    "consecutive_failures": 1,
@@ -18053,6 +18022,14 @@
   },
   "https://www.theassemblync.com/news/business/person-county-microsoft-data-center-nondisclosure-agreements/": {
    "checked_at": "2026-08-20T04:08:37+00:00",
+   "consecutive_failures": 0,
+   "counties": 1,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
+  "https://www.theosceolachamber.com/": {
+   "checked_at": "2026-08-21T18:37:35+00:00",
    "consecutive_failures": 0,
    "counties": 1,
    "error": null,
