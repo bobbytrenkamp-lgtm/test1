@@ -789,6 +789,7 @@ window.PARCEL_PANEL = (function () {
         ${_saveButtonHtml(feature)}
         <button class="pp-action-draw" onclick="window.PARCEL_DRAW_TOOL?.activate()" title="Draw polygon to select multiple parcels">◻ Draw</button>
         <button class="pp-action-report" onclick="window.PARCEL_PANEL._openReport()" title="Open printable parcel report">⎙ Report</button>
+        <button class="pp-action-secondary" onclick="window.PARCEL_PANEL._sendToUnderwrite()" title="Download a CREOS handoff file for CREOS Underwrite">→ Underwrite</button>
         <button class="pp-action-secondary" onclick="window.PARCEL_PANEL.close()">Close</button>
       </div>
     `;
@@ -913,6 +914,45 @@ window.PARCEL_PANEL = (function () {
       constraints: cached?.constraints || null,
       sales: window.PARCEL_SALES?.buildHistory(props) || null,
     };
+  }
+
+  /* Phase 5: SiteIntel -> Underwrite handoff. Builds a creos-handoff-v1
+     JSON file for the currently-open parcel and downloads it (same
+     export-then-import transport docs/HANDOFF_DESIGN.md in the CREOS
+     Enterprise repo recommends -- no backend, no shared auth). Site
+     intelligence is (re)computed from the same cache _tabIntelligence /
+     _reportIntel already read, so the handoff reflects whatever the panel
+     is currently showing rather than a stale snapshot. */
+  function _sendToUnderwrite() {
+    if (!_lastFeature || !window.PARCEL_HANDOFF) return;
+    const props = _lastFeature.properties || {};
+    const key = _parcelKey(props);
+    const cached = key ? _intelCache.get(key) : null;
+
+    let si = null;
+    if (window.PARCEL_SITE_INTELLIGENCE) {
+      try {
+        si = window.PARCEL_SITE_INTELLIGENCE.build({
+          site_id: key,
+          parcels: [{ id: key, geometry: _lastFeature.geometry, properties: props }],
+          proximity: cached?.proximity,
+          constraints: cached?.constraints,
+        });
+      } catch (_) {
+        si = null;
+      }
+    }
+
+    try {
+      const payload = window.PARCEL_HANDOFF.build({
+        feature: _lastFeature,
+        jurisdictionId: _lastJurisId,
+        siteIntelligence: si,
+      });
+      window.PARCEL_HANDOFF.download(payload);
+    } catch (err) {
+      console.error('Send to Underwrite failed:', err);
+    }
   }
 
   function _exportCSV() {
@@ -1053,7 +1093,7 @@ window.PARCEL_PANEL = (function () {
 
   return {
     show, refresh, close, _addToCompare, _openZoning, _loadAndRefresh, _loadZoningGeometryAndRefresh, _exportCSV, _openReport,
-    _toggleSave, _compareSaved, _unsave, _exportSavedCSV, _reportIntel,
+    _toggleSave, _compareSaved, _unsave, _exportSavedCSV, _reportIntel, _sendToUnderwrite,
     // Exposed for unit testing (pure functions: data in, HTML string out --
     // no DOM APIs used inside them), matching the existing pattern of
     // exposing "_"-prefixed internals above.

@@ -1,12 +1,17 @@
 {
   "meta": {
     "description": "Rolling per-jurisdiction health history for data/check_parcel_services.mjs, capped at the last 6 recorded scheduled/dispatch runs per FIPS. Only written by non-PR-triggered runs (--record-history), so a feature-branch probe can never pollute it. Used to require >=2 failures within a run window before a service is reported as a confirmed new outage rather than a possible transient blip.",
-    "last_updated": "2026-08-15T20:57:32.193Z"
+    "last_updated": "2026-08-22T04:38:10.821Z"
   },
   "history": {
     "10003": [
       {
         "timestamp": "2026-08-15T20:57:17.492Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:55.883Z",
         "ok": true,
         "errorType": null
       }
@@ -16,11 +21,21 @@
         "timestamp": "2026-08-15T20:57:17.578Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:56.173Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "12031": [
       {
         "timestamp": "2026-08-15T20:57:17.747Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:56.434Z",
         "ok": true,
         "errorType": null
       }
@@ -30,11 +45,21 @@
         "timestamp": "2026-08-15T20:57:18.033Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:57.300Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "12086": [
       {
         "timestamp": "2026-08-15T20:57:18.171Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:57.619Z",
         "ok": true,
         "errorType": null
       }
@@ -44,11 +69,21 @@
         "timestamp": "2026-08-15T20:57:18.457Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:57.867Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "13121": [
       {
         "timestamp": "2026-08-15T20:57:18.534Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:58.134Z",
         "ok": true,
         "errorType": null
       }
@@ -58,11 +93,21 @@
         "timestamp": "2026-08-15T20:57:18.908Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:58.200Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "16001": [
       {
         "timestamp": "2026-08-15T20:57:19.006Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:58.266Z",
         "ok": true,
         "errorType": null
       }
@@ -72,11 +117,21 @@
         "timestamp": "2026-08-15T20:57:19.274Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:58.503Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "18097": [
       {
         "timestamp": "2026-08-15T20:57:19.577Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:58.769Z",
         "ok": true,
         "errorType": null
       }
@@ -86,11 +141,21 @@
         "timestamp": "2026-08-15T20:57:19.712Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:37:59.201Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "21111": [
       {
         "timestamp": "2026-08-15T20:57:24.561Z",
+        "ok": false,
+        "errorType": "unknown"
+      },
+      {
+        "timestamp": "2026-08-22T04:38:00.753Z",
         "ok": false,
         "errorType": "unknown"
       }
@@ -100,11 +165,21 @@
         "timestamp": "2026-08-15T20:57:24.635Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:01.006Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "24031": [
       {
         "timestamp": "2026-08-15T20:57:24.658Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:01.094Z",
         "ok": true,
         "errorType": null
       }
@@ -114,11 +189,21 @@
         "timestamp": "2026-08-15T20:57:24.678Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:01.181Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "24510": [
       {
         "timestamp": "2026-08-15T20:57:24.699Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:01.266Z",
         "ok": true,
         "errorType": null
       }
@@ -128,11 +213,21 @@
         "timestamp": "2026-08-15T20:57:24.799Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:01.596Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "25025": [
       {
         "timestamp": "2026-08-15T20:57:24.818Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:01.673Z",
         "ok": true,
         "errorType": null
       }
@@ -142,11 +237,21 @@
         "timestamp": "2026-08-15T20:57:25.016Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:01.816Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "27053": [
       {
         "timestamp": "2026-08-15T20:57:25.343Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:02.229Z",
         "ok": true,
         "errorType": null
       }
@@ -156,11 +261,21 @@
         "timestamp": "2026-08-15T20:57:25.666Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:02.456Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "32003": [
       {
         "timestamp": "2026-08-15T20:57:26.015Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:02.614Z",
         "ok": true,
         "errorType": null
       }
@@ -170,11 +285,21 @@
         "timestamp": "2026-08-15T20:57:26.208Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:02.804Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "34013": [
       {
         "timestamp": "2026-08-15T20:57:26.342Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:03.216Z",
         "ok": true,
         "errorType": null
       }
@@ -184,11 +309,21 @@
         "timestamp": "2026-08-15T20:57:26.368Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:03.300Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "34023": [
       {
         "timestamp": "2026-08-15T20:57:26.628Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:03.590Z",
         "ok": true,
         "errorType": null
       }
@@ -198,11 +333,21 @@
         "timestamp": "2026-08-15T20:57:26.738Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:03.730Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "37119": [
       {
         "timestamp": "2026-08-15T20:57:26.830Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:03.849Z",
         "ok": true,
         "errorType": null
       }
@@ -212,11 +357,21 @@
         "timestamp": "2026-08-15T20:57:26.993Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:04.410Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "39035": [
       {
         "timestamp": "2026-08-15T20:57:27.142Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:04.667Z",
         "ok": true,
         "errorType": null
       }
@@ -226,11 +381,21 @@
         "timestamp": "2026-08-15T20:57:27.279Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:04.893Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "39061": [
       {
         "timestamp": "2026-08-15T20:57:27.686Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:05.203Z",
         "ok": true,
         "errorType": null
       }
@@ -240,11 +405,21 @@
         "timestamp": "2026-08-15T20:57:27.853Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:05.312Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "41067": [
       {
         "timestamp": "2026-08-15T20:57:28.061Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:05.475Z",
         "ok": true,
         "errorType": null
       }
@@ -254,11 +429,21 @@
         "timestamp": "2026-08-15T20:57:28.202Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:05.977Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "42101": [
       {
         "timestamp": "2026-08-15T20:57:28.226Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:06.067Z",
         "ok": true,
         "errorType": null
       }
@@ -268,11 +453,21 @@
         "timestamp": "2026-08-15T20:57:28.477Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:06.337Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "47037": [
       {
         "timestamp": "2026-08-15T20:57:28.610Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:06.652Z",
         "ok": true,
         "errorType": null
       }
@@ -282,11 +477,21 @@
         "timestamp": "2026-08-15T20:57:29.188Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:06.968Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "48085": [
       {
         "timestamp": "2026-08-15T20:57:29.289Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:07.068Z",
         "ok": true,
         "errorType": null
       }
@@ -296,11 +501,21 @@
         "timestamp": "2026-08-15T20:57:29.495Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:07.373Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "48201": [
       {
         "timestamp": "2026-08-15T20:57:29.648Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:07.479Z",
         "ok": true,
         "errorType": null
       }
@@ -310,11 +525,21 @@
         "timestamp": "2026-08-15T20:57:30.027Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:07.830Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "48453": [
       {
         "timestamp": "2026-08-15T20:57:30.226Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:08.086Z",
         "ok": true,
         "errorType": null
       }
@@ -324,11 +549,21 @@
         "timestamp": "2026-08-15T20:57:30.319Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:08.265Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "49049": [
       {
         "timestamp": "2026-08-15T20:57:30.374Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:08.388Z",
         "ok": true,
         "errorType": null
       }
@@ -338,11 +573,21 @@
         "timestamp": "2026-08-15T20:57:30.479Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:08.723Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "51107": [
       {
         "timestamp": "2026-08-15T20:57:30.534Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:09.010Z",
         "ok": true,
         "errorType": null
       }
@@ -352,11 +597,21 @@
         "timestamp": "2026-08-15T20:57:30.627Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:09.165Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "51683": [
       {
         "timestamp": "2026-08-15T20:57:30.756Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:09.622Z",
         "ok": true,
         "errorType": null
       }
@@ -366,11 +621,21 @@
         "timestamp": "2026-08-15T20:57:30.773Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:09.653Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "56021": [
       {
         "timestamp": "2026-08-15T20:57:31.011Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:09.790Z",
         "ok": true,
         "errorType": null
       }
@@ -380,11 +645,21 @@
         "timestamp": "2026-08-15T20:57:31.219Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:09.933Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "06037": [
       {
         "timestamp": "2026-08-15T20:57:31.655Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:10.071Z",
         "ok": true,
         "errorType": null
       }
@@ -394,11 +669,21 @@
         "timestamp": "2026-08-15T20:57:31.718Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:10.193Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "06001": [
       {
         "timestamp": "2026-08-15T20:57:31.789Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:10.298Z",
         "ok": true,
         "errorType": null
       }
@@ -408,11 +693,21 @@
         "timestamp": "2026-08-15T20:57:31.954Z",
         "ok": true,
         "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:10.474Z",
+        "ok": true,
+        "errorType": null
       }
     ],
     "01073": [
       {
         "timestamp": "2026-08-15T20:57:32.193Z",
+        "ok": true,
+        "errorType": null
+      },
+      {
+        "timestamp": "2026-08-22T04:38:10.821Z",
         "ok": true,
         "errorType": null
       }

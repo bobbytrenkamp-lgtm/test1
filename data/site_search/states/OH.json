@@ -1,6 +1,6 @@
 {
   "state": "OH",
-  "source_generated_at": "2026-08-13T00:48:14.397Z",
+  "source_generated_at": "2026-08-17T06:56:38.368Z",
   "record_count": 5000,
   "parcels": [
     {
@@ -15084,7 +15084,7 @@
         "area_sqft": 287348,
         "zoning_code": "EI",
         "land_use_code": "3000",
-        "owner": "BEACON WESTLAKE LLC",
+        "owner": "31450 VIKING PKWY LLC ",
         "assessed_value": 193940,
         "county_fips": "39035",
         "state": "OH",
@@ -25940,7 +25940,7 @@
         "area_sqft": 260488,
         "zoning_code": "D-3",
         "land_use_code": "5100",
-        "owner": "GRABE JR, RUSSELL",
+        "owner": "GRABE, RUSSELL J JR & MARY JO ",
         "assessed_value": 92620,
         "county_fips": "39035",
         "state": "OH",
@@ -37394,7 +37394,7 @@
         "area_sqft": 236868,
         "zoning_code": "PF",
         "land_use_code": "4092",
-        "owner": "SOUTHWEST COMMONS ASSISTED LIVING, LTD",
+        "owner": "CITADEL SOUTHWEST COMMONS, LLC ",
         "assessed_value": 1469660,
         "county_fips": "39035",
         "state": "OH",
@@ -58073,8 +58073,8 @@
         "area_acres": 13.38169269,
         "area_sqft": 582924,
         "land_use_code": null,
-        "owner": null,
-        "assessed_value": null,
+        "owner": "LOTZ WILLIAM F",
+        "assessed_value": 0,
         "county_fips": "39049",
         "state": "OH",
         "_source": "national-site-index",
@@ -64893,8 +64893,8 @@
         "area_acres": 11.86610547,
         "area_sqft": 516207,
         "land_use_code": null,
-        "owner": null,
-        "assessed_value": null,
+        "owner": "CITY OF GROVE CITY OHIO",
+        "assessed_value": 0,
         "county_fips": "39049",
         "state": "OH",
         "_source": "national-site-index",
@@ -68326,7 +68326,7 @@
         "area_sqft": 5.529,
         "land_use_code": null,
         "owner": "MOUNT CARMEL HEALTH SYSTEM",
-        "assessed_value": null,
+        "assessed_value": 0,
         "county_fips": "39049",
         "state": "OH",
         "_source": "national-site-index",
@@ -94141,27 +94141,6 @@
       }
     },
     {
-      "id": "39061:057000400497",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.69749999999999,
-          39.1659
-        ]
-      },
-      "properties": {
-        "parcel_id": "057000400497",
-        "pin": "57000400497",
-        "area_acres": 5.259,
-        "land_use_code": 510,
-        "owner": "FELDMAN DAVID A &",
-        "assessed_value": 479160,
-        "county_fips": "39061",
-        "state": "OH",
-        "_source": "national-site-index"
-      }
-    },
-    {
       "id": "39061:057000300272",
       "geometry": {
         "type": "Point",
@@ -95584,27 +95563,6 @@
         "land_use_code": 500,
         "owner": "PWD HOLDINGS LLC",
         "assessed_value": 2097990,
-        "county_fips": "39061",
-        "state": "OH",
-        "_source": "national-site-index"
-      }
-    },
-    {
-      "id": "39061:052002710006",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.4245,
-          39.173950000000005
-        ]
-      },
-      "properties": {
-        "parcel_id": "052002710006",
-        "pin": "52002710006",
-        "area_acres": 5.03,
-        "land_use_code": 340,
-        "owner": "CINTAS CORPORATION - OHIO",
-        "assessed_value": 843680,
         "county_fips": "39061",
         "state": "OH",
         "_source": "national-site-index"
@@ -102499,27 +102457,6 @@
       }
     },
     {
-      "id": "39061:024800030274",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.6092,
-          39.1288
-        ]
-      },
-      "properties": {
-        "parcel_id": "024800030274",
-        "pin": "24800030274",
-        "area_acres": 9.368,
-        "land_use_code": 422,
-        "owner": "AGREE CENTRAL LLC",
-        "assessed_value": 3304760,
-        "county_fips": "39061",
-        "state": "OH",
-        "_source": "national-site-index"
-      }
-    },
-    {
       "id": "39061:005200060015",
       "geometry": {
         "type": "Point",
@@ -102535,27 +102472,6 @@
         "land_use_code": 330,
         "owner": "DURAMED PHARMACEUTICALS",
         "assessed_value": 7544130,
-        "county_fips": "39061",
-        "state": "OH",
-        "_source": "national-site-index"
-      }
-    },
-    {
-      "id": "39061:024800050072",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -84.6111,
-          39.1316
-        ]
-      },
-      "properties": {
-        "parcel_id": "024800050072",
-        "pin": "24800050072",
-        "area_acres": 6.546,
-        "land_use_code": 425,
-        "owner": "WESTERN HILLS EQUITIES LLC",
-        "assessed_value": 6395500,
         "county_fips": "39061",
         "state": "OH",
         "_source": "national-site-index"
@@ -110998,6 +110914,90 @@
         "land_use_code": 660,
         "owner": "THE BOARD OF PARK COMMISSION HAMILTON COUNTY PARK",
         "assessed_value": 726380,
+        "county_fips": "39061",
+        "state": "OH",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "39061:059700300026",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.51565,
+          39.265699999999995
+        ]
+      },
+      "properties": {
+        "parcel_id": "059700300026",
+        "pin": "59700300026",
+        "area_acres": 16.286,
+        "land_use_code": 650,
+        "owner": "GREENHILLS EXEMPTED VILLAGE SCHOOL DISTRICT",
+        "assessed_value": 37567700,
+        "county_fips": "39061",
+        "state": "OH",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "39061:021500700061",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.5352,
+          39.1519
+        ]
+      },
+      "properties": {
+        "parcel_id": "021500700061",
+        "pin": "21500700061",
+        "area_acres": 7.8180000000000005,
+        "land_use_code": 670,
+        "owner": "BD TRS CINCINNATI STATE",
+        "assessed_value": 915540,
+        "county_fips": "39061",
+        "state": "OH",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "39061:056001500231",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.8084,
+          39.2632
+        ]
+      },
+      "properties": {
+        "parcel_id": "056001500231",
+        "pin": "56001500231",
+        "area_acres": 6.17,
+        "land_use_code": 399,
+        "owner": "VCV LLC",
+        "assessed_value": 24150,
+        "county_fips": "39061",
+        "state": "OH",
+        "_source": "national-site-index"
+      }
+    },
+    {
+      "id": "39061:056100060002",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.8043,
+          39.261799999999994
+        ]
+      },
+      "properties": {
+        "parcel_id": "056100060002",
+        "pin": "56100060002",
+        "area_acres": 5.32,
+        "land_use_code": 403,
+        "owner": "BROAD PROPERTIES III LLC",
+        "assessed_value": 3986840,
         "county_fips": "39061",
         "state": "OH",
         "_source": "national-site-index"

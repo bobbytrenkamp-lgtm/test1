@@ -7,7 +7,7 @@
  "cbp_available": true,
  "cbp_year": 2023,
  "census": {
-  "last_successful_update": "2026-08-12T07:56:53+00:00",
+  "last_successful_update": "2026-08-20T07:11:00+00:00",
   "selected_variables": {
    "avg_commute_minutes": {
     "aggregate_minutes": "B08013_001E",
@@ -75,9 +75,9 @@
  "eia_state_count": 0,
  "fred_series_count": 23,
  "fred_skipped": [],
- "generated_at": "2026-08-16T07:03:48+00:00",
- "last_run_at": "2026-08-16T07:03:48+00:00",
- "latest_observation_date": "2026-08-14",
+ "generated_at": "2026-08-22T07:03:51+00:00",
+ "last_run_at": "2026-08-22T07:03:51+00:00",
+ "latest_observation_date": "2026-08-21",
  "nri_available": true,
  "nri_county_count": 3222,
  "nri_last_successful_update": "2026-08-13T06:26:18+00:00",
@@ -86,7 +86,7 @@
  "permits_county_count": 3015,
  "permits_last_successful_update": "2026-08-13T01:51:09+00:00",
  "pipeline_version": "1.0.0",
- "source_updated_at": "2026-08-14 16:03:24-05",
+ "source_updated_at": "2026-08-21 16:03:29-05",
  "sources": [
   {
    "id": "fred",
