@@ -48,11 +48,11 @@
   "pipelines": {
     "county_page_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-21T18:37:36+00:00",
+      "last_checked": "2026-08-22T19:25:48+00:00",
       "pipeline": "county_page_citations",
       "total_urls_checked": 1985,
-      "unreachable": 973,
-      "unreachable_ratio": 0.4902
+      "unreachable": 967,
+      "unreachable_ratio": 0.4872
     },
     "map_data_citations": {
       "health": "VALIDATION_FAILURE",
@@ -74,7 +74,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-22T00:21:37.328360+00:00",
+      "last_checked": "2026-08-22T19:26:02.392788+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -88,8 +88,7 @@
         "ny-nyc-mocej",
         "ny-senate",
         "oh-legislature",
-        "ri-smithfield-council",
-        "wa-douglas-pud"
+        "ri-smithfield-council"
       ],
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
@@ -116,20 +115,20 @@
       "severity_score": 106.16
     },
     {
-      "affected_count": 973,
+      "affected_count": 967,
       "criticality_weight": 4,
       "health": "VALIDATION_FAILURE",
       "pipeline": "county_page_citations",
-      "reason": "973 citation URL(s) unreachable (49.0%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
-      "severity_score": 93.04
+      "reason": "967 citation URL(s) unreachable (48.7%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
+      "severity_score": 92.56
     },
     {
-      "affected_count": 14,
+      "affected_count": 13,
       "criticality_weight": 5,
       "health": "SOURCE_DOWN",
       "pipeline": "policy_pipeline_sources",
-      "reason": "14 source(s) persistently down, 0 transient -- see each source's down_reason/notes in data/source_health.json / data/government_sources.json.",
-      "severity_score": 11.4
+      "reason": "13 source(s) persistently down, 0 transient -- see each source's down_reason/notes in data/source_health.json / data/government_sources.json.",
+      "severity_score": 11.3
     },
     {
       "affected_count": 1,
