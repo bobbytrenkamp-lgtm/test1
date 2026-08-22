@@ -273,7 +273,16 @@
       "sources": [
         {
           "label": "Business Oregon \u2014 Data Center Exemptions",
-          "url": "https://www.oregon4biz.com/"
+          "url": "https://www.oregon.gov/biz/Pages/default.aspx",
+          "replacement_history": [
+            {
+              "old_value": "https://www.oregon4biz.com/",
+              "new_value": "https://www.oregon.gov/biz/Pages/default.aspx",
+              "changed_at": "2026-08-22",
+              "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/map_data_citation_health.json"
+            }
+          ]
         }
       ]
     },
@@ -687,7 +696,16 @@
       "sources": [
         {
           "label": "North Dakota NDCC \u00a757-02-08.31 \u2014 Data Center Exemption",
-          "url": "https://www.legis.nd.gov/cencode/t57c02.html"
+          "url": "https://ndlegis.gov/cencode/t57c02.html",
+          "replacement_history": [
+            {
+              "old_value": "https://www.legis.nd.gov/cencode/t57c02.html",
+              "new_value": "https://ndlegis.gov/cencode/t57c02.html",
+              "changed_at": "2026-08-22",
+              "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/map_data_citation_health.json"
+            }
+          ]
         }
       ]
     },

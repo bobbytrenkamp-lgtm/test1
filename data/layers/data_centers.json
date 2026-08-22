@@ -32162,7 +32162,16 @@
     "sources": [
       {
         "label": "Ark Data Centers (Involta)",
-        "url": "https://www.involta.com/data-centers/data-center-locations/minnesota/"
+        "url": "https://www.involta.com/data-centers/minnesota/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.involta.com/data-centers/data-center-locations/minnesota/",
+            "new_value": "https://www.involta.com/data-centers/minnesota/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32404,7 +32413,16 @@
     "sources": [
       {
         "label": "DC BLOX",
-        "url": "https://dcblox.com/data-centers/birmingham/"
+        "url": "https://www.dcblox.com/data-centers/birmingham/",
+        "replacement_history": [
+          {
+            "old_value": "https://dcblox.com/data-centers/birmingham/",
+            "new_value": "https://www.dcblox.com/data-centers/birmingham/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32548,7 +32566,16 @@
     "sources": [
       {
         "label": "Evocative",
-        "url": "https://evocative.com/data-centers/dallas/"
+        "url": "https://evocative.com/data-centers/dallas-data-centers/",
+        "replacement_history": [
+          {
+            "old_value": "https://evocative.com/data-centers/dallas/",
+            "new_value": "https://evocative.com/data-centers/dallas-data-centers/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33573,7 +33600,16 @@
     "sources": [
       {
         "label": "North Carolina State University",
-        "url": "https://hpc.ncsu.edu/"
+        "url": "https://hpc.ncsu.edu/main.php",
+        "replacement_history": [
+          {
+            "old_value": "https://hpc.ncsu.edu/",
+            "new_value": "https://hpc.ncsu.edu/main.php",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33735,7 +33771,16 @@
     "sources": [
       {
         "label": "U.S. Air Force",
-        "url": "https://afresearchlab.com/technology/supercomputing/"
+        "url": "https://afresearchlab.com/supercomputing/",
+        "replacement_history": [
+          {
+            "old_value": "https://afresearchlab.com/technology/supercomputing/",
+            "new_value": "https://afresearchlab.com/supercomputing/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34789,7 +34834,16 @@
     "sources": [
       {
         "label": "Baylor University",
-        "url": "https://www.baylor.edu/its/index.php?id=972780"
+        "url": "https://its.web.baylor.edu/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.baylor.edu/its/index.php?id=972780",
+            "new_value": "https://its.web.baylor.edu/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36610,7 +36664,16 @@
     "sources": [
       {
         "label": "TD Bank",
-        "url": "https://www.td.com/us/"
+        "url": "https://www.td.com/us/en/personal-banking",
+        "replacement_history": [
+          {
+            "old_value": "https://www.td.com/us/",
+            "new_value": "https://www.td.com/us/en/personal-banking",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "TD Bank",
@@ -36683,7 +36746,16 @@
       },
       {
         "label": "Fannie Mae",
-        "url": "https://www.fanniemae.com/about-us/"
+        "url": "https://www.fanniemae.com/about-us",
+        "replacement_history": [
+          {
+            "old_value": "https://www.fanniemae.com/about-us/",
+            "new_value": "https://www.fanniemae.com/about-us",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36723,7 +36795,16 @@
       },
       {
         "label": "University of South Dakota",
-        "url": "https://www.usd.edu/academics/research-technology/"
+        "url": "https://www.usd.edu/404",
+        "replacement_history": [
+          {
+            "old_value": "https://www.usd.edu/academics/research-technology/",
+            "new_value": "https://www.usd.edu/404",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36752,7 +36833,16 @@
       },
       {
         "label": "Dakota State University",
-        "url": "https://www.dsu.edu/research/"
+        "url": "https://dsu.edu/research/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.dsu.edu/research/",
+            "new_value": "https://dsu.edu/research/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36910,7 +37000,16 @@
       },
       {
         "label": "Elliot Health System",
-        "url": "https://www.elliothospital.org/about-us/"
+        "url": "https://www.elliothospital.org/about-us/about-elliot",
+        "replacement_history": [
+          {
+            "old_value": "https://www.elliothospital.org/about-us/",
+            "new_value": "https://www.elliothospital.org/about-us/about-elliot",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36950,7 +37049,16 @@
       },
       {
         "label": "Providence Alaska",
-        "url": "https://alaska.providence.org/"
+        "url": "https://www.providence.org/?state=ak",
+        "replacement_history": [
+          {
+            "old_value": "https://alaska.providence.org/",
+            "new_value": "https://www.providence.org/?state=ak",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36979,7 +37087,16 @@
       },
       {
         "label": "Alaska Native Tribal Health Consortium",
-        "url": "https://www.anthc.org/"
+        "url": "https://anthc.org/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.anthc.org/",
+            "new_value": "https://anthc.org/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36995,7 +37112,16 @@
     "sources": [
       {
         "label": "Incyte Corporation",
-        "url": "https://www.incyte.com/"
+        "url": "https://incyte.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.incyte.com/",
+            "new_value": "https://incyte.com/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Incyte Corporation",
@@ -37095,7 +37221,16 @@
     "sources": [
       {
         "label": "Hawaii Electric Light Company",
-        "url": "https://www.hawaiielectriclight.com/"
+        "url": "https://www.hawaiianelectric.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.hawaiielectriclight.com/",
+            "new_value": "https://www.hawaiianelectric.com/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Hawaii Electric Light Company",
@@ -37193,7 +37328,16 @@
     "sources": [
       {
         "label": "UVM Medical Center",
-        "url": "https://www.uvmhealth.org/medcenter/"
+        "url": "https://www.uvmhealth.org/locations/university-of-vermont-medical-center",
+        "replacement_history": [
+          {
+            "old_value": "https://www.uvmhealth.org/medcenter/",
+            "new_value": "https://www.uvmhealth.org/locations/university-of-vermont-medical-center",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "UVM Medical Center",
@@ -37616,7 +37760,16 @@
     "sources": [
       {
         "label": "Unitil Corporation",
-        "url": "https://www.unitil.com/"
+        "url": "https://unitil.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.unitil.com/",
+            "new_value": "https://unitil.com/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Unitil Corporation",
@@ -39145,7 +39298,16 @@
     "sources": [
       {
         "label": "ColoCrossing",
-        "url": "https://colocrossing.com/locations/phoenix/"
+        "url": "https://www.colocrossing.com/404/",
+        "replacement_history": [
+          {
+            "old_value": "https://colocrossing.com/locations/phoenix/",
+            "new_value": "https://www.colocrossing.com/404/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39545,7 +39707,16 @@
     "sources": [
       {
         "label": "Evocative",
-        "url": "https://evocative.com/data-centers/phoenix/"
+        "url": "https://evocative.com/data-centers/phoenix-az-data-center-phx1/",
+        "replacement_history": [
+          {
+            "old_value": "https://evocative.com/data-centers/phoenix/",
+            "new_value": "https://evocative.com/data-centers/phoenix-az-data-center-phx1/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40187,7 +40358,16 @@
     "sources": [
       {
         "label": "NOAA (National Oceanic and Atmospheric Administration)",
-        "url": "https://www.ncdc.noaa.gov/"
+        "url": "https://www.ncei.noaa.gov/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.ncdc.noaa.gov/",
+            "new_value": "https://www.ncei.noaa.gov/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40252,7 +40432,16 @@
     "sources": [
       {
         "label": "UnitedHealth Group",
-        "url": "https://www.unitedhealthgroup.com/about/company.html"
+        "url": "https://www.unitedhealthgroup.com/page-not-found.html",
+        "replacement_history": [
+          {
+            "old_value": "https://www.unitedhealthgroup.com/about/company.html",
+            "new_value": "https://www.unitedhealthgroup.com/page-not-found.html",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -41202,7 +41391,16 @@
     "sources": [
       {
         "label": "Montana SITSD",
-        "url": "https://sitsd.mt.gov/"
+        "url": "https://doa.mt.gov/sitsd/",
+        "replacement_history": [
+          {
+            "old_value": "https://sitsd.mt.gov/",
+            "new_value": "https://doa.mt.gov/sitsd/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -41423,7 +41621,16 @@
     "sources": [
       {
         "label": "South Dakota BIT",
-        "url": "https://boa.sd.gov/bit/"
+        "url": "https://www.sd.gov/bhra",
+        "replacement_history": [
+          {
+            "old_value": "https://boa.sd.gov/bit/",
+            "new_value": "https://www.sd.gov/bhra",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -43052,7 +43259,16 @@
     "sources": [
       {
         "label": "Tarrant County",
-        "url": "https://www.tarrantcounty.com/en/information-technology.html"
+        "url": "https://www.tarrantcountytx.gov/en/information-technology.html",
+        "replacement_history": [
+          {
+            "old_value": "https://www.tarrantcounty.com/en/information-technology.html",
+            "new_value": "https://www.tarrantcountytx.gov/en/information-technology.html",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -43410,7 +43626,16 @@
     "sources": [
       {
         "label": "Lifeline Data Centers",
-        "url": "https://lifelinedatacenters.com/data-centers/indiana/"
+        "url": "https://lifelinedatacenters.com/press-releases/indiana-data-center-expert-to-address-resolving-risky-data-center-issues-through-rcm-at-data-center-world-conference/",
+        "replacement_history": [
+          {
+            "old_value": "https://lifelinedatacenters.com/data-centers/indiana/",
+            "new_value": "https://lifelinedatacenters.com/press-releases/indiana-data-center-expert-to-address-resolving-risky-data-center-issues-through-rcm-at-data-center-world-conference/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -44043,7 +44268,16 @@
     "sources": [
       {
         "label": "Exelon Corporation",
-        "url": "https://www.exeloncorp.com/company"
+        "url": "https://www.exeloncorp.com/company/about-exelon",
+        "replacement_history": [
+          {
+            "old_value": "https://www.exeloncorp.com/company",
+            "new_value": "https://www.exeloncorp.com/company/about-exelon",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },

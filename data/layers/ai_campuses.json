@@ -526,7 +526,16 @@
     "sources": [
       {
         "label": "QTS Realty Trust",
-        "url": "https://qtsdatacenters.com/data-centers/eagle-mountain/"
+        "url": "http://q.com/data-centers/eagle-mountain/",
+        "replacement_history": [
+          {
+            "old_value": "https://qtsdatacenters.com/data-centers/eagle-mountain/",
+            "new_value": "http://q.com/data-centers/eagle-mountain/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -932,7 +941,16 @@
     "sources": [
       {
         "label": "QTS Data Centers",
-        "url": "https://qtsdatacenters.com/data-centers/ashburn-shellhorn"
+        "url": "https://q.com/data-centers/ashburn-3/",
+        "replacement_history": [
+          {
+            "old_value": "https://qtsdatacenters.com/data-centers/ashburn-shellhorn",
+            "new_value": "https://q.com/data-centers/ashburn-3/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -1493,7 +1511,16 @@
     "sources": [
       {
         "label": "Google",
-        "url": "https://www.google.com/about/datacenters/locations/papillion/"
+        "url": "https://datacenters.google/locations/nebraska/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.google.com/about/datacenters/locations/papillion/",
+            "new_value": "https://datacenters.google/locations/nebraska/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -1621,7 +1648,16 @@
     "sources": [
       {
         "label": "STACK Infrastructure",
-        "url": "https://www.stackinfra.com/data-centers/elk-grove-village/"
+        "url": "https://www.stackinfra.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.stackinfra.com/data-centers/elk-grove-village/",
+            "new_value": "https://www.stackinfra.com/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2654,7 +2690,16 @@
       },
       {
         "label": "Voltage Park",
-        "url": "https://voltagepark.com/infrastructure/"
+        "url": "https://voltagepark.com/infrastructure",
+        "replacement_history": [
+          {
+            "old_value": "https://voltagepark.com/infrastructure/",
+            "new_value": "https://voltagepark.com/infrastructure",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2674,7 +2719,16 @@
       },
       {
         "label": "Voltage Park",
-        "url": "https://voltagepark.com/infrastructure/"
+        "url": "https://voltagepark.com/infrastructure",
+        "replacement_history": [
+          {
+            "old_value": "https://voltagepark.com/infrastructure/",
+            "new_value": "https://voltagepark.com/infrastructure",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2730,7 +2784,16 @@
     "sources": [
       {
         "label": "Oracle Corporation",
-        "url": "https://www.oracle.com/cloud/data-regions/"
+        "url": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+        "replacement_history": [
+          {
+            "old_value": "https://www.oracle.com/cloud/data-regions/",
+            "new_value": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Oracle Corporation",
@@ -2751,7 +2814,16 @@
     "sources": [
       {
         "label": "Oracle Corporation",
-        "url": "https://www.oracle.com/cloud/data-regions/"
+        "url": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+        "replacement_history": [
+          {
+            "old_value": "https://www.oracle.com/cloud/data-regions/",
+            "new_value": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Oracle Corporation",
@@ -2771,7 +2843,16 @@
     "sources": [
       {
         "label": "Oracle Corporation",
-        "url": "https://www.oracle.com/cloud/data-regions/"
+        "url": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+        "replacement_history": [
+          {
+            "old_value": "https://www.oracle.com/cloud/data-regions/",
+            "new_value": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Oracle Corporation",
@@ -2967,7 +3048,16 @@
     "sources": [
       {
         "label": "Oracle Corporation",
-        "url": "https://www.oracle.com/cloud/data-regions/"
+        "url": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+        "replacement_history": [
+          {
+            "old_value": "https://www.oracle.com/cloud/data-regions/",
+            "new_value": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Oracle Corporation",
@@ -2987,7 +3077,16 @@
     "sources": [
       {
         "label": "Oracle Corporation",
-        "url": "https://www.oracle.com/cloud/data-regions/"
+        "url": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+        "replacement_history": [
+          {
+            "old_value": "https://www.oracle.com/cloud/data-regions/",
+            "new_value": "https://www.oracle.com/cloud/distributed-cloud/#service-availability",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Oracle Corporation",
