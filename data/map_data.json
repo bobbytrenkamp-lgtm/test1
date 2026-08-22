@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T00:59:19.964394+00:00",
+  "generated_at": "2026-08-22T15:18:09.182860+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
     "total_counties_tracked": 1467,
@@ -2921,7 +2921,16 @@
       "sources": [
         {
           "label": "Missouri Department of Economic Development \u2014 Incentives",
-          "url": "https://ded.mo.gov/content/business-tax-incentives"
+          "url": "https://ded.mo.gov/business",
+          "replacement_history": [
+            {
+              "old_value": "https://ded.mo.gov/content/business-tax-incentives",
+              "new_value": "https://ded.mo.gov/business",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a single BUILD-program PDF) was rejected as narrower than the original page's scope. WebSearch confirms Missouri DED's current general business-incentives landing page is at this restructured, same-domain URL (old CMS /content/ path migrated away).",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Kansas City Internet Exchange (KCIX)",
@@ -2951,7 +2960,16 @@
         },
         {
           "label": "Missouri Department of Economic Development \u2014 Incentives",
-          "url": "https://ded.mo.gov/content/business-tax-incentives"
+          "url": "https://ded.mo.gov/business",
+          "replacement_history": [
+            {
+              "old_value": "https://ded.mo.gov/content/business-tax-incentives",
+              "new_value": "https://ded.mo.gov/business",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a single BUILD-program PDF) was rejected as narrower than the original page's scope. WebSearch confirms Missouri DED's current general business-incentives landing page is at this restructured, same-domain URL (old CMS /content/ path migrated away).",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -4594,7 +4612,16 @@
       "sources": [
         {
           "label": "JobsOhio \u2014 Data Center Investment Program",
-          "url": "https://www.jobsohio.com/why-ohio/target-industries/data-centers"
+          "url": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers",
+          "replacement_history": [
+            {
+              "old_value": "https://www.jobsohio.com/why-ohio/target-industries/data-centers",
+              "new_value": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion IS this same URL (score 4) -- WebSearch independently confirms it as JobsOhio's current, live data-centers page (\"Ohio Powers Data Centers\"), same agency, restructured from target-industries/ to industries/technology/.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Ohio Revised Code \u00a75709.65 \u2014 Data Center Tax Credit",
@@ -4746,7 +4773,16 @@
       "sources": [
         {
           "label": "Microsoft \u2014 Puget Sound Data Center Expansion",
-          "url": "https://azure.microsoft.com/en-us/global-infrastructure/"
+          "url": "https://azure.microsoft.com/en-us/explore/global-infrastructure",
+          "replacement_history": [
+            {
+              "old_value": "https://azure.microsoft.com/en-us/global-infrastructure/",
+              "new_value": "https://azure.microsoft.com/en-us/explore/global-infrastructure",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED, archived copy only); WebSearch confirms Microsoft restructured this exact page under /explore/global-infrastructure on the same domain -- same page, same content, verified via direct search.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Snohomish County \u2014 Economic Development",
@@ -5069,7 +5105,16 @@
         },
         {
           "label": "JobsOhio \u2014 Data Center Investment Program",
-          "url": "https://www.jobsohio.com/why-ohio/target-industries/data-centers"
+          "url": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers",
+          "replacement_history": [
+            {
+              "old_value": "https://www.jobsohio.com/why-ohio/target-industries/data-centers",
+              "new_value": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion IS this same URL (score 4) -- WebSearch independently confirms it as JobsOhio's current, live data-centers page (\"Ohio Powers Data Centers\"), same agency, restructured from target-industries/ to industries/technology/.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -5925,7 +5970,16 @@
       "sources": [
         {
           "label": "Microsoft \u2014 Grand Forks Data Center Campus",
-          "url": "https://azure.microsoft.com/en-us/global-infrastructure/"
+          "url": "https://azure.microsoft.com/en-us/explore/global-infrastructure",
+          "replacement_history": [
+            {
+              "old_value": "https://azure.microsoft.com/en-us/global-infrastructure/",
+              "new_value": "https://azure.microsoft.com/en-us/explore/global-infrastructure",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED, archived copy only); WebSearch confirms Microsoft restructured this exact page under /explore/global-infrastructure on the same domain -- same page, same content, verified via direct search.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "ND Department of Commerce \u2014 New/Expanding Business Tax Exemption",
@@ -5955,7 +6009,16 @@
         },
         {
           "label": "JobsOhio \u2014 Data Center Investment Program",
-          "url": "https://www.jobsohio.com/why-ohio/target-industries/data-centers"
+          "url": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers",
+          "replacement_history": [
+            {
+              "old_value": "https://www.jobsohio.com/why-ohio/target-industries/data-centers",
+              "new_value": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion IS this same URL (score 4) -- WebSearch independently confirms it as JobsOhio's current, live data-centers page (\"Ohio Powers Data Centers\"), same agency, restructured from target-industries/ to industries/technology/.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -16641,7 +16704,16 @@
         },
         {
           "label": "Ohio Development Services Agency",
-          "url": "https://development.ohio.gov"
+          "url": "https://development.ohio.gov/default.htm",
+          "replacement_history": [
+            {
+              "old_value": "https://development.ohio.gov",
+              "new_value": "https://development.ohio.gov/default.htm",
+              "changed_at": "2026-08-22",
+              "reason": "Root domain 404s (down_reason REPLACEMENT_REQUIRED); WebSearch confirms the Ohio Department of Development site is live and active at this same domain, with /default.htm indexed as a current, working page carrying recent 2026 content. Same agency, same domain -- not a guess.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -16950,7 +17022,16 @@
         },
         {
           "label": "Ohio Development Services Agency",
-          "url": "https://development.ohio.gov"
+          "url": "https://development.ohio.gov/default.htm",
+          "replacement_history": [
+            {
+              "old_value": "https://development.ohio.gov",
+              "new_value": "https://development.ohio.gov/default.htm",
+              "changed_at": "2026-08-22",
+              "reason": "Root domain 404s (down_reason REPLACEMENT_REQUIRED); WebSearch confirms the Ohio Department of Development site is live and active at this same domain, with /default.htm indexed as a current, working page carrying recent 2026 content. Same agency, same domain -- not a guess.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -16976,7 +17057,16 @@
         },
         {
           "label": "Ohio Development Services Agency",
-          "url": "https://development.ohio.gov"
+          "url": "https://development.ohio.gov/default.htm",
+          "replacement_history": [
+            {
+              "old_value": "https://development.ohio.gov",
+              "new_value": "https://development.ohio.gov/default.htm",
+              "changed_at": "2026-08-22",
+              "reason": "Root domain 404s (down_reason REPLACEMENT_REQUIRED); WebSearch confirms the Ohio Department of Development site is live and active at this same domain, with /default.htm indexed as a current, working page carrying recent 2026 content. Same agency, same domain -- not a guess.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -17002,7 +17092,16 @@
         },
         {
           "label": "Ohio Development Services Agency",
-          "url": "https://development.ohio.gov"
+          "url": "https://development.ohio.gov/default.htm",
+          "replacement_history": [
+            {
+              "old_value": "https://development.ohio.gov",
+              "new_value": "https://development.ohio.gov/default.htm",
+              "changed_at": "2026-08-22",
+              "reason": "Root domain 404s (down_reason REPLACEMENT_REQUIRED); WebSearch confirms the Ohio Department of Development site is live and active at this same domain, with /default.htm indexed as a current, working page carrying recent 2026 content. Same agency, same domain -- not a guess.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -18643,7 +18742,16 @@
         },
         {
           "label": "Ohio Development Services Agency",
-          "url": "https://development.ohio.gov"
+          "url": "https://development.ohio.gov/default.htm",
+          "replacement_history": [
+            {
+              "old_value": "https://development.ohio.gov",
+              "new_value": "https://development.ohio.gov/default.htm",
+              "changed_at": "2026-08-22",
+              "reason": "Root domain 404s (down_reason REPLACEMENT_REQUIRED); WebSearch confirms the Ohio Department of Development site is live and active at this same domain, with /default.htm indexed as a current, working page carrying recent 2026 content. Same agency, same domain -- not a guess.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -18670,7 +18778,16 @@
         },
         {
           "label": "Ohio Development Services Agency",
-          "url": "https://development.ohio.gov"
+          "url": "https://development.ohio.gov/default.htm",
+          "replacement_history": [
+            {
+              "old_value": "https://development.ohio.gov",
+              "new_value": "https://development.ohio.gov/default.htm",
+              "changed_at": "2026-08-22",
+              "reason": "Root domain 404s (down_reason REPLACEMENT_REQUIRED); WebSearch confirms the Ohio Department of Development site is live and active at this same domain, with /default.htm indexed as a current, working page carrying recent 2026 content. Same agency, same domain -- not a guess.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -18705,7 +18822,16 @@
         },
         {
           "label": "Ohio Development Services Agency",
-          "url": "https://development.ohio.gov"
+          "url": "https://development.ohio.gov/default.htm",
+          "replacement_history": [
+            {
+              "old_value": "https://development.ohio.gov",
+              "new_value": "https://development.ohio.gov/default.htm",
+              "changed_at": "2026-08-22",
+              "reason": "Root domain 404s (down_reason REPLACEMENT_REQUIRED); WebSearch confirms the Ohio Department of Development site is live and active at this same domain, with /default.htm indexed as a current, working page carrying recent 2026 content. Same agency, same domain -- not a guess.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -37296,7 +37422,16 @@
         },
         {
           "label": "Georgia Power \u2014 Economic Development & Interconnection",
-          "url": "https://www.georgiapower.com/business/economic-development.html"
+          "url": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+          "replacement_history": [
+            {
+              "old_value": "https://www.georgiapower.com/business/economic-development.html",
+              "new_value": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated VP-appointment press release) was rejected as a false positive. WebSearch independently confirms Georgia Power's economic development page now lives at this restructured path under the same domain -- same agency, same specific page, verified via direct search rather than the weak heuristic match.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Effingham County \u2014 Planning & Zoning",
@@ -37644,7 +37779,16 @@
       "sources": [
         {
           "label": "Georgia Dept. of Revenue \u2014 O.C.G.A. \u00a748-8-3(68) Data Center Exemption",
-          "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers"
+          "url": "https://dor.georgia.gov/high-technology-data-center-equipment-exemption",
+          "replacement_history": [
+            {
+              "old_value": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers",
+              "new_value": "https://dor.georgia.gov/high-technology-data-center-equipment-exemption",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a generic sales-tax-registration FAQ) was rejected as off-topic. WebSearch confirms Georgia DOR's current page for this exact program (the high-technology data center equipment sales/use tax exemption) is at this restructured, same-domain URL.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Camden County Joint Development Authority",
@@ -37652,7 +37796,16 @@
         },
         {
           "label": "Georgia Power \u2014 Economic Development (Southeast GA)",
-          "url": "https://www.georgiapower.com/business/economic-development.html"
+          "url": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+          "replacement_history": [
+            {
+              "old_value": "https://www.georgiapower.com/business/economic-development.html",
+              "new_value": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated VP-appointment press release) was rejected as a false positive. WebSearch independently confirms Georgia Power's economic development page now lives at this restructured path under the same domain -- same agency, same specific page, verified via direct search rather than the weak heuristic match.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Naval Submarine Base Kings Bay",
@@ -37683,7 +37836,16 @@
         },
         {
           "label": "Georgia Power \u2014 Economic Development",
-          "url": "https://www.georgiapower.com/business/economic-development.html"
+          "url": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+          "replacement_history": [
+            {
+              "old_value": "https://www.georgiapower.com/business/economic-development.html",
+              "new_value": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated VP-appointment press release) was rejected as a false positive. WebSearch independently confirms Georgia Power's economic development page now lives at this restructured path under the same domain -- same agency, same specific page, verified via direct search rather than the weak heuristic match.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Coffee County Development Authority (CCDA)",
@@ -37714,7 +37876,16 @@
       "sources": [
         {
           "label": "Georgia Dept. of Revenue \u2014 \u00a748-8-3(68) Data Center Exemption",
-          "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers"
+          "url": "https://dor.georgia.gov/high-technology-data-center-equipment-exemption",
+          "replacement_history": [
+            {
+              "old_value": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers",
+              "new_value": "https://dor.georgia.gov/high-technology-data-center-equipment-exemption",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a generic sales-tax-registration FAQ) was rejected as off-topic. WebSearch confirms Georgia DOR's current page for this exact program (the high-technology data center equipment sales/use tax exemption) is at this restructured, same-domain URL.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Dublin-Laurens County Development Authority",
@@ -37722,7 +37893,16 @@
         },
         {
           "label": "Georgia Power \u2014 Economic Development",
-          "url": "https://www.georgiapower.com/business/economic-development.html"
+          "url": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+          "replacement_history": [
+            {
+              "old_value": "https://www.georgiapower.com/business/economic-development.html",
+              "new_value": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated VP-appointment press release) was rejected as a false positive. WebSearch independently confirms Georgia Power's economic development page now lives at this restructured path under the same domain -- same agency, same specific page, verified via direct search rather than the weak heuristic match.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Georgia Department of Economic Development \u2014 Rural Incentives",
@@ -37749,7 +37929,16 @@
       "sources": [
         {
           "label": "Georgia Dept. of Revenue \u2014 \u00a748-8-3(68) Exemption",
-          "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers"
+          "url": "https://dor.georgia.gov/high-technology-data-center-equipment-exemption",
+          "replacement_history": [
+            {
+              "old_value": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers",
+              "new_value": "https://dor.georgia.gov/high-technology-data-center-equipment-exemption",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a generic sales-tax-registration FAQ) was rejected as off-topic. WebSearch confirms Georgia DOR's current page for this exact program (the high-technology data center equipment sales/use tax exemption) is at this restructured, same-domain URL.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Thomasville-Thomas County Chamber of Commerce",
@@ -37757,7 +37946,16 @@
         },
         {
           "label": "Georgia Power \u2014 Economic Development",
-          "url": "https://www.georgiapower.com/business/economic-development.html"
+          "url": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+          "replacement_history": [
+            {
+              "old_value": "https://www.georgiapower.com/business/economic-development.html",
+              "new_value": "https://www.georgiapower.com/our-impact/community/economic-development.html",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated VP-appointment press release) was rejected as a false positive. WebSearch independently confirms Georgia Power's economic development page now lives at this restructured path under the same domain -- same agency, same specific page, verified via direct search rather than the weak heuristic match.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "ABAC \u2014 Tifton Campus AI Research",
@@ -37858,7 +38056,16 @@
         },
         {
           "label": "NC Commerce \u2014 Tier 1 County Incentives (G.S. \u00a7143B-437.08)",
-          "url": "https://www.nccommerce.com/growing-business/business-incentives"
+          "url": "https://www.commerce.nc.gov/grants-incentives",
+          "replacement_history": [
+            {
+              "old_value": "https://www.nccommerce.com/growing-business/business-incentives",
+              "new_value": "https://www.commerce.nc.gov/grants-incentives",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason SOURCE_MOVED); the queue's own sitemap suggestion (a small-business grants PDF) was rejected as too narrow. WebSearch confirms NC Commerce migrated from nccommerce.com to commerce.nc.gov, and that domain's current primary incentives page is commerce.nc.gov/grants-incentives -- same agency, same topic, verified via direct search.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Nash County Economic Development Commission",
@@ -37902,7 +38109,16 @@
         },
         {
           "label": "NC Commerce \u2014 Tier Designations & JDIG (G.S. \u00a7143B-437.08)",
-          "url": "https://www.nccommerce.com/growing-business/business-incentives"
+          "url": "https://www.commerce.nc.gov/grants-incentives",
+          "replacement_history": [
+            {
+              "old_value": "https://www.nccommerce.com/growing-business/business-incentives",
+              "new_value": "https://www.commerce.nc.gov/grants-incentives",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason SOURCE_MOVED); the queue's own sitemap suggestion (a small-business grants PDF) was rejected as too narrow. WebSearch confirms NC Commerce migrated from nccommerce.com to commerce.nc.gov, and that domain's current primary incentives page is commerce.nc.gov/grants-incentives -- same agency, same topic, verified via direct search.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Duke Energy Progress \u2014 Economic Development",
@@ -37968,7 +38184,16 @@
       "sources": [
         {
           "label": "NC Commerce \u2014 Tier 1 Incentives (\u00a7143B-437.08)",
-          "url": "https://www.nccommerce.com/growing-business/business-incentives"
+          "url": "https://www.commerce.nc.gov/grants-incentives",
+          "replacement_history": [
+            {
+              "old_value": "https://www.nccommerce.com/growing-business/business-incentives",
+              "new_value": "https://www.commerce.nc.gov/grants-incentives",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason SOURCE_MOVED); the queue's own sitemap suggestion (a small-business grants PDF) was rejected as too narrow. WebSearch confirms NC Commerce migrated from nccommerce.com to commerce.nc.gov, and that domain's current primary incentives page is commerce.nc.gov/grants-incentives -- same agency, same topic, verified via direct search.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "NC Legislature \u2014 G.S. \u00a7158-7.1 Local Development Fund",
@@ -38039,7 +38264,16 @@
       "sources": [
         {
           "label": "NC Commerce \u2014 JDIG & OneNC Fund",
-          "url": "https://www.nccommerce.com/growing-business/business-incentives"
+          "url": "https://www.commerce.nc.gov/grants-incentives",
+          "replacement_history": [
+            {
+              "old_value": "https://www.nccommerce.com/growing-business/business-incentives",
+              "new_value": "https://www.commerce.nc.gov/grants-incentives",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason SOURCE_MOVED); the queue's own sitemap suggestion (a small-business grants PDF) was rejected as too narrow. WebSearch confirms NC Commerce migrated from nccommerce.com to commerce.nc.gov, and that domain's current primary incentives page is commerce.nc.gov/grants-incentives -- same agency, same topic, verified via direct search.",
+              "verified_via": "WebSearch (manual review, 2026-08-22) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Duke Energy Progress \u2014 Economic Development",

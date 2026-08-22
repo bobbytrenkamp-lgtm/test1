@@ -6,7 +6,7 @@
     "source_link_health_checked_at": "2026-08-21T18:37:36+00:00",
     "map_data_citation_health_checked_at": "2026-08-22T00:55:52+00:00"
   },
-  "count": 680,
+  "count": 673,
   "candidates": [
     {
       "url": "https://www.georgia.org",
@@ -19,31 +19,6 @@
         "url": "http://web.archive.org/web/20260708095511/https://georgia.org/"
       },
       "counties": 8
-    },
-    {
-      "url": "https://development.ohio.gov",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": null,
-      "archive": {
-        "timestamp": "20260611043155",
-        "url": "http://web.archive.org/web/20260611043155/https://development.ohio.gov/"
-      },
-      "counties": 7
-    },
-    {
-      "url": "https://www.georgiapower.com/business/economic-development.html",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 2,
-        "url": "https://www.georgiapower.com/news-hub/press-releases/arthur-tripp-named-vice-president-of-economic-development.html"
-      },
-      "archive": null,
-      "counties": 5
     },
     {
       "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/",
@@ -96,19 +71,6 @@
       "counties": 4
     },
     {
-      "url": "https://www.nccommerce.com/growing-business/business-incentives",
-      "down_reason": "SOURCE_MOVED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 2,
-        "url": "https://www.commerce.nc.gov/documents/ncworks-business-services-programs-incentives-booklet"
-      },
-      "archive": null,
-      "counties": 4
-    },
-    {
       "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
@@ -120,32 +82,6 @@
       },
       "archive": null,
       "counties": 4
-    },
-    {
-      "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 3,
-        "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-and-use-tax-registration-faq"
-      },
-      "archive": null,
-      "counties": 3
-    },
-    {
-      "url": "https://www.jobsohio.com/why-ohio/target-industries/data-centers",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 4,
-        "url": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers"
-      },
-      "archive": null,
-      "counties": 3
     },
     {
       "url": "https://www.midamericanenergy.com/home",
@@ -195,31 +131,6 @@
         "timestamp": "20260626010941",
         "url": "http://web.archive.org/web/20260626010941/https://accd.vermont.gov/economic-development"
       },
-      "counties": 2
-    },
-    {
-      "url": "https://azure.microsoft.com/en-us/global-infrastructure/",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": null,
-      "archive": {
-        "timestamp": "20220902032839",
-        "url": "http://web.archive.org/web/20220902032839/https://azure.microsoft.com/en-us/global-infrastructure/"
-      },
-      "counties": 2
-    },
-    {
-      "url": "https://ded.mo.gov/content/business-tax-incentives",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 2,
-        "url": "https://ded.mo.gov/media/pdf/build-business-use-incentives-large-scale-development"
-      },
-      "archive": null,
       "counties": 2
     },
     {
