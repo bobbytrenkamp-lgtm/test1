@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T15:18:09.182860+00:00",
+  "generated_at": "2026-08-22T19:26:44.604785+00:00",
   "source_last_updated": "2026-07-18",
   "stats": {
     "total_counties_tracked": 1467,
@@ -13642,7 +13642,16 @@
         },
         {
           "label": "Pennsylvania Keystone Opportunity Zone Program",
-          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/"
+          "url": "https://dced.pa.gov/business-assistance/keystone-opportunity-zones/",
+          "replacement_history": [
+            {
+              "old_value": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/",
+              "new_value": "https://dced.pa.gov/business-assistance/keystone-opportunity-zones/",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated airport-land-development-zone announcement) was rejected as off-program. WebSearch confirms Pennsylvania DCED's current Keystone Opportunity Zone program page is at this restructured, same-domain URL -- same agency, same specific program.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -13664,7 +13673,16 @@
       "sources": [
         {
           "label": "Pennsylvania Keystone Opportunity Zone Program",
-          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/"
+          "url": "https://dced.pa.gov/business-assistance/keystone-opportunity-zones/",
+          "replacement_history": [
+            {
+              "old_value": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/",
+              "new_value": "https://dced.pa.gov/business-assistance/keystone-opportunity-zones/",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated airport-land-development-zone announcement) was rejected as off-program. WebSearch confirms Pennsylvania DCED's current Keystone Opportunity Zone program page is at this restructured, same-domain URL -- same agency, same specific program.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Luzerne County Economic Development",
@@ -13690,7 +13708,16 @@
       "sources": [
         {
           "label": "Pennsylvania Keystone Opportunity Zone Program",
-          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/"
+          "url": "https://dced.pa.gov/business-assistance/keystone-opportunity-zones/",
+          "replacement_history": [
+            {
+              "old_value": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/",
+              "new_value": "https://dced.pa.gov/business-assistance/keystone-opportunity-zones/",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated airport-land-development-zone announcement) was rejected as off-program. WebSearch confirms Pennsylvania DCED's current Keystone Opportunity Zone program page is at this restructured, same-domain URL -- same agency, same specific program.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Pennsylvania College of Technology Network Systems Programs",
@@ -13716,7 +13743,16 @@
       "sources": [
         {
           "label": "Pennsylvania Keystone Opportunity Zone Program",
-          "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/"
+          "url": "https://dced.pa.gov/business-assistance/keystone-opportunity-zones/",
+          "replacement_history": [
+            {
+              "old_value": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/",
+              "new_value": "https://dced.pa.gov/business-assistance/keystone-opportunity-zones/",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (an unrelated airport-land-development-zone announcement) was rejected as off-program. WebSearch confirms Pennsylvania DCED's current Keystone Opportunity Zone program page is at this restructured, same-domain URL -- same agency, same specific program.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "Blair County Economic Development",
@@ -18917,7 +18953,16 @@
         },
         {
           "label": "Virginia Economic Development Partnership \u2014 Data Centers",
-          "url": "https://www.vedp.org/data-centers"
+          "url": "https://www.vedp.org/industry/data-centers",
+          "replacement_history": [
+            {
+              "old_value": "https://www.vedp.org/data-centers",
+              "new_value": "https://www.vedp.org/industry/data-centers",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion again pointed at the pantheonsite.io staging domain (rejected). WebSearch confirms VEDP's current live data-centers industry landing page is at www.vedp.org/industry/data-centers -- same agency, same topic, restructured path, live domain.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -18945,7 +18990,16 @@
         },
         {
           "label": "Virginia Economic Development Partnership \u2014 Data Centers",
-          "url": "https://www.vedp.org/data-centers"
+          "url": "https://www.vedp.org/industry/data-centers",
+          "replacement_history": [
+            {
+              "old_value": "https://www.vedp.org/data-centers",
+              "new_value": "https://www.vedp.org/industry/data-centers",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion again pointed at the pantheonsite.io staging domain (rejected). WebSearch confirms VEDP's current live data-centers industry landing page is at www.vedp.org/industry/data-centers -- same agency, same topic, restructured path, live domain.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -18998,7 +19052,16 @@
         },
         {
           "label": "Virginia Economic Development Partnership \u2014 Data Centers",
-          "url": "https://www.vedp.org/data-centers"
+          "url": "https://www.vedp.org/industry/data-centers",
+          "replacement_history": [
+            {
+              "old_value": "https://www.vedp.org/data-centers",
+              "new_value": "https://www.vedp.org/industry/data-centers",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion again pointed at the pantheonsite.io staging domain (rejected). WebSearch confirms VEDP's current live data-centers industry landing page is at www.vedp.org/industry/data-centers -- same agency, same topic, restructured path, live domain.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -40323,7 +40386,16 @@
         },
         {
           "label": "VEDP Data Center Incentives",
-          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+          "url": "https://www.vedp.org/incentive/data-center-retail-sales-use-tax-exemption",
+          "replacement_history": [
+            {
+              "old_value": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions",
+              "new_value": "https://www.vedp.org/incentive/data-center-retail-sales-use-tax-exemption",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion pointed at live-vedp-d9.pantheonsite.io, a staging domain never appropriate to cite (established rejection precedent from the 2026-08-01 sitemap-suggestion review). WebSearch confirms the LIVE www.vedp.org page for this exact program, renamed to \"Data Center Retail Sales & Use Tax Exemption\".",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -40364,7 +40436,16 @@
         },
         {
           "label": "VEDP Data Center Incentives",
-          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+          "url": "https://www.vedp.org/incentive/data-center-retail-sales-use-tax-exemption",
+          "replacement_history": [
+            {
+              "old_value": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions",
+              "new_value": "https://www.vedp.org/incentive/data-center-retail-sales-use-tax-exemption",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion pointed at live-vedp-d9.pantheonsite.io, a staging domain never appropriate to cite (established rejection precedent from the 2026-08-01 sitemap-suggestion review). WebSearch confirms the LIVE www.vedp.org page for this exact program, renamed to \"Data Center Retail Sales & Use Tax Exemption\".",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -40396,7 +40477,16 @@
         },
         {
           "label": "VEDP Data Center Incentives",
-          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+          "url": "https://www.vedp.org/incentive/data-center-retail-sales-use-tax-exemption",
+          "replacement_history": [
+            {
+              "old_value": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions",
+              "new_value": "https://www.vedp.org/incentive/data-center-retail-sales-use-tax-exemption",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion pointed at live-vedp-d9.pantheonsite.io, a staging domain never appropriate to cite (established rejection precedent from the 2026-08-01 sitemap-suggestion review). WebSearch confirms the LIVE www.vedp.org page for this exact program, renamed to \"Data Center Retail Sales & Use Tax Exemption\".",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -40428,7 +40518,16 @@
         },
         {
           "label": "VEDP Data Center Incentives",
-          "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions"
+          "url": "https://www.vedp.org/incentive/data-center-retail-sales-use-tax-exemption",
+          "replacement_history": [
+            {
+              "old_value": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions",
+              "new_value": "https://www.vedp.org/incentive/data-center-retail-sales-use-tax-exemption",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion pointed at live-vedp-d9.pantheonsite.io, a staging domain never appropriate to cite (established rejection precedent from the 2026-08-01 sitemap-suggestion review). WebSearch confirms the LIVE www.vedp.org page for this exact program, renamed to \"Data Center Retail Sales & Use Tax Exemption\".",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -40456,7 +40555,16 @@
         },
         {
           "label": "Wisconsin Economic Development Corp \u2013 Data Center Tax Exemption",
-          "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/"
+          "url": "https://wedc.org/programs/data-center-sales-and-use-tax-exemption/",
+          "replacement_history": [
+            {
+              "old_value": "https://wedc.org/programs-and-resources/data-center-tax-exemption/",
+              "new_value": "https://wedc.org/programs/data-center-sales-and-use-tax-exemption/",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a stock image asset URL) was rejected as not a page at all. WebSearch confirms WEDC's current Data Center Sales and Use Tax Exemption program page is at this restructured, same-domain URL -- same agency, same program.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -40484,7 +40592,16 @@
         },
         {
           "label": "Wisconsin Economic Development Corp \u2013 Data Center Tax Exemption",
-          "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/"
+          "url": "https://wedc.org/programs/data-center-sales-and-use-tax-exemption/",
+          "replacement_history": [
+            {
+              "old_value": "https://wedc.org/programs-and-resources/data-center-tax-exemption/",
+              "new_value": "https://wedc.org/programs/data-center-sales-and-use-tax-exemption/",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a stock image asset URL) was rejected as not a page at all. WebSearch confirms WEDC's current Data Center Sales and Use Tax Exemption program page is at this restructured, same-domain URL -- same agency, same program.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -40512,7 +40629,16 @@
         },
         {
           "label": "Wisconsin Economic Development Corp \u2013 Data Center Tax Exemption",
-          "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/"
+          "url": "https://wedc.org/programs/data-center-sales-and-use-tax-exemption/",
+          "replacement_history": [
+            {
+              "old_value": "https://wedc.org/programs-and-resources/data-center-tax-exemption/",
+              "new_value": "https://wedc.org/programs/data-center-sales-and-use-tax-exemption/",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a stock image asset URL) was rejected as not a page at all. WebSearch confirms WEDC's current Data Center Sales and Use Tax Exemption program page is at this restructured, same-domain URL -- same agency, same program.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         }
       ],
       "lifecycle_stage": "effective",
@@ -40540,7 +40666,16 @@
         },
         {
           "label": "Wisconsin Economic Development Corp \u2013 Data Center Tax Exemption",
-          "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/"
+          "url": "https://wedc.org/programs/data-center-sales-and-use-tax-exemption/",
+          "replacement_history": [
+            {
+              "old_value": "https://wedc.org/programs-and-resources/data-center-tax-exemption/",
+              "new_value": "https://wedc.org/programs/data-center-sales-and-use-tax-exemption/",
+              "changed_at": "2026-08-22",
+              "reason": "404 (down_reason REPLACEMENT_REQUIRED); the queue's own sitemap suggestion (a stock image asset URL) was rejected as not a page at all. WebSearch confirms WEDC's current Data Center Sales and Use Tax Exemption program page is at this restructured, same-domain URL -- same agency, same program.",
+              "verified_via": "WebSearch (manual review, 2026-08-22, round 2) -- data/citation_remediation_queue.json flagged the dead URL, but its own sitemap-keyword-overlap suggestion was independently verified insufficient/wrong (a staging domain or an unrelated page) for this entry; the applied replacement was found and confirmed via direct research instead."
+            }
+          ]
         },
         {
           "label": "WEDC Enterprise Zone Credits",

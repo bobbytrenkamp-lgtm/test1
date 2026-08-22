@@ -6,7 +6,7 @@
     "source_link_health_checked_at": "2026-08-21T18:37:36+00:00",
     "map_data_citation_health_checked_at": "2026-08-22T00:55:52+00:00"
   },
-  "count": 673,
+  "count": 669,
   "candidates": [
     {
       "url": "https://www.georgia.org",
@@ -21,19 +21,6 @@
       "counties": 8
     },
     {
-      "url": "https://dced.pa.gov/programs/keystone-opportunity-zone-koz-program/",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 2,
-        "url": "https://dced.pa.gov/newsroom/shapiro-administration-announces-new-airport-land-development-zone-program/"
-      },
-      "archive": null,
-      "counties": 4
-    },
-    {
       "url": "https://floridajobs.org",
       "down_reason": "TRANSIENT_FAILURE",
       "status": 403,
@@ -46,19 +33,6 @@
       "counties": 4
     },
     {
-      "url": "https://wedc.org/programs-and-resources/data-center-tax-exemption/",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 2,
-        "url": "https://wedc.org/wp-content/uploads/2024/05/AdobeStock_484881680_Data-Center_Worker-1200x630-1.jpg"
-      },
-      "archive": null,
-      "counties": 4
-    },
-    {
       "url": "https://www.legislature.mi.gov/",
       "down_reason": "TRANSIENT_FAILURE",
       "status": null,
@@ -68,19 +42,6 @@
         "timestamp": "20260720110100",
         "url": "http://web.archive.org/web/20260720110100/https://www.legislature.mi.gov/"
       },
-      "counties": 4
-    },
-    {
-      "url": "https://www.vedp.org/incentive/data-center-sales-and-use-tax-exemptions",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 4,
-        "url": "http://live-vedp-d9.pantheonsite.io/incentive/data-center-retail-sales-use-tax-exemption"
-      },
-      "archive": null,
       "counties": 4
     },
     {
@@ -104,19 +65,6 @@
         "found_via": "sitemap",
         "score": 4,
         "url": "https://www.ncdor.gov/taxes-forms/information-tax-professionals/practitioner/excise/excise-tax-technical-bulletins/alcoholic-beverages-tax-technical-bulletin"
-      },
-      "archive": null,
-      "counties": 3
-    },
-    {
-      "url": "https://www.vedp.org/data-centers",
-      "down_reason": "REPLACEMENT_REQUIRED",
-      "status": 404,
-      "consecutive_failures": 1,
-      "suggested_replacement": {
-        "found_via": "sitemap",
-        "score": 2,
-        "url": "http://live-vedp-d9.pantheonsite.io/industry/data-centers"
       },
       "archive": null,
       "counties": 3
