@@ -1,6 +1,6 @@
 {
  "_schema": "source_link_health_v1",
- "checked_at": "2026-08-21T18:37:36+00:00",
+ "checked_at": "2026-08-22T19:25:48+00:00",
  "counties_with_textual_only_citations": [
   "13097",
   "17031",
@@ -26,12 +26,12 @@
  "summary": {
   "checked": 1985,
   "counties_with_textual_only_citations": 20,
-  "reachable": 1012,
+  "reachable": 1018,
   "total_citation_urls": 1985,
-  "unreachable": 973,
-  "unreachable_pct": 49.0,
-  "unreachable_with_archive": 312,
-  "unreachable_with_suggested_replacement": 107
+  "unreachable": 967,
+  "unreachable_pct": 48.7,
+  "unreachable_with_archive": 311,
+  "unreachable_with_suggested_replacement": 102
  },
  "urls": {
   "http://mississippi.org/doing-business/incentives/": {
@@ -325,6 +325,14 @@
    "ok": true,
    "status": 200
   },
+  "https://azure.microsoft.com/en-us/explore/global-infrastructure": {
+   "checked_at": "2026-08-22T19:25:48+00:00",
+   "consecutive_failures": 0,
+   "counties": 2,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://azure.microsoft.com/en-us/explore/global-infrastructure/": {
    "checked_at": "2026-08-19T16:40:17+00:00",
    "consecutive_failures": 0,
@@ -332,20 +340,6 @@
    "error": null,
    "ok": true,
    "status": 200
-  },
-  "https://azure.microsoft.com/en-us/global-infrastructure/": {
-   "archive": {
-    "timestamp": "20220902032839",
-    "url": "http://web.archive.org/web/20220902032839/https://azure.microsoft.com/en-us/global-infrastructure/"
-   },
-   "checked_at": "2026-08-19T16:34:40+00:00",
-   "consecutive_failures": 1,
-   "counties": 2,
-   "down_reason": "REPLACEMENT_REQUIRED",
-   "error": "HTTP 404",
-   "first_failure_at": "2026-08-19T16:34:40+00:00",
-   "ok": false,
-   "status": 404
   },
   "https://baltimoredevelopment.com/": {
    "checked_at": "2026-08-20T01:05:40+00:00",
@@ -1210,20 +1204,13 @@
    "ok": true,
    "status": 200
   },
-  "https://ded.mo.gov/content/business-tax-incentives": {
-   "checked_at": "2026-08-19T16:29:21+00:00",
-   "consecutive_failures": 1,
+  "https://ded.mo.gov/business": {
+   "checked_at": "2026-08-22T19:25:46+00:00",
+   "consecutive_failures": 0,
    "counties": 2,
-   "down_reason": "REPLACEMENT_REQUIRED",
-   "error": "HTTP 404",
-   "first_failure_at": "2026-08-19T16:29:21+00:00",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://ded.mo.gov/media/pdf/build-business-use-incentives-large-scale-development"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://ded.mo.gov/programs/business/missouri-works": {
    "checked_at": "2026-08-20T04:05:44+00:00",
@@ -1284,20 +1271,6 @@
    "ok": false,
    "status": null
   },
-  "https://development.ohio.gov": {
-   "archive": {
-    "timestamp": "20260611043155",
-    "url": "http://web.archive.org/web/20260611043155/https://development.ohio.gov/"
-   },
-   "checked_at": "2026-08-19T16:31:51+00:00",
-   "consecutive_failures": 1,
-   "counties": 7,
-   "down_reason": "REPLACEMENT_REQUIRED",
-   "error": "HTTP 404",
-   "first_failure_at": "2026-08-19T16:31:51+00:00",
-   "ok": false,
-   "status": 404
-  },
   "https://development.ohio.gov/": {
    "archive": {
     "timestamp": "20260611043155",
@@ -1329,6 +1302,20 @@
    "down_reason": "SOURCE_RETIRED",
    "error": "HTTP 404",
    "first_failure_at": "2026-08-20T00:32:47+00:00",
+   "ok": false,
+   "status": 404
+  },
+  "https://development.ohio.gov/default.htm": {
+   "archive": {
+    "timestamp": "20241110001643",
+    "url": "http://web.archive.org/web/20241110001643/https://development.ohio.gov/default.htm"
+   },
+   "checked_at": "2026-08-22T19:25:46+00:00",
+   "consecutive_failures": 1,
+   "counties": 7,
+   "down_reason": "REPLACEMENT_REQUIRED",
+   "error": "HTTP 404",
+   "first_failure_at": "2026-08-22T19:25:46+00:00",
    "ok": false,
    "status": 404
   },
@@ -1439,6 +1426,14 @@
    "ok": true,
    "status": 200
   },
+  "https://dor.georgia.gov/high-technology-data-center-equipment-exemption": {
+   "checked_at": "2026-08-22T19:25:46+00:00",
+   "consecutive_failures": 0,
+   "counties": 3,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://dor.georgia.gov/rural-zone-tax-credits": {
    "checked_at": "2026-08-20T00:39:05+00:00",
    "consecutive_failures": 0,
@@ -1446,21 +1441,6 @@
    "error": null,
    "ok": true,
    "status": 200
-  },
-  "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-tax-exemptions/data-centers": {
-   "checked_at": "2026-08-20T04:06:14+00:00",
-   "consecutive_failures": 1,
-   "counties": 3,
-   "down_reason": "REPLACEMENT_REQUIRED",
-   "error": "HTTP 404",
-   "first_failure_at": "2026-08-20T04:06:14+00:00",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 3,
-    "url": "https://dor.georgia.gov/taxes/business-taxes/sales-use-tax/sales-and-use-tax-registration-faq"
-   }
   },
   "https://dor.sc.gov/": {
    "checked_at": "2026-08-19T16:40:17+00:00",
@@ -8456,6 +8436,14 @@
    "ok": true,
    "status": 200
   },
+  "https://www.commerce.nc.gov/grants-incentives": {
+   "checked_at": "2026-08-22T19:25:48+00:00",
+   "consecutive_failures": 0,
+   "counties": 4,
+   "error": null,
+   "ok": true,
+   "status": 200
+  },
   "https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers": {
    "checked_at": "2026-08-20T03:56:31+00:00",
    "consecutive_failures": 0,
@@ -10865,21 +10853,6 @@
    "ok": true,
    "status": 200
   },
-  "https://www.georgiapower.com/business/economic-development.html": {
-   "checked_at": "2026-08-19T16:31:44+00:00",
-   "consecutive_failures": 1,
-   "counties": 5,
-   "down_reason": "REPLACEMENT_REQUIRED",
-   "error": "HTTP 404",
-   "first_failure_at": "2026-08-19T16:31:44+00:00",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.georgiapower.com/news-hub/press-releases/arthur-tripp-named-vice-president-of-economic-development.html"
-   }
-  },
   "https://www.georgiapower.com/business/industries/data-centers.html": {
    "checked_at": "2026-08-20T00:32:07+00:00",
    "consecutive_failures": 1,
@@ -10894,6 +10867,14 @@
     "score": 2,
     "url": "https://www.georgiapower.com/about/customer-pledge/data-centers.html"
    }
+  },
+  "https://www.georgiapower.com/our-impact/community/economic-development.html": {
+   "checked_at": "2026-08-22T19:25:46+00:00",
+   "consecutive_failures": 0,
+   "counties": 5,
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.gevernova.com/research": {
    "checked_at": "2026-08-20T03:55:52+00:00",
@@ -12365,20 +12346,13 @@
    "ok": false,
    "status": null
   },
-  "https://www.jobsohio.com/why-ohio/target-industries/data-centers": {
-   "checked_at": "2026-08-20T00:42:25+00:00",
-   "consecutive_failures": 1,
+  "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers": {
+   "checked_at": "2026-08-22T19:25:48+00:00",
+   "consecutive_failures": 0,
    "counties": 3,
-   "down_reason": "REPLACEMENT_REQUIRED",
-   "error": "HTTP 404",
-   "first_failure_at": "2026-08-20T00:42:25+00:00",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 4,
-    "url": "https://www.jobsohio.com/industries/technology/ohio-powers-data-centers"
-   }
+   "error": null,
+   "ok": true,
+   "status": 200
   },
   "https://www.jocogov.org/": {
    "checked_at": "2026-08-20T03:54:34+00:00",
@@ -14738,22 +14712,6 @@
     "found_via": "sitemap",
     "score": 4,
     "url": "https://www.commerce.nc.gov/grants-incentives/county-distress-rankings-tiers/county-tier-designation-archives"
-   }
-  },
-  "https://www.nccommerce.com/growing-business/business-incentives": {
-   "checked_at": "2026-08-20T00:39:35+00:00",
-   "consecutive_failures": 1,
-   "counties": 4,
-   "down_reason": "SOURCE_MOVED",
-   "error": "HTTP 404",
-   "final_url": "https://www.commerce.nc.gov/growing-business/business-incentives",
-   "first_failure_at": "2026-08-20T00:39:35+00:00",
-   "ok": false,
-   "status": 404,
-   "suggested_replacement": {
-    "found_via": "sitemap",
-    "score": 2,
-    "url": "https://www.commerce.nc.gov/documents/ncworks-business-services-programs-incentives-booklet"
    }
   },
   "https://www.nccommerce.com/jdig": {
