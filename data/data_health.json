@@ -74,7 +74,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-16T07:25:25.329572+00:00",
+      "last_checked": "2026-08-22T00:21:37.328360+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -88,16 +88,12 @@
         "ny-nyc-mocej",
         "ny-senate",
         "oh-legislature",
-        "ri-smithfield-council"
+        "ri-smithfield-council",
+        "wa-douglas-pud"
       ],
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
-      "transiently_unreachable": [
-        "nc-orange-commissioners",
-        "nc-rowan-commissioners",
-        "tn-washington-commission",
-        "wa-douglas-pud"
-      ]
+      "transiently_unreachable": []
     },
     "static_parcel_ingestion": {
       "health": "OK",
@@ -128,12 +124,12 @@
       "severity_score": 71.28
     },
     {
-      "affected_count": 17,
+      "affected_count": 14,
       "criticality_weight": 5,
       "health": "SOURCE_DOWN",
       "pipeline": "policy_pipeline_sources",
-      "reason": "13 source(s) persistently down, 4 transient -- see each source's down_reason/notes in data/source_health.json / data/government_sources.json.",
-      "severity_score": 11.7
+      "reason": "14 source(s) persistently down, 0 transient -- see each source's down_reason/notes in data/source_health.json / data/government_sources.json.",
+      "severity_score": 11.4
     },
     {
       "affected_count": 1,
