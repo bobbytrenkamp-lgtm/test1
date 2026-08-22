@@ -319,6 +319,22 @@ def main() -> int:
     if applied_sl:
         SAMPLE_LAYERS_PATH.write_text(json.dumps(sample_layers, indent=2) + "\n")
         print(f"Wrote {SAMPLE_LAYERS_PATH.relative_to(ROOT)} ({applied_sl} citation(s) repointed).")
+        # sample_layers.json is the pipeline's source of truth, but the
+        # frontend never reads it directly -- js/map.js fetches
+        # data/layers/*.json instead (see data/split_sample_layers.py's own
+        # docstring). A real citation fix landed here (2026-08-20) sat
+        # invisible to users for a full session because nothing re-split
+        # after this write, until data/split_sample_layers.py --check
+        # caught the drift in the next full test run. Re-split every time
+        # so a citation fix here can never again go live in the source file
+        # while the site keeps serving the stale URL.
+        split_result = subprocess.run(
+            [sys.executable, str(ROOT / "data" / "split_sample_layers.py")], cwd=ROOT)
+        if split_result.returncode != 0:
+            print("::error::split_sample_layers.py failed after remediation -- "
+                  "data/layers/*.json may be out of sync with sample_layers.json.")
+            return 1
+        print("Regenerated data/layers/*.json from the updated sample_layers.json.")
 
     if applied_sr:
         STATE_REGS_PATH.write_text(json.dumps(state_regs, indent=2) + "\n")

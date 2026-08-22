@@ -167,6 +167,23 @@ def test_apply_sample_layers_fixes_no_fixes_changes_nothing():
     assert "replacement_history" not in sample_layers["data_centers"][0]["sources"][0]
 
 
+def test_main_resplits_sample_layers_after_writing_it():
+    # Regression guard: a real fix landed in sample_layers.json on
+    # 2026-08-20 and sat invisible to users for a full session because
+    # nothing re-split data/layers/*.json (what js/map.js actually fetches)
+    # after the write -- only data/split_sample_layers.py --check running
+    # in the FULL test suite caught the drift. Cheap source-inspection
+    # check, matching test_fiber_network_honesty.py's own convention,
+    # since exercising this via subprocess end-to-end needs a lot of
+    # fixture setup for little extra confidence.
+    src = open(os.path.join(DATA_DIR, "remediate_citations.py")).read()
+    applied_sl_block = src[src.index("if applied_sl:"):src.index("if applied_sr:")]
+    assert "split_sample_layers.py" in applied_sl_block, (
+        "sample_layers.json is written but data/layers/*.json (what the "
+        "frontend actually serves) is never re-derived from it"
+    )
+
+
 def test_find_map_data_queue_candidates_excludes_map_data_json_context():
     # map_data.json-context (county) candidates are already surfaced by
     # find_queue_candidates via source_link_health.json -- must not double-list.

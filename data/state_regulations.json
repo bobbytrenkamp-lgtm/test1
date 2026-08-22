@@ -703,7 +703,16 @@
       "sources": [
         {
           "label": "Pennsylvania Act 84 of 2016 \u2014 Data Center Sales Tax Exemption",
-          "url": "https://www.revenue.pa.gov/"
+          "url": "https://www.pa.gov/agencies/revenue",
+          "replacement_history": [
+            {
+              "old_value": "https://www.revenue.pa.gov/",
+              "new_value": "https://www.pa.gov/agencies/revenue",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/map_data_citation_health.json"
+            }
+          ]
         }
       ]
     },
@@ -912,7 +921,16 @@
       "sources": [
         {
           "label": "Mississippi Development Authority",
-          "url": "https://www.mississippi.org/"
+          "url": "https://mississippi.org/",
+          "replacement_history": [
+            {
+              "old_value": "https://www.mississippi.org/",
+              "new_value": "https://mississippi.org/",
+              "changed_at": "2026-08-21",
+              "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+              "verified_via": "data/map_data_citation_health.json"
+            }
+          ]
         },
         {
           "label": "Mississippi Power \u2014 Industrial Rates",

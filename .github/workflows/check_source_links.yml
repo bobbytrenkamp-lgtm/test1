@@ -156,3 +156,56 @@ jobs:
               sleep $((attempt * 5))
             done
           fi
+
+  check_policy_sources:
+    # Manual dispatch only, same reasoning as check_map_data_citations
+    # above: data/run_policy_pipeline.py already runs daily in production
+    # via update_policy_sources.yml, which is deliberately pinned to main
+    # (same "production data bot" reasoning as update_data.yml). That
+    # means a dispatch against main never actually exercises whatever
+    # diagnostic code only exists on a feature branch -- e.g. the
+    # response-body-snippet capture added here 2026-08-19 to tell
+    # ACCESS_BLOCKED (a WAF/challenge page) apart from a genuinely dead
+    # source, which 16 of the persistently-down policy sources were
+    # provisionally classified as without ever having been confirmed by an
+    # actual run with that capture in place. --check-health-only only
+    # updates data/source_health.json -- no adapters, no candidate
+    # discovery, no issue creation -- so it's safe to run here.
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r data/requirements.txt
+
+      - name: Check policy source health only
+        working-directory: data
+        continue-on-error: true
+        run: python run_policy_pipeline.py --check-health-only
+
+      - name: Commit source health
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/source_health.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            git commit -m "chore: refresh policy source health [${TIMESTAMP}] [skip ci]"
+            for attempt in 1 2 3 4 5; do
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then break; fi
+              if [ "$attempt" = 5 ]; then echo "::error::Push failed after 5 attempts."; exit 1; fi
+              echo "Push rejected (attempt ${attempt}), rebasing and retrying..."
+              git fetch origin "${GITHUB_REF_NAME}" && git rebase "origin/${GITHUB_REF_NAME}"
+              sleep $((attempt * 5))
+            done
+          fi

@@ -2,11 +2,11 @@
   "_meta": {
     "description": "Citations that are unreachable AND have some lead (a sitemap-based \"may have moved to\" suggestion or a Wayback archive snapshot) but were NOT auto-applied -- a heuristic suggestion is not verified fact, so these need a human or a separately-reviewed pass to confirm before the underlying file is touched. County candidates (from source_link_health.json) are sorted by how many county records cite the URL, most first; facility/state candidates (from map_data_citation_health.json) follow, sorted by URL.",
     "generated_by": "data/remediate_citations.py",
-    "generated_at": "2026-08-21T00:59:19+00:00",
-    "source_link_health_checked_at": "2026-08-20T04:17:54+00:00",
-    "map_data_citation_health_checked_at": "2026-08-20T04:19:52+00:00"
+    "generated_at": "2026-08-21T19:32:48+00:00",
+    "source_link_health_checked_at": "2026-08-21T18:37:36+00:00",
+    "map_data_citation_health_checked_at": "2026-08-21T19:10:45+00:00"
   },
-  "count": 490,
+  "count": 568,
   "candidates": [
     {
       "url": "https://www.georgia.org",
@@ -2343,18 +2343,6 @@
       "archive": {
         "timestamp": "20140703164322",
         "url": "http://web.archive.org/web/20140703164322/http://www.duboiscounty.org/"
-      },
-      "counties": 1
-    },
-    {
-      "url": "https://www.duluthchamber.com",
-      "down_reason": "TRANSIENT_FAILURE",
-      "status": null,
-      "consecutive_failures": 1,
-      "suggested_replacement": null,
-      "archive": {
-        "timestamp": "20260611065334",
-        "url": "http://web.archive.org/web/20260611065334/https://duluthchamber.com/"
       },
       "counties": 1
     },
@@ -5039,8 +5027,44 @@
       "counties": 1
     },
     {
+      "url": "https://about.fb.com/news/2023/01/meta-to-build-data-center-in-granite-falls-minnesota/",
+      "context": "sample_layers.json / ai_campuses / fc-b27351476f (Meta Data Center - Granite Falls MN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://about.fb.com/news/2023/09/meta-richland-parish-louisiana-data-center/",
+      "context": "state_regulations.json / 22 (Louisiana)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://about.fb.com/news/2025/12/metas-richland-parish-data-center-supports-louisiana-economy-875-million-in-contracts/",
+        "score": 6,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://about.fb.com/news/2023/10/meta-to-build-data-center-in-goodyear-arizona/",
       "context": "sample_layers.json / ai_campuses / fc-8eb39d70cb (Meta Data Center - Goodyear AZ)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://about.fb.com/news/2023/meta-avondale-arizona-data-center/",
+      "context": "sample_layers.json / ai_campuses / fc-d5e208bb15 (Meta Data Center - Avondale AZ)",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
       "suggested_replacement": {
@@ -5058,6 +5082,18 @@
       "suggested_replacement": {
         "url": "https://about.fb.com/news/2026/07/meta-announces-new-venture-with-blackrock-to-develop-data-center-in-el-paso/",
         "score": 5,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://about.fb.com/news/2024/meta-data-center-dekalb-illinois/",
+      "context": "sample_layers.json / ai_campuses / fc-34ad3905b9 (Meta Data Center - DeKalb IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
+        "score": 4,
         "found_via": "sitemap"
       },
       "archive": null
@@ -5082,6 +5118,18 @@
       "suggested_replacement": {
         "url": "https://about.fb.com/news/2026/08/meta-upholds-texas-governor-greg-abbotts-data-center-standards/",
         "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://applieddigital.com/data-center-campuses/",
+      "context": "sample_layers.json / ai_campuses / fc-f856053d3c (Applied Digital - Big Spring TX AI Campus)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.applieddigital.com/insights/ai-first--revolutionizing-high-performance-computing-design-at-the-ellendale-data-center",
+        "score": 2,
         "found_via": "sitemap"
       },
       "archive": null
@@ -5146,6 +5194,30 @@
       "archive": null
     },
     {
+      "url": "https://blog.google/technology/infrastructure/google-data-center-midlothian-texas/",
+      "context": "sample_layers.json / ai_campuses / fc-4f1ae4e81b (Google Data Center - Midlothian TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://blog.google/technology/infrastructure/google-data-center-searcy-arkansas/",
+      "context": "sample_layers.json / ai_campuses / fc-129a36d07c (Google Data Center - Searcy AR)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://blog.google/technology/infrastructure/google-data-center-topeka-kansas/",
       "context": "sample_layers.json / ai_campuses / fc-f4c8fce3e6 (Google Data Center - Topeka KS)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5153,6 +5225,18 @@
       "suggested_replacement": {
         "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/see-our-latest-data-center-murals/",
         "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://das.iowa.gov/information-technology-enterprise",
+      "context": "sample_layers.json / data_centers / fc-5fa091ab5e (Iowa Department of Management Information Technology Enterprise - Des Moines IA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://das.iowa.gov/information-technology-enterprise-expert-00160",
+        "score": 3,
         "found_via": "sitemap"
       },
       "archive": null
@@ -5170,6 +5254,18 @@
       "archive": null
     },
     {
+      "url": "https://dnrc.mt.gov/about-us/",
+      "context": "sample_layers.json / data_centers / fc-b40ddbca10 (Montana DNRC Data Center - Helena MT)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://dnrc.mt.gov/Directors-Office/about",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://doas.ga.gov/state-purchasing/technology-services",
       "context": "sample_layers.json / data_centers / fc-5b61229db6 (Georgia Department of Administrative Services - Atlanta GA)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5177,6 +5273,18 @@
       "suggested_replacement": {
         "url": "https://www.doas.ga.gov/state-purchasing/supplier-services",
         "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://edgecore.com/data-centers/phoenix/phx1/",
+      "context": "sample_layers.json / ai_campuses / fc-1f46dbe15a (EdgeCore Internet Real Estate - Phoenix PHX1)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://edgecore.com/locations/culpeper-data-centers",
+        "score": 2,
         "found_via": "sitemap"
       },
       "archive": null
@@ -5194,8 +5302,44 @@
       "archive": null
     },
     {
+      "url": "https://evocative.com/data-centers/chicago/",
+      "context": "sample_layers.json / data_centers / fc-69bc6cf152 (Evocative Data Center - Chicago IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://evocative.com/resources/whitepaper/navigating-the-journey-to-hybrid-cloud-advantages-of-colocation-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://evocative.com/data-centers/denver/",
+      "context": "sample_layers.json / data_centers / fc-781cd683cc (Evocative Data Center - Denver CO)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://evocative.com/resources/whitepaper/navigating-the-journey-to-hybrid-cloud-advantages-of-colocation-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://evocative.com/data-centers/fremont/",
       "context": "sample_layers.json / data_centers / fc-d999f575fd (Evocative Data Center - Fremont CA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://evocative.com/resources/whitepaper/navigating-the-journey-to-hybrid-cloud-advantages-of-colocation-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://evocative.com/data-centers/las-vegas/",
+      "context": "sample_layers.json / data_centers / fc-fe4cb99fc6 (Evocative Data Center - Las Vegas NV)",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
       "suggested_replacement": {
@@ -5276,6 +5420,66 @@
       "archive": null
     },
     {
+      "url": "https://mainehealth.org/about/about-mainehealth",
+      "context": "sample_layers.json / data_centers / fc-14b96aa837 (MaineHealth Data Center - Portland ME)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.mainehealth.org/news/2026/07/mainehealth-responds-questions-raised-about-its-use-palantir-technologies-product",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://multco.us/county-management/information-technology",
+      "context": "sample_layers.json / data_centers / fc-ed072b81a5 (Multnomah County Information Technology Data Center - Portland OR)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://multco.us/departments/information-technology-division",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://netrality.com/data-centers/baltimore/",
+      "context": "sample_layers.json / data_centers / fc-97c2078761 (Netrality Data Center - Baltimore MD (111 Market Place))",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://netrality.com/services/edge-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://netrality.com/data-centers/cincinnati/",
+      "context": "sample_layers.json / data_centers / fc-ebe1b3646e (Netrality Data Center - Cincinnati OH (201 E 4th))",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://netrality.com/services/edge-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://netrality.com/data-centers/nashville/",
+      "context": "sample_layers.json / data_centers / fc-0c7d485b02 (Netrality Data Center - Nashville TN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://netrality.com/services/edge-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://netrality.com/data-centers/pittsburgh/",
       "context": "sample_layers.json / data_centers / fc-b0f95c76f3 (Netrality Data Center - Pittsburgh PA (429 Fourth Ave))",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5300,6 +5504,18 @@
       "archive": null
     },
     {
+      "url": "https://news.microsoft.com/2023/microsoft-gainesville-texas-data-center-campus/",
+      "context": "sample_layers.json / ai_campuses / fc-060993da96 (Microsoft Data Center - Gainesville TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1999/09/14/shared-medical-systems-and-microsoft-to-open-redmond-campus-technology-development-center/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://news.microsoft.com/2023/microsoft-georgia-data-center-investment/",
       "context": "sample_layers.json / ai_campuses / fc-915bb4f6ea (Microsoft Data Center - Atlanta GA)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5312,8 +5528,44 @@
       "archive": null
     },
     {
+      "url": "https://news.microsoft.com/2024/05/microsoft-announces-data-center-investment-racine-wisconsin/",
+      "context": "sample_layers.json / ai_campuses / fc-508c9c35cb (Microsoft Data Center - Racine WI)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/30/microsoft-announces-major-gift-to-sustain-expand-computer-learning-center-marthas-table/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://news.microsoft.com/2024/11/microsoft-chehalis-washington-data-center-investment/",
       "context": "sample_layers.json / ai_campuses / fc-9ad16d1103 (Microsoft Data Center - Chehalis WA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://news.microsoft.com/2024/microsoft-boise-idaho-data-center-investment/",
+      "context": "sample_layers.json / ai_campuses / fc-75d0018818 (Microsoft Data Center - Boise ID)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://news.microsoft.com/1996/05/29/microsoft-netmeeting-conferencing-software-provides-easy-voice-data-internet-communications-available-on-the-web-now/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://news.microsoft.com/2024/microsoft-lenexa-kansas-data-center/",
+      "context": "sample_layers.json / ai_campuses / fc-9c36be8800 (Microsoft Data Center - Lenexa KS)",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
       "suggested_replacement": {
@@ -5359,6 +5611,18 @@
       }
     },
     {
+      "url": "https://phoenixnap.com/data-center/atlanta-ga",
+      "context": "sample_layers.json / data_centers / fc-c75e55fd85 (PhoenixNAP Data Center - Atlanta GA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://phoenixnap.com/company/it-resources/data-center-rfp-template",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://phoenixnap.com/data-center/dallas-tx",
       "context": "sample_layers.json / data_centers / fc-049c9b813d (PhoenixNAP Data Center - Dallas TX)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5378,6 +5642,42 @@
       "suggested_replacement": {
         "url": "https://phoenixnap.com/data-center/ashburn",
         "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://quantumloophole.com/data-centers/frederick-md/",
+      "context": "sample_layers.json / ai_campuses / fc-2e8c3517d8 (Quantum Loophole Data Center - Frederick MD Phase 2)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://quantumloophole.com/lets-talk/press-releases/maryland-formally-welcomes-data-centers-to-the-state-clarifying-the-use-of-emergency-backup-power-generation/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://tierpoint.com/data-centers/denver/",
+      "context": "sample_layers.json / data_centers / fc-ef6d5ca533 (TierPoint Data Center - Denver CO)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.tierpoint.com/wp-content/uploads/2025/04/How-Data-Centers-Support-AI-1.png",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://vxchnge.com/colocation-data-centers/louisville-ky/",
+      "context": "sample_layers.json / data_centers / fc-bab987ae42 (vXchnge Data Center - Louisville KY)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.vxchnge.com/tag/colocation-data-centers/",
+        "score": 3,
         "found_via": "sitemap"
       },
       "archive": null
@@ -5406,8 +5706,56 @@
       "archive": null
     },
     {
+      "url": "https://www.365datacenters.com/data-centers/richmond/",
+      "context": "sample_layers.json / data_centers / fc-136dbbd1a2 (365 Data Centers - Richmond VA)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://365datacenters.com/365-data-centers-significantly-enhances-available/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.abbott.com/about-abbott/our-locations.html",
+      "context": "sample_layers.json / data_centers / fc-dbd354bd47 (Abbott Laboratories Data Center - Abbott Park IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.abbott.com/en-us/about-abbott",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.aboutamazon.com/news/aws/amazon-aws-boise-idaho-data-center",
       "context": "sample_layers.json / ai_campuses / fc-a394203c6b (Amazon AWS Data Center - Boise ID)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-columbia-maryland-data-center",
+      "context": "sample_layers.json / ai_campuses / fc-568ab1fe57 (Amazon AWS Data Center - Columbia MD)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+        "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-clarksville-tennessee",
+      "context": "sample_layers.json / ai_campuses / fc-c3980c8182 (Amazon AWS Data Center - Clarksville TN)",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
       "suggested_replacement": {
@@ -5425,6 +5773,18 @@
       "suggested_replacement": {
         "url": "https://www.aboutamazon.com/news/company-news/amazon-pecos-county-texas-data-center-clean-energy-jobs",
         "score": 5,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-data-center-henderson-north-carolina",
+      "context": "sample_layers.json / ai_campuses / fc-9dbf1008a1 (Amazon AWS Data Center - Vance County NC)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
+        "score": 4,
         "found_via": "sitemap"
       },
       "archive": null
@@ -5449,6 +5809,30 @@
       "suggested_replacement": {
         "url": "https://www.aboutamazon.com/news/company-news/amazon-data-center-louisiana-new-jobs",
         "score": 4,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-isle-of-wight-county-virginia-data-center",
+      "context": "sample_layers.json / ai_campuses / fc-ec4f20450a (Amazon AWS Data Center - Isle of Wight VA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-pecos-county-texas-data-center-clean-energy-jobs",
+        "score": 5,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-aws-mississippi-data-center-jackson",
+      "context": "sample_layers.json / ai_campuses / fc-59e5dd833c (Amazon AWS Data Center - Jackson MS)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-3-billion-mississippi-data-center-investment",
+        "score": 5,
         "found_via": "sitemap"
       },
       "archive": null
@@ -5490,6 +5874,78 @@
       "archive": null
     },
     {
+      "url": "https://www.aligneddc.com/data-centers/seattle/",
+      "context": "sample_layers.json / data_centers / fc-ed6f5943c3 (Aligned Data Center - Seattle WA SEA-01)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://aligneddc.com/press-release/aligned-data-centers-to-acquire-odata/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.ameslab.gov/research/computing-resources",
+      "context": "sample_layers.json / data_centers / fc-866e299ce2 (Ames National Laboratory Computing - Ames IA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "http://live-ameslab-d8.pantheonsite.io/news/ames-national-laboratory-to-combine-the-power-of-ai-and-exascale-computing-in-new-research",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.applieddigital.com/data-centers/jamestown-nd/",
+      "context": "sample_layers.json / ai_campuses / fc-d8405033aa (Applied Digital - Jamestown ND Data Center)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.applieddigital.com/insights/applied-digital-empowering-ai-with-purpose-built-data-centers",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.atlantic.net/data-center-locations/chicago-data-center/",
+      "context": "sample_layers.json / data_centers / fc-89e0ba82a8 (Atlantic.net Data Center - Chicago IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.atlantic.net/announcements/rocky-linux-cloud-vps-hosting-is-now-available-at-all-seven-data-center-locations/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.atlanticmetro.net/colocation/data-centers/newark/",
+      "context": "sample_layers.json / data_centers / fc-e82c4bdf22 (Atlantic Metro - Newark NJ)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://365datacenters.com/365-data-centers-to-acquire-us-colocation-and-network-business-of-sungard-availability-services/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.atlanticmetro.net/data-centers/hauppauge/",
+      "context": "sample_layers.json / data_centers / fc-6dc6bfe777 (Atlantic Metro - Hauppauge NY)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://365datacenters.com/365-data-centers-significantly-enhances-available/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.avec.org/",
       "context": "sample_layers.json / data_centers / fc-8eb87c38f0 (Alaska Village Electric Cooperative Data Center - Anchorage AK)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5510,6 +5966,18 @@
         "url": "http://web.archive.org/web/20260810194912/https://www.avera.org/",
         "timestamp": "20260810194912"
       }
+    },
+    {
+      "url": "https://www.baltimorecity.gov/bureaus-offices/information-technology",
+      "context": "sample_layers.json / data_centers / fc-669df0e628 (City of Baltimore Bureau of Information Technology - Baltimore MD)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.baltimorecity.gov/baltimore-city-information-and-technology/event/en/digital-equity-fund-application-deadline",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
     },
     {
       "url": "https://www.bluelock.com/",
@@ -5569,6 +6037,30 @@
       "archive": null
     },
     {
+      "url": "https://www.cologix.com/data-centers/denver/",
+      "context": "sample_layers.json / data_centers / fc-dbfa2b951f (Cologix Data Center - Denver CO DEN1)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://cologix.com/resources/blogs/cloud-choice-and-network-neutral-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.cologix.com/data-centers/kansas-city/",
+      "context": "sample_layers.json / data_centers / fc-7883bba14d (Cologix Data Center - Kansas City MO MCI1)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://cologix.com/resources/blogs/cloud-choice-and-network-neutral-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.cologix.com/data-centers/minneapolis/min1/",
       "context": "sample_layers.json / data_centers / fc-36d7e865bb (Cologix MTL1 - Montreal QC (US ops))",
       "down_reason": null,
@@ -5620,6 +6112,78 @@
       "archive": null
     },
     {
+      "url": "https://www.dartpoints.com/data-centers/shreveport/",
+      "context": "sample_layers.json / data_centers / fc-72305358ba (DartPoints Data Center - Shreveport LA)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://dartpoints.com/blog/data-centers-role-network-convergence-nedes/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.databank.com/data-centers/alabama/birmingham-al1/",
+      "context": "sample_layers.json / data_centers / fc-29edcb8120 (DataBank Data Center - Birmingham AL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.databank.com/resources/blogs/tax-incentives-add-to-attractiveness-of-databanks-salt-lake-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.datafoundry.com/data-centers/addison/",
+      "context": "sample_layers.json / data_centers / fc-a660ef92e7 (Data Foundry - Addison TX)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.datafoundry.com/how-enterprises-benefit-from-colocation-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.dcblox.com/data-centers/charlotte/",
+      "context": "sample_layers.json / data_centers / fc-2216a62c9d (DC BLOX Data Center - Charlotte NC CLT-1)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.dcblox.com/dc-blox-expands-birmingham-and-greenville-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.dcblox.com/data-centers/jackson/",
+      "context": "sample_layers.json / data_centers / fc-ee105cc926 (DC BLOX Data Center - Jackson MS JAN-1)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.dcblox.com/dc-blox-expands-birmingham-and-greenville-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.dcblox.com/data-centers/montgomery/",
+      "context": "sample_layers.json / data_centers / fc-9be885f777 (DC BLOX Data Center - Montgomery AL MGM-1)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.dcblox.com/dc-blox-expands-birmingham-and-greenville-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.dcblox.com/data-centers/oklahoma-city/",
       "context": "sample_layers.json / data_centers / fc-60f36447aa (DC BLOX Data Center - Oklahoma City OK OKC-1)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5632,8 +6196,32 @@
       "archive": null
     },
     {
+      "url": "https://www.dcblox.com/data-centers/tampa/",
+      "context": "sample_layers.json / data_centers / fc-e25efeb4b2 (DC BLOX Data Center - Tampa FL TPA-1)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.dcblox.com/dc-blox-expands-birmingham-and-greenville-data-centers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.digitalrealty.com/data-centers/americas/denver",
       "context": "sample_layers.json / data_centers / fc-6808085b7d (Digital Realty - DEN1 Denver CO)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.digitalrealty.com/data-centers/americas/los-angeles/bur10",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.digitalrealty.com/data-centers/americas/san-diego",
+      "context": "sample_layers.json / data_centers / fc-105b0db924 (Digital Realty - SD1 San Diego CA)",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
       "suggested_replacement": {
@@ -5712,6 +6300,17 @@
       }
     },
     {
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv13",
+      "context": "sample_layers.json / data_centers / fc-a428bd13de (Equinix - SV13 San Jose)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20210417121455/https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv13",
+        "timestamp": "20210417121455"
+      }
+    },
+    {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv4",
       "context": "sample_layers.json / data_centers / fc-e5ab4a5a8d (Equinix - SV4 Santa Clara)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5745,6 +6344,42 @@
       }
     },
     {
+      "url": "https://www.expedient.com/data-centers/charlotte/",
+      "context": "sample_layers.json / data_centers / fc-4952b5db2f (Expedient Data Center - Charlotte NC)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://expedient.com/knowledgebase/blog/2013-07-09-not-all-data-centers-are-equal-which-is-right-for-you/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.expedient.com/data-centers/louisville/",
+      "context": "sample_layers.json / data_centers / fc-2f790055df (Expedient Data Center - Louisville KY)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://expedient.com/knowledgebase/blog/2013-07-09-not-all-data-centers-are-equal-which-is-right-for-you/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.expedient.com/data-centers/tampa/",
+      "context": "sample_layers.json / data_centers / fc-0fe2969415 (Expedient Data Center - Tampa FL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://expedient.com/knowledgebase/blog/2013-07-09-not-all-data-centers-are-equal-which-is-right-for-you/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.firstinterstatebank.com/about/",
       "context": "sample_layers.json / data_centers / fc-48e3883fe4 (First Interstate BancSystem Data Center - Billings MT)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5758,6 +6393,18 @@
         "url": "http://web.archive.org/web/20121005032145/https://www.firstinterstatebank.com/about/",
         "timestamp": "20121005032145"
       }
+    },
+    {
+      "url": "https://www.fmglobal.com/about-fm-global/",
+      "context": "sample_layers.json / data_centers / fc-68b828cf9b (FM Global Data Center - Johnston RI)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 507,
+      "suggested_replacement": {
+        "url": "https://www.fm.com/Newsroom/news/2021/latest-fm-global-podcast-sheds-light-on-what-the-texas-power-blackouts-can-teach-businesses-about-re",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
     },
     {
       "url": "https://www.gdeb.com/",
@@ -5782,8 +6429,56 @@
       }
     },
     {
+      "url": "https://www.greenmountainpower.com/about-gmp/",
+      "context": "sample_layers.json / data_centers / fc-f2ec0d0cd7 (Green Mountain Power Data Center - Colchester VT)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://greenmountainpower.com/news/gmp-and-bed-warning-customers-about-scam-calls-today/",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.hivelocity.net/dedicated-server/ashburn-va/",
+      "context": "sample_layers.json / data_centers / fc-d7a70f6660 (Hivelocity Data Center - Ashburn VA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.hivelocity.net/blog/guide-to-evaluating-dedicated-server-providers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.hivelocity.net/dedicated-server/chicago/",
       "context": "sample_layers.json / data_centers / fc-960b42a31d (Hivelocity Data Center - Chicago IL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.hivelocity.net/blog/guide-to-evaluating-dedicated-server-providers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.hivelocity.net/dedicated-server/new-york/",
+      "context": "sample_layers.json / data_centers / fc-5f3e81031b (Hivelocity Data Center - New York NY)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.hivelocity.net/blog/guide-to-evaluating-dedicated-server-providers/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.hivelocity.net/dedicated-server/seattle/",
+      "context": "sample_layers.json / data_centers / fc-318f659464 (Hivelocity Data Center - Seattle WA)",
       "down_reason": "REPLACEMENT_REQUIRED",
       "status": 404,
       "suggested_replacement": {
@@ -5802,6 +6497,29 @@
       "archive": {
         "url": "http://web.archive.org/web/20260806052600/https://www.hpe.com/us/en/contact-hpe.html",
         "timestamp": "20260806052600"
+      }
+    },
+    {
+      "url": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=4015&ChapterID=68",
+      "context": "state_regulations.json / 17 (Illinois)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://ilga.gov/Legislation/ILCS/Chapters",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.imf.org/",
+      "context": "sample_layers.json / data_centers / fc-9ca4c3c769 (International Monetary Fund Data Center - Washington DC)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20251101052825/https://imf.org/",
+        "timestamp": "20251101052825"
       }
     },
     {
@@ -5829,6 +6547,18 @@
       "archive": null
     },
     {
+      "url": "https://www.libertymutual.com/about",
+      "context": "sample_layers.json / data_centers / fc-f37f75fe2b (Liberty Mutual Data Center - Boston MA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.libertymutual.com/insurance-resources/property/everything-to-know-about-antique-appraisals",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.madeinalabama.com/2015/11/alabama-jobs-act/",
       "context": "state_regulations.json / 01 (Alabama)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5839,6 +6569,17 @@
         "found_via": "sitemap"
       },
       "archive": null
+    },
+    {
+      "url": "https://www.mainegeneral.org/",
+      "context": "sample_layers.json / data_centers / fc-831f61e507 (MaineGeneral Medical Center Data Center - Augusta ME)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 403,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20260611094800/https://www.mainegeneral.org/",
+        "timestamp": "20260611094800"
+      }
     },
     {
       "url": "https://www.metronet.com/",
@@ -5887,6 +6628,18 @@
       }
     },
     {
+      "url": "https://www.novva.com/data-centers/west-jordan-utah/",
+      "context": "sample_layers.json / data_centers / fc-5f88b77f96 (Novva Data Centers - West Jordan UT)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.novva.com/media-center/novva-ceo-wes-swenson-talks-data-centers-utah-facility-and-fossil-hunting-with-data-movers/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.nttdata.com/global/en/services/infrastructure/data-centers/north-america/chicago",
       "context": "sample_layers.json / data_centers / fc-8011739d9f (NTT Data Center - Elk Grove Village IL)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -5908,6 +6661,18 @@
         "url": "http://web.archive.org/web/20260803133932/https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page",
         "timestamp": "20260803133932"
       }
+    },
+    {
+      "url": "https://www.opusinteractive.com/colocation/portland-colocation/",
+      "context": "sample_layers.json / data_centers / fc-28e51e4252 (Opus Interactive Data Center - Portland OR)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.opusinteractive.com/opus-blog/post/colocation-services-portland-or/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
     },
     {
       "url": "https://www.oracle.com/news/announcement/oracle-to-invest-in-tennessee-cloud-region-2024/",
@@ -5993,6 +6758,42 @@
       }
     },
     {
+      "url": "https://www.t5datacenters.com/data-centers/miami/",
+      "context": "sample_layers.json / data_centers / fc-b9164ec730 (T5 Data Centers - Miami FL)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://t5datacenters.com/resources/t5-data-centers-theleader-magazine-corenet/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.t5datacenters.com/data-centers/phoenix/",
+      "context": "sample_layers.json / data_centers / fc-eee9422edf (T5 Data Centers - Phoenix AZ)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://t5datacenters.com/resources/t5-data-centers-theleader-magazine-corenet/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.td.com/us/en/about-td/",
+      "context": "sample_layers.json / data_centers / fc-e0693e17c5 (TD Bank Operations Center - Wilmington DE)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.td.com/us/en/about-us",
+        "score": 1,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
       "url": "https://www.thomaswv.org/",
       "context": "sample_layers.json / data_centers / fc-4fccec5540 (Thomas Health System Data Center - South Charleston WV)",
       "down_reason": "REPLACEMENT_REQUIRED",
@@ -6002,6 +6803,66 @@
         "url": "http://web.archive.org/web/20200811200849/http://thomaswv.org:80/",
         "timestamp": "20200811200849"
       }
+    },
+    {
+      "url": "https://www.usaa.com/inet/wc/about_usaa_main",
+      "context": "sample_layers.json / data_centers / fc-474644f369 (USAA Data Center - Colorado Springs CO)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": {
+        "url": "https://www.usaa.com/about/legal/usaa-sa-public-disclosures/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.ussignal.com/colocation/data-centers/holland/",
+      "context": "sample_layers.json / data_centers / fc-1b2d5ff573 (US Signal Data Center - Holland MI)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://ussignal.com/blog/colocation-data-centers-what-to-know/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.ussignal.com/colocation/data-centers/lansing/",
+      "context": "sample_layers.json / data_centers / fc-f40deec6d3 (US Signal Data Center - Lansing MI)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://ussignal.com/blog/colocation-data-centers-what-to-know/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.ussignal.com/colocation/data-centers/muskegon/",
+      "context": "sample_layers.json / data_centers / fc-05dba68bd9 (US Signal Data Center - Muskegon MI)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://ussignal.com/blog/colocation-data-centers-what-to-know/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.ussignal.com/colocation/data-centers/traverse-city/",
+      "context": "sample_layers.json / data_centers / fc-94320c5fa2 (US Signal Data Center - Traverse City MI)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://ussignal.com/blog/colocation-data-centers-what-to-know/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
     },
     {
       "url": "https://www.ussignal.com/data-centers/kalamazoo-michigan/",
@@ -6014,6 +6875,77 @@
         "found_via": "sitemap"
       },
       "archive": null
+    },
+    {
+      "url": "https://www.ussignal.com/data-centers/troy-michigan/",
+      "context": "sample_layers.json / data_centers / fc-10cc0de52c (US Signal Data Center - Troy MI)",
+      "down_reason": "SOURCE_MOVED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://ussignal.com/blog/michigan-data-centers-what-it-leaders-need-to-know/",
+        "score": 3,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.vapor.io/kinetic-edge/atlanta/",
+      "context": "sample_layers.json / data_centers / fc-f88e29c73f (Vapor IO Kinetic Edge - Atlanta GA)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.vapor.io/resources/blog/introducing-the-kinetic-grid-an-edge-to-edge-platform-for-the-internet-we-need/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.vxchnge.com/data-centers/indianapolis/",
+      "context": "sample_layers.json / data_centers / fc-0c92cef34d (vXchnge Data Center - Indianapolis IN)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.vxchnge.com/reliable-data-centers-in-supporting-online-sports-betting-platforms/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.vxchnge.com/data-centers/phoenix/",
+      "context": "sample_layers.json / data_centers / fc-738b6fbacb (vXchnge Data Center - Phoenix AZ)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.vxchnge.com/reliable-data-centers-in-supporting-online-sports-betting-platforms/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.vxchnge.com/data-centers/tampa/",
+      "context": "sample_layers.json / data_centers / fc-b9781dbee8 (vXchnge Data Center - Tampa FL)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": 404,
+      "suggested_replacement": {
+        "url": "https://www.vxchnge.com/reliable-data-centers-in-supporting-online-sports-betting-platforms/",
+        "score": 2,
+        "found_via": "sitemap"
+      },
+      "archive": null
+    },
+    {
+      "url": "https://www.wyomingmedicalcenter.org/",
+      "context": "sample_layers.json / data_centers / fc-6d9357487d (Wyoming Medical Center Data Center - Casper WY)",
+      "down_reason": "REPLACEMENT_REQUIRED",
+      "status": null,
+      "suggested_replacement": null,
+      "archive": {
+        "url": "http://web.archive.org/web/20220813185822/https://wyomingmedicalcenter.org/",
+        "timestamp": "20220813185822"
+      }
     }
   ]
 }

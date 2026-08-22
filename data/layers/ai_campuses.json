@@ -501,7 +501,16 @@
     "sources": [
       {
         "label": "QTS Realty Trust",
-        "url": "https://qtsdatacenters.com/data-centers/fayetteville/"
+        "url": "http://q.com/data-centers/fayetteville/",
+        "replacement_history": [
+          {
+            "old_value": "https://qtsdatacenters.com/data-centers/fayetteville/",
+            "new_value": "http://q.com/data-centers/fayetteville/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -898,7 +907,16 @@
     "sources": [
       {
         "label": "QTS Data Centers",
-        "url": "https://qtsdatacenters.com/data-centers/new-albany-2/"
+        "url": "http://q.com/data-centers/new-albany-2/",
+        "replacement_history": [
+          {
+            "old_value": "https://qtsdatacenters.com/data-centers/new-albany-2/",
+            "new_value": "http://q.com/data-centers/new-albany-2/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -1619,7 +1637,16 @@
     "sources": [
       {
         "label": "STACK Infrastructure",
-        "url": "https://www.stackinfra.com/data-centers/minneapolis/"
+        "url": "https://www.stackinfra.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.stackinfra.com/data-centers/minneapolis/",
+            "new_value": "https://www.stackinfra.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2341,7 +2368,16 @@
     "sources": [
       {
         "label": "Applied Digital",
-        "url": "https://ir.applieddigital.com/news-releases/"
+        "url": "https://ir.applieddigital.com/news-events/press-releases",
+        "replacement_history": [
+          {
+            "old_value": "https://ir.applieddigital.com/news-releases/",
+            "new_value": "https://ir.applieddigital.com/news-events/press-releases",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Applied Digital",
@@ -2361,7 +2397,16 @@
     "sources": [
       {
         "label": "Applied Digital",
-        "url": "https://ir.applieddigital.com/news-releases/"
+        "url": "https://ir.applieddigital.com/news-events/press-releases",
+        "replacement_history": [
+          {
+            "old_value": "https://ir.applieddigital.com/news-releases/",
+            "new_value": "https://ir.applieddigital.com/news-events/press-releases",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Applied Digital",
@@ -2405,7 +2450,16 @@
       },
       {
         "label": "CoreWeave",
-        "url": "https://coreweave.com/blog/"
+        "url": "https://coreweave.com/blog-categories/blog",
+        "replacement_history": [
+          {
+            "old_value": "https://coreweave.com/blog/",
+            "new_value": "https://coreweave.com/blog-categories/blog",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2426,7 +2480,16 @@
       },
       {
         "label": "CoreWeave",
-        "url": "https://coreweave.com/blog/"
+        "url": "https://coreweave.com/blog-categories/blog",
+        "replacement_history": [
+          {
+            "old_value": "https://coreweave.com/blog/",
+            "new_value": "https://coreweave.com/blog-categories/blog",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2446,7 +2509,16 @@
       },
       {
         "label": "CoreWeave",
-        "url": "https://coreweave.com/blog/"
+        "url": "https://coreweave.com/blog-categories/blog",
+        "replacement_history": [
+          {
+            "old_value": "https://coreweave.com/blog/",
+            "new_value": "https://coreweave.com/blog-categories/blog",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2466,7 +2538,16 @@
       },
       {
         "label": "CoreWeave",
-        "url": "https://coreweave.com/blog/"
+        "url": "https://coreweave.com/blog-categories/blog",
+        "replacement_history": [
+          {
+            "old_value": "https://coreweave.com/blog/",
+            "new_value": "https://coreweave.com/blog-categories/blog",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2486,7 +2567,16 @@
       },
       {
         "label": "Lambda Labs",
-        "url": "https://lambdalabs.com/blog/"
+        "url": "https://lambda.ai/blog",
+        "replacement_history": [
+          {
+            "old_value": "https://lambdalabs.com/blog/",
+            "new_value": "https://lambda.ai/blog",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2506,7 +2596,16 @@
       },
       {
         "label": "Lambda Labs",
-        "url": "https://lambdalabs.com/blog/"
+        "url": "https://lambda.ai/blog",
+        "replacement_history": [
+          {
+            "old_value": "https://lambdalabs.com/blog/",
+            "new_value": "https://lambda.ai/blog",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -2526,7 +2625,16 @@
       },
       {
         "label": "Lambda Labs",
-        "url": "https://lambdalabs.com/blog/"
+        "url": "https://lambda.ai/blog",
+        "replacement_history": [
+          {
+            "old_value": "https://lambdalabs.com/blog/",
+            "new_value": "https://lambda.ai/blog",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -3123,7 +3231,16 @@
     "sources": [
       {
         "label": "Novva Data Centers",
-        "url": "https://www.novva.com/locations/"
+        "url": "https://www.novva.com/data-center-facilities/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.novva.com/locations/",
+            "new_value": "https://www.novva.com/data-center-facilities/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -3140,7 +3257,16 @@
     "sources": [
       {
         "label": "Novva Data Centers",
-        "url": "https://www.novva.com/locations/"
+        "url": "https://www.novva.com/data-center-facilities/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.novva.com/locations/",
+            "new_value": "https://www.novva.com/data-center-facilities/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -3253,7 +3379,16 @@
     "sources": [
       {
         "label": "Amazon Web Services",
-        "url": "https://aws.amazon.com/local/"
+        "url": "https://aws.amazon.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://aws.amazon.com/local/",
+            "new_value": "https://aws.amazon.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -3269,7 +3404,16 @@
     "sources": [
       {
         "label": "Amazon Web Services",
-        "url": "https://aws.amazon.com/local/"
+        "url": "https://aws.amazon.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://aws.amazon.com/local/",
+            "new_value": "https://aws.amazon.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -3285,7 +3429,16 @@
     "sources": [
       {
         "label": "Amazon Web Services",
-        "url": "https://aws.amazon.com/local/"
+        "url": "https://aws.amazon.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://aws.amazon.com/local/",
+            "new_value": "https://aws.amazon.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -3301,7 +3454,16 @@
     "sources": [
       {
         "label": "Amazon Web Services",
-        "url": "https://aws.amazon.com/local/"
+        "url": "https://aws.amazon.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://aws.amazon.com/local/",
+            "new_value": "https://aws.amazon.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -3318,7 +3480,16 @@
     "sources": [
       {
         "label": "Amazon Web Services",
-        "url": "https://aws.amazon.com/local/"
+        "url": "https://aws.amazon.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://aws.amazon.com/local/",
+            "new_value": "https://aws.amazon.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },

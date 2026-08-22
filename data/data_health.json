@@ -48,19 +48,19 @@
   "pipelines": {
     "county_page_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-20T04:17:54+00:00",
+      "last_checked": "2026-08-21T18:37:36+00:00",
       "pipeline": "county_page_citations",
       "total_urls_checked": 1985,
-      "unreachable": 974,
-      "unreachable_ratio": 0.4907
+      "unreachable": 973,
+      "unreachable_ratio": 0.4902
     },
     "map_data_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-20T04:19:52.282947+00:00",
+      "last_checked": "2026-08-21T19:10:45.872331+00:00",
       "pipeline": "map_data_citations",
-      "total_urls_checked": 850,
-      "unreachable": 358,
-      "unreachable_ratio": 0.4212
+      "total_urls_checked": 1698,
+      "unreachable": 721,
+      "unreachable_ratio": 0.4246
     },
     "parcels_registry": {
       "health": "SOURCE_DOWN",
@@ -112,20 +112,20 @@
   },
   "remediation_queue": [
     {
-      "affected_count": 974,
+      "affected_count": 973,
       "criticality_weight": 4,
       "health": "VALIDATION_FAILURE",
       "pipeline": "county_page_citations",
-      "reason": "974 citation URL(s) unreachable (49.1%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
-      "severity_score": 93.12
+      "reason": "973 citation URL(s) unreachable (49.0%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
+      "severity_score": 93.04
     },
     {
-      "affected_count": 358,
+      "affected_count": 721,
       "criticality_weight": 4,
       "health": "VALIDATION_FAILURE",
       "pipeline": "map_data_citations",
-      "reason": "358 citation URL(s) unreachable (42.1%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
-      "severity_score": 39.04
+      "reason": "721 citation URL(s) unreachable (42.5%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
+      "severity_score": 71.28
     },
     {
       "affected_count": 17,
