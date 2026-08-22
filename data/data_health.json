@@ -11,7 +11,8 @@
       "SCHEMA_CHANGED",
       "DATA_EMPTY",
       "NOT_YET_TRACKED"
-    ]
+    ],
+    "remediation_queue_note": "severity_score = criticality_weight (1-5, how much of the platform this pipeline underpins) x a persistence multiplier (2x for a confirmed/sustained problem, 1x for a fresh transient one) x a scope factor that grows with how many things are affected but with sharply diminishing weight past the first 100 -- explainable, not a precise model. Ranked descending so a national-scope problem doesn't sit at the same visual priority as one optional county's."
   },
   "datasets_without_automated_health_tracking": [
     "ai_news",
@@ -47,23 +48,23 @@
   "pipelines": {
     "county_page_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-17T05:33:15+00:00",
+      "last_checked": "2026-08-21T18:37:36+00:00",
       "pipeline": "county_page_citations",
-      "total_urls_checked": 1994,
-      "unreachable": 956,
-      "unreachable_ratio": 0.4794
+      "total_urls_checked": 1985,
+      "unreachable": 973,
+      "unreachable_ratio": 0.4902
     },
     "map_data_citations": {
       "health": "VALIDATION_FAILURE",
-      "last_checked": "2026-08-16T06:49:40.290060+00:00",
+      "last_checked": "2026-08-22T00:55:52.332237+00:00",
       "pipeline": "map_data_citations",
-      "total_urls_checked": 2949,
-      "unreachable": 1299,
-      "unreachable_ratio": 0.4405
+      "total_urls_checked": 2550,
+      "unreachable": 1117,
+      "unreachable_ratio": 0.438
     },
     "parcels_registry": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-15T20:57:32.193Z",
+      "last_checked": "2026-08-22T04:38:10.821Z",
       "persistently_down": [
         "21111"
       ],
@@ -73,7 +74,7 @@
     },
     "policy_pipeline_sources": {
       "health": "SOURCE_DOWN",
-      "last_checked": "2026-08-17T07:46:03.409476+00:00",
+      "last_checked": "2026-08-22T00:21:37.328360+00:00",
       "persistently_down": [
         "az-water-resources",
         "ca-santaclara-oes",
@@ -87,14 +88,12 @@
         "ny-nyc-mocej",
         "ny-senate",
         "oh-legislature",
-        "ri-smithfield-council"
+        "ri-smithfield-council",
+        "wa-douglas-pud"
       ],
       "pipeline": "policy_pipeline_sources",
       "total_sources": 109,
-      "transiently_unreachable": [
-        "nv-washoe-commissioners",
-        "or-business-oregon"
-      ]
+      "transiently_unreachable": []
     },
     "static_parcel_ingestion": {
       "health": "OK",
@@ -107,6 +106,40 @@
       ]
     }
   },
+  "remediation_queue": [
+    {
+      "affected_count": 1117,
+      "criticality_weight": 4,
+      "health": "VALIDATION_FAILURE",
+      "pipeline": "map_data_citations",
+      "reason": "1117 citation URL(s) unreachable (43.8%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
+      "severity_score": 106.16
+    },
+    {
+      "affected_count": 973,
+      "criticality_weight": 4,
+      "health": "VALIDATION_FAILURE",
+      "pipeline": "county_page_citations",
+      "reason": "973 citation URL(s) unreachable (49.0%) -- see data/citation_remediation_queue.json for individually reviewable candidates.",
+      "severity_score": 93.04
+    },
+    {
+      "affected_count": 14,
+      "criticality_weight": 5,
+      "health": "SOURCE_DOWN",
+      "pipeline": "policy_pipeline_sources",
+      "reason": "14 source(s) persistently down, 0 transient -- see each source's down_reason/notes in data/source_health.json / data/government_sources.json.",
+      "severity_score": 11.4
+    },
+    {
+      "affected_count": 1,
+      "criticality_weight": 3,
+      "health": "SOURCE_DOWN",
+      "pipeline": "parcels_registry",
+      "reason": "1 jurisdiction(s) persistently down, 0 transient -- see js/parcel/registry.js entries for details.",
+      "severity_score": 6.06
+    }
+  ],
   "summary": {
     "counts_by_health": {
       "OK": 1,
@@ -115,6 +148,7 @@
     },
     "datasets_without_tracking_count": 29,
     "pipelines_tracked": 5,
+    "remediation_queue_length": 4,
     "total_registered_datasets": 30
   }
 }

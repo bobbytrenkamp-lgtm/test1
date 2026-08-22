@@ -49,6 +49,9 @@ run "facility pipeline: QTS/CyrusOne operator adapters" python3 -m pytest tests/
 run "AI companies validator"      python3 data/validate_ai_companies.py
 run "policy pipeline unit tests"  python3 -m pytest tests/test_policy_pipeline.py -q
 run "source link move-suggestion logic" python3 -m pytest tests/test_check_source_links.py -q
+run "endpoint diagnostics: down_reason classifier" python3 -m pytest tests/test_endpoint_diagnostics.py -q
+run "citation remediation: redirect-fix + queue logic" python3 -m pytest tests/test_remediate_citations.py -q
+run "map_data citation health writer"  python3 -m pytest tests/test_validate_sources_citation_health.py -q
 run "economic data pipeline"      python3 tests/test_economic_data.py
 run "economic output validation"  python3 data/update_economic_data.py --check
 run "no paid dependencies"        python3 tests/test_no_paid_dependencies.py
@@ -81,6 +84,10 @@ run "parcel feasibility: permission_status schema coverage" node tests/test_parc
 run "parcel source catalog validator" python3 data/validate_parcel_catalog.py
 run "parcel catalog + priority queue tests" python3 -m pytest tests/test_parcel_catalog.py tests/test_parcel_priority_queue.py -q
 run "parcel registry integrity check" node data/parcel_pipeline/check_registry_integrity.mjs
+run "parcel registry replacementHistory validation" node tests/test_parcel_registry_integrity.mjs
+run "parcel licensing classifier"      node tests/test_parcel_licensing.mjs
+run "parcel licensing staleness gate"  node data/parcel_pipeline/classify_licensing.mjs --check
+run "generate_entry.mjs live-refetch guards" node tests/test_generate_entry_live_refetch.mjs
 run "parcel changed-FIPS diff mapper" node tests/test_parcel_changed_fips.mjs
 run "parcel field mapper (ground-truth regression)" node tests/test_parcel_field_mapper.mjs
 run "parcel field mapping validator" node tests/test_parcel_mapping_validator.mjs

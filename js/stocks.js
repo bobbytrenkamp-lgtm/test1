@@ -254,7 +254,15 @@ function stocksExportCSV() {
       c.description.replace(/"/g, '""'),
     ]);
   });
-  const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+  // CSV/formula injection guard: Description is company text, not written
+  // by us -- a leading =/+/-/@ would be interpreted as a formula by
+  // Excel/Sheets even inside a quoted cell.
+  const csvCell = v => {
+    let s = String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return `"${s}"`;
+  };
+  const csv = rows.map(r => r.map(csvCell).join(',')).join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
   const url  = URL.createObjectURL(blob);
   const a = document.createElement('a');

@@ -736,7 +736,11 @@ function _exportWatchlistCSV() {
   const TYPE_MAP  = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
 
   const csvCell = v => {
-    const s = String(v ?? "");
+    let s = String(v ?? "");
+    // CSV/formula injection guard: incentive-program/notes text is sourced
+    // from policy documents, not written by us, so a leading =/+/-/@ can't
+    // be assumed safe -- Excel/Sheets would interpret it as a formula.
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
     return (s.includes(",") || s.includes('"') || s.includes("\n")) ? '"' + s.replace(/"/g, '""') + '"' : s;
   };
 
@@ -879,7 +883,7 @@ function renderHomePage() {
         <span class="home-live-label">Intelligence Platform</span>
       </div>
       <h1 class="home-hero-title">US Data Center &amp; AI<br>Policy Intelligence</h1>
-      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across ${(window.researchedCount ? window.researchedCount() : 870).toLocaleString()} researched jurisdictions. Policy data manually verified from official government sources.</p>
+      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across ${(window.researchedCount ? window.researchedCount() : 0).toLocaleString()} researched jurisdictions. Policy data manually verified from official government sources.</p>
       <div class="home-search-wrap">
         <div class="home-search-box">
           ${HOME_ICONS.search}
@@ -899,7 +903,7 @@ function renderHomePage() {
     <div class="home-nav-grid">
       <button class="home-nav-card home-nav-map"       onclick="switchTab('map')"       type="button"><span class="home-nav-icon">${HOME_ICONS.map}</span><span class="home-nav-name">Policy Map</span><span class="home-nav-desc">County-level choropleth of data center &amp; AI restrictions</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
       <button class="home-nav-card home-nav-news"      onclick="switchTab('news')"      type="button"><span class="home-nav-icon">${HOME_ICONS.news}</span><span class="home-nav-name">AI News</span><span class="home-nav-desc">Curated AI regulation &amp; industry news</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
-      <button class="home-nav-card home-nav-stocks"    onclick="switchTab('stocks')"    type="button"><span class="home-nav-icon">${HOME_ICONS.stocks}</span><span class="home-nav-name">AI Stocks</span><span class="home-nav-desc">44 publicly traded AI companies — market data via TradingView (delayed 15 min)</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
+      <button class="home-nav-card home-nav-stocks"    onclick="switchTab('stocks')"    type="button"><span class="home-nav-icon">${HOME_ICONS.stocks}</span><span class="home-nav-name">AI Stocks</span><span class="home-nav-desc">${typeof AI_COMPANIES !== "undefined" ? AI_COMPANIES.length + " publicly traded AI companies" : "Publicly traded AI companies"} — market data via TradingView (delayed 15 min)</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
       <button class="home-nav-card home-nav-analytics" onclick="switchTab('analytics')" type="button"><span class="home-nav-icon">${HOME_ICONS.analytics}</span><span class="home-nav-name">Analytics</span><span class="home-nav-desc">Policy distribution, state rankings, and trend analysis</span><span class="home-nav-arrow">${HOME_ICONS.arrow}</span></button>
     </div>
   </section>
@@ -948,7 +952,7 @@ function renderHomePage() {
         <span class="home-live-label">Intelligence Platform</span>
       </div>
       <h1 class="home-hero-title">US Data Center &amp; AI<br>Policy Intelligence</h1>
-      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across ${(window.researchedCount ? window.researchedCount() : 870).toLocaleString()} researched jurisdictions. Policy data manually verified from official government sources.</p>
+      <p class="home-hero-sub">Track construction restrictions, AI regulations, and computing moratoriums across ${(window.researchedCount ? window.researchedCount() : Object.keys(mapData).length).toLocaleString()} researched jurisdictions. Policy data manually verified from official government sources.</p>
 
       <!-- Search -->
       <div class="home-search-wrap">
@@ -1019,7 +1023,7 @@ function renderHomePage() {
       <button class="home-nav-card home-nav-stocks" onclick="switchTab('stocks')" type="button">
         <span class="home-nav-icon">${HOME_ICONS.stocks}</span>
         <span class="home-nav-name">AI Stocks</span>
-        <span class="home-nav-desc">44 publicly traded AI companies — market data via TradingView (delayed 15 min)</span>
+        <span class="home-nav-desc">${typeof AI_COMPANIES !== "undefined" ? AI_COMPANIES.length + " publicly traded AI companies" : "Publicly traded AI companies"} — market data via TradingView (delayed 15 min)</span>
         <span class="home-nav-arrow">${HOME_ICONS.arrow}</span>
       </button>
       <button class="home-nav-card home-nav-analytics" onclick="switchTab('analytics')" type="button">

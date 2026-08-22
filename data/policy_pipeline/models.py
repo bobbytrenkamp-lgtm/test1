@@ -54,6 +54,12 @@ class PolicySource:
     active: bool
     policy_types: list[str]
     notes: str
+    # Optional, additive. Any time a source's url is repointed (an ArcGIS
+    # service moved to a new domain, a state legislature site migrated CMS,
+    # etc.), an entry is appended here instead of silently overwriting the
+    # old url with no trace. Never required retroactively -- most existing
+    # entries have never needed a fix and stay an empty list.
+    replacement_history: list[dict] = field(default_factory=list)
 
     @classmethod
     def from_dict(cls, d: dict) -> "PolicySource":
@@ -74,10 +80,35 @@ class PolicySource:
             active=d.get("active", True),
             policy_types=d.get("policy_types", []),
             notes=d.get("notes", ""),
+            replacement_history=d.get("replacement_history", []),
         )
 
     def to_dict(self) -> dict:
         return asdict(self)
+
+
+# Required keys for a single replacement_history entry -- shared by the
+# parcel registry (js/parcel/registry.js) and government_sources.json
+# validators so "what does a provenance record look like" is answered once.
+REPLACEMENT_HISTORY_REQUIRED_KEYS = frozenset({"old_value", "new_value", "changed_at", "reason", "verified_via"})
+
+
+def validate_replacement_history(entries: list[dict], *, context: str = "") -> list[str]:
+    """Pure shape check for a replacement_history array. Returns a list of
+    human-readable problems (empty list = valid). Never called on load --
+    the field is optional and unvalidated data should never crash a pipeline
+    run; this is for an explicit validator script/test to call."""
+    problems = []
+    if not isinstance(entries, list):
+        return [f"{context}replacement_history must be a list, got {type(entries).__name__}"]
+    for i, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            problems.append(f"{context}replacement_history[{i}] must be an object")
+            continue
+        missing = REPLACEMENT_HISTORY_REQUIRED_KEYS - entry.keys()
+        if missing:
+            problems.append(f"{context}replacement_history[{i}] missing keys: {sorted(missing)}")
+    return problems
 
 
 @dataclass
@@ -132,6 +163,21 @@ class SourceHealth:
     error: Optional[str]
     robots_allowed: bool    # Whether robots.txt permits our user agent
     consecutive_failures: int = 0
+    first_failure_at: Optional[str] = None  # ISO datetime of the start of the
+    # current failure streak; None while reachable. Reset to None the moment
+    # a source becomes reachable again (see update_source_health_entry) so it
+    # always answers "how long has THIS outage lasted," not "when did this
+    # source ever first fail." Added because neither this file nor
+    # parcel_health_history.json recorded when a failure streak began --
+    # generate_data_health.py's SOURCE_DOWN/NETWORK_FAILURE split could say
+    # a source failed >=3 times, never how long that's been going on.
+    down_reason: Optional[str] = None  # one of data/lib/endpoint_diagnostics.DOWN_REASONS
+    body_snippet: Optional[str] = None  # first ~4KB of a non-2xx response body,
+    # only kept transiently to feed classify_down_reason's access-blocked
+    # detection (a WAF/challenge-page marker in the body). Not meant as a
+    # permanent audit log -- update_source_health_entry clears it back to
+    # None once down_reason has been computed from it, so source_health.json
+    # doesn't accumulate arbitrary third-party HTML long-term.
 
     def to_dict(self) -> dict:
         return asdict(self)

@@ -39,7 +39,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 | INTERCONNECTION QUEUES | 1 | 1 | 36,425 | 0 | 1 |
 | ISO/RTO | 1 | 1 | 94 | 0 | 1 |
 | NEWS | 1 | 1 | 600 | 1 | 1 |
-| PARCELS | 3 | 3 | 89,037 | 1 | 3 |
+| PARCELS | 3 | 3 | 89,038 | 1 | 3 |
 | POLICY/REGULATION | 2 | 2 | 1,579 | 1 | 2 |
 | POWER PLANTS | 1 | 1 | 1,288 | 0 | 1 |
 | PROTECTED LAND | 1 | 0 | 0 | 0 | 0 |
@@ -257,7 +257,7 @@ Declared metadata (sources, URLs, known issues) lives in `data/catalog/dataset_r
 
 **Parcel service registry (production)** (parcels_registry) — ✅ has data
 
-- Records: 59
+- Records: 60
 - Source: 58 individual county/city GIS departments
 - Geographic scope (declared): 58 production jurisdictions, primarily data-center-bearing counties
 - Update frequency (declared): live (fetched per map viewport from each jurisdiction's own service)

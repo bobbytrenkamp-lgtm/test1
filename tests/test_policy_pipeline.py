@@ -7,6 +7,9 @@ import json
 import os
 import sys
 import tempfile
+import urllib.error
+from io import BytesIO
+from unittest.mock import patch
 import pytest
 
 # Allow imports from data/ directory
@@ -17,6 +20,7 @@ from policy_pipeline.models import (
     PolicyCandidate, PolicySource, LifecycleEvent,
     LIFECYCLE_STAGES, STATUS_TO_LIFECYCLE, LIFECYCLE_TO_STATUS,
     load_json_file, save_json_file,
+    validate_replacement_history, REPLACEMENT_HISTORY_REQUIRED_KEYS,
 )
 from policy_pipeline.classify import (
     classify_policy_types, classify_level, classify_lifecycle_stage, score_relevance,
@@ -37,6 +41,8 @@ from policy_pipeline.normalize import (
 )
 from policy_pipeline.adapters.rss_atom import _parse_rss2, _parse_atom, _parse_feed
 from policy_pipeline.reporting import health_report_summary, determine_exit_code
+from policy_pipeline.fetch import check_url_reachable
+from policy_pipeline.backfill_source_health_down_reason import backfill
 import xml.etree.ElementTree as ET
 
 
@@ -488,6 +494,92 @@ class TestModels:
     def test_load_json_missing_returns_none(self):
         result = load_json_file("/nonexistent/path/file.json")
         assert result is None
+
+    def test_policy_source_roundtrip_preserves_replacement_history(self):
+        source = make_source()
+        source.replacement_history.append({
+            "old_value": "http://old.example.gov", "new_value": "https://new.example.gov",
+            "changed_at": "2026-08-19", "reason": "http->https migration, confirmed live",
+            "verified_via": "manual-browser-check",
+        })
+        restored = PolicySource.from_dict(source.to_dict())
+        assert restored.replacement_history == source.replacement_history
+
+    def test_policy_source_defaults_to_empty_replacement_history(self):
+        source = make_source()
+        assert source.replacement_history == []
+
+    def test_validate_replacement_history_empty_list_is_valid(self):
+        assert validate_replacement_history([]) == []
+
+    def test_validate_replacement_history_rejects_non_list(self):
+        problems = validate_replacement_history("not-a-list")
+        assert len(problems) == 1
+
+    def test_validate_replacement_history_flags_missing_keys(self):
+        problems = validate_replacement_history([{"old_value": "a", "new_value": "b"}])
+        assert len(problems) == 1
+        for key in REPLACEMENT_HISTORY_REQUIRED_KEYS - {"old_value", "new_value"}:
+            assert key in problems[0]
+
+    def test_validate_replacement_history_accepts_a_complete_record(self):
+        record = {k: "x" for k in REPLACEMENT_HISTORY_REQUIRED_KEYS}
+        assert validate_replacement_history([record]) == []
+
+    def test_check_url_reachable_captures_body_snippet_on_403(self):
+        # A bare 403 can't be told apart from a WAF block without the body --
+        # this is the fix that lets classify_down_reason actually detect
+        # ACCESS_BLOCKED on a future real run instead of always falling back
+        # to TRANSIENT_FAILURE for lack of evidence.
+        body = b"<html>Please complete the captcha to continue</html>"
+
+        def raise_fresh_403(*a, **kw):
+            # A real urlopen() would raise a brand-new HTTPError (with an
+            # unread body stream) on every call -- the HEAD attempt and the
+            # 403 retry-with-GET attempt must each get their own readable
+            # body, not share one already-exhausted BytesIO.
+            raise urllib.error.HTTPError("http://example.gov/x", 403, "Forbidden", {}, BytesIO(body))
+
+        with patch("policy_pipeline.fetch.urllib.request.urlopen", side_effect=raise_fresh_403):
+            reachable, status, error, ms, snippet = check_url_reachable("http://example.gov/x")
+        assert reachable is False
+        assert status == 403
+        assert snippet is not None and "captcha" in snippet
+
+    def test_check_url_reachable_no_body_snippet_on_clean_success(self):
+        class FakeResp:
+            status = 200
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+        with patch("policy_pipeline.fetch.urllib.request.urlopen", return_value=FakeResp()):
+            reachable, status, error, ms, snippet = check_url_reachable("http://example.gov/x")
+        assert reachable is True
+        assert snippet is None
+
+
+class TestBackfillDownReason:
+    def test_backfill_sets_down_reason_for_unreachable_sources(self):
+        data = {"sources": {
+            "a": {"reachable": False, "http_status": 404, "error": "HTTP 404",
+                  "consecutive_failures": 5, "last_checked": "2026-08-01T00:00:00",
+                  "down_reason": None},
+        }}
+        changed = backfill(data)
+        assert changed == 1
+        assert data["sources"]["a"]["down_reason"] is not None
+        assert data["sources"]["a"]["first_failure_at"] == "2026-08-01T00:00:00"
+        assert data["sources"]["a"]["first_failure_at_is_approximate"] is True
+
+    def test_backfill_skips_reachable_sources(self):
+        data = {"sources": {"a": {"reachable": True}}}
+        assert backfill(data) == 0
+        assert "down_reason" not in data["sources"]["a"]
+
+    def test_backfill_skips_already_classified_sources(self):
+        data = {"sources": {"a": {"reachable": False, "down_reason": "ACCESS_BLOCKED",
+                                    "http_status": 403, "error": "HTTP 403"}}}
+        assert backfill(data) == 0
+        assert data["sources"]["a"]["down_reason"] == "ACCESS_BLOCKED"
 
 
 # ---------------------------------------------------------------------------

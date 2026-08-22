@@ -32162,7 +32162,16 @@
     "sources": [
       {
         "label": "Ark Data Centers (Involta)",
-        "url": "https://www.involta.com/data-centers/data-center-locations/minnesota/"
+        "url": "https://www.involta.com/data-centers/minnesota/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.involta.com/data-centers/data-center-locations/minnesota/",
+            "new_value": "https://www.involta.com/data-centers/minnesota/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32178,7 +32187,16 @@
     "sources": [
       {
         "label": "Ark Data Centers (Involta)",
-        "url": "https://www.involta.com/data-centers/data-center-locations/pennsylvania/"
+        "url": "https://www.involta.com/data-centers/pennsylvania/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.involta.com/data-centers/data-center-locations/pennsylvania/",
+            "new_value": "https://www.involta.com/data-centers/pennsylvania/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32194,7 +32212,16 @@
     "sources": [
       {
         "label": "Ark Data Centers (Involta)",
-        "url": "https://www.involta.com/data-centers/data-center-locations/idaho/"
+        "url": "https://www.involta.com/data-centers/idaho/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.involta.com/data-centers/data-center-locations/idaho/",
+            "new_value": "https://www.involta.com/data-centers/idaho/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32386,7 +32413,16 @@
     "sources": [
       {
         "label": "DC BLOX",
-        "url": "https://dcblox.com/data-centers/birmingham/"
+        "url": "https://www.dcblox.com/data-centers/birmingham/",
+        "replacement_history": [
+          {
+            "old_value": "https://dcblox.com/data-centers/birmingham/",
+            "new_value": "https://www.dcblox.com/data-centers/birmingham/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32530,7 +32566,16 @@
     "sources": [
       {
         "label": "Evocative",
-        "url": "https://evocative.com/data-centers/dallas/"
+        "url": "https://evocative.com/data-centers/dallas-data-centers/",
+        "replacement_history": [
+          {
+            "old_value": "https://evocative.com/data-centers/dallas/",
+            "new_value": "https://evocative.com/data-centers/dallas-data-centers/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32690,7 +32735,16 @@
     "sources": [
       {
         "label": "ColoCrossing",
-        "url": "https://www.colocrossing.com/data-centers/san-jose/"
+        "url": "https://www.colocrossing.com/datacenter/san-jose-ca/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.colocrossing.com/data-centers/san-jose/",
+            "new_value": "https://www.colocrossing.com/datacenter/san-jose-ca/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32706,7 +32760,16 @@
     "sources": [
       {
         "label": "ColoCrossing",
-        "url": "https://www.colocrossing.com/data-centers/atlanta/"
+        "url": "https://www.colocrossing.com/datacenter/atlanta-ga/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.colocrossing.com/data-centers/atlanta/",
+            "new_value": "https://www.colocrossing.com/datacenter/atlanta-ga/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32722,7 +32785,16 @@
     "sources": [
       {
         "label": "ColoCrossing",
-        "url": "https://www.colocrossing.com/data-centers/dallas/"
+        "url": "https://www.colocrossing.com/datacenter/dallas-tx/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.colocrossing.com/data-centers/dallas/",
+            "new_value": "https://www.colocrossing.com/datacenter/dallas-tx/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32738,7 +32810,16 @@
     "sources": [
       {
         "label": "ColoCrossing",
-        "url": "https://www.colocrossing.com/data-centers/seattle/"
+        "url": "https://www.colocrossing.com/datacenter/seattle-wa/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.colocrossing.com/data-centers/seattle/",
+            "new_value": "https://www.colocrossing.com/datacenter/seattle-wa/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -32754,7 +32835,16 @@
     "sources": [
       {
         "label": "ColoCrossing",
-        "url": "https://www.colocrossing.com/data-centers/las-vegas/"
+        "url": "https://www.colocrossing.com/404/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.colocrossing.com/data-centers/las-vegas/",
+            "new_value": "https://www.colocrossing.com/404/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33283,7 +33373,16 @@
     "sources": [
       {
         "label": "Pacific Northwest National Laboratory",
-        "url": "https://www.pnnl.gov/computing"
+        "url": "https://www.pnnl.gov/data-science-computing",
+        "replacement_history": [
+          {
+            "old_value": "https://www.pnnl.gov/computing",
+            "new_value": "https://www.pnnl.gov/data-science-computing",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33444,7 +33543,16 @@
     "sources": [
       {
         "label": "Indiana University",
-        "url": "https://kb.iu.edu/d/alde"
+        "url": "https://servicenow.iu.edu/kb",
+        "replacement_history": [
+          {
+            "old_value": "https://kb.iu.edu/d/alde",
+            "new_value": "https://servicenow.iu.edu/kb",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33492,7 +33600,16 @@
     "sources": [
       {
         "label": "North Carolina State University",
-        "url": "https://hpc.ncsu.edu/"
+        "url": "https://hpc.ncsu.edu/main.php",
+        "replacement_history": [
+          {
+            "old_value": "https://hpc.ncsu.edu/",
+            "new_value": "https://hpc.ncsu.edu/main.php",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33524,7 +33641,16 @@
     "sources": [
       {
         "label": "Rutgers University",
-        "url": "https://oarc.rutgers.edu/"
+        "url": "https://it.rutgers.edu/research-computing/",
+        "replacement_history": [
+          {
+            "old_value": "https://oarc.rutgers.edu/",
+            "new_value": "https://it.rutgers.edu/research-computing/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33556,7 +33682,16 @@
     "sources": [
       {
         "label": "University of Southern California",
-        "url": "https://carc.usc.edu/"
+        "url": "https://www.carc.usc.edu/",
+        "replacement_history": [
+          {
+            "old_value": "https://carc.usc.edu/",
+            "new_value": "https://www.carc.usc.edu/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33636,7 +33771,16 @@
     "sources": [
       {
         "label": "U.S. Air Force",
-        "url": "https://afresearchlab.com/technology/supercomputing/"
+        "url": "https://afresearchlab.com/supercomputing/",
+        "replacement_history": [
+          {
+            "old_value": "https://afresearchlab.com/technology/supercomputing/",
+            "new_value": "https://afresearchlab.com/supercomputing/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33860,7 +34004,16 @@
     "sources": [
       {
         "label": "Florida State University",
-        "url": "https://www.rcc.fsu.edu/"
+        "url": "https://its.fsu.edu/research",
+        "replacement_history": [
+          {
+            "old_value": "https://www.rcc.fsu.edu/",
+            "new_value": "https://its.fsu.edu/research",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -33908,7 +34061,16 @@
     "sources": [
       {
         "label": "University of Houston",
-        "url": "https://uh.edu/rcdc/"
+        "url": "https://www.uh.edu/research/rcdc/",
+        "replacement_history": [
+          {
+            "old_value": "https://uh.edu/rcdc/",
+            "new_value": "https://www.uh.edu/research/rcdc/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34038,7 +34200,16 @@
     "sources": [
       {
         "label": "ColoHouse",
-        "url": "https://www.colohouse.com/data-centers/miami/"
+        "url": "https://www.hivelocity.net/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.colohouse.com/data-centers/miami/",
+            "new_value": "https://www.hivelocity.net/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34054,7 +34225,16 @@
     "sources": [
       {
         "label": "ColoHouse",
-        "url": "https://www.colohouse.com/data-centers/chicago/"
+        "url": "https://www.hivelocity.net/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.colohouse.com/data-centers/chicago/",
+            "new_value": "https://www.hivelocity.net/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34086,7 +34266,16 @@
     "sources": [
       {
         "label": "ColoHouse",
-        "url": "https://www.colohouse.com/data-centers/dallas/"
+        "url": "https://www.hivelocity.net/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.colohouse.com/data-centers/dallas/",
+            "new_value": "https://www.hivelocity.net/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34215,7 +34404,16 @@
     "sources": [
       {
         "label": "OneNeck IT Solutions",
-        "url": "https://www.oneneck.com/data-centers/oklahoma-city/"
+        "url": "https://ussignal.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.oneneck.com/data-centers/oklahoma-city/",
+            "new_value": "https://ussignal.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34231,7 +34429,16 @@
     "sources": [
       {
         "label": "OneNeck IT Solutions",
-        "url": "https://www.oneneck.com/data-centers/sioux-falls/"
+        "url": "https://ussignal.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.oneneck.com/data-centers/sioux-falls/",
+            "new_value": "https://ussignal.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34391,7 +34598,16 @@
     "sources": [
       {
         "label": "University of Cincinnati",
-        "url": "https://ucit.uc.edu/research/hpc/"
+        "url": "https://www.uc.edu/about/ucit.html",
+        "replacement_history": [
+          {
+            "old_value": "https://ucit.uc.edu/research/hpc/",
+            "new_value": "https://www.uc.edu/about/ucit.html",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34407,7 +34623,16 @@
     "sources": [
       {
         "label": "University of Delaware",
-        "url": "https://www.it.udel.edu/research-computing/"
+        "url": "https://www.udel.edu/home/it/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.it.udel.edu/research-computing/",
+            "new_value": "https://www.udel.edu/home/it/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34439,7 +34664,16 @@
     "sources": [
       {
         "label": "University of Nevada Reno",
-        "url": "https://www.unr.edu/research-computing"
+        "url": "https://www.unr.edu/cyberinfrastructure",
+        "replacement_history": [
+          {
+            "old_value": "https://www.unr.edu/research-computing",
+            "new_value": "https://www.unr.edu/cyberinfrastructure",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -34600,7 +34834,16 @@
     "sources": [
       {
         "label": "Baylor University",
-        "url": "https://www.baylor.edu/its/index.php?id=972780"
+        "url": "https://its.web.baylor.edu/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.baylor.edu/its/index.php?id=972780",
+            "new_value": "https://its.web.baylor.edu/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -35472,7 +35715,16 @@
     "sources": [
       {
         "label": "Federal Reserve Bank of New York",
-        "url": "https://www.newyorkfed.org/aboutthefed/the_fed_in_brief/east_rutherford_operations_center"
+        "url": "https://www.newyorkfed.org/errors/404",
+        "replacement_history": [
+          {
+            "old_value": "https://www.newyorkfed.org/aboutthefed/the_fed_in_brief/east_rutherford_operations_center",
+            "new_value": "https://www.newyorkfed.org/errors/404",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -35744,7 +35996,16 @@
       },
       {
         "label": "Cabell Huntington Hospital",
-        "url": "https://www.cabellhuntington.org/about-us/"
+        "url": "https://www.cabellhuntington.org/services/counseling-services/about-us",
+        "replacement_history": [
+          {
+            "old_value": "https://www.cabellhuntington.org/about-us/",
+            "new_value": "https://www.cabellhuntington.org/services/counseling-services/about-us",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -35804,7 +36065,16 @@
       },
       {
         "label": "FIS Global",
-        "url": "https://www.fisglobal.com/about-fis"
+        "url": "https://www.fisglobal.com/about-us",
+        "replacement_history": [
+          {
+            "old_value": "https://www.fisglobal.com/about-fis",
+            "new_value": "https://www.fisglobal.com/about-us",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -35824,7 +36094,16 @@
       },
       {
         "label": "FIS Global",
-        "url": "https://www.fisglobal.com/about-fis"
+        "url": "https://www.fisglobal.com/about-us",
+        "replacement_history": [
+          {
+            "old_value": "https://www.fisglobal.com/about-fis",
+            "new_value": "https://www.fisglobal.com/about-us",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36144,7 +36423,16 @@
       },
       {
         "label": "Bank of Hawaii",
-        "url": "https://www.boh.com/about-us/"
+        "url": "https://www.boh.com/about-us",
+        "replacement_history": [
+          {
+            "old_value": "https://www.boh.com/about-us/",
+            "new_value": "https://www.boh.com/about-us",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36160,11 +36448,29 @@
     "sources": [
       {
         "label": "First Hawaiian Bank",
-        "url": "https://www.fhb.com/"
+        "url": "https://www.fhb.com/en/personal",
+        "replacement_history": [
+          {
+            "old_value": "https://www.fhb.com/",
+            "new_value": "https://www.fhb.com/en/personal",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "First Hawaiian Bank",
-        "url": "https://www.fhb.com/about-us/"
+        "url": "https://www.fhb.com/en/about-us",
+        "replacement_history": [
+          {
+            "old_value": "https://www.fhb.com/about-us/",
+            "new_value": "https://www.fhb.com/en/about-us",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36200,7 +36506,16 @@
     "sources": [
       {
         "label": "Hasbro",
-        "url": "https://www.hasbro.com/"
+        "url": "https://consumercare.hasbro.com/en-us/where-to-buy",
+        "replacement_history": [
+          {
+            "old_value": "https://www.hasbro.com/",
+            "new_value": "https://consumercare.hasbro.com/en-us/where-to-buy",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Hasbro",
@@ -36240,7 +36555,16 @@
     "sources": [
       {
         "label": "IDEXX Laboratories",
-        "url": "https://www.idexx.com/"
+        "url": "https://www.idexx.com/en/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.idexx.com/",
+            "new_value": "https://www.idexx.com/en/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "IDEXX Laboratories",
@@ -36340,7 +36664,16 @@
     "sources": [
       {
         "label": "TD Bank",
-        "url": "https://www.td.com/us/"
+        "url": "https://www.td.com/us/en/personal-banking",
+        "replacement_history": [
+          {
+            "old_value": "https://www.td.com/us/",
+            "new_value": "https://www.td.com/us/en/personal-banking",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "TD Bank",
@@ -36384,7 +36717,16 @@
       },
       {
         "label": "Federal Reserve Board of Governors",
-        "url": "https://www.federalreserve.gov/aboutthefed/"
+        "url": "https://www.federalreserve.gov/aboutthefed.htm",
+        "replacement_history": [
+          {
+            "old_value": "https://www.federalreserve.gov/aboutthefed/",
+            "new_value": "https://www.federalreserve.gov/aboutthefed.htm",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36404,7 +36746,16 @@
       },
       {
         "label": "Fannie Mae",
-        "url": "https://www.fanniemae.com/about-us/"
+        "url": "https://www.fanniemae.com/about-us",
+        "replacement_history": [
+          {
+            "old_value": "https://www.fanniemae.com/about-us/",
+            "new_value": "https://www.fanniemae.com/about-us",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36444,7 +36795,16 @@
       },
       {
         "label": "University of South Dakota",
-        "url": "https://www.usd.edu/academics/research-technology/"
+        "url": "https://www.usd.edu/404",
+        "replacement_history": [
+          {
+            "old_value": "https://www.usd.edu/academics/research-technology/",
+            "new_value": "https://www.usd.edu/404",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36460,11 +36820,29 @@
     "sources": [
       {
         "label": "Dakota State University",
-        "url": "https://www.dsu.edu/"
+        "url": "https://dsu.edu/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.dsu.edu/",
+            "new_value": "https://dsu.edu/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Dakota State University",
-        "url": "https://www.dsu.edu/research/"
+        "url": "https://dsu.edu/research/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.dsu.edu/research/",
+            "new_value": "https://dsu.edu/research/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36500,7 +36878,16 @@
     "sources": [
       {
         "label": "Black Hills Corporation",
-        "url": "https://www.blackhillscorp.com/"
+        "url": "https://ir.blackhillscorp.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.blackhillscorp.com/",
+            "new_value": "https://ir.blackhillscorp.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Black Hills Corporation",
@@ -36564,7 +36951,16 @@
       },
       {
         "label": "Unum Group",
-        "url": "https://www.unum.com/about/"
+        "url": "https://www.unum.com/about",
+        "replacement_history": [
+          {
+            "old_value": "https://www.unum.com/about/",
+            "new_value": "https://www.unum.com/about",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36604,7 +37000,16 @@
       },
       {
         "label": "Elliot Health System",
-        "url": "https://www.elliothospital.org/about-us/"
+        "url": "https://www.elliothospital.org/about-us/about-elliot",
+        "replacement_history": [
+          {
+            "old_value": "https://www.elliothospital.org/about-us/",
+            "new_value": "https://www.elliothospital.org/about-us/about-elliot",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36644,7 +37049,16 @@
       },
       {
         "label": "Providence Alaska",
-        "url": "https://alaska.providence.org/"
+        "url": "https://www.providence.org/?state=ak",
+        "replacement_history": [
+          {
+            "old_value": "https://alaska.providence.org/",
+            "new_value": "https://www.providence.org/?state=ak",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36660,11 +37074,29 @@
     "sources": [
       {
         "label": "Alaska Native Tribal Health Consortium",
-        "url": "https://www.anthc.org/alaska-native-medical-center/"
+        "url": "https://anthc.org/alaska-native-medical-center-and-other-alaska-hospitals-and-clinics-currently-seeing-a-rise-in-cases-of-pertussis-whooping-cough/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.anthc.org/alaska-native-medical-center/",
+            "new_value": "https://anthc.org/alaska-native-medical-center-and-other-alaska-hospitals-and-clinics-currently-seeing-a-rise-in-cases-of-pertussis-whooping-cough/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Alaska Native Tribal Health Consortium",
-        "url": "https://www.anthc.org/"
+        "url": "https://anthc.org/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.anthc.org/",
+            "new_value": "https://anthc.org/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36680,7 +37112,16 @@
     "sources": [
       {
         "label": "Incyte Corporation",
-        "url": "https://www.incyte.com/"
+        "url": "https://incyte.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.incyte.com/",
+            "new_value": "https://incyte.com/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Incyte Corporation",
@@ -36780,7 +37221,16 @@
     "sources": [
       {
         "label": "Hawaii Electric Light Company",
-        "url": "https://www.hawaiielectriclight.com/"
+        "url": "https://www.hawaiianelectric.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.hawaiielectriclight.com/",
+            "new_value": "https://www.hawaiianelectric.com/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Hawaii Electric Light Company",
@@ -36804,7 +37254,16 @@
       },
       {
         "label": "Lifespan",
-        "url": "https://www.lifespan.org/about"
+        "url": "https://www.brownhealth.org/about-brown-university-health/overview",
+        "replacement_history": [
+          {
+            "old_value": "https://www.lifespan.org/about",
+            "new_value": "https://www.brownhealth.org/about-brown-university-health/overview",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36824,7 +37283,16 @@
       },
       {
         "label": "Textron Inc",
-        "url": "https://www.textron.com/about/"
+        "url": "https://www.textron.com/About/Company",
+        "replacement_history": [
+          {
+            "old_value": "https://www.textron.com/about/",
+            "new_value": "https://www.textron.com/About/Company",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -36860,7 +37328,16 @@
     "sources": [
       {
         "label": "UVM Medical Center",
-        "url": "https://www.uvmhealth.org/medcenter/"
+        "url": "https://www.uvmhealth.org/locations/university-of-vermont-medical-center",
+        "replacement_history": [
+          {
+            "old_value": "https://www.uvmhealth.org/medcenter/",
+            "new_value": "https://www.uvmhealth.org/locations/university-of-vermont-medical-center",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "UVM Medical Center",
@@ -36880,7 +37357,16 @@
     "sources": [
       {
         "label": "Green Mountain Power",
-        "url": "https://www.greenmountainpower.com/"
+        "url": "https://greenmountainpower.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.greenmountainpower.com/",
+            "new_value": "https://greenmountainpower.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Green Mountain Power",
@@ -36900,7 +37386,16 @@
     "sources": [
       {
         "label": "Viatris Inc",
-        "url": "https://www.viatris.com/"
+        "url": "https://www.viatris.com/en",
+        "replacement_history": [
+          {
+            "old_value": "https://www.viatris.com/",
+            "new_value": "https://www.viatris.com/en",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Viatris Inc",
@@ -36960,11 +37455,29 @@
     "sources": [
       {
         "label": "Lovelace Health System",
-        "url": "https://www.lovelace.com/"
+        "url": "https://lovelace.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.lovelace.com/",
+            "new_value": "https://lovelace.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Lovelace Health System",
-        "url": "https://www.lovelace.com/about/"
+        "url": "https://lovelace.com/patients-and-visitors/about-us/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.lovelace.com/about/",
+            "new_value": "https://lovelace.com/patients-and-visitors/about-us/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37084,7 +37597,16 @@
       },
       {
         "label": "WSFS Financial Corporation",
-        "url": "https://www.wsfsbank.com/about-wsfs/"
+        "url": "https://www.wsfsbank.com/about/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.wsfsbank.com/about-wsfs/",
+            "new_value": "https://www.wsfsbank.com/about/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37104,7 +37626,16 @@
       },
       {
         "label": "Kamehameha Schools",
-        "url": "https://www.ksbe.edu/about/"
+        "url": "https://www.ksbe.edu/about-us",
+        "replacement_history": [
+          {
+            "old_value": "https://www.ksbe.edu/about/",
+            "new_value": "https://www.ksbe.edu/about-us",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37204,7 +37735,16 @@
       },
       {
         "label": "Citizens Financial Group",
-        "url": "https://investor.citizensbank.com/"
+        "url": "https://investor.citizensbank.com/about-us/investor-relations.aspx",
+        "replacement_history": [
+          {
+            "old_value": "https://investor.citizensbank.com/",
+            "new_value": "https://investor.citizensbank.com/about-us/investor-relations.aspx",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37220,7 +37760,16 @@
     "sources": [
       {
         "label": "Unitil Corporation",
-        "url": "https://www.unitil.com/"
+        "url": "https://unitil.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.unitil.com/",
+            "new_value": "https://unitil.com/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Unitil Corporation",
@@ -37240,7 +37789,16 @@
     "sources": [
       {
         "label": "Logan Health",
-        "url": "https://www.loganhealth.org/"
+        "url": "https://www.loganhealthohio.gov/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.loganhealth.org/",
+            "new_value": "https://www.loganhealthohio.gov/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "Logan Health",
@@ -37304,7 +37862,16 @@
       },
       {
         "label": "Marshall University",
-        "url": "https://www.marshall.edu/research/"
+        "url": "https://www.marshall.edu/murc/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.marshall.edu/research/",
+            "new_value": "https://www.marshall.edu/murc/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37320,11 +37887,29 @@
     "sources": [
       {
         "label": "World Bank Group",
-        "url": "https://www.worldbank.org/"
+        "url": "https://www.worldbank.org/ext/en/home",
+        "replacement_history": [
+          {
+            "old_value": "https://www.worldbank.org/",
+            "new_value": "https://www.worldbank.org/ext/en/home",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "World Bank Group",
-        "url": "https://www.worldbank.org/en/about/contacts"
+        "url": "https://www.worldbank.org/ext/en/contacts",
+        "replacement_history": [
+          {
+            "old_value": "https://www.worldbank.org/en/about/contacts",
+            "new_value": "https://www.worldbank.org/ext/en/contacts",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37384,7 +37969,16 @@
       },
       {
         "label": "New Mexico Highlands University",
-        "url": "https://www.nmhu.edu/about/"
+        "url": "https://www.nmhu.edu/wp-content/uploads/2015/08/about.jpg",
+        "replacement_history": [
+          {
+            "old_value": "https://www.nmhu.edu/about/",
+            "new_value": "https://www.nmhu.edu/wp-content/uploads/2015/08/about.jpg",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37400,11 +37994,29 @@
     "sources": [
       {
         "label": "CHI St. Alexius Health",
-        "url": "https://www.chistalexius.org/"
+        "url": "https://www.chistalexiushealth.org/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.chistalexius.org/",
+            "new_value": "https://www.chistalexiushealth.org/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       },
       {
         "label": "CHI St. Alexius Health",
-        "url": "https://www.chistalexius.org/about-us/"
+        "url": "https://www.chistalexiushealth.org/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.chistalexius.org/about-us/",
+            "new_value": "https://www.chistalexiushealth.org/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37600,7 +38212,16 @@
       },
       {
         "label": "L3Harris Technologies",
-        "url": "https://www.l3harris.com/company/about-us"
+        "url": "https://www.l3harris.com/about-us?rid=3041",
+        "replacement_history": [
+          {
+            "old_value": "https://www.l3harris.com/company/about-us",
+            "new_value": "https://www.l3harris.com/about-us?rid=3041",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37905,7 +38526,16 @@
     "sources": [
       {
         "label": "STACK Infrastructure",
-        "url": "https://www.stackinfra.com/data-centers/denver/"
+        "url": "https://www.stackinfra.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.stackinfra.com/data-centers/denver/",
+            "new_value": "https://www.stackinfra.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -37921,7 +38551,16 @@
     "sources": [
       {
         "label": "STACK Infrastructure",
-        "url": "https://www.stackinfra.com/data-centers/minneapolis/"
+        "url": "https://www.stackinfra.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.stackinfra.com/data-centers/minneapolis/",
+            "new_value": "https://www.stackinfra.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -38113,7 +38752,16 @@
     "sources": [
       {
         "label": "365 Data Centers",
-        "url": "https://www.365datacenters.com/data-centers/denver/"
+        "url": "https://365datacenters.com/denver-thank-you/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.365datacenters.com/data-centers/denver/",
+            "new_value": "https://365datacenters.com/denver-thank-you/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -38241,7 +38889,16 @@
     "sources": [
       {
         "label": "Aligned Data Centers",
-        "url": "https://www.aligneddc.com/data-centers/salt-lake-city/"
+        "url": "https://aligneddc.com/salt-lake-city-data-centers/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.aligneddc.com/data-centers/salt-lake-city/",
+            "new_value": "https://aligneddc.com/salt-lake-city-data-centers/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -38641,7 +39298,16 @@
     "sources": [
       {
         "label": "ColoCrossing",
-        "url": "https://colocrossing.com/locations/phoenix/"
+        "url": "https://www.colocrossing.com/404/",
+        "replacement_history": [
+          {
+            "old_value": "https://colocrossing.com/locations/phoenix/",
+            "new_value": "https://www.colocrossing.com/404/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39041,7 +39707,16 @@
     "sources": [
       {
         "label": "Evocative",
-        "url": "https://evocative.com/data-centers/phoenix/"
+        "url": "https://evocative.com/data-centers/phoenix-az-data-center-phx1/",
+        "replacement_history": [
+          {
+            "old_value": "https://evocative.com/data-centers/phoenix/",
+            "new_value": "https://evocative.com/data-centers/phoenix-az-data-center-phx1/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39089,7 +39764,16 @@
     "sources": [
       {
         "label": "Evocative",
-        "url": "https://evocative.com/data-centers/seattle/"
+        "url": "https://evocative.com/data-centers/seattle-wa-data-center-sea1/",
+        "replacement_history": [
+          {
+            "old_value": "https://evocative.com/data-centers/seattle/",
+            "new_value": "https://evocative.com/data-centers/seattle-wa-data-center-sea1/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39105,7 +39789,16 @@
     "sources": [
       {
         "label": "Evocative",
-        "url": "https://evocative.com/data-centers/atlanta/"
+        "url": "https://evocative.com/data-centers/atlanta-ga-data-center-atl1/",
+        "replacement_history": [
+          {
+            "old_value": "https://evocative.com/data-centers/atlanta/",
+            "new_value": "https://evocative.com/data-centers/atlanta-ga-data-center-atl1/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39522,7 +40215,16 @@
     "sources": [
       {
         "label": "Compass Datacenters",
-        "url": "https://compassdatacenters.com/locations/"
+        "url": "https://www.compassdatacenters.com/data-center-markets/",
+        "replacement_history": [
+          {
+            "old_value": "https://compassdatacenters.com/locations/",
+            "new_value": "https://www.compassdatacenters.com/data-center-markets/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39656,7 +40358,16 @@
     "sources": [
       {
         "label": "NOAA (National Oceanic and Atmospheric Administration)",
-        "url": "https://www.ncdc.noaa.gov/"
+        "url": "https://www.ncei.noaa.gov/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.ncdc.noaa.gov/",
+            "new_value": "https://www.ncei.noaa.gov/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39721,7 +40432,16 @@
     "sources": [
       {
         "label": "UnitedHealth Group",
-        "url": "https://www.unitedhealthgroup.com/about/company.html"
+        "url": "https://www.unitedhealthgroup.com/page-not-found.html",
+        "replacement_history": [
+          {
+            "old_value": "https://www.unitedhealthgroup.com/about/company.html",
+            "new_value": "https://www.unitedhealthgroup.com/page-not-found.html",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39737,7 +40457,16 @@
     "sources": [
       {
         "label": "HCA Healthcare",
-        "url": "https://hcahealthcare.com/about/"
+        "url": "https://www.hcahealthcare.com/about",
+        "replacement_history": [
+          {
+            "old_value": "https://hcahealthcare.com/about/",
+            "new_value": "https://www.hcahealthcare.com/about",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39753,7 +40482,16 @@
     "sources": [
       {
         "label": "Bank of America",
-        "url": "https://newsroom.bankofamerica.com/"
+        "url": "https://newsroom.bankofamerica.com/content/newsroom/home.html",
+        "replacement_history": [
+          {
+            "old_value": "https://newsroom.bankofamerica.com/",
+            "new_value": "https://newsroom.bankofamerica.com/content/newsroom/home.html",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39803,7 +40541,16 @@
     "sources": [
       {
         "label": "Target Corporation",
-        "url": "https://corporate.target.com/about/mission-values"
+        "url": "https://corporate.target.com/about/purpose-history",
+        "replacement_history": [
+          {
+            "old_value": "https://corporate.target.com/about/mission-values",
+            "new_value": "https://corporate.target.com/about/purpose-history",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -39836,7 +40583,16 @@
     "sources": [
       {
         "label": "Lowe's Companies",
-        "url": "https://corporate.lowes.com/our-company/about-lowes"
+        "url": "https://corporate.lowes.com/page-not-found",
+        "replacement_history": [
+          {
+            "old_value": "https://corporate.lowes.com/our-company/about-lowes",
+            "new_value": "https://corporate.lowes.com/page-not-found",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40176,7 +40932,16 @@
     "sources": [
       {
         "label": "Maryland DoIT",
-        "url": "https://doit.maryland.gov/"
+        "url": "https://doit.maryland.gov/Pages/default.aspx",
+        "replacement_history": [
+          {
+            "old_value": "https://doit.maryland.gov/",
+            "new_value": "https://doit.maryland.gov/Pages/default.aspx",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40528,7 +41293,16 @@
     "sources": [
       {
         "label": "Kentucky COT",
-        "url": "https://technology.ky.gov/"
+        "url": "https://technology.ky.gov/Pages/index.aspx",
+        "replacement_history": [
+          {
+            "old_value": "https://technology.ky.gov/",
+            "new_value": "https://technology.ky.gov/Pages/index.aspx",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40544,7 +41318,16 @@
     "sources": [
       {
         "label": "Louisiana OTS",
-        "url": "https://www.doa.la.gov/Pages/ots/Index.aspx"
+        "url": "https://www.doa.la.gov/doa/ots/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.doa.la.gov/Pages/ots/Index.aspx",
+            "new_value": "https://www.doa.la.gov/doa/ots/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40608,7 +41391,16 @@
     "sources": [
       {
         "label": "Montana SITSD",
-        "url": "https://sitsd.mt.gov/"
+        "url": "https://doa.mt.gov/sitsd/",
+        "replacement_history": [
+          {
+            "old_value": "https://sitsd.mt.gov/",
+            "new_value": "https://doa.mt.gov/sitsd/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40624,7 +41416,16 @@
     "sources": [
       {
         "label": "Nebraska OCIO",
-        "url": "https://nitc.ne.gov/"
+        "url": "https://nitc.nebraska.gov/",
+        "replacement_history": [
+          {
+            "old_value": "https://nitc.ne.gov/",
+            "new_value": "https://nitc.nebraska.gov/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40704,7 +41505,16 @@
     "sources": [
       {
         "label": "North Dakota ITD",
-        "url": "https://www.nd.gov/itd/"
+        "url": "https://www.ndit.nd.gov/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.nd.gov/itd/",
+            "new_value": "https://www.ndit.nd.gov/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40720,7 +41530,16 @@
     "sources": [
       {
         "label": "Oklahoma OMES-ISD",
-        "url": "https://omes.ok.gov/services/information-services-division"
+        "url": "https://oklahoma.gov/omes.html",
+        "replacement_history": [
+          {
+            "old_value": "https://omes.ok.gov/services/information-services-division",
+            "new_value": "https://oklahoma.gov/omes.html",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40736,7 +41555,16 @@
     "sources": [
       {
         "label": "Oregon Enterprise Information Services",
-        "url": "https://www.oregon.gov/das/ETS/Pages/index.aspx"
+        "url": "https://www.oregon.gov/eis/data-center-services/pages/default.aspx?utm_source=das&utm_medium=egov_redirect&utm_campaign=https%3a%2f%2fwww.oregon.gov%2fdas%2foscio%2fpages%2ftechserv.aspx\\",
+        "replacement_history": [
+          {
+            "old_value": "https://www.oregon.gov/das/ETS/Pages/index.aspx",
+            "new_value": "https://www.oregon.gov/eis/data-center-services/pages/default.aspx?utm_source=das&utm_medium=egov_redirect&utm_campaign=https%3a%2f%2fwww.oregon.gov%2fdas%2foscio%2fpages%2ftechserv.aspx\\",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40752,7 +41580,16 @@
     "sources": [
       {
         "label": "Rhode Island DoIT",
-        "url": "https://doit.ri.gov/"
+        "url": "https://etss.ri.gov/",
+        "replacement_history": [
+          {
+            "old_value": "https://doit.ri.gov/",
+            "new_value": "https://etss.ri.gov/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -40784,7 +41621,16 @@
     "sources": [
       {
         "label": "South Dakota BIT",
-        "url": "https://boa.sd.gov/bit/"
+        "url": "https://www.sd.gov/bhra",
+        "replacement_history": [
+          {
+            "old_value": "https://boa.sd.gov/bit/",
+            "new_value": "https://www.sd.gov/bhra",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -41170,7 +42016,16 @@
     "sources": [
       {
         "label": "CloudBurst Data Centers",
-        "url": "https://cloudburstdatacenters.com/"
+        "url": "https://cloudburstdc.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://cloudburstdatacenters.com/",
+            "new_value": "https://cloudburstdc.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -41186,7 +42041,16 @@
     "sources": [
       {
         "label": "CloudBurst Data Centers",
-        "url": "https://cloudburstdatacenters.com/"
+        "url": "https://cloudburstdc.com/",
+        "replacement_history": [
+          {
+            "old_value": "https://cloudburstdatacenters.com/",
+            "new_value": "https://cloudburstdc.com/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -41427,7 +42291,16 @@
     "sources": [
       {
         "label": "TACC/UT Austin",
-        "url": "https://www.tacc.utexas.edu/systems/frontera"
+        "url": "https://tacc.utexas.edu/systems/frontera/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.tacc.utexas.edu/systems/frontera",
+            "new_value": "https://tacc.utexas.edu/systems/frontera/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -41523,7 +42396,16 @@
     "sources": [
       {
         "label": "TACC/UT Austin",
-        "url": "https://www.tacc.utexas.edu/systems/stampede3"
+        "url": "https://tacc.utexas.edu/systems/stampede3/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.tacc.utexas.edu/systems/stampede3",
+            "new_value": "https://tacc.utexas.edu/systems/stampede3/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -41556,7 +42438,16 @@
     "sources": [
       {
         "label": "Data Foundry",
-        "url": "https://www.datafoundry.com/data-centers/houston/"
+        "url": "https://www.datafoundry.com/data-centers/houston-2/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.datafoundry.com/data-centers/houston/",
+            "new_value": "https://www.datafoundry.com/data-centers/houston-2/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -41924,7 +42815,16 @@
     "sources": [
       {
         "label": "Deloitte",
-        "url": "https://www2.deloitte.com/us/en/pages/about-deloitte/articles/about-deloitte.html"
+        "url": "https://www.deloitte.com/us/en/about.html",
+        "replacement_history": [
+          {
+            "old_value": "https://www2.deloitte.com/us/en/pages/about-deloitte/articles/about-deloitte.html",
+            "new_value": "https://www.deloitte.com/us/en/about.html",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42213,7 +43113,16 @@
     "sources": [
       {
         "label": "Johnson & Johnson",
-        "url": "https://www.jnj.com/about-jnj/"
+        "url": "https://www.jnj.com/our-company",
+        "replacement_history": [
+          {
+            "old_value": "https://www.jnj.com/about-jnj/",
+            "new_value": "https://www.jnj.com/our-company",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42293,7 +43202,16 @@
     "sources": [
       {
         "label": "WellSpan Health",
-        "url": "https://www.wellspan.org/about"
+        "url": "https://www.wellspan.org/about-wellspan",
+        "replacement_history": [
+          {
+            "old_value": "https://www.wellspan.org/about",
+            "new_value": "https://www.wellspan.org/about-wellspan",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42341,7 +43259,16 @@
     "sources": [
       {
         "label": "Tarrant County",
-        "url": "https://www.tarrantcounty.com/en/information-technology.html"
+        "url": "https://www.tarrantcountytx.gov/en/information-technology.html",
+        "replacement_history": [
+          {
+            "old_value": "https://www.tarrantcounty.com/en/information-technology.html",
+            "new_value": "https://www.tarrantcountytx.gov/en/information-technology.html",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42357,7 +43284,16 @@
     "sources": [
       {
         "label": "Bexar County",
-        "url": "https://www.bexar.org/1783/Information-Technology"
+        "url": "https://www.bexar.org/1783/150th-Civil-District-Court",
+        "replacement_history": [
+          {
+            "old_value": "https://www.bexar.org/1783/Information-Technology",
+            "new_value": "https://www.bexar.org/1783/150th-Civil-District-Court",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42437,7 +43373,16 @@
     "sources": [
       {
         "label": "Snohomish County",
-        "url": "https://snohomishcountywa.gov/1596/Information-Technology"
+        "url": "https://snohomishcountywa.gov/5845/Business-Licensing",
+        "replacement_history": [
+          {
+            "old_value": "https://snohomishcountywa.gov/1596/Information-Technology",
+            "new_value": "https://snohomishcountywa.gov/5845/Business-Licensing",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42469,7 +43414,16 @@
     "sources": [
       {
         "label": "University of Florida",
-        "url": "https://www.rc.ufl.edu/"
+        "url": "https://it.ufl.edu/rc/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.rc.ufl.edu/",
+            "new_value": "https://it.ufl.edu/rc/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42485,7 +43439,16 @@
     "sources": [
       {
         "label": "University of Minnesota",
-        "url": "https://www.msi.umn.edu/"
+        "url": "https://msi.umn.edu/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.msi.umn.edu/",
+            "new_value": "https://msi.umn.edu/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42517,7 +43480,16 @@
     "sources": [
       {
         "label": "Rutgers University",
-        "url": "https://oarc.rutgers.edu/"
+        "url": "https://it.rutgers.edu/research-computing/",
+        "replacement_history": [
+          {
+            "old_value": "https://oarc.rutgers.edu/",
+            "new_value": "https://it.rutgers.edu/research-computing/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42581,7 +43553,16 @@
     "sources": [
       {
         "label": "ManTech International",
-        "url": "https://www.mantech.com/about"
+        "url": "https://www.mantech.com/actp/about-us/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.mantech.com/about",
+            "new_value": "https://www.mantech.com/actp/about-us/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42645,7 +43626,16 @@
     "sources": [
       {
         "label": "Lifeline Data Centers",
-        "url": "https://lifelinedatacenters.com/data-centers/indiana/"
+        "url": "https://lifelinedatacenters.com/press-releases/indiana-data-center-expert-to-address-resolving-risky-data-center-issues-through-rcm-at-data-center-world-conference/",
+        "replacement_history": [
+          {
+            "old_value": "https://lifelinedatacenters.com/data-centers/indiana/",
+            "new_value": "https://lifelinedatacenters.com/press-releases/indiana-data-center-expert-to-address-resolving-risky-data-center-issues-through-rcm-at-data-center-world-conference/",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42661,7 +43651,16 @@
     "sources": [
       {
         "label": "Procter & Gamble",
-        "url": "https://www.pg.com/en_US/company/about_pg.shtml"
+        "url": "https://www.pg.com/404/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.pg.com/en_US/company/about_pg.shtml",
+            "new_value": "https://www.pg.com/404/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42677,7 +43676,16 @@
     "sources": [
       {
         "label": "Cuyahoga County",
-        "url": "https://www.cuyahogacounty.us/government/department/details/Department-of-Information-Technology"
+        "url": "https://www.cuyahogacounty.gov/",
+        "replacement_history": [
+          {
+            "old_value": "https://www.cuyahogacounty.us/government/department/details/Department-of-Information-Technology",
+            "new_value": "https://www.cuyahogacounty.gov/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42869,7 +43877,16 @@
     "sources": [
       {
         "label": "City of Sacramento",
-        "url": "https://www.cityofsacramento.org/information-technology"
+        "url": "https://www.cityofsacramento.gov/information-technology",
+        "replacement_history": [
+          {
+            "old_value": "https://www.cityofsacramento.org/information-technology",
+            "new_value": "https://www.cityofsacramento.gov/information-technology",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -42885,7 +43902,16 @@
     "sources": [
       {
         "label": "City of El Paso",
-        "url": "https://www.elpasotexas.gov/information-technology/"
+        "url": "https://www.elpasotexas.gov/information-technology",
+        "replacement_history": [
+          {
+            "old_value": "https://www.elpasotexas.gov/information-technology/",
+            "new_value": "https://www.elpasotexas.gov/information-technology",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -43094,7 +44120,16 @@
     "sources": [
       {
         "label": "Bon Secours Mercy Health",
-        "url": "https://bsmhealth.org/about-us"
+        "url": "https://bsmhealth.org/about/",
+        "replacement_history": [
+          {
+            "old_value": "https://bsmhealth.org/about-us",
+            "new_value": "https://bsmhealth.org/about/",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-20T04:19:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -43207,7 +44242,16 @@
     "sources": [
       {
         "label": "Entergy",
-        "url": "https://www.entergy.com/about/"
+        "url": "https://www.entergy.com/about",
+        "replacement_history": [
+          {
+            "old_value": "https://www.entergy.com/about/",
+            "new_value": "https://www.entergy.com/about",
+            "changed_at": "2026-08-21",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-21T19:10:45+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },
@@ -43224,7 +44268,16 @@
     "sources": [
       {
         "label": "Exelon Corporation",
-        "url": "https://www.exeloncorp.com/company"
+        "url": "https://www.exeloncorp.com/company/about-exelon",
+        "replacement_history": [
+          {
+            "old_value": "https://www.exeloncorp.com/company",
+            "new_value": "https://www.exeloncorp.com/company/about-exelon",
+            "changed_at": "2026-08-22",
+            "reason": "HTTP redirect observed and followed live by validate_sources.py (checked_at=2026-08-22T00:55:52+00:00) -- not a guess, an actually-followed request.",
+            "verified_via": "data/map_data_citation_health.json"
+          }
+        ]
       }
     ]
   },

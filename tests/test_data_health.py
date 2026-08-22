@@ -232,3 +232,72 @@ def test_committed_artifacts_are_current():
         f"data/data_health.json or docs/DATA_HEALTH.md is stale -- regenerate with "
         f"'python3 data/generate_data_health.py'.\n{result.stdout}\n{result.stderr}"
     )
+
+
+# ---------------------------------------------------------------------------
+# Remediation queue (Priority G)
+# ---------------------------------------------------------------------------
+
+def test_severity_score_is_zero_for_ok_and_not_yet_tracked():
+    assert gdh._severity_score("policy_pipeline_sources", {"health": gdh.OK}) == 0.0
+    assert gdh._severity_score("policy_pipeline_sources", {"health": gdh.NOT_YET_TRACKED}) == 0.0
+
+
+def test_severity_score_is_positive_for_a_down_pipeline():
+    detail = {"health": gdh.SOURCE_DOWN, "persistently_down": ["a", "b"], "transiently_unreachable": []}
+    assert gdh._severity_score("parcels_registry", detail) > 0
+
+
+def test_higher_criticality_pipeline_outranks_lower_at_equal_scope():
+    # Same affected count, same health state -- the only difference is which
+    # pipeline it is. policy_pipeline_sources (weight 5) must outrank
+    # parcels_registry (weight 3) at identical scope.
+    detail = {"health": gdh.SOURCE_DOWN, "persistently_down": ["x"], "transiently_unreachable": []}
+    policy_score = gdh._severity_score("policy_pipeline_sources", detail)
+    parcel_score = gdh._severity_score("parcels_registry", detail)
+    assert policy_score > parcel_score
+
+
+def test_sustained_problem_outranks_a_fresh_transient_one_at_equal_scope():
+    down = {"health": gdh.SOURCE_DOWN, "persistently_down": ["a"], "transiently_unreachable": []}
+    transient = {"health": gdh.NETWORK_FAILURE, "persistently_down": [], "transiently_unreachable": ["a"]}
+    assert gdh._severity_score("parcels_registry", down) > gdh._severity_score("parcels_registry", transient)
+
+
+def test_larger_affected_count_scores_higher_but_with_diminishing_growth():
+    small = {"health": gdh.VALIDATION_FAILURE, "unreachable": 10, "unreachable_ratio": 0.5}
+    large = {"health": gdh.VALIDATION_FAILURE, "unreachable": 1000, "unreachable_ratio": 0.5}
+    small_score = gdh._severity_score("county_page_citations", small)
+    large_score = gdh._severity_score("county_page_citations", large)
+    assert large_score > small_score
+    # 100x the affected count must not mean 100x the score -- diminishing
+    # growth past the first 100 is the whole point of the scope factor.
+    assert large_score < small_score * 100
+
+
+def test_remediation_queue_is_sorted_descending_by_severity():
+    report = gdh.build_report()
+    scores = [q["severity_score"] for q in report["remediation_queue"]]
+    assert scores == sorted(scores, reverse=True)
+
+
+def test_remediation_queue_excludes_healthy_pipelines():
+    report = gdh.build_report()
+    queued_names = {q["pipeline"] for q in report["remediation_queue"]}
+    for name, detail in report["pipelines"].items():
+        if detail["health"] in (gdh.OK, gdh.NOT_YET_TRACKED):
+            assert name not in queued_names, f"{name} is {detail['health']} and should not be queued"
+
+
+def test_remediation_queue_entries_have_a_real_reason_string():
+    report = gdh.build_report()
+    for q in report["remediation_queue"]:
+        assert isinstance(q["reason"], str) and len(q["reason"]) > 10
+
+
+def test_markdown_renders_the_remediation_queue_section():
+    report = gdh.build_report()
+    md = gdh.render_markdown(report)
+    assert "## Remediation queue" in md
+    if report["remediation_queue"]:
+        assert report["remediation_queue"][0]["pipeline"] in md

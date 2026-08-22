@@ -8,15 +8,21 @@
    type badges were as low as 1.82:1). Defined once here (rather than
    inline hex per rule) so js/pipeline.js's _typeBadge() can reference the
    same tokens via var() instead of hardcoding a color that's only correct
-   for one theme. */
+   for one theme.
+   --pl-type-hyperscale/--pl-type-colocation's dark-theme values were also
+   later relightened (from the original #4874e8/#a78bfa) — those two, once
+   composited through --pl-badge-opacity: 0.75 onto the dark background,
+   dropped to 3.08:1 and 4.49:1 respectively (axe: .pl-type-badge at
+   3.07:1). Every other dark-theme badge color already clears 4.5:1 at
+   0.75 opacity and was left untouched. */
 :root {
   --pl-status-operational:    #34d399;
   --pl-status-construction:   #f59e0b;
   --pl-status-planned:        #60a5fa;
   --pl-status-decommissioned: #9ca3af;
   --pl-status-unknown:        #9ca3af;
-  --pl-type-hyperscale:  #4874e8;
-  --pl-type-colocation:  #a78bfa;
+  --pl-type-hyperscale:  #86a3f0;
+  --pl-type-colocation:  #ac92fa;
   --pl-type-enterprise:  #34d399;
   --pl-type-edge:        #f59e0b;
   --pl-type-ai-campus:   #60a5fa;
@@ -132,7 +138,7 @@ html[data-theme="light"] {
      threshold. --accent's own light-theme override (#2650c8) already
      clears 6.85:1 against white -- this button just wasn't using the
      token that already existed for exactly this. */
-  color: var(--accent);
+  color: var(--accent-text);
   background: transparent;
   border: 1px solid var(--accent);
   border-radius: 5px;
@@ -141,7 +147,7 @@ html[data-theme="light"] {
   transition: background 0.15s, color 0.15s;
 }
 .pl-export-btn:hover {
-  background: var(--accent);
+  background: var(--accent-fill);
   color: #fff;
 }
 .pl-export-btn svg { flex-shrink: 0; }
@@ -173,7 +179,7 @@ html[data-theme="light"] {
 /* var(--accent) -- same real a11y fix as .pl-export-btn above: the
    hardcoded #4874e8 literal always used the token's dark-theme value,
    failing contrast in light mode. */
-.pl-view-btn.active { background: var(--accent); color: #fff; }
+.pl-view-btn.active { background: var(--accent-fill); color: #fff; }
 
 /* ── Body / layout ── */
 .pipeline-freshness-bar {
@@ -499,16 +505,20 @@ html[data-theme="light"] {
   font-size: 12px;
   font-weight: 600;
   font-family: inherit;
-  color: #4874e8;
+  color: var(--accent-text);
   background: transparent;
-  border: 1px solid #4874e8;
+  border: 1px solid var(--accent-text);
   border-radius: 6px;
   cursor: pointer;
   width: 100%;
   justify-content: center;
   transition: background .15s, color .15s;
 }
-.pl-compare-link:hover { background: #4874e8; color: #fff; }
+/* var(--accent-fill), not --accent-text -- this is the FILL (hover)
+   state, white text on a colored background, the opposite role from the
+   idle text-role state right above it. See the --accent-text/--accent-fill
+   definitions in css/style.css's :root for why dark mode needs both. */
+.pl-compare-link:hover { background: var(--accent-fill); color: #fff; }
 
 /* ── Light theme overrides ── */
 /* Also mirrored under prefers-color-scheme below — [data-theme="light"]

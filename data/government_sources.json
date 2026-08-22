@@ -1,13 +1,13 @@
 {
   "meta": {
-    "description": "Configuration-driven registry of official government sources for US data center and AI policy tracking. Each entry records the jurisdiction, document type, URL, tier, adapter type, and verification status. The pipeline reads this file to know what to check and how to fetch it. Candidates discovered via this registry go into policy_candidates.json — NOT directly into restrictions_raw.json.",
+    "description": "Configuration-driven registry of official government sources for US data center and AI policy tracking. Each entry records the jurisdiction, document type, URL, tier, adapter type, and verification status. The pipeline reads this file to know what to check and how to fetch it. Candidates discovered via this registry go into policy_candidates.json \u2014 NOT directly into restrictions_raw.json.",
     "version": "1.0.0",
     "created": "2026-07-12",
     "url_verified_note": "url_verified=false means the URL has not been live-checked in this session. The pipeline validates URLs on each run and updates source_health.json. All URLs are drawn from: (a) existing restrictions_raw.json source objects, (b) well-documented state legislature domains, or (c) official agency domains consistent with government URL conventions. No URLs are invented.",
     "tiers": {
       "1": "Official government source (.gov, legislature, official agency)",
       "2": "Reputable code publisher or official utility/industry body",
-      "3": "News or discovery only — never authoritative"
+      "3": "News or discovery only \u2014 never authoritative"
     },
     "adapters": {
       "generic_html": "Fetch HTML page and keyword-scan for policy signals",
@@ -61,7 +61,7 @@
       "state_abbr": "AZ",
       "state_fips": "04",
       "fips": null,
-      "title": "Arizona Legislature — Bill Search and Status",
+      "title": "Arizona Legislature \u2014 Bill Search and Status",
       "url": "https://www.azleg.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -85,7 +85,7 @@
       "state_abbr": "AZ",
       "state_fips": "04",
       "fips": null,
-      "title": "ADWR — Assured and Adequate Water Supply Programs",
+      "title": "ADWR \u2014 Assured and Adequate Water Supply Programs",
       "url": "https://www.azwater.gov/assured-and-adequate-water-supply",
       "url_verified": false,
       "last_checked": null,
@@ -159,7 +159,7 @@
         "data_center",
         "water"
       ],
-      "notes": "Groundwater supply impacts on data centers. 2026-07-29: pinalcountyaz.gov doesn't resolve any more (404, 17 consecutive checks) — the county rebranded to pinal.gov, confirmed via web search."
+      "notes": "Groundwater supply impacts on data centers. 2026-07-29: pinalcountyaz.gov doesn't resolve any more (404, 17 consecutive checks) \u2014 the county rebranded to pinal.gov, confirmed via web search."
     },
     {
       "id": "ca-legislature",
@@ -169,7 +169,7 @@
       "state_abbr": "CA",
       "state_fips": "06",
       "fips": null,
-      "title": "California Legislative Information — Bill Search",
+      "title": "California Legislative Information \u2014 Bill Search",
       "url": "https://leginfo.legislature.ca.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -193,7 +193,7 @@
       "state_abbr": "CA",
       "state_fips": "06",
       "fips": null,
-      "title": "CARB — Data Center Regulations and Climate Programs",
+      "title": "CARB \u2014 Data Center Regulations and Climate Programs",
       "url": "https://ww2.arb.ca.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -214,7 +214,7 @@
       "state_abbr": "CA",
       "state_fips": "06",
       "fips": null,
-      "title": "CPUC — Grid Connections for Data Centers and High-Energy Users",
+      "title": "CPUC \u2014 Grid Connections for Data Centers and High-Energy Users",
       "url": "https://www.cpuc.ca.gov/news-and-updates/all-news/cpuc-streamlines-electric-grid-connections-for-high-energy-users-like-data-centers-and-ev-chargers",
       "url_verified": false,
       "last_checked": null,
@@ -225,7 +225,7 @@
         "energy",
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. Tracks demand response affecting data centers. 2026-07-29: old demand-side-management path 404s (17 consecutive checks); switched to a real, more directly on-topic CPUC page found via web search. Note: as of April 2026 CPUC opened a rulemaking specifically on electric rate design for data centers/large loads — this is an actively evolving area, re-verify before citing specifics."
+      "notes": "URL from restrictions_raw.json. Tracks demand response affecting data centers. 2026-07-29: old demand-side-management path 404s (17 consecutive checks); switched to a real, more directly on-topic CPUC page found via web search. Note: as of April 2026 CPUC opened a rulemaking specifically on electric rate design for data centers/large loads \u2014 this is an actively evolving area, re-verify before citing specifics."
     },
     {
       "id": "ca-alameda-planning",
@@ -235,7 +235,7 @@
       "state_abbr": "CA",
       "state_fips": "06",
       "fips": "06001",
-      "title": "Alameda County Planning — General Plan Environmental Policies",
+      "title": "Alameda County Planning \u2014 General Plan Environmental Policies",
       "url": "https://www.acgov.org/cda/planning/generalplans/",
       "url_verified": false,
       "last_checked": null,
@@ -256,7 +256,7 @@
       "state_abbr": "CA",
       "state_fips": "06",
       "fips": "06037",
-      "title": "LA County Planning — General Plan and Sustainable Communities",
+      "title": "LA County Planning \u2014 General Plan and Sustainable Communities",
       "url": "https://planning.lacounty.gov/long-range-planning/general-plan/",
       "url_verified": false,
       "last_checked": null,
@@ -278,7 +278,7 @@
       "state_abbr": "CA",
       "state_fips": "06",
       "fips": "06075",
-      "title": "San Francisco Board of Supervisors — Ordinances and Legislation",
+      "title": "San Francisco Board of Supervisors \u2014 Ordinances and Legislation",
       "url": "https://sfbos.org/",
       "url_verified": false,
       "last_checked": null,
@@ -299,7 +299,7 @@
       "state_abbr": "CA",
       "state_fips": "06",
       "fips": "06085",
-      "title": "Santa Clara County — Climate Action Plan and Environmental Policies",
+      "title": "Santa Clara County \u2014 Climate Action Plan and Environmental Policies",
       "url": "https://sustainability.santaclaracounty.gov/climate-change/climate-action-planning",
       "url_verified": false,
       "last_checked": null,
@@ -310,7 +310,7 @@
         "data_center",
         "water"
       ],
-      "notes": "URL from restrictions_raw.json. 2026-07-29: sccgov.org's OES climate-action-plan.aspx 403s (17 consecutive checks) — the climate/sustainability function has moved to its own Office of Sustainability and Resilience subdomain, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. 2026-07-29: sccgov.org's OES climate-action-plan.aspx 403s (17 consecutive checks) \u2014 the climate/sustainability function has moved to its own Office of Sustainability and Resilience subdomain, confirmed via web search. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "co-legislature",
@@ -320,7 +320,7 @@
       "state_abbr": "CO",
       "state_fips": "08",
       "fips": null,
-      "title": "Colorado General Assembly — Bill Search",
+      "title": "Colorado General Assembly \u2014 Bill Search",
       "url": "https://leg.colorado.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -386,7 +386,7 @@
       "state_abbr": "CT",
       "state_fips": "09",
       "fips": null,
-      "title": "Connecticut General Assembly — Bill Search",
+      "title": "Connecticut General Assembly \u2014 Bill Search",
       "url": "https://www.cga.ct.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -397,7 +397,7 @@
         "ai",
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. Track CT AI employment and data center bills."
+      "notes": "URL from restrictions_raw.json. Track CT AI employment and data center bills. 2026-08-19 Priority B finding: fails with an SSL certificate verification error (see source_health.json). The current URL is confirmed correct via web search, and 3 unrelated .gov domains fail with an identical cert-verification error in the same scheduled run -- this is far more consistent with the CI runner's own CA bundle/TLS configuration than 3 independent government sites all deploying a bad certificate at once. Recommended follow-up: verify the runner's Python/certifi CA bundle is current (see docs/DATA_HEALTH.md's remediation queue). URL not changed. 2026-08-22 follow-up: check_policy_sources dispatch confirms the identical SSL_CERTIFICATE_VERIFY_FAILED signature persists 3 days later, still across these same 3 otherwise-unrelated .gov domains -- a self-signed/untrusted-CA certificate error on 3 independent government TLS endpoints simultaneously is a textbook sign of a transparent TLS-intercepting proxy or a broken CA trust store on the network path (the runner), not 3 independent certificate misconfigurations. URL not changed -- no evidence these sources are actually broken."
     },
     {
       "id": "ct-opm",
@@ -407,7 +407,7 @@
       "state_abbr": "CT",
       "state_fips": "09",
       "fips": null,
-      "title": "CT OPM — AI Governance",
+      "title": "CT OPM \u2014 AI Governance",
       "url": "https://portal.ct.gov/OPM",
       "url_verified": false,
       "last_checked": null,
@@ -427,7 +427,7 @@
       "state_abbr": "CT",
       "state_fips": "09",
       "fips": "09003",
-      "title": "Hartford County — Regional Governance",
+      "title": "Hartford County \u2014 Regional Governance",
       "url": "https://www.ct.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -447,7 +447,7 @@
       "state_abbr": "GA",
       "state_fips": "13",
       "fips": null,
-      "title": "Georgia General Assembly — Bill Search",
+      "title": "Georgia General Assembly \u2014 Bill Search",
       "url": "https://www.legis.ga.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -468,7 +468,7 @@
       "state_abbr": "GA",
       "state_fips": "13",
       "fips": null,
-      "title": "Georgia DOR — Data Center Tax Exemptions",
+      "title": "Georgia DOR \u2014 Data Center Tax Exemptions",
       "url": "https://dor.georgia.gov/high-technology-data-center-equipment-exemption",
       "url_verified": false,
       "last_checked": null,
@@ -478,7 +478,7 @@
       "policy_types": [
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. Tracks GA data center tax incentive rules. 2026-07-29: /data-center-exemptions 404s (17 consecutive checks); real page confirmed via web search — regulation effective 2024-02-06, O.C.G.A. § 48-8-3(68.1)."
+      "notes": "URL from restrictions_raw.json. Tracks GA data center tax incentive rules. 2026-07-29: /data-center-exemptions 404s (17 consecutive checks); real page confirmed via web search \u2014 regulation effective 2024-02-06, O.C.G.A. \u00a7 48-8-3(68.1)."
     },
     {
       "id": "ga-clayton-commissioners",
@@ -588,7 +588,7 @@
       "state_abbr": "IL",
       "state_fips": "17",
       "fips": null,
-      "title": "Illinois General Assembly — Bill Search",
+      "title": "Illinois General Assembly \u2014 Bill Search",
       "url": "https://www.ilga.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -609,7 +609,7 @@
       "state_abbr": "IL",
       "state_fips": "17",
       "fips": "17113",
-      "title": "McLean County Board — Large Industrial Development",
+      "title": "McLean County Board \u2014 Large Industrial Development",
       "url": "https://www.mcleancountyil.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -630,7 +630,7 @@
       "state_abbr": "IN",
       "state_fips": "18",
       "fips": null,
-      "title": "Indiana General Assembly — Bill Search",
+      "title": "Indiana General Assembly \u2014 Bill Search",
       "url": "https://iga.in.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -651,7 +651,7 @@
       "state_abbr": "IN",
       "state_fips": "18",
       "fips": null,
-      "title": "IEDC — Data Centers Industry Page",
+      "title": "IEDC \u2014 Data Centers Industry Page",
       "url": "https://iedc.in.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -691,7 +691,7 @@
       "state_abbr": "IA",
       "state_fips": "19",
       "fips": null,
-      "title": "Iowa Legislature — Bill Search",
+      "title": "Iowa Legislature \u2014 Bill Search",
       "url": "https://www.legis.iowa.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -702,7 +702,7 @@
         "data_center",
         "ai"
       ],
-      "notes": "Tracks Iowa Code §423.3 data center exemption and any proposed changes."
+      "notes": "Tracks Iowa Code \u00a7423.3 data center exemption and any proposed changes."
     },
     {
       "id": "ia-datacenter-exemption",
@@ -712,7 +712,7 @@
       "state_abbr": "IA",
       "state_fips": "19",
       "fips": null,
-      "title": "Iowa Code § 423.3 — Data Center Exemptions",
+      "title": "Iowa Code \u00a7 423.3 \u2014 Data Center Exemptions",
       "url": "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=423&session=90",
       "url_verified": false,
       "last_checked": null,
@@ -742,7 +742,7 @@
       "policy_types": [
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. Proposed growth management requirements. 2026-07-29: dubuquecounty.gov does not resolve (DNS failure, 16 consecutive checks) — missing 'iowa' from the domain; the real county domain is dubuquecountyiowa.gov, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Proposed growth management requirements. 2026-07-29: dubuquecounty.gov does not resolve (DNS failure, 16 consecutive checks) \u2014 missing 'iowa' from the domain; the real county domain is dubuquecountyiowa.gov, confirmed via web search."
     },
     {
       "id": "la-legislature",
@@ -752,7 +752,7 @@
       "state_abbr": "LA",
       "state_fips": "22",
       "fips": null,
-      "title": "Louisiana Legislature — Bill Search",
+      "title": "Louisiana Legislature \u2014 Bill Search",
       "url": "https://www.legis.la.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -773,7 +773,7 @@
       "state_abbr": "LA",
       "state_fips": "22",
       "fips": null,
-      "title": "Louisiana Economic Development — ITEP Program",
+      "title": "Louisiana Economic Development \u2014 ITEP Program",
       "url": "https://www.opportunitylouisiana.gov/business-incentives/industrial-tax-exemption",
       "url_verified": false,
       "last_checked": null,
@@ -793,7 +793,7 @@
       "state_abbr": "MA",
       "state_fips": "25",
       "fips": null,
-      "title": "Massachusetts General Court — Bill Search",
+      "title": "Massachusetts General Court \u2014 Bill Search",
       "url": "https://malegislature.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -814,7 +814,7 @@
       "state_abbr": "MD",
       "state_fips": "24",
       "fips": null,
-      "title": "Maryland General Assembly — Bill Search",
+      "title": "Maryland General Assembly \u2014 Bill Search",
       "url": "https://mgaleg.maryland.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -836,7 +836,7 @@
       "state_abbr": "MD",
       "state_fips": "24",
       "fips": "24031",
-      "title": "Montgomery County Council — Legislation and BEPS",
+      "title": "Montgomery County Council \u2014 Legislation and BEPS",
       "url": "https://www.montgomerycountymd.gov/council/",
       "url_verified": false,
       "last_checked": null,
@@ -857,7 +857,7 @@
       "state_abbr": "MD",
       "state_fips": "24",
       "fips": "24033",
-      "title": "Prince George's County Planning — Zoning Ordinance",
+      "title": "Prince George's County Planning \u2014 Zoning Ordinance",
       "url": "https://www.pgplanning.org/",
       "url_verified": false,
       "last_checked": null,
@@ -877,7 +877,7 @@
       "state_abbr": "MI",
       "state_fips": "26",
       "fips": null,
-      "title": "Michigan Legislature — Bill Search",
+      "title": "Michigan Legislature \u2014 Bill Search",
       "url": "https://legislature.michigan.gov/Home",
       "url_verified": true,
       "last_checked": "2026-07-30",
@@ -888,7 +888,7 @@
         "ai",
         "data_center"
       ],
-      "notes": "2026-07-30 correction: the www.legislature.mi.gov root path started 404ing (confirmed via source_health.json, http_status=404) even though specific subpages like /Bills still resolve. Michigan has been migrating state sites to the michigan.gov domain family; the current canonical homepage is legislature.michigan.gov/Home, confirmed via web search. URL from state_regulations.json. Tracks AI governance and data center incentive bills."
+      "notes": "2026-07-30 correction: the www.legislature.mi.gov root path started 404ing (confirmed via source_health.json, http_status=404) even though specific subpages like /Bills still resolve. Michigan has been migrating state sites to the michigan.gov domain family; the current canonical homepage is legislature.michigan.gov/Home, confirmed via web search. URL from state_regulations.json. Tracks AI governance and data center incentive bills. 2026-08-19 Priority B finding: fails with an SSL certificate verification error (see source_health.json). The current URL is confirmed correct via web search, and 3 unrelated .gov domains fail with an identical cert-verification error in the same scheduled run -- this is far more consistent with the CI runner's own CA bundle/TLS configuration than 3 independent government sites all deploying a bad certificate at once. Recommended follow-up: verify the runner's Python/certifi CA bundle is current (see docs/DATA_HEALTH.md's remediation queue). URL not changed. 2026-08-22 follow-up: check_policy_sources dispatch confirms the identical SSL_CERTIFICATE_VERIFY_FAILED signature persists 3 days later, still across these same 3 otherwise-unrelated .gov domains -- a self-signed/untrusted-CA certificate error on 3 independent government TLS endpoints simultaneously is a textbook sign of a transparent TLS-intercepting proxy or a broken CA trust store on the network path (the runner), not 3 independent certificate misconfigurations. URL not changed -- no evidence these sources are actually broken."
     },
     {
       "id": "mi-kalamazoo-board",
@@ -909,7 +909,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "Proposed/partial data center development restrictions. 2026-07-29: kalcounty.com 404s (17 consecutive checks) — the county migrated to kalcounty.gov (the .com domain now redirects to an 'old.' archive subdomain), confirmed via web search."
+      "notes": "Proposed/partial data center development restrictions. 2026-07-29: kalcounty.com 404s (17 consecutive checks) \u2014 the county migrated to kalcounty.gov (the .com domain now redirects to an 'old.' archive subdomain), confirmed via web search."
     },
     {
       "id": "mi-washtenaw-board",
@@ -940,7 +940,7 @@
       "state_abbr": "MI",
       "state_fips": "26",
       "fips": null,
-      "title": "Michigan PSC — Energy Load Management",
+      "title": "Michigan PSC \u2014 Energy Load Management",
       "url": "https://www.michigan.gov/mpsc",
       "url_verified": false,
       "last_checked": null,
@@ -951,7 +951,7 @@
         "energy",
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. Tracks energy load management rules."
+      "notes": "URL from restrictions_raw.json. Tracks energy load management rules. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "mn-legislature",
@@ -961,7 +961,7 @@
       "state_abbr": "MN",
       "state_fips": "27",
       "fips": null,
-      "title": "Minnesota Legislature — Bill Search",
+      "title": "Minnesota Legislature \u2014 Bill Search",
       "url": "https://www.revisor.mn.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -993,7 +993,7 @@
         "ai",
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. Tracks facial recognition ban and data center moratoriums. 2026-07-29: council.minneapolismn.gov does not resolve (DNS failure, 17 consecutive checks) — that subdomain appears retired; the city's Legislative Support & Operations page on the main minneapolismn.gov domain is the current equivalent."
+      "notes": "URL from restrictions_raw.json. Tracks facial recognition ban and data center moratoriums. 2026-07-29: council.minneapolismn.gov does not resolve (DNS failure, 17 consecutive checks) \u2014 that subdomain appears retired; the city's Legislative Support & Operations page on the main minneapolismn.gov domain is the current equivalent."
     },
     {
       "id": "mt-legislature",
@@ -1003,7 +1003,7 @@
       "state_abbr": "MT",
       "state_fips": "30",
       "fips": null,
-      "title": "Montana Legislature — Bill Search",
+      "title": "Montana Legislature \u2014 Bill Search",
       "url": "https://leg.mt.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1036,7 +1036,7 @@
         "data_center",
         "crypto"
       ],
-      "notes": "URL from restrictions_raw.json. Proposed high-intensity computing restrictions. 2026-07-29: flathead.mt.gov timed out (17 consecutive checks) — the county is actively migrating off that domain to flatheadcounty.gov per its own site notice, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Proposed high-intensity computing restrictions. 2026-07-29: flathead.mt.gov timed out (17 consecutive checks) \u2014 the county is actively migrating off that domain to flatheadcounty.gov per its own site notice, confirmed via web search."
     },
     {
       "id": "mt-lincoln-commissioners",
@@ -1046,7 +1046,7 @@
       "state_abbr": "MT",
       "state_fips": "30",
       "fips": "30053",
-      "title": "Lincoln County Commissioners — Cryptocurrency Mining Ordinance",
+      "title": "Lincoln County Commissioners \u2014 Cryptocurrency Mining Ordinance",
       "url": "https://www.lincolncountymt.us/",
       "url_verified": false,
       "last_checked": null,
@@ -1067,7 +1067,7 @@
       "state_abbr": "NE",
       "state_fips": "31",
       "fips": null,
-      "title": "Nebraska Legislature — Bill Search",
+      "title": "Nebraska Legislature \u2014 Bill Search",
       "url": "https://nebraskalegislature.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1088,7 +1088,7 @@
       "state_abbr": "NV",
       "state_fips": "32",
       "fips": null,
-      "title": "Nevada Legislature — Bill Search",
+      "title": "Nevada Legislature \u2014 Bill Search",
       "url": "https://www.leg.state.nv.us/",
       "url_verified": false,
       "last_checked": null,
@@ -1100,7 +1100,7 @@
         "crypto",
         "energy"
       ],
-      "notes": "Tracks NRS §374.357 data center exemption and crypto regulations."
+      "notes": "Tracks NRS \u00a7374.357 data center exemption and crypto regulations."
     },
     {
       "id": "nv-goed-datacenter",
@@ -1110,7 +1110,7 @@
       "state_abbr": "NV",
       "state_fips": "32",
       "fips": null,
-      "title": "GOED — Incentives (Data Center Tax Abatements)",
+      "title": "GOED \u2014 Incentives (Data Center Tax Abatements)",
       "url": "https://goed.nv.gov/incentives/",
       "url_verified": false,
       "last_checked": null,
@@ -1141,7 +1141,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "Reno-area data center moratorium. 2026-07-29: path was /boc/ (wrong abbreviation, 404, 17 consecutive checks) — real path is /bcc/ (Board of County Commissioners), confirmed via web search."
+      "notes": "Reno-area data center moratorium. 2026-07-29: path was /boc/ (wrong abbreviation, 404, 17 consecutive checks) \u2014 real path is /bcc/ (Board of County Commissioners), confirmed via web search."
     },
     {
       "id": "nj-legislature",
@@ -1151,7 +1151,7 @@
       "state_abbr": "NJ",
       "state_fips": "34",
       "fips": null,
-      "title": "New Jersey Legislature — Bill Search",
+      "title": "New Jersey Legislature \u2014 Bill Search",
       "url": "https://www.njleg.state.nj.us/",
       "url_verified": false,
       "last_checked": null,
@@ -1173,7 +1173,7 @@
       "state_abbr": "NJ",
       "state_fips": "34",
       "fips": null,
-      "title": "NJ DEP — Stormwater and Environmental Review Rules",
+      "title": "NJ DEP \u2014 Stormwater and Environmental Review Rules",
       "url": "https://www.nj.gov/dep/",
       "url_verified": false,
       "last_checked": null,
@@ -1194,7 +1194,7 @@
       "state_abbr": "NY",
       "state_fips": "36",
       "fips": null,
-      "title": "New York Senate — Bill Search",
+      "title": "New York Senate \u2014 Bill Search",
       "url": "https://www.nysenate.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1207,7 +1207,7 @@
         "crypto",
         "energy"
       ],
-      "notes": "Tracks Local Law 97 follow-ons, crypto moratorium renewals, and AI governance bills."
+      "notes": "Tracks Local Law 97 follow-ons, crypto moratorium renewals, and AI governance bills. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "ny-local-law-97",
@@ -1217,7 +1217,7 @@
       "state_abbr": "NY",
       "state_fips": "36",
       "fips": "36061",
-      "title": "NYC Buildings — Local Law 97 Carbon Emission Limits",
+      "title": "NYC Buildings \u2014 Local Law 97 Carbon Emission Limits",
       "url": "https://www.nyc.gov/site/buildings/codes/local-law-97.page",
       "url_verified": false,
       "last_checked": null,
@@ -1228,7 +1228,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "URL from restrictions_raw.json. Monitors LL97 implementation rules and compliance deadlines."
+      "notes": "URL from restrictions_raw.json. Monitors LL97 implementation rules and compliance deadlines. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "ny-nyc-mocej",
@@ -1249,7 +1249,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "URL from restrictions_raw.json."
+      "notes": "URL from restrictions_raw.json. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "ny-clinton-citycouncil",
@@ -1259,7 +1259,7 @@
       "state_abbr": "NY",
       "state_fips": "36",
       "fips": "36019",
-      "title": "City of Plattsburgh — Common Council",
+      "title": "City of Plattsburgh \u2014 Common Council",
       "url": "https://www.cityofplattsburgh-ny.gov/boards-committees-commissions/common-council",
       "url_verified": false,
       "last_checked": null,
@@ -1270,7 +1270,7 @@
         "data_center",
         "crypto"
       ],
-      "notes": "URL from restrictions_raw.json. Monitors crypto permitting requirements. 2026-07-29: cityofplattsburgh.com (.com, connection reset, 17 consecutive checks) is not the real city domain — the official site is cityofplattsburgh-ny.gov, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Monitors crypto permitting requirements. 2026-07-29: cityofplattsburgh.com (.com, connection reset, 17 consecutive checks) is not the real city domain \u2014 the official site is cityofplattsburgh-ny.gov, confirmed via web search."
     },
     {
       "id": "ny-climate-clcpa",
@@ -1292,7 +1292,7 @@
         "energy",
         "crypto"
       ],
-      "notes": "URL from restrictions_raw.json. Tracks CLCPA implementation regulations."
+      "notes": "URL from restrictions_raw.json. Tracks CLCPA implementation regulations. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "nc-legislature",
@@ -1302,7 +1302,7 @@
       "state_abbr": "NC",
       "state_fips": "37",
       "fips": null,
-      "title": "North Carolina General Assembly — Bill Search",
+      "title": "North Carolina General Assembly \u2014 Bill Search",
       "url": "https://www.ncleg.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1335,7 +1335,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "Active data center development moratorium (2024). 2026-07-29: chathamnc.org's /government/commissioners 404s (17 consecutive checks) — the county's domain is now chathamcountync.gov, confirmed via web search."
+      "notes": "Active data center development moratorium (2024). 2026-07-29: chathamnc.org's /government/commissioners 404s (17 consecutive checks) \u2014 the county's domain is now chathamcountync.gov, confirmed via web search. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "nc-orange-commissioners",
@@ -1356,7 +1356,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "Active data center restrictions (2024). 2026-07-29: path was a guessed descriptive slug (404, 17 consecutive checks) — real CivicPlus numbered path confirmed via web search."
+      "notes": "Active data center restrictions (2024). 2026-07-29: path was a guessed descriptive slug (404, 17 consecutive checks) \u2014 real CivicPlus numbered path confirmed via web search. 2026-08-19 Priority B finding: a read-timeout with only 1-2 recorded consecutive failures -- correctly classified TRANSIENT_FAILURE, most likely a real but ordinary transient network blip, not a structural problem. No action needed unless it persists past the 3-failure threshold on a future run."
     },
     {
       "id": "nc-rowan-commissioners",
@@ -1377,7 +1377,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "URL from restrictions_raw.json. Active data center density controls. 2026-07-29: path was a guessed descriptive slug (404, 17 consecutive checks) — the site uses CivicPlus numbered URLs; real path confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Active data center density controls. 2026-07-29: path was a guessed descriptive slug (404, 17 consecutive checks) \u2014 the site uses CivicPlus numbered URLs; real path confirmed via web search. 2026-08-19 Priority B finding: a read-timeout with only 1-2 recorded consecutive failures -- correctly classified TRANSIENT_FAILURE, most likely a real but ordinary transient network blip, not a structural problem. No action needed unless it persists past the 3-failure threshold on a future run."
     },
     {
       "id": "nc-mecklenburg-commissioners",
@@ -1398,7 +1398,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "Charlotte-area data center impact review requirements. 2026-07-29: old ASPX path 404s (17 consecutive checks) — the Board now has its own subdomain, bocc.mecknc.gov, confirmed via web search."
+      "notes": "Charlotte-area data center impact review requirements. 2026-07-29: old ASPX path 404s (17 consecutive checks) \u2014 the Board now has its own subdomain, bocc.mecknc.gov, confirmed via web search."
     },
     {
       "id": "nc-wake-commissioners",
@@ -1419,7 +1419,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "Raleigh-area data center grid capacity review requirements. 2026-07-29: wakegov.com's old path 404s (17 consecutive checks) — the county's domain is now wake.gov, confirmed via web search."
+      "notes": "Raleigh-area data center grid capacity review requirements. 2026-07-29: wakegov.com's old path 404s (17 consecutive checks) \u2014 the county's domain is now wake.gov, confirmed via web search."
     },
     {
       "id": "nc-durham-commissioners",
@@ -1450,7 +1450,7 @@
       "state_abbr": "OH",
       "state_fips": "39",
       "fips": null,
-      "title": "Ohio Legislature — Bill Search",
+      "title": "Ohio Legislature \u2014 Bill Search",
       "url": "https://www.legislature.ohio.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1462,7 +1462,7 @@
         "ai",
         "energy"
       ],
-      "notes": "Tracks Ohio R.C. 5739.02 data center exemption."
+      "notes": "Tracks Ohio R.C. 5739.02 data center exemption. 2026-08-19 Priority B finding: fails with an SSL certificate verification error (see source_health.json). The current URL is confirmed correct via web search, and 3 unrelated .gov domains fail with an identical cert-verification error in the same scheduled run -- this is far more consistent with the CI runner's own CA bundle/TLS configuration than 3 independent government sites all deploying a bad certificate at once. Recommended follow-up: verify the runner's Python/certifi CA bundle is current (see docs/DATA_HEALTH.md's remediation queue). URL not changed. 2026-08-22 follow-up: check_policy_sources dispatch confirms the identical SSL_CERTIFICATE_VERIFY_FAILED signature persists 3 days later, still across these same 3 otherwise-unrelated .gov domains -- a self-signed/untrusted-CA certificate error on 3 independent government TLS endpoints simultaneously is a textbook sign of a transparent TLS-intercepting proxy or a broken CA trust store on the network path (the runner), not 3 independent certificate misconfigurations. URL not changed -- no evidence these sources are actually broken."
     },
     {
       "id": "oh-development-datacenter",
@@ -1472,7 +1472,7 @@
       "state_abbr": "OH",
       "state_fips": "39",
       "fips": null,
-      "title": "Ohio Development — Data Center Incentives",
+      "title": "Ohio Development \u2014 Data Center Incentives",
       "url": "https://development.ohio.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1492,7 +1492,7 @@
       "state_abbr": "OR",
       "state_fips": "41",
       "fips": null,
-      "title": "Oregon Legislative Assembly — Bill Search",
+      "title": "Oregon Legislative Assembly \u2014 Bill Search",
       "url": "https://www.oregonlegislature.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1515,7 +1515,7 @@
       "state_abbr": "OR",
       "state_fips": "41",
       "fips": "41027",
-      "title": "Hood River County — Board of Commissioners",
+      "title": "Hood River County \u2014 Board of Commissioners",
       "url": "https://www.hoodrivercounty.gov/boardofcommissioners",
       "url_verified": false,
       "last_checked": null,
@@ -1537,7 +1537,7 @@
       "state_abbr": "OR",
       "state_fips": "41",
       "fips": null,
-      "title": "Business Oregon — Data Center Tax Exemptions",
+      "title": "Business Oregon \u2014 Data Center Tax Exemptions",
       "url": "https://www.oregon4biz.com/",
       "url_verified": false,
       "last_checked": null,
@@ -1557,7 +1557,7 @@
       "state_abbr": "PA",
       "state_fips": "42",
       "fips": null,
-      "title": "Pennsylvania General Assembly — Bill Search",
+      "title": "Pennsylvania General Assembly \u2014 Bill Search",
       "url": "https://www.legis.state.pa.us/",
       "url_verified": false,
       "last_checked": null,
@@ -1579,7 +1579,7 @@
       "state_abbr": null,
       "state_fips": null,
       "fips": null,
-      "title": "FERC Order No. 2023 — Interconnection Queue Reform",
+      "title": "FERC Order No. 2023 \u2014 Interconnection Queue Reform",
       "url": "https://www.ferc.gov/explainer-interconnection-final-rule",
       "url_verified": false,
       "last_checked": null,
@@ -1590,7 +1590,7 @@
         "energy",
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. Tracks PJM/FERC interconnection rules affecting PA, NJ, VA, MD, NC data centers. 2026-07-29: /media/order-no-2023 403s (17 consecutive checks) — likely a raw-document path FERC blocks for direct linking; switched to FERC's own public explainer page for the same rule, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Tracks PJM/FERC interconnection rules affecting PA, NJ, VA, MD, NC data centers. 2026-07-29: /media/order-no-2023 403s (17 consecutive checks) \u2014 likely a raw-document path FERC blocks for direct linking; switched to FERC's own public explainer page for the same rule, confirmed via web search. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "ri-legislature",
@@ -1600,7 +1600,7 @@
       "state_abbr": "RI",
       "state_fips": "44",
       "fips": null,
-      "title": "Rhode Island General Assembly — Bill Search",
+      "title": "Rhode Island General Assembly \u2014 Bill Search",
       "url": "https://www.rilegislature.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1612,7 +1612,7 @@
         "ai",
         "energy"
       ],
-      "notes": "Tracks follow-on legislation to Smithfield ban. 2026-07-29: rilin.state.ri.us gave a TLS hostname-mismatch error (16 consecutive failed checks) — the General Assembly has moved to rilegislature.gov, confirmed via web search."
+      "notes": "Tracks follow-on legislation to Smithfield ban. 2026-07-29: rilin.state.ri.us gave a TLS hostname-mismatch error (16 consecutive failed checks) \u2014 the General Assembly has moved to rilegislature.gov, confirmed via web search."
     },
     {
       "id": "ri-smithfield-council",
@@ -1622,7 +1622,7 @@
       "state_abbr": "RI",
       "state_fips": "44",
       "fips": "44007",
-      "title": "Town of Smithfield — Town Council Agendas and Ordinances",
+      "title": "Town of Smithfield \u2014 Town Council Agendas and Ordinances",
       "url": "https://www.smithfieldri.gov/government/government-officials",
       "url_verified": false,
       "last_checked": null,
@@ -1633,7 +1633,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "Permanent data center ban (2023). Monitor for any appeals or amendments. 2026-07-29: domain was .com (404, 17 consecutive checks) — the real town domain is smithfieldri.gov, confirmed via web search."
+      "notes": "Permanent data center ban (2023). Monitor for any appeals or amendments. 2026-07-29: domain was .com (404, 17 consecutive checks) \u2014 the real town domain is smithfieldri.gov, confirmed via web search. 2026-08-19 Priority B finding: still failing (see source_health.json consecutive_failures) at what web search confirms is the correct, current URL -- this is one of 10 sources across unrelated domains all returning HTTP 403 in the same scheduled run, plus 3 more with SSL certificate failures in that same run (see mi-legislature/ct-legislature/oh-legislature), a pattern far more consistent with the CI runner's outbound IP/request signature being blocked by WAFs than this many independent .gov sites failing simultaneously. down_reason is TRANSIENT_FAILURE (the classifier had no response body from historical runs to confirm ACCESS_BLOCKED with real evidence); fetch.py now captures one, so the next scheduled run can reclassify with confidence. URL not changed -- no evidence it moved. 2026-08-22 follow-up: dispatched the new check_policy_sources workflow job (runs data/run_policy_pipeline.py --check-health-only against this branch, so it actually exercises the body-snippet-capture fix mentioned above, unlike update_policy_sources.yml which is pinned to main). Result: still a bare HTTP 403 with an EMPTY response body (no WAF/challenge-page HTML markers at all) -- consistent with an IP-reputation/network-level block that returns no page, not a JS-challenge WAF. Same failure signature persisting 3 days later across this same set of otherwise-unrelated .gov/.org domains is strong evidence this is the runner's network path, not these destinations. Still no evidence any of these sources moved or are actually down -- URL not changed."
     },
     {
       "id": "sc-legislature",
@@ -1643,7 +1643,7 @@
       "state_abbr": "SC",
       "state_fips": "45",
       "fips": null,
-      "title": "South Carolina Legislature — Bill Search",
+      "title": "South Carolina Legislature \u2014 Bill Search",
       "url": "https://www.scstatehouse.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1664,7 +1664,7 @@
       "state_abbr": "SC",
       "state_fips": "45",
       "fips": null,
-      "title": "SC DOR — Sales Tax Exemptions (incl. Data Centers)",
+      "title": "SC DOR \u2014 Sales Tax Exemptions (incl. Data Centers)",
       "url": "https://dor.sc.gov/sales-use-tax-index/sales-tax-exemptions",
       "url_verified": false,
       "last_checked": null,
@@ -1684,7 +1684,7 @@
       "state_abbr": "TN",
       "state_fips": "47",
       "fips": null,
-      "title": "Tennessee General Assembly — Bill Search",
+      "title": "Tennessee General Assembly \u2014 Bill Search",
       "url": "https://www.capitol.tn.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1697,7 +1697,7 @@
         "energy",
         "crypto"
       ],
-      "notes": "Tracks Tenn. Code §67-6-206 data center exemption and moratorium authorization. 2026-07-29: legislature.tn.gov does not resolve (DNS failure, 16 consecutive checks) — the correct domain is capitol.tn.gov, confirmed via web search."
+      "notes": "Tracks Tenn. Code \u00a767-6-206 data center exemption and moratorium authorization. 2026-07-29: legislature.tn.gov does not resolve (DNS failure, 16 consecutive checks) \u2014 the correct domain is capitol.tn.gov, confirmed via web search."
     },
     {
       "id": "tn-anderson-commission",
@@ -1728,7 +1728,7 @@
       "state_abbr": "TN",
       "state_fips": "47",
       "fips": "47037",
-      "title": "Nashville Metro Council — Legislative Actions",
+      "title": "Nashville Metro Council \u2014 Legislative Actions",
       "url": "https://www.nashville.gov/departments/council",
       "url_verified": false,
       "last_checked": null,
@@ -1740,7 +1740,7 @@
         "energy",
         "ai"
       ],
-      "notes": "URL from restrictions_raw.json. Proposed Nashville data center growth controls. 2026-07-29: council.nashville.gov reset the connection (17 consecutive checks) — that subdomain appears retired; Metro Council is now under the main nashville.gov domain, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Proposed Nashville data center growth controls. 2026-07-29: council.nashville.gov reset the connection (17 consecutive checks) \u2014 that subdomain appears retired; Metro Council is now under the main nashville.gov domain, confirmed via web search."
     },
     {
       "id": "tn-hamilton-commission",
@@ -1783,7 +1783,7 @@
         "data_center",
         "energy"
       ],
-      "notes": "URL from restrictions_raw.json. Active moratorium (2024). 2026-07-29: /commission/ 404s (17 consecutive checks); real CivicPlus numbered path confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Active moratorium (2024). 2026-07-29: /commission/ 404s (17 consecutive checks); real CivicPlus numbered path confirmed via web search. 2026-08-19 Priority B finding: a read-timeout with only 1-2 recorded consecutive failures -- correctly classified TRANSIENT_FAILURE, most likely a real but ordinary transient network blip, not a structural problem. No action needed unless it persists past the 3-failure threshold on a future run."
     },
     {
       "id": "tx-legislature",
@@ -1793,7 +1793,7 @@
       "state_abbr": "TX",
       "state_fips": "48",
       "fips": null,
-      "title": "Texas Legislature Online — Bill Search",
+      "title": "Texas Legislature Online \u2014 Bill Search",
       "url": "https://capitol.texas.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1816,7 +1816,7 @@
       "state_abbr": "TX",
       "state_fips": "48",
       "fips": null,
-      "title": "ERCOT — Demand Response Programs and Grid Rules",
+      "title": "ERCOT \u2014 Demand Response Programs and Grid Rules",
       "url": "https://www.ercot.com/",
       "url_verified": false,
       "last_checked": null,
@@ -1837,7 +1837,7 @@
       "state_abbr": "TX",
       "state_fips": "48",
       "fips": null,
-      "title": "Texas Economic Development — Incentives",
+      "title": "Texas Economic Development \u2014 Incentives",
       "url": "https://gov.texas.gov/business/page/incentives",
       "url_verified": false,
       "last_checked": null,
@@ -1899,7 +1899,7 @@
       "state_abbr": "TX",
       "state_fips": "48",
       "fips": "48453",
-      "title": "Austin City Council — Technology and AI Policy",
+      "title": "Austin City Council \u2014 Technology and AI Policy",
       "url": "https://www.austintexas.gov/department/city-council",
       "url_verified": false,
       "last_checked": null,
@@ -1921,7 +1921,7 @@
       "state_abbr": "UT",
       "state_fips": "49",
       "fips": null,
-      "title": "Utah Legislature — Bill Search",
+      "title": "Utah Legislature \u2014 Bill Search",
       "url": "https://le.utah.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1956,7 +1956,7 @@
         "water",
         "energy"
       ],
-      "notes": "Active data center and crypto moratorium citing water scarcity. 2026-07-29: /departments/county-commission/ 404s (17 consecutive checks) — the county appears to operate two domains (ironcounty.net and ironcountyut.gov); switched to ironcountyut.gov/commission, confirmed via web search as the dedicated commission page."
+      "notes": "Active data center and crypto moratorium citing water scarcity. 2026-07-29: /departments/county-commission/ 404s (17 consecutive checks) \u2014 the county appears to operate two domains (ironcounty.net and ironcountyut.gov); switched to ironcountyut.gov/commission, confirmed via web search as the dedicated commission page."
     },
     {
       "id": "va-legislature",
@@ -1966,7 +1966,7 @@
       "state_abbr": "VA",
       "state_fips": "51",
       "fips": null,
-      "title": "Virginia General Assembly — Bill Search",
+      "title": "Virginia General Assembly \u2014 Bill Search",
       "url": "https://lis.virginia.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -1988,7 +1988,7 @@
       "state_abbr": "VA",
       "state_fips": "51",
       "fips": "51059",
-      "title": "Fairfax County — Data Centers: Adopted Zoning Ordinance Amendment",
+      "title": "Fairfax County \u2014 Data Centers: Adopted Zoning Ordinance Amendment",
       "url": "https://www.fairfaxcounty.gov/planning-development/data-centers",
       "url_verified": false,
       "last_checked": null,
@@ -1998,7 +1998,7 @@
       "policy_types": [
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. Density caps and infrastructure review requirements. 2026-07-29: /comprehensive-plan 404s (17 consecutive checks) — the county's actual dedicated data-center policy page (setbacks, Metro buffer, noise studies) is /planning-development/data-centers, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Density caps and infrastructure review requirements. 2026-07-29: /comprehensive-plan 404s (17 consecutive checks) \u2014 the county's actual dedicated data-center policy page (setbacks, Metro buffer, noise studies) is /planning-development/data-centers, confirmed via web search."
     },
     {
       "id": "va-fairfax-bos",
@@ -2008,7 +2008,7 @@
       "state_abbr": "VA",
       "state_fips": "51",
       "fips": "51059",
-      "title": "Fairfax County Board of Supervisors — Zoning Amendments",
+      "title": "Fairfax County Board of Supervisors \u2014 Zoning Amendments",
       "url": "https://www.fairfaxcounty.gov/boardofsupervisors/",
       "url_verified": false,
       "last_checked": null,
@@ -2028,7 +2028,7 @@
       "state_abbr": "VA",
       "state_fips": "51",
       "fips": "51107",
-      "title": "Loudoun County — Data Center Policy and Zoning Ordinance",
+      "title": "Loudoun County \u2014 Data Center Policy and Zoning Ordinance",
       "url": "https://www.loudoun.gov/5008/Data-Center-Policy",
       "url_verified": false,
       "last_checked": null,
@@ -2048,7 +2048,7 @@
       "state_abbr": "VA",
       "state_fips": "51",
       "fips": "51153",
-      "title": "Prince William County — Digital Gateway Data Center Zoning",
+      "title": "Prince William County \u2014 Digital Gateway Data Center Zoning",
       "url": "https://www.pwcva.gov/department/planning-office/pw-digital-gateway",
       "url_verified": false,
       "last_checked": null,
@@ -2058,7 +2058,7 @@
       "policy_types": [
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. 2026-07-29: path was missing the 'pw-' prefix (genuinely 404s); also note the project itself was terminated 2026-07-02 after the rezoning was voided by courts over a public-notice defect — see the fips 51153 restrictions_raw.json record, rewritten the same day this URL was fixed."
+      "notes": "URL from restrictions_raw.json. 2026-07-29: path was missing the 'pw-' prefix (genuinely 404s); also note the project itself was terminated 2026-07-02 after the rezoning was voided by courts over a public-notice defect \u2014 see the fips 51153 restrictions_raw.json record, rewritten the same day this URL was fixed."
     },
     {
       "id": "va-pwc-bos",
@@ -2078,7 +2078,7 @@
       "policy_types": [
         "data_center"
       ],
-      "notes": "URL from restrictions_raw.json. 2026-07-29: path had an extra 'of' (board-of-county-supervisors, HTTP 403 for 17 consecutive checks) — real path is board-county-supervisors, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. 2026-07-29: path had an extra 'of' (board-of-county-supervisors, HTTP 403 for 17 consecutive checks) \u2014 real path is board-county-supervisors, confirmed via web search."
     },
     {
       "id": "wa-legislature",
@@ -2088,7 +2088,7 @@
       "state_abbr": "WA",
       "state_fips": "53",
       "fips": null,
-      "title": "Washington State Legislature — Bill Search",
+      "title": "Washington State Legislature \u2014 Bill Search",
       "url": "https://leg.wa.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -2101,7 +2101,7 @@
         "energy",
         "crypto"
       ],
-      "notes": "URL from state_regulations.json. Tracks SHB 1951, AI governance bills, and SEPA data center review. 2026-07-29: the bare root of app.leg.wa.gov (a real tool subdomain — district finder, bill summaries) returned HTTP 403 for 16 consecutive checks; switched to the main leg.wa.gov homepage, a more appropriate general citation anyway."
+      "notes": "URL from state_regulations.json. Tracks SHB 1951, AI governance bills, and SEPA data center review. 2026-07-29: the bare root of app.leg.wa.gov (a real tool subdomain \u2014 district finder, bill summaries) returned HTTP 403 for 16 consecutive checks; switched to the main leg.wa.gov homepage, a more appropriate general citation anyway."
     },
     {
       "id": "wa-utc",
@@ -2111,7 +2111,7 @@
       "state_abbr": "WA",
       "state_fips": "53",
       "fips": null,
-      "title": "WA UTC — Large Load Policies and PUD Rate Cases",
+      "title": "WA UTC \u2014 Large Load Policies and PUD Rate Cases",
       "url": "https://www.utc.wa.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -2133,7 +2133,7 @@
       "state_abbr": "WA",
       "state_fips": "53",
       "fips": "53007",
-      "title": "Chelan County PUD — Large Load Service Policy",
+      "title": "Chelan County PUD \u2014 Large Load Service Policy",
       "url": "https://www.chelanpud.org/",
       "url_verified": false,
       "last_checked": null,
@@ -2155,7 +2155,7 @@
       "state_abbr": "WA",
       "state_fips": "53",
       "fips": "53017",
-      "title": "Douglas County PUD — Large Load Service Policy",
+      "title": "Douglas County PUD \u2014 Large Load Service Policy",
       "url": "https://douglaspud.org/",
       "url_verified": false,
       "last_checked": null,
@@ -2167,7 +2167,7 @@
         "crypto",
         "energy"
       ],
-      "notes": "URL from restrictions_raw.json. Active moratorium. 2026-07-29: www.douglas.pud.org gave a TLS hostname-mismatch error (cert not valid for that name, 16 consecutive failed checks) — the real domain is douglaspud.org, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Active moratorium. 2026-07-29: www.douglas.pud.org gave a TLS hostname-mismatch error (cert not valid for that name, 16 consecutive failed checks) \u2014 the real domain is douglaspud.org, confirmed via web search. 2026-08-19 Priority B finding: HTTP 403, only 2 consecutive failures so far -- too early to say whether this joins the larger 403 pattern seen on 9 other sources in the same run (see ca-santaclara-oes's note) or is independent. Watch on the next scheduled run. 2026-08-22 follow-up: check_policy_sources dispatch shows 3 consecutive HTTP 403 failures now (past the 3-failure confirmation threshold), with the same empty-body signature as the 9-source WAF group above -- this now looks like the same runner-level pattern rather than an independent issue. URL not changed."
     },
     {
       "id": "wa-grant-pud",
@@ -2177,7 +2177,7 @@
       "state_abbr": "WA",
       "state_fips": "53",
       "fips": "53025",
-      "title": "Grant County PUD — Cryptocurrency Mining Service Policy",
+      "title": "Grant County PUD \u2014 Cryptocurrency Mining Service Policy",
       "url": "https://www.grantpud.org/",
       "url_verified": false,
       "last_checked": null,
@@ -2189,7 +2189,7 @@
         "crypto",
         "energy"
       ],
-      "notes": "URL from restrictions_raw.json. Capacity restrictions. 2026-07-29: www.gcpud.org gave a TLS hostname-mismatch error (16 consecutive failed checks) — the real domain is grantpud.org, confirmed via web search."
+      "notes": "URL from restrictions_raw.json. Capacity restrictions. 2026-07-29: www.gcpud.org gave a TLS hostname-mismatch error (16 consecutive failed checks) \u2014 the real domain is grantpud.org, confirmed via web search."
     },
     {
       "id": "wa-okanogan-pud",
@@ -2199,7 +2199,7 @@
       "state_abbr": "WA",
       "state_fips": "53",
       "fips": "53047",
-      "title": "Okanogan County PUD — Rate Study for High-Load Customers",
+      "title": "Okanogan County PUD \u2014 Rate Study for High-Load Customers",
       "url": "https://www.okanoganpud.org/",
       "url_verified": false,
       "last_checked": null,
@@ -2221,7 +2221,7 @@
       "state_abbr": "WA",
       "state_fips": "53",
       "fips": "53033",
-      "title": "King County — Council and Planning",
+      "title": "King County \u2014 Council and Planning",
       "url": "https://kingcounty.gov/en/dept/council",
       "url_verified": false,
       "last_checked": null,
@@ -2232,7 +2232,7 @@
         "data_center",
         "ai"
       ],
-      "notes": "Tracks SEPA review and facial recognition ordinance. 2026-07-29: path incorrectly nested Council under Executive (404, 17 consecutive checks) — the Council is its own department; real path confirmed via web search."
+      "notes": "Tracks SEPA review and facial recognition ordinance. 2026-07-29: path incorrectly nested Council under Executive (404, 17 consecutive checks) \u2014 the Council is its own department; real path confirmed via web search."
     },
     {
       "id": "wa-okanogan-commissioners",
@@ -2242,7 +2242,7 @@
       "state_abbr": "WA",
       "state_fips": "53",
       "fips": "53047",
-      "title": "Okanogan County Commissioners — Data Center Ordinance",
+      "title": "Okanogan County Commissioners \u2014 Data Center Ordinance",
       "url": "https://www.okanogancounty.gov/175/County-Commissioners",
       "url_verified": false,
       "last_checked": null,
@@ -2263,7 +2263,7 @@
       "state_abbr": "WI",
       "state_fips": "55",
       "fips": null,
-      "title": "Wisconsin Legislature — Bill Search",
+      "title": "Wisconsin Legislature \u2014 Bill Search",
       "url": "https://legis.wisconsin.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -2285,7 +2285,7 @@
       "state_abbr": "WI",
       "state_fips": "55",
       "fips": null,
-      "title": "WEDC — Data Center and Technology Incentives",
+      "title": "WEDC \u2014 Data Center and Technology Incentives",
       "url": "https://wedc.org/",
       "url_verified": false,
       "last_checked": null,
@@ -2305,7 +2305,7 @@
       "state_abbr": "WI",
       "state_fips": "55",
       "fips": "55025",
-      "title": "Dane County Board of Supervisors — Data Center Zoning",
+      "title": "Dane County Board of Supervisors \u2014 Data Center Zoning",
       "url": "https://board.countyofdane.com/",
       "url_verified": false,
       "last_checked": null,
@@ -2336,7 +2336,7 @@
       "policy_types": [
         "data_center"
       ],
-      "notes": "2026-07-30 correction: co.manitowoc.wi.us no longer resolves at all (DNS failure, confirmed via source_health.json) — the county migrated its entire domain to manitowoccountywi.gov. Confirmed the new domain's County Board of Supervisors page via web search; path structure is otherwise the same as the previous 2026-07-29 hyphen fix. URL from restrictions_raw.json. Proposed data center zoning restrictions. 2026-07-29: path was /departments/county_board/ (underscore, abbreviated) — genuinely wrong, DNS resolved but the page didn't exist there. Correct path uses hyphens: /departments/county-board-of-supervisors/, confirmed via web search."
+      "notes": "2026-07-30 correction: co.manitowoc.wi.us no longer resolves at all (DNS failure, confirmed via source_health.json) \u2014 the county migrated its entire domain to manitowoccountywi.gov. Confirmed the new domain's County Board of Supervisors page via web search; path structure is otherwise the same as the previous 2026-07-29 hyphen fix. URL from restrictions_raw.json. Proposed data center zoning restrictions. 2026-07-29: path was /departments/county_board/ (underscore, abbreviated) \u2014 genuinely wrong, DNS resolved but the page didn't exist there. Correct path uses hyphens: /departments/county-board-of-supervisors/, confirmed via web search."
     },
     {
       "id": "wy-legislature",
@@ -2346,7 +2346,7 @@
       "state_abbr": "WY",
       "state_fips": "56",
       "fips": null,
-      "title": "Wyoming Legislature — Bill Search",
+      "title": "Wyoming Legislature \u2014 Bill Search",
       "url": "https://www.wyoleg.gov/",
       "url_verified": false,
       "last_checked": null,
@@ -2379,7 +2379,7 @@
         "data_center",
         "crypto"
       ],
-      "notes": "Tracks local land use rules for digital asset mining facilities. 2026-07-29: laramiecounty.com timed out (17 consecutive checks) — the county's current domain is laramiecountywy.gov, confirmed via web search."
+      "notes": "Tracks local land use rules for digital asset mining facilities. 2026-07-29: laramiecounty.com timed out (17 consecutive checks) \u2014 the county's current domain is laramiecountywy.gov, confirmed via web search."
     }
   ]
 }

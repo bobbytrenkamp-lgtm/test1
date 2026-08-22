@@ -385,7 +385,13 @@ function exportCompareCsv() {
     return { fips, county, sevKey, sev, suit, types, polRisk };
   });
   const csvCell = v => {
-    const s = String(v ?? "");
+    let s = String(v ?? "");
+    // CSV/formula injection guard: a field beginning with =, +, -, @, or a
+    // tab/CR can be interpreted as a formula by Excel/Sheets on open.
+    // county.description is free-text sourced from policy documents, not
+    // written by us, so it can't be assumed safe. Prefixing a single quote
+    // neutralizes the formula interpretation without changing what's shown.
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
     if (s.includes(",") || s.includes('"') || s.includes("\n")) return '"' + s.replace(/"/g, '""') + '"';
     return s;
   };

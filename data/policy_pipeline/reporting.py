@@ -1,8 +1,12 @@
 """Generate source health reports and pipeline run summaries."""
 from __future__ import annotations
 import os
+import sys
 from datetime import datetime, timezone
 from .models import SourceHealth, PolicyCandidate, save_json_file, load_json_file
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from lib.endpoint_diagnostics import classify_down_reason  # noqa: E402
 
 DATA_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCE_HEALTH_PATH = os.path.join(DATA_DIR, "source_health.json")
@@ -23,14 +27,42 @@ def save_source_health(health_data: dict) -> None:
 
 
 def update_source_health_entry(health_data: dict, health: SourceHealth) -> None:
-    """Upsert a SourceHealth record into the health_data dict."""
+    """Upsert a SourceHealth record into the health_data dict.
+
+    Tracks first_failure_at (when the current outage started -- reset the
+    instant a source recovers) and down_reason (why it's currently failing,
+    via the shared classifier in lib/endpoint_diagnostics.py) alongside the
+    existing consecutive_failures counter. consecutive_failures itself stays
+    a flat running count rather than being replaced with a full per-run
+    history array (the model parcel_health_history.json uses): the counter
+    already answers the question generate_data_health.py needs ("has this
+    failed >=3 scheduled runs in a row") correctly for a source that's
+    checked on a regular cadence, and migrating 109 sources' history to a
+    windowed model would be a materially bigger schema change for the same
+    practical decision in the common case. first_failure_at closes the one
+    real gap that existed either way: nothing recorded how long an outage
+    had been running.
+    """
     sources = health_data.setdefault("sources", {})
+    prev = sources.get(health.source_id, {})
     entry = health.to_dict()
     if health.reachable:
         entry["consecutive_failures"] = 0
+        entry["first_failure_at"] = None
+        entry["down_reason"] = None
     else:
-        prev = sources.get(health.source_id, {})
         entry["consecutive_failures"] = prev.get("consecutive_failures", 0) + 1
+        entry["first_failure_at"] = prev.get("first_failure_at") or health.last_checked
+        entry["down_reason"] = classify_down_reason(
+            status=health.http_status, error=health.error,
+            final_url=None, original_url=health.url,
+            consecutive_failures=entry["consecutive_failures"],
+            body_snippet=health.body_snippet,
+        )
+    # body_snippet only exists to feed the classification above -- storing
+    # arbitrary third-party response HTML long-term in a committed JSON file
+    # isn't worth it once down_reason has already been computed from it.
+    entry["body_snippet"] = None
     sources[health.source_id] = entry
 
 

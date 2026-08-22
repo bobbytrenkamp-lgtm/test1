@@ -46,7 +46,11 @@ function exportCountiesCSV() {
   const TYPE_MAP = { data_center:"Data Center", ai:"AI Regulation", energy:"Energy / Grid", crypto:"Crypto / HPC", water:"Water Use" };
 
   const csvCell = v => {
-    const s = String(v ?? "");
+    let s = String(v ?? "");
+    // CSV/formula injection guard: Description is free-text sourced from
+    // policy documents, not written by us, so a leading =/+/-/@ can't be
+    // assumed safe -- it would be interpreted as a formula by Excel/Sheets.
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
     if (s.includes(",") || s.includes('"') || s.includes("\n")) return '"' + s.replace(/"/g, '""') + '"';
     return s;
   };
@@ -128,7 +132,9 @@ function renderAnalyticsPage() {
   }
 
   const activeRestrict = levelCounts[2] + levelCounts[3] + levelCounts[4];
-  const aiCompanyCount = (typeof AI_COMPANIES !== 'undefined' ? AI_COMPANIES.length : 50);
+  // 0 when the data isn't loaded, never a fabricated placeholder number
+  // standing in for a real count.
+  const aiCompanyCount = (typeof AI_COMPANIES !== 'undefined' ? AI_COMPANIES.length : 0);
 
   // News by category
   const newsCats = {};
@@ -994,7 +1000,10 @@ function _showStateModal(stateName) {
   const stAbbr  = Object.entries(_sNames).find(([, name]) => name === stateName)?.[0] || "";
   const fips2   = stAbbr ? Object.entries(_sFips).find(([, abbr]) => abbr === stAbbr)?.[0] : null;
 
-  function closeModal() { overlay?.remove(); }
+  function closeModal() {
+    overlay?.remove();
+    document.removeEventListener("keydown", keyHandler);
+  }
 
   overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
   document.getElementById("sdm-close")?.addEventListener("click", closeModal);
@@ -1030,7 +1039,7 @@ function _showStateModal(stateName) {
     }
   });
 
-  const keyHandler = e => { if (e.key === "Escape") { closeModal(); document.removeEventListener("keydown", keyHandler); } };
+  const keyHandler = e => { if (e.key === "Escape") closeModal(); };
   document.addEventListener("keydown", keyHandler);
 
   // Focus modal for accessibility
@@ -2276,7 +2285,7 @@ function renderAboutPage() {
             <div class="roadmap-dot done"></div>
             <div class="roadmap-content">
               <div class="roadmap-title">Parcel Intelligence</div>
-              <div class="roadmap-desc">Live parcel data for ${window.PARCEL_REGISTRY ? window.PARCEL_REGISTRY.all().length : 5} counties with DC feasibility scoring, zoning analysis, and proximity assessment.</div>
+              <div class="roadmap-desc">Live parcel data for ${window.PARCEL_REGISTRY ? `${window.PARCEL_REGISTRY.all().length} counties` : "multiple counties"} with DC feasibility scoring, zoning analysis, and proximity assessment.</div>
             </div>
             <span class="roadmap-badge done">Live</span>
           </div>

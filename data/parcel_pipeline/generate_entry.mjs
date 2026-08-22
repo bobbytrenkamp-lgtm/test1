@@ -1,6 +1,7 @@
 /* data/parcel_pipeline/generate_entry.mjs
  *
  *   node data/parcel_pipeline/generate_entry.mjs --fips <fips> [--fields "A,B,C"]
+ *   node data/parcel_pipeline/generate_entry.mjs --fips <fips> --live-refetch
  *
  * Given a catalog record (status: candidate/thin/requires-review — NOT yet
  * production) and a real source field list, runs field_mapper.mjs and
@@ -17,10 +18,22 @@
  * clearly marked incomplete, with the open questions listed for a human to
  * resolve before it's usable.
  *
- * --fields is optional: if omitted, the source field list is read from the
- * catalog record's own `available_fields` (already populated for every
- * hand-transcribed candidate this session, e.g. Mecklenburg NC, Jackson
- * MO). Pass --fields to override with fresher data from a live re-probe.
+ * Three ways to get the source field list, in order of freshness:
+ *   --fields "A,B,C"   explicit override — the freshest source, since it's
+ *                       whatever the caller just fetched by hand.
+ *   --live-refetch      re-fetches the catalog record's own service_url via
+ *                       discovery/schema.mjs's inspectArcGISService — the
+ *                       same live-introspection discover_batch.mjs already
+ *                       uses, applied here so promoting a candidate doesn't
+ *                       have to trust a catalog snapshot that may be stale
+ *                       relative to the live service. ArcGIS only (mirrors
+ *                       discover_batch.mjs's own scope); ok:false surfaces
+ *                       the real error and falls through to available_fields
+ *                       rather than silently succeeding with nothing.
+ *   (neither)           falls back to the catalog record's own
+ *                       `available_fields` (already populated for every
+ *                       hand-transcribed candidate this session, e.g.
+ *                       Mecklenburg NC, Jackson MO).
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -28,18 +41,42 @@ import { join } from 'node:path';
 import { ROOT, loadSchemaFieldIds, loadRequiredSchemaFieldIds } from './lib/load_registry.mjs';
 import { mapFields } from './field_mapper.mjs';
 import { validateMapping } from './validate_field_mapping.mjs';
+import { inspectArcGISService } from './discovery/schema.mjs';
 
 const CATALOG_PATH = join(ROOT, 'data/parcel_source_catalog.json');
 const SYNONYMS_PATH = join(ROOT, 'data/parcel_field_synonyms.json');
 const DRAFTS_DIR = join(ROOT, 'data/parcel_pipeline/drafts');
 
 function parseArgs(argv) {
-  const args = { fips: null, fields: null };
+  const args = { fips: null, fields: null, liveRefetch: false };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--fips') args.fips = argv[++i];
     else if (argv[i] === '--fields') args.fields = argv[++i];
+    else if (argv[i] === '--live-refetch') args.liveRefetch = true;
   }
   return args;
+}
+
+/* Live-refetches a candidate's source field list from its actual ArcGIS
+   service via the same discovery-layer introspection discover_batch.mjs
+   already uses. Returns { fields: string[] | null, why: string | null } --
+   never throws, since a live fetch failing here should fall back to
+   available_fields, not crash the whole draft-generation run. */
+export async function liveRefetchFields(record) {
+  if (!record.service_url) {
+    return { fields: null, why: 'catalog record has no service_url to refetch' };
+  }
+  if (record.source_type && !record.source_type.startsWith('arcgis')) {
+    return { fields: null, why: `--live-refetch only supports ArcGIS sources, this is '${record.source_type}'` };
+  }
+  const result = await inspectArcGISService(record.service_url, {});
+  if (!result.ok) {
+    return { fields: null, why: `live fetch failed: ${result.errorType} — ${result.why}` };
+  }
+  if (!Array.isArray(result.fields) || result.fields.length === 0) {
+    return { fields: null, why: 'service resolved but returned no field list (may be a FeatureServer root, not a single layer — service_url should point at a resolved layer)' };
+  }
+  return { fields: result.fields.map(f => f.name), why: null };
 }
 
 function jsStringLiteral(value) {
@@ -174,10 +211,10 @@ ${formatNotProvided(mapperResult.notProvidedBySource)},
     },`;
 }
 
-function main() {
+async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.fips) {
-    console.error('Usage: node generate_entry.mjs --fips <fips> [--fields "A,B,C"]');
+    console.error('Usage: node generate_entry.mjs --fips <fips> [--fields "A,B,C" | --live-refetch]');
     process.exit(2);
   }
 
@@ -192,12 +229,25 @@ function main() {
     process.exit(1);
   }
 
-  const sourceFields = args.fields
+  let sourceFields = args.fields
     ? args.fields.split(',').map(s => s.trim()).filter(Boolean)
-    : record.available_fields || [];
+    : null;
+
+  if (!sourceFields && args.liveRefetch) {
+    console.log(`Live-refetching field list from ${record.service_url} ...`);
+    const live = await liveRefetchFields(record);
+    if (live.fields) {
+      console.log(`  got ${live.fields.length} fields live.`);
+      sourceFields = live.fields;
+    } else {
+      console.log(`  ${live.why} — falling back to catalog available_fields.`);
+    }
+  }
+
+  if (!sourceFields) sourceFields = record.available_fields || [];
   if (sourceFields.length === 0) {
-    console.error(`No source fields available for FIPS ${args.fips} (catalog has no available_fields ` +
-      `and --fields was not passed).`);
+    console.error(`No source fields available for FIPS ${args.fips} (catalog has no available_fields, ` +
+      `--fields was not passed, and --live-refetch found nothing usable).`);
     process.exit(1);
   }
 
@@ -229,5 +279,8 @@ function main() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  main();
+  main().catch((e) => {
+    console.error(`FATAL: ${e.stack || e.message}`);
+    process.exit(1);
+  });
 }

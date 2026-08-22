@@ -8,11 +8,23 @@ Project-wide data health: is each pipeline's most recent automated run actually 
 
 | Pipeline | Health | Detail |
 |---|---|---|
-| policy_pipeline_sources | SOURCE_DOWN | 13 down / 2 transient / 109 total |
-| county_page_citations | VALIDATION_FAILURE | 956/1994 unreachable (47.9%) |
-| map_data_citations | VALIDATION_FAILURE | 1299/2949 unreachable (44.0%) |
+| policy_pipeline_sources | SOURCE_DOWN | 14 down / 0 transient / 109 total |
+| county_page_citations | VALIDATION_FAILURE | 973/1985 unreachable (49.0%) |
+| map_data_citations | VALIDATION_FAILURE | 1117/2550 unreachable (43.8%) |
 | static_parcel_ingestion | OK | - |
 | parcels_registry | SOURCE_DOWN | 1 down / 0 transient / 59 total |
+
+## Remediation queue
+
+Ranked descending by severity_score (see `_meta.remediation_queue_note` in data_health.json for the formula). Empty means every tracked pipeline is currently OK or NOT_YET_TRACKED -- an honest silence, not evidence nothing was ever wrong.
+
+| Rank | Pipeline | Health | Severity | Affected | Reason |
+|---|---|---|---|---|---|
+| 1 | map_data_citations | VALIDATION_FAILURE | 106.16 | 1117 | 1117 citation URL(s) unreachable (43.8%) -- see data/citation_remediation_queue.json for individually reviewable candidates. |
+| 2 | county_page_citations | VALIDATION_FAILURE | 93.04 | 973 | 973 citation URL(s) unreachable (49.0%) -- see data/citation_remediation_queue.json for individually reviewable candidates. |
+| 3 | policy_pipeline_sources | SOURCE_DOWN | 11.4 | 14 | 14 source(s) persistently down, 0 transient -- see each source's down_reason/notes in data/source_health.json / data/government_sources.json. |
+| 4 | parcels_registry | SOURCE_DOWN | 6.06 | 1 | 1 jurisdiction(s) persistently down, 0 transient -- see js/parcel/registry.js entries for details. |
+
 
 ## Datasets with no automated health signal yet
 

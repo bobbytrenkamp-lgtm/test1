@@ -203,8 +203,13 @@
   async function resetPassword(email) {
     if (!_client) return { error: { message: 'Auth not configured' } };
     try {
+      // Dynamic origin+path, not a hardcoded GitHub Pages URL -- matches
+      // the pattern already used for shareable links elsewhere (js/map.js,
+      // js/stocks.js). A hardcoded URL would send reset emails to the wrong
+      // place from any other deployment: local dev, a preview/staging
+      // environment, or a future custom domain.
       const { error } = await _client.auth.resetPasswordForEmail(email, {
-        redirectTo: 'https://bobbytrenkamp-lgtm.github.io/test1/'
+        redirectTo: `${window.location.origin}${window.location.pathname}`
       });
       return { error: error };
     } catch (e) {

@@ -50,30 +50,24 @@ Usage:
 import argparse
 import json
 import random
-import re
 import sys
-import time
-import urllib.error
-import urllib.parse
-import urllib.request
-import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from threading import Lock
+
+sys.path.insert(0, str(Path(__file__).parent))
+from lib.endpoint_diagnostics import (   # noqa: E402
+    check_url, wayback, find_replacement_candidate, classify_down_reason,
+    # Re-exported so tests/test_check_source_links.py's existing imports
+    # (`from check_source_links import _tokenize_path, ...`) keep working
+    # unchanged now that the canonical implementation lives in lib/.
+    _tokenize_path, _parse_sitemap_xml, best_sitemap_match,
+)
 
 ROOT = Path(__file__).parent.parent
 MAP_DATA = ROOT / "data" / "map_data.json"
 HEALTH = ROOT / "data" / "source_link_health.json"
-
-UA = "USDataCenterPolicyTracker-LinkCheck/1.0 (+https://bobbytrenkamp-lgtm.github.io/test1/)"
-WAYBACK_API = "https://archive.org/wayback/available?url="
-
-# Be a good citizen: never hit the same host concurrently without a gap.
-HOST_DELAY_S = 1.0
-_host_last: dict[str, float] = defaultdict(float)
-_host_lock = Lock()
 
 
 def collect_urls():
@@ -96,206 +90,6 @@ def collect_urls():
             textual_only.append(fips)
 
     return by_url, textual_only
-
-
-def _throttle(host):
-    """Space out requests per host without serialising the whole run."""
-    while True:
-        with _host_lock:
-            now = time.monotonic()
-            wait = _host_last[host] + HOST_DELAY_S - now
-            if wait <= 0:
-                _host_last[host] = now
-                return
-        time.sleep(min(wait, 2.0))
-
-
-def _request(url, method, timeout):
-    req = urllib.request.Request(url, method=method, headers={
-        "User-Agent": UA,
-        "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
-    })
-    return urllib.request.urlopen(req, timeout=timeout)
-
-
-def check_url(url, timeout):
-    """Return a health record. HEAD first; many government servers reject it,
-    so fall back to GET before believing a failure."""
-    host = urllib.parse.urlparse(url).netloc
-    _throttle(host)
-
-    for method in ("HEAD", "GET"):
-        try:
-            with _request(url, method, timeout) as resp:
-                return {
-                    "ok": 200 <= resp.status < 400,
-                    "status": resp.status,
-                    "final_url": resp.url if resp.url != url else None,
-                    "error": None,
-                }
-        except urllib.error.HTTPError as e:
-            # 4xx/5xx to HEAD is often method-not-allowed; retry with GET.
-            if method == "HEAD" and e.code in (400, 403, 405, 501):
-                continue
-            return {"ok": False, "status": e.code, "final_url": None,
-                    "error": f"HTTP {e.code}"}
-        except Exception as e:                      # noqa: BLE001 - network is messy
-            if method == "HEAD":
-                continue
-            # type(e).__name__ alone (e.g. "URLError") throws away the actual
-            # reason (DNS failure vs TLS cert error vs connection refused vs
-            # timeout) — str(e) carries that detail, same as
-            # data/policy_pipeline/fetch.py already does. Without it, a run
-            # against this file's ~2000 URLs leaves roughly half the failures
-            # completely undiagnosable after the fact — confirmed by
-            # inspecting a real run's output during a 2026-07-29 audit.
-            return {"ok": False, "status": None, "final_url": None,
-                    "error": f"{type(e).__name__}: {e}" if str(e) else type(e).__name__}
-
-    return {"ok": False, "status": None, "final_url": None, "error": "unreachable"}
-
-
-def wayback(url, timeout):
-    """Nearest Wayback snapshot, or None. Failures here are never fatal — an
-    archive lookup is a bonus, not a requirement."""
-    try:
-        _throttle("archive.org")
-        with _request(WAYBACK_API + urllib.parse.quote(url, safe=""), "GET", timeout) as resp:
-            data = json.loads(resp.read().decode("utf-8", "replace"))
-        snap = (data.get("archived_snapshots") or {}).get("closest") or {}
-        if snap.get("available") and snap.get("url"):
-            return {"url": snap["url"], "timestamp": snap.get("timestamp")}
-    except Exception:                                # noqa: BLE001
-        pass
-    return None
-
-
-# ---------------------------------------------------------------------------
-# "May have moved to" — sitemap-based replacement suggestion for dead links.
-# ---------------------------------------------------------------------------
-
-_SITEMAP_PATHS = ("/sitemap.xml", "/sitemap_index.xml")
-_SITEMAP_TAG_RE = re.compile(r"\{[^}]*\}")   # strips the XML namespace off a tag name
-_SITEMAP_FETCH_CAP = 2_000_000               # bytes; some gov sitemaps are huge
-_SITEMAP_URL_CAP = 3000                      # stop collecting <loc> entries past this
-_SITEMAP_CHILD_CAP = 5                       # child sitemaps to follow from an index
-
-_STOPWORDS = {
-    "www", "com", "gov", "org", "net", "html", "htm", "aspx", "asp", "php",
-    "index", "home", "page", "pages", "view", "viewer", "docid", "default",
-    "content", "public", "portal", "site", "sites", "department", "departments",
-}
-
-_sitemap_cache = {}
-_sitemap_lock = Lock()
-
-
-def _tokenize_path(url):
-    """Lowercase keyword tokens from a URL's path + query, for keyword-overlap
-    matching against sitemap entries. Splits on any non-letter run, so
-    'PW-Digital-Gateway.aspx?id=42' -> {'digital', 'gateway'} ('pw' and 'id'
-    are too short, 'aspx' is filtered as boilerplate)."""
-    parsed = urllib.parse.urlparse(url)
-    raw = (parsed.path + " " + parsed.query).lower()
-    parts = re.split(r"[^a-z]+", raw)
-    return {p for p in parts if len(p) >= 4 and p not in _STOPWORDS}
-
-
-def _parse_sitemap_xml(xml_bytes):
-    """Return (kind, urls) for a sitemap.xml payload: kind is 'urlset' (a
-    page listing) or 'sitemapindex' (a listing of other sitemaps), or
-    (None, []) if the payload isn't parseable XML."""
-    try:
-        root = ET.fromstring(xml_bytes)
-    except ET.ParseError:
-        return None, []
-    kind = _SITEMAP_TAG_RE.sub("", root.tag)
-    locs = [(el.text or "").strip() for el in root.iter()
-            if _SITEMAP_TAG_RE.sub("", el.tag) == "loc" and (el.text or "").strip()]
-    return kind, locs
-
-
-def _fetch_sitemap_urls(domain, timeout):
-    """Best-effort list of page URLs from a domain's sitemap(s). Most gov
-    sites don't have one at a standard path, or the fetch fails for some
-    other reason — that's not an error, it just means no suggestions are
-    available for that domain this run."""
-    for path in _SITEMAP_PATHS:
-        try:
-            _throttle(domain)
-            with _request(f"https://{domain}{path}", "GET", timeout) as resp:
-                body = resp.read(_SITEMAP_FETCH_CAP)
-        except Exception:                            # noqa: BLE001
-            continue
-
-        kind, locs = _parse_sitemap_xml(body)
-        if kind == "urlset" and locs:
-            return locs[:_SITEMAP_URL_CAP]
-
-        if kind == "sitemapindex" and locs:
-            urls = []
-            for child in locs[:_SITEMAP_CHILD_CAP]:
-                try:
-                    _throttle(domain)
-                    with _request(child, "GET", timeout) as resp:
-                        cbody = resp.read(_SITEMAP_FETCH_CAP)
-                except Exception:                    # noqa: BLE001
-                    continue
-                urls.extend(_parse_sitemap_xml(cbody)[1])
-                if len(urls) >= _SITEMAP_URL_CAP:
-                    break
-            if urls:
-                return urls[:_SITEMAP_URL_CAP]
-
-    return []
-
-
-def best_sitemap_match(dead_url, candidate_urls):
-    """Pure scoring logic, separated out so it's testable without network:
-    of candidate_urls, which (if any) shares enough path keywords with
-    dead_url to be worth suggesting as its likely new location? Requires at
-    least 2 shared keywords (or the single keyword available, for very short
-    paths) so a generic term like a county name alone can't match everything
-    on that county's own site."""
-    dead_tokens = _tokenize_path(dead_url)
-    if not dead_tokens:
-        return None
-
-    min_overlap = 2 if len(dead_tokens) >= 2 else 1
-    best_url, best_score = None, 0
-    for cand in candidate_urls:
-        if cand == dead_url:
-            continue
-        score = len(dead_tokens & _tokenize_path(cand))
-        if score > best_score:
-            best_url, best_score = cand, score
-
-    if best_url and best_score >= min_overlap:
-        return {"url": best_url, "score": best_score, "found_via": "sitemap"}
-    return None
-
-
-def find_replacement_candidate(dead_url, timeout):
-    """For a confirmed-dead URL, suggest a same-domain page that may be its
-    replacement. Heuristic and best-effort: a human should confirm before
-    ever citing it as fact, which is why this is surfaced as a suggestion in
-    source_link_health.json / the frontend rather than written into
-    restrictions_raw.json directly."""
-    domain = urllib.parse.urlparse(dead_url).netloc
-    if not domain:
-        return None
-
-    with _sitemap_lock:
-        cached = domain in _sitemap_cache
-        urls = _sitemap_cache.get(domain)
-    if not cached:
-        urls = _fetch_sitemap_urls(domain, timeout)
-        with _sitemap_lock:
-            _sitemap_cache[domain] = urls
-
-    if not urls:
-        return None
-    return best_sitemap_match(dead_url, urls)
 
 
 def load_health():
@@ -382,13 +176,19 @@ def main():
                        "error": f"{type(e).__name__}: {e}" if str(e) else type(e).__name__}
 
             prev = urls.get(url, {})
+            consecutive_failures = 0 if res["ok"] else (prev.get("consecutive_failures") or 0) + 1
             rec = {
                 "ok": res["ok"],
                 "status": res["status"],
                 "error": res["error"],
                 "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "counties": len(by_url[url]),
+                "consecutive_failures": consecutive_failures,
             }
+            if prev.get("first_failure_at") and not res["ok"]:
+                rec["first_failure_at"] = prev["first_failure_at"]
+            elif not res["ok"]:
+                rec["first_failure_at"] = rec["checked_at"]
             if res["final_url"]:
                 rec["final_url"] = res["final_url"]
             # Keep any archive we already had; only look one up for dead links.
@@ -409,6 +209,13 @@ def main():
                     rec["suggested_replacement"] = suggestion
                 else:
                     rec.pop("suggested_replacement", None)
+            if not res["ok"]:
+                rec["down_reason"] = classify_down_reason(
+                    status=res["status"], error=res["error"],
+                    final_url=res["final_url"], original_url=url,
+                    consecutive_failures=consecutive_failures,
+                    has_replacement_candidate=bool(rec.get("suggested_replacement") or rec.get("archive")),
+                )
             urls[url] = rec
 
             done += 1

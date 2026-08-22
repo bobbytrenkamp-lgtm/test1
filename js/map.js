@@ -1267,9 +1267,21 @@ async function _fetchPowerStatePartition(manifest, state) {
    union of currently-in-view cached states. Safe to call repeatedly (on
    toggle-on and on every debounced moveend) -- already-cached states
    resolve instantly with no network call. */
+let _powerLoadGeneration = 0;
 async function _loadPowerDataForCurrentView() {
+  // The debounce on the caller only prevents overlapping scheduled calls,
+  // not overlapping in-flight fetches -- if a call's network latency
+  // exceeds the debounce window, an older, slower call could otherwise
+  // resolve after a newer one and overwrite _powerRawData with data for a
+  // viewport the user already panned away from. This token makes only the
+  // most-recently-started call's result ever get applied.
+  const generation = ++_powerLoadGeneration;
+
   const manifest = await _loadPowerManifest();
-  if (!manifest) { _powerRawData = _powerRawData || []; return; }
+  if (!manifest) {
+    if (generation === _powerLoadGeneration) _powerRawData = _powerRawData || [];
+    return;
+  }
 
   const bounds = leafletMap.getBounds();
   const states = _statesInView(manifest, bounds);
@@ -1283,6 +1295,8 @@ async function _loadPowerDataForCurrentView() {
     }
   }
   await Promise.all(Array.from({ length: Math.min(POWER_STATE_CONCURRENCY, toFetch.length) }, worker));
+
+  if (generation !== _powerLoadGeneration) return; // a newer call superseded this one
 
   // Recompute the render set from the CURRENT view (not every ever-cached
   // state) -- data for a state panned away from stays cached for a fast
@@ -2009,7 +2023,15 @@ function exportCountiesCSV() {
       ]);
     });
 
-  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  // CSV/formula injection guard: Policy Title/Notes are free-text sourced
+  // from policy documents, not written by us -- a leading =/+/-/@ would be
+  // interpreted as a formula by Excel/Sheets even inside a quoted cell.
+  const csvCell = v => {
+    let s = String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+  const csv  = rows.map(r => r.map(csvCell).join(",")).join("\n");
   const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
   const url  = URL.createObjectURL(blob);
   const a    = Object.assign(document.createElement("a"), { href: url, download: `dc-restrictions-${new Date().toISOString().slice(0, 10)}.csv` });
@@ -2808,7 +2830,15 @@ function exportScene3dObjectsCSV() {
       (o.constraint && o.constraint.status) || "unknown",
     ]);
   });
-  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  // CSV/formula injection guard: Label is free-text the user typed into the
+  // 3D tool -- a leading =/+/-/@ would be interpreted as a formula by
+  // Excel/Sheets even inside a quoted cell.
+  const csvCell3d = v => {
+    let s = String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+  const csv  = rows.map(r => r.map(csvCell3d).join(",")).join("\n");
   const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
   const url  = URL.createObjectURL(blob);
   const a    = Object.assign(document.createElement("a"), { href: url, download: `3d-site-objects-${new Date().toISOString().slice(0, 10)}.csv` });
@@ -3279,7 +3309,15 @@ function exportScreenerCSV() {
       county.effective_date || "",
     ]);
   });
-  const csv  = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+  // CSV/formula injection guard: County is free-text sourced from policy
+  // data, not written by us -- a leading =/+/-/@ would be interpreted as a
+  // formula by Excel/Sheets even inside a quoted cell.
+  const csvCellScreener = v => {
+    let s = String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+  const csv  = rows.map(r => r.map(csvCellScreener).join(",")).join("\n");
   const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
   const url  = URL.createObjectURL(blob);
   const a    = Object.assign(document.createElement("a"), { href: url, download: `screener-results-${new Date().toISOString().slice(0,10)}.csv` });
@@ -5214,7 +5252,9 @@ function renderDashboard(data) {
   const plannedMW    = plannedDCs .reduce((s, d) => s + d.capacity_mw, 0);
 
   const articleCount = (typeof newsArticles !== 'undefined' ? newsArticles.length : 0);
-  const companyCount = (typeof AI_COMPANIES !== 'undefined' ? AI_COMPANIES.length : 50);
+  // Matches articleCount's fallback above: 0 when the data isn't loaded,
+  // never a fabricated placeholder number standing in for a real count.
+  const companyCount = (typeof AI_COMPANIES !== 'undefined' ? AI_COMPANIES.length : 0);
 
   const I = {
     ban:       `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>`,
@@ -5401,7 +5441,7 @@ function buildSampleInfraHtml(fips) {
     html += `
     <div class="detail-section">
       <div class="detail-label">Infrastructure ${_badge("dc_existing")}</div>
-      <div class="detail-value">${facilities.map(f => `${escHtml(f.name)} — ${f.capacity_mw} MW (${f.status})`).join("<br>")}</div>
+      <div class="detail-value">${facilities.map(f => `${escHtml(f.name)} — ${f.capacity_mw} MW (${escHtml(f.status)})`).join("<br>")}</div>
       ${dcReg.disclaimer ? `<div class="layer-data-disclaimer">${escHtml(dcReg.disclaimer)}</div>` : ""}
     </div>`;
   }
@@ -5455,8 +5495,8 @@ function buildStatePolicySectionHtml(stateFips2) {
   return `<div class="policy-scope-section">
     ${header}
     ${st.summary ? `<div class="detail-section"><div class="detail-value">${escHtml(st.summary)}</div></div>` : ""}
-    ${types.length ? `<div class="detail-section"><div class="detail-label">Types</div><div class="type-chips">${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t]||t}</span>`).join("")}</div></div>` : ""}
-    <div class="detail-section"><div class="detail-label">Status</div><div class="detail-value"><span class="status-indicator"><span class="status-dot ${status}"></span>${STATUS_LABELS[status]||status}</span></div></div>
+    ${types.length ? `<div class="detail-section"><div class="detail-label">Types</div><div class="type-chips">${types.map(t => `<span class="type-chip ${escHtml(t)}">${escHtml(TYPE_LABELS[t]||t)}</span>`).join("")}</div></div>` : ""}
+    <div class="detail-section"><div class="detail-label">Status</div><div class="detail-value"><span class="status-indicator"><span class="status-dot ${escHtml(status)}"></span>${escHtml(STATUS_LABELS[status]||status)}</span></div></div>
     ${st.sources && st.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${st.sources.map(s => {
       if (s && typeof s === "object" && s.url) return `<li><a href="${escHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escHtml(s.label)}</a></li>`;
       return `<li>${escHtml(typeof s === "string" ? s : s.label || "")}</li>`;
@@ -5732,8 +5772,8 @@ function buildCountyPolicySectionHtml(fips, county) {
     ${county.confidence ? buildConfidenceBadgeHtml(county) : ""}
     ${county.title ? `<div class="detail-section"><div class="detail-label">Restriction / Policy</div><div class="detail-value">${escHtml(county.title)}</div></div>` : ""}
     ${county.description ? `<div class="detail-section"><div class="detail-label">Description</div><div class="detail-value">${escHtml(county.description)}</div></div>` : ""}
-    ${types.length ? `<div class="detail-section"><div class="detail-label">Types</div><div class="type-chips">${types.map(t => `<span class="type-chip ${t}">${TYPE_LABELS[t]||t}</span>`).join("")}</div></div>` : ""}
-    <div class="detail-section"><div class="detail-label">Status</div><div class="detail-value"><span class="status-indicator"><span class="status-dot ${status}"></span>${STATUS_LABELS[status]||status}</span></div></div>
+    ${types.length ? `<div class="detail-section"><div class="detail-label">Types</div><div class="type-chips">${types.map(t => `<span class="type-chip ${escHtml(t)}">${escHtml(TYPE_LABELS[t]||t)}</span>`).join("")}</div></div>` : ""}
+    <div class="detail-section"><div class="detail-label">Status</div><div class="detail-value"><span class="status-indicator"><span class="status-dot ${escHtml(status)}"></span>${escHtml(STATUS_LABELS[status]||status)}</span></div></div>
     ${county.effective_date ? `<div class="detail-section"><div class="detail-label">Effective Date</div><div class="detail-value">${formatCountyDate(county.effective_date)}</div></div>` : ""}
     ${county.notes ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(county.notes)}</div></div>` : ""}
     ${county.sources && county.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${county.sources.map(s => {
@@ -5862,7 +5902,7 @@ function buildPoliticalRiskSectionHtml(fips) {
       <span><span class="risk-signal-label">${escHtml(s.label || s.type)}</span>${dateStr} — ${escHtml(s.description || "")}${linkPart}</span>
     </li>`;
   }).join("");
-  const confTag = rec.confidence ? `<span style="font-size:10px;color:var(--text-muted);margin-left:6px;">${rec.confidence} confidence</span>` : "";
+  const confTag = rec.confidence ? `<span style="font-size:10px;color:var(--text-muted);margin-left:6px;">${escHtml(rec.confidence)} confidence</span>` : "";
   return `<div class="risk-section">
     <div class="risk-section-header">
       <span class="risk-section-title">Political Risk</span>
@@ -5978,9 +6018,13 @@ async function _renderZoningSummaryForCounty(fips) {
   try {
     data = await window.ZONING.loadByFips(fips);
   } catch (_) {
+    // The user may have selected a different county while this was in flight.
+    if (selectedFips !== fips) return;
     placeholder.innerHTML = '<div class="zoning-summary-error">Zoning data unavailable.</div>';
     return;
   }
+  // The user may have selected a different county while this was in flight.
+  if (selectedFips !== fips) return;
   if (!data) { placeholder.innerHTML = ""; return; }
 
   const districts = data.districts || {};
@@ -6367,10 +6411,10 @@ function setDetailFacility(facility, kind) {
   document.getElementById("detail-body").innerHTML = `
     ${facility.operator  ? `<div class="detail-section"><div class="detail-label">Operator</div><div class="detail-value">${escHtml(facility.operator)}</div></div>` : ""}
     ${facility.capacity_mw ? `<div class="detail-section"><div class="detail-label">Capacity</div><div class="detail-value">${facility.capacity_mw.toLocaleString("en-US")} MW</div></div>` : ""}
-    ${facility.status    ? `<div class="detail-section"><div class="detail-label">Status</div><div class="detail-value" style="text-transform:capitalize;">${facility.status}</div></div>` : ""}
+    ${facility.status    ? `<div class="detail-section"><div class="detail-label">Status</div><div class="detail-value" style="text-transform:capitalize;">${escHtml(facility.status)}</div></div>` : ""}
     ${facility.year_built   ? `<div class="detail-section"><div class="detail-label">Year Built</div><div class="detail-value">${facility.year_built}</div></div>` : ""}
     ${facility.year_planned ? `<div class="detail-section"><div class="detail-label">Target Year</div><div class="detail-value">${facility.year_planned}</div></div>` : ""}
-    ${facility.type      ? `<div class="detail-section"><div class="detail-label">Type</div><div class="detail-value" style="text-transform:capitalize;">${facility.type}</div></div>` : ""}
+    ${facility.type      ? `<div class="detail-section"><div class="detail-label">Type</div><div class="detail-value" style="text-transform:capitalize;">${escHtml(facility.type)}</div></div>` : ""}
     ${facility.notes     ? `<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(facility.notes)}</div></div>` : ""}
     ${facility.sources && facility.sources.length ? `<div class="detail-section"><div class="detail-label">Sources</div><ul class="sources-list">${facility.sources.map(s => {
       if (s && typeof s === "object" && s.url) {
@@ -7012,7 +7056,15 @@ function initAdvancedFiltersPanel() {
           c.effective_date || c.date || "",
         ]);
       }
-      const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+      // CSV/formula injection guard: County is free-text sourced from
+      // policy data, not written by us -- a leading =/+/-/@ would be
+      // interpreted as a formula by Excel/Sheets even inside a quoted cell.
+      const csvCellFilter = v => {
+        let s = String(v);
+        if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+        return `"${s.replace(/"/g, '""')}"`;
+      };
+      const csv = rows.map(r => r.map(csvCellFilter).join(",")).join("\n");
       const a = Object.assign(document.createElement("a"), {
         href: URL.createObjectURL(new Blob([csv], { type: "text/csv" })),
         download: `dc-policy-filter-export-${new Date().toISOString().slice(0,10)}.csv`,
